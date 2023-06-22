@@ -1,0 +1,26 @@
+{
+  "name": "appkit-html",
+  "version": "0.0.1",
+  "description": "Render AppKit with DOM and HTML",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "author": "Jamie Birch",
+  "license": "MIT",
+  "dependencies": {
+    "dominimal": "^0.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.43.0",
+    "eslint-config-prettier": "^8.8.0",
+    "husky": "^8.0.3",
+    "prettier": "^2.8.8",
+    "typescript": "^5.1.3"
+  },
+  "lint-staged": {
+    "*.{js,jsx,css,md,json}": "prettier --write",
+    "*.{js,jsx}": "eslint --fix --format=pretty"
+  }
+}
