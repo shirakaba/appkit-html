@@ -2,7 +2,7 @@
   "name": "appkit-html",
   "version": "0.0.1",
   "description": "Render AppKit with DOM and HTML",
-  "main": "dist/index.js",
+  "module": "dist/index.js",
   "type": "module",
   "scripts": {
     "build": "tsc",
@@ -11,7 +11,7 @@
   "author": "Jamie Birch",
   "license": "MIT",
   "dependencies": {
-    "dominimal": "^0.0.2"
+    "dominimal": "^0.0.3"
   },
   "devDependencies": {
     "eslint": "^8.43.0",
