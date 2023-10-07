@@ -1,4 +1,8 @@
 import { polyfill } from '../dist/index.js';
 
-const window = await polyfill();
-console.log(window.document.documentElement.outerHTML);
+await polyfill(globalThis);
+console.log(document.documentElement.outerHTML);
+
+const nsWindow = document.createElement('ns-window');
+console.log(nsWindow.outerHTML);
+console.log(nsWindow.view);

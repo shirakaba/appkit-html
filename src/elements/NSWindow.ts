@@ -1,9 +1,8 @@
 import { classes } from 'objc/index.js';
 const { NSWindow } = classes;
 
-// FIXME: set window as global and reference window.HTMLElement instead?
 export class _NSWindow extends HTMLElement {
-  readonly view = new NSWindow();
+  readonly view = NSWindow.new();
 
   appendChild<T extends Node>(node: T): T {
     super.appendChild(node);
