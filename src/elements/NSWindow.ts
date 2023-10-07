@@ -1,5 +1,6 @@
-import { classes } from 'objc/index.js';
-const { NSWindow } = classes;
+import 'objc/index.js';
+
+declare var NSWindow: any;
 
 export class _NSWindow extends HTMLElement {
   readonly view = NSWindow.new();
