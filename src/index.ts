@@ -1,3 +1,4 @@
+/// <reference path="./elements/index.ts" />
 import dominimal from 'dominimal';
 const JSDOM = dominimal.JSDOM;
 
