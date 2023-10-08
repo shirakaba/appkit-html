@@ -3,40 +3,57 @@ import { isNativeElement } from '../utils/isNativeElement.js';
 
 declare var NSView: any;
 
+function getPropertyDescriptor(obj: {}, p: PropertyKey) {
+  let proto = Object.getPrototypeOf(obj);
+
+  while (proto) {
+    const descriptor = Object.getOwnPropertyDescriptor(proto, p);
+    if (descriptor) {
+      return descriptor;
+    }
+    proto = Object.getPrototypeOf(obj);
+  }
+}
+
 export class NSViewElement extends HTMLElement {
   readonly view = NSView.new();
 
-  static get observedAttributes() {
-    return ['background-color'] as const;
-  }
+  constructor() {
+    super();
 
-  // TODO: should we use a Proxy to proxy each observedAttribute?
-  // Would still have to solve TS typings.
-  //
-  // Interestingly, this resource says to consider skipping attributes
-  // altogether for rich (non-string) properties:
-  // https://thomaswilburn.github.io/wc-book/ce-attributes.html
-  get backgroundColor(): any {
-    return this.getAttribute('background-color');
-  }
-  set backgroundColor(value: any) {
-    this.setAttribute('background-color', value);
-  }
+    return new Proxy(this, {
+      get(target: NSViewElement, p: string | symbol, receiver: any) {
+        // If the prop is a known native prop, proxy it through.
+        const nativeProp = getPropertyDescriptor(target.view, p);
+        if (
+          nativeProp &&
+          (nativeProp.get || typeof nativeProp.value !== 'function')
+        ) {
+          return target.view[p];
+        }
 
-  attributeChangedCallback(name: string, oldValue: any, newValue: any) {
-    // TODO: should this parse string values to rich values?
-    // TODO: should attributes like background-color be relegated to CSS?
+        return Reflect.get(target, p, receiver);
+      },
+      set(
+        target: NSViewElement,
+        p: string | symbol,
+        newValue: any,
+        receiver: any
+      ) {
+        // If the prop is a known native prop, proxy it through.
+        const nativeProp = getPropertyDescriptor(target.view, p);
+        if (
+          nativeProp &&
+          (nativeProp.get || typeof nativeProp.value !== 'function')
+        ) {
+          target.view[p] = newValue;
+          // TODO: While we're here, should we set the corresponding attribute?
+          return true;
+        }
 
-    // With reference to HTMLVideoElement:
-    // - For boolean properties like `autoplay`, we should set !!newValue.
-    // - For string properties like `preload`, we should preserve the string.
-    // - For rich properties like `srcObject`, we should preserve the value.
-    // ... that said, rich properties aren't attributes in the first place.
-    switch (name) {
-      case 'background-color':
-        this.view.backgroundColor = newValue;
-        break;
-    }
+        return Reflect.set(target, p, newValue, receiver);
+      },
+    });
   }
 
   appendChild<T extends Node>(node: T): T {
