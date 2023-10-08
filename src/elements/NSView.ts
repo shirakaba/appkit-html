@@ -21,6 +21,10 @@ export class NSViewElement extends HTMLElement {
 
     return new Proxy(this, {
       get(target: NSViewElement, p: string | symbol, receiver: any) {
+        if (typeof p !== 'string') {
+          return Reflect.get(target, p, receiver);
+        }
+
         // If the prop is a known native prop, proxy it through.
         const nativeProp = getPropertyDescriptor(target.view, p);
         if (
@@ -38,6 +42,10 @@ export class NSViewElement extends HTMLElement {
         newValue: any,
         receiver: any
       ) {
+        if (typeof p !== 'string') {
+          return Reflect.set(target, p, newValue, receiver);
+        }
+
         // If the prop is a known native prop, proxy it through.
         const nativeProp = getPropertyDescriptor(target.view, p);
         if (
@@ -83,9 +91,8 @@ export class NSViewElement extends HTMLElement {
   }
 }
 
-function getPropertyDescriptor(obj: {}, p: PropertyKey) {
-  // FIXME: crashes upon trying to access (or even inspect in the debugger) the
-  // prototype of an NSView instance
+// Seems to crash when p is a Symbol
+function getPropertyDescriptor(obj: {}, p: string) {
   let proto = Object.getPrototypeOf(obj);
 
   while (proto) {
