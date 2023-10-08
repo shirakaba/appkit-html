@@ -2,20 +2,18 @@ import 'objc/index.js';
 import { isNativeElement } from '../utils/isNativeElement.js';
 
 declare var NSView: any;
-
-function getPropertyDescriptor(obj: {}, p: PropertyKey) {
-  let proto = Object.getPrototypeOf(obj);
-
-  while (proto) {
-    const descriptor = Object.getOwnPropertyDescriptor(proto, p);
-    if (descriptor) {
-      return descriptor;
-    }
-    proto = Object.getPrototypeOf(obj);
-  }
-}
+declare var NSObject: any;
 
 export class NSViewElement extends HTMLElement {
+  /**
+   * key: attribute (lowercase)
+   * value: prop (camelCase)
+   */
+  static attributesMap = new Map(
+    [...getNativeProps(NSView)]
+      .filter((prop): prop is string => typeof prop === 'string')
+      .map((prop) => [prop.toLowerCase(), prop])
+  );
   readonly view = NSView.new();
 
   constructor() {
@@ -47,7 +45,11 @@ export class NSViewElement extends HTMLElement {
           (nativeProp.get || typeof nativeProp.value !== 'function')
         ) {
           target.view[p] = newValue;
-          // TODO: While we're here, should we set the corresponding attribute?
+          // TODO: although this keeps IDL attributes in sync with content
+          // attributes, we still need a way to do the reverse as well.
+          if (typeof p === 'string') {
+            target.setAttribute(p.toLowerCase(), newValue);
+          }
           return true;
         }
 
@@ -79,6 +81,44 @@ export class NSViewElement extends HTMLElement {
 
     return removed;
   }
+}
+
+function getPropertyDescriptor(obj: {}, p: PropertyKey) {
+  // FIXME: crashes upon trying to access (or even inspect in the debugger) the
+  // prototype of an NSView instance
+  let proto = Object.getPrototypeOf(obj);
+
+  while (proto) {
+    const descriptor = Object.getOwnPropertyDescriptor(proto, p);
+    if (descriptor) {
+      return descriptor;
+    }
+    proto = Object.getPrototypeOf(obj);
+  }
+}
+
+function getNativeProps(clazz: any) {
+  const nativeProps = new Set<string | symbol>();
+  let proto = clazz.prototype;
+  while (true) {
+    for (const prop of Object.getOwnPropertyNames(proto)) {
+      if (prop === 'constructor') {
+        continue;
+      }
+      nativeProps.add(prop);
+    }
+
+    for (const prop of Object.getOwnPropertySymbols(proto)) {
+      nativeProps.add(prop);
+    }
+
+    if (proto.constructor === NSObject) {
+      break;
+    }
+    proto = Object.getPrototypeOf(proto);
+  }
+
+  return nativeProps;
 }
 
 // We should probably consider as attributes only values that can be typed in
