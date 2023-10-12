@@ -48,10 +48,7 @@ export class NSViewElement extends HTMLElement {
 
         // If the prop is a known native prop, proxy it through.
         const nativeProp = getPropertyDescriptor(target.view, p);
-        if (
-          nativeProp &&
-          (nativeProp.get || typeof nativeProp.value !== 'function')
-        ) {
+        if (nativeProp?.set) {
           target.view[p] = newValue;
           // TODO: although this keeps IDL attributes in sync with content
           // attributes, we still need a way to do the reverse as well.
