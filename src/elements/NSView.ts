@@ -7,19 +7,18 @@ export class NSViewElement extends HTMLElement {
   readonly view = NSView.new();
 
   get window(): NSWindow { return this.view.window; }
-  set window(value: NSWindow) { this.view.window = value; }
   get superview(): NSView { return this.view.superview; }
-  set superview(value: NSView) { this.view.superview = value; }
+  // set superview(value: NSView) { this.view.superview = value; }
   get subviews(): NSArray { return this.view.subviews; }
   set subviews(value: NSArray) { this.view.subviews = value; }
   get opaqueAncestor(): NSView { return this.view.opaqueAncestor; }
-  set opaqueAncestor(value: NSView) { this.view.opaqueAncestor = value; }
+  // set opaqueAncestor(value: NSView) { this.view.opaqueAncestor = value; }
   get isHidden(): boolean { return this.view.isHidden; }
   set isHidden(value: boolean) { this.view.isHidden = value; }
   get isHiddenOrHasHiddenAncestor(): boolean { return this.view.isHiddenOrHasHiddenAncestor; }
-  set isHiddenOrHasHiddenAncestor(value: boolean) { this.view.isHiddenOrHasHiddenAncestor = value; }
+  // set isHiddenOrHasHiddenAncestor(value: boolean) { this.view.isHiddenOrHasHiddenAncestor = value; }
   get wantsDefaultClipping(): boolean { return this.view.wantsDefaultClipping; }
-  set wantsDefaultClipping(value: boolean) { this.view.wantsDefaultClipping = value; }
+  // set wantsDefaultClipping(value: boolean) { this.view.wantsDefaultClipping = value; }
   get postsFrameChangedNotifications(): boolean { return this.view.postsFrameChangedNotifications; }
   set postsFrameChangedNotifications(value: boolean) { this.view.postsFrameChangedNotifications = value; }
   get autoresizesSubviews(): boolean { return this.view.autoresizesSubviews; }
@@ -37,27 +36,27 @@ export class NSViewElement extends HTMLElement {
   get bounds(): CGRect { return this.view.bounds; }
   set bounds(value: CGRect) { this.view.bounds = value; }
   get isFlipped(): boolean { return this.view.isFlipped; }
-  set isFlipped(value: boolean) { this.view.isFlipped = value; }
+  // set isFlipped(value: boolean) { this.view.isFlipped = value; }
   get isRotatedFromBase(): boolean { return this.view.isRotatedFromBase; }
-  set isRotatedFromBase(value: boolean) { this.view.isRotatedFromBase = value; }
+  // set isRotatedFromBase(value: boolean) { this.view.isRotatedFromBase = value; }
   get isRotatedOrScaledFromBase(): boolean { return this.view.isRotatedOrScaledFromBase; }
-  set isRotatedOrScaledFromBase(value: boolean) { this.view.isRotatedOrScaledFromBase = value; }
+  // set isRotatedOrScaledFromBase(value: boolean) { this.view.isRotatedOrScaledFromBase = value; }
   get isOpaque(): boolean { return this.view.isOpaque; }
-  set isOpaque(value: boolean) { this.view.isOpaque = value; }
+  // set isOpaque(value: boolean) { this.view.isOpaque = value; }
   get canDrawConcurrently(): boolean { return this.view.canDrawConcurrently; }
   set canDrawConcurrently(value: boolean) { this.view.canDrawConcurrently = value; }
   get canDraw(): boolean { return this.view.canDraw; }
-  set canDraw(value: boolean) { this.view.canDraw = value; }
+  // set canDraw(value: boolean) { this.view.canDraw = value; }
   get needsDisplay(): boolean { return this.view.needsDisplay; }
   set needsDisplay(value: boolean) { this.view.needsDisplay = value; }
   get visibleRect(): CGRect { return this.view.visibleRect; }
-  set visibleRect(value: CGRect) { this.view.visibleRect = value; }
+  // set visibleRect(value: CGRect) { this.view.visibleRect = value; }
   get tag(): number { return this.view.tag; }
-  set tag(value: number) { this.view.tag = value; }
+  // set tag(value: number) { this.view.tag = value; }
   get needsPanelToBecomeKey(): boolean { return this.view.needsPanelToBecomeKey; }
-  set needsPanelToBecomeKey(value: boolean) { this.view.needsPanelToBecomeKey = value; }
+  // set needsPanelToBecomeKey(value: boolean) { this.view.needsPanelToBecomeKey = value; }
   get mouseDownCanMoveWindow(): boolean { return this.view.mouseDownCanMoveWindow; }
-  set mouseDownCanMoveWindow(value: boolean) { this.view.mouseDownCanMoveWindow = value; }
+  // set mouseDownCanMoveWindow(value: boolean) { this.view.mouseDownCanMoveWindow = value; }
   get acceptsTouchEvents(): boolean { return this.view.acceptsTouchEvents; }
   set acceptsTouchEvents(value: boolean) { this.view.acceptsTouchEvents = value; }
   get wantsRestingTouches(): boolean { return this.view.wantsRestingTouches; }
@@ -71,7 +70,7 @@ export class NSViewElement extends HTMLElement {
   get layer(): CALayer { return this.view.layer; }
   set layer(value: CALayer) { this.view.layer = value; }
   get wantsUpdateLayer(): boolean { return this.view.wantsUpdateLayer; }
-  set wantsUpdateLayer(value: boolean) { this.view.wantsUpdateLayer = value; }
+  // set wantsUpdateLayer(value: boolean) { this.view.wantsUpdateLayer = value; }
   get canDrawSubviewsIntoLayer(): boolean { return this.view.canDrawSubviewsIntoLayer; }
   set canDrawSubviewsIntoLayer(value: boolean) { this.view.canDrawSubviewsIntoLayer = value; }
   get needsLayout(): boolean { return this.view.needsLayout; }
@@ -93,23 +92,23 @@ export class NSViewElement extends HTMLElement {
   get postsBoundsChangedNotifications(): boolean { return this.view.postsBoundsChangedNotifications; }
   set postsBoundsChangedNotifications(value: boolean) { this.view.postsBoundsChangedNotifications = value; }
   get enclosingScrollView(): NSScrollView { return this.view.enclosingScrollView; }
-  set enclosingScrollView(value: NSScrollView) { this.view.enclosingScrollView = value; }
+  // set enclosingScrollView(value: NSScrollView) { this.view.enclosingScrollView = value; }
   get toolTip(): string { return this.view.toolTip; }
   set toolTip(value: string) { this.view.toolTip = value; }
   get inLiveResize(): boolean { return this.view.inLiveResize; }
-  set inLiveResize(value: boolean) { this.view.inLiveResize = value; }
+  // set inLiveResize(value: boolean) { this.view.inLiveResize = value; }
   get preservesContentDuringLiveResize(): boolean { return this.view.preservesContentDuringLiveResize; }
-  set preservesContentDuringLiveResize(value: boolean) { this.view.preservesContentDuringLiveResize = value; }
+  // set preservesContentDuringLiveResize(value: boolean) { this.view.preservesContentDuringLiveResize = value; }
   get rectPreservedDuringLiveResize(): CGRect { return this.view.rectPreservedDuringLiveResize; }
-  set rectPreservedDuringLiveResize(value: CGRect) { this.view.rectPreservedDuringLiveResize = value; }
+  // set rectPreservedDuringLiveResize(value: CGRect) { this.view.rectPreservedDuringLiveResize = value; }
   get inputContext(): NSTextInputContext { return this.view.inputContext; }
-  set inputContext(value: NSTextInputContext) { this.view.inputContext = value; }
+  // set inputContext(value: NSTextInputContext) { this.view.inputContext = value; }
   get userInterfaceLayoutDirection(): number { return this.view.userInterfaceLayoutDirection; }
   set userInterfaceLayoutDirection(value: number) { this.view.userInterfaceLayoutDirection = value; }
   get preparedContentRect(): CGRect { return this.view.preparedContentRect; }
   set preparedContentRect(value: CGRect) { this.view.preparedContentRect = value; }
   get allowsVibrancy(): boolean { return this.view.allowsVibrancy; }
-  set allowsVibrancy(value: boolean) { this.view.allowsVibrancy = value; }
+  // set allowsVibrancy(value: boolean) { this.view.allowsVibrancy = value; }
   get pressureConfiguration(): NSPressureConfiguration { return this.view.pressureConfiguration; }
   set pressureConfiguration(value: NSPressureConfiguration) { this.view.pressureConfiguration = value; }
   get wantsBestResolutionOpenGLSurface(): boolean { return this.view.wantsBestResolutionOpenGLSurface; }
@@ -117,91 +116,91 @@ export class NSViewElement extends HTMLElement {
   get translatesAutoresizingMaskIntoConstraints(): boolean { return this.view.translatesAutoresizingMaskIntoConstraints; }
   set translatesAutoresizingMaskIntoConstraints(value: boolean) { this.view.translatesAutoresizingMaskIntoConstraints = value; }
   get enclosingMenuItem(): NSMenuItem { return this.view.enclosingMenuItem; }
-  set enclosingMenuItem(value: NSMenuItem) { this.view.enclosingMenuItem = value; }
+  // set enclosingMenuItem(value: NSMenuItem) { this.view.enclosingMenuItem = value; }
   get trackingAreas(): NSArray { return this.view.trackingAreas; }
-  set trackingAreas(value: NSArray) { this.view.trackingAreas = value; }
+  // set trackingAreas(value: NSArray) { this.view.trackingAreas = value; }
   get gestureRecognizers(): NSArray { return this.view.gestureRecognizers; }
   set gestureRecognizers(value: NSArray) { this.view.gestureRecognizers = value; }
   get leadingAnchor(): NSLayoutXAxisAnchor { return this.view.leadingAnchor; }
-  set leadingAnchor(value: NSLayoutXAxisAnchor) { this.view.leadingAnchor = value; }
+  // set leadingAnchor(value: NSLayoutXAxisAnchor) { this.view.leadingAnchor = value; }
   get trailingAnchor(): NSLayoutXAxisAnchor { return this.view.trailingAnchor; }
-  set trailingAnchor(value: NSLayoutXAxisAnchor) { this.view.trailingAnchor = value; }
+  // set trailingAnchor(value: NSLayoutXAxisAnchor) { this.view.trailingAnchor = value; }
   get leftAnchor(): NSLayoutXAxisAnchor { return this.view.leftAnchor; }
-  set leftAnchor(value: NSLayoutXAxisAnchor) { this.view.leftAnchor = value; }
+  // set leftAnchor(value: NSLayoutXAxisAnchor) { this.view.leftAnchor = value; }
   get rightAnchor(): NSLayoutXAxisAnchor { return this.view.rightAnchor; }
-  set rightAnchor(value: NSLayoutXAxisAnchor) { this.view.rightAnchor = value; }
+  // set rightAnchor(value: NSLayoutXAxisAnchor) { this.view.rightAnchor = value; }
   get topAnchor(): NSLayoutYAxisAnchor { return this.view.topAnchor; }
-  set topAnchor(value: NSLayoutYAxisAnchor) { this.view.topAnchor = value; }
+  // set topAnchor(value: NSLayoutYAxisAnchor) { this.view.topAnchor = value; }
   get bottomAnchor(): NSLayoutYAxisAnchor { return this.view.bottomAnchor; }
-  set bottomAnchor(value: NSLayoutYAxisAnchor) { this.view.bottomAnchor = value; }
+  // set bottomAnchor(value: NSLayoutYAxisAnchor) { this.view.bottomAnchor = value; }
   get widthAnchor(): NSLayoutDimension { return this.view.widthAnchor; }
-  set widthAnchor(value: NSLayoutDimension) { this.view.widthAnchor = value; }
+  // set widthAnchor(value: NSLayoutDimension) { this.view.widthAnchor = value; }
   get heightAnchor(): NSLayoutDimension { return this.view.heightAnchor; }
-  set heightAnchor(value: NSLayoutDimension) { this.view.heightAnchor = value; }
+  // set heightAnchor(value: NSLayoutDimension) { this.view.heightAnchor = value; }
   get centerXAnchor(): NSLayoutXAxisAnchor { return this.view.centerXAnchor; }
-  set centerXAnchor(value: NSLayoutXAxisAnchor) { this.view.centerXAnchor = value; }
+  // set centerXAnchor(value: NSLayoutXAxisAnchor) { this.view.centerXAnchor = value; }
   get centerYAnchor(): NSLayoutYAxisAnchor { return this.view.centerYAnchor; }
-  set centerYAnchor(value: NSLayoutYAxisAnchor) { this.view.centerYAnchor = value; }
+  // set centerYAnchor(value: NSLayoutYAxisAnchor) { this.view.centerYAnchor = value; }
   get firstBaselineAnchor(): NSLayoutYAxisAnchor { return this.view.firstBaselineAnchor; }
-  set firstBaselineAnchor(value: NSLayoutYAxisAnchor) { this.view.firstBaselineAnchor = value; }
+  // set firstBaselineAnchor(value: NSLayoutYAxisAnchor) { this.view.firstBaselineAnchor = value; }
   get lastBaselineAnchor(): NSLayoutYAxisAnchor { return this.view.lastBaselineAnchor; }
-  set lastBaselineAnchor(value: NSLayoutYAxisAnchor) { this.view.lastBaselineAnchor = value; }
+  // set lastBaselineAnchor(value: NSLayoutYAxisAnchor) { this.view.lastBaselineAnchor = value; }
   get constraints(): NSArray { return this.view.constraints; }
-  set constraints(value: NSArray) { this.view.constraints = value; }
+  // set constraints(value: NSArray) { this.view.constraints = value; }
   get candidateListTouchBarItem(): NSCandidateListTouchBarItem { return this.view.candidateListTouchBarItem; }
-  set candidateListTouchBarItem(value: NSCandidateListTouchBarItem) { this.view.candidateListTouchBarItem = value; }
+  // set candidateListTouchBarItem(value: NSCandidateListTouchBarItem) { this.view.candidateListTouchBarItem = value; }
   get fittingSize(): CGSize { return this.view.fittingSize; }
-  set fittingSize(value: CGSize) { this.view.fittingSize = value; }
+  // set fittingSize(value: CGSize) { this.view.fittingSize = value; }
   get layoutGuides(): NSArray { return this.view.layoutGuides; }
-  set layoutGuides(value: NSArray) { this.view.layoutGuides = value; }
+  // set layoutGuides(value: NSArray) { this.view.layoutGuides = value; }
   get wantsExtendedDynamicRangeOpenGLSurface(): boolean { return this.view.wantsExtendedDynamicRangeOpenGLSurface; }
   set wantsExtendedDynamicRangeOpenGLSurface(value: boolean) { this.view.wantsExtendedDynamicRangeOpenGLSurface = value; }
   get isDrawingFindIndicator(): boolean { return this.view.isDrawingFindIndicator; }
-  set isDrawingFindIndicator(value: boolean) { this.view.isDrawingFindIndicator = value; }
+  // set isDrawingFindIndicator(value: boolean) { this.view.isDrawingFindIndicator = value; }
   get needsUpdateConstraints(): boolean { return this.view.needsUpdateConstraints; }
   set needsUpdateConstraints(value: boolean) { this.view.needsUpdateConstraints = value; }
   get heightAdjustLimit(): number { return this.view.heightAdjustLimit; }
-  set heightAdjustLimit(value: number) { this.view.heightAdjustLimit = value; }
+  // set heightAdjustLimit(value: number) { this.view.heightAdjustLimit = value; }
   get widthAdjustLimit(): number { return this.view.widthAdjustLimit; }
-  set widthAdjustLimit(value: number) { this.view.widthAdjustLimit = value; }
+  // set widthAdjustLimit(value: number) { this.view.widthAdjustLimit = value; }
   get pageHeader(): NSAttributedString { return this.view.pageHeader; }
-  set pageHeader(value: NSAttributedString) { this.view.pageHeader = value; }
+  // set pageHeader(value: NSAttributedString) { this.view.pageHeader = value; }
   get pageFooter(): NSAttributedString { return this.view.pageFooter; }
-  set pageFooter(value: NSAttributedString) { this.view.pageFooter = value; }
+  // set pageFooter(value: NSAttributedString) { this.view.pageFooter = value; }
   get printJobTitle(): string { return this.view.printJobTitle; }
-  set printJobTitle(value: string) { this.view.printJobTitle = value; }
+  // set printJobTitle(value: string) { this.view.printJobTitle = value; }
   get isInFullScreenMode(): boolean { return this.view.isInFullScreenMode; }
-  set isInFullScreenMode(value: boolean) { this.view.isInFullScreenMode = value; }
+  // set isInFullScreenMode(value: boolean) { this.view.isInFullScreenMode = value; }
   get safeAreaInsets(): NSEdgeInsets { return this.view.safeAreaInsets; }
-  set safeAreaInsets(value: NSEdgeInsets) { this.view.safeAreaInsets = value; }
+  // set safeAreaInsets(value: NSEdgeInsets) { this.view.safeAreaInsets = value; }
   get additionalSafeAreaInsets(): NSEdgeInsets { return this.view.additionalSafeAreaInsets; }
   set additionalSafeAreaInsets(value: NSEdgeInsets) { this.view.additionalSafeAreaInsets = value; }
   get safeAreaLayoutGuide(): NSLayoutGuide { return this.view.safeAreaLayoutGuide; }
-  set safeAreaLayoutGuide(value: NSLayoutGuide) { this.view.safeAreaLayoutGuide = value; }
+  // set safeAreaLayoutGuide(value: NSLayoutGuide) { this.view.safeAreaLayoutGuide = value; }
   get safeAreaRect(): CGRect { return this.view.safeAreaRect; }
-  set safeAreaRect(value: CGRect) { this.view.safeAreaRect = value; }
+  // set safeAreaRect(value: CGRect) { this.view.safeAreaRect = value; }
   get layoutMarginsGuide(): NSLayoutGuide { return this.view.layoutMarginsGuide; }
-  set layoutMarginsGuide(value: NSLayoutGuide) { this.view.layoutMarginsGuide = value; }
+  // set layoutMarginsGuide(value: NSLayoutGuide) { this.view.layoutMarginsGuide = value; }
   get animations(): NSDictionary { return this.view.animations; }
   set animations(value: NSDictionary) { this.view.animations = value; }
   get identifier(): string { return this.view.identifier; }
   set identifier(value: string) { this.view.identifier = value; }
   get hash(): number { return this.view.hash; }
-  set hash(value: number) { this.view.hash = value; }
+  // set hash(value: number) { this.view.hash = value; }
   get superclass(): any { return this.view.superclass; }
-  set superclass(value: any) { this.view.superclass = value; }
+  // set superclass(value: any) { this.view.superclass = value; }
   get isProxy(): boolean { return this.view.isProxy; }
-  set isProxy(value: boolean) { this.view.isProxy = value; }
+  // set isProxy(value: boolean) { this.view.isProxy = value; }
   get zone(): interop.Pointer { return this.view.zone; }
-  set zone(value: interop.Pointer) { this.view.zone = value; }
+  // set zone(value: interop.Pointer) { this.view.zone = value; }
   get description(): string { return this.view.description; }
-  set description(value: string) { this.view.description = value; }
+  // set description(value: string) { this.view.description = value; }
   get debugDescription(): string { return this.view.debugDescription; }
-  set debugDescription(value: string) { this.view.debugDescription = value; }
+  // set debugDescription(value: string) { this.view.debugDescription = value; }
   get appearance(): NSAppearance { return this.view.appearance; }
   set appearance(value: NSAppearance) { this.view.appearance = value; }
   get effectiveAppearance(): NSAppearance { return this.view.effectiveAppearance; }
-  set effectiveAppearance(value: NSAppearance) { this.view.effectiveAppearance = value; }
+  // set effectiveAppearance(value: NSAppearance) { this.view.effectiveAppearance = value; }
   get accessibilityFrame(): CGRect { return this.view.accessibilityFrame; }
   set accessibilityFrame(value: CGRect) { this.view.accessibilityFrame = value; }
   get accessibilityParent(): any { return this.view.accessibilityParent; }
@@ -453,47 +452,47 @@ export class NSViewElement extends HTMLElement {
   get nextResponder(): NSResponder { return this.view.nextResponder; }
   set nextResponder(value: NSResponder) { this.view.nextResponder = value; }
   get acceptsFirstResponder(): boolean { return this.view.acceptsFirstResponder; }
-  set acceptsFirstResponder(value: boolean) { this.view.acceptsFirstResponder = value; }
+  // set acceptsFirstResponder(value: boolean) { this.view.acceptsFirstResponder = value; }
   get menu(): NSMenu { return this.view.menu; }
   set menu(value: NSMenu) { this.view.menu = value; }
   get touchBar(): NSTouchBar { return this.view.touchBar; }
   set touchBar(value: NSTouchBar) { this.view.touchBar = value; }
   get undoManager(): NSUndoManager { return this.view.undoManager; }
-  set undoManager(value: NSUndoManager) { this.view.undoManager = value; }
+  // set undoManager(value: NSUndoManager) { this.view.undoManager = value; }
   get objectForWebScript(): any { return this.view.objectForWebScript; }
-  set objectForWebScript(value: any) { this.view.objectForWebScript = value; }
+  // set objectForWebScript(value: any) { this.view.objectForWebScript = value; }
   get webPlugInContainerSelectionColor(): NSColor { return this.view.webPlugInContainerSelectionColor; }
-  set webPlugInContainerSelectionColor(value: NSColor) { this.view.webPlugInContainerSelectionColor = value; }
+  // set webPlugInContainerSelectionColor(value: NSColor) { this.view.webPlugInContainerSelectionColor = value; }
   get webFrame(): WebFrame { return this.view.webFrame; }
-  set webFrame(value: WebFrame) { this.view.webFrame = value; }
+  // set webFrame(value: WebFrame) { this.view.webFrame = value; }
   get exposedBindings(): NSArray { return this.view.exposedBindings; }
-  set exposedBindings(value: NSArray) { this.view.exposedBindings = value; }
+  // set exposedBindings(value: NSArray) { this.view.exposedBindings = value; }
   get classForCoder(): any { return this.view.classForCoder; }
-  set classForCoder(value: any) { this.view.classForCoder = value; }
+  // set classForCoder(value: any) { this.view.classForCoder = value; }
   get classCode(): number { return this.view.classCode; }
-  set classCode(value: number) { this.view.classCode = value; }
+  // set classCode(value: number) { this.view.classCode = value; }
   get classForArchiver(): any { return this.view.classForArchiver; }
-  set classForArchiver(value: any) { this.view.classForArchiver = value; }
+  // set classForArchiver(value: any) { this.view.classForArchiver = value; }
   get objectSpecifier(): NSScriptObjectSpecifier { return this.view.objectSpecifier; }
-  set objectSpecifier(value: NSScriptObjectSpecifier) { this.view.objectSpecifier = value; }
+  // set objectSpecifier(value: NSScriptObjectSpecifier) { this.view.objectSpecifier = value; }
   get classForPortCoder(): any { return this.view.classForPortCoder; }
-  set classForPortCoder(value: any) { this.view.classForPortCoder = value; }
+  // set classForPortCoder(value: any) { this.view.classForPortCoder = value; }
   get classForKeyedArchiver(): any { return this.view.classForKeyedArchiver; }
-  set classForKeyedArchiver(value: any) { this.view.classForKeyedArchiver = value; }
+  // set classForKeyedArchiver(value: any) { this.view.classForKeyedArchiver = value; }
   get classDescription(): NSClassDescription { return this.view.classDescription; }
-  set classDescription(value: NSClassDescription) { this.view.classDescription = value; }
+  // set classDescription(value: NSClassDescription) { this.view.classDescription = value; }
   get attributeKeys(): NSArray { return this.view.attributeKeys; }
-  set attributeKeys(value: NSArray) { this.view.attributeKeys = value; }
+  // set attributeKeys(value: NSArray) { this.view.attributeKeys = value; }
   get toOneRelationshipKeys(): NSArray { return this.view.toOneRelationshipKeys; }
-  set toOneRelationshipKeys(value: NSArray) { this.view.toOneRelationshipKeys = value; }
+  // set toOneRelationshipKeys(value: NSArray) { this.view.toOneRelationshipKeys = value; }
   get toManyRelationshipKeys(): NSArray { return this.view.toManyRelationshipKeys; }
-  set toManyRelationshipKeys(value: NSArray) { this.view.toManyRelationshipKeys = value; }
+  // set toManyRelationshipKeys(value: NSArray) { this.view.toManyRelationshipKeys = value; }
   get observationInfo(): interop.Pointer { return this.view.observationInfo; }
   set observationInfo(value: interop.Pointer) { this.view.observationInfo = value; }
   get autoContentAccessingProxy(): any { return this.view.autoContentAccessingProxy; }
-  set autoContentAccessingProxy(value: any) { this.view.autoContentAccessingProxy = value; }
+  // set autoContentAccessingProxy(value: any) { this.view.autoContentAccessingProxy = value; }
   get __brand__(): interop.PointerObject['__brand__'] { return this.view.__brand__; }
-  set __brand__(value: interop).PointerObject[_brand__'] { return this.view.__brand__ = value; }
+  // set __brand__(value: interop).PointerObject[_brand__'] { return this.view.__brand__ = value; }
 
   appendChild<T extends Node>(node: T): T {
     const appended = super.appendChild(node);
