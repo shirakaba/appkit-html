@@ -1343,6 +1343,107 @@ export class NSViewElement extends HTMLElement {
 
     return removed;
   }
+
+  attributeChangedCallback(name: string, oldValue: any, newValue: any) {
+    switch (name) {
+      // TODO: Handle CGRect, CGSize, NSPressureConfiguration, NSEdgeInsets,
+      // etc...?
+
+      // number values
+      case 'autoresizingMask':
+      case 'frameRotation':
+      case 'frameCenterRotation':
+      case 'boundsRotation':
+      case 'layerContentsRedrawPolicy':
+      case 'layerContentsPlacement':
+      case 'alphaValue':
+      case 'userInterfaceLayoutDirection':
+      case 'accessibilityOrientation':
+      case 'accessibilityHorizontalUnits':
+      case 'accessibilityVerticalUnits':
+      case 'accessibilityDisclosureLevel':
+      case 'accessibilityUnits':
+      case 'accessibilityRulerMarkerType':
+      case 'accessibilityLabelValue':
+      case 'accessibilityColumnCount':
+      case 'accessibilityRowCount':
+      case 'accessibilityIndex':
+      case 'accessibilitySortDirection':
+      case 'accessibilityInsertionPointLineNumber':
+      case 'accessibilityNumberOfCharacters':
+        this[name] = parseFloat(newValue);
+        break;
+
+      // boolean values
+      case 'postsFrameChangedNotifications':
+      case 'autoresizesSubviews':
+      case 'canDrawConcurrently':
+      case 'needsDisplay':
+      case 'acceptsTouchEvents':
+      case 'wantsRestingTouches':
+      case 'wantsLayer':
+      case 'canDrawSubviewsIntoLayer':
+      case 'needsLayout':
+      case 'layerUsesCoreImageFilters':
+      case 'clipsToBounds':
+      case 'postsBoundsChangedNotifications':
+      case 'wantsBestResolutionOpenGLSurface':
+      case 'translatesAutoresizingMaskIntoConstraints':
+      case 'wantsExtendedDynamicRangeOpenGLSurface':
+      case 'needsUpdateConstraints':
+      case 'isAccessibilityFocused':
+      case 'isAccessibilityElement':
+      case 'isAccessibilitySelected':
+      case 'isAccessibilityExpanded':
+      case 'isAccessibilityEdited':
+      case 'isAccessibilityEnabled':
+      case 'isAccessibilityProtectedContent':
+      case 'isAccessibilityAlternateUIVisible':
+      case 'isAccessibilityRequired':
+      case 'isAccessibilityHidden':
+      case 'isAccessibilityFrontmost':
+      case 'isAccessibilityOrderedByRow':
+      case 'isAccessibilityDisclosed':
+      case 'isAccessibilityModal':
+      case 'isAccessibilityMain':
+      case 'isAccessibilityMinimized':
+        // TODO: check whether this is appropriate
+        // FIXME:
+        //   nsView.setAttribute('needsLayout', null); // needslayout="null"
+        //   nsView.setAttribute('needsLayout', false); // needslayout="false"
+        const value = Boolean(newValue);
+        this[name] = value;
+
+        // Somehow this isn't working :/
+        // if (!value) {
+        //   this.removeAttribute(name.toLowerCase());
+        // }
+        break;
+
+      case 'toolTip':
+      case 'identifier':
+      case 'accessibilityIdentifier':
+      case 'accessibilityValueDescription':
+      case 'accessibilitySubrole':
+      case 'accessibilityTitle':
+      case 'accessibilityPlaceholderValue':
+      case 'accessibilityRole':
+      case 'accessibilityRoleDescription':
+      case 'accessibilityHelp':
+      case 'accessibilityFilename':
+      case 'accessibilityLabel':
+      case 'accessibilityHorizontalUnitDescription':
+      case 'accessibilityVerticalUnitDescription':
+      case 'accessibilityUnitDescription':
+      case 'accessibilityMarkerTypeDescription':
+      case 'accessibilitySelectedText':
+      case 'accessibilityDocument':
+        this[name] = newValue;
+        break;
+      default:
+        break;
+    }
+  }
 }
 
 // We should probably consider as attributes only values that can be typed in
