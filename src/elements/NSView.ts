@@ -26,9 +26,9 @@ export class NSViewElement extends HTMLElement {
   get isHidden(): boolean {
     return this.view.isHidden;
   }
-  set isHidden(value: boolean) {
-    this.view.isHidden = value;
-  }
+  // set isHidden(value: boolean) {
+  //   this.view.isHidden = value;
+  // }
   get isHiddenOrHasHiddenAncestor(): boolean {
     return this.view.isHiddenOrHasHiddenAncestor;
   }
@@ -1318,7 +1318,7 @@ export class NSViewElement extends HTMLElement {
   get __brand__(): interop.PointerObject['__brand__'] {
     return this.view.__brand__;
   }
-  // set __brand__(value: interop).PointerObject[_brand__'] { return this.view.__brand__ = value; }
+  // set __brand__(value: interop.PointerObject[_brand__']) { return this.view.__brand__ = value; }
 
   appendChild<T extends Node>(node: T): T {
     const appended = super.appendChild(node);
