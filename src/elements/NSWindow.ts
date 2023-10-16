@@ -1,21 +1,18 @@
 import 'objc/index.js';
-import { isNativeElement } from '../utils/isNativeElement.js';
+import { NSResponderElement } from './NSResponder.js';
+import { NSObjectElement } from './NSObject.js';
 
-declare var NSWindow: any;
-declare var NSView: any;
-declare var NSViewController: any;
-
-export class NSWindowElement extends HTMLElement {
-  readonly view = NSWindow.new();
+export class NSWindowElement extends NSResponderElement {
+  readonly nativeObject = NSWindow.new();
 
   appendChild<T extends Node>(node: T): T {
     const appended = super.appendChild(node);
 
-    if (isNativeElement(node)) {
-      if (node.view instanceof NSView) {
-        this.view.contentView = node.view;
-      } else if (node.view instanceof NSViewController) {
-        this.view.contentViewController = node.view;
+    if (node instanceof NSObjectElement) {
+      if (node.nativeObject instanceof NSView) {
+        this.nativeObject.contentView = node.nativeObject;
+      } else if (node.nativeObject instanceof NSViewController) {
+        this.nativeObject.contentViewController = node.nativeObject;
       }
     }
 
@@ -25,11 +22,13 @@ export class NSWindowElement extends HTMLElement {
   removeChild<T extends Node>(child: T): T {
     const removed = super.removeChild(child);
 
-    if (isNativeElement(child)) {
-      if (child.view instanceof NSView) {
-        this.view.contentView = null;
-      } else if (child.view instanceof NSViewController) {
-        this.view.contentViewController = null;
+    if (child instanceof NSObjectElement) {
+      if (child.nativeObject instanceof NSView) {
+        // @ts-ignore
+        this.nativeObject.contentView = null;
+      } else if (child.nativeObject instanceof NSViewController) {
+        // @ts-ignore
+        this.nativeObject.contentViewController = null;
       }
     }
 
