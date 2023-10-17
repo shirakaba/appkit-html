@@ -9,7 +9,14 @@ export async function polyfill(_globalThis: typeof globalThis) {
   Object.defineProperty(_globalThis, 'window', { value: window });
 
   // These cause a DOMException if accessed (not available for opaque origins);
-  const skipProps = new Set(['localStorage', 'sessionStorage']);
+  const skipProps = new Set([
+    'localStorage',
+    'sessionStorage',
+    'setTimeout',
+    'clearTimeout',
+    'setInterval',
+    'clearInterval',
+  ]);
 
   for (const prop of Object.getOwnPropertyNames(jsdom.window)) {
     if (skipProps.has(prop)) {

@@ -1,10 +1,12 @@
 import { DOMWindow } from 'jsdom';
-import { NSWindowElement } from './NSWindow.js';
+import { NSApplicationElement } from './NSApplication.js';
 import { NSViewElement } from './NSView.js';
+import { NSWindowElement } from './NSWindow.js';
 
 const mappings = {
-  'ns-window': NSWindowElement,
+  'ns-application': NSApplicationElement,
   'ns-view': NSViewElement,
+  'ns-window': NSWindowElement,
 } as const;
 
 export function defineElements(win: DOMWindow): void {
