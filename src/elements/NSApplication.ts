@@ -3,10 +3,78 @@
 import 'objc/index.js';
 import { NSResponderElement } from './NSResponder.js';
 
+const events = [
+  'applicationwillpresenterror',
+  'applicationwillencoderestorablestate',
+  'applicationwillcontinueuseractivitywithtype',
+  'applicationwillfinishlaunching',
+  'applicationwillhide',
+  'applicationwillunhide',
+  'applicationwillbecomeactive',
+  'applicationwillresignactive',
+  'applicationwillupdate',
+  'applicationwillterminate',
+  'applicationdidregisterforremotenotificationswithdevicetoken',
+  'applicationdidfailtoregisterforremotenotificationswitherror',
+  'applicationdidreceiveremotenotification',
+  'applicationdiddecoderestorablestate',
+  'applicationdidfailtocontinueuseractivitywithtypeerror',
+  'applicationdidupdateuseractivity',
+  'applicationdidfinishlaunching',
+  'applicationdidhide',
+  'applicationdidunhide',
+  'applicationdidbecomeactive',
+  'applicationdidresignactive',
+  'applicationdidupdate',
+  'applicationdidchangescreenparameters',
+  'applicationdidchangeocclusionstate',
+];
+
 let instanceCount = 0;
 
 export class NSApplicationElement extends NSResponderElement {
   readonly nativeObject = NSApplication.sharedApplication;
+
+  // We use two underlines so as not to clash with JSDOM's equivalent.
+  private __eventHandlers?: Record<
+    string,
+    EventListenerOrEventListenerObject | null
+  >;
+
+  static {
+    // We synthesise DOM Level 0 event handlers by adding a non-capturing
+    // singleton listener
+    for (const event of events) {
+      Object.defineProperty(this.prototype, 'on' + event, {
+        configurable: true,
+        enumerable: true,
+        get() {
+          return (
+            (this as NSApplicationElement).__eventHandlers?.[event] ?? null
+          );
+        },
+        set(val: EventListenerOrEventListenerObject | null) {
+          const t = this as NSApplicationElement;
+
+          if (!t.__eventHandlers) {
+            t.__eventHandlers = {};
+          }
+
+          const existingHandler = t.__eventHandlers[event];
+          if (existingHandler) {
+            t.removeEventListener(event, existingHandler, {
+              capture: false,
+            });
+          }
+
+          t.__eventHandlers[event] = val;
+          if (val) {
+            t.addEventListener(event, val, { capture: false });
+          }
+        },
+      });
+    }
+  }
 
   constructor() {
     super();
@@ -21,78 +89,30 @@ export class NSApplicationElement extends NSResponderElement {
     this.nativeObject.delegate = appDelegate;
   }
 
-  declare onapplicationwillpresenterror:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationwillencoderestorablestate:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationwillcontinueuseractivitywithtype:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationwillfinishlaunching:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationwillhide:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationwillunhide:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationwillbecomeactive:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationwillresignactive:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationwillupdate:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationwillterminate:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationdidregisterforremotenotificationswithdevicetoken:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationdidfailtoregisterforremotenotificationswitherror:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationdidreceiveremotenotification:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationdiddecoderestorablestate:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationdidfailtocontinueuseractivitywithtypeerror:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationdidupdateuseractivity:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationdidfinishlaunching:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationdidhide:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationdidunhide:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationdidbecomeactive:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationdidresignactive:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationdidupdate:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationdidchangescreenparameters:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
-  declare onapplicationdidchangeocclusionstate:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
+  declare onapplicationwillpresenterror: EventListenerOrEventListenerObject | null;
+  declare onapplicationwillencoderestorablestate: EventListenerOrEventListenerObject | null;
+  declare onapplicationwillcontinueuseractivitywithtype: EventListenerOrEventListenerObject | null;
+  declare onapplicationwillfinishlaunching: EventListenerOrEventListenerObject | null;
+  declare onapplicationwillhide: EventListenerOrEventListenerObject | null;
+  declare onapplicationwillunhide: EventListenerOrEventListenerObject | null;
+  declare onapplicationwillbecomeactive: EventListenerOrEventListenerObject | null;
+  declare onapplicationwillresignactive: EventListenerOrEventListenerObject | null;
+  declare onapplicationwillupdate: EventListenerOrEventListenerObject | null;
+  declare onapplicationwillterminate: EventListenerOrEventListenerObject | null;
+  declare onapplicationdidregisterforremotenotificationswithdevicetoken: EventListenerOrEventListenerObject | null;
+  declare onapplicationdidfailtoregisterforremotenotificationswitherror: EventListenerOrEventListenerObject | null;
+  declare onapplicationdidreceiveremotenotification: EventListenerOrEventListenerObject | null;
+  declare onapplicationdiddecoderestorablestate: EventListenerOrEventListenerObject | null;
+  declare onapplicationdidfailtocontinueuseractivitywithtypeerror: EventListenerOrEventListenerObject | null;
+  declare onapplicationdidupdateuseractivity: EventListenerOrEventListenerObject | null;
+  declare onapplicationdidfinishlaunching: EventListenerOrEventListenerObject | null;
+  declare onapplicationdidhide: EventListenerOrEventListenerObject | null;
+  declare onapplicationdidunhide: EventListenerOrEventListenerObject | null;
+  declare onapplicationdidbecomeactive: EventListenerOrEventListenerObject | null;
+  declare onapplicationdidresignactive: EventListenerOrEventListenerObject | null;
+  declare onapplicationdidupdate: EventListenerOrEventListenerObject | null;
+  declare onapplicationdidchangescreenparameters: EventListenerOrEventListenerObject | null;
+  declare onapplicationdidchangeocclusionstate: EventListenerOrEventListenerObject | null;
 }
 
 /**
@@ -103,9 +123,7 @@ type EventTargetDelegate = {
 };
 // TODO: maybe augment GlobalEventHandlers in dom.d.ts instead.
 type DOM0EventTarget = {
-  [Property in `on${string}`]:
-    | ((this: GlobalEventHandlers, ev: CustomEvent) => any)
-    | null;
+  [Property in `on${string}`]: EventListenerOrEventListenerObject | null;
 };
 
 class ApplicationDelegate
@@ -128,41 +146,15 @@ class ApplicationDelegate
 
   running = true;
 
-  dispatchEvent(type: Lowercase<string>, detail?: any) {
-    if (!this.eventTargetDelegate) {
-      return false;
-    }
-
-    // This is definitely wrong at the moment. We shouldn't have to create two
-    // events at all; this should be handled by registering the event as a
-    // global.
-    // ... however, may only be possible by forking JSDOM, and not via the
-    // Custom Elements APIs: https://stackoverflow.com/a/67835107/5951226
-    //
-    // It's tempting to just call the DOM0 event manually, but then we have two
-    // events and thus two sources of truth for state like defaultPrevented. And
-    // also I think the DOM0 event is supposed to be fired once the DOM2 event
-    // propagates to target phase, which may not be possible to arrange for
-    // short of forking JSDOM.
-    //
-    // See also: https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-content-attributes
-    (this.eventTargetDelegate as unknown as DOM0EventTarget)[`on${type}`]?.call(
-      (this.eventTargetDelegate as Element).ownerDocument,
-      new CustomEvent(type, {
-        detail,
-        bubbles: false,
-        cancelable: true,
-      })
-    );
-
+  dispatchEvent(type: Lowercase<string>, detail?: any): boolean {
     return (
-      this.eventTargetDelegate.dispatchEvent(
+      this.eventTargetDelegate?.dispatchEvent(
         new CustomEvent(type, {
           detail,
           bubbles: false,
           cancelable: true,
         })
-      ) ?? true
+      ) ?? false
     );
   }
 
