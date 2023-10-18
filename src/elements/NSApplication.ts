@@ -2,6 +2,7 @@
 
 import 'objc/index.js';
 import { NSResponderElement } from './NSResponder.js';
+import { dom0EventMixin } from '../utils/dom-0-events.js';
 
 const events = [
   'applicationwillpresenterror',
@@ -35,44 +36,9 @@ let instanceCount = 0;
 export class NSApplicationElement extends NSResponderElement {
   readonly nativeObject = NSApplication.sharedApplication;
 
-  // We use two underlines so as not to clash with JSDOM's equivalent.
-  private __eventHandlers?: Record<
-    string,
-    EventListenerOrEventListenerObject | null
-  >;
-
   static {
-    // We synthesise DOM Level 0 event handlers by adding a non-capturing
-    // singleton listener
     for (const event of events) {
-      Object.defineProperty(this.prototype, 'on' + event, {
-        configurable: true,
-        enumerable: true,
-        get() {
-          return (
-            (this as NSApplicationElement).__eventHandlers?.[event] ?? null
-          );
-        },
-        set(val: EventListenerOrEventListenerObject | null) {
-          const t = this as NSApplicationElement;
-
-          if (!t.__eventHandlers) {
-            t.__eventHandlers = {};
-          }
-
-          const existingHandler = t.__eventHandlers[event];
-          if (existingHandler) {
-            t.removeEventListener(event, existingHandler, {
-              capture: false,
-            });
-          }
-
-          t.__eventHandlers[event] = val;
-          if (val) {
-            t.addEventListener(event, val, { capture: false });
-          }
-        },
-      });
+      dom0EventMixin(this.prototype, event);
     }
   }
 
@@ -120,10 +86,6 @@ export class NSApplicationElement extends NSResponderElement {
  */
 type EventTargetDelegate = {
   eventTargetDelegate: EventTarget | null;
-};
-// TODO: maybe augment GlobalEventHandlers in dom.d.ts instead.
-type DOM0EventTarget = {
-  [Property in `on${string}`]: EventListenerOrEventListenerObject | null;
 };
 
 class ApplicationDelegate
