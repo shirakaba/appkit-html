@@ -7,17 +7,17 @@ import { polyfill } from '../dist/index.js';
 await polyfill(globalThis);
 
 const nsApplication = document.createElement('ns-application');
-// nsApplication.onapplicationwillterminate =
-nsApplication.addEventListener('applicationdidfinishlaunching', (e) => {});
+const NSApp = nsApplication.nativeObject;
+
+let running = false;
 nsApplication.onapplicationdidfinishlaunching = (
   /** @type {CustomEvent<[NSNotification]>} */ e
 ) => {
   const [notification] = e.detail;
   console.log('applicationDidFinishLaunching', notification);
 
-  // this.window = nsWindow.nativeObject;
+  running = true;
 
-  const NSApp = nsApplication.nativeObject;
   NSApp.activateIgnoringOtherApps(false);
   NSApp.stop(NSApp.delegate);
 
@@ -33,105 +33,31 @@ nsApplication.onapplicationdidfinishlaunching = (
       NSApp.sendEvent(event);
     }
 
-    if (this.running) {
+    if (running) {
       setTimeout(loop, 10);
     }
   };
 
   setTimeout(loop, 0);
 };
-nsApplication.nativeObject.run();
+nsApplication.onapplicationwillterminate = () => {
+  running = false;
+};
 
-// const nsWindow = document.createElement('ns-window');
-// const nsView = document.createElement('ns-view');
-// nsWindow.appendChild(nsView);
+const nsWindow = document.createElement('ns-window');
+nsWindow.title = 'NativeScript for macOS';
+nsWindow.onwindowwillclose = () => {
+  NSApp.terminate(this);
+};
+nsWindow.nativeObject.makeKeyAndOrderFront(NSApp);
+nsWindow.nativeObject.isReleasedWhenClosed = false;
+nsWindow.nativeObject.center();
+nsWindow.nativeObject.backgroundColor = NSColor.colorWithSRGBRedGreenBlueAlpha(
+  118 / 255,
+  171 / 255,
+  235 / 255,
+  1
+);
 
-// /**
-//  * @implements {NSApplicationDelegate}
-//  */
-// class ApplicationDelegate extends NSObject {
-//   static ObjCProtocols = [NSApplicationDelegate];
-
-//   static {
-//     NativeClass(this);
-//   }
-
-//   running = true;
-
-//   /**
-//    * @param {NSNotification} _notification
-//    */
-//   // eslint-disable-next-line no-unused-vars
-//   applicationDidFinishLaunching(_notification) {
-//     this.window = nsWindow.nativeObject;
-
-//     NSApp.activateIgnoringOtherApps(false);
-
-//     NSApp.stop(this);
-
-//     const loop = () => {
-//       const event = NSApp.nextEventMatchingMaskUntilDateInModeDequeue(
-//         NSEventMask.Any,
-//         null,
-//         'kCFRunLoopDefaultMode',
-//         true
-//       );
-
-//       if (event != null) {
-//         NSApp.sendEvent(event);
-//       }
-
-//       if (this.running) {
-//         setTimeout(loop, 10);
-//       }
-//     };
-
-//     setTimeout(loop, 0);
-//   }
-
-//   /**
-//    * @param {NSNotification} _notification
-//    */
-//   // eslint-disable-next-line no-unused-vars
-//   applicationWillTerminate(_notification) {
-//     this.running = false;
-//   }
-// }
-
-// // Given that the AppKit fashion is to create class extensions to achieve just
-// // about everything, we'll need to think how on earth to map this to HTML.
-
-// /**
-//  * @implements {NSWindowDelegate}
-//  */
-// // eslint-disable-next-line no-unused-vars
-// class Window extends NSWindow {
-//   static ObjCProtocols = [NSWindowDelegate];
-
-//   static {
-//     NativeClass(this);
-//   }
-
-//   init() {
-//     this.title = 'NativeScript for macOS';
-//     this.delegate = this;
-
-//     this.makeKeyAndOrderFront(NSApp);
-
-//     return this;
-//   }
-
-//   /**
-//    * @param {NSNotification} _notification
-//    */
-//   // eslint-disable-next-line no-unused-vars
-//   windowWillClose(_notification) {
-//     NSApp.terminate(this);
-//   }
-// }
-
-// const NSApp = NSApplication.sharedApplication;
-
-// NSApp.setActivationPolicy(NSApplicationActivationPolicy.Regular);
-// NSApp.delegate = ApplicationDelegate.new();
-// NSApp.run();
+NSApp.setActivationPolicy(NSApplicationActivationPolicy.Regular);
+NSApp.run();

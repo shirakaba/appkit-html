@@ -3,6 +3,7 @@
 import 'objc/index.js';
 import { NSResponderElement } from './NSResponder.js';
 import { dom0EventMixin } from '../utils/dom-0-events.js';
+import { EventTargetDelegate } from '../utils/event-target-delegate.js';
 
 const events = [
   'applicationwillpresenterror',
@@ -51,7 +52,8 @@ export class NSApplicationElement extends NSResponderElement {
     }
 
     const appDelegate = ApplicationDelegate.new();
-    appDelegate.eventTargetDelegate = this;
+    appDelegate.eventTargetDelegate = new WeakRef(this);
+
     this.nativeObject.delegate = appDelegate;
   }
 
@@ -131,13 +133,6 @@ export class NSApplicationElement extends NSResponderElement {
   ) => void | null;
 }
 
-/**
- * Not a native delegate. A rare case of the delegate pattern in JS.
- */
-type EventTargetDelegate = {
-  eventTargetDelegate: EventTarget | null;
-};
-
 class ApplicationDelegate
   extends NSObject
   implements NSApplicationDelegate, EventTargetDelegate
@@ -148,7 +143,7 @@ class ApplicationDelegate
   // null it upon deconstruction. However I'm being lax here because this
   // particular class is tied to the app lifecycle and shouldn't ever need
   // deconstruction in practice.
-  eventTargetDelegate: EventTarget | null = null;
+  eventTargetDelegate: WeakRef<EventTarget> | null = null;
 
   readonly listeners = {};
 
@@ -160,7 +155,7 @@ class ApplicationDelegate
 
   dispatchEvent(type: Lowercase<string>, detail?: any): boolean {
     return (
-      this.eventTargetDelegate?.dispatchEvent(
+      this.eventTargetDelegate?.deref()?.dispatchEvent(
         new CustomEvent(type, {
           detail,
           bubbles: false,
@@ -172,7 +167,7 @@ class ApplicationDelegate
 
   // TODO: proxy each delegate method.
   applicationDidFinishLaunching(_notification: NSNotification) {
-    console.log('[ApplicationDelegate] applicationDidFinishLaunching');
+    // console.log('[ApplicationDelegate] applicationDidFinishLaunching');
     if (this.dispatchEvent('applicationdidfinishlaunching', [...arguments])) {
       return;
     }

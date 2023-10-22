@@ -1,9 +1,37 @@
 import 'objc/index.js';
 import { NSResponderElement } from './NSResponder.js';
 import { NSObjectElement } from './NSObject.js';
+import { EventTargetDelegate } from '../utils/event-target-delegate.js';
+import { dom0EventMixin } from '../utils/dom-0-events.js';
+
+// TODO: implement all events in NSWindowDelegate
+const events = ['windowwillclose'] as const;
 
 export class NSWindowElement extends NSResponderElement {
   readonly nativeObject = NSWindow.new();
+
+  static {
+    for (const event of events) {
+      dom0EventMixin(this.prototype, event);
+    }
+  }
+
+  // TODO: getAttribute() and setAttribute()
+  set title(value: string) {
+    this.nativeObject.title = value;
+  }
+  get title() {
+    return this.nativeObject.title;
+  }
+
+  constructor() {
+    super();
+
+    const windowDelegate = WindowDelegate.new();
+    windowDelegate.eventTargetDelegate = new WeakRef(this);
+
+    this.nativeObject.delegate = windowDelegate;
+  }
 
   appendChild<T extends Node>(node: T): T {
     const appended = super.appendChild(node);
@@ -33,5 +61,42 @@ export class NSWindowElement extends NSResponderElement {
     }
 
     return removed;
+  }
+
+  declare onwindowwillclose: (
+    evt: CustomEvent<[notification: NSNotification]>
+  ) => void | null;
+}
+
+class WindowDelegate
+  extends NSObject
+  implements NSWindowDelegate, EventTargetDelegate
+{
+  static ObjCProtocols = [NSWindowDelegate];
+
+  eventTargetDelegate: WeakRef<EventTarget> | null = null;
+
+  readonly listeners = {};
+
+  static {
+    NativeClass(this);
+  }
+
+  dispatchEvent(type: Lowercase<string>, detail?: any): boolean {
+    return (
+      this.eventTargetDelegate?.deref()?.dispatchEvent(
+        new CustomEvent(type, {
+          detail,
+          bubbles: false,
+          cancelable: true,
+        })
+      ) ?? false
+    );
+  }
+
+  windowWillClose(_notification: NSNotification) {
+    if (this.dispatchEvent('windowwillclose', [...arguments])) {
+      return;
+    }
   }
 }
