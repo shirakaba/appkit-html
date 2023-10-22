@@ -10,11 +10,14 @@ const nsApplication = document.createElement('ns-application');
 const NSApp = nsApplication.nativeObject;
 
 let running = false;
+nsApplication.addEventListener('applicationdidfinishlaunching', () => {
+  console.log('[2] applicationDidFinishLaunching');
+});
 nsApplication.onapplicationdidfinishlaunching = (
   /** @type {CustomEvent<[NSNotification]>} */ e
 ) => {
   const [notification] = e.detail;
-  console.log('applicationDidFinishLaunching', notification);
+  console.log('[0] applicationDidFinishLaunching', notification);
 
   running = true;
 
@@ -44,20 +47,20 @@ nsApplication.onapplicationwillterminate = () => {
   running = false;
 };
 
-const nsWindow = document.createElement('ns-window');
-nsWindow.title = 'NativeScript for macOS';
-nsWindow.onwindowwillclose = () => {
-  NSApp.terminate(this);
-};
-nsWindow.nativeObject.makeKeyAndOrderFront(NSApp);
-nsWindow.nativeObject.isReleasedWhenClosed = false;
-nsWindow.nativeObject.center();
-nsWindow.nativeObject.backgroundColor = NSColor.colorWithSRGBRedGreenBlueAlpha(
-  118 / 255,
-  171 / 255,
-  235 / 255,
-  1
-);
+// const nsWindow = document.createElement('ns-window');
+// nsWindow.title = 'NativeScript for macOS';
+// nsWindow.onwindowwillclose = () => {
+//   NSApp.terminate(this);
+// };
+// nsWindow.nativeObject.makeKeyAndOrderFront(NSApp);
+// nsWindow.nativeObject.isReleasedWhenClosed = false;
+// nsWindow.nativeObject.center();
+// nsWindow.nativeObject.backgroundColor = NSColor.colorWithSRGBRedGreenBlueAlpha(
+//   118 / 255,
+//   171 / 255,
+//   235 / 255,
+//   1
+// );
 
 NSApp.setActivationPolicy(NSApplicationActivationPolicy.Regular);
 NSApp.run();
