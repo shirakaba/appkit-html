@@ -29,7 +29,7 @@ const events = [
   'applicationdidupdate',
   'applicationdidchangescreenparameters',
   'applicationdidchangeocclusionstate',
-];
+] as const;
 
 let instanceCount = 0;
 
@@ -55,30 +55,80 @@ export class NSApplicationElement extends NSResponderElement {
     this.nativeObject.delegate = appDelegate;
   }
 
-  declare onapplicationwillpresenterror: EventListenerOrEventListenerObject | null;
-  declare onapplicationwillencoderestorablestate: EventListenerOrEventListenerObject | null;
-  declare onapplicationwillcontinueuseractivitywithtype: EventListenerOrEventListenerObject | null;
-  declare onapplicationwillfinishlaunching: EventListenerOrEventListenerObject | null;
-  declare onapplicationwillhide: EventListenerOrEventListenerObject | null;
-  declare onapplicationwillunhide: EventListenerOrEventListenerObject | null;
-  declare onapplicationwillbecomeactive: EventListenerOrEventListenerObject | null;
-  declare onapplicationwillresignactive: EventListenerOrEventListenerObject | null;
-  declare onapplicationwillupdate: EventListenerOrEventListenerObject | null;
-  declare onapplicationwillterminate: EventListenerOrEventListenerObject | null;
-  declare onapplicationdidregisterforremotenotificationswithdevicetoken: EventListenerOrEventListenerObject | null;
-  declare onapplicationdidfailtoregisterforremotenotificationswitherror: EventListenerOrEventListenerObject | null;
-  declare onapplicationdidreceiveremotenotification: EventListenerOrEventListenerObject | null;
-  declare onapplicationdiddecoderestorablestate: EventListenerOrEventListenerObject | null;
-  declare onapplicationdidfailtocontinueuseractivitywithtypeerror: EventListenerOrEventListenerObject | null;
-  declare onapplicationdidupdateuseractivity: EventListenerOrEventListenerObject | null;
-  declare onapplicationdidfinishlaunching: EventListenerOrEventListenerObject | null;
-  declare onapplicationdidhide: EventListenerOrEventListenerObject | null;
-  declare onapplicationdidunhide: EventListenerOrEventListenerObject | null;
-  declare onapplicationdidbecomeactive: EventListenerOrEventListenerObject | null;
-  declare onapplicationdidresignactive: EventListenerOrEventListenerObject | null;
-  declare onapplicationdidupdate: EventListenerOrEventListenerObject | null;
-  declare onapplicationdidchangescreenparameters: EventListenerOrEventListenerObject | null;
-  declare onapplicationdidchangeocclusionstate: EventListenerOrEventListenerObject | null;
+  declare onapplicationwillpresenterror: (
+    evt: CustomEvent<[application: NSApplication, error: NSError]>
+  ) => void | null;
+  declare onapplicationwillencoderestorablestate: (
+    evt: CustomEvent<[app: NSApplication, coder: NSCoder]>
+  ) => void | null;
+  declare onapplicationwillcontinueuseractivitywithtype: (
+    evt: CustomEvent<[application: NSApplication, userActivityType: string]>
+  ) => void | null;
+  declare onapplicationwillfinishlaunching: (
+    evt: CustomEvent<[notification: NSNotification]>
+  ) => void | null;
+  declare onapplicationwillhide: (
+    evt: CustomEvent<[notification: NSNotification]>
+  ) => void | null;
+  declare onapplicationwillunhide: (
+    evt: CustomEvent<[notification: NSNotification]>
+  ) => void | null;
+  declare onapplicationwillbecomeactive: (
+    evt: CustomEvent<[notification: NSNotification]>
+  ) => void | null;
+  declare onapplicationwillresignactive: (
+    evt: CustomEvent<[notification: NSNotification]>
+  ) => void | null;
+  declare onapplicationwillupdate: (
+    evt: CustomEvent<[notification: NSNotification]>
+  ) => void | null;
+  declare onapplicationwillterminate: (
+    evt: CustomEvent<[notification: NSNotification]>
+  ) => void | null;
+  declare onapplicationdidregisterforremotenotificationswithdevicetoken: (
+    evt: CustomEvent<[application: NSApplication, deviceToken: NSData]>
+  ) => void | null;
+  declare onapplicationdidfailtoregisterforremotenotificationswitherror: (
+    evt: CustomEvent<[application: NSApplication, error: NSError]>
+  ) => void | null;
+  declare onapplicationdidreceiveremotenotification: (
+    evt: CustomEvent<[application: NSApplication, userInfo: NSDictionary]>
+  ) => void | null;
+  declare onapplicationdiddecoderestorablestate: (
+    evt: CustomEvent<[app: NSApplication, coder: NSCoder]>
+  ) => void | null;
+  declare onapplicationdidfailtocontinueuseractivitywithtypeerror: (
+    evt: CustomEvent<
+      [application: NSApplication, userActivityType: string, error: NSError]
+    >
+  ) => void | null;
+  declare onapplicationdidupdateuseractivity: (
+    evt: CustomEvent<[application: NSApplication, userActivity: NSUserActivity]>
+  ) => void | null;
+  declare onapplicationdidfinishlaunching: (
+    evt: CustomEvent<[notification: NSNotification]>
+  ) => void | null;
+  declare onapplicationdidhide: (
+    evt: CustomEvent<[notification: NSNotification]>
+  ) => void | null;
+  declare onapplicationdidunhide: (
+    evt: CustomEvent<[notification: NSNotification]>
+  ) => void | null;
+  declare onapplicationdidbecomeactive: (
+    evt: CustomEvent<[notification: NSNotification]>
+  ) => void | null;
+  declare onapplicationdidresignactive: (
+    evt: CustomEvent<[notification: NSNotification]>
+  ) => void | null;
+  declare onapplicationdidupdate: (
+    evt: CustomEvent<[notification: NSNotification]>
+  ) => void | null;
+  declare onapplicationdidchangescreenparameters: (
+    evt: CustomEvent<[notification: NSNotification]>
+  ) => void | null;
+  declare onapplicationdidchangeocclusionstate: (
+    evt: CustomEvent<[notification: NSNotification]>
+  ) => void | null;
 }
 
 /**
@@ -120,6 +170,7 @@ class ApplicationDelegate
     );
   }
 
+  // TODO: proxy each delegate method.
   applicationDidFinishLaunching(_notification: NSNotification) {
     console.log('[ApplicationDelegate] applicationDidFinishLaunching');
     if (this.dispatchEvent('applicationdidfinishlaunching', [...arguments])) {

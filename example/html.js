@@ -1,3 +1,5 @@
+// @ts-check
+
 import 'objc';
 
 import { polyfill } from '../dist/index.js';
@@ -5,12 +7,39 @@ import { polyfill } from '../dist/index.js';
 await polyfill(globalThis);
 
 const nsApplication = document.createElement('ns-application');
-nsApplication.onapplicationdidfinishlaunching = (e) => {
-  console.log('[DOM0] applicationdidfinishlaunching', e);
+// nsApplication.onapplicationwillterminate =
+nsApplication.addEventListener('applicationdidfinishlaunching', (e) => {});
+nsApplication.onapplicationdidfinishlaunching = (
+  /** @type {CustomEvent<[NSNotification]>} */ e
+) => {
+  const [notification] = e.detail;
+  console.log('applicationDidFinishLaunching', notification);
+
+  // this.window = nsWindow.nativeObject;
+
+  const NSApp = nsApplication.nativeObject;
+  NSApp.activateIgnoringOtherApps(false);
+  NSApp.stop(NSApp.delegate);
+
+  const loop = () => {
+    const event = NSApp.nextEventMatchingMaskUntilDateInModeDequeue(
+      NSEventMask.Any,
+      null,
+      'kCFRunLoopDefaultMode',
+      true
+    );
+
+    if (event != null) {
+      NSApp.sendEvent(event);
+    }
+
+    if (this.running) {
+      setTimeout(loop, 10);
+    }
+  };
+
+  setTimeout(loop, 0);
 };
-nsApplication.addEventListener('applicationdidfinishlaunching', (e) => {
-  console.log('[DOM2] applicationdidfinishlaunching', e);
-});
 nsApplication.nativeObject.run();
 
 // const nsWindow = document.createElement('ns-window');
