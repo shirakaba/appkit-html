@@ -7,7 +7,14 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "HTML Generator",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/scripts/classgen.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "HTML example",
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}/example/html.js",
       "outFiles": ["${workspaceFolder}/**/*.js"]
