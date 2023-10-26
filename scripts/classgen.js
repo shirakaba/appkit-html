@@ -50,6 +50,22 @@ function parseDeclaration(lines) {
   const classes = [];
   /** @type {Array<DelegateMeta & { fields: Array<Field>> }>} */
   const delegates = [];
+  /**
+   * key: class name
+   * value: a map of delegate prop names to their corresponding classes.
+   * @type {Map<string, { [propName: string]: string; }>}
+   * @example
+   * {
+   *   NSTextStorage: {
+   *     delegate: 'NSTextStorageDelegate',
+   *   },
+   *   WKWebView: {
+   *     navigationDelegate: WKNavigationDelegate,
+   *     UIDelegate: WKUIDelegate,
+   *   },
+   * }
+   */
+  const delegatesByClass = new Map();
 
   let tsIgnoring = false;
   /** @type {"class" | "delegate" | null} */
@@ -74,13 +90,43 @@ function parseDeclaration(lines) {
     }
 
     if (inside === 'class' || inside === 'delegate') {
-      const field = parseField(line);
-      if (field) {
-        inside === 'class'
-          ? classes.at(-1)?.fields.push(field)
-          : delegates.at(-1)?.fields.push(field);
+      const currentlyInside =
+        inside === 'class' ? classes.at(-1) : delegates.at(-1);
+      if (!currentlyInside) {
+        continue;
       }
-      // console.log(field);
+
+      const field = parseField(line);
+      if (!field) {
+        continue;
+      }
+
+      if (inside === 'class') {
+        const current = classes.at(-1);
+        if (!current) {
+          continue;
+        }
+
+        if (
+          (field.type === 'property' || field.type === 'setter') &&
+          /[dD]elegate$/.test(field.name) &&
+          /[dD]elegate$/.test(field.value)
+        ) {
+          const record = delegatesByClass.get(current.className) ?? {};
+          record[field.name] = field.value;
+          delegatesByClass.set(current.className, record);
+        }
+
+        current.fields.push(field);
+      } else {
+        const current = delegates.at(-1);
+        if (!current) {
+          continue;
+        }
+
+        current.fields.push(field);
+      }
+
       continue;
     }
 
@@ -102,11 +148,26 @@ function parseDeclaration(lines) {
   }
 
   const processedClasses = [...sortClasses(classes, heredity)].map(
-    ({ header, contents, footer, fields }) => {
+    ({ header, className, contents, footer, fields }) => {
+      const delegatesRecord = delegatesByClass.get(className) ?? {};
+      // TODO: See NSRuleEditorDelegate for a delegate with mandatory members
+      const delegates = Object.keys(delegatesRecord).map((propName) =>
+        [
+          `    const ${propName} = ${delegatesRecord[propName]}Impl.new();`,
+          `    ${propName}.eventTargetDelegate = new WeakRef(this);`,
+          `    this.nativeObject.${propName} = ${propName};`,
+        ].join('\n')
+      );
+
+      const ctor = delegates.length
+        ? ['', '  constructor(){', '    super();', '', ...delegates, '  }']
+        : [];
+
       return [
         header,
         [
           ...contents,
+          ...ctor,
           '',
           ...fields
             .map((field) => {
@@ -277,6 +338,7 @@ function parseViewClassHeader(line, tsIgnoring) {
 /**
  *
  * @param {string} line
+ * @returns {Field|null}
  */
 function parseField(line) {
   // "If I'd had more time, I would've written a shorter RegEx"
@@ -479,7 +541,11 @@ function parseDelegateHeader(line) {
   const impl = `${delegateName}Impl`;
 
   const implHeader = `export class ${impl} extends NSObject {`;
-  const implContents = [`  static ObjCProtocols = [${delegateName}];`];
+  const implContents = [
+    `  static ObjCProtocols = [${delegateName}];`,
+    '',
+    '  declare eventTargetDelegate?: WeakRef<EventTarget>;',
+  ];
   const implFooter = '}';
 
   const htmlElementHeader = `export class HTML${delegateName}Element extends HTMLNSObjectElement {`;
