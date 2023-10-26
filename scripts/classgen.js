@@ -107,11 +107,7 @@ function parseDeclaration(lines) {
           continue;
         }
 
-        if (
-          (field.type === 'property' || field.type === 'setter') &&
-          /[dD]elegate$/.test(field.name) &&
-          /[dD]elegate$/.test(field.value)
-        ) {
+        if (isDelegateField(field)) {
           const record = delegatesByClass.get(current.className) ?? {};
           record[field.name] = field.value;
           delegatesByClass.set(current.className, record);
@@ -171,6 +167,12 @@ function parseDeclaration(lines) {
           '',
           ...fields
             .map((field) => {
+              // We'll not expose this as an attribute as we're managing it
+              // ourselves.
+              if (isDelegateField(field)) {
+                return null;
+              }
+
               if (field.type === 'property') {
                 return `  // ${field.readonly ? 'readonly ' : ''}${
                   field.name
@@ -315,16 +317,6 @@ function parseViewClassHeader(line, tsIgnoring) {
 }
 
 /**
- @typedef {
- null |
- { type: 'property'; name: string; readonly: boolean; value: string; } |
- { type: 'getter'; name: string; args: string; returnType: string; } |
- { type: 'setter'; name: string; args: string; } |
- { type: 'method'; name: string; args: string; optional: boolean; returnType: string; }
-} Field
-*/
-
-/**
  *
  * @param {string} line
  * @returns {Field|null}
@@ -448,6 +440,32 @@ function parseField(line) {
       return null;
   }
 }
+
+/**
+ * @param {Field} field
+ * @returns {field is PropertyField}
+ */
+function isDelegateField(field) {
+  return (
+    field.type === 'property' &&
+    /[dD]elegate$/.test(field.name) &&
+    /[dD]elegate$/.test(field.value)
+  );
+}
+
+/** @typedef {{ type: 'property'; name: string; readonly: boolean; value: string; }} PropertyField */
+/** @typedef {{ type: 'getter'; name: string; args: string; returnType: string; }} GetterField */
+/** @typedef {{ type: 'setter'; name: string; args: string; }} SetterField */
+/** @typedef {{ type: 'method'; name: string; args: string; optional: boolean; returnType: string; }} MethodField */
+/**
+ @typedef {
+  null |
+  PropertyField |
+  GetterField |
+  SetterField |
+  MethodField
+ } Field
+ */
 
 /**
  *

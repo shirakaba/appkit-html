@@ -442,7 +442,6 @@ export class HTMLNSSpeechRecognizerElement extends HTMLNSObjectElement {
     this.nativeObject.delegate = delegate;
   }
 
-  // delegate: NSSpeechRecognizerDelegate;
   // listensInForegroundOnly: boolean;
   // blocksOtherRecognizers: boolean;
 }
@@ -700,7 +699,6 @@ export class HTMLNSSharingServicePickerElement extends HTMLNSObjectElement {
     this.nativeObject.delegate = delegate;
   }
 
-  // delegate: NSSharingServicePickerDelegate;
   // readonly standardShareMenuItem: NSMenuItem;
 }
 
@@ -744,7 +742,6 @@ export class HTMLNSTouchBarElement extends HTMLNSObjectElement {
 
   // readonly itemIdentifiers: NSArray;
   // templateItems: NSSet;
-  // delegate: NSTouchBarDelegate;
   // readonly isVisible: boolean;
   // isAutomaticCustomizeTouchBarMenuItemEnabled: boolean;
 }
@@ -1123,7 +1120,6 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
   // representedURL: NSURL;
   // isExcludedFromWindowsMenu: boolean;
   // contentView: NSView;
-  // delegate: NSWindowDelegate;
   // readonly windowNumber: number;
   // styleMask: interop.Enum<typeof NSWindowStyleMask>;
   // readonly frame: CGRect;
@@ -1418,7 +1414,6 @@ export class HTMLNSPathCellElement extends HTMLNSActionCellElement {
 
   // pathStyle: interop.Enum<typeof NSPathStyle>;
   // URL: NSURL;
-  // delegate: NSPathCellDelegate;
   // pathComponentCellClass: interop.Object;
   // readonly clickedPathComponentCell: NSPathComponentCell;
   // doubleAction: string;
@@ -1448,7 +1443,6 @@ export class HTMLNSTextLayoutManagerElement extends HTMLNSObjectElement {
     this.nativeObject.delegate = delegate;
   }
 
-  // delegate: NSTextLayoutManagerDelegate;
   // usesFontLeading: boolean;
   // limitsLayoutForSuspiciousContents: boolean;
   // usesHyphenation: boolean;
@@ -1491,7 +1485,6 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
   // parentWindow: NSWindow;
   // contentView: NSView;
   // preferredEdge: interop.Enum<typeof NSRectEdge>;
-  // delegate: NSDrawerDelegate;
   // readonly state: number;
   // readonly edge: interop.Enum<typeof NSRectEdge>;
   // contentSize: CGSize;
@@ -1594,7 +1587,6 @@ export class HTMLNSLayoutManagerElement extends HTMLNSObjectElement {
 
   // textStorage: NSTextStorage;
   // readonly textContainers: NSArray;
-  // delegate: NSLayoutManagerDelegate;
   // showsInvisibleCharacters: boolean;
   // showsControlCharacters: boolean;
   // usesDefaultHyphenation: boolean;
@@ -1629,7 +1621,6 @@ export class HTMLNSSharingServiceElement extends HTMLNSObjectElement {
     this.nativeObject.delegate = delegate;
   }
 
-  // delegate: NSSharingServiceDelegate;
   // readonly title: NSString;
   // readonly image: NSImage;
   // readonly alternateImage: NSImage;
@@ -1735,7 +1726,6 @@ export class HTMLNSTextContentManagerElement extends HTMLNSObjectElement {
     this.nativeObject.delegate = delegate;
   }
 
-  // delegate: NSTextContentManagerDelegate;
   // readonly textLayoutManagers: NSArray;
   // primaryTextLayoutManager: NSTextLayoutManager;
   // readonly hasEditingTransaction: boolean;
@@ -2083,7 +2073,6 @@ export class HTMLNSImageElement extends HTMLNSObjectElement {
   // readonly TIFFRepresentation: NSData;
   // readonly representations: NSArray;
   // readonly isValid: boolean;
-  // delegate: NSImageDelegate;
   // imageTypes: NSArray;
   // imageUnfilteredTypes: NSArray;
   // cacheMode: interop.Enum<typeof NSImageCacheMode>;
@@ -2106,7 +2095,6 @@ export class HTMLNSToolbarElement extends HTMLNSObjectElement {
     this.nativeObject.delegate = delegate;
   }
 
-  // delegate: NSToolbarDelegate;
   // isVisible: boolean;
   // readonly customizationPaletteIsRunning: boolean;
   // displayMode: interop.Enum<typeof NSToolbarDisplayMode>;
@@ -2145,7 +2133,6 @@ export class HTMLNSTabViewElement extends HTMLNSViewElement {
   // readonly minimumSize: CGSize;
   // drawsBackground: boolean;
   // controlSize: interop.Enum<typeof NSControlSize>;
-  // delegate: NSTabViewDelegate;
   // readonly contentRect: CGRect;
   // readonly numberOfTabViewItems: number;
   // controlTint: interop.Enum<typeof NSControlTint>;
@@ -2163,7 +2150,6 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   }
 
   // sharedApplication: NSApplication;
-  // delegate: NSApplicationDelegate;
   // readonly mainWindow: NSWindow;
   // readonly keyWindow: NSWindow;
   // readonly isActive: boolean;
@@ -2372,7 +2358,6 @@ export class HTMLNSTokenFieldCellElement extends HTMLNSTextFieldCellElement {
   // defaultCompletionDelay: number;
   // tokenizingCharacterSet: NSCharacterSet;
   // defaultTokenizingCharacterSet: NSCharacterSet;
-  // delegate: NSTokenFieldCellDelegate;
 }
 
 export class HTMLNSSharingServicePickerToolbarItemElement extends HTMLNSToolbarItemElement {
@@ -2528,7 +2513,6 @@ export class HTMLNSCollectionViewElement extends HTMLNSViewElement {
 
   // dataSource: NSCollectionViewDataSource;
   // prefetchDataSource: NSCollectionViewPrefetching;
-  // delegate: NSCollectionViewDelegate;
   // backgroundView: NSView;
   // backgroundViewScrollsWithContent: boolean;
   // collectionViewLayout: NSCollectionViewLayout;
@@ -2753,7 +2737,6 @@ export class HTMLNSAlertElement extends HTMLNSObjectElement {
   // readonly buttons: NSArray;
   // alertStyle: interop.Enum<typeof NSAlertStyle>;
   // showsHelp: boolean;
-  // delegate: NSAlertDelegate;
   // accessoryView: NSView;
   // showsSuppressionButton: boolean;
   // readonly suppressionButton: NSButton;
@@ -3168,7 +3151,6 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
     this.nativeObject.delegate = delegate;
   }
 
-  // delegate: NSPopoverDelegate;
   // appearance: NSAppearance;
   // readonly effectiveAppearance: NSAppearance;
   // behavior: interop.Enum<typeof NSPopoverBehavior>;
@@ -3284,7 +3266,6 @@ export class HTMLNSGestureRecognizerElement extends HTMLNSObjectElement {
   // target: interop.Object;
   // action: string;
   // readonly state: interop.Enum<typeof NSGestureRecognizerState>;
-  // delegate: NSGestureRecognizerDelegate;
   // isEnabled: boolean;
   // readonly view: NSView;
   // pressureConfiguration: NSPressureConfiguration;
@@ -3569,7 +3550,6 @@ export class HTMLNSCandidateListTouchBarItemElement extends HTMLNSTouchBarItemEl
   }
 
   // client: NSView;
-  // delegate: NSCandidateListTouchBarItemDelegate;
   // isCollapsed: boolean;
   // allowsCollapsing: boolean;
   // readonly isCandidateListVisible: boolean;
@@ -3662,7 +3642,6 @@ export class HTMLNSSplitViewElement extends HTMLNSViewElement {
 
   // isVertical: boolean;
   // dividerStyle: interop.Enum<typeof NSSplitViewDividerStyle>;
-  // delegate: NSSplitViewDelegate;
   // readonly dividerColor: NSColor;
   // readonly dividerThickness: number;
   // arrangesAllSubviews: boolean;
@@ -3698,7 +3677,6 @@ export class HTMLNSDatePickerCellElement extends HTMLNSActionCellElement {
   // timeInterval: number;
   // minDate: NSDate;
   // maxDate: NSDate;
-  // delegate: NSDatePickerCellDelegate;
 }
 
 export class HTMLNSViewControllerElement extends HTMLNSResponderElement {
@@ -3775,7 +3753,6 @@ export class HTMLNSTextElement extends HTMLNSViewElement {
     this.nativeObject.delegate = delegate;
   }
 
-  // delegate: NSTextDelegate;
   // isEditable: boolean;
   // isSelectable: boolean;
   // isRichText: boolean;
@@ -3823,7 +3800,6 @@ export class HTMLNSTextViewportLayoutControllerElement extends HTMLNSObjectEleme
     this.nativeObject.delegate = delegate;
   }
 
-  // delegate: NSTextViewportLayoutControllerDelegate;
   // readonly textLayoutManager: NSTextLayoutManager | null;
   // readonly viewportBounds: CGRect;
   // readonly viewportRange: NSTextRange;
@@ -3924,7 +3900,6 @@ export class HTMLNSSpeechSynthesizerElement extends HTMLNSObjectElement {
   }
 
   // readonly isSpeaking: boolean;
-  // delegate: NSSpeechSynthesizerDelegate;
   // rate: number;
   // volume: number;
   // usesFeedbackWindow: boolean;
@@ -4010,7 +3985,6 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
   // supermenu: NSMenu;
   // readonly numberOfItems: number;
   // autoenablesItems: boolean;
-  // delegate: NSMenuDelegate;
   // readonly menuBarHeight: number;
   // readonly highlightedItem: NSMenuItem;
   // minimumWidth: number;
@@ -4239,7 +4213,6 @@ export class HTMLNSSavePanelElement extends HTMLNSPanelElement {
   // directoryURL: NSURL;
   // allowsOtherFileTypes: boolean;
   // accessoryView: NSView;
-  // delegate: NSOpenSavePanelDelegate;
   // readonly isExpanded: boolean;
   // canCreateDirectories: boolean;
   // canSelectHiddenExtension: boolean;
@@ -4314,7 +4287,6 @@ export class HTMLNSScrubberElement extends HTMLNSViewElement {
   }
 
   // dataSource: NSScrubberDataSource;
-  // delegate: NSScrubberDelegate;
   // scrubberLayout: NSScrubberLayout;
   // readonly numberOfItems: number;
   // readonly highlightedIndex: number;
@@ -4375,7 +4347,6 @@ export class HTMLNSStackViewElement extends HTMLNSViewElement {
     this.nativeObject.delegate = delegate;
   }
 
-  // delegate: NSStackViewDelegate;
   // orientation: interop.Enum<typeof NSUserInterfaceLayoutOrientation>;
   // alignment: interop.Enum<typeof NSLayoutAttribute>;
   // edgeInsets: NSEdgeInsets;
@@ -4423,7 +4394,6 @@ export class HTMLNSSoundElement extends HTMLNSObjectElement {
   // readonly name: NSString;
   // soundUnfilteredTypes: NSArray;
   // readonly isPlaying: boolean;
-  // delegate: NSSoundDelegate;
   // readonly duration: number;
   // volume: number;
   // currentTime: number;
@@ -4633,7 +4603,6 @@ export class HTMLNSFilePromiseProviderElement extends HTMLNSObjectElement {
     this.nativeObject.delegate = delegate;
   }
 
-  // delegate: NSFilePromiseProviderDelegate;
   // userInfo: interop.Object;
   // readonly hash: number;
   // readonly superclass: interop.Object;
@@ -4683,7 +4652,6 @@ export class HTMLNSDatePickerElement extends HTMLNSControlElement {
   // minDate: NSDate;
   // maxDate: NSDate;
   // presentsCalendarOverlay: boolean;
-  // delegate: NSDatePickerCellDelegate;
 }
 
 export class HTMLNSScrubberImageItemViewElement extends HTMLNSScrubberItemViewElement {
@@ -4727,7 +4695,6 @@ export class HTMLNSMatrixElement extends HTMLNSControlElement {
   // autosizesCells: boolean;
   // isAutoscroll: boolean;
   // readonly mouseDownFlags: number;
-  // delegate: NSMatrixDelegate;
   // autorecalculatesCellSize: boolean;
   // tabKeyTraversesCells: boolean;
   // keyCell: NSCell;
@@ -4750,7 +4717,6 @@ export class HTMLNSRuleEditorElement extends HTMLNSControlElement {
     this.nativeObject.delegate = delegate;
   }
 
-  // delegate: NSRuleEditorDelegate;
   // nestingMode: interop.Enum<typeof NSRuleEditorNestingMode>;
   // rowHeight: number;
   // isEditable: boolean;
@@ -4794,7 +4760,6 @@ export class HTMLNSPathControlElement extends HTMLNSControlElement {
   // pathStyle: interop.Enum<typeof NSPathStyle>;
   // readonly clickedPathItem: NSPathControlItem;
   // backgroundColor: NSColor;
-  // delegate: NSPathControlDelegate;
   // menu: NSMenu;
 }
 
@@ -4815,7 +4780,6 @@ export class HTMLNSBrowserElement extends HTMLNSControlElement {
   // readonly isLoaded: boolean;
   // doubleAction: string;
   // cellPrototype: interop.Object;
-  // delegate: NSBrowserDelegate;
   // reusesColumns: boolean;
   // hasHorizontalScroller: boolean;
   // autohidesScroller: boolean;
@@ -4934,7 +4898,6 @@ export class HTMLNSTableViewElement extends HTMLNSControlElement {
   }
 
   // dataSource: NSTableViewDataSource;
-  // delegate: NSTableViewDelegate;
   // headerView: NSTableHeaderView;
   // cornerView: NSView;
   // allowsColumnReordering: boolean;
@@ -5066,7 +5029,6 @@ export class HTMLNSAnimationElement extends HTMLNSObjectElement {
   // frameRate: number;
   // animationCurve: interop.Enum<typeof NSAnimationCurve>;
   // readonly currentValue: number;
-  // delegate: NSAnimationDelegate;
   // readonly runLoopModesForAnimating: NSArray;
 }
 
@@ -5106,7 +5068,6 @@ export class HTMLNSOutlineViewElement extends HTMLNSTableViewElement {
     this.nativeObject.delegate = delegate;
   }
 
-  // delegate: NSOutlineViewDelegate;
   // dataSource: NSOutlineViewDataSource;
   // outlineTableColumn: NSTableColumn;
   // indentationPerLevel: number;
@@ -5177,7 +5138,6 @@ export class HTMLNSTextFieldElement extends HTMLNSControlElement {
   // isBezeled: boolean;
   // isEditable: boolean;
   // isSelectable: boolean;
-  // delegate: NSTextFieldDelegate;
   // readonly acceptsFirstResponder: boolean;
   // bezelStyle: interop.Enum<typeof NSTextFieldBezelStyle>;
   // preferredMaxLayoutWidth: number;
@@ -5288,7 +5248,6 @@ export class HTMLNSPageControllerElement extends HTMLNSViewControllerElement {
     this.nativeObject.delegate = delegate;
   }
 
-  // delegate: NSPageControllerDelegate;
   // readonly selectedViewController: NSViewController;
   // transitionStyle: interop.Enum<typeof NSPageControllerTransitionStyle>;
   // selectedIndex: number;
@@ -5329,7 +5288,6 @@ export class HTMLNSComboBoxElement extends HTMLNSTextFieldElement {
   // readonly indexOfSelectedItem: number;
   // readonly numberOfItems: number;
   // completes: boolean;
-  // delegate: NSComboBoxDelegate;
   // dataSource: NSComboBoxDataSource;
   // readonly objectValueOfSelectedItem: interop.Object;
   // readonly objectValues: NSArray;
@@ -5421,7 +5379,6 @@ export class HTMLNSTokenFieldElement extends HTMLNSTextFieldElement {
     this.nativeObject.delegate = delegate;
   }
 
-  // delegate: NSTokenFieldDelegate;
   // tokenStyle: interop.Enum<typeof NSTokenStyle>;
   // completionDelay: number;
   // defaultCompletionDelay: number;
@@ -5449,7 +5406,6 @@ export class HTMLNSSearchFieldElement extends HTMLNSTextFieldElement {
   // sendsWholeSearchString: boolean;
   // maximumRecents: number;
   // sendsSearchStringImmediately: boolean;
-  // delegate: NSSearchFieldDelegate;
   // centersPlaceholder: boolean;
 }
 
@@ -5486,7 +5442,6 @@ export class HTMLNSTextContentStorageElement extends HTMLNSTextContentManagerEle
     this.nativeObject.delegate = delegate;
   }
 
-  // delegate: NSTextContentStorageDelegate;
   // attributedString: NSAttributedString;
   // textStorage: NSTextStorage;
   // readonly hash: number;
@@ -5561,7 +5516,6 @@ export class HTMLNSTextViewElement extends HTMLNSTextElement {
   // readonly isCoalescingUndo: boolean;
   // allowsImageEditing: boolean;
   // usesRolloverButtonForSelection: boolean;
-  // delegate: NSTextViewDelegate;
   // isEditable: boolean;
   // isSelectable: boolean;
   // isRichText: boolean;
