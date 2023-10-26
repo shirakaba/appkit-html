@@ -186,23 +186,12 @@ function parseDeclaration(lines) {
   );
 
   const processedDelegates = delegates.map(
-    ({
-      implHeader,
-      implContents,
-      implFooter,
-      htmlElementHeader,
-      htmlElementContents,
-      htmlElementFooter,
-      fields,
-    }) => {
+    ({ implHeader, implContents, implFooter, fields }) => {
       return [
         implHeader,
-        implContents.join('\n'),
-        implFooter,
         '',
-        htmlElementHeader,
         [
-          ...htmlElementContents,
+          ...implContents,
           '',
           ...fields
             .map((field) => {
@@ -215,7 +204,7 @@ function parseDeclaration(lines) {
             })
             .filter(Boolean),
         ].join('\n'),
-        htmlElementFooter,
+        implFooter,
       ].join('\n');
     }
   );
@@ -518,9 +507,6 @@ function findIndexOfMatchingBracket(code, openingIndex, openingBracket) {
   implHeader: string;
   implContents: Array<string>;
   implFooter: string;
-  htmlElementHeader: string;
-  htmlElementContents: Array<string>;
-  htmlElementFooter: string;
   delegateName: string;
   superinterfaces: string;
 }} DelegateMeta
@@ -540,7 +526,7 @@ function parseDelegateHeader(line) {
 
   const impl = `${delegateName}Impl`;
 
-  const implHeader = `export class ${impl} extends NSObject {`;
+  const implHeader = `export class ${impl} extends NSObject implements ${delegateName} {`;
   const implContents = [
     `  static ObjCProtocols = [${delegateName}];`,
     '',
@@ -548,17 +534,10 @@ function parseDelegateHeader(line) {
   ];
   const implFooter = '}';
 
-  const htmlElementHeader = `export class HTML${delegateName}Element extends HTMLNSObjectElement {`;
-  const htmlElementContents = [`  readonly nativeObject = ${impl}.new();`];
-  const htmlElementFooter = '}';
-
   return {
     implHeader,
     implContents,
     implFooter,
-    htmlElementHeader,
-    htmlElementContents,
-    htmlElementFooter,
     delegateName,
     superinterfaces,
   };
