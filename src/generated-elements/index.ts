@@ -445,6 +445,8 @@ export class HTMLNSSpeechRecognizerElement extends HTMLNSObjectElement {
 
   // listensInForegroundOnly: boolean;
   // blocksOtherRecognizers: boolean;
+
+  declare onspeechrecognizerdidrecognizecommand: (evt: CustomEvent<[sender: NSSpeechRecognizer, command: NSString | string]>) => void | null;
 }
 
 export class HTMLNSCollectionLayoutGroupCustomItemElement extends HTMLNSObjectElement {
@@ -702,6 +704,10 @@ export class HTMLNSSharingServicePickerElement extends HTMLNSObjectElement {
   }
 
   // readonly standardShareMenuItem: NSMenuItem;
+
+  declare onsharingservicepickersharingservicesforitemsproposedsharingservices: (evt: CustomEvent<[sharingServicePicker: NSSharingServicePicker, items: NSArray | unknown[], proposedServices: NSArray | unknown[]]>) => void | null;
+  declare onsharingservicepickerdelegateforsharingservice: (evt: CustomEvent<[sharingServicePicker: NSSharingServicePicker, sharingService: NSSharingService]>) => void | null;
+  declare onsharingservicepickerdidchoosesharingservice: (evt: CustomEvent<[sharingServicePicker: NSSharingServicePicker, service: NSSharingService | null]>) => void | null;
 }
 
 export class HTMLNSCollectionViewCompositionalLayoutConfigurationElement extends HTMLNSObjectElement {
@@ -747,6 +753,8 @@ export class HTMLNSTouchBarElement extends HTMLNSObjectElement {
   // templateItems: NSSet;
   // readonly isVisible: boolean;
   // isAutomaticCustomizeTouchBarMenuItemEnabled: boolean;
+
+  declare ontouchbarmakeitemforidentifier: (evt: CustomEvent<[touchBar: NSTouchBar, identifier: NSString | string]>) => void | null;
 }
 
 export class HTMLNSActionCellElement extends HTMLNSCellElement {
@@ -1313,6 +1321,59 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
   // accessibilityZoomButton: interop.Object;
   // accessibilityMinimizeButton: interop.Object;
   // isAccessibilityMinimized: boolean;
+
+  declare onwindowshouldclose: (evt: CustomEvent<[sender: NSWindow]>) => void | null;
+  declare onwindowwillreturnfieldeditortoobject: (evt: CustomEvent<[sender: NSWindow, client: interop.Object | null]>) => void | null;
+  declare onwindowwillresizetosize: (evt: CustomEvent<[sender: NSWindow, frameSize: CGSize]>) => void | null;
+  declare onwindowwillusestandardframedefaultframe: (evt: CustomEvent<[window: NSWindow, newFrame: CGRect]>) => void | null;
+  declare onwindowshouldzoomtoframe: (evt: CustomEvent<[window: NSWindow, newFrame: CGRect]>) => void | null;
+  declare onwindowwillreturnundomanager: (evt: CustomEvent<[window: NSWindow]>) => void | null;
+  declare onwindowwillpositionsheetusingrect: (evt: CustomEvent<[window: NSWindow, sheet: NSWindow, rect: CGRect]>) => void | null;
+  declare onwindowshouldpopupdocumentpathmenu: (evt: CustomEvent<[window: NSWindow, menu: NSMenu]>) => void | null;
+  declare onwindowshoulddragdocumentwitheventfromwithpasteboard: (evt: CustomEvent<[window: NSWindow, event: NSEvent, dragImageLocation: CGPoint, pasteboard: NSPasteboard]>) => void | null;
+  declare onwindowwillusefullscreencontentsize: (evt: CustomEvent<[window: NSWindow, proposedSize: CGSize]>) => void | null;
+  declare onwindowwillusefullscreenpresentationoptions: (evt: CustomEvent<[window: NSWindow, proposedOptions: interop.Enum<typeof NSApplicationPresentationOptions>]>) => void | null;
+  declare oncustomwindowstoenterfullscreenforwindow: (evt: CustomEvent<[window: NSWindow]>) => void | null;
+  declare onwindowstartcustomanimationtoenterfullscreenwithduration: (evt: CustomEvent<[window: NSWindow, duration: number]>) => void | null;
+  declare onwindowdidfailtoenterfullscreen: (evt: CustomEvent<[window: NSWindow]>) => void | null;
+  declare oncustomwindowstoexitfullscreenforwindow: (evt: CustomEvent<[window: NSWindow]>) => void | null;
+  declare onwindowstartcustomanimationtoexitfullscreenwithduration: (evt: CustomEvent<[window: NSWindow, duration: number]>) => void | null;
+  declare oncustomwindowstoenterfullscreenforwindowonscreen: (evt: CustomEvent<[window: NSWindow, screen: NSScreen]>) => void | null;
+  declare onwindowstartcustomanimationtoenterfullscreenonscreenwithduration: (evt: CustomEvent<[window: NSWindow, screen: NSScreen, duration: number]>) => void | null;
+  declare onwindowdidfailtoexitfullscreen: (evt: CustomEvent<[window: NSWindow]>) => void | null;
+  declare onwindowwillresizeforversionbrowserwithmaxpreferredsizemaxallowedsize: (evt: CustomEvent<[window: NSWindow, maxPreferredFrameSize: CGSize, maxAllowedFrameSize: CGSize]>) => void | null;
+  declare onwindowwillencoderestorablestate: (evt: CustomEvent<[window: NSWindow, state: NSCoder]>) => void | null;
+  declare onwindowdiddecoderestorablestate: (evt: CustomEvent<[window: NSWindow, state: NSCoder]>) => void | null;
+  declare onpreviewrepresentableactivityitemsforwindow: (evt: CustomEvent<[window: NSWindow]>) => void | null;
+  declare onwindowdidresize: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowdidexpose: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowwillmove: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowdidmove: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowdidbecomekey: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowdidresignkey: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowdidbecomemain: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowdidresignmain: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowwillclose: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowwillminiaturize: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowdidminiaturize: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowdiddeminiaturize: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowdidupdate: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowdidchangescreen: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowdidchangescreenprofile: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowdidchangebackingproperties: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowwillbeginsheet: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowdidendsheet: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowwillstartliveresize: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowdidendliveresize: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowwillenterfullscreen: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowdidenterfullscreen: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowwillexitfullscreen: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowdidexitfullscreen: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowwillenterversionbrowser: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowdidenterversionbrowser: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowwillexitversionbrowser: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowdidexitversionbrowser: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onwindowdidchangeocclusionstate: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
 }
 
 export class HTMLNSScrubberLayoutAttributesElement extends HTMLNSObjectElement {
@@ -1430,6 +1491,9 @@ export class HTMLNSPathCellElement extends HTMLNSActionCellElement {
   // readonly zone: interop.Pointer;
   // readonly description: NSString;
   // readonly debugDescription: NSString;
+
+  declare onpathcellwilldisplayopenpanel: (evt: CustomEvent<[pathCell: NSPathCell, openPanel: NSOpenPanel]>) => void | null;
+  declare onpathcellwillpopupmenu: (evt: CustomEvent<[pathCell: NSPathCell, menu: NSMenu]>) => void | null;
 }
 
 export class HTMLNSWorkspaceAuthorizationElement extends HTMLNSObjectElement {
@@ -1468,6 +1532,10 @@ export class HTMLNSTextLayoutManagerElement extends HTMLNSObjectElement {
   // readonly zone: interop.Pointer;
   // readonly description: NSString;
   // readonly debugDescription: NSString;
+
+  declare ontextlayoutmanagertextlayoutfragmentforlocationintextelement: (evt: CustomEvent<[textLayoutManager: NSTextLayoutManager, location: NSTextLocation, textElement: NSTextElement]>) => void | null;
+  declare ontextlayoutmanagershouldbreaklinebeforelocationhyphenating: (evt: CustomEvent<[textLayoutManager: NSTextLayoutManager, location: NSTextLocation, hyphenating: boolean]>) => void | null;
+  declare ontextlayoutmanagerrenderingattributesforlinkatlocationdefaultattributes: (evt: CustomEvent<[textLayoutManager: NSTextLayoutManager, link: interop.Object, location: NSTextLocation, renderingAttributes: NSDictionary | Record<string, unknown>]>) => void | null;
 }
 
 export class HTMLNSWindowTabElement extends HTMLNSObjectElement {
@@ -1579,6 +1647,14 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
   // accessibilityZoomButton: interop.Object;
   // accessibilityMinimizeButton: interop.Object;
   // isAccessibilityMinimized: boolean;
+
+  declare ondrawershouldopen: (evt: CustomEvent<[sender: NSDrawer]>) => void | null;
+  declare ondrawershouldclose: (evt: CustomEvent<[sender: NSDrawer]>) => void | null;
+  declare ondrawerwillresizecontentstosize: (evt: CustomEvent<[sender: NSDrawer, contentSize: CGSize]>) => void | null;
+  declare ondrawerwillopen: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare ondrawerdidopen: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare ondrawerwillclose: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare ondrawerdidclose: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
 }
 
 export class HTMLNSLayoutManagerElement extends HTMLNSObjectElement {
@@ -1616,6 +1692,20 @@ export class HTMLNSLayoutManagerElement extends HTMLNSObjectElement {
   // hyphenationFactor: number;
   // glyphGenerator: NSGlyphGenerator;
   // supportsSecureCoding: boolean;
+
+  declare onlayoutmanagershouldgenerateglyphspropertiescharacterindexesfontforglyphrange: (evt: CustomEvent<[layoutManager: NSLayoutManager, glyphs: interop.PointerConvertible, props: interop.PointerConvertible, charIndexes: interop.PointerConvertible, aFont: NSFont, glyphRange: _NSRange]>) => void | null;
+  declare onlayoutmanagerlinespacingafterglyphatindexwithproposedlinefragmentrect: (evt: CustomEvent<[layoutManager: NSLayoutManager, glyphIndex: number, rect: CGRect]>) => void | null;
+  declare onlayoutmanagerparagraphspacingbeforeglyphatindexwithproposedlinefragmentrect: (evt: CustomEvent<[layoutManager: NSLayoutManager, glyphIndex: number, rect: CGRect]>) => void | null;
+  declare onlayoutmanagerparagraphspacingafterglyphatindexwithproposedlinefragmentrect: (evt: CustomEvent<[layoutManager: NSLayoutManager, glyphIndex: number, rect: CGRect]>) => void | null;
+  declare onlayoutmanagershoulduseactionforcontrolcharacteratindex: (evt: CustomEvent<[layoutManager: NSLayoutManager, action: interop.Enum<typeof NSControlCharacterAction>, charIndex: number]>) => void | null;
+  declare onlayoutmanagershouldbreaklinebywordbeforecharacteratindex: (evt: CustomEvent<[layoutManager: NSLayoutManager, charIndex: number]>) => void | null;
+  declare onlayoutmanagershouldbreaklinebyhyphenatingbeforecharacteratindex: (evt: CustomEvent<[layoutManager: NSLayoutManager, charIndex: number]>) => void | null;
+  declare onlayoutmanagerboundingboxforcontrolglyphatindexfortextcontainerproposedlinefragmentglyphpositioncharacterindex: (evt: CustomEvent<[layoutManager: NSLayoutManager, glyphIndex: number, textContainer: NSTextContainer, proposedRect: CGRect, glyphPosition: CGPoint, charIndex: number]>) => void | null;
+  declare onlayoutmanagershouldsetlinefragmentrectlinefragmentusedrectbaselineoffsetintextcontainerforglyphrange: (evt: CustomEvent<[layoutManager: NSLayoutManager, lineFragmentRect: interop.PointerConvertible, lineFragmentUsedRect: interop.PointerConvertible, baselineOffset: interop.PointerConvertible, textContainer: NSTextContainer, glyphRange: _NSRange]>) => void | null;
+  declare onlayoutmanagerdidinvalidatelayout: (evt: CustomEvent<[sender: NSLayoutManager]>) => void | null;
+  declare onlayoutmanagerdidcompletelayoutfortextcontaineratend: (evt: CustomEvent<[layoutManager: NSLayoutManager, textContainer: NSTextContainer | null, layoutFinishedFlag: boolean]>) => void | null;
+  declare onlayoutmanagertextcontainerdidchangegeometryfromsize: (evt: CustomEvent<[layoutManager: NSLayoutManager, textContainer: NSTextContainer, oldSize: CGSize]>) => void | null;
+  declare onlayoutmanagershouldusetemporaryattributesfordrawingtoscreenatcharacterindexeffectiverange: (evt: CustomEvent<[layoutManager: NSLayoutManager, attrs: NSDictionary | Record<string, unknown>, toScreen: boolean, charIndex: number, effectiveCharRange: interop.PointerConvertible]>) => void | null;
 }
 
 export class HTMLNSSharingServiceElement extends HTMLNSObjectElement {
@@ -1637,6 +1727,14 @@ export class HTMLNSSharingServiceElement extends HTMLNSObjectElement {
   // readonly permanentLink: NSURL;
   // readonly accountName: NSString;
   // readonly attachmentFileURLs: NSArray;
+
+  declare onsharingservicewillshareitems: (evt: CustomEvent<[sharingService: NSSharingService, items: NSArray | unknown[]]>) => void | null;
+  declare onsharingservicedidfailtoshareitemserror: (evt: CustomEvent<[sharingService: NSSharingService, items: NSArray | unknown[], error: NSError]>) => void | null;
+  declare onsharingservicedidshareitems: (evt: CustomEvent<[sharingService: NSSharingService, items: NSArray | unknown[]]>) => void | null;
+  declare onsharingservicesourceframeonscreenforshareitem: (evt: CustomEvent<[sharingService: NSSharingService, item: interop.Object]>) => void | null;
+  declare onsharingservicetransitionimageforshareitemcontentrect: (evt: CustomEvent<[sharingService: NSSharingService, item: interop.Object, contentRect: interop.PointerConvertible]>) => void | null;
+  declare onsharingservicesourcewindowforshareitemssharingcontentscope: (evt: CustomEvent<[sharingService: NSSharingService, items: NSArray | unknown[], sharingContentScope: interop.PointerConvertible]>) => void | null;
+  declare onanchoringviewforsharingserviceshowrelativetorectpreferrededge: (evt: CustomEvent<[sharingService: NSSharingService, positioningRect: interop.PointerConvertible, preferredEdge: interop.PointerConvertible]>) => void | null;
 }
 
 export class HTMLNSTreeControllerElement extends HTMLNSObjectControllerElement {
@@ -1749,6 +1847,9 @@ export class HTMLNSTextContentManagerElement extends HTMLNSObjectElement {
   // readonly description: NSString;
   // readonly debugDescription: NSString;
   // supportsSecureCoding: boolean;
+
+  declare ontextcontentmanagertextelementatlocation: (evt: CustomEvent<[textContentManager: NSTextContentManager, location: NSTextLocation]>) => void | null;
+  declare ontextcontentmanagershouldenumeratetextelementoptions: (evt: CustomEvent<[textContentManager: NSTextContentManager, textElement: NSTextElement, options: interop.Enum<typeof NSTextContentManagerEnumerationOptions>]>) => void | null;
 }
 
 export class HTMLNSPrinterElement extends HTMLNSObjectElement {
@@ -2093,6 +2194,12 @@ export class HTMLNSImageElement extends HTMLNSObjectElement {
   // resizingMode: interop.Enum<typeof NSImageResizingMode>;
   // readonly symbolConfiguration: NSImageSymbolConfiguration;
   // readonly locale: NSLocale;
+
+  declare onimagedidnotdrawinrect: (evt: CustomEvent<[sender: NSImage, rect: CGRect]>) => void | null;
+  declare onimagewillloadrepresentation: (evt: CustomEvent<[image: NSImage, rep: NSImageRep]>) => void | null;
+  declare onimagedidloadrepresentationheader: (evt: CustomEvent<[image: NSImage, rep: NSImageRep]>) => void | null;
+  declare onimagedidloadpartofrepresentationwithvalidrows: (evt: CustomEvent<[image: NSImage, rep: NSImageRep, rows: number]>) => void | null;
+  declare onimagedidloadrepresentationwithstatus: (evt: CustomEvent<[image: NSImage, rep: NSImageRep, status: interop.Enum<typeof NSImageLoadStatus>]>) => void | null;
 }
 
 export class HTMLNSToolbarElement extends HTMLNSObjectElement {
@@ -2123,6 +2230,15 @@ export class HTMLNSToolbarElement extends HTMLNSObjectElement {
   // fullScreenAccessoryView: NSView;
   // fullScreenAccessoryViewMinHeight: number;
   // fullScreenAccessoryViewMaxHeight: number;
+
+  declare ontoolbaritemforitemidentifierwillbeinsertedintotoolbar: (evt: CustomEvent<[toolbar: NSToolbar, itemIdentifier: NSString | string, flag: boolean]>) => void | null;
+  declare ontoolbardefaultitemidentifiers: (evt: CustomEvent<[toolbar: NSToolbar]>) => void | null;
+  declare ontoolbaralloweditemidentifiers: (evt: CustomEvent<[toolbar: NSToolbar]>) => void | null;
+  declare ontoolbarselectableitemidentifiers: (evt: CustomEvent<[toolbar: NSToolbar]>) => void | null;
+  declare ontoolbarimmovableitemidentifiers: (evt: CustomEvent<[toolbar: NSToolbar]>) => void | null;
+  declare ontoolbaritemidentifiercanbeinsertedatindex: (evt: CustomEvent<[toolbar: NSToolbar, itemIdentifier: NSString | string, index: number]>) => void | null;
+  declare ontoolbarwilladditem: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare ontoolbardidremoveitem: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
 }
 
 export class HTMLNSTabViewElement extends HTMLNSViewElement {
@@ -2149,6 +2265,11 @@ export class HTMLNSTabViewElement extends HTMLNSViewElement {
   // readonly contentRect: CGRect;
   // readonly numberOfTabViewItems: number;
   // controlTint: interop.Enum<typeof NSControlTint>;
+
+  declare ontabviewshouldselecttabviewitem: (evt: CustomEvent<[tabView: NSTabView, tabViewItem: NSTabViewItem | null]>) => void | null;
+  declare ontabviewwillselecttabviewitem: (evt: CustomEvent<[tabView: NSTabView, tabViewItem: NSTabViewItem | null]>) => void | null;
+  declare ontabviewdidselecttabviewitem: (evt: CustomEvent<[tabView: NSTabView, tabViewItem: NSTabViewItem | null]>) => void | null;
+  declare ontabviewdidchangenumberoftabviewitems: (evt: CustomEvent<[tabView: NSTabView]>) => void | null;
 }
 
 export class HTMLNSApplicationElement extends HTMLNSResponderElement {
@@ -2273,6 +2394,52 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   // accessibilityZoomButton: interop.Object;
   // accessibilityMinimizeButton: interop.Object;
   // isAccessibilityMinimized: boolean;
+
+  declare onapplicationshouldterminate: (evt: CustomEvent<[sender: NSApplication]>) => void | null;
+  declare onapplicationopenurls: (evt: CustomEvent<[application: NSApplication, urls: NSArray | unknown[]]>) => void | null;
+  declare onapplicationopenfile: (evt: CustomEvent<[sender: NSApplication, filename: NSString | string]>) => void | null;
+  declare onapplicationopenfiles: (evt: CustomEvent<[sender: NSApplication, filenames: NSArray | unknown[]]>) => void | null;
+  declare onapplicationopentempfile: (evt: CustomEvent<[sender: NSApplication, filename: NSString | string]>) => void | null;
+  declare onapplicationshouldopenuntitledfile: (evt: CustomEvent<[sender: NSApplication]>) => void | null;
+  declare onapplicationopenuntitledfile: (evt: CustomEvent<[sender: NSApplication]>) => void | null;
+  declare onapplicationopenfilewithoutui: (evt: CustomEvent<[sender: interop.Object, filename: NSString | string]>) => void | null;
+  declare onapplicationprintfile: (evt: CustomEvent<[sender: NSApplication, filename: NSString | string]>) => void | null;
+  declare onapplicationprintfileswithsettingsshowprintpanels: (evt: CustomEvent<[application: NSApplication, fileNames: NSArray | unknown[], printSettings: NSDictionary | Record<string, unknown>, showPrintPanels: boolean]>) => void | null;
+  declare onapplicationshouldterminateafterlastwindowclosed: (evt: CustomEvent<[sender: NSApplication]>) => void | null;
+  declare onapplicationshouldhandlereopenhasvisiblewindows: (evt: CustomEvent<[sender: NSApplication, flag: boolean]>) => void | null;
+  declare onapplicationdockmenu: (evt: CustomEvent<[sender: NSApplication]>) => void | null;
+  declare onapplicationwillpresenterror: (evt: CustomEvent<[application: NSApplication, error: NSError]>) => void | null;
+  declare onapplicationdidregisterforremotenotificationswithdevicetoken: (evt: CustomEvent<[application: NSApplication, deviceToken: NSData]>) => void | null;
+  declare onapplicationdidfailtoregisterforremotenotificationswitherror: (evt: CustomEvent<[application: NSApplication, error: NSError]>) => void | null;
+  declare onapplicationdidreceiveremotenotification: (evt: CustomEvent<[application: NSApplication, userInfo: NSDictionary | Record<string, unknown>]>) => void | null;
+  declare onapplicationsupportssecurerestorablestate: (evt: CustomEvent<[app: NSApplication]>) => void | null;
+  declare onapplicationhandlerforintent: (evt: CustomEvent<[application: NSApplication, intent: INIntent]>) => void | null;
+  declare onapplicationwillencoderestorablestate: (evt: CustomEvent<[app: NSApplication, coder: NSCoder]>) => void | null;
+  declare onapplicationdiddecoderestorablestate: (evt: CustomEvent<[app: NSApplication, coder: NSCoder]>) => void | null;
+  declare onapplicationwillcontinueuseractivitywithtype: (evt: CustomEvent<[application: NSApplication, userActivityType: NSString | string]>) => void | null;
+  declare onapplicationcontinueuseractivityrestorationhandler: (evt: CustomEvent<[application: NSApplication, userActivity: NSUserActivity, restorationHandler: (p1: NSArray | unknown[]) => void]>) => void | null;
+  declare onapplicationdidfailtocontinueuseractivitywithtypeerror: (evt: CustomEvent<[application: NSApplication, userActivityType: NSString | string, error: NSError]>) => void | null;
+  declare onapplicationdidupdateuseractivity: (evt: CustomEvent<[application: NSApplication, userActivity: NSUserActivity]>) => void | null;
+  declare onapplicationuserdidacceptcloudkitsharewithmetadata: (evt: CustomEvent<[application: NSApplication, metadata: CKShareMetadata]>) => void | null;
+  declare onapplicationdelegatehandleskey: (evt: CustomEvent<[sender: NSApplication, key: NSString | string]>) => void | null;
+  declare onapplicationshouldautomaticallylocalizekeyequivalents: (evt: CustomEvent<[application: NSApplication]>) => void | null;
+  declare onapplicationwillfinishlaunching: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onapplicationdidfinishlaunching: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onapplicationwillhide: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onapplicationdidhide: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onapplicationwillunhide: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onapplicationdidunhide: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onapplicationwillbecomeactive: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onapplicationdidbecomeactive: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onapplicationwillresignactive: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onapplicationdidresignactive: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onapplicationwillupdate: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onapplicationdidupdate: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onapplicationwillterminate: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onapplicationdidchangescreenparameters: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onapplicationdidchangeocclusionstate: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onapplicationprotecteddatawillbecomeunavailable: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onapplicationprotecteddatadidbecomeavailable: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
 }
 
 export class HTMLNSTouchBarItemElement extends HTMLNSObjectElement {
@@ -2373,6 +2540,17 @@ export class HTMLNSTokenFieldCellElement extends HTMLNSTextFieldCellElement {
   // defaultCompletionDelay: number;
   // tokenizingCharacterSet: NSCharacterSet;
   // defaultTokenizingCharacterSet: NSCharacterSet;
+
+  declare ontokenfieldcellcompletionsforsubstringindexoftokenindexofselecteditem: (evt: CustomEvent<[tokenFieldCell: NSTokenFieldCell, substring: NSString | string, tokenIndex: number, selectedIndex: interop.PointerConvertible]>) => void | null;
+  declare ontokenfieldcellshouldaddobjectsatindex: (evt: CustomEvent<[tokenFieldCell: NSTokenFieldCell, tokens: NSArray | unknown[], index: number]>) => void | null;
+  declare ontokenfieldcelldisplaystringforrepresentedobject: (evt: CustomEvent<[tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object]>) => void | null;
+  declare ontokenfieldcelleditingstringforrepresentedobject: (evt: CustomEvent<[tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object]>) => void | null;
+  declare ontokenfieldcellrepresentedobjectforeditingstring: (evt: CustomEvent<[tokenFieldCell: NSTokenFieldCell, editingString: NSString | string]>) => void | null;
+  declare ontokenfieldcellwriterepresentedobjectstopasteboard: (evt: CustomEvent<[tokenFieldCell: NSTokenFieldCell, objects: NSArray | unknown[], pboard: NSPasteboard]>) => void | null;
+  declare ontokenfieldcellreadfrompasteboard: (evt: CustomEvent<[tokenFieldCell: NSTokenFieldCell, pboard: NSPasteboard]>) => void | null;
+  declare ontokenfieldcellmenuforrepresentedobject: (evt: CustomEvent<[tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object]>) => void | null;
+  declare ontokenfieldcellhasmenuforrepresentedobject: (evt: CustomEvent<[tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object]>) => void | null;
+  declare ontokenfieldcellstyleforrepresentedobject: (evt: CustomEvent<[tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object]>) => void | null;
 }
 
 export class HTMLNSSharingServicePickerToolbarItemElement extends HTMLNSToolbarItemElement {
@@ -2550,6 +2728,36 @@ export class HTMLNSCollectionViewElement extends HTMLNSViewElement {
   // readonly zone: interop.Pointer;
   // readonly description: NSString;
   // readonly debugDescription: NSString;
+
+  declare oncollectionviewcandragitemsatindexpathswithevent: (evt: CustomEvent<[collectionView: NSCollectionView, indexPaths: NSSet, event: NSEvent]>) => void | null;
+  declare oncollectionviewcandragitemsatindexeswithevent: (evt: CustomEvent<[collectionView: NSCollectionView, indexes: NSIndexSet, event: NSEvent]>) => void | null;
+  declare oncollectionviewwriteitemsatindexpathstopasteboard: (evt: CustomEvent<[collectionView: NSCollectionView, indexPaths: NSSet, pasteboard: NSPasteboard]>) => void | null;
+  declare oncollectionviewwriteitemsatindexestopasteboard: (evt: CustomEvent<[collectionView: NSCollectionView, indexes: NSIndexSet, pasteboard: NSPasteboard]>) => void | null;
+  declare oncollectionviewnamesofpromisedfilesdroppedatdestinationfordraggeditemsatindexpaths: (evt: CustomEvent<[collectionView: NSCollectionView, dropURL: NSURL, indexPaths: NSSet]>) => void | null;
+  declare oncollectionviewnamesofpromisedfilesdroppedatdestinationfordraggeditemsatindexes: (evt: CustomEvent<[collectionView: NSCollectionView, dropURL: NSURL, indexes: NSIndexSet]>) => void | null;
+  declare oncollectionviewdraggingimageforitemsatindexpathswitheventoffset: (evt: CustomEvent<[collectionView: NSCollectionView, indexPaths: NSSet, event: NSEvent, dragImageOffset: interop.PointerConvertible]>) => void | null;
+  declare oncollectionviewdraggingimageforitemsatindexeswitheventoffset: (evt: CustomEvent<[collectionView: NSCollectionView, indexes: NSIndexSet, event: NSEvent, dragImageOffset: interop.PointerConvertible]>) => void | null;
+  declare oncollectionviewvalidatedropproposedindexpathdropoperation: (evt: CustomEvent<[collectionView: NSCollectionView, draggingInfo: NSDraggingInfo, proposedDropIndexPath: interop.PointerConvertible, proposedDropOperation: interop.PointerConvertible]>) => void | null;
+  declare oncollectionviewvalidatedropproposedindexdropoperation: (evt: CustomEvent<[collectionView: NSCollectionView, draggingInfo: NSDraggingInfo, proposedDropIndex: interop.PointerConvertible, proposedDropOperation: interop.PointerConvertible]>) => void | null;
+  declare oncollectionviewacceptdropindexpathdropoperation: (evt: CustomEvent<[collectionView: NSCollectionView, draggingInfo: NSDraggingInfo, indexPath: NSIndexPath, dropOperation: interop.Enum<typeof NSCollectionViewDropOperation>]>) => void | null;
+  declare oncollectionviewacceptdropindexdropoperation: (evt: CustomEvent<[collectionView: NSCollectionView, draggingInfo: NSDraggingInfo, index: number, dropOperation: interop.Enum<typeof NSCollectionViewDropOperation>]>) => void | null;
+  declare oncollectionviewpasteboardwriterforitematindexpath: (evt: CustomEvent<[collectionView: NSCollectionView, indexPath: NSIndexPath]>) => void | null;
+  declare oncollectionviewpasteboardwriterforitematindex: (evt: CustomEvent<[collectionView: NSCollectionView, index: number]>) => void | null;
+  declare oncollectionviewdraggingsessionwillbeginatpointforitemsatindexpaths: (evt: CustomEvent<[collectionView: NSCollectionView, session: NSDraggingSession, screenPoint: CGPoint, indexPaths: NSSet]>) => void | null;
+  declare oncollectionviewdraggingsessionwillbeginatpointforitemsatindexes: (evt: CustomEvent<[collectionView: NSCollectionView, session: NSDraggingSession, screenPoint: CGPoint, indexes: NSIndexSet]>) => void | null;
+  declare oncollectionviewdraggingsessionendedatpointdragoperation: (evt: CustomEvent<[collectionView: NSCollectionView, session: NSDraggingSession, screenPoint: CGPoint, operation: interop.Enum<typeof NSDragOperation>]>) => void | null;
+  declare oncollectionviewupdatedraggingitemsfordrag: (evt: CustomEvent<[collectionView: NSCollectionView, draggingInfo: NSDraggingInfo]>) => void | null;
+  declare oncollectionviewshouldchangeitemsatindexpathstohighlightstate: (evt: CustomEvent<[collectionView: NSCollectionView, indexPaths: NSSet, highlightState: interop.Enum<typeof NSCollectionViewItemHighlightState>]>) => void | null;
+  declare oncollectionviewdidchangeitemsatindexpathstohighlightstate: (evt: CustomEvent<[collectionView: NSCollectionView, indexPaths: NSSet, highlightState: interop.Enum<typeof NSCollectionViewItemHighlightState>]>) => void | null;
+  declare oncollectionviewshouldselectitemsatindexpaths: (evt: CustomEvent<[collectionView: NSCollectionView, indexPaths: NSSet]>) => void | null;
+  declare oncollectionviewshoulddeselectitemsatindexpaths: (evt: CustomEvent<[collectionView: NSCollectionView, indexPaths: NSSet]>) => void | null;
+  declare oncollectionviewdidselectitemsatindexpaths: (evt: CustomEvent<[collectionView: NSCollectionView, indexPaths: NSSet]>) => void | null;
+  declare oncollectionviewdiddeselectitemsatindexpaths: (evt: CustomEvent<[collectionView: NSCollectionView, indexPaths: NSSet]>) => void | null;
+  declare oncollectionviewwilldisplayitemforrepresentedobjectatindexpath: (evt: CustomEvent<[collectionView: NSCollectionView, item: NSCollectionViewItem, indexPath: NSIndexPath]>) => void | null;
+  declare oncollectionviewwilldisplaysupplementaryviewforelementkindatindexpath: (evt: CustomEvent<[collectionView: NSCollectionView, view: NSView, elementKind: NSString | string, indexPath: NSIndexPath]>) => void | null;
+  declare oncollectionviewdidenddisplayingitemforrepresentedobjectatindexpath: (evt: CustomEvent<[collectionView: NSCollectionView, item: NSCollectionViewItem, indexPath: NSIndexPath]>) => void | null;
+  declare oncollectionviewdidenddisplayingsupplementaryviewforelementofkindatindexpath: (evt: CustomEvent<[collectionView: NSCollectionView, view: NSView, elementKind: NSString | string, indexPath: NSIndexPath]>) => void | null;
+  declare oncollectionviewtransitionlayoutforoldlayoutnewlayout: (evt: CustomEvent<[collectionView: NSCollectionView, fromLayout: NSCollectionViewLayout, toLayout: NSCollectionViewLayout]>) => void | null;
 }
 
 export class HTMLNSButtonCellElement extends HTMLNSActionCellElement {
@@ -2758,6 +2966,8 @@ export class HTMLNSAlertElement extends HTMLNSObjectElement {
   // showsSuppressionButton: boolean;
   // readonly suppressionButton: NSButton;
   // readonly window: NSWindow;
+
+  declare onalertshowhelp: (evt: CustomEvent<[alert: NSAlert]>) => void | null;
 }
 
 export class HTMLNSTextLineFragmentElement extends HTMLNSObjectElement {
@@ -3259,6 +3469,15 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
   // accessibilityZoomButton: interop.Object;
   // accessibilityMinimizeButton: interop.Object;
   // isAccessibilityMinimized: boolean;
+
+  declare onpopovershouldclose: (evt: CustomEvent<[popover: NSPopover]>) => void | null;
+  declare onpopovershoulddetach: (evt: CustomEvent<[popover: NSPopover]>) => void | null;
+  declare onpopoverdiddetach: (evt: CustomEvent<[popover: NSPopover]>) => void | null;
+  declare ondetachablewindowforpopover: (evt: CustomEvent<[popover: NSPopover]>) => void | null;
+  declare onpopoverwillshow: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onpopoverdidshow: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onpopoverwillclose: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onpopoverdidclose: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
 }
 
 export class HTMLNSCustomTouchBarItemElement extends HTMLNSTouchBarItemElement {
@@ -3295,6 +3514,13 @@ export class HTMLNSGestureRecognizerElement extends HTMLNSObjectElement {
   // delaysMagnificationEvents: boolean;
   // delaysRotationEvents: boolean;
   // allowedTouchTypes: interop.Enum<typeof NSTouchTypeMask>;
+
+  declare ongesturerecognizershouldattempttorecognizewithevent: (evt: CustomEvent<[gestureRecognizer: NSGestureRecognizer, event: NSEvent]>) => void | null;
+  declare ongesturerecognizershouldbegin: (evt: CustomEvent<[gestureRecognizer: NSGestureRecognizer]>) => void | null;
+  declare ongesturerecognizershouldrecognizesimultaneouslywithgesturerecognizer: (evt: CustomEvent<[gestureRecognizer: NSGestureRecognizer, otherGestureRecognizer: NSGestureRecognizer]>) => void | null;
+  declare ongesturerecognizershouldrequirefailureofgesturerecognizer: (evt: CustomEvent<[gestureRecognizer: NSGestureRecognizer, otherGestureRecognizer: NSGestureRecognizer]>) => void | null;
+  declare ongesturerecognizershouldberequiredtofailbygesturerecognizer: (evt: CustomEvent<[gestureRecognizer: NSGestureRecognizer, otherGestureRecognizer: NSGestureRecognizer]>) => void | null;
+  declare ongesturerecognizershouldreceivetouch: (evt: CustomEvent<[gestureRecognizer: NSGestureRecognizer, touch: NSTouch]>) => void | null;
 }
 
 export class HTMLNSStatusBarElement extends HTMLNSObjectElement {
@@ -3576,6 +3802,11 @@ export class HTMLNSCandidateListTouchBarItemElement extends HTMLNSTouchBarItemEl
   // allowsTextInputContextCandidates: boolean;
   // attributedStringForCandidate: (p1: interop.Object, p2: number) => NSAttributedString;
   // readonly candidates: NSArray;
+
+  declare oncandidatelisttouchbaritembeginselectingcandidateatindex: (evt: CustomEvent<[anItem: NSCandidateListTouchBarItem, index: number]>) => void | null;
+  declare oncandidatelisttouchbaritemchangeselectionfromcandidateatindextoindex: (evt: CustomEvent<[anItem: NSCandidateListTouchBarItem, previousIndex: number, index: number]>) => void | null;
+  declare oncandidatelisttouchbaritemendselectingcandidateatindex: (evt: CustomEvent<[anItem: NSCandidateListTouchBarItem, index: number]>) => void | null;
+  declare oncandidatelisttouchbaritemchangedcandidatelistvisibility: (evt: CustomEvent<[anItem: NSCandidateListTouchBarItem, isVisible: boolean]>) => void | null;
 }
 
 export class HTMLNSCollectionViewFlowLayoutElement extends HTMLNSCollectionViewLayoutElement {
@@ -3667,6 +3898,19 @@ export class HTMLNSSplitViewElement extends HTMLNSViewElement {
   // readonly dividerThickness: number;
   // arrangesAllSubviews: boolean;
   // readonly arrangedSubviews: NSArray;
+
+  declare onsplitviewcancollapsesubview: (evt: CustomEvent<[splitView: NSSplitView, subview: NSView]>) => void | null;
+  declare onsplitviewshouldcollapsesubviewfordoubleclickondivideratindex: (evt: CustomEvent<[splitView: NSSplitView, subview: NSView, dividerIndex: number]>) => void | null;
+  declare onsplitviewconstrainmincoordinateofsubviewat: (evt: CustomEvent<[splitView: NSSplitView, proposedMinimumPosition: number, dividerIndex: number]>) => void | null;
+  declare onsplitviewconstrainmaxcoordinateofsubviewat: (evt: CustomEvent<[splitView: NSSplitView, proposedMaximumPosition: number, dividerIndex: number]>) => void | null;
+  declare onsplitviewconstrainsplitpositionofsubviewat: (evt: CustomEvent<[splitView: NSSplitView, proposedPosition: number, dividerIndex: number]>) => void | null;
+  declare onsplitviewresizesubviewswitholdsize: (evt: CustomEvent<[splitView: NSSplitView, oldSize: CGSize]>) => void | null;
+  declare onsplitviewshouldadjustsizeofsubview: (evt: CustomEvent<[splitView: NSSplitView, view: NSView]>) => void | null;
+  declare onsplitviewshouldhidedivideratindex: (evt: CustomEvent<[splitView: NSSplitView, dividerIndex: number]>) => void | null;
+  declare onsplitvieweffectiverectfordrawnrectofdivideratindex: (evt: CustomEvent<[splitView: NSSplitView, proposedEffectiveRect: CGRect, drawnRect: CGRect, dividerIndex: number]>) => void | null;
+  declare onsplitviewadditionaleffectiverectofdivideratindex: (evt: CustomEvent<[splitView: NSSplitView, dividerIndex: number]>) => void | null;
+  declare onsplitviewwillresizesubviews: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onsplitviewdidresizesubviews: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
 }
 
 export class HTMLNSLayoutDimensionElement extends HTMLNSLayoutAnchorElement {
@@ -3699,6 +3943,8 @@ export class HTMLNSDatePickerCellElement extends HTMLNSActionCellElement {
   // timeInterval: number;
   // minDate: NSDate;
   // maxDate: NSDate;
+
+  declare ondatepickercellvalidateproposeddatevaluetimeinterval: (evt: CustomEvent<[datePickerCell: NSDatePickerCell, proposedDateValue: interop.PointerConvertible, proposedTimeInterval: interop.PointerConvertible]>) => void | null;
 }
 
 export class HTMLNSViewControllerElement extends HTMLNSResponderElement {
@@ -3794,6 +4040,12 @@ export class HTMLNSTextElement extends HTMLNSViewElement {
   // minSize: CGSize;
   // isHorizontallyResizable: boolean;
   // isVerticallyResizable: boolean;
+
+  declare ontextshouldbeginediting: (evt: CustomEvent<[textObject: NSText]>) => void | null;
+  declare ontextshouldendediting: (evt: CustomEvent<[textObject: NSText]>) => void | null;
+  declare ontextdidbeginediting: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare ontextdidendediting: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare ontextdidchange: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
 }
 
 export class HTMLNSRulerViewElement extends HTMLNSViewElement {
@@ -3827,6 +4079,11 @@ export class HTMLNSTextViewportLayoutControllerElement extends HTMLNSObjectEleme
   // readonly textLayoutManager: NSTextLayoutManager | null;
   // readonly viewportBounds: CGRect;
   // readonly viewportRange: NSTextRange;
+
+  declare onviewportboundsfortextviewportlayoutcontroller: (evt: CustomEvent<[textViewportLayoutController: NSTextViewportLayoutController]>) => void | null;
+  declare ontextviewportlayoutcontrollerconfigurerenderingsurfacefortextlayoutfragment: (evt: CustomEvent<[textViewportLayoutController: NSTextViewportLayoutController, textLayoutFragment: NSTextLayoutFragment]>) => void | null;
+  declare ontextviewportlayoutcontrollerwilllayout: (evt: CustomEvent<[textViewportLayoutController: NSTextViewportLayoutController]>) => void | null;
+  declare ontextviewportlayoutcontrollerdidlayout: (evt: CustomEvent<[textViewportLayoutController: NSTextViewportLayoutController]>) => void | null;
 }
 
 export class HTMLNSTintConfigurationElement extends HTMLNSObjectElement {
@@ -3931,6 +4188,12 @@ export class HTMLNSSpeechSynthesizerElement extends HTMLNSObjectElement {
   // isAnyApplicationSpeaking: boolean;
   // defaultVoice: NSString;
   // availableVoices: NSArray;
+
+  declare onspeechsynthesizerdidfinishspeaking: (evt: CustomEvent<[sender: NSSpeechSynthesizer, finishedSpeaking: boolean]>) => void | null;
+  declare onspeechsynthesizerwillspeakwordofstring: (evt: CustomEvent<[sender: NSSpeechSynthesizer, characterRange: _NSRange, string: NSString | string]>) => void | null;
+  declare onspeechsynthesizerwillspeakphoneme: (evt: CustomEvent<[sender: NSSpeechSynthesizer, phonemeOpcode: number]>) => void | null;
+  declare onspeechsynthesizerdidencountererroratindexofstringmessage: (evt: CustomEvent<[sender: NSSpeechSynthesizer, characterIndex: number, string: NSString | string, message: NSString | string]>) => void | null;
+  declare onspeechsynthesizerdidencountersyncmessage: (evt: CustomEvent<[sender: NSSpeechSynthesizer, message: NSString | string]>) => void | null;
 }
 
 export class HTMLNSMutableParagraphStyleElement extends HTMLNSParagraphStyleElement {
@@ -4106,6 +4369,15 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
   // accessibilityZoomButton: interop.Object;
   // accessibilityMinimizeButton: interop.Object;
   // isAccessibilityMinimized: boolean;
+
+  declare onmenuneedsupdate: (evt: CustomEvent<[menu: NSMenu]>) => void | null;
+  declare onnumberofitemsinmenu: (evt: CustomEvent<[menu: NSMenu]>) => void | null;
+  declare onmenuupdateitematindexshouldcancel: (evt: CustomEvent<[menu: NSMenu, item: NSMenuItem, index: number, shouldCancel: boolean]>) => void | null;
+  declare onmenuhaskeyequivalentforeventtargetaction: (evt: CustomEvent<[menu: NSMenu, event: NSEvent, target: interop.PointerConvertible, action: interop.PointerConvertible]>) => void | null;
+  declare onmenuwillopen: (evt: CustomEvent<[menu: NSMenu]>) => void | null;
+  declare onmenudidclose: (evt: CustomEvent<[menu: NSMenu]>) => void | null;
+  declare onmenuwillhighlightitem: (evt: CustomEvent<[menu: NSMenu, item: NSMenuItem | null]>) => void | null;
+  declare onconfinementrectformenuonscreen: (evt: CustomEvent<[menu: NSMenu, screen: NSScreen | null]>) => void | null;
 }
 
 export class HTMLNSScrubberProportionalLayoutElement extends HTMLNSScrubberLayoutElement {
@@ -4247,6 +4519,13 @@ export class HTMLNSSavePanelElement extends HTMLNSPanelElement {
   // treatsFilePackagesAsDirectories: boolean;
   // showsHiddenFiles: boolean;
   // showsTagField: boolean;
+
+  declare onpanelshouldenableurl: (evt: CustomEvent<[sender: interop.Object, url: NSURL]>) => void | null;
+  declare onpanelvalidateurlerror: (evt: CustomEvent<[sender: interop.Object, url: NSURL, outError: interop.PointerConvertible]>) => void | null;
+  declare onpaneldidchangetodirectoryurl: (evt: CustomEvent<[sender: interop.Object, url: NSURL | null]>) => void | null;
+  declare onpaneluserenteredfilenameconfirmed: (evt: CustomEvent<[sender: interop.Object, filename: NSString | string, okFlag: boolean]>) => void | null;
+  declare onpanelwillexpand: (evt: CustomEvent<[sender: interop.Object, expanding: boolean]>) => void | null;
+  declare onpanelselectiondidchange: (evt: CustomEvent<[sender: interop.Object | null]>) => void | null;
 }
 
 export class HTMLNSCollectionLayoutDecorationItemElement extends HTMLNSCollectionLayoutItemElement {
@@ -4329,6 +4608,13 @@ export class HTMLNSScrubberElement extends HTMLNSViewElement {
   // showsAdditionalContentIndicators: boolean;
   // backgroundColor: NSColor;
   // backgroundView: NSView;
+
+  declare onscrubberdidselectitematindex: (evt: CustomEvent<[scrubber: NSScrubber, selectedIndex: number]>) => void | null;
+  declare onscrubberdidhighlightitematindex: (evt: CustomEvent<[scrubber: NSScrubber, highlightedIndex: number]>) => void | null;
+  declare onscrubberdidchangevisiblerange: (evt: CustomEvent<[scrubber: NSScrubber, visibleRange: _NSRange]>) => void | null;
+  declare ondidbegininteractingwithscrubber: (evt: CustomEvent<[scrubber: NSScrubber]>) => void | null;
+  declare ondidfinishinteractingwithscrubber: (evt: CustomEvent<[scrubber: NSScrubber]>) => void | null;
+  declare ondidcancelinteractingwithscrubber: (evt: CustomEvent<[scrubber: NSScrubber]>) => void | null;
 }
 
 export class HTMLNSControlElement extends HTMLNSViewElement {
@@ -4386,6 +4672,9 @@ export class HTMLNSStackViewElement extends HTMLNSViewElement {
   // readonly detachedViews: NSArray;
   // readonly views: NSArray;
   // hasEqualSpacing: boolean;
+
+  declare onstackviewwilldetachviews: (evt: CustomEvent<[stackView: NSStackView, views: NSArray | unknown[]]>) => void | null;
+  declare onstackviewdidreattachviews: (evt: CustomEvent<[stackView: NSStackView, views: NSArray | unknown[]]>) => void | null;
 }
 
 export class HTMLNSColorWellElement extends HTMLNSControlElement {
@@ -4435,6 +4724,8 @@ export class HTMLNSSoundElement extends HTMLNSObjectElement {
   // readonly zone: interop.Pointer;
   // readonly description: NSString;
   // readonly debugDescription: NSString;
+
+  declare onsounddidfinishplaying: (evt: CustomEvent<[sound: NSSound, flag: boolean]>) => void | null;
 }
 
 export class HTMLNSGridRowElement extends HTMLNSObjectElement {
@@ -4641,6 +4932,10 @@ export class HTMLNSFilePromiseProviderElement extends HTMLNSObjectElement {
   // readonly zone: interop.Pointer;
   // readonly description: NSString;
   // readonly debugDescription: NSString;
+
+  declare onfilepromiseproviderfilenamefortype: (evt: CustomEvent<[filePromiseProvider: NSFilePromiseProvider, fileType: NSString | string]>) => void | null;
+  declare onfilepromiseproviderwritepromisetourlcompletionhandler: (evt: CustomEvent<[filePromiseProvider: NSFilePromiseProvider, url: NSURL, completionHandler: (p1: NSError) => void | null]>) => void | null;
+  declare onoperationqueueforfilepromiseprovider: (evt: CustomEvent<[filePromiseProvider: NSFilePromiseProvider]>) => void | null;
 }
 
 export class HTMLNSLevelIndicatorCellElement extends HTMLNSActionCellElement {
@@ -4684,6 +4979,8 @@ export class HTMLNSDatePickerElement extends HTMLNSControlElement {
   // minDate: NSDate;
   // maxDate: NSDate;
   // presentsCalendarOverlay: boolean;
+
+  declare ondatepickercellvalidateproposeddatevaluetimeinterval: (evt: CustomEvent<[datePickerCell: NSDatePickerCell, proposedDateValue: interop.PointerConvertible, proposedTimeInterval: interop.PointerConvertible]>) => void | null;
 }
 
 export class HTMLNSScrubberImageItemViewElement extends HTMLNSScrubberItemViewElement {
@@ -4759,6 +5056,12 @@ export class HTMLNSRuleEditorElement extends HTMLNSControlElement {
   // readonly numberOfRows: number;
   // readonly selectedRowIndexes: NSIndexSet;
   // rowClass: interop.Object;
+
+  declare onruleeditornumberofchildrenforcriterionwithrowtype: (evt: CustomEvent<[editor: NSRuleEditor, criterion: interop.Object | null, rowType: interop.Enum<typeof NSRuleEditorRowType>]>) => void | null;
+  declare onruleeditorchildforcriterionwithrowtype: (evt: CustomEvent<[editor: NSRuleEditor, index: number, criterion: interop.Object | null, rowType: interop.Enum<typeof NSRuleEditorRowType>]>) => void | null;
+  declare onruleeditordisplayvalueforcriterioninrow: (evt: CustomEvent<[editor: NSRuleEditor, criterion: interop.Object, row: number]>) => void | null;
+  declare onruleeditorpredicatepartsforcriterionwithdisplayvalueinrow: (evt: CustomEvent<[editor: NSRuleEditor, criterion: interop.Object, value: interop.Object, row: number]>) => void | null;
+  declare onruleeditorrowsdidchange: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
 }
 
 export class HTMLNSSegmentedControlElement extends HTMLNSControlElement {
@@ -4796,6 +5099,13 @@ export class HTMLNSPathControlElement extends HTMLNSControlElement {
   // readonly clickedPathItem: NSPathControlItem;
   // backgroundColor: NSColor;
   // menu: NSMenu;
+
+  declare onpathcontrolshoulddragitemwithpasteboard: (evt: CustomEvent<[pathControl: NSPathControl, pathItem: NSPathControlItem, pasteboard: NSPasteboard]>) => void | null;
+  declare onpathcontrolshoulddragpathcomponentcellwithpasteboard: (evt: CustomEvent<[pathControl: NSPathControl, pathComponentCell: NSPathComponentCell, pasteboard: NSPasteboard]>) => void | null;
+  declare onpathcontrolvalidatedrop: (evt: CustomEvent<[pathControl: NSPathControl, info: NSDraggingInfo]>) => void | null;
+  declare onpathcontrolacceptdrop: (evt: CustomEvent<[pathControl: NSPathControl, info: NSDraggingInfo]>) => void | null;
+  declare onpathcontrolwilldisplayopenpanel: (evt: CustomEvent<[pathControl: NSPathControl, openPanel: NSOpenPanel]>) => void | null;
+  declare onpathcontrolwillpopupmenu: (evt: CustomEvent<[pathControl: NSPathControl, menu: NSMenu]>) => void | null;
 }
 
 export class HTMLNSBrowserElement extends HTMLNSControlElement {
@@ -4844,6 +5154,41 @@ export class HTMLNSBrowserElement extends HTMLNSControlElement {
   // rowHeight: number;
   // allowsTypeSelect: boolean;
   // backgroundColor: NSColor;
+
+  declare onbrowsernumberofrowsincolumn: (evt: CustomEvent<[sender: NSBrowser, column: number]>) => void | null;
+  declare onbrowsercreaterowsforcolumninmatrix: (evt: CustomEvent<[sender: NSBrowser, column: number, matrix: NSMatrix]>) => void | null;
+  declare onbrowsernumberofchildrenofitem: (evt: CustomEvent<[browser: NSBrowser, item: interop.Object | null]>) => void | null;
+  declare onbrowserchildofitem: (evt: CustomEvent<[browser: NSBrowser, index: number, item: interop.Object | null]>) => void | null;
+  declare onbrowserisleafitem: (evt: CustomEvent<[browser: NSBrowser, item: interop.Object | null]>) => void | null;
+  declare onbrowserobjectvalueforitem: (evt: CustomEvent<[browser: NSBrowser, item: interop.Object | null]>) => void | null;
+  declare onbrowserheightofrowincolumn: (evt: CustomEvent<[browser: NSBrowser, row: number, columnIndex: number]>) => void | null;
+  declare onrootitemforbrowser: (evt: CustomEvent<[browser: NSBrowser]>) => void | null;
+  declare onbrowsersetobjectvalueforitem: (evt: CustomEvent<[browser: NSBrowser, object: interop.Object | null, item: interop.Object | null]>) => void | null;
+  declare onbrowsershouldedititem: (evt: CustomEvent<[browser: NSBrowser, item: interop.Object | null]>) => void | null;
+  declare onbrowserwilldisplaycellatrowcolumn: (evt: CustomEvent<[sender: NSBrowser, cell: interop.Object, row: number, column: number]>) => void | null;
+  declare onbrowsertitleofcolumn: (evt: CustomEvent<[sender: NSBrowser, column: number]>) => void | null;
+  declare onbrowserselectcellwithstringincolumn: (evt: CustomEvent<[sender: NSBrowser, title: NSString | string, column: number]>) => void | null;
+  declare onbrowserselectrowincolumn: (evt: CustomEvent<[sender: NSBrowser, row: number, column: number]>) => void | null;
+  declare onbrowseriscolumnvalid: (evt: CustomEvent<[sender: NSBrowser, column: number]>) => void | null;
+  declare onbrowserwillscroll: (evt: CustomEvent<[sender: NSBrowser]>) => void | null;
+  declare onbrowserdidscroll: (evt: CustomEvent<[sender: NSBrowser]>) => void | null;
+  declare onbrowsershouldsizecolumnforuserresizetowidth: (evt: CustomEvent<[browser: NSBrowser, columnIndex: number, forUserResize: boolean, suggestedWidth: number]>) => void | null;
+  declare onbrowsersizetofitwidthofcolumn: (evt: CustomEvent<[browser: NSBrowser, columnIndex: number]>) => void | null;
+  declare onbrowsercolumnconfigurationdidchange: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onbrowsershouldshowcellexpansionforrowcolumn: (evt: CustomEvent<[browser: NSBrowser, row: number, column: number]>) => void | null;
+  declare onbrowserwriterowswithindexesincolumntopasteboard: (evt: CustomEvent<[browser: NSBrowser, rowIndexes: NSIndexSet, column: number, pasteboard: NSPasteboard]>) => void | null;
+  declare onbrowsernamesofpromisedfilesdroppedatdestinationfordraggedrowswithindexesincolumn: (evt: CustomEvent<[browser: NSBrowser, dropDestination: NSURL, rowIndexes: NSIndexSet, column: number]>) => void | null;
+  declare onbrowsercandragrowswithindexesincolumnwithevent: (evt: CustomEvent<[browser: NSBrowser, rowIndexes: NSIndexSet, column: number, event: NSEvent]>) => void | null;
+  declare onbrowserdraggingimageforrowswithindexesincolumnwitheventoffset: (evt: CustomEvent<[browser: NSBrowser, rowIndexes: NSIndexSet, column: number, event: NSEvent, dragImageOffset: interop.PointerConvertible]>) => void | null;
+  declare onbrowservalidatedropproposedrowcolumndropoperation: (evt: CustomEvent<[browser: NSBrowser, info: NSDraggingInfo, row: interop.PointerConvertible, column: interop.PointerConvertible, dropOperation: interop.PointerConvertible]>) => void | null;
+  declare onbrowseracceptdropatrowcolumndropoperation: (evt: CustomEvent<[browser: NSBrowser, info: NSDraggingInfo, row: number, column: number, dropOperation: interop.Enum<typeof NSBrowserDropOperation>]>) => void | null;
+  declare onbrowsertypeselectstringforrowincolumn: (evt: CustomEvent<[browser: NSBrowser, row: number, column: number]>) => void | null;
+  declare onbrowsershouldtypeselectforeventwithcurrentsearchstring: (evt: CustomEvent<[browser: NSBrowser, event: NSEvent, searchString: NSString | string | null]>) => void | null;
+  declare onbrowsernexttypeselectmatchfromrowtorowincolumnforstring: (evt: CustomEvent<[browser: NSBrowser, startRow: number, endRow: number, column: number, searchString: NSString | string | null]>) => void | null;
+  declare onbrowserpreviewviewcontrollerforleafitem: (evt: CustomEvent<[browser: NSBrowser, item: interop.Object]>) => void | null;
+  declare onbrowserheaderviewcontrollerforitem: (evt: CustomEvent<[browser: NSBrowser, item: interop.Object | null]>) => void | null;
+  declare onbrowserdidchangelastcolumntocolumn: (evt: CustomEvent<[browser: NSBrowser, oldLastColumn: number, column: number]>) => void | null;
+  declare onbrowserselectionindexesforproposedselectionincolumn: (evt: CustomEvent<[browser: NSBrowser, proposedSelectionIndexes: NSIndexSet, column: number]>) => void | null;
 }
 
 export class HTMLNSLevelIndicatorElement extends HTMLNSControlElement {
@@ -4989,6 +5334,38 @@ export class HTMLNSTableViewElement extends HTMLNSControlElement {
   // accessibilityFrame: CGRect;
   // accessibilityParent: interop.Object;
   // isAccessibilityFocused: boolean;
+
+  declare ontableviewviewfortablecolumnrow: (evt: CustomEvent<[tableView: NSTableView, tableColumn: NSTableColumn | null, row: number]>) => void | null;
+  declare ontableviewrowviewforrow: (evt: CustomEvent<[tableView: NSTableView, row: number]>) => void | null;
+  declare ontableviewdidaddrowviewforrow: (evt: CustomEvent<[tableView: NSTableView, rowView: NSTableRowView, row: number]>) => void | null;
+  declare ontableviewdidremoverowviewforrow: (evt: CustomEvent<[tableView: NSTableView, rowView: NSTableRowView, row: number]>) => void | null;
+  declare ontableviewwilldisplaycellfortablecolumnrow: (evt: CustomEvent<[tableView: NSTableView, cell: interop.Object, tableColumn: NSTableColumn | null, row: number]>) => void | null;
+  declare ontableviewshouldedittablecolumnrow: (evt: CustomEvent<[tableView: NSTableView, tableColumn: NSTableColumn | null, row: number]>) => void | null;
+  declare ontableviewtooltipforcellrecttablecolumnrowmouselocation: (evt: CustomEvent<[tableView: NSTableView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, row: number, mouseLocation: CGPoint]>) => void | null;
+  declare ontableviewshouldshowcellexpansionfortablecolumnrow: (evt: CustomEvent<[tableView: NSTableView, tableColumn: NSTableColumn | null, row: number]>) => void | null;
+  declare ontableviewshouldtrackcellfortablecolumnrow: (evt: CustomEvent<[tableView: NSTableView, cell: NSCell, tableColumn: NSTableColumn | null, row: number]>) => void | null;
+  declare ontableviewdatacellfortablecolumnrow: (evt: CustomEvent<[tableView: NSTableView, tableColumn: NSTableColumn | null, row: number]>) => void | null;
+  declare onselectionshouldchangeintableview: (evt: CustomEvent<[tableView: NSTableView]>) => void | null;
+  declare ontableviewshouldselectrow: (evt: CustomEvent<[tableView: NSTableView, row: number]>) => void | null;
+  declare ontableviewselectionindexesforproposedselection: (evt: CustomEvent<[tableView: NSTableView, proposedSelectionIndexes: NSIndexSet]>) => void | null;
+  declare ontableviewshouldselecttablecolumn: (evt: CustomEvent<[tableView: NSTableView, tableColumn: NSTableColumn | null]>) => void | null;
+  declare ontableviewmousedowninheaderoftablecolumn: (evt: CustomEvent<[tableView: NSTableView, tableColumn: NSTableColumn]>) => void | null;
+  declare ontableviewdidclicktablecolumn: (evt: CustomEvent<[tableView: NSTableView, tableColumn: NSTableColumn]>) => void | null;
+  declare ontableviewdiddragtablecolumn: (evt: CustomEvent<[tableView: NSTableView, tableColumn: NSTableColumn]>) => void | null;
+  declare ontableviewheightofrow: (evt: CustomEvent<[tableView: NSTableView, row: number]>) => void | null;
+  declare ontableviewtypeselectstringfortablecolumnrow: (evt: CustomEvent<[tableView: NSTableView, tableColumn: NSTableColumn | null, row: number]>) => void | null;
+  declare ontableviewnexttypeselectmatchfromrowtorowforstring: (evt: CustomEvent<[tableView: NSTableView, startRow: number, endRow: number, searchString: NSString | string]>) => void | null;
+  declare ontableviewshouldtypeselectforeventwithcurrentsearchstring: (evt: CustomEvent<[tableView: NSTableView, event: NSEvent, searchString: NSString | string | null]>) => void | null;
+  declare ontableviewisgrouprow: (evt: CustomEvent<[tableView: NSTableView, row: number]>) => void | null;
+  declare ontableviewsizetofitwidthofcolumn: (evt: CustomEvent<[tableView: NSTableView, column: number]>) => void | null;
+  declare ontableviewshouldreordercolumntocolumn: (evt: CustomEvent<[tableView: NSTableView, columnIndex: number, newColumnIndex: number]>) => void | null;
+  declare ontableviewrowactionsforrowedge: (evt: CustomEvent<[tableView: NSTableView, row: number, edge: interop.Enum<typeof NSTableRowActionEdge>]>) => void | null;
+  declare ontableviewusercanchangevisibilityoftablecolumn: (evt: CustomEvent<[tableView: NSTableView, column: NSTableColumn]>) => void | null;
+  declare ontableviewuserdidchangevisibilityoftablecolumns: (evt: CustomEvent<[tableView: NSTableView, columns: NSArray | unknown[]]>) => void | null;
+  declare ontableviewselectiondidchange: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare ontableviewcolumndidmove: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare ontableviewcolumndidresize: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare ontableviewselectionischanging: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
 }
 
 export class HTMLNSLayoutXAxisAnchorElement extends HTMLNSLayoutAnchorElement {
@@ -5068,6 +5445,12 @@ export class HTMLNSAnimationElement extends HTMLNSObjectElement {
   // animationCurve: interop.Enum<typeof NSAnimationCurve>;
   // readonly currentValue: number;
   // readonly runLoopModesForAnimating: NSArray;
+
+  declare onanimationshouldstart: (evt: CustomEvent<[animation: NSAnimation]>) => void | null;
+  declare onanimationdidstop: (evt: CustomEvent<[animation: NSAnimation]>) => void | null;
+  declare onanimationdidend: (evt: CustomEvent<[animation: NSAnimation]>) => void | null;
+  declare onanimationvalueforprogress: (evt: CustomEvent<[animation: NSAnimation, progress: number]>) => void | null;
+  declare onanimationdidreachprogressmark: (evt: CustomEvent<[animation: NSAnimation, progress: number]>) => void | null;
 }
 
 export class HTMLNSSpellCheckerElement extends HTMLNSObjectElement {
@@ -5124,6 +5507,46 @@ export class HTMLNSOutlineViewElement extends HTMLNSTableViewElement {
   // readonly zone: interop.Pointer;
   // readonly description: NSString;
   // readonly debugDescription: NSString;
+
+  declare onoutlineviewviewfortablecolumnitem: (evt: CustomEvent<[outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object]>) => void | null;
+  declare onoutlineviewrowviewforitem: (evt: CustomEvent<[outlineView: NSOutlineView, item: interop.Object]>) => void | null;
+  declare onoutlineviewdidaddrowviewforrow: (evt: CustomEvent<[outlineView: NSOutlineView, rowView: NSTableRowView, row: number]>) => void | null;
+  declare onoutlineviewdidremoverowviewforrow: (evt: CustomEvent<[outlineView: NSOutlineView, rowView: NSTableRowView, row: number]>) => void | null;
+  declare onoutlineviewwilldisplaycellfortablecolumnitem: (evt: CustomEvent<[outlineView: NSOutlineView, cell: interop.Object, tableColumn: NSTableColumn | null, item: interop.Object]>) => void | null;
+  declare onoutlineviewshouldedittablecolumnitem: (evt: CustomEvent<[outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object]>) => void | null;
+  declare onselectionshouldchangeinoutlineview: (evt: CustomEvent<[outlineView: NSOutlineView]>) => void | null;
+  declare onoutlineviewshouldselectitem: (evt: CustomEvent<[outlineView: NSOutlineView, item: interop.Object]>) => void | null;
+  declare onoutlineviewselectionindexesforproposedselection: (evt: CustomEvent<[outlineView: NSOutlineView, proposedSelectionIndexes: NSIndexSet]>) => void | null;
+  declare onoutlineviewshouldselecttablecolumn: (evt: CustomEvent<[outlineView: NSOutlineView, tableColumn: NSTableColumn | null]>) => void | null;
+  declare onoutlineviewmousedowninheaderoftablecolumn: (evt: CustomEvent<[outlineView: NSOutlineView, tableColumn: NSTableColumn]>) => void | null;
+  declare onoutlineviewdidclicktablecolumn: (evt: CustomEvent<[outlineView: NSOutlineView, tableColumn: NSTableColumn]>) => void | null;
+  declare onoutlineviewdiddragtablecolumn: (evt: CustomEvent<[outlineView: NSOutlineView, tableColumn: NSTableColumn]>) => void | null;
+  declare onoutlineviewtooltipforcellrecttablecolumnitemmouselocation: (evt: CustomEvent<[outlineView: NSOutlineView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, item: interop.Object, mouseLocation: CGPoint]>) => void | null;
+  declare onoutlineviewheightofrowbyitem: (evt: CustomEvent<[outlineView: NSOutlineView, item: interop.Object]>) => void | null;
+  declare onoutlineviewtintconfigurationforitem: (evt: CustomEvent<[outlineView: NSOutlineView, item: interop.Object]>) => void | null;
+  declare onoutlineviewtypeselectstringfortablecolumnitem: (evt: CustomEvent<[outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object]>) => void | null;
+  declare onoutlineviewnexttypeselectmatchfromitemtoitemforstring: (evt: CustomEvent<[outlineView: NSOutlineView, startItem: interop.Object, endItem: interop.Object, searchString: NSString | string]>) => void | null;
+  declare onoutlineviewshouldtypeselectforeventwithcurrentsearchstring: (evt: CustomEvent<[outlineView: NSOutlineView, event: NSEvent, searchString: NSString | string | null]>) => void | null;
+  declare onoutlineviewshouldshowcellexpansionfortablecolumnitem: (evt: CustomEvent<[outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object]>) => void | null;
+  declare onoutlineviewshouldtrackcellfortablecolumnitem: (evt: CustomEvent<[outlineView: NSOutlineView, cell: NSCell, tableColumn: NSTableColumn | null, item: interop.Object]>) => void | null;
+  declare onoutlineviewdatacellfortablecolumnitem: (evt: CustomEvent<[outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object]>) => void | null;
+  declare onoutlineviewisgroupitem: (evt: CustomEvent<[outlineView: NSOutlineView, item: interop.Object]>) => void | null;
+  declare onoutlineviewshouldexpanditem: (evt: CustomEvent<[outlineView: NSOutlineView, item: interop.Object]>) => void | null;
+  declare onoutlineviewshouldcollapseitem: (evt: CustomEvent<[outlineView: NSOutlineView, item: interop.Object]>) => void | null;
+  declare onoutlineviewwilldisplayoutlinecellfortablecolumnitem: (evt: CustomEvent<[outlineView: NSOutlineView, cell: interop.Object, tableColumn: NSTableColumn | null, item: interop.Object]>) => void | null;
+  declare onoutlineviewsizetofitwidthofcolumn: (evt: CustomEvent<[outlineView: NSOutlineView, column: number]>) => void | null;
+  declare onoutlineviewshouldreordercolumntocolumn: (evt: CustomEvent<[outlineView: NSOutlineView, columnIndex: number, newColumnIndex: number]>) => void | null;
+  declare onoutlineviewshouldshowoutlinecellforitem: (evt: CustomEvent<[outlineView: NSOutlineView, item: interop.Object]>) => void | null;
+  declare onoutlineviewusercanchangevisibilityoftablecolumn: (evt: CustomEvent<[outlineView: NSOutlineView, column: NSTableColumn]>) => void | null;
+  declare onoutlineviewuserdidchangevisibilityoftablecolumns: (evt: CustomEvent<[outlineView: NSOutlineView, columns: NSArray | unknown[]]>) => void | null;
+  declare onoutlineviewselectiondidchange: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onoutlineviewcolumndidmove: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onoutlineviewcolumndidresize: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onoutlineviewselectionischanging: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onoutlineviewitemwillexpand: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onoutlineviewitemdidexpand: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onoutlineviewitemwillcollapse: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare onoutlineviewitemdidcollapse: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
 }
 
 export class HTMLNSSliderElement extends HTMLNSControlElement {
@@ -5198,6 +5621,9 @@ export class HTMLNSTextFieldElement extends HTMLNSControlElement {
   // readonly zone: interop.Pointer;
   // readonly description: NSString;
   // readonly debugDescription: NSString;
+
+  declare ontextfieldtextviewcandidatesforselectedrange: (evt: CustomEvent<[textField: NSTextField, textView: NSTextView, selectedRange: _NSRange]>) => void | null;
+  declare ontextfieldtextviewshouldselectcandidateatindex: (evt: CustomEvent<[textField: NSTextField, textView: NSTextView, index: number]>) => void | null;
 }
 
 export class HTMLNSScrubberTextItemViewElement extends HTMLNSScrubberItemViewElement {
@@ -5292,6 +5718,14 @@ export class HTMLNSPageControllerElement extends HTMLNSViewControllerElement {
   // readonly selectedViewController: NSViewController;
   // transitionStyle: interop.Enum<typeof NSPageControllerTransitionStyle>;
   // selectedIndex: number;
+
+  declare onpagecontrolleridentifierforobject: (evt: CustomEvent<[pageController: NSPageController, object: interop.Object]>) => void | null;
+  declare onpagecontrollerviewcontrollerforidentifier: (evt: CustomEvent<[pageController: NSPageController, identifier: NSString | string]>) => void | null;
+  declare onpagecontrollerframeforobject: (evt: CustomEvent<[pageController: NSPageController, object: interop.Object | null]>) => void | null;
+  declare onpagecontrollerprepareviewcontrollerwithobject: (evt: CustomEvent<[pageController: NSPageController, viewController: NSViewController, object: interop.Object | null]>) => void | null;
+  declare onpagecontrollerdidtransitiontoobject: (evt: CustomEvent<[pageController: NSPageController, object: interop.Object]>) => void | null;
+  declare onpagecontrollerwillstartlivetransition: (evt: CustomEvent<[pageController: NSPageController]>) => void | null;
+  declare onpagecontrollerdidendlivetransition: (evt: CustomEvent<[pageController: NSPageController]>) => void | null;
 }
 
 export class HTMLNSTextListElementElement extends HTMLNSTextParagraphElement {
@@ -5333,6 +5767,11 @@ export class HTMLNSComboBoxElement extends HTMLNSTextFieldElement {
   // dataSource: NSComboBoxDataSource;
   // readonly objectValueOfSelectedItem: interop.Object;
   // readonly objectValues: NSArray;
+
+  declare oncomboboxwillpopup: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare oncomboboxwilldismiss: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare oncomboboxselectiondidchange: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare oncomboboxselectionischanging: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
 }
 
 export class HTMLNSSecureTextFieldElement extends HTMLNSTextFieldElement {
@@ -5427,6 +5866,17 @@ export class HTMLNSTokenFieldElement extends HTMLNSTextFieldElement {
   // defaultCompletionDelay: number;
   // tokenizingCharacterSet: NSCharacterSet;
   // defaultTokenizingCharacterSet: NSCharacterSet;
+
+  declare ontokenfieldcompletionsforsubstringindexoftokenindexofselecteditem: (evt: CustomEvent<[tokenField: NSTokenField, substring: NSString | string, tokenIndex: number, selectedIndex: interop.PointerConvertible]>) => void | null;
+  declare ontokenfieldshouldaddobjectsatindex: (evt: CustomEvent<[tokenField: NSTokenField, tokens: NSArray | unknown[], index: number]>) => void | null;
+  declare ontokenfielddisplaystringforrepresentedobject: (evt: CustomEvent<[tokenField: NSTokenField, representedObject: interop.Object]>) => void | null;
+  declare ontokenfieldeditingstringforrepresentedobject: (evt: CustomEvent<[tokenField: NSTokenField, representedObject: interop.Object]>) => void | null;
+  declare ontokenfieldrepresentedobjectforeditingstring: (evt: CustomEvent<[tokenField: NSTokenField, editingString: NSString | string]>) => void | null;
+  declare ontokenfieldwriterepresentedobjectstopasteboard: (evt: CustomEvent<[tokenField: NSTokenField, objects: NSArray | unknown[], pboard: NSPasteboard]>) => void | null;
+  declare ontokenfieldreadfrompasteboard: (evt: CustomEvent<[tokenField: NSTokenField, pboard: NSPasteboard]>) => void | null;
+  declare ontokenfieldmenuforrepresentedobject: (evt: CustomEvent<[tokenField: NSTokenField, representedObject: interop.Object]>) => void | null;
+  declare ontokenfieldhasmenuforrepresentedobject: (evt: CustomEvent<[tokenField: NSTokenField, representedObject: interop.Object]>) => void | null;
+  declare ontokenfieldstyleforrepresentedobject: (evt: CustomEvent<[tokenField: NSTokenField, representedObject: interop.Object]>) => void | null;
 }
 
 export class HTMLNSSearchFieldElement extends HTMLNSTextFieldElement {
@@ -5451,6 +5901,9 @@ export class HTMLNSSearchFieldElement extends HTMLNSTextFieldElement {
   // maximumRecents: number;
   // sendsSearchStringImmediately: boolean;
   // centersPlaceholder: boolean;
+
+  declare onsearchfielddidstartsearching: (evt: CustomEvent<[sender: NSSearchField]>) => void | null;
+  declare onsearchfielddidendsearching: (evt: CustomEvent<[sender: NSSearchField]>) => void | null;
 }
 
 export class HTMLNSStepperElement extends HTMLNSControlElement {
@@ -5495,6 +5948,8 @@ export class HTMLNSTextContentStorageElement extends HTMLNSTextContentManagerEle
   // readonly zone: interop.Pointer;
   // readonly description: NSString;
   // readonly debugDescription: NSString;
+
+  declare ontextcontentstoragetextparagraphwithrange: (evt: CustomEvent<[textContentStorage: NSTextContentStorage, range: _NSRange]>) => void | null;
 }
 
 export class HTMLNSStatusBarButtonElement extends HTMLNSButtonElement {
@@ -5600,6 +6055,37 @@ export class HTMLNSTextViewElement extends HTMLNSTextElement {
   // accessibilityFrame: CGRect;
   // accessibilityParent: interop.Object;
   // isAccessibilityFocused: boolean;
+
+  declare ontextviewclickedonlinkatindex: (evt: CustomEvent<[textView: NSTextView, link: interop.Object, charIndex: number]>) => void | null;
+  declare ontextviewclickedoncellinrectatindex: (evt: CustomEvent<[textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect, charIndex: number]>) => void | null;
+  declare ontextviewdoubleclickedoncellinrectatindex: (evt: CustomEvent<[textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect, charIndex: number]>) => void | null;
+  declare ontextviewdraggedcellinrecteventatindex: (evt: CustomEvent<[view: NSTextView, cell: NSTextAttachmentCell, rect: CGRect, event: NSEvent, charIndex: number]>) => void | null;
+  declare ontextviewwritablepasteboardtypesforcellatindex: (evt: CustomEvent<[view: NSTextView, cell: NSTextAttachmentCell, charIndex: number]>) => void | null;
+  declare ontextviewwritecellatindextopasteboardtype: (evt: CustomEvent<[view: NSTextView, cell: NSTextAttachmentCell, charIndex: number, pboard: NSPasteboard, type: NSString | string]>) => void | null;
+  declare ontextviewwillchangeselectionfromcharacterrangetocharacterrange: (evt: CustomEvent<[textView: NSTextView, oldSelectedCharRange: _NSRange, newSelectedCharRange: _NSRange]>) => void | null;
+  declare ontextviewwillchangeselectionfromcharacterrangestocharacterranges: (evt: CustomEvent<[textView: NSTextView, oldSelectedCharRanges: NSArray | unknown[], newSelectedCharRanges: NSArray | unknown[]]>) => void | null;
+  declare ontextviewshouldchangetextinrangesreplacementstrings: (evt: CustomEvent<[textView: NSTextView, affectedRanges: NSArray | unknown[], replacementStrings: NSArray | unknown[] | null]>) => void | null;
+  declare ontextviewshouldchangetypingattributestoattributes: (evt: CustomEvent<[textView: NSTextView, oldTypingAttributes: NSDictionary | Record<string, unknown>, newTypingAttributes: NSDictionary | Record<string, unknown>]>) => void | null;
+  declare ontextviewdidchangeselection: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare ontextviewdidchangetypingattributes: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  declare ontextviewwilldisplaytooltipforcharacteratindex: (evt: CustomEvent<[textView: NSTextView, tooltip: NSString | string, characterIndex: number]>) => void | null;
+  declare ontextviewcompletionsforpartialwordrangeindexofselecteditem: (evt: CustomEvent<[textView: NSTextView, words: NSArray | unknown[], charRange: _NSRange, index: interop.PointerConvertible]>) => void | null;
+  declare ontextviewshouldchangetextinrangereplacementstring: (evt: CustomEvent<[textView: NSTextView, affectedCharRange: _NSRange, replacementString: NSString | string | null]>) => void | null;
+  declare ontextviewdocommandbyselector: (evt: CustomEvent<[textView: NSTextView, commandSelector: string]>) => void | null;
+  declare ontextviewshouldsetspellingstaterange: (evt: CustomEvent<[textView: NSTextView, value: number, affectedCharRange: _NSRange]>) => void | null;
+  declare ontextviewmenuforeventatindex: (evt: CustomEvent<[view: NSTextView, menu: NSMenu, event: NSEvent, charIndex: number]>) => void | null;
+  declare ontextviewwillchecktextinrangeoptionstypes: (evt: CustomEvent<[view: NSTextView, range: _NSRange, options: NSDictionary | Record<string, unknown>, checkingTypes: interop.PointerConvertible]>) => void | null;
+  declare ontextviewdidchecktextinrangetypesoptionsresultsorthographywordcount: (evt: CustomEvent<[view: NSTextView, range: _NSRange, checkingTypes: number, options: NSDictionary | Record<string, unknown>, results: NSArray | unknown[], orthography: NSOrthography, wordCount: number]>) => void | null;
+  declare ontextviewurlforcontentsoftextattachmentatindex: (evt: CustomEvent<[textView: NSTextView, textAttachment: NSTextAttachment, charIndex: number]>) => void | null;
+  declare ontextviewwillshowsharingservicepickerforitems: (evt: CustomEvent<[textView: NSTextView, servicePicker: NSSharingServicePicker, items: NSArray | unknown[]]>) => void | null;
+  declare onundomanagerfortextview: (evt: CustomEvent<[view: NSTextView]>) => void | null;
+  declare ontextviewshouldupdatetouchbaritemidentifiers: (evt: CustomEvent<[textView: NSTextView, identifiers: NSArray | unknown[]]>) => void | null;
+  declare ontextviewcandidatesforselectedrange: (evt: CustomEvent<[textView: NSTextView, selectedRange: _NSRange]>) => void | null;
+  declare ontextviewshouldselectcandidateatindex: (evt: CustomEvent<[textView: NSTextView, index: number]>) => void | null;
+  declare ontextviewclickedonlink: (evt: CustomEvent<[textView: NSTextView, link: interop.Object]>) => void | null;
+  declare ontextviewclickedoncellinrect: (evt: CustomEvent<[textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect]>) => void | null;
+  declare ontextviewdoubleclickedoncellinrect: (evt: CustomEvent<[textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect]>) => void | null;
+  declare ontextviewdraggedcellinrectevent: (evt: CustomEvent<[view: NSTextView, cell: NSTextAttachmentCell, rect: CGRect, event: NSEvent]>) => void | null;
 }
 
 // Delegates

@@ -50,10 +50,12 @@ function parseDeclaration(lines) {
   const classes = [];
   /** @type {Array<DelegateMeta & { fields: Array<Field>> }>} */
   const delegates = [];
+  /** @type {{ [delegateName: string]: DelegateMeta & { fields: Array<Field>> } }} */
+  const delegatesRecord = {};
   /**
    * key: class name
    * value: a map of delegate prop names to their corresponding classes.
-   * @type {Map<string, { [propName: string]: string; }>}
+   * @type {{ [className: string]: { [propName: string]: string; }}>}
    * @example
    * {
    *   NSTextStorage: {
@@ -65,7 +67,7 @@ function parseDeclaration(lines) {
    *   },
    * }
    */
-  const delegatesByClass = new Map();
+  const delegatesByClass = {};
 
   let tsIgnoring = false;
   /** @type {"class" | "delegate" | null} */
@@ -108,9 +110,9 @@ function parseDeclaration(lines) {
         }
 
         if (isDelegateField(field)) {
-          const record = delegatesByClass.get(current.className) ?? {};
+          const record = delegatesByClass[current.className] ?? {};
           record[field.name] = field.value;
-          delegatesByClass.set(current.className, record);
+          delegatesByClass[current.className] = record;
         }
 
         current.fields.push(field);
@@ -138,14 +140,18 @@ function parseDeclaration(lines) {
     const delegate = parseDelegateHeader(line);
     if (delegate) {
       inside = 'delegate';
-      delegates.push({ ...delegate, fields: [] });
+      const value = { ...delegate, fields: [] };
+      delegatesRecord[delegate.delegateName] = value;
+      delegates.push(value);
       continue;
     }
   }
 
   const processedClasses = [...sortClasses(classes, heredity)].map(
     ({ header, className, contents, footer, fields }) => {
-      const delegatesByClassValue = delegatesByClass.get(className) ?? {};
+      /** @type {{ [propName: string]: string; }} */
+      const delegatesByClassValue = delegatesByClass[className] ?? {};
+
       // TODO: See NSRuleEditorDelegate for a delegate with mandatory members
       const delegates = Object.keys(delegatesByClassValue).map((propName) =>
         [
@@ -170,6 +176,28 @@ function parseDeclaration(lines) {
           ]
         : [];
 
+      const dom0EventHandlers = Object.keys(delegatesByClassValue).flatMap(
+        (propName) => {
+          const delegateName = delegatesByClassValue[propName];
+          const delegateMeta = delegatesRecord[delegateName];
+          if (!delegateMeta?.fields.length) {
+            return [];
+          }
+
+          return delegateMeta.fields
+            .map((field) => {
+              if (field.type === 'method') {
+                return `  declare on${field.name.toLowerCase()}: (evt: CustomEvent<[${
+                  field.args
+                }]>) => void | null;`;
+              }
+
+              return '';
+            })
+            .filter((statement) => !!statement);
+        }
+      );
+
       return [
         header,
         [
@@ -193,6 +221,7 @@ function parseDeclaration(lines) {
             })
             .filter(Boolean),
         ].join('\n'),
+        ...(dom0EventHandlers.length ? ['', ...dom0EventHandlers] : []),
         footer,
       ].join('\n');
     }
