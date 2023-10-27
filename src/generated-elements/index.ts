@@ -433,13 +433,14 @@ export class HTMLNSStatusItemElement extends HTMLNSObjectElement {
 
 export class HTMLNSSpeechRecognizerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSSpeechRecognizer.new();
+  delegate?: NSSpeechRecognizerDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSSpeechRecognizerDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSSpeechRecognizerDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // listensInForegroundOnly: boolean;
@@ -690,13 +691,14 @@ export class HTMLNSCollectionLayoutSizeElement extends HTMLNSObjectElement {
 
 export class HTMLNSSharingServicePickerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSSharingServicePicker.new();
+  delegate?: NSSharingServicePickerDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSSharingServicePickerDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSSharingServicePickerDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // readonly standardShareMenuItem: NSMenuItem;
@@ -731,13 +733,14 @@ export class HTMLNSStoryboardSegueElement extends HTMLNSObjectElement {
 
 export class HTMLNSTouchBarElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTouchBar.new();
+  delegate?: NSTouchBarDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSTouchBarDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSTouchBarDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // readonly itemIdentifiers: NSArray;
@@ -1102,13 +1105,14 @@ export class HTMLNSPasteboardElement extends HTMLNSObjectElement {
 
 export class HTMLNSWindowElement extends HTMLNSResponderElement {
   readonly nativeObject = NSWindow.new();
+  delegate?: NSWindowDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSWindowDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSWindowDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // defaultDepthLimit: interop.Enum<typeof NSWindowDepth>;
@@ -1403,13 +1407,14 @@ export class HTMLNSGridColumnElement extends HTMLNSObjectElement {
 
 export class HTMLNSPathCellElement extends HTMLNSActionCellElement {
   readonly nativeObject = NSPathCell.new();
+  delegate?: NSPathCellDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSPathCellDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSPathCellDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // pathStyle: interop.Enum<typeof NSPathStyle>;
@@ -1434,13 +1439,14 @@ export class HTMLNSWorkspaceAuthorizationElement extends HTMLNSObjectElement {
 
 export class HTMLNSTextLayoutManagerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextLayoutManager.new();
+  delegate?: NSTextLayoutManagerDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSTextLayoutManagerDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSTextLayoutManagerDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // usesFontLeading: boolean;
@@ -1473,13 +1479,14 @@ export class HTMLNSWindowTabElement extends HTMLNSObjectElement {
 
 export class HTMLNSDrawerElement extends HTMLNSResponderElement {
   readonly nativeObject = NSDrawer.new();
+  delegate?: NSDrawerDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSDrawerDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSDrawerDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // parentWindow: NSWindow;
@@ -1576,13 +1583,14 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
 
 export class HTMLNSLayoutManagerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSLayoutManager.new();
+  delegate?: NSLayoutManagerDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSLayoutManagerDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSLayoutManagerDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // textStorage: NSTextStorage;
@@ -1612,13 +1620,14 @@ export class HTMLNSLayoutManagerElement extends HTMLNSObjectElement {
 
 export class HTMLNSSharingServiceElement extends HTMLNSObjectElement {
   readonly nativeObject = NSSharingService.new();
+  delegate?: NSSharingServiceDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSSharingServiceDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSSharingServiceDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // readonly title: NSString;
@@ -1717,13 +1726,14 @@ export class HTMLNSCollectionViewDiffableDataSourceElement extends HTMLNSObjectE
 
 export class HTMLNSTextContentManagerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextContentManager.new();
+  delegate?: NSTextContentManagerDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSTextContentManagerDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSTextContentManagerDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // readonly textLayoutManagers: NSArray;
@@ -2055,13 +2065,14 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
 
 export class HTMLNSImageElement extends HTMLNSObjectElement {
   readonly nativeObject = NSImage.new();
+  delegate?: NSImageDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSImageDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSImageDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // size: CGSize;
@@ -2086,13 +2097,14 @@ export class HTMLNSImageElement extends HTMLNSObjectElement {
 
 export class HTMLNSToolbarElement extends HTMLNSObjectElement {
   readonly nativeObject = NSToolbar.new();
+  delegate?: NSToolbarDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSToolbarDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSToolbarDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // isVisible: boolean;
@@ -2115,13 +2127,14 @@ export class HTMLNSToolbarElement extends HTMLNSObjectElement {
 
 export class HTMLNSTabViewElement extends HTMLNSViewElement {
   readonly nativeObject = NSTabView.new();
+  delegate?: NSTabViewDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSTabViewDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSTabViewDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // readonly selectedTabViewItem: NSTabViewItem;
@@ -2140,13 +2153,14 @@ export class HTMLNSTabViewElement extends HTMLNSViewElement {
 
 export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   readonly nativeObject = NSApplication.sharedApplication;
+  delegate?: NSApplicationDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSApplicationDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSApplicationDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // sharedApplication: NSApplication;
@@ -2344,13 +2358,14 @@ export class HTMLNSSliderCellElement extends HTMLNSActionCellElement {
 
 export class HTMLNSTokenFieldCellElement extends HTMLNSTextFieldCellElement {
   readonly nativeObject = NSTokenFieldCell.new();
+  delegate?: NSTokenFieldCellDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSTokenFieldCellDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSTokenFieldCellDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // tokenStyle: interop.Enum<typeof NSTokenStyle>;
@@ -2502,13 +2517,14 @@ export class HTMLNSMutableFontCollectionElement extends HTMLNSFontCollectionElem
 
 export class HTMLNSCollectionViewElement extends HTMLNSViewElement {
   readonly nativeObject = NSCollectionView.new();
+  delegate?: NSCollectionViewDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSCollectionViewDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSCollectionViewDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // dataSource: NSCollectionViewDataSource;
@@ -2724,13 +2740,14 @@ export class HTMLNSDockTileElement extends HTMLNSObjectElement {
 
 export class HTMLNSAlertElement extends HTMLNSObjectElement {
   readonly nativeObject = NSAlert.new();
+  delegate?: NSAlertDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSAlertDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSAlertDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // icon: NSImage;
@@ -3142,13 +3159,14 @@ export class HTMLNSClipViewElement extends HTMLNSViewElement {
 
 export class HTMLNSPopoverElement extends HTMLNSResponderElement {
   readonly nativeObject = NSPopover.new();
+  delegate?: NSPopoverDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSPopoverDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSPopoverDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // appearance: NSAppearance;
@@ -3254,13 +3272,14 @@ export class HTMLNSCustomTouchBarItemElement extends HTMLNSTouchBarItemElement {
 
 export class HTMLNSGestureRecognizerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSGestureRecognizer.new();
+  delegate?: NSGestureRecognizerDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSGestureRecognizerDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSGestureRecognizerDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // target: interop.Object;
@@ -3540,13 +3559,14 @@ export class HTMLNSCandidateListTouchBarItemElement extends HTMLNSTouchBarItemEl
 
   // @ts-ignore
   readonly nativeObject = NSCandidateListTouchBarItem.new();
+  delegate?: NSCandidateListTouchBarItemDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSCandidateListTouchBarItemDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSCandidateListTouchBarItemDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // client: NSView;
@@ -3631,13 +3651,14 @@ export class HTMLNSGridViewElement extends HTMLNSViewElement {
 
 export class HTMLNSSplitViewElement extends HTMLNSViewElement {
   readonly nativeObject = NSSplitView.new();
+  delegate?: NSSplitViewDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSSplitViewDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSSplitViewDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // isVertical: boolean;
@@ -3655,13 +3676,14 @@ export class HTMLNSLayoutDimensionElement extends HTMLNSLayoutAnchorElement {
 
 export class HTMLNSDatePickerCellElement extends HTMLNSActionCellElement {
   readonly nativeObject = NSDatePickerCell.new();
+  delegate?: NSDatePickerCellDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSDatePickerCellDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSDatePickerCellDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // datePickerStyle: interop.Enum<typeof NSDatePickerStyle>;
@@ -3744,13 +3766,14 @@ export class HTMLNSTextElement extends HTMLNSViewElement {
 
   // @ts-ignore
   readonly nativeObject = NSText.new();
+  delegate?: NSTextDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSTextDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSTextDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // isEditable: boolean;
@@ -3791,13 +3814,14 @@ export class HTMLNSRulerViewElement extends HTMLNSViewElement {
 
 export class HTMLNSTextViewportLayoutControllerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextViewportLayoutController.new();
+  delegate?: NSTextViewportLayoutControllerDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSTextViewportLayoutControllerDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSTextViewportLayoutControllerDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // readonly textLayoutManager: NSTextLayoutManager | null;
@@ -3890,13 +3914,14 @@ export class HTMLNSLayoutConstraintElement extends HTMLNSObjectElement {
 
 export class HTMLNSSpeechSynthesizerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSSpeechSynthesizer.new();
+  delegate?: NSSpeechSynthesizerDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSSpeechSynthesizerDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSSpeechSynthesizerDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // readonly isSpeaking: boolean;
@@ -3973,13 +3998,14 @@ export class HTMLNSGroupTouchBarItemElement extends HTMLNSTouchBarItemElement {
 
 export class HTMLNSMenuElement extends HTMLNSObjectElement {
   readonly nativeObject = NSMenu.new();
+  delegate?: NSMenuDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSMenuDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSMenuDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // supermenu: NSMenu;
@@ -4200,13 +4226,14 @@ export class HTMLNSSavePanelElement extends HTMLNSPanelElement {
 
   // @ts-ignore
   readonly nativeObject = NSSavePanel.new();
+  delegate?: NSOpenSavePanelDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSOpenSavePanelDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSOpenSavePanelDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // readonly URL: NSURL;
@@ -4277,13 +4304,14 @@ export class HTMLNSPathComponentCellElement extends HTMLNSTextFieldCellElement {
 
 export class HTMLNSScrubberElement extends HTMLNSViewElement {
   readonly nativeObject = NSScrubber.new();
+  delegate?: NSScrubberDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSScrubberDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSScrubberDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // dataSource: NSScrubberDataSource;
@@ -4338,13 +4366,14 @@ export class HTMLNSControlElement extends HTMLNSViewElement {
 
 export class HTMLNSStackViewElement extends HTMLNSViewElement {
   readonly nativeObject = NSStackView.new();
+  delegate?: NSStackViewDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSStackViewDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSStackViewDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // orientation: interop.Enum<typeof NSUserInterfaceLayoutOrientation>;
@@ -4382,13 +4411,14 @@ export class HTMLNSTextAlternativesElement extends HTMLNSObjectElement {
 
 export class HTMLNSSoundElement extends HTMLNSObjectElement {
   readonly nativeObject = NSSound.new();
+  delegate?: NSSoundDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSSoundDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSSoundDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // readonly name: NSString;
@@ -4594,13 +4624,14 @@ export class HTMLNSLayoutGuideElement extends HTMLNSObjectElement {
 
 export class HTMLNSFilePromiseProviderElement extends HTMLNSObjectElement {
   readonly nativeObject = NSFilePromiseProvider.new();
+  delegate?: NSFilePromiseProviderDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSFilePromiseProviderDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSFilePromiseProviderDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // userInfo: interop.Object;
@@ -4627,13 +4658,14 @@ export class HTMLNSLevelIndicatorCellElement extends HTMLNSActionCellElement {
 
 export class HTMLNSDatePickerElement extends HTMLNSControlElement {
   readonly nativeObject = NSDatePicker.new();
+  delegate?: NSDatePickerCellDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSDatePickerCellDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSDatePickerCellDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // datePickerStyle: interop.Enum<typeof NSDatePickerStyle>;
@@ -4664,13 +4696,14 @@ export class HTMLNSScrubberImageItemViewElement extends HTMLNSScrubberItemViewEl
 
 export class HTMLNSMatrixElement extends HTMLNSControlElement {
   readonly nativeObject = NSMatrix.new();
+  delegate?: NSMatrixDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSMatrixDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSMatrixDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // cellClass: interop.Object;
@@ -4708,13 +4741,14 @@ export class HTMLNSMatrixElement extends HTMLNSControlElement {
 
 export class HTMLNSRuleEditorElement extends HTMLNSControlElement {
   readonly nativeObject = NSRuleEditor.new();
+  delegate?: NSRuleEditorDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSRuleEditorDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSRuleEditorDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // nestingMode: interop.Enum<typeof NSRuleEditorNestingMode>;
@@ -4744,13 +4778,14 @@ export class HTMLNSSegmentedControlElement extends HTMLNSControlElement {
 
 export class HTMLNSPathControlElement extends HTMLNSControlElement {
   readonly nativeObject = NSPathControl.new();
+  delegate?: NSPathControlDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSPathControlDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSPathControlDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // isEditable: boolean;
@@ -4767,13 +4802,14 @@ export class HTMLNSBrowserElement extends HTMLNSControlElement {
 
   // @ts-ignore
   readonly nativeObject = NSBrowser.new();
+  delegate?: NSBrowserDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSBrowserDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSBrowserDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // cellClass: interop.Object;
@@ -4888,13 +4924,14 @@ export class HTMLNSTableViewElement extends HTMLNSControlElement {
 
   // @ts-ignore
   readonly nativeObject = NSTableView.new();
+  delegate?: NSTableViewDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSTableViewDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSTableViewDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // dataSource: NSTableViewDataSource;
@@ -5013,13 +5050,14 @@ export class HTMLNSRunningApplicationElement extends HTMLNSObjectElement {
 
 export class HTMLNSAnimationElement extends HTMLNSObjectElement {
   readonly nativeObject = NSAnimation.new();
+  delegate?: NSAnimationDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSAnimationDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSAnimationDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // readonly isAnimating: boolean;
@@ -5059,13 +5097,14 @@ export class HTMLNSOutlineViewElement extends HTMLNSTableViewElement {
 
   // @ts-ignore
   readonly nativeObject = NSOutlineView.new();
+  delegate?: NSOutlineViewDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSOutlineViewDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSOutlineViewDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // dataSource: NSOutlineViewDataSource;
@@ -5121,13 +5160,14 @@ export class HTMLNSTextFieldElement extends HTMLNSControlElement {
 
   // @ts-ignore
   readonly nativeObject = NSTextField.new();
+  delegate?: NSTextFieldDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSTextFieldDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSTextFieldDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // placeholderAttributedString: NSAttributedString;
@@ -5239,13 +5279,14 @@ export class HTMLNSTextParagraphElement extends HTMLNSTextElementElement {
 
 export class HTMLNSPageControllerElement extends HTMLNSViewControllerElement {
   readonly nativeObject = NSPageController.new();
+  delegate?: NSPageControllerDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSPageControllerDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSPageControllerDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // readonly selectedViewController: NSViewController;
@@ -5270,13 +5311,14 @@ export class HTMLNSComboBoxElement extends HTMLNSTextFieldElement {
 
   // @ts-ignore
   readonly nativeObject = NSComboBox.new();
+  delegate?: NSComboBoxDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSComboBoxDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSComboBoxDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // hasVerticalScroller: boolean;
@@ -5370,13 +5412,14 @@ export class HTMLNSTokenFieldElement extends HTMLNSTextFieldElement {
 
   // @ts-ignore
   readonly nativeObject = NSTokenField.new();
+  delegate?: NSTokenFieldDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSTokenFieldDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSTokenFieldDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // tokenStyle: interop.Enum<typeof NSTokenStyle>;
@@ -5390,13 +5433,14 @@ export class HTMLNSSearchFieldElement extends HTMLNSTextFieldElement {
 
   // @ts-ignore
   readonly nativeObject = NSSearchField.new();
+  delegate?: NSSearchFieldDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSSearchFieldDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSSearchFieldDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // readonly searchTextBounds: CGRect;
@@ -5433,13 +5477,14 @@ export class HTMLNSTextContentStorageElement extends HTMLNSTextContentManagerEle
 
   // @ts-ignore
   readonly nativeObject = NSTextContentStorage.new();
+  delegate?: NSTextContentStorageDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSTextContentStorageDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSTextContentStorageDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // attributedString: NSAttributedString;
@@ -5471,13 +5516,14 @@ export class HTMLNSTextViewElement extends HTMLNSTextElement {
 
   // @ts-ignore
   readonly nativeObject = NSTextView.new();
+  delegate?: NSTextViewDelegateImpl;
 
   constructor(){
     super();
 
-    const delegate = NSTextViewDelegateImpl.new();
-    delegate.eventTargetDelegate = new WeakRef(this);
-    this.nativeObject.delegate = delegate;
+    this.delegate = NSTextViewDelegateImpl.new();
+    this.delegate.eventTargetDelegate = new WeakRef(this);
+    this.nativeObject.delegate = this.delegate;
   }
 
   // textContainer: NSTextContainer;

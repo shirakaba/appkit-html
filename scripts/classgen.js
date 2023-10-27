@@ -145,18 +145,29 @@ function parseDeclaration(lines) {
 
   const processedClasses = [...sortClasses(classes, heredity)].map(
     ({ header, className, contents, footer, fields }) => {
-      const delegatesRecord = delegatesByClass.get(className) ?? {};
+      const delegatesByClassValue = delegatesByClass.get(className) ?? {};
       // TODO: See NSRuleEditorDelegate for a delegate with mandatory members
-      const delegates = Object.keys(delegatesRecord).map((propName) =>
+      const delegates = Object.keys(delegatesByClassValue).map((propName) =>
         [
-          `    const ${propName} = ${delegatesRecord[propName]}Impl.new();`,
-          `    ${propName}.eventTargetDelegate = new WeakRef(this);`,
-          `    this.nativeObject.${propName} = ${propName};`,
+          `    this.${propName} = ${delegatesByClassValue[propName]}Impl.new();`,
+          `    this.${propName}.eventTargetDelegate = new WeakRef(this);`,
+          `    this.nativeObject.${propName} = this.${propName};`,
         ].join('\n')
       );
 
       const ctor = delegates.length
-        ? ['', '  constructor(){', '    super();', '', ...delegates, '  }']
+        ? [
+            ...Object.keys(delegatesByClassValue).map(
+              (propName) =>
+                `  ${propName}?: ${delegatesByClassValue[propName]}Impl;`
+            ),
+            '',
+            '  constructor(){',
+            '    super();',
+            '',
+            ...delegates,
+            '  }',
+          ]
         : [];
 
       return [
