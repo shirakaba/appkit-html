@@ -318,7 +318,7 @@ declare global {
 
 export abstract class HTMLNativeObjectElement extends HTMLElement {
   static defineCustomElement(){
-    const callerClass = Object.getPrototypeOf(this).constructor as typeof HTMLElement;
+    const callerClass = this as unknown as typeof HTMLElement;
 
     // Smart, but falls apart on things like NSATSTypesetter.
     // const elementNameMatch = callerClass.name.match(/^([A-Z]+)([A-Z].*)/);
@@ -328,13 +328,13 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
     // const [,namespace, classPortion] = elementNameMatch;
 
     const namespace = 'NS';
-    if(!callerClass.name.startsWith(namespace)){
+    const nativeClassName = callerClass.name.replace(/^HTML/, "").replace(/Element$/, "");
+    if(!nativeClassName.startsWith(namespace)){
       console.warn(`Unable to define Custom Element "${callerClass.name}", as namespace unexpectedly began with something other than ${namespace}.`);
       return;
     }
-    const className = callerClass.name.slice(namespace.length);
 
-    customElements.define(`${namespace}-${className}`.toLowerCase(), callerClass);
+    customElements.define(`${namespace}-${nativeClassName.slice(namespace.length)}`.toLowerCase(), callerClass);
   }
 
   /**

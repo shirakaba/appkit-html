@@ -10,14 +10,10 @@ const nsApplication = document.createElement('ns-application');
 const NSApp = nsApplication.nativeObject;
 
 let running = false;
-nsApplication.addEventListener('applicationdidfinishlaunching', () => {
-  console.log('[2] applicationDidFinishLaunching');
-});
-nsApplication.onapplicationdidfinishlaunching = (
-  /** @type {CustomEvent<[NSNotification]>} */ e
+nsApplication.applicationDidFinishLaunching = (
+  /** @type {NSNotification} */ notification
 ) => {
-  const [notification] = e.detail;
-  console.log('[0] applicationDidFinishLaunching', notification);
+  console.log('applicationDidFinishLaunching', notification);
 
   running = true;
 
@@ -43,7 +39,7 @@ nsApplication.onapplicationdidfinishlaunching = (
 
   setTimeout(loop, 0);
 };
-nsApplication.onapplicationwillterminate = () => {
+nsApplication.applicationWillTerminate = () => {
   running = false;
 };
 

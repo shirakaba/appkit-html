@@ -1,4 +1,4 @@
-/// <reference path="./elements/index.ts" />
+/// <reference path="./generated-elements/index.ts" />
 import dominimal from 'dominimal';
 const JSDOM = dominimal.JSDOM;
 
@@ -25,6 +25,11 @@ export async function polyfill(_globalThis: typeof globalThis) {
     Object.defineProperty(_globalThis, prop, { value: jsdom.window[prop] });
   }
 
-  const { defineElements } = await import('./elements/index.js');
-  defineElements(window);
+  // src/generated-elements/index.ts
+  const { HTMLNSWindowElement, HTMLNSApplicationElement } = await import(
+    './generated-elements/index.js'
+  );
+
+  HTMLNSApplicationElement.defineCustomElement();
+  HTMLNSWindowElement.defineCustomElement();
 }
