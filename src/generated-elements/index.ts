@@ -13,6 +13,34 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
   }
   protected static readonly attributes = this.getAttributesRecord();
 
+  // Warning: experimental
+  getAttributeNS(namespace: string | null, localName: string): string | null {
+    const attributes = (
+      Object.getPrototypeOf(this).constructor as typeof HTMLNativeObjectElement
+    ).attributes;
+    const nativeProp = attributes[localName.toLowerCase()];
+    if(nativeProp){
+      // FIXME: marshal rich values to string where possible
+      return (this as any)[nativeProp].toString() ?? null;
+    }
+
+    return super.getAttributeNS(namespace, localName);
+  }
+
+  // Warning: experimental
+  setAttributeNS(namespace: string | null, qualifiedName: string, value: string): void {
+    const attributes = (
+      Object.getPrototypeOf(this).constructor as typeof HTMLNativeObjectElement
+    ).attributes;
+    const nativeProp = attributes[qualifiedName.toLowerCase()];
+    if(nativeProp){
+      // FIXME: marshal string to rich values where possible
+      (this as any)[nativeProp] = value;
+    }
+
+    super.setAttributeNS(namespace, qualifiedName, value);
+  }
+
   /**
    * The native object from the Obj-C runtime that this HTML Element wraps.
    */
