@@ -156,7 +156,6 @@ function parseDeclaration(lines) {
       const delegates = Object.keys(delegatesByClassValue).map((propName) =>
         [
           `    this.${propName} = ${delegatesByClassValue[propName]}Impl.new();`,
-          `    this.${propName}.eventTargetDelegate = new WeakRef(this);`,
           `    this.nativeObject.${propName} = this.${propName};`,
         ].join('\n')
       );
@@ -228,23 +227,37 @@ function parseDeclaration(lines) {
   );
 
   const processedDelegates = delegates.map(
-    ({ implHeader, implContents, implFooter, fields }) => {
+    ({ implHeader, implContents, implFooter, fields, delegateName }) => {
+      const processedFields = fields
+        .map((field) => {
+          if (field.type === 'method') {
+            // Implied by `implements WhateverDelegate`.
+            if (field.optional) {
+              return null;
+            }
+
+            // Indicate that field will be assigned just-in-time.
+            // return [
+            //   `  ${field.name}!: (${field.args}) => ${field.returnType} = {`,
+            //   `    throw new Error("Please provide implementation for ${delegateName}.prototype.${field.name}.");`,
+            //   '  }',
+            // ].join('\n');
+            return [
+              `  ${field.name}(${field.args}): ${field.returnType} {`,
+              `    throw new Error("Please provide implementation for: ${delegateName} > ${field.name}");`,
+              '  }',
+            ].join('\n');
+          }
+          return null;
+        })
+        .filter(Boolean);
+
       return [
         implHeader,
-        '',
         [
           ...implContents,
-          '',
-          ...fields
-            .map((field) => {
-              if (field.type === 'method') {
-                return `  // ${field.name}${field.optional ? '?' : ''}(${
-                  field.args
-                }): ${field.returnType};`;
-              }
-              return null;
-            })
-            .filter(Boolean),
+          ...(processedFields.length ? [''] : []),
+          ...processedFields,
         ].join('\n'),
         implFooter,
       ].join('\n');
@@ -585,11 +598,7 @@ function parseDelegateHeader(line) {
   const impl = `${delegateName}Impl`;
 
   const implHeader = `export class ${impl} extends NSObject implements ${delegateName} {`;
-  const implContents = [
-    `  static ObjCProtocols = [${delegateName}];`,
-    '',
-    '  declare eventTargetDelegate?: WeakRef<EventTarget>;',
-  ];
+  const implContents = [`  static ObjCProtocols = [${delegateName}];`];
   const implFooter = '}';
 
   return {

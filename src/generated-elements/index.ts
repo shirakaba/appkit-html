@@ -439,7 +439,6 @@ export class HTMLNSSpeechRecognizerElement extends HTMLNSObjectElement {
     super();
 
     this.delegate = NSSpeechRecognizerDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -699,7 +698,6 @@ export class HTMLNSSharingServicePickerElement extends HTMLNSObjectElement {
     super();
 
     this.delegate = NSSharingServicePickerDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -745,7 +743,6 @@ export class HTMLNSTouchBarElement extends HTMLNSObjectElement {
     super();
 
     this.delegate = NSTouchBarDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -1119,7 +1116,6 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
     super();
 
     this.delegate = NSWindowDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -1474,7 +1470,6 @@ export class HTMLNSPathCellElement extends HTMLNSActionCellElement {
     super();
 
     this.delegate = NSPathCellDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -1509,7 +1504,6 @@ export class HTMLNSTextLayoutManagerElement extends HTMLNSObjectElement {
     super();
 
     this.delegate = NSTextLayoutManagerDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -1553,7 +1547,6 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
     super();
 
     this.delegate = NSDrawerDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -1665,7 +1658,6 @@ export class HTMLNSLayoutManagerElement extends HTMLNSObjectElement {
     super();
 
     this.delegate = NSLayoutManagerDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -1716,7 +1708,6 @@ export class HTMLNSSharingServiceElement extends HTMLNSObjectElement {
     super();
 
     this.delegate = NSSharingServiceDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -1830,7 +1821,6 @@ export class HTMLNSTextContentManagerElement extends HTMLNSObjectElement {
     super();
 
     this.delegate = NSTextContentManagerDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -2172,7 +2162,6 @@ export class HTMLNSImageElement extends HTMLNSObjectElement {
     super();
 
     this.delegate = NSImageDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -2210,7 +2199,6 @@ export class HTMLNSToolbarElement extends HTMLNSObjectElement {
     super();
 
     this.delegate = NSToolbarDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -2249,7 +2237,6 @@ export class HTMLNSTabViewElement extends HTMLNSViewElement {
     super();
 
     this.delegate = NSTabViewDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -2280,7 +2267,6 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
     super();
 
     this.delegate = NSApplicationDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -2531,7 +2517,6 @@ export class HTMLNSTokenFieldCellElement extends HTMLNSTextFieldCellElement {
     super();
 
     this.delegate = NSTokenFieldCellDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -2701,7 +2686,6 @@ export class HTMLNSCollectionViewElement extends HTMLNSViewElement {
     super();
 
     this.delegate = NSCollectionViewDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -2954,7 +2938,6 @@ export class HTMLNSAlertElement extends HTMLNSObjectElement {
     super();
 
     this.delegate = NSAlertDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -3375,7 +3358,6 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
     super();
 
     this.delegate = NSPopoverDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -3497,7 +3479,6 @@ export class HTMLNSGestureRecognizerElement extends HTMLNSObjectElement {
     super();
 
     this.delegate = NSGestureRecognizerDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -3791,7 +3772,6 @@ export class HTMLNSCandidateListTouchBarItemElement extends HTMLNSTouchBarItemEl
     super();
 
     this.delegate = NSCandidateListTouchBarItemDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -3888,7 +3868,6 @@ export class HTMLNSSplitViewElement extends HTMLNSViewElement {
     super();
 
     this.delegate = NSSplitViewDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -3926,7 +3905,6 @@ export class HTMLNSDatePickerCellElement extends HTMLNSActionCellElement {
     super();
 
     this.delegate = NSDatePickerCellDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -4018,7 +3996,6 @@ export class HTMLNSTextElement extends HTMLNSViewElement {
     super();
 
     this.delegate = NSTextDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -4072,7 +4049,6 @@ export class HTMLNSTextViewportLayoutControllerElement extends HTMLNSObjectEleme
     super();
 
     this.delegate = NSTextViewportLayoutControllerDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -4177,7 +4153,6 @@ export class HTMLNSSpeechSynthesizerElement extends HTMLNSObjectElement {
     super();
 
     this.delegate = NSSpeechSynthesizerDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -4267,7 +4242,6 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
     super();
 
     this.delegate = NSMenuDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -4504,7 +4478,6 @@ export class HTMLNSSavePanelElement extends HTMLNSPanelElement {
     super();
 
     this.delegate = NSOpenSavePanelDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -4589,7 +4562,6 @@ export class HTMLNSScrubberElement extends HTMLNSViewElement {
     super();
 
     this.delegate = NSScrubberDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -4658,7 +4630,6 @@ export class HTMLNSStackViewElement extends HTMLNSViewElement {
     super();
 
     this.delegate = NSStackViewDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -4706,7 +4677,6 @@ export class HTMLNSSoundElement extends HTMLNSObjectElement {
     super();
 
     this.delegate = NSSoundDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -4921,7 +4891,6 @@ export class HTMLNSFilePromiseProviderElement extends HTMLNSObjectElement {
     super();
 
     this.delegate = NSFilePromiseProviderDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -4959,7 +4928,6 @@ export class HTMLNSDatePickerElement extends HTMLNSControlElement {
     super();
 
     this.delegate = NSDatePickerCellDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -4999,7 +4967,6 @@ export class HTMLNSMatrixElement extends HTMLNSControlElement {
     super();
 
     this.delegate = NSMatrixDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -5044,7 +5011,6 @@ export class HTMLNSRuleEditorElement extends HTMLNSControlElement {
     super();
 
     this.delegate = NSRuleEditorDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -5087,7 +5053,6 @@ export class HTMLNSPathControlElement extends HTMLNSControlElement {
     super();
 
     this.delegate = NSPathControlDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -5118,7 +5083,6 @@ export class HTMLNSBrowserElement extends HTMLNSControlElement {
     super();
 
     this.delegate = NSBrowserDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -5275,7 +5239,6 @@ export class HTMLNSTableViewElement extends HTMLNSControlElement {
     super();
 
     this.delegate = NSTableViewDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -5433,7 +5396,6 @@ export class HTMLNSAnimationElement extends HTMLNSObjectElement {
     super();
 
     this.delegate = NSAnimationDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -5486,7 +5448,6 @@ export class HTMLNSOutlineViewElement extends HTMLNSTableViewElement {
     super();
 
     this.delegate = NSOutlineViewDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -5589,7 +5550,6 @@ export class HTMLNSTextFieldElement extends HTMLNSControlElement {
     super();
 
     this.delegate = NSTextFieldDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -5711,7 +5671,6 @@ export class HTMLNSPageControllerElement extends HTMLNSViewControllerElement {
     super();
 
     this.delegate = NSPageControllerDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -5751,7 +5710,6 @@ export class HTMLNSComboBoxElement extends HTMLNSTextFieldElement {
     super();
 
     this.delegate = NSComboBoxDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -5857,7 +5815,6 @@ export class HTMLNSTokenFieldElement extends HTMLNSTextFieldElement {
     super();
 
     this.delegate = NSTokenFieldDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -5889,7 +5846,6 @@ export class HTMLNSSearchFieldElement extends HTMLNSTextFieldElement {
     super();
 
     this.delegate = NSSearchFieldDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -5936,7 +5892,6 @@ export class HTMLNSTextContentStorageElement extends HTMLNSTextContentManagerEle
     super();
 
     this.delegate = NSTextContentStorageDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -5977,7 +5932,6 @@ export class HTMLNSTextViewElement extends HTMLNSTextElement {
     super();
 
     this.delegate = NSTextViewDelegateImpl.new();
-    this.delegate.eventTargetDelegate = new WeakRef(this);
     this.nativeObject.delegate = this.delegate;
   }
 
@@ -6091,886 +6045,249 @@ export class HTMLNSTextViewElement extends HTMLNSTextElement {
 // Delegates
 
 export class NSScrubberDelegateImpl extends NSObject implements NSScrubberDelegate {
-
   static ObjCProtocols = [NSScrubberDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // scrubberDidSelectItemAtIndex?(scrubber: NSScrubber, selectedIndex: number): void;
-  // scrubberDidHighlightItemAtIndex?(scrubber: NSScrubber, highlightedIndex: number): void;
-  // scrubberDidChangeVisibleRange?(scrubber: NSScrubber, visibleRange: _NSRange): void;
-  // didBeginInteractingWithScrubber?(scrubber: NSScrubber): void;
-  // didFinishInteractingWithScrubber?(scrubber: NSScrubber): void;
-  // didCancelInteractingWithScrubber?(scrubber: NSScrubber): void;
 }
 
 export class NSTableViewDelegateImpl extends NSObject implements NSTableViewDelegate {
-
   static ObjCProtocols = [NSTableViewDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // tableViewViewForTableColumnRow?(tableView: NSTableView, tableColumn: NSTableColumn | null, row: number): NSView;
-  // tableViewRowViewForRow?(tableView: NSTableView, row: number): NSTableRowView;
-  // tableViewDidAddRowViewForRow?(tableView: NSTableView, rowView: NSTableRowView, row: number): void;
-  // tableViewDidRemoveRowViewForRow?(tableView: NSTableView, rowView: NSTableRowView, row: number): void;
-  // tableViewWillDisplayCellForTableColumnRow?(tableView: NSTableView, cell: interop.Object, tableColumn: NSTableColumn | null, row: number): void;
-  // tableViewShouldEditTableColumnRow?(tableView: NSTableView, tableColumn: NSTableColumn | null, row: number): boolean;
-  // tableViewToolTipForCellRectTableColumnRowMouseLocation?(tableView: NSTableView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, row: number, mouseLocation: CGPoint): NSString;
-  // tableViewShouldShowCellExpansionForTableColumnRow?(tableView: NSTableView, tableColumn: NSTableColumn | null, row: number): boolean;
-  // tableViewShouldTrackCellForTableColumnRow?(tableView: NSTableView, cell: NSCell, tableColumn: NSTableColumn | null, row: number): boolean;
-  // tableViewDataCellForTableColumnRow?(tableView: NSTableView, tableColumn: NSTableColumn | null, row: number): NSCell;
-  // selectionShouldChangeInTableView?(tableView: NSTableView): boolean;
-  // tableViewShouldSelectRow?(tableView: NSTableView, row: number): boolean;
-  // tableViewSelectionIndexesForProposedSelection?(tableView: NSTableView, proposedSelectionIndexes: NSIndexSet): NSIndexSet;
-  // tableViewShouldSelectTableColumn?(tableView: NSTableView, tableColumn: NSTableColumn | null): boolean;
-  // tableViewMouseDownInHeaderOfTableColumn?(tableView: NSTableView, tableColumn: NSTableColumn): void;
-  // tableViewDidClickTableColumn?(tableView: NSTableView, tableColumn: NSTableColumn): void;
-  // tableViewDidDragTableColumn?(tableView: NSTableView, tableColumn: NSTableColumn): void;
-  // tableViewHeightOfRow?(tableView: NSTableView, row: number): number;
-  // tableViewTypeSelectStringForTableColumnRow?(tableView: NSTableView, tableColumn: NSTableColumn | null, row: number): NSString;
-  // tableViewNextTypeSelectMatchFromRowToRowForString?(tableView: NSTableView, startRow: number, endRow: number, searchString: NSString | string): number;
-  // tableViewShouldTypeSelectForEventWithCurrentSearchString?(tableView: NSTableView, event: NSEvent, searchString: NSString | string | null): boolean;
-  // tableViewIsGroupRow?(tableView: NSTableView, row: number): boolean;
-  // tableViewSizeToFitWidthOfColumn?(tableView: NSTableView, column: number): number;
-  // tableViewShouldReorderColumnToColumn?(tableView: NSTableView, columnIndex: number, newColumnIndex: number): boolean;
-  // tableViewRowActionsForRowEdge?(tableView: NSTableView, row: number, edge: interop.Enum<typeof NSTableRowActionEdge>): NSArray;
-  // tableViewUserCanChangeVisibilityOfTableColumn?(tableView: NSTableView, column: NSTableColumn): boolean;
-  // tableViewUserDidChangeVisibilityOfTableColumns?(tableView: NSTableView, columns: NSArray | unknown[]): void;
-  // tableViewSelectionDidChange?(notification: NSNotification): void;
-  // tableViewColumnDidMove?(notification: NSNotification): void;
-  // tableViewColumnDidResize?(notification: NSNotification): void;
-  // tableViewSelectionIsChanging?(notification: NSNotification): void;
 }
 
 export class NSSharingServicePickerTouchBarItemDelegateImpl extends NSObject implements NSSharingServicePickerTouchBarItemDelegate {
-
   static ObjCProtocols = [NSSharingServicePickerTouchBarItemDelegate];
 
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // itemsForSharingServicePickerTouchBarItem(pickerTouchBarItem: NSSharingServicePickerTouchBarItem): NSArray;
+  itemsForSharingServicePickerTouchBarItem(pickerTouchBarItem: NSSharingServicePickerTouchBarItem): NSArray {
+    throw new Error("Please provide implementation for: NSSharingServicePickerTouchBarItemDelegate > itemsForSharingServicePickerTouchBarItem");
+  }
 }
 
 export class NSDrawerDelegateImpl extends NSObject implements NSDrawerDelegate {
-
   static ObjCProtocols = [NSDrawerDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // drawerShouldOpen?(sender: NSDrawer): boolean;
-  // drawerShouldClose?(sender: NSDrawer): boolean;
-  // drawerWillResizeContentsToSize?(sender: NSDrawer, contentSize: CGSize): CGSize;
-  // drawerWillOpen?(notification: NSNotification): void;
-  // drawerDidOpen?(notification: NSNotification): void;
-  // drawerWillClose?(notification: NSNotification): void;
-  // drawerDidClose?(notification: NSNotification): void;
 }
 
 export class NSImageDelegateImpl extends NSObject implements NSImageDelegate {
-
   static ObjCProtocols = [NSImageDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // imageDidNotDrawInRect?(sender: NSImage, rect: CGRect): NSImage;
-  // imageWillLoadRepresentation?(image: NSImage, rep: NSImageRep): void;
-  // imageDidLoadRepresentationHeader?(image: NSImage, rep: NSImageRep): void;
-  // imageDidLoadPartOfRepresentationWithValidRows?(image: NSImage, rep: NSImageRep, rows: number): void;
-  // imageDidLoadRepresentationWithStatus?(image: NSImage, rep: NSImageRep, status: interop.Enum<typeof NSImageLoadStatus>): void;
 }
 
 export class NSMenuDelegateImpl extends NSObject implements NSMenuDelegate {
-
   static ObjCProtocols = [NSMenuDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // menuNeedsUpdate?(menu: NSMenu): void;
-  // numberOfItemsInMenu?(menu: NSMenu): number;
-  // menuUpdateItemAtIndexShouldCancel?(menu: NSMenu, item: NSMenuItem, index: number, shouldCancel: boolean): boolean;
-  // menuHasKeyEquivalentForEventTargetAction?(menu: NSMenu, event: NSEvent, target: interop.PointerConvertible, action: interop.PointerConvertible): boolean;
-  // menuWillOpen?(menu: NSMenu): void;
-  // menuDidClose?(menu: NSMenu): void;
-  // menuWillHighlightItem?(menu: NSMenu, item: NSMenuItem | null): void;
-  // confinementRectForMenuOnScreen?(menu: NSMenu, screen: NSScreen | null): CGRect;
 }
 
 export class NSStackViewDelegateImpl extends NSObject implements NSStackViewDelegate {
-
   static ObjCProtocols = [NSStackViewDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // stackViewWillDetachViews?(stackView: NSStackView, views: NSArray | unknown[]): void;
-  // stackViewDidReattachViews?(stackView: NSStackView, views: NSArray | unknown[]): void;
 }
 
 export class NSViewLayerContentScaleDelegateImpl extends NSObject implements NSViewLayerContentScaleDelegate {
-
   static ObjCProtocols = [NSViewLayerContentScaleDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // layerShouldInheritContentsScaleFromWindow?(layer: CALayer, newScale: number, window: NSWindow): boolean;
 }
 
 export class NSTextContentStorageDelegateImpl extends NSObject implements NSTextContentStorageDelegate {
-
   static ObjCProtocols = [NSTextContentStorageDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // textContentStorageTextParagraphWithRange?(textContentStorage: NSTextContentStorage, range: _NSRange): NSTextParagraph;
 }
 
 export class NSTextViewportLayoutControllerDelegateImpl extends NSObject implements NSTextViewportLayoutControllerDelegate {
-
   static ObjCProtocols = [NSTextViewportLayoutControllerDelegate];
 
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // viewportBoundsForTextViewportLayoutController(textViewportLayoutController: NSTextViewportLayoutController): CGRect;
-  // textViewportLayoutControllerConfigureRenderingSurfaceForTextLayoutFragment(textViewportLayoutController: NSTextViewportLayoutController, textLayoutFragment: NSTextLayoutFragment): void;
-  // textViewportLayoutControllerWillLayout?(textViewportLayoutController: NSTextViewportLayoutController): void;
-  // textViewportLayoutControllerDidLayout?(textViewportLayoutController: NSTextViewportLayoutController): void;
+  viewportBoundsForTextViewportLayoutController(textViewportLayoutController: NSTextViewportLayoutController): CGRect {
+    throw new Error("Please provide implementation for: NSTextViewportLayoutControllerDelegate > viewportBoundsForTextViewportLayoutController");
+  }
+  textViewportLayoutControllerConfigureRenderingSurfaceForTextLayoutFragment(textViewportLayoutController: NSTextViewportLayoutController, textLayoutFragment: NSTextLayoutFragment): void {
+    throw new Error("Please provide implementation for: NSTextViewportLayoutControllerDelegate > textViewportLayoutControllerConfigureRenderingSurfaceForTextLayoutFragment");
+  }
 }
 
 export class NSRuleEditorDelegateImpl extends NSObject implements NSRuleEditorDelegate {
-
   static ObjCProtocols = [NSRuleEditorDelegate];
 
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // ruleEditorNumberOfChildrenForCriterionWithRowType(editor: NSRuleEditor, criterion: interop.Object | null, rowType: interop.Enum<typeof NSRuleEditorRowType>): number;
-  // ruleEditorChildForCriterionWithRowType(editor: NSRuleEditor, index: number, criterion: interop.Object | null, rowType: interop.Enum<typeof NSRuleEditorRowType>): interop.Object;
-  // ruleEditorDisplayValueForCriterionInRow(editor: NSRuleEditor, criterion: interop.Object, row: number): interop.Object;
-  // ruleEditorPredicatePartsForCriterionWithDisplayValueInRow?(editor: NSRuleEditor, criterion: interop.Object, value: interop.Object, row: number): NSDictionary;
-  // ruleEditorRowsDidChange?(notification: NSNotification): void;
+  ruleEditorNumberOfChildrenForCriterionWithRowType(editor: NSRuleEditor, criterion: interop.Object | null, rowType: interop.Enum<typeof NSRuleEditorRowType>): number {
+    throw new Error("Please provide implementation for: NSRuleEditorDelegate > ruleEditorNumberOfChildrenForCriterionWithRowType");
+  }
+  ruleEditorChildForCriterionWithRowType(editor: NSRuleEditor, index: number, criterion: interop.Object | null, rowType: interop.Enum<typeof NSRuleEditorRowType>): interop.Object {
+    throw new Error("Please provide implementation for: NSRuleEditorDelegate > ruleEditorChildForCriterionWithRowType");
+  }
+  ruleEditorDisplayValueForCriterionInRow(editor: NSRuleEditor, criterion: interop.Object, row: number): interop.Object {
+    throw new Error("Please provide implementation for: NSRuleEditorDelegate > ruleEditorDisplayValueForCriterionInRow");
+  }
 }
 
 export class NSPageControllerDelegateImpl extends NSObject implements NSPageControllerDelegate {
-
   static ObjCProtocols = [NSPageControllerDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // pageControllerIdentifierForObject?(pageController: NSPageController, object: interop.Object): NSString;
-  // pageControllerViewControllerForIdentifier?(pageController: NSPageController, identifier: NSString | string): NSViewController;
-  // pageControllerFrameForObject?(pageController: NSPageController, object: interop.Object | null): CGRect;
-  // pageControllerPrepareViewControllerWithObject?(pageController: NSPageController, viewController: NSViewController, object: interop.Object | null): void;
-  // pageControllerDidTransitionToObject?(pageController: NSPageController, object: interop.Object): void;
-  // pageControllerWillStartLiveTransition?(pageController: NSPageController): void;
-  // pageControllerDidEndLiveTransition?(pageController: NSPageController): void;
 }
 
 export class NSDatePickerCellDelegateImpl extends NSObject implements NSDatePickerCellDelegate {
-
   static ObjCProtocols = [NSDatePickerCellDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // datePickerCellValidateProposedDateValueTimeInterval?(datePickerCell: NSDatePickerCell, proposedDateValue: interop.PointerConvertible, proposedTimeInterval: interop.PointerConvertible): void;
 }
 
 export class NSSoundDelegateImpl extends NSObject implements NSSoundDelegate {
-
   static ObjCProtocols = [NSSoundDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // soundDidFinishPlaying?(sound: NSSound, flag: boolean): void;
 }
 
 export class NSTabViewDelegateImpl extends NSObject implements NSTabViewDelegate {
-
   static ObjCProtocols = [NSTabViewDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // tabViewShouldSelectTabViewItem?(tabView: NSTabView, tabViewItem: NSTabViewItem | null): boolean;
-  // tabViewWillSelectTabViewItem?(tabView: NSTabView, tabViewItem: NSTabViewItem | null): void;
-  // tabViewDidSelectTabViewItem?(tabView: NSTabView, tabViewItem: NSTabViewItem | null): void;
-  // tabViewDidChangeNumberOfTabViewItems?(tabView: NSTabView): void;
 }
 
 export class NSTextViewDelegateImpl extends NSObject implements NSTextViewDelegate {
-
   static ObjCProtocols = [NSTextViewDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // textViewClickedOnLinkAtIndex?(textView: NSTextView, link: interop.Object, charIndex: number): boolean;
-  // textViewClickedOnCellInRectAtIndex?(textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect, charIndex: number): void;
-  // textViewDoubleClickedOnCellInRectAtIndex?(textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect, charIndex: number): void;
-  // textViewDraggedCellInRectEventAtIndex?(view: NSTextView, cell: NSTextAttachmentCell, rect: CGRect, event: NSEvent, charIndex: number): void;
-  // textViewWritablePasteboardTypesForCellAtIndex?(view: NSTextView, cell: NSTextAttachmentCell, charIndex: number): NSArray;
-  // textViewWriteCellAtIndexToPasteboardType?(view: NSTextView, cell: NSTextAttachmentCell, charIndex: number, pboard: NSPasteboard, type: NSString | string): boolean;
-  // textViewWillChangeSelectionFromCharacterRangeToCharacterRange?(textView: NSTextView, oldSelectedCharRange: _NSRange, newSelectedCharRange: _NSRange): _NSRange;
-  // textViewWillChangeSelectionFromCharacterRangesToCharacterRanges?(textView: NSTextView, oldSelectedCharRanges: NSArray | unknown[], newSelectedCharRanges: NSArray | unknown[]): NSArray;
-  // textViewShouldChangeTextInRangesReplacementStrings?(textView: NSTextView, affectedRanges: NSArray | unknown[], replacementStrings: NSArray | unknown[] | null): boolean;
-  // textViewShouldChangeTypingAttributesToAttributes?(textView: NSTextView, oldTypingAttributes: NSDictionary | Record<string, unknown>, newTypingAttributes: NSDictionary | Record<string, unknown>): NSDictionary;
-  // textViewDidChangeSelection?(notification: NSNotification): void;
-  // textViewDidChangeTypingAttributes?(notification: NSNotification): void;
-  // textViewWillDisplayToolTipForCharacterAtIndex?(textView: NSTextView, tooltip: NSString | string, characterIndex: number): NSString;
-  // textViewCompletionsForPartialWordRangeIndexOfSelectedItem?(textView: NSTextView, words: NSArray | unknown[], charRange: _NSRange, index: interop.PointerConvertible): NSArray;
-  // textViewShouldChangeTextInRangeReplacementString?(textView: NSTextView, affectedCharRange: _NSRange, replacementString: NSString | string | null): boolean;
-  // textViewDoCommandBySelector?(textView: NSTextView, commandSelector: string): boolean;
-  // textViewShouldSetSpellingStateRange?(textView: NSTextView, value: number, affectedCharRange: _NSRange): number;
-  // textViewMenuForEventAtIndex?(view: NSTextView, menu: NSMenu, event: NSEvent, charIndex: number): NSMenu;
-  // textViewWillCheckTextInRangeOptionsTypes?(view: NSTextView, range: _NSRange, options: NSDictionary | Record<string, unknown>, checkingTypes: interop.PointerConvertible): NSDictionary;
-  // textViewDidCheckTextInRangeTypesOptionsResultsOrthographyWordCount?(view: NSTextView, range: _NSRange, checkingTypes: number, options: NSDictionary | Record<string, unknown>, results: NSArray | unknown[], orthography: NSOrthography, wordCount: number): NSArray;
-  // textViewURLForContentsOfTextAttachmentAtIndex?(textView: NSTextView, textAttachment: NSTextAttachment, charIndex: number): NSURL;
-  // textViewWillShowSharingServicePickerForItems?(textView: NSTextView, servicePicker: NSSharingServicePicker, items: NSArray | unknown[]): NSSharingServicePicker;
-  // undoManagerForTextView?(view: NSTextView): NSUndoManager;
-  // textViewShouldUpdateTouchBarItemIdentifiers?(textView: NSTextView, identifiers: NSArray | unknown[]): NSArray;
-  // textViewCandidatesForSelectedRange?(textView: NSTextView, selectedRange: _NSRange): NSArray;
-  // textViewShouldSelectCandidateAtIndex?(textView: NSTextView, index: number): boolean;
-  // textViewClickedOnLink?(textView: NSTextView, link: interop.Object): boolean;
-  // textViewClickedOnCellInRect?(textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect): void;
-  // textViewDoubleClickedOnCellInRect?(textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect): void;
-  // textViewDraggedCellInRectEvent?(view: NSTextView, cell: NSTextAttachmentCell, rect: CGRect, event: NSEvent): void;
 }
 
 export class NSSharingServiceDelegateImpl extends NSObject implements NSSharingServiceDelegate {
-
   static ObjCProtocols = [NSSharingServiceDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // sharingServiceWillShareItems?(sharingService: NSSharingService, items: NSArray | unknown[]): void;
-  // sharingServiceDidFailToShareItemsError?(sharingService: NSSharingService, items: NSArray | unknown[], error: NSError): void;
-  // sharingServiceDidShareItems?(sharingService: NSSharingService, items: NSArray | unknown[]): void;
-  // sharingServiceSourceFrameOnScreenForShareItem?(sharingService: NSSharingService, item: interop.Object): CGRect;
-  // sharingServiceTransitionImageForShareItemContentRect?(sharingService: NSSharingService, item: interop.Object, contentRect: interop.PointerConvertible): NSImage;
-  // sharingServiceSourceWindowForShareItemsSharingContentScope?(sharingService: NSSharingService, items: NSArray | unknown[], sharingContentScope: interop.PointerConvertible): NSWindow;
-  // anchoringViewForSharingServiceShowRelativeToRectPreferredEdge?(sharingService: NSSharingService, positioningRect: interop.PointerConvertible, preferredEdge: interop.PointerConvertible): NSView;
 }
 
 export class NSTextStorageDelegateImpl extends NSObject implements NSTextStorageDelegate {
-
   static ObjCProtocols = [NSTextStorageDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // textStorageWillProcessEditingRangeChangeInLength?(textStorage: NSTextStorage, editedMask: interop.Enum<typeof NSTextStorageEditActions>, editedRange: _NSRange, delta: number): void;
-  // textStorageDidProcessEditingRangeChangeInLength?(textStorage: NSTextStorage, editedMask: interop.Enum<typeof NSTextStorageEditActions>, editedRange: _NSRange, delta: number): void;
 }
 
 export class NSControlTextEditingDelegateImpl extends NSObject implements NSControlTextEditingDelegate {
-
   static ObjCProtocols = [NSControlTextEditingDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // controlTextDidBeginEditing?(obj: NSNotification): void;
-  // controlTextDidEndEditing?(obj: NSNotification): void;
-  // controlTextDidChange?(obj: NSNotification): void;
-  // controlTextShouldBeginEditing?(control: NSControl, fieldEditor: NSText): boolean;
-  // controlTextShouldEndEditing?(control: NSControl, fieldEditor: NSText): boolean;
-  // controlDidFailToFormatStringErrorDescription?(control: NSControl, string: NSString | string, error: NSString | string | null): boolean;
-  // controlDidFailToValidatePartialStringErrorDescription?(control: NSControl, string: NSString | string, error: NSString | string | null): void;
-  // controlIsValidObject?(control: NSControl, obj: interop.Object | null): boolean;
-  // controlTextViewDoCommandBySelector?(control: NSControl, textView: NSTextView, commandSelector: string): boolean;
-  // controlTextViewCompletionsForPartialWordRangeIndexOfSelectedItem?(control: NSControl, textView: NSTextView, words: NSArray | unknown[], charRange: _NSRange, index: interop.PointerConvertible): NSArray;
 }
 
 export class NSTextFieldDelegateImpl extends NSObject implements NSTextFieldDelegate {
-
   static ObjCProtocols = [NSTextFieldDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // textFieldTextViewCandidatesForSelectedRange?(textField: NSTextField, textView: NSTextView, selectedRange: _NSRange): NSArray;
-  // textFieldTextViewShouldSelectCandidateAtIndex?(textField: NSTextField, textView: NSTextView, index: number): boolean;
 }
 
 export class NSOpenSavePanelDelegateImpl extends NSObject implements NSOpenSavePanelDelegate {
-
   static ObjCProtocols = [NSOpenSavePanelDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // panelShouldEnableURL?(sender: interop.Object, url: NSURL): boolean;
-  // panelValidateURLError?(sender: interop.Object, url: NSURL, outError: interop.PointerConvertible): boolean;
-  // panelDidChangeToDirectoryURL?(sender: interop.Object, url: NSURL | null): void;
-  // panelUserEnteredFilenameConfirmed?(sender: interop.Object, filename: NSString | string, okFlag: boolean): NSString;
-  // panelWillExpand?(sender: interop.Object, expanding: boolean): void;
-  // panelSelectionDidChange?(sender: interop.Object | null): void;
 }
 
 export class NSSpeechRecognizerDelegateImpl extends NSObject implements NSSpeechRecognizerDelegate {
-
   static ObjCProtocols = [NSSpeechRecognizerDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // speechRecognizerDidRecognizeCommand?(sender: NSSpeechRecognizer, command: NSString | string): void;
 }
 
 export class NSCloudSharingServiceDelegateImpl extends NSObject implements NSCloudSharingServiceDelegate {
-
   static ObjCProtocols = [NSCloudSharingServiceDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // sharingServiceDidCompleteForItemsError?(sharingService: NSSharingService, items: NSArray | unknown[], error: NSError | null): void;
-  // optionsForSharingServiceShareProvider?(cloudKitSharingService: NSSharingService, provider: NSItemProvider): interop.Enum<typeof NSCloudKitSharingServiceOptions>;
-  // sharingServiceDidSaveShare?(sharingService: NSSharingService, share: CKShare): void;
-  // sharingServiceDidStopSharing?(sharingService: NSSharingService, share: CKShare): void;
 }
 
 export class NSScrubberFlowLayoutDelegateImpl extends NSObject implements NSScrubberFlowLayoutDelegate {
-
   static ObjCProtocols = [NSScrubberFlowLayoutDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // scrubberLayoutSizeForItemAtIndex?(scrubber: NSScrubber, layout: NSScrubberFlowLayout, itemIndex: number): CGSize;
 }
 
 export class NSSpeechSynthesizerDelegateImpl extends NSObject implements NSSpeechSynthesizerDelegate {
-
   static ObjCProtocols = [NSSpeechSynthesizerDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // speechSynthesizerDidFinishSpeaking?(sender: NSSpeechSynthesizer, finishedSpeaking: boolean): void;
-  // speechSynthesizerWillSpeakWordOfString?(sender: NSSpeechSynthesizer, characterRange: _NSRange, string: NSString | string): void;
-  // speechSynthesizerWillSpeakPhoneme?(sender: NSSpeechSynthesizer, phonemeOpcode: number): void;
-  // speechSynthesizerDidEncounterErrorAtIndexOfStringMessage?(sender: NSSpeechSynthesizer, characterIndex: number, string: NSString | string, message: NSString | string): void;
-  // speechSynthesizerDidEncounterSyncMessage?(sender: NSSpeechSynthesizer, message: NSString | string): void;
 }
 
 export class NSCandidateListTouchBarItemDelegateImpl extends NSObject implements NSCandidateListTouchBarItemDelegate {
-
   static ObjCProtocols = [NSCandidateListTouchBarItemDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // candidateListTouchBarItemBeginSelectingCandidateAtIndex?(anItem: NSCandidateListTouchBarItem, index: number): void;
-  // candidateListTouchBarItemChangeSelectionFromCandidateAtIndexToIndex?(anItem: NSCandidateListTouchBarItem, previousIndex: number, index: number): void;
-  // candidateListTouchBarItemEndSelectingCandidateAtIndex?(anItem: NSCandidateListTouchBarItem, index: number): void;
-  // candidateListTouchBarItemChangedCandidateListVisibility?(anItem: NSCandidateListTouchBarItem, isVisible: boolean): void;
 }
 
 export class NSBrowserDelegateImpl extends NSObject implements NSBrowserDelegate {
-
   static ObjCProtocols = [NSBrowserDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // browserNumberOfRowsInColumn?(sender: NSBrowser, column: number): number;
-  // browserCreateRowsForColumnInMatrix?(sender: NSBrowser, column: number, matrix: NSMatrix): void;
-  // browserNumberOfChildrenOfItem?(browser: NSBrowser, item: interop.Object | null): number;
-  // browserChildOfItem?(browser: NSBrowser, index: number, item: interop.Object | null): interop.Object;
-  // browserIsLeafItem?(browser: NSBrowser, item: interop.Object | null): boolean;
-  // browserObjectValueForItem?(browser: NSBrowser, item: interop.Object | null): interop.Object;
-  // browserHeightOfRowInColumn?(browser: NSBrowser, row: number, columnIndex: number): number;
-  // rootItemForBrowser?(browser: NSBrowser): interop.Object;
-  // browserSetObjectValueForItem?(browser: NSBrowser, object: interop.Object | null, item: interop.Object | null): void;
-  // browserShouldEditItem?(browser: NSBrowser, item: interop.Object | null): boolean;
-  // browserWillDisplayCellAtRowColumn?(sender: NSBrowser, cell: interop.Object, row: number, column: number): void;
-  // browserTitleOfColumn?(sender: NSBrowser, column: number): NSString;
-  // browserSelectCellWithStringInColumn?(sender: NSBrowser, title: NSString | string, column: number): boolean;
-  // browserSelectRowInColumn?(sender: NSBrowser, row: number, column: number): boolean;
-  // browserIsColumnValid?(sender: NSBrowser, column: number): boolean;
-  // browserWillScroll?(sender: NSBrowser): void;
-  // browserDidScroll?(sender: NSBrowser): void;
-  // browserShouldSizeColumnForUserResizeToWidth?(browser: NSBrowser, columnIndex: number, forUserResize: boolean, suggestedWidth: number): number;
-  // browserSizeToFitWidthOfColumn?(browser: NSBrowser, columnIndex: number): number;
-  // browserColumnConfigurationDidChange?(notification: NSNotification): void;
-  // browserShouldShowCellExpansionForRowColumn?(browser: NSBrowser, row: number, column: number): boolean;
-  // browserWriteRowsWithIndexesInColumnToPasteboard?(browser: NSBrowser, rowIndexes: NSIndexSet, column: number, pasteboard: NSPasteboard): boolean;
-  // browserNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexesInColumn?(browser: NSBrowser, dropDestination: NSURL, rowIndexes: NSIndexSet, column: number): NSArray;
-  // browserCanDragRowsWithIndexesInColumnWithEvent?(browser: NSBrowser, rowIndexes: NSIndexSet, column: number, event: NSEvent): boolean;
-  // browserDraggingImageForRowsWithIndexesInColumnWithEventOffset?(browser: NSBrowser, rowIndexes: NSIndexSet, column: number, event: NSEvent, dragImageOffset: interop.PointerConvertible): NSImage;
-  // browserValidateDropProposedRowColumnDropOperation?(browser: NSBrowser, info: NSDraggingInfo, row: interop.PointerConvertible, column: interop.PointerConvertible, dropOperation: interop.PointerConvertible): interop.Enum<typeof NSDragOperation>;
-  // browserAcceptDropAtRowColumnDropOperation?(browser: NSBrowser, info: NSDraggingInfo, row: number, column: number, dropOperation: interop.Enum<typeof NSBrowserDropOperation>): boolean;
-  // browserTypeSelectStringForRowInColumn?(browser: NSBrowser, row: number, column: number): NSString;
-  // browserShouldTypeSelectForEventWithCurrentSearchString?(browser: NSBrowser, event: NSEvent, searchString: NSString | string | null): boolean;
-  // browserNextTypeSelectMatchFromRowToRowInColumnForString?(browser: NSBrowser, startRow: number, endRow: number, column: number, searchString: NSString | string | null): number;
-  // browserPreviewViewControllerForLeafItem?(browser: NSBrowser, item: interop.Object): NSViewController;
-  // browserHeaderViewControllerForItem?(browser: NSBrowser, item: interop.Object | null): NSViewController;
-  // browserDidChangeLastColumnToColumn?(browser: NSBrowser, oldLastColumn: number, column: number): void;
-  // browserSelectionIndexesForProposedSelectionInColumn?(browser: NSBrowser, proposedSelectionIndexes: NSIndexSet, column: number): NSIndexSet;
 }
 
 export class NSWindowDelegateImpl extends NSObject implements NSWindowDelegate {
-
   static ObjCProtocols = [NSWindowDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // windowShouldClose?(sender: NSWindow): boolean;
-  // windowWillReturnFieldEditorToObject?(sender: NSWindow, client: interop.Object | null): interop.Object;
-  // windowWillResizeToSize?(sender: NSWindow, frameSize: CGSize): CGSize;
-  // windowWillUseStandardFrameDefaultFrame?(window: NSWindow, newFrame: CGRect): CGRect;
-  // windowShouldZoomToFrame?(window: NSWindow, newFrame: CGRect): boolean;
-  // windowWillReturnUndoManager?(window: NSWindow): NSUndoManager;
-  // windowWillPositionSheetUsingRect?(window: NSWindow, sheet: NSWindow, rect: CGRect): CGRect;
-  // windowShouldPopUpDocumentPathMenu?(window: NSWindow, menu: NSMenu): boolean;
-  // windowShouldDragDocumentWithEventFromWithPasteboard?(window: NSWindow, event: NSEvent, dragImageLocation: CGPoint, pasteboard: NSPasteboard): boolean;
-  // windowWillUseFullScreenContentSize?(window: NSWindow, proposedSize: CGSize): CGSize;
-  // windowWillUseFullScreenPresentationOptions?(window: NSWindow, proposedOptions: interop.Enum<typeof NSApplicationPresentationOptions>): interop.Enum<typeof NSApplicationPresentationOptions>;
-  // customWindowsToEnterFullScreenForWindow?(window: NSWindow): NSArray;
-  // windowStartCustomAnimationToEnterFullScreenWithDuration?(window: NSWindow, duration: number): void;
-  // windowDidFailToEnterFullScreen?(window: NSWindow): void;
-  // customWindowsToExitFullScreenForWindow?(window: NSWindow): NSArray;
-  // windowStartCustomAnimationToExitFullScreenWithDuration?(window: NSWindow, duration: number): void;
-  // customWindowsToEnterFullScreenForWindowOnScreen?(window: NSWindow, screen: NSScreen): NSArray;
-  // windowStartCustomAnimationToEnterFullScreenOnScreenWithDuration?(window: NSWindow, screen: NSScreen, duration: number): void;
-  // windowDidFailToExitFullScreen?(window: NSWindow): void;
-  // windowWillResizeForVersionBrowserWithMaxPreferredSizeMaxAllowedSize?(window: NSWindow, maxPreferredFrameSize: CGSize, maxAllowedFrameSize: CGSize): CGSize;
-  // windowWillEncodeRestorableState?(window: NSWindow, state: NSCoder): void;
-  // windowDidDecodeRestorableState?(window: NSWindow, state: NSCoder): void;
-  // previewRepresentableActivityItemsForWindow?(window: NSWindow): NSArray | null;
-  // windowDidResize?(notification: NSNotification): void;
-  // windowDidExpose?(notification: NSNotification): void;
-  // windowWillMove?(notification: NSNotification): void;
-  // windowDidMove?(notification: NSNotification): void;
-  // windowDidBecomeKey?(notification: NSNotification): void;
-  // windowDidResignKey?(notification: NSNotification): void;
-  // windowDidBecomeMain?(notification: NSNotification): void;
-  // windowDidResignMain?(notification: NSNotification): void;
-  // windowWillClose?(notification: NSNotification): void;
-  // windowWillMiniaturize?(notification: NSNotification): void;
-  // windowDidMiniaturize?(notification: NSNotification): void;
-  // windowDidDeminiaturize?(notification: NSNotification): void;
-  // windowDidUpdate?(notification: NSNotification): void;
-  // windowDidChangeScreen?(notification: NSNotification): void;
-  // windowDidChangeScreenProfile?(notification: NSNotification): void;
-  // windowDidChangeBackingProperties?(notification: NSNotification): void;
-  // windowWillBeginSheet?(notification: NSNotification): void;
-  // windowDidEndSheet?(notification: NSNotification): void;
-  // windowWillStartLiveResize?(notification: NSNotification): void;
-  // windowDidEndLiveResize?(notification: NSNotification): void;
-  // windowWillEnterFullScreen?(notification: NSNotification): void;
-  // windowDidEnterFullScreen?(notification: NSNotification): void;
-  // windowWillExitFullScreen?(notification: NSNotification): void;
-  // windowDidExitFullScreen?(notification: NSNotification): void;
-  // windowWillEnterVersionBrowser?(notification: NSNotification): void;
-  // windowDidEnterVersionBrowser?(notification: NSNotification): void;
-  // windowWillExitVersionBrowser?(notification: NSNotification): void;
-  // windowDidExitVersionBrowser?(notification: NSNotification): void;
-  // windowDidChangeOcclusionState?(notification: NSNotification): void;
 }
 
 export class NSCollectionViewDelegateImpl extends NSObject implements NSCollectionViewDelegate {
-
   static ObjCProtocols = [NSCollectionViewDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // collectionViewCanDragItemsAtIndexPathsWithEvent?(collectionView: NSCollectionView, indexPaths: NSSet, event: NSEvent): boolean;
-  // collectionViewCanDragItemsAtIndexesWithEvent?(collectionView: NSCollectionView, indexes: NSIndexSet, event: NSEvent): boolean;
-  // collectionViewWriteItemsAtIndexPathsToPasteboard?(collectionView: NSCollectionView, indexPaths: NSSet, pasteboard: NSPasteboard): boolean;
-  // collectionViewWriteItemsAtIndexesToPasteboard?(collectionView: NSCollectionView, indexes: NSIndexSet, pasteboard: NSPasteboard): boolean;
-  // collectionViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItemsAtIndexPaths?(collectionView: NSCollectionView, dropURL: NSURL, indexPaths: NSSet): NSArray;
-  // collectionViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItemsAtIndexes?(collectionView: NSCollectionView, dropURL: NSURL, indexes: NSIndexSet): NSArray;
-  // collectionViewDraggingImageForItemsAtIndexPathsWithEventOffset?(collectionView: NSCollectionView, indexPaths: NSSet, event: NSEvent, dragImageOffset: interop.PointerConvertible): NSImage;
-  // collectionViewDraggingImageForItemsAtIndexesWithEventOffset?(collectionView: NSCollectionView, indexes: NSIndexSet, event: NSEvent, dragImageOffset: interop.PointerConvertible): NSImage;
-  // collectionViewValidateDropProposedIndexPathDropOperation?(collectionView: NSCollectionView, draggingInfo: NSDraggingInfo, proposedDropIndexPath: interop.PointerConvertible, proposedDropOperation: interop.PointerConvertible): interop.Enum<typeof NSDragOperation>;
-  // collectionViewValidateDropProposedIndexDropOperation?(collectionView: NSCollectionView, draggingInfo: NSDraggingInfo, proposedDropIndex: interop.PointerConvertible, proposedDropOperation: interop.PointerConvertible): interop.Enum<typeof NSDragOperation>;
-  // collectionViewAcceptDropIndexPathDropOperation?(collectionView: NSCollectionView, draggingInfo: NSDraggingInfo, indexPath: NSIndexPath, dropOperation: interop.Enum<typeof NSCollectionViewDropOperation>): boolean;
-  // collectionViewAcceptDropIndexDropOperation?(collectionView: NSCollectionView, draggingInfo: NSDraggingInfo, index: number, dropOperation: interop.Enum<typeof NSCollectionViewDropOperation>): boolean;
-  // collectionViewPasteboardWriterForItemAtIndexPath?(collectionView: NSCollectionView, indexPath: NSIndexPath): NSPasteboardWriting;
-  // collectionViewPasteboardWriterForItemAtIndex?(collectionView: NSCollectionView, index: number): NSPasteboardWriting;
-  // collectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths?(collectionView: NSCollectionView, session: NSDraggingSession, screenPoint: CGPoint, indexPaths: NSSet): void;
-  // collectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes?(collectionView: NSCollectionView, session: NSDraggingSession, screenPoint: CGPoint, indexes: NSIndexSet): void;
-  // collectionViewDraggingSessionEndedAtPointDragOperation?(collectionView: NSCollectionView, session: NSDraggingSession, screenPoint: CGPoint, operation: interop.Enum<typeof NSDragOperation>): void;
-  // collectionViewUpdateDraggingItemsForDrag?(collectionView: NSCollectionView, draggingInfo: NSDraggingInfo): void;
-  // collectionViewShouldChangeItemsAtIndexPathsToHighlightState?(collectionView: NSCollectionView, indexPaths: NSSet, highlightState: interop.Enum<typeof NSCollectionViewItemHighlightState>): NSSet;
-  // collectionViewDidChangeItemsAtIndexPathsToHighlightState?(collectionView: NSCollectionView, indexPaths: NSSet, highlightState: interop.Enum<typeof NSCollectionViewItemHighlightState>): void;
-  // collectionViewShouldSelectItemsAtIndexPaths?(collectionView: NSCollectionView, indexPaths: NSSet): NSSet;
-  // collectionViewShouldDeselectItemsAtIndexPaths?(collectionView: NSCollectionView, indexPaths: NSSet): NSSet;
-  // collectionViewDidSelectItemsAtIndexPaths?(collectionView: NSCollectionView, indexPaths: NSSet): void;
-  // collectionViewDidDeselectItemsAtIndexPaths?(collectionView: NSCollectionView, indexPaths: NSSet): void;
-  // collectionViewWillDisplayItemForRepresentedObjectAtIndexPath?(collectionView: NSCollectionView, item: NSCollectionViewItem, indexPath: NSIndexPath): void;
-  // collectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath?(collectionView: NSCollectionView, view: NSView, elementKind: NSString | string, indexPath: NSIndexPath): void;
-  // collectionViewDidEndDisplayingItemForRepresentedObjectAtIndexPath?(collectionView: NSCollectionView, item: NSCollectionViewItem, indexPath: NSIndexPath): void;
-  // collectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath?(collectionView: NSCollectionView, view: NSView, elementKind: NSString | string, indexPath: NSIndexPath): void;
-  // collectionViewTransitionLayoutForOldLayoutNewLayout?(collectionView: NSCollectionView, fromLayout: NSCollectionViewLayout, toLayout: NSCollectionViewLayout): NSCollectionViewTransitionLayout;
 }
 
 export class NSAlertDelegateImpl extends NSObject implements NSAlertDelegate {
-
   static ObjCProtocols = [NSAlertDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // alertShowHelp?(alert: NSAlert): boolean;
 }
 
 export class NSTextDelegateImpl extends NSObject implements NSTextDelegate {
-
   static ObjCProtocols = [NSTextDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // textShouldBeginEditing?(textObject: NSText): boolean;
-  // textShouldEndEditing?(textObject: NSText): boolean;
-  // textDidBeginEditing?(notification: NSNotification): void;
-  // textDidEndEditing?(notification: NSNotification): void;
-  // textDidChange?(notification: NSNotification): void;
 }
 
 export class NSGestureRecognizerDelegateImpl extends NSObject implements NSGestureRecognizerDelegate {
-
   static ObjCProtocols = [NSGestureRecognizerDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // gestureRecognizerShouldAttemptToRecognizeWithEvent?(gestureRecognizer: NSGestureRecognizer, event: NSEvent): boolean;
-  // gestureRecognizerShouldBegin?(gestureRecognizer: NSGestureRecognizer): boolean;
-  // gestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer?(gestureRecognizer: NSGestureRecognizer, otherGestureRecognizer: NSGestureRecognizer): boolean;
-  // gestureRecognizerShouldRequireFailureOfGestureRecognizer?(gestureRecognizer: NSGestureRecognizer, otherGestureRecognizer: NSGestureRecognizer): boolean;
-  // gestureRecognizerShouldBeRequiredToFailByGestureRecognizer?(gestureRecognizer: NSGestureRecognizer, otherGestureRecognizer: NSGestureRecognizer): boolean;
-  // gestureRecognizerShouldReceiveTouch?(gestureRecognizer: NSGestureRecognizer, touch: NSTouch): boolean;
 }
 
 export class NSTextContentManagerDelegateImpl extends NSObject implements NSTextContentManagerDelegate {
-
   static ObjCProtocols = [NSTextContentManagerDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // textContentManagerTextElementAtLocation?(textContentManager: NSTextContentManager, location: NSTextLocation): NSTextElement;
-  // textContentManagerShouldEnumerateTextElementOptions?(textContentManager: NSTextContentManager, textElement: NSTextElement, options: interop.Enum<typeof NSTextContentManagerEnumerationOptions>): boolean;
 }
 
 export class NSTouchBarDelegateImpl extends NSObject implements NSTouchBarDelegate {
-
   static ObjCProtocols = [NSTouchBarDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // touchBarMakeItemForIdentifier?(touchBar: NSTouchBar, identifier: NSString | string): NSTouchBarItem;
 }
 
 export class NSPopoverDelegateImpl extends NSObject implements NSPopoverDelegate {
-
   static ObjCProtocols = [NSPopoverDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // popoverShouldClose?(popover: NSPopover): boolean;
-  // popoverShouldDetach?(popover: NSPopover): boolean;
-  // popoverDidDetach?(popover: NSPopover): void;
-  // detachableWindowForPopover?(popover: NSPopover): NSWindow;
-  // popoverWillShow?(notification: NSNotification): void;
-  // popoverDidShow?(notification: NSNotification): void;
-  // popoverWillClose?(notification: NSNotification): void;
-  // popoverDidClose?(notification: NSNotification): void;
 }
 
 export class NSPathCellDelegateImpl extends NSObject implements NSPathCellDelegate {
-
   static ObjCProtocols = [NSPathCellDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // pathCellWillDisplayOpenPanel?(pathCell: NSPathCell, openPanel: NSOpenPanel): void;
-  // pathCellWillPopUpMenu?(pathCell: NSPathCell, menu: NSMenu): void;
 }
 
 export class NSAccessibilityCustomRotorItemSearchDelegateImpl extends NSObject implements NSAccessibilityCustomRotorItemSearchDelegate {
-
   static ObjCProtocols = [NSAccessibilityCustomRotorItemSearchDelegate];
 
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // rotorResultForSearchParameters(rotor: NSAccessibilityCustomRotor, searchParameters: NSAccessibilityCustomRotorSearchParameters): NSAccessibilityCustomRotorItemResult;
+  rotorResultForSearchParameters(rotor: NSAccessibilityCustomRotor, searchParameters: NSAccessibilityCustomRotorSearchParameters): NSAccessibilityCustomRotorItemResult {
+    throw new Error("Please provide implementation for: NSAccessibilityCustomRotorItemSearchDelegate > rotorResultForSearchParameters");
+  }
 }
 
 export class NSTokenFieldCellDelegateImpl extends NSObject implements NSTokenFieldCellDelegate {
-
   static ObjCProtocols = [NSTokenFieldCellDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // tokenFieldCellCompletionsForSubstringIndexOfTokenIndexOfSelectedItem?(tokenFieldCell: NSTokenFieldCell, substring: NSString | string, tokenIndex: number, selectedIndex: interop.PointerConvertible): NSArray;
-  // tokenFieldCellShouldAddObjectsAtIndex?(tokenFieldCell: NSTokenFieldCell, tokens: NSArray | unknown[], index: number): NSArray;
-  // tokenFieldCellDisplayStringForRepresentedObject?(tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object): NSString;
-  // tokenFieldCellEditingStringForRepresentedObject?(tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object): NSString;
-  // tokenFieldCellRepresentedObjectForEditingString?(tokenFieldCell: NSTokenFieldCell, editingString: NSString | string): interop.Object;
-  // tokenFieldCellWriteRepresentedObjectsToPasteboard?(tokenFieldCell: NSTokenFieldCell, objects: NSArray | unknown[], pboard: NSPasteboard): boolean;
-  // tokenFieldCellReadFromPasteboard?(tokenFieldCell: NSTokenFieldCell, pboard: NSPasteboard): NSArray;
-  // tokenFieldCellMenuForRepresentedObject?(tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object): NSMenu;
-  // tokenFieldCellHasMenuForRepresentedObject?(tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object): boolean;
-  // tokenFieldCellStyleForRepresentedObject?(tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object): interop.Enum<typeof NSTokenStyle>;
 }
 
 export class NSPathControlDelegateImpl extends NSObject implements NSPathControlDelegate {
-
   static ObjCProtocols = [NSPathControlDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // pathControlShouldDragItemWithPasteboard?(pathControl: NSPathControl, pathItem: NSPathControlItem, pasteboard: NSPasteboard): boolean;
-  // pathControlShouldDragPathComponentCellWithPasteboard?(pathControl: NSPathControl, pathComponentCell: NSPathComponentCell, pasteboard: NSPasteboard): boolean;
-  // pathControlValidateDrop?(pathControl: NSPathControl, info: NSDraggingInfo): interop.Enum<typeof NSDragOperation>;
-  // pathControlAcceptDrop?(pathControl: NSPathControl, info: NSDraggingInfo): boolean;
-  // pathControlWillDisplayOpenPanel?(pathControl: NSPathControl, openPanel: NSOpenPanel): void;
-  // pathControlWillPopUpMenu?(pathControl: NSPathControl, menu: NSMenu): void;
 }
 
 export class NSFilePromiseProviderDelegateImpl extends NSObject implements NSFilePromiseProviderDelegate {
-
   static ObjCProtocols = [NSFilePromiseProviderDelegate];
 
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // filePromiseProviderFileNameForType(filePromiseProvider: NSFilePromiseProvider, fileType: NSString | string): NSString;
-  // filePromiseProviderWritePromiseToURLCompletionHandler(filePromiseProvider: NSFilePromiseProvider, url: NSURL, completionHandler: (p1: NSError) => void | null): void;
-  // operationQueueForFilePromiseProvider?(filePromiseProvider: NSFilePromiseProvider): NSOperationQueue;
+  filePromiseProviderFileNameForType(filePromiseProvider: NSFilePromiseProvider, fileType: NSString | string): NSString {
+    throw new Error("Please provide implementation for: NSFilePromiseProviderDelegate > filePromiseProviderFileNameForType");
+  }
+  filePromiseProviderWritePromiseToURLCompletionHandler(filePromiseProvider: NSFilePromiseProvider, url: NSURL, completionHandler: (p1: NSError) => void | null): void {
+    throw new Error("Please provide implementation for: NSFilePromiseProviderDelegate > filePromiseProviderWritePromiseToURLCompletionHandler");
+  }
 }
 
 export class NSApplicationDelegateImpl extends NSObject implements NSApplicationDelegate {
-
   static ObjCProtocols = [NSApplicationDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // applicationShouldTerminate?(sender: NSApplication): interop.Enum<typeof NSApplicationTerminateReply>;
-  // applicationOpenURLs?(application: NSApplication, urls: NSArray | unknown[]): void;
-  // applicationOpenFile?(sender: NSApplication, filename: NSString | string): boolean;
-  // applicationOpenFiles?(sender: NSApplication, filenames: NSArray | unknown[]): void;
-  // applicationOpenTempFile?(sender: NSApplication, filename: NSString | string): boolean;
-  // applicationShouldOpenUntitledFile?(sender: NSApplication): boolean;
-  // applicationOpenUntitledFile?(sender: NSApplication): boolean;
-  // applicationOpenFileWithoutUI?(sender: interop.Object, filename: NSString | string): boolean;
-  // applicationPrintFile?(sender: NSApplication, filename: NSString | string): boolean;
-  // applicationPrintFilesWithSettingsShowPrintPanels?(application: NSApplication, fileNames: NSArray | unknown[], printSettings: NSDictionary | Record<string, unknown>, showPrintPanels: boolean): interop.Enum<typeof NSApplicationPrintReply>;
-  // applicationShouldTerminateAfterLastWindowClosed?(sender: NSApplication): boolean;
-  // applicationShouldHandleReopenHasVisibleWindows?(sender: NSApplication, flag: boolean): boolean;
-  // applicationDockMenu?(sender: NSApplication): NSMenu;
-  // applicationWillPresentError?(application: NSApplication, error: NSError): NSError;
-  // applicationDidRegisterForRemoteNotificationsWithDeviceToken?(application: NSApplication, deviceToken: NSData): void;
-  // applicationDidFailToRegisterForRemoteNotificationsWithError?(application: NSApplication, error: NSError): void;
-  // applicationDidReceiveRemoteNotification?(application: NSApplication, userInfo: NSDictionary | Record<string, unknown>): void;
-  // applicationSupportsSecureRestorableState?(app: NSApplication): boolean;
-  // applicationHandlerForIntent?(application: NSApplication, intent: INIntent): interop.Object;
-  // applicationWillEncodeRestorableState?(app: NSApplication, coder: NSCoder): void;
-  // applicationDidDecodeRestorableState?(app: NSApplication, coder: NSCoder): void;
-  // applicationWillContinueUserActivityWithType?(application: NSApplication, userActivityType: NSString | string): boolean;
-  // applicationContinueUserActivityRestorationHandler?(application: NSApplication, userActivity: NSUserActivity, restorationHandler: (p1: NSArray | unknown[]) => void): boolean;
-  // applicationDidFailToContinueUserActivityWithTypeError?(application: NSApplication, userActivityType: NSString | string, error: NSError): void;
-  // applicationDidUpdateUserActivity?(application: NSApplication, userActivity: NSUserActivity): void;
-  // applicationUserDidAcceptCloudKitShareWithMetadata?(application: NSApplication, metadata: CKShareMetadata): void;
-  // applicationDelegateHandlesKey?(sender: NSApplication, key: NSString | string): boolean;
-  // applicationShouldAutomaticallyLocalizeKeyEquivalents?(application: NSApplication): boolean;
-  // applicationWillFinishLaunching?(notification: NSNotification): void;
-  // applicationDidFinishLaunching?(notification: NSNotification): void;
-  // applicationWillHide?(notification: NSNotification): void;
-  // applicationDidHide?(notification: NSNotification): void;
-  // applicationWillUnhide?(notification: NSNotification): void;
-  // applicationDidUnhide?(notification: NSNotification): void;
-  // applicationWillBecomeActive?(notification: NSNotification): void;
-  // applicationDidBecomeActive?(notification: NSNotification): void;
-  // applicationWillResignActive?(notification: NSNotification): void;
-  // applicationDidResignActive?(notification: NSNotification): void;
-  // applicationWillUpdate?(notification: NSNotification): void;
-  // applicationDidUpdate?(notification: NSNotification): void;
-  // applicationWillTerminate?(notification: NSNotification): void;
-  // applicationDidChangeScreenParameters?(notification: NSNotification): void;
-  // applicationDidChangeOcclusionState?(notification: NSNotification): void;
-  // applicationProtectedDataWillBecomeUnavailable?(notification: NSNotification): void;
-  // applicationProtectedDataDidBecomeAvailable?(notification: NSNotification): void;
 }
 
 export class NSAnimationDelegateImpl extends NSObject implements NSAnimationDelegate {
-
   static ObjCProtocols = [NSAnimationDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // animationShouldStart?(animation: NSAnimation): boolean;
-  // animationDidStop?(animation: NSAnimation): void;
-  // animationDidEnd?(animation: NSAnimation): void;
-  // animationValueForProgress?(animation: NSAnimation, progress: number): number;
-  // animationDidReachProgressMark?(animation: NSAnimation, progress: number): void;
 }
 
 export class NSSharingServicePickerToolbarItemDelegateImpl extends NSObject implements NSSharingServicePickerToolbarItemDelegate {
-
   static ObjCProtocols = [NSSharingServicePickerToolbarItemDelegate];
 
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // itemsForSharingServicePickerToolbarItem(pickerToolbarItem: NSSharingServicePickerToolbarItem): NSArray;
+  itemsForSharingServicePickerToolbarItem(pickerToolbarItem: NSSharingServicePickerToolbarItem): NSArray {
+    throw new Error("Please provide implementation for: NSSharingServicePickerToolbarItemDelegate > itemsForSharingServicePickerToolbarItem");
+  }
 }
 
 export class NSOutlineViewDelegateImpl extends NSObject implements NSOutlineViewDelegate {
-
   static ObjCProtocols = [NSOutlineViewDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // outlineViewViewForTableColumnItem?(outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object): NSView;
-  // outlineViewRowViewForItem?(outlineView: NSOutlineView, item: interop.Object): NSTableRowView;
-  // outlineViewDidAddRowViewForRow?(outlineView: NSOutlineView, rowView: NSTableRowView, row: number): void;
-  // outlineViewDidRemoveRowViewForRow?(outlineView: NSOutlineView, rowView: NSTableRowView, row: number): void;
-  // outlineViewWillDisplayCellForTableColumnItem?(outlineView: NSOutlineView, cell: interop.Object, tableColumn: NSTableColumn | null, item: interop.Object): void;
-  // outlineViewShouldEditTableColumnItem?(outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object): boolean;
-  // selectionShouldChangeInOutlineView?(outlineView: NSOutlineView): boolean;
-  // outlineViewShouldSelectItem?(outlineView: NSOutlineView, item: interop.Object): boolean;
-  // outlineViewSelectionIndexesForProposedSelection?(outlineView: NSOutlineView, proposedSelectionIndexes: NSIndexSet): NSIndexSet;
-  // outlineViewShouldSelectTableColumn?(outlineView: NSOutlineView, tableColumn: NSTableColumn | null): boolean;
-  // outlineViewMouseDownInHeaderOfTableColumn?(outlineView: NSOutlineView, tableColumn: NSTableColumn): void;
-  // outlineViewDidClickTableColumn?(outlineView: NSOutlineView, tableColumn: NSTableColumn): void;
-  // outlineViewDidDragTableColumn?(outlineView: NSOutlineView, tableColumn: NSTableColumn): void;
-  // outlineViewToolTipForCellRectTableColumnItemMouseLocation?(outlineView: NSOutlineView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, item: interop.Object, mouseLocation: CGPoint): NSString;
-  // outlineViewHeightOfRowByItem?(outlineView: NSOutlineView, item: interop.Object): number;
-  // outlineViewTintConfigurationForItem?(outlineView: NSOutlineView, item: interop.Object): NSTintConfiguration;
-  // outlineViewTypeSelectStringForTableColumnItem?(outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object): NSString;
-  // outlineViewNextTypeSelectMatchFromItemToItemForString?(outlineView: NSOutlineView, startItem: interop.Object, endItem: interop.Object, searchString: NSString | string): interop.Object;
-  // outlineViewShouldTypeSelectForEventWithCurrentSearchString?(outlineView: NSOutlineView, event: NSEvent, searchString: NSString | string | null): boolean;
-  // outlineViewShouldShowCellExpansionForTableColumnItem?(outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object): boolean;
-  // outlineViewShouldTrackCellForTableColumnItem?(outlineView: NSOutlineView, cell: NSCell, tableColumn: NSTableColumn | null, item: interop.Object): boolean;
-  // outlineViewDataCellForTableColumnItem?(outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object): NSCell;
-  // outlineViewIsGroupItem?(outlineView: NSOutlineView, item: interop.Object): boolean;
-  // outlineViewShouldExpandItem?(outlineView: NSOutlineView, item: interop.Object): boolean;
-  // outlineViewShouldCollapseItem?(outlineView: NSOutlineView, item: interop.Object): boolean;
-  // outlineViewWillDisplayOutlineCellForTableColumnItem?(outlineView: NSOutlineView, cell: interop.Object, tableColumn: NSTableColumn | null, item: interop.Object): void;
-  // outlineViewSizeToFitWidthOfColumn?(outlineView: NSOutlineView, column: number): number;
-  // outlineViewShouldReorderColumnToColumn?(outlineView: NSOutlineView, columnIndex: number, newColumnIndex: number): boolean;
-  // outlineViewShouldShowOutlineCellForItem?(outlineView: NSOutlineView, item: interop.Object): boolean;
-  // outlineViewUserCanChangeVisibilityOfTableColumn?(outlineView: NSOutlineView, column: NSTableColumn): boolean;
-  // outlineViewUserDidChangeVisibilityOfTableColumns?(outlineView: NSOutlineView, columns: NSArray | unknown[]): void;
-  // outlineViewSelectionDidChange?(notification: NSNotification): void;
-  // outlineViewColumnDidMove?(notification: NSNotification): void;
-  // outlineViewColumnDidResize?(notification: NSNotification): void;
-  // outlineViewSelectionIsChanging?(notification: NSNotification): void;
-  // outlineViewItemWillExpand?(notification: NSNotification): void;
-  // outlineViewItemDidExpand?(notification: NSNotification): void;
-  // outlineViewItemWillCollapse?(notification: NSNotification): void;
-  // outlineViewItemDidCollapse?(notification: NSNotification): void;
 }
 
 export class NSMatrixDelegateImpl extends NSObject implements NSMatrixDelegate {
-
   static ObjCProtocols = [NSMatrixDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
 }
 
 export class NSSharingServicePickerDelegateImpl extends NSObject implements NSSharingServicePickerDelegate {
-
   static ObjCProtocols = [NSSharingServicePickerDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // sharingServicePickerSharingServicesForItemsProposedSharingServices?(sharingServicePicker: NSSharingServicePicker, items: NSArray | unknown[], proposedServices: NSArray | unknown[]): NSArray;
-  // sharingServicePickerDelegateForSharingService?(sharingServicePicker: NSSharingServicePicker, sharingService: NSSharingService): NSSharingServiceDelegate;
-  // sharingServicePickerDidChooseSharingService?(sharingServicePicker: NSSharingServicePicker, service: NSSharingService | null): void;
 }
 
 export class NSSplitViewDelegateImpl extends NSObject implements NSSplitViewDelegate {
-
   static ObjCProtocols = [NSSplitViewDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // splitViewCanCollapseSubview?(splitView: NSSplitView, subview: NSView): boolean;
-  // splitViewShouldCollapseSubviewForDoubleClickOnDividerAtIndex?(splitView: NSSplitView, subview: NSView, dividerIndex: number): boolean;
-  // splitViewConstrainMinCoordinateOfSubviewAt?(splitView: NSSplitView, proposedMinimumPosition: number, dividerIndex: number): number;
-  // splitViewConstrainMaxCoordinateOfSubviewAt?(splitView: NSSplitView, proposedMaximumPosition: number, dividerIndex: number): number;
-  // splitViewConstrainSplitPositionOfSubviewAt?(splitView: NSSplitView, proposedPosition: number, dividerIndex: number): number;
-  // splitViewResizeSubviewsWithOldSize?(splitView: NSSplitView, oldSize: CGSize): void;
-  // splitViewShouldAdjustSizeOfSubview?(splitView: NSSplitView, view: NSView): boolean;
-  // splitViewShouldHideDividerAtIndex?(splitView: NSSplitView, dividerIndex: number): boolean;
-  // splitViewEffectiveRectForDrawnRectOfDividerAtIndex?(splitView: NSSplitView, proposedEffectiveRect: CGRect, drawnRect: CGRect, dividerIndex: number): CGRect;
-  // splitViewAdditionalEffectiveRectOfDividerAtIndex?(splitView: NSSplitView, dividerIndex: number): CGRect;
-  // splitViewWillResizeSubviews?(notification: NSNotification): void;
-  // splitViewDidResizeSubviews?(notification: NSNotification): void;
 }
 
 export class NSComboBoxDelegateImpl extends NSObject implements NSComboBoxDelegate {
-
   static ObjCProtocols = [NSComboBoxDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // comboBoxWillPopUp?(notification: NSNotification): void;
-  // comboBoxWillDismiss?(notification: NSNotification): void;
-  // comboBoxSelectionDidChange?(notification: NSNotification): void;
-  // comboBoxSelectionIsChanging?(notification: NSNotification): void;
 }
 
 export class NSToolbarDelegateImpl extends NSObject implements NSToolbarDelegate {
-
   static ObjCProtocols = [NSToolbarDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // toolbarItemForItemIdentifierWillBeInsertedIntoToolbar?(toolbar: NSToolbar, itemIdentifier: NSString | string, flag: boolean): NSToolbarItem;
-  // toolbarDefaultItemIdentifiers?(toolbar: NSToolbar): NSArray;
-  // toolbarAllowedItemIdentifiers?(toolbar: NSToolbar): NSArray;
-  // toolbarSelectableItemIdentifiers?(toolbar: NSToolbar): NSArray;
-  // toolbarImmovableItemIdentifiers?(toolbar: NSToolbar): NSSet;
-  // toolbarItemIdentifierCanBeInsertedAtIndex?(toolbar: NSToolbar, itemIdentifier: NSString | string, index: number): boolean;
-  // toolbarWillAddItem?(notification: NSNotification): void;
-  // toolbarDidRemoveItem?(notification: NSNotification): void;
 }
 
 export class NSTokenFieldDelegateImpl extends NSObject implements NSTokenFieldDelegate {
-
   static ObjCProtocols = [NSTokenFieldDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // tokenFieldCompletionsForSubstringIndexOfTokenIndexOfSelectedItem?(tokenField: NSTokenField, substring: NSString | string, tokenIndex: number, selectedIndex: interop.PointerConvertible): NSArray;
-  // tokenFieldShouldAddObjectsAtIndex?(tokenField: NSTokenField, tokens: NSArray | unknown[], index: number): NSArray;
-  // tokenFieldDisplayStringForRepresentedObject?(tokenField: NSTokenField, representedObject: interop.Object): NSString;
-  // tokenFieldEditingStringForRepresentedObject?(tokenField: NSTokenField, representedObject: interop.Object): NSString;
-  // tokenFieldRepresentedObjectForEditingString?(tokenField: NSTokenField, editingString: NSString | string): interop.Object;
-  // tokenFieldWriteRepresentedObjectsToPasteboard?(tokenField: NSTokenField, objects: NSArray | unknown[], pboard: NSPasteboard): boolean;
-  // tokenFieldReadFromPasteboard?(tokenField: NSTokenField, pboard: NSPasteboard): NSArray;
-  // tokenFieldMenuForRepresentedObject?(tokenField: NSTokenField, representedObject: interop.Object): NSMenu;
-  // tokenFieldHasMenuForRepresentedObject?(tokenField: NSTokenField, representedObject: interop.Object): boolean;
-  // tokenFieldStyleForRepresentedObject?(tokenField: NSTokenField, representedObject: interop.Object): interop.Enum<typeof NSTokenStyle>;
 }
 
 export class NSTextLayoutManagerDelegateImpl extends NSObject implements NSTextLayoutManagerDelegate {
-
   static ObjCProtocols = [NSTextLayoutManagerDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // textLayoutManagerTextLayoutFragmentForLocationInTextElement?(textLayoutManager: NSTextLayoutManager, location: NSTextLocation, textElement: NSTextElement): NSTextLayoutFragment;
-  // textLayoutManagerShouldBreakLineBeforeLocationHyphenating?(textLayoutManager: NSTextLayoutManager, location: NSTextLocation, hyphenating: boolean): boolean;
-  // textLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes?(textLayoutManager: NSTextLayoutManager, link: interop.Object, location: NSTextLocation, renderingAttributes: NSDictionary | Record<string, unknown>): NSDictionary;
 }
 
 export class NSLayoutManagerDelegateImpl extends NSObject implements NSLayoutManagerDelegate {
-
   static ObjCProtocols = [NSLayoutManagerDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // layoutManagerShouldGenerateGlyphsPropertiesCharacterIndexesFontForGlyphRange?(layoutManager: NSLayoutManager, glyphs: interop.PointerConvertible, props: interop.PointerConvertible, charIndexes: interop.PointerConvertible, aFont: NSFont, glyphRange: _NSRange): number;
-  // layoutManagerLineSpacingAfterGlyphAtIndexWithProposedLineFragmentRect?(layoutManager: NSLayoutManager, glyphIndex: number, rect: CGRect): number;
-  // layoutManagerParagraphSpacingBeforeGlyphAtIndexWithProposedLineFragmentRect?(layoutManager: NSLayoutManager, glyphIndex: number, rect: CGRect): number;
-  // layoutManagerParagraphSpacingAfterGlyphAtIndexWithProposedLineFragmentRect?(layoutManager: NSLayoutManager, glyphIndex: number, rect: CGRect): number;
-  // layoutManagerShouldUseActionForControlCharacterAtIndex?(layoutManager: NSLayoutManager, action: interop.Enum<typeof NSControlCharacterAction>, charIndex: number): interop.Enum<typeof NSControlCharacterAction>;
-  // layoutManagerShouldBreakLineByWordBeforeCharacterAtIndex?(layoutManager: NSLayoutManager, charIndex: number): boolean;
-  // layoutManagerShouldBreakLineByHyphenatingBeforeCharacterAtIndex?(layoutManager: NSLayoutManager, charIndex: number): boolean;
-  // layoutManagerBoundingBoxForControlGlyphAtIndexForTextContainerProposedLineFragmentGlyphPositionCharacterIndex?(layoutManager: NSLayoutManager, glyphIndex: number, textContainer: NSTextContainer, proposedRect: CGRect, glyphPosition: CGPoint, charIndex: number): CGRect;
-  // layoutManagerShouldSetLineFragmentRectLineFragmentUsedRectBaselineOffsetInTextContainerForGlyphRange?(layoutManager: NSLayoutManager, lineFragmentRect: interop.PointerConvertible, lineFragmentUsedRect: interop.PointerConvertible, baselineOffset: interop.PointerConvertible, textContainer: NSTextContainer, glyphRange: _NSRange): boolean;
-  // layoutManagerDidInvalidateLayout?(sender: NSLayoutManager): void;
-  // layoutManagerDidCompleteLayoutForTextContainerAtEnd?(layoutManager: NSLayoutManager, textContainer: NSTextContainer | null, layoutFinishedFlag: boolean): void;
-  // layoutManagerTextContainerDidChangeGeometryFromSize?(layoutManager: NSLayoutManager, textContainer: NSTextContainer, oldSize: CGSize): void;
-  // layoutManagerShouldUseTemporaryAttributesForDrawingToScreenAtCharacterIndexEffectiveRange?(layoutManager: NSLayoutManager, attrs: NSDictionary | Record<string, unknown>, toScreen: boolean, charIndex: number, effectiveCharRange: interop.PointerConvertible): NSDictionary;
 }
 
 export class NSSearchFieldDelegateImpl extends NSObject implements NSSearchFieldDelegate {
-
   static ObjCProtocols = [NSSearchFieldDelegate];
-
-  declare eventTargetDelegate?: WeakRef<EventTarget>;
-
-  // searchFieldDidStartSearching?(sender: NSSearchField): void;
-  // searchFieldDidEndSearching?(sender: NSSearchField): void;
 }
