@@ -3,18 +3,41 @@
 /// <reference types="objc/types/QuartzCore.d.ts" />
 /// <reference types="objc/types/Foundation.d.ts" />
 
-export abstract class HTMLNSObjectElement extends HTMLElement {
+export abstract class HTMLNativeObjectElement extends HTMLElement {
   /**
    * The native object from the Obj-C runtime that this HTML Element wraps.
    */
-  abstract readonly nativeObject: NSObject;
+  abstract readonly nativeObject: NativeObject;
+}
 
-  /**
-   * All properties in the inheritance hierarchy referring to a delegate.
-   */
-  protected declare knownDelegates?: Array<
-    [key: string, delegate: typeof NSObject]
-  >;
+export class HTMLNSObjectElement extends HTMLNativeObjectElement {
+  readonly nativeObject = NSObject.new();
+
+  // readonly classForCoder: interop.Object;
+  // readonly autoContentAccessingProxy: interop.Object;
+  // accessInstanceVariablesDirectly: boolean;
+  // readonly classForKeyedArchiver: interop.Object;
+  // readonly classForArchiver: interop.Object;
+  // readonly classForPortCoder: interop.Object;
+  // readonly classDescription: NSClassDescription;
+  // readonly attributeKeys: NSArray;
+  // readonly toOneRelationshipKeys: NSArray;
+  // readonly toManyRelationshipKeys: NSArray;
+  // readonly classCode: number;
+  // readonly className: NSString;
+  // readonly objectSpecifier: NSScriptObjectSpecifier;
+  // readonly accessibilityFocusedUIElement: interop.Object;
+  // readonly accessibilityNotifiesWhenDestroyed: boolean;
+  // readonly exposedBindings: NSArray;
+  // readonly objectForWebScript: interop.Object;
+  // readonly webPlugInContainerSelectionColor: NSColor;
+  // readonly webFrame: WebFrame;
+  // readonly hash: number;
+  // readonly superclass: interop.Object;
+  // readonly isProxy: boolean;
+  // readonly zone: interop.Pointer;
+  // readonly description: NSString;
+  // readonly debugDescription: NSString;
 }
 
 export class HTMLNSWindowTabGroupElement extends HTMLNSObjectElement {
@@ -2675,24 +2698,34 @@ export class HTMLNSTouchBarItemElement extends HTMLNSObjectElement {
   // readonly isVisible: boolean;
 }
 
-export class HTMLNSCollectionViewGridLayoutElement extends HTMLNSCollectionViewLayoutElement {
-  readonly nativeObject = NSCollectionViewGridLayout.new();
+export class HTMLNSCandidateListTouchBarItemElement extends HTMLNSTouchBarItemElement {
 
-  // margins: NSEdgeInsets;
-  // minimumInteritemSpacing: number;
-  // minimumLineSpacing: number;
-  // maximumNumberOfRows: number;
-  // maximumNumberOfColumns: number;
-  // minimumItemSize: CGSize;
-  // maximumItemSize: CGSize;
-}
+  // @ts-ignore
+  readonly nativeObject = NSCandidateListTouchBarItem.new();
+  get delegate(): NSCandidateListTouchBarItemDelegateImpl {
+    return (this.nativeObject.delegate ??= NSCandidateListTouchBarItemDelegateImpl.new()) as NSCandidateListTouchBarItemDelegateImpl;
+  }
 
-export class HTMLNSImageCellElement extends HTMLNSCellElement {
-  readonly nativeObject = NSImageCell.new();
+  // client: NSView;
+  // isCollapsed: boolean;
+  // allowsCollapsing: boolean;
+  // readonly isCandidateListVisible: boolean;
+  // allowsTextInputContextCandidates: boolean;
+  // attributedStringForCandidate: (p1: interop.Object, p2: number) => NSAttributedString;
+  // readonly candidates: NSArray;
 
-  // imageAlignment: interop.Enum<typeof NSImageAlignment>;
-  // imageScaling: interop.Enum<typeof NSImageScaling>;
-  // imageFrameStyle: interop.Enum<typeof NSImageFrameStyle>;
+  set candidatelisttouchbaritembeginselectingcandidateatindex(value: (anItem: NSCandidateListTouchBarItem, index: number) => void) {
+    this.delegate.candidateListTouchBarItemBeginSelectingCandidateAtIndex = value;
+  }
+  set candidatelisttouchbaritemchangeselectionfromcandidateatindextoindex(value: (anItem: NSCandidateListTouchBarItem, previousIndex: number, index: number) => void) {
+    this.delegate.candidateListTouchBarItemChangeSelectionFromCandidateAtIndexToIndex = value;
+  }
+  set candidatelisttouchbaritemendselectingcandidateatindex(value: (anItem: NSCandidateListTouchBarItem, index: number) => void) {
+    this.delegate.candidateListTouchBarItemEndSelectingCandidateAtIndex = value;
+  }
+  set candidatelisttouchbaritemchangedcandidatelistvisibility(value: (anItem: NSCandidateListTouchBarItem, isVisible: boolean) => void) {
+    this.delegate.candidateListTouchBarItemChangedCandidateListVisibility = value;
+  }
 }
 
 export class HTMLNSWindowControllerElement extends HTMLNSResponderElement {
@@ -3210,6 +3243,18 @@ export class HTMLNSTableRowViewElement extends HTMLNSViewElement {
   // readonly zone: interop.Pointer;
   // readonly description: NSString;
   // readonly debugDescription: NSString;
+}
+
+export class HTMLNSCollectionViewGridLayoutElement extends HTMLNSCollectionViewLayoutElement {
+  readonly nativeObject = NSCollectionViewGridLayout.new();
+
+  // margins: NSEdgeInsets;
+  // minimumInteritemSpacing: number;
+  // minimumLineSpacing: number;
+  // maximumNumberOfRows: number;
+  // maximumNumberOfColumns: number;
+  // minimumItemSize: CGSize;
+  // maximumItemSize: CGSize;
 }
 
 export class HTMLNSCollectionLayoutSpacingElement extends HTMLNSObjectElement {
@@ -4081,49 +4126,12 @@ export class HTMLNSMagnificationGestureRecognizerElement extends HTMLNSGestureRe
   // magnification: number;
 }
 
-export class HTMLNSCandidateListTouchBarItemElement extends HTMLNSTouchBarItemElement {
+export class HTMLNSImageCellElement extends HTMLNSCellElement {
+  readonly nativeObject = NSImageCell.new();
 
-  // @ts-ignore
-  readonly nativeObject = NSCandidateListTouchBarItem.new();
-  get delegate(): NSCandidateListTouchBarItemDelegateImpl {
-    return (this.nativeObject.delegate ??= NSCandidateListTouchBarItemDelegateImpl.new()) as NSCandidateListTouchBarItemDelegateImpl;
-  }
-
-  // client: NSView;
-  // isCollapsed: boolean;
-  // allowsCollapsing: boolean;
-  // readonly isCandidateListVisible: boolean;
-  // allowsTextInputContextCandidates: boolean;
-  // attributedStringForCandidate: (p1: interop.Object, p2: number) => NSAttributedString;
-  // readonly candidates: NSArray;
-
-  set candidatelisttouchbaritembeginselectingcandidateatindex(value: (anItem: NSCandidateListTouchBarItem, index: number) => void) {
-    this.delegate.candidateListTouchBarItemBeginSelectingCandidateAtIndex = value;
-  }
-  set candidatelisttouchbaritemchangeselectionfromcandidateatindextoindex(value: (anItem: NSCandidateListTouchBarItem, previousIndex: number, index: number) => void) {
-    this.delegate.candidateListTouchBarItemChangeSelectionFromCandidateAtIndexToIndex = value;
-  }
-  set candidatelisttouchbaritemendselectingcandidateatindex(value: (anItem: NSCandidateListTouchBarItem, index: number) => void) {
-    this.delegate.candidateListTouchBarItemEndSelectingCandidateAtIndex = value;
-  }
-  set candidatelisttouchbaritemchangedcandidatelistvisibility(value: (anItem: NSCandidateListTouchBarItem, isVisible: boolean) => void) {
-    this.delegate.candidateListTouchBarItemChangedCandidateListVisibility = value;
-  }
-}
-
-export class HTMLNSCollectionViewFlowLayoutElement extends HTMLNSCollectionViewLayoutElement {
-  readonly nativeObject = NSCollectionViewFlowLayout.new();
-
-  // minimumLineSpacing: number;
-  // minimumInteritemSpacing: number;
-  // itemSize: CGSize;
-  // estimatedItemSize: CGSize;
-  // scrollDirection: interop.Enum<typeof NSCollectionViewScrollDirection>;
-  // headerReferenceSize: CGSize;
-  // footerReferenceSize: CGSize;
-  // sectionInset: NSEdgeInsets;
-  // sectionHeadersPinToVisibleBounds: boolean;
-  // sectionFootersPinToVisibleBounds: boolean;
+  // imageAlignment: interop.Enum<typeof NSImageAlignment>;
+  // imageScaling: interop.Enum<typeof NSImageScaling>;
+  // imageFrameStyle: interop.Enum<typeof NSImageFrameStyle>;
 }
 
 export class HTMLNSSearchToolbarItemElement extends HTMLNSToolbarItemElement {
@@ -4368,20 +4376,13 @@ export class HTMLNSTextElement extends HTMLNSViewElement {
   }
 }
 
-export class HTMLNSRulerViewElement extends HTMLNSViewElement {
-  readonly nativeObject = NSRulerView.new();
+export class HTMLNSDiffableDataSourceSnapshotElement extends HTMLNSObjectElement {
+  readonly nativeObject = NSDiffableDataSourceSnapshot.new();
 
-  // scrollView: NSScrollView;
-  // orientation: interop.Enum<typeof NSRulerOrientation>;
-  // readonly baselineLocation: number;
-  // readonly requiredThickness: number;
-  // ruleThickness: number;
-  // reservedThicknessForMarkers: number;
-  // reservedThicknessForAccessoryView: number;
-  // originOffset: number;
-  // clientView: NSView;
-  // accessoryView: NSView;
-  // readonly isFlipped: boolean;
+  // readonly numberOfItems: number;
+  // readonly numberOfSections: number;
+  // readonly sectionIdentifiers: NSArray;
+  // readonly itemIdentifiers: NSArray;
 }
 
 export class HTMLNSTextViewportLayoutControllerElement extends HTMLNSObjectElement {
@@ -4916,6 +4917,21 @@ export class HTMLNSCollectionLayoutBoundarySupplementaryItemElement extends HTML
   // readonly offset: CGPoint;
 }
 
+export class HTMLNSCollectionViewFlowLayoutElement extends HTMLNSCollectionViewLayoutElement {
+  readonly nativeObject = NSCollectionViewFlowLayout.new();
+
+  // minimumLineSpacing: number;
+  // minimumInteritemSpacing: number;
+  // itemSize: CGSize;
+  // estimatedItemSize: CGSize;
+  // scrollDirection: interop.Enum<typeof NSCollectionViewScrollDirection>;
+  // headerReferenceSize: CGSize;
+  // footerReferenceSize: CGSize;
+  // sectionInset: NSEdgeInsets;
+  // sectionHeadersPinToVisibleBounds: boolean;
+  // sectionFootersPinToVisibleBounds: boolean;
+}
+
 export class HTMLNSPathComponentCellElement extends HTMLNSTextFieldCellElement {
   readonly nativeObject = NSPathComponentCell.new();
 
@@ -5023,17 +5039,20 @@ export class HTMLNSStackViewElement extends HTMLNSViewElement {
   }
 }
 
-export class HTMLNSColorWellElement extends HTMLNSControlElement {
-  readonly nativeObject = NSColorWell.new();
+export class HTMLNSRulerViewElement extends HTMLNSViewElement {
+  readonly nativeObject = NSRulerView.new();
 
-  // readonly isActive: boolean;
-  // isBordered: boolean;
-  // color: NSColor;
-  // colorWellStyle: interop.Enum<typeof NSColorWellStyle>;
-  // image: NSImage;
-  // pulldownTarget: interop.Object;
-  // pulldownAction: string;
-  // supportsAlpha: boolean;
+  // scrollView: NSScrollView;
+  // orientation: interop.Enum<typeof NSRulerOrientation>;
+  // readonly baselineLocation: number;
+  // readonly requiredThickness: number;
+  // ruleThickness: number;
+  // reservedThicknessForMarkers: number;
+  // reservedThicknessForAccessoryView: number;
+  // originOffset: number;
+  // clientView: NSView;
+  // accessoryView: NSView;
+  // readonly isFlipped: boolean;
 }
 
 export class HTMLNSTextAlternativesElement extends HTMLNSObjectElement {
@@ -5415,39 +5434,24 @@ export class HTMLNSSegmentedControlElement extends HTMLNSControlElement {
   // readonly activeCompressionOptions: NSUserInterfaceCompressionOptions;
 }
 
-export class HTMLNSPathControlElement extends HTMLNSControlElement {
-  readonly nativeObject = NSPathControl.new();
-  get delegate(): NSPathControlDelegateImpl {
-    return (this.nativeObject.delegate ??= NSPathControlDelegateImpl.new()) as NSPathControlDelegateImpl;
-  }
+export class HTMLNSStepperElement extends HTMLNSControlElement {
+  readonly nativeObject = NSStepper.new();
 
-  // isEditable: boolean;
-  // placeholderAttributedString: NSAttributedString;
-  // URL: NSURL;
-  // doubleAction: string;
-  // pathStyle: interop.Enum<typeof NSPathStyle>;
-  // readonly clickedPathItem: NSPathControlItem;
-  // backgroundColor: NSColor;
-  // menu: NSMenu;
-
-  set pathcontrolshoulddragitemwithpasteboard(value: (pathControl: NSPathControl, pathItem: NSPathControlItem, pasteboard: NSPasteboard) => boolean) {
-    this.delegate.pathControlShouldDragItemWithPasteboard = value;
-  }
-  set pathcontrolshoulddragpathcomponentcellwithpasteboard(value: (pathControl: NSPathControl, pathComponentCell: NSPathComponentCell, pasteboard: NSPasteboard) => boolean) {
-    this.delegate.pathControlShouldDragPathComponentCellWithPasteboard = value;
-  }
-  set pathcontrolvalidatedrop(value: (pathControl: NSPathControl, info: NSDraggingInfo) => interop.Enum<typeof NSDragOperation>) {
-    this.delegate.pathControlValidateDrop = value;
-  }
-  set pathcontrolacceptdrop(value: (pathControl: NSPathControl, info: NSDraggingInfo) => boolean) {
-    this.delegate.pathControlAcceptDrop = value;
-  }
-  set pathcontrolwilldisplayopenpanel(value: (pathControl: NSPathControl, openPanel: NSOpenPanel) => void) {
-    this.delegate.pathControlWillDisplayOpenPanel = value;
-  }
-  set pathcontrolwillpopupmenu(value: (pathControl: NSPathControl, menu: NSMenu) => void) {
-    this.delegate.pathControlWillPopUpMenu = value;
-  }
+  // minValue: number;
+  // maxValue: number;
+  // increment: number;
+  // valueWraps: boolean;
+  // autorepeat: boolean;
+  // accessibilityValue: interop.Object;
+  // accessibilityFrame: CGRect;
+  // accessibilityParent: interop.Object;
+  // isAccessibilityFocused: boolean;
+  // readonly hash: number;
+  // readonly superclass: interop.Object;
+  // readonly isProxy: boolean;
+  // readonly zone: interop.Pointer;
+  // readonly description: NSString;
+  // readonly debugDescription: NSString;
 }
 
 export class HTMLNSBrowserElement extends HTMLNSControlElement {
@@ -5595,526 +5599,6 @@ export class HTMLNSBrowserElement extends HTMLNSControlElement {
   }
 }
 
-export class HTMLNSLevelIndicatorElement extends HTMLNSControlElement {
-  readonly nativeObject = NSLevelIndicator.new();
-
-  // levelIndicatorStyle: interop.Enum<typeof NSLevelIndicatorStyle>;
-  // isEditable: boolean;
-  // minValue: number;
-  // maxValue: number;
-  // warningValue: number;
-  // criticalValue: number;
-  // tickMarkPosition: interop.Enum<typeof NSTickMarkPosition>;
-  // numberOfTickMarks: number;
-  // numberOfMajorTickMarks: number;
-  // fillColor: NSColor;
-  // warningFillColor: NSColor;
-  // criticalFillColor: NSColor;
-  // drawsTieredCapacityLevels: boolean;
-  // placeholderVisibility: interop.Enum<typeof NSLevelIndicatorPlaceholderVisibility>;
-  // ratingImage: NSImage;
-  // ratingPlaceholderImage: NSImage;
-}
-
-export class HTMLNSComboButtonElement extends HTMLNSControlElement {
-  readonly nativeObject = NSComboButton.new();
-
-  // image: NSImage;
-  // imageScaling: interop.Enum<typeof NSImageScaling>;
-  // menu: NSMenu;
-  // style: interop.Enum<typeof NSComboButtonStyle>;
-}
-
-export class HTMLNSFormElement extends HTMLNSMatrixElement {
-  readonly nativeObject = NSForm.new();
-
-}
-
-export class HTMLNSImageViewElement extends HTMLNSControlElement {
-  readonly nativeObject = NSImageView.new();
-
-  // image: NSImage;
-  // isEditable: boolean;
-  // imageAlignment: interop.Enum<typeof NSImageAlignment>;
-  // imageScaling: interop.Enum<typeof NSImageScaling>;
-  // imageFrameStyle: interop.Enum<typeof NSImageFrameStyle>;
-  // symbolConfiguration: NSImageSymbolConfiguration;
-  // contentTintColor: NSColor;
-  // animates: boolean;
-  // allowsCutCopyPaste: boolean;
-  // defaultPreferredImageDynamicRange: interop.Enum<typeof NSImageDynamicRange>;
-  // preferredImageDynamicRange: interop.Enum<typeof NSImageDynamicRange>;
-  // readonly imageDynamicRange: interop.Enum<typeof NSImageDynamicRange>;
-  // accessibilityFrame: CGRect;
-  // accessibilityParent: interop.Object;
-  // isAccessibilityFocused: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
-}
-
-export class HTMLNSColorPanelElement extends HTMLNSPanelElement {
-  readonly nativeObject = NSColorPanel.new();
-
-  // sharedColorPanel: NSColorPanel;
-  // sharedColorPanelExists: boolean;
-  // accessoryView: NSView;
-  // isContinuous: boolean;
-  // showsAlpha: boolean;
-  // mode: interop.Enum<typeof NSColorPanelMode>;
-  // color: NSColor;
-  // readonly alpha: number;
-}
-
-export class HTMLNSTableViewElement extends HTMLNSControlElement {
-
-  // @ts-ignore
-  readonly nativeObject = NSTableView.new();
-  get delegate(): NSTableViewDelegateImpl {
-    return (this.nativeObject.delegate ??= NSTableViewDelegateImpl.new()) as NSTableViewDelegateImpl;
-  }
-
-  // dataSource: NSTableViewDataSource;
-  // headerView: NSTableHeaderView;
-  // cornerView: NSView;
-  // allowsColumnReordering: boolean;
-  // allowsColumnResizing: boolean;
-  // columnAutoresizingStyle: interop.Enum<typeof NSTableViewColumnAutoresizingStyle>;
-  // gridStyleMask: interop.Enum<typeof NSTableViewGridLineStyle>;
-  // intercellSpacing: CGSize;
-  // usesAlternatingRowBackgroundColors: boolean;
-  // backgroundColor: NSColor;
-  // gridColor: NSColor;
-  // rowSizeStyle: interop.Enum<typeof NSTableViewRowSizeStyle>;
-  // readonly effectiveRowSizeStyle: interop.Enum<typeof NSTableViewRowSizeStyle>;
-  // rowHeight: number;
-  // readonly tableColumns: NSArray;
-  // readonly numberOfColumns: number;
-  // readonly numberOfRows: number;
-  // readonly editedColumn: number;
-  // readonly editedRow: number;
-  // readonly clickedColumn: number;
-  // readonly clickedRow: number;
-  // doubleAction: string;
-  // highlightedTableColumn: NSTableColumn;
-  // verticalMotionCanBeginDrag: boolean;
-  // allowsMultipleSelection: boolean;
-  // allowsEmptySelection: boolean;
-  // allowsColumnSelection: boolean;
-  // readonly selectedColumnIndexes: NSIndexSet;
-  // readonly selectedRowIndexes: NSIndexSet;
-  // readonly selectedColumn: number;
-  // readonly selectedRow: number;
-  // readonly numberOfSelectedColumns: number;
-  // readonly numberOfSelectedRows: number;
-  // allowsTypeSelect: boolean;
-  // style: interop.Enum<typeof NSTableViewStyle>;
-  // readonly effectiveStyle: interop.Enum<typeof NSTableViewStyle>;
-  // selectionHighlightStyle: interop.Enum<typeof NSTableViewSelectionHighlightStyle>;
-  // draggingDestinationFeedbackStyle: interop.Enum<typeof NSTableViewDraggingDestinationFeedbackStyle>;
-  // autosaveTableColumns: boolean;
-  // floatsGroupRows: boolean;
-  // rowActionsVisible: boolean;
-  // readonly hiddenRowIndexes: NSIndexSet;
-  // readonly registeredNibsByIdentifier: NSDictionary;
-  // usesStaticContents: boolean;
-  // userInterfaceLayoutDirection: interop.Enum<typeof NSUserInterfaceLayoutDirection>;
-  // usesAutomaticRowHeights: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
-  // accessibilityFrame: CGRect;
-  // accessibilityParent: interop.Object;
-  // isAccessibilityFocused: boolean;
-
-  set tableviewviewfortablecolumnrow(value: (tableView: NSTableView, tableColumn: NSTableColumn | null, row: number) => NSView) {
-    this.delegate.tableViewViewForTableColumnRow = value;
-  }
-  set tableviewrowviewforrow(value: (tableView: NSTableView, row: number) => NSTableRowView) {
-    this.delegate.tableViewRowViewForRow = value;
-  }
-  set tableviewdidaddrowviewforrow(value: (tableView: NSTableView, rowView: NSTableRowView, row: number) => void) {
-    this.delegate.tableViewDidAddRowViewForRow = value;
-  }
-  set tableviewdidremoverowviewforrow(value: (tableView: NSTableView, rowView: NSTableRowView, row: number) => void) {
-    this.delegate.tableViewDidRemoveRowViewForRow = value;
-  }
-  set tableviewwilldisplaycellfortablecolumnrow(value: (tableView: NSTableView, cell: interop.Object, tableColumn: NSTableColumn | null, row: number) => void) {
-    this.delegate.tableViewWillDisplayCellForTableColumnRow = value;
-  }
-  set tableviewshouldedittablecolumnrow(value: (tableView: NSTableView, tableColumn: NSTableColumn | null, row: number) => boolean) {
-    this.delegate.tableViewShouldEditTableColumnRow = value;
-  }
-  set tableviewtooltipforcellrecttablecolumnrowmouselocation(value: (tableView: NSTableView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, row: number, mouseLocation: CGPoint) => NSString) {
-    this.delegate.tableViewToolTipForCellRectTableColumnRowMouseLocation = value;
-  }
-  set tableviewshouldshowcellexpansionfortablecolumnrow(value: (tableView: NSTableView, tableColumn: NSTableColumn | null, row: number) => boolean) {
-    this.delegate.tableViewShouldShowCellExpansionForTableColumnRow = value;
-  }
-  set tableviewshouldtrackcellfortablecolumnrow(value: (tableView: NSTableView, cell: NSCell, tableColumn: NSTableColumn | null, row: number) => boolean) {
-    this.delegate.tableViewShouldTrackCellForTableColumnRow = value;
-  }
-  set tableviewdatacellfortablecolumnrow(value: (tableView: NSTableView, tableColumn: NSTableColumn | null, row: number) => NSCell) {
-    this.delegate.tableViewDataCellForTableColumnRow = value;
-  }
-  set selectionshouldchangeintableview(value: (tableView: NSTableView) => boolean) {
-    this.delegate.selectionShouldChangeInTableView = value;
-  }
-  set tableviewshouldselectrow(value: (tableView: NSTableView, row: number) => boolean) {
-    this.delegate.tableViewShouldSelectRow = value;
-  }
-  set tableviewselectionindexesforproposedselection(value: (tableView: NSTableView, proposedSelectionIndexes: NSIndexSet) => NSIndexSet) {
-    this.delegate.tableViewSelectionIndexesForProposedSelection = value;
-  }
-  set tableviewshouldselecttablecolumn(value: (tableView: NSTableView, tableColumn: NSTableColumn | null) => boolean) {
-    this.delegate.tableViewShouldSelectTableColumn = value;
-  }
-  set tableviewmousedowninheaderoftablecolumn(value: (tableView: NSTableView, tableColumn: NSTableColumn) => void) {
-    this.delegate.tableViewMouseDownInHeaderOfTableColumn = value;
-  }
-  set tableviewdidclicktablecolumn(value: (tableView: NSTableView, tableColumn: NSTableColumn) => void) {
-    this.delegate.tableViewDidClickTableColumn = value;
-  }
-  set tableviewdiddragtablecolumn(value: (tableView: NSTableView, tableColumn: NSTableColumn) => void) {
-    this.delegate.tableViewDidDragTableColumn = value;
-  }
-  set tableviewheightofrow(value: (tableView: NSTableView, row: number) => number) {
-    this.delegate.tableViewHeightOfRow = value;
-  }
-  set tableviewtypeselectstringfortablecolumnrow(value: (tableView: NSTableView, tableColumn: NSTableColumn | null, row: number) => NSString) {
-    this.delegate.tableViewTypeSelectStringForTableColumnRow = value;
-  }
-  set tableviewnexttypeselectmatchfromrowtorowforstring(value: (tableView: NSTableView, startRow: number, endRow: number, searchString: NSString | string) => number) {
-    this.delegate.tableViewNextTypeSelectMatchFromRowToRowForString = value;
-  }
-  set tableviewshouldtypeselectforeventwithcurrentsearchstring(value: (tableView: NSTableView, event: NSEvent, searchString: NSString | string | null) => boolean) {
-    this.delegate.tableViewShouldTypeSelectForEventWithCurrentSearchString = value;
-  }
-  set tableviewisgrouprow(value: (tableView: NSTableView, row: number) => boolean) {
-    this.delegate.tableViewIsGroupRow = value;
-  }
-  set tableviewsizetofitwidthofcolumn(value: (tableView: NSTableView, column: number) => number) {
-    this.delegate.tableViewSizeToFitWidthOfColumn = value;
-  }
-  set tableviewshouldreordercolumntocolumn(value: (tableView: NSTableView, columnIndex: number, newColumnIndex: number) => boolean) {
-    this.delegate.tableViewShouldReorderColumnToColumn = value;
-  }
-  set tableviewrowactionsforrowedge(value: (tableView: NSTableView, row: number, edge: interop.Enum<typeof NSTableRowActionEdge>) => NSArray) {
-    this.delegate.tableViewRowActionsForRowEdge = value;
-  }
-  set tableviewusercanchangevisibilityoftablecolumn(value: (tableView: NSTableView, column: NSTableColumn) => boolean) {
-    this.delegate.tableViewUserCanChangeVisibilityOfTableColumn = value;
-  }
-  set tableviewuserdidchangevisibilityoftablecolumns(value: (tableView: NSTableView, columns: NSArray | unknown[]) => void) {
-    this.delegate.tableViewUserDidChangeVisibilityOfTableColumns = value;
-  }
-  set tableviewselectiondidchange(value: (notification: NSNotification) => void) {
-    this.delegate.tableViewSelectionDidChange = value;
-  }
-  set tableviewcolumndidmove(value: (notification: NSNotification) => void) {
-    this.delegate.tableViewColumnDidMove = value;
-  }
-  set tableviewcolumndidresize(value: (notification: NSNotification) => void) {
-    this.delegate.tableViewColumnDidResize = value;
-  }
-  set tableviewselectionischanging(value: (notification: NSNotification) => void) {
-    this.delegate.tableViewSelectionIsChanging = value;
-  }
-}
-
-export class HTMLNSLayoutXAxisAnchorElement extends HTMLNSLayoutAnchorElement {
-  readonly nativeObject = NSLayoutXAxisAnchor.new();
-
-}
-
-export class HTMLNSScrubberSelectionViewElement extends HTMLNSScrubberArrangedViewElement {
-  readonly nativeObject = NSScrubberSelectionView.new();
-
-}
-
-export class HTMLNSDiffableDataSourceSnapshotElement extends HTMLNSObjectElement {
-  readonly nativeObject = NSDiffableDataSourceSnapshot.new();
-
-  // readonly numberOfItems: number;
-  // readonly numberOfSections: number;
-  // readonly sectionIdentifiers: NSArray;
-  // readonly itemIdentifiers: NSArray;
-}
-
-export class HTMLNSSearchFieldCellElement extends HTMLNSTextFieldCellElement {
-  readonly nativeObject = NSSearchFieldCell.new();
-
-  // searchButtonCell: NSButtonCell;
-  // cancelButtonCell: NSButtonCell;
-  // searchMenuTemplate: NSMenu;
-  // sendsWholeSearchString: boolean;
-  // maximumRecents: number;
-  // sendsSearchStringImmediately: boolean;
-}
-
-export class HTMLNSDraggingImageComponentElement extends HTMLNSObjectElement {
-  readonly nativeObject = NSDraggingImageComponent.new();
-
-  // contents: interop.Object;
-  // frame: CGRect;
-}
-
-export class HTMLNSRunningApplicationElement extends HTMLNSObjectElement {
-  readonly nativeObject = NSRunningApplication.new();
-
-  // readonly isTerminated: boolean;
-  // readonly isFinishedLaunching: boolean;
-  // readonly isHidden: boolean;
-  // readonly isActive: boolean;
-  // readonly ownsMenuBar: boolean;
-  // readonly activationPolicy: interop.Enum<typeof NSApplicationActivationPolicy>;
-  // readonly localizedName: NSString;
-  // readonly bundleIdentifier: NSString;
-  // readonly bundleURL: NSURL;
-  // readonly executableURL: NSURL;
-  // readonly processIdentifier: number;
-  // readonly launchDate: NSDate;
-  // readonly icon: NSImage;
-  // readonly executableArchitecture: number;
-  // currentApplication: NSRunningApplication;
-}
-
-export class HTMLNSAnimationElement extends HTMLNSObjectElement {
-  readonly nativeObject = NSAnimation.new();
-  get delegate(): NSAnimationDelegateImpl {
-    return (this.nativeObject.delegate ??= NSAnimationDelegateImpl.new()) as NSAnimationDelegateImpl;
-  }
-
-  // readonly isAnimating: boolean;
-  // currentProgress: number;
-  // duration: number;
-  // animationBlockingMode: interop.Enum<typeof NSAnimationBlockingMode>;
-  // frameRate: number;
-  // animationCurve: interop.Enum<typeof NSAnimationCurve>;
-  // readonly currentValue: number;
-  // readonly runLoopModesForAnimating: NSArray;
-
-  set animationshouldstart(value: (animation: NSAnimation) => boolean) {
-    this.delegate.animationShouldStart = value;
-  }
-  set animationdidstop(value: (animation: NSAnimation) => void) {
-    this.delegate.animationDidStop = value;
-  }
-  set animationdidend(value: (animation: NSAnimation) => void) {
-    this.delegate.animationDidEnd = value;
-  }
-  set animationvalueforprogress(value: (animation: NSAnimation, progress: number) => number) {
-    this.delegate.animationValueForProgress = value;
-  }
-  set animationdidreachprogressmark(value: (animation: NSAnimation, progress: number) => void) {
-    this.delegate.animationDidReachProgressMark = value;
-  }
-}
-
-export class HTMLNSSpellCheckerElement extends HTMLNSObjectElement {
-  readonly nativeObject = NSSpellChecker.new();
-
-  // sharedSpellChecker: NSSpellChecker;
-  // sharedSpellCheckerExists: boolean;
-  // readonly userReplacementsDictionary: NSDictionary;
-  // readonly spellingPanel: NSPanel;
-  // accessoryView: NSView;
-  // readonly substitutionsPanel: NSPanel;
-  // substitutionsPanelAccessoryViewController: NSViewController;
-  // readonly availableLanguages: NSArray;
-  // readonly userPreferredLanguages: NSArray;
-  // automaticallyIdentifiesLanguages: boolean;
-  // isAutomaticTextReplacementEnabled: boolean;
-  // isAutomaticSpellingCorrectionEnabled: boolean;
-  // isAutomaticQuoteSubstitutionEnabled: boolean;
-  // isAutomaticDashSubstitutionEnabled: boolean;
-  // isAutomaticCapitalizationEnabled: boolean;
-  // isAutomaticPeriodSubstitutionEnabled: boolean;
-  // isAutomaticTextCompletionEnabled: boolean;
-  // isAutomaticInlinePredictionEnabled: boolean;
-}
-
-export class HTMLNSOutlineViewElement extends HTMLNSTableViewElement {
-
-  // @ts-ignore
-  readonly nativeObject = NSOutlineView.new();
-  get delegate(): NSOutlineViewDelegateImpl {
-    return (this.nativeObject.delegate ??= NSOutlineViewDelegateImpl.new()) as NSOutlineViewDelegateImpl;
-  }
-
-  // dataSource: NSOutlineViewDataSource;
-  // outlineTableColumn: NSTableColumn;
-  // indentationPerLevel: number;
-  // indentationMarkerFollowsCell: boolean;
-  // autoresizesOutlineColumn: boolean;
-  // autosaveExpandedItems: boolean;
-  // userInterfaceLayoutDirection: interop.Enum<typeof NSUserInterfaceLayoutDirection>;
-  // stronglyReferencesItems: boolean;
-  // accessibilityFrame: CGRect;
-  // accessibilityParent: interop.Object;
-  // isAccessibilityFocused: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
-
-  set outlineviewviewfortablecolumnitem(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object) => NSView) {
-    this.delegate.outlineViewViewForTableColumnItem = value;
-  }
-  set outlineviewrowviewforitem(value: (outlineView: NSOutlineView, item: interop.Object) => NSTableRowView) {
-    this.delegate.outlineViewRowViewForItem = value;
-  }
-  set outlineviewdidaddrowviewforrow(value: (outlineView: NSOutlineView, rowView: NSTableRowView, row: number) => void) {
-    this.delegate.outlineViewDidAddRowViewForRow = value;
-  }
-  set outlineviewdidremoverowviewforrow(value: (outlineView: NSOutlineView, rowView: NSTableRowView, row: number) => void) {
-    this.delegate.outlineViewDidRemoveRowViewForRow = value;
-  }
-  set outlineviewwilldisplaycellfortablecolumnitem(value: (outlineView: NSOutlineView, cell: interop.Object, tableColumn: NSTableColumn | null, item: interop.Object) => void) {
-    this.delegate.outlineViewWillDisplayCellForTableColumnItem = value;
-  }
-  set outlineviewshouldedittablecolumnitem(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object) => boolean) {
-    this.delegate.outlineViewShouldEditTableColumnItem = value;
-  }
-  set selectionshouldchangeinoutlineview(value: (outlineView: NSOutlineView) => boolean) {
-    this.delegate.selectionShouldChangeInOutlineView = value;
-  }
-  set outlineviewshouldselectitem(value: (outlineView: NSOutlineView, item: interop.Object) => boolean) {
-    this.delegate.outlineViewShouldSelectItem = value;
-  }
-  set outlineviewselectionindexesforproposedselection(value: (outlineView: NSOutlineView, proposedSelectionIndexes: NSIndexSet) => NSIndexSet) {
-    this.delegate.outlineViewSelectionIndexesForProposedSelection = value;
-  }
-  set outlineviewshouldselecttablecolumn(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null) => boolean) {
-    this.delegate.outlineViewShouldSelectTableColumn = value;
-  }
-  set outlineviewmousedowninheaderoftablecolumn(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn) => void) {
-    this.delegate.outlineViewMouseDownInHeaderOfTableColumn = value;
-  }
-  set outlineviewdidclicktablecolumn(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn) => void) {
-    this.delegate.outlineViewDidClickTableColumn = value;
-  }
-  set outlineviewdiddragtablecolumn(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn) => void) {
-    this.delegate.outlineViewDidDragTableColumn = value;
-  }
-  set outlineviewtooltipforcellrecttablecolumnitemmouselocation(value: (outlineView: NSOutlineView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, item: interop.Object, mouseLocation: CGPoint) => NSString) {
-    this.delegate.outlineViewToolTipForCellRectTableColumnItemMouseLocation = value;
-  }
-  set outlineviewheightofrowbyitem(value: (outlineView: NSOutlineView, item: interop.Object) => number) {
-    this.delegate.outlineViewHeightOfRowByItem = value;
-  }
-  set outlineviewtintconfigurationforitem(value: (outlineView: NSOutlineView, item: interop.Object) => NSTintConfiguration) {
-    this.delegate.outlineViewTintConfigurationForItem = value;
-  }
-  set outlineviewtypeselectstringfortablecolumnitem(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object) => NSString) {
-    this.delegate.outlineViewTypeSelectStringForTableColumnItem = value;
-  }
-  set outlineviewnexttypeselectmatchfromitemtoitemforstring(value: (outlineView: NSOutlineView, startItem: interop.Object, endItem: interop.Object, searchString: NSString | string) => interop.Object) {
-    this.delegate.outlineViewNextTypeSelectMatchFromItemToItemForString = value;
-  }
-  set outlineviewshouldtypeselectforeventwithcurrentsearchstring(value: (outlineView: NSOutlineView, event: NSEvent, searchString: NSString | string | null) => boolean) {
-    this.delegate.outlineViewShouldTypeSelectForEventWithCurrentSearchString = value;
-  }
-  set outlineviewshouldshowcellexpansionfortablecolumnitem(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object) => boolean) {
-    this.delegate.outlineViewShouldShowCellExpansionForTableColumnItem = value;
-  }
-  set outlineviewshouldtrackcellfortablecolumnitem(value: (outlineView: NSOutlineView, cell: NSCell, tableColumn: NSTableColumn | null, item: interop.Object) => boolean) {
-    this.delegate.outlineViewShouldTrackCellForTableColumnItem = value;
-  }
-  set outlineviewdatacellfortablecolumnitem(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object) => NSCell) {
-    this.delegate.outlineViewDataCellForTableColumnItem = value;
-  }
-  set outlineviewisgroupitem(value: (outlineView: NSOutlineView, item: interop.Object) => boolean) {
-    this.delegate.outlineViewIsGroupItem = value;
-  }
-  set outlineviewshouldexpanditem(value: (outlineView: NSOutlineView, item: interop.Object) => boolean) {
-    this.delegate.outlineViewShouldExpandItem = value;
-  }
-  set outlineviewshouldcollapseitem(value: (outlineView: NSOutlineView, item: interop.Object) => boolean) {
-    this.delegate.outlineViewShouldCollapseItem = value;
-  }
-  set outlineviewwilldisplayoutlinecellfortablecolumnitem(value: (outlineView: NSOutlineView, cell: interop.Object, tableColumn: NSTableColumn | null, item: interop.Object) => void) {
-    this.delegate.outlineViewWillDisplayOutlineCellForTableColumnItem = value;
-  }
-  set outlineviewsizetofitwidthofcolumn(value: (outlineView: NSOutlineView, column: number) => number) {
-    this.delegate.outlineViewSizeToFitWidthOfColumn = value;
-  }
-  set outlineviewshouldreordercolumntocolumn(value: (outlineView: NSOutlineView, columnIndex: number, newColumnIndex: number) => boolean) {
-    this.delegate.outlineViewShouldReorderColumnToColumn = value;
-  }
-  set outlineviewshouldshowoutlinecellforitem(value: (outlineView: NSOutlineView, item: interop.Object) => boolean) {
-    this.delegate.outlineViewShouldShowOutlineCellForItem = value;
-  }
-  set outlineviewusercanchangevisibilityoftablecolumn(value: (outlineView: NSOutlineView, column: NSTableColumn) => boolean) {
-    this.delegate.outlineViewUserCanChangeVisibilityOfTableColumn = value;
-  }
-  set outlineviewuserdidchangevisibilityoftablecolumns(value: (outlineView: NSOutlineView, columns: NSArray | unknown[]) => void) {
-    this.delegate.outlineViewUserDidChangeVisibilityOfTableColumns = value;
-  }
-  set outlineviewselectiondidchange(value: (notification: NSNotification) => void) {
-    this.delegate.outlineViewSelectionDidChange = value;
-  }
-  set outlineviewcolumndidmove(value: (notification: NSNotification) => void) {
-    this.delegate.outlineViewColumnDidMove = value;
-  }
-  set outlineviewcolumndidresize(value: (notification: NSNotification) => void) {
-    this.delegate.outlineViewColumnDidResize = value;
-  }
-  set outlineviewselectionischanging(value: (notification: NSNotification) => void) {
-    this.delegate.outlineViewSelectionIsChanging = value;
-  }
-  set outlineviewitemwillexpand(value: (notification: NSNotification) => void) {
-    this.delegate.outlineViewItemWillExpand = value;
-  }
-  set outlineviewitemdidexpand(value: (notification: NSNotification) => void) {
-    this.delegate.outlineViewItemDidExpand = value;
-  }
-  set outlineviewitemwillcollapse(value: (notification: NSNotification) => void) {
-    this.delegate.outlineViewItemWillCollapse = value;
-  }
-  set outlineviewitemdidcollapse(value: (notification: NSNotification) => void) {
-    this.delegate.outlineViewItemDidCollapse = value;
-  }
-}
-
-export class HTMLNSSliderElement extends HTMLNSControlElement {
-  readonly nativeObject = NSSlider.new();
-
-  // sliderType: interop.Enum<typeof NSSliderType>;
-  // minValue: number;
-  // maxValue: number;
-  // altIncrementValue: number;
-  // readonly knobThickness: number;
-  // isVertical: boolean;
-  // trackFillColor: NSColor;
-  // numberOfTickMarks: number;
-  // tickMarkPosition: interop.Enum<typeof NSTickMarkPosition>;
-  // allowsTickMarkValuesOnly: boolean;
-  // accessibilityValue: interop.Object;
-  // accessibilityFrame: CGRect;
-  // accessibilityParent: interop.Object;
-  // isAccessibilityFocused: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
-}
-
-export class HTMLNSPredicateEditorElement extends HTMLNSRuleEditorElement {
-  readonly nativeObject = NSPredicateEditor.new();
-
-}
-
 export class HTMLNSTextFieldElement extends HTMLNSControlElement {
 
   // @ts-ignore
@@ -6160,39 +5644,47 @@ export class HTMLNSTextFieldElement extends HTMLNSControlElement {
   }
 }
 
-export class HTMLNSScrubberTextItemViewElement extends HTMLNSScrubberItemViewElement {
-  readonly nativeObject = NSScrubberTextItemView.new();
+export class HTMLNSLevelIndicatorElement extends HTMLNSControlElement {
+  readonly nativeObject = NSLevelIndicator.new();
 
-  // readonly textField: NSTextField;
+  // levelIndicatorStyle: interop.Enum<typeof NSLevelIndicatorStyle>;
+  // isEditable: boolean;
+  // minValue: number;
+  // maxValue: number;
+  // warningValue: number;
+  // criticalValue: number;
+  // tickMarkPosition: interop.Enum<typeof NSTickMarkPosition>;
+  // numberOfTickMarks: number;
+  // numberOfMajorTickMarks: number;
+  // fillColor: NSColor;
+  // warningFillColor: NSColor;
+  // criticalFillColor: NSColor;
+  // drawsTieredCapacityLevels: boolean;
+  // placeholderVisibility: interop.Enum<typeof NSLevelIndicatorPlaceholderVisibility>;
+  // ratingImage: NSImage;
+  // ratingPlaceholderImage: NSImage;
 }
 
-export class HTMLNSButtonElement extends HTMLNSControlElement {
+export class HTMLNSFormElement extends HTMLNSMatrixElement {
+  readonly nativeObject = NSForm.new();
 
-  // @ts-ignore
-  readonly nativeObject = NSButton.new();
+}
 
-  // attributedTitle: NSAttributedString;
-  // attributedAlternateTitle: NSAttributedString;
-  // hasDestructiveAction: boolean;
-  // sound: NSSound;
-  // isSpringLoaded: boolean;
-  // maxAcceleratorLevel: number;
-  // bezelStyle: interop.Enum<typeof NSBezelStyle>;
-  // isBordered: boolean;
-  // isTransparent: boolean;
-  // showsBorderOnlyWhileMouseInside: boolean;
-  // bezelColor: NSColor;
-  // contentTintColor: NSColor;
+export class HTMLNSImageViewElement extends HTMLNSControlElement {
+  readonly nativeObject = NSImageView.new();
+
   // image: NSImage;
-  // alternateImage: NSImage;
-  // imagePosition: interop.Enum<typeof NSCellImagePosition>;
+  // isEditable: boolean;
+  // imageAlignment: interop.Enum<typeof NSImageAlignment>;
   // imageScaling: interop.Enum<typeof NSImageScaling>;
-  // imageHugsTitle: boolean;
+  // imageFrameStyle: interop.Enum<typeof NSImageFrameStyle>;
   // symbolConfiguration: NSImageSymbolConfiguration;
-  // state: number;
-  // allowsMixedState: boolean;
-  // keyEquivalentModifierMask: interop.Enum<typeof NSEventModifierFlags>;
-  // readonly activeCompressionOptions: NSUserInterfaceCompressionOptions;
+  // contentTintColor: NSColor;
+  // animates: boolean;
+  // allowsCutCopyPaste: boolean;
+  // defaultPreferredImageDynamicRange: interop.Enum<typeof NSImageDynamicRange>;
+  // preferredImageDynamicRange: interop.Enum<typeof NSImageDynamicRange>;
+  // readonly imageDynamicRange: interop.Enum<typeof NSImageDynamicRange>;
   // accessibilityFrame: CGRect;
   // accessibilityParent: interop.Object;
   // isAccessibilityFocused: boolean;
@@ -6202,321 +5694,11 @@ export class HTMLNSButtonElement extends HTMLNSControlElement {
   // readonly zone: interop.Pointer;
   // readonly description: NSString;
   // readonly debugDescription: NSString;
-}
-
-export class HTMLNSSharingServicePickerTouchBarItemElement extends HTMLNSTouchBarItemElement {
-  readonly nativeObject = NSSharingServicePickerTouchBarItem.new();
-
-  // delegate: NSSharingServicePickerTouchBarItemDelegate | null;
-  // isEnabled: boolean;
-  // buttonImage: NSImage;
-}
-
-export class HTMLNSSwitchElement extends HTMLNSControlElement {
-
-  // @ts-ignore
-  readonly nativeObject = NSSwitch.new();
-
-  // state: number;
-  // accessibilityFrame: CGRect;
-  // accessibilityParent: interop.Object;
-  // isAccessibilityFocused: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
-}
-
-export class HTMLNSTextParagraphElement extends HTMLNSTextElementElement {
-  readonly nativeObject = NSTextParagraph.new();
-
-  // readonly attributedString: NSAttributedString;
-  // readonly paragraphContentRange: NSTextRange;
-  // readonly paragraphSeparatorRange: NSTextRange;
-}
-
-export class HTMLNSPageControllerElement extends HTMLNSViewControllerElement {
-  readonly nativeObject = NSPageController.new();
-  get delegate(): NSPageControllerDelegateImpl {
-    return (this.nativeObject.delegate ??= NSPageControllerDelegateImpl.new()) as NSPageControllerDelegateImpl;
-  }
-
-  // readonly selectedViewController: NSViewController;
-  // transitionStyle: interop.Enum<typeof NSPageControllerTransitionStyle>;
-  // selectedIndex: number;
-
-  set pagecontrolleridentifierforobject(value: (pageController: NSPageController, object: interop.Object) => NSString) {
-    this.delegate.pageControllerIdentifierForObject = value;
-  }
-  set pagecontrollerviewcontrollerforidentifier(value: (pageController: NSPageController, identifier: NSString | string) => NSViewController) {
-    this.delegate.pageControllerViewControllerForIdentifier = value;
-  }
-  set pagecontrollerframeforobject(value: (pageController: NSPageController, object: interop.Object | null) => CGRect) {
-    this.delegate.pageControllerFrameForObject = value;
-  }
-  set pagecontrollerprepareviewcontrollerwithobject(value: (pageController: NSPageController, viewController: NSViewController, object: interop.Object | null) => void) {
-    this.delegate.pageControllerPrepareViewControllerWithObject = value;
-  }
-  set pagecontrollerdidtransitiontoobject(value: (pageController: NSPageController, object: interop.Object) => void) {
-    this.delegate.pageControllerDidTransitionToObject = value;
-  }
-  set pagecontrollerwillstartlivetransition(value: (pageController: NSPageController) => void) {
-    this.delegate.pageControllerWillStartLiveTransition = value;
-  }
-  set pagecontrollerdidendlivetransition(value: (pageController: NSPageController) => void) {
-    this.delegate.pageControllerDidEndLiveTransition = value;
-  }
-}
-
-export class HTMLNSTextListElementElement extends HTMLNSTextParagraphElement {
-
-  // @ts-ignore
-  readonly nativeObject = NSTextListElement.new();
-
-  // readonly textList: NSTextList;
-  // readonly contents: NSAttributedString;
-  // readonly markerAttributes: NSDictionary;
-  // readonly attributedString: NSAttributedString;
-  // readonly childElements: NSArray;
-  // readonly parentElement: NSTextListElement;
-}
-
-export class HTMLNSComboBoxElement extends HTMLNSTextFieldElement {
-
-  // @ts-ignore
-  readonly nativeObject = NSComboBox.new();
-  get delegate(): NSComboBoxDelegateImpl {
-    return (this.nativeObject.delegate ??= NSComboBoxDelegateImpl.new()) as NSComboBoxDelegateImpl;
-  }
-
-  // hasVerticalScroller: boolean;
-  // intercellSpacing: CGSize;
-  // itemHeight: number;
-  // numberOfVisibleItems: number;
-  // isButtonBordered: boolean;
-  // usesDataSource: boolean;
-  // readonly indexOfSelectedItem: number;
-  // readonly numberOfItems: number;
-  // completes: boolean;
-  // dataSource: NSComboBoxDataSource;
-  // readonly objectValueOfSelectedItem: interop.Object;
-  // readonly objectValues: NSArray;
-
-  set comboboxwillpopup(value: (notification: NSNotification) => void) {
-    this.delegate.comboBoxWillPopUp = value;
-  }
-  set comboboxwilldismiss(value: (notification: NSNotification) => void) {
-    this.delegate.comboBoxWillDismiss = value;
-  }
-  set comboboxselectiondidchange(value: (notification: NSNotification) => void) {
-    this.delegate.comboBoxSelectionDidChange = value;
-  }
-  set comboboxselectionischanging(value: (notification: NSNotification) => void) {
-    this.delegate.comboBoxSelectionIsChanging = value;
-  }
 }
 
 export class HTMLNSSecureTextFieldElement extends HTMLNSTextFieldElement {
   readonly nativeObject = NSSecureTextField.new();
 
-}
-
-export class HTMLNSPopUpButtonElement extends HTMLNSButtonElement {
-
-  // @ts-ignore
-  readonly nativeObject = NSPopUpButton.new();
-
-  // menu: NSMenu;
-  // pullsDown: boolean;
-  // autoenablesItems: boolean;
-  // preferredEdge: interop.Enum<typeof NSRectEdge>;
-  // readonly itemArray: NSArray;
-  // readonly numberOfItems: number;
-  // readonly lastItem: NSMenuItem;
-  // readonly selectedItem: NSMenuItem;
-  // readonly indexOfSelectedItem: number;
-  // readonly selectedTag: number;
-  // readonly itemTitles: NSArray;
-  // readonly titleOfSelectedItem: NSString;
-}
-
-export class HTMLNSScrollerElement extends HTMLNSControlElement {
-  readonly nativeObject = NSScroller.new();
-
-  // isCompatibleWithOverlayScrollers: boolean;
-  // preferredScrollerStyle: interop.Enum<typeof NSScrollerStyle>;
-  // scrollerStyle: interop.Enum<typeof NSScrollerStyle>;
-  // knobStyle: interop.Enum<typeof NSScrollerKnobStyle>;
-  // readonly usableParts: interop.Enum<typeof NSUsableScrollerParts>;
-  // controlSize: interop.Enum<typeof NSControlSize>;
-  // readonly hitPart: interop.Enum<typeof NSScrollerPart>;
-  // knobProportion: number;
-  // arrowsPosition: interop.Enum<typeof NSScrollArrowPosition>;
-  // controlTint: interop.Enum<typeof NSControlTint>;
-}
-
-export class HTMLNSViewAnimationElement extends HTMLNSAnimationElement {
-  readonly nativeObject = NSViewAnimation.new();
-
-}
-
-export class HTMLNSTabViewControllerElement extends HTMLNSViewControllerElement {
-  readonly nativeObject = NSTabViewController.new();
-
-  // tabStyle: interop.Enum<typeof NSTabViewControllerTabStyle>;
-  // tabView: NSTabView;
-  // transitionOptions: interop.Enum<typeof NSViewControllerTransitionOptions>;
-  // canPropagateSelectedChildViewControllerTitle: boolean;
-  // selectedTabViewItemIndex: number;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
-}
-
-export class HTMLNSOpenPanelElement extends HTMLNSSavePanelElement {
-  readonly nativeObject = NSOpenPanel.new();
-
-  // readonly URLs: NSArray;
-  // resolvesAliases: boolean;
-  // canChooseDirectories: boolean;
-  // allowsMultipleSelection: boolean;
-  // canChooseFiles: boolean;
-  // canResolveUbiquitousConflicts: boolean;
-  // canDownloadUbiquitousContents: boolean;
-  // isAccessoryViewDisclosed: boolean;
-}
-
-export class HTMLNSTokenFieldElement extends HTMLNSTextFieldElement {
-
-  // @ts-ignore
-  readonly nativeObject = NSTokenField.new();
-  get delegate(): NSTokenFieldDelegateImpl {
-    return (this.nativeObject.delegate ??= NSTokenFieldDelegateImpl.new()) as NSTokenFieldDelegateImpl;
-  }
-
-  // tokenStyle: interop.Enum<typeof NSTokenStyle>;
-  // completionDelay: number;
-  // defaultCompletionDelay: number;
-  // tokenizingCharacterSet: NSCharacterSet;
-  // defaultTokenizingCharacterSet: NSCharacterSet;
-
-  set tokenfieldcompletionsforsubstringindexoftokenindexofselecteditem(value: (tokenField: NSTokenField, substring: NSString | string, tokenIndex: number, selectedIndex: interop.PointerConvertible) => NSArray) {
-    this.delegate.tokenFieldCompletionsForSubstringIndexOfTokenIndexOfSelectedItem = value;
-  }
-  set tokenfieldshouldaddobjectsatindex(value: (tokenField: NSTokenField, tokens: NSArray | unknown[], index: number) => NSArray) {
-    this.delegate.tokenFieldShouldAddObjectsAtIndex = value;
-  }
-  set tokenfielddisplaystringforrepresentedobject(value: (tokenField: NSTokenField, representedObject: interop.Object) => NSString) {
-    this.delegate.tokenFieldDisplayStringForRepresentedObject = value;
-  }
-  set tokenfieldeditingstringforrepresentedobject(value: (tokenField: NSTokenField, representedObject: interop.Object) => NSString) {
-    this.delegate.tokenFieldEditingStringForRepresentedObject = value;
-  }
-  set tokenfieldrepresentedobjectforeditingstring(value: (tokenField: NSTokenField, editingString: NSString | string) => interop.Object) {
-    this.delegate.tokenFieldRepresentedObjectForEditingString = value;
-  }
-  set tokenfieldwriterepresentedobjectstopasteboard(value: (tokenField: NSTokenField, objects: NSArray | unknown[], pboard: NSPasteboard) => boolean) {
-    this.delegate.tokenFieldWriteRepresentedObjectsToPasteboard = value;
-  }
-  set tokenfieldreadfrompasteboard(value: (tokenField: NSTokenField, pboard: NSPasteboard) => NSArray) {
-    this.delegate.tokenFieldReadFromPasteboard = value;
-  }
-  set tokenfieldmenuforrepresentedobject(value: (tokenField: NSTokenField, representedObject: interop.Object) => NSMenu) {
-    this.delegate.tokenFieldMenuForRepresentedObject = value;
-  }
-  set tokenfieldhasmenuforrepresentedobject(value: (tokenField: NSTokenField, representedObject: interop.Object) => boolean) {
-    this.delegate.tokenFieldHasMenuForRepresentedObject = value;
-  }
-  set tokenfieldstyleforrepresentedobject(value: (tokenField: NSTokenField, representedObject: interop.Object) => interop.Enum<typeof NSTokenStyle>) {
-    this.delegate.tokenFieldStyleForRepresentedObject = value;
-  }
-}
-
-export class HTMLNSSearchFieldElement extends HTMLNSTextFieldElement {
-
-  // @ts-ignore
-  readonly nativeObject = NSSearchField.new();
-  get delegate(): NSSearchFieldDelegateImpl {
-    return (this.nativeObject.delegate ??= NSSearchFieldDelegateImpl.new()) as NSSearchFieldDelegateImpl;
-  }
-
-  // readonly searchTextBounds: CGRect;
-  // readonly searchButtonBounds: CGRect;
-  // readonly cancelButtonBounds: CGRect;
-  // searchMenuTemplate: NSMenu;
-  // sendsWholeSearchString: boolean;
-  // maximumRecents: number;
-  // sendsSearchStringImmediately: boolean;
-  // centersPlaceholder: boolean;
-
-  set searchfielddidstartsearching(value: (sender: NSSearchField) => void) {
-    this.delegate.searchFieldDidStartSearching = value;
-  }
-  set searchfielddidendsearching(value: (sender: NSSearchField) => void) {
-    this.delegate.searchFieldDidEndSearching = value;
-  }
-}
-
-export class HTMLNSStepperElement extends HTMLNSControlElement {
-  readonly nativeObject = NSStepper.new();
-
-  // minValue: number;
-  // maxValue: number;
-  // increment: number;
-  // valueWraps: boolean;
-  // autorepeat: boolean;
-  // accessibilityValue: interop.Object;
-  // accessibilityFrame: CGRect;
-  // accessibilityParent: interop.Object;
-  // isAccessibilityFocused: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
-}
-
-export class HTMLNSTextContentStorageElement extends HTMLNSTextContentManagerElement {
-
-  // @ts-ignore
-  readonly nativeObject = NSTextContentStorage.new();
-  get delegate(): NSTextContentStorageDelegateImpl {
-    return (this.nativeObject.delegate ??= NSTextContentStorageDelegateImpl.new()) as NSTextContentStorageDelegateImpl;
-  }
-
-  // attributedString: NSAttributedString;
-  // textStorage: NSTextStorage;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
-
-  set textcontentstoragetextparagraphwithrange(value: (textContentStorage: NSTextContentStorage, range: _NSRange) => NSTextParagraph) {
-    this.delegate.textContentStorageTextParagraphWithRange = value;
-  }
-}
-
-export class HTMLNSStatusBarButtonElement extends HTMLNSButtonElement {
-  readonly nativeObject = NSStatusBarButton.new();
-
-  // appearsDisabled: boolean;
-}
-
-export class HTMLNSPDFImageRepElement extends HTMLNSImageRepElement {
-  readonly nativeObject = NSPDFImageRep.new();
-
-  // readonly PDFRepresentation: NSData;
-  // readonly bounds: CGRect;
-  // currentPage: number;
-  // readonly pageCount: number;
 }
 
 export class HTMLNSTextViewElement extends HTMLNSTextElement {
@@ -6692,6 +5874,847 @@ export class HTMLNSTextViewElement extends HTMLNSTextElement {
   set textviewdraggedcellinrectevent(value: (view: NSTextView, cell: NSTextAttachmentCell, rect: CGRect, event: NSEvent) => void) {
     this.delegate.textViewDraggedCellInRectEvent = value;
   }
+}
+
+export class HTMLNSColorWellElement extends HTMLNSControlElement {
+  readonly nativeObject = NSColorWell.new();
+
+  // readonly isActive: boolean;
+  // isBordered: boolean;
+  // color: NSColor;
+  // colorWellStyle: interop.Enum<typeof NSColorWellStyle>;
+  // image: NSImage;
+  // pulldownTarget: interop.Object;
+  // pulldownAction: string;
+  // supportsAlpha: boolean;
+}
+
+export class HTMLNSLayoutXAxisAnchorElement extends HTMLNSLayoutAnchorElement {
+  readonly nativeObject = NSLayoutXAxisAnchor.new();
+
+}
+
+export class HTMLNSTabViewControllerElement extends HTMLNSViewControllerElement {
+  readonly nativeObject = NSTabViewController.new();
+
+  // tabStyle: interop.Enum<typeof NSTabViewControllerTabStyle>;
+  // tabView: NSTabView;
+  // transitionOptions: interop.Enum<typeof NSViewControllerTransitionOptions>;
+  // canPropagateSelectedChildViewControllerTitle: boolean;
+  // selectedTabViewItemIndex: number;
+  // readonly hash: number;
+  // readonly superclass: interop.Object;
+  // readonly isProxy: boolean;
+  // readonly zone: interop.Pointer;
+  // readonly description: NSString;
+  // readonly debugDescription: NSString;
+}
+
+export class HTMLNSSharingServicePickerTouchBarItemElement extends HTMLNSTouchBarItemElement {
+  readonly nativeObject = NSSharingServicePickerTouchBarItem.new();
+
+  // delegate: NSSharingServicePickerTouchBarItemDelegate | null;
+  // isEnabled: boolean;
+  // buttonImage: NSImage;
+}
+
+export class HTMLNSTextContentStorageElement extends HTMLNSTextContentManagerElement {
+
+  // @ts-ignore
+  readonly nativeObject = NSTextContentStorage.new();
+  get delegate(): NSTextContentStorageDelegateImpl {
+    return (this.nativeObject.delegate ??= NSTextContentStorageDelegateImpl.new()) as NSTextContentStorageDelegateImpl;
+  }
+
+  // attributedString: NSAttributedString;
+  // textStorage: NSTextStorage;
+  // readonly hash: number;
+  // readonly superclass: interop.Object;
+  // readonly isProxy: boolean;
+  // readonly zone: interop.Pointer;
+  // readonly description: NSString;
+  // readonly debugDescription: NSString;
+
+  set textcontentstoragetextparagraphwithrange(value: (textContentStorage: NSTextContentStorage, range: _NSRange) => NSTextParagraph) {
+    this.delegate.textContentStorageTextParagraphWithRange = value;
+  }
+}
+
+export class HTMLNSSwitchElement extends HTMLNSControlElement {
+
+  // @ts-ignore
+  readonly nativeObject = NSSwitch.new();
+
+  // state: number;
+  // accessibilityFrame: CGRect;
+  // accessibilityParent: interop.Object;
+  // isAccessibilityFocused: boolean;
+  // readonly hash: number;
+  // readonly superclass: interop.Object;
+  // readonly isProxy: boolean;
+  // readonly zone: interop.Pointer;
+  // readonly description: NSString;
+  // readonly debugDescription: NSString;
+}
+
+export class HTMLNSOpenPanelElement extends HTMLNSSavePanelElement {
+  readonly nativeObject = NSOpenPanel.new();
+
+  // readonly URLs: NSArray;
+  // resolvesAliases: boolean;
+  // canChooseDirectories: boolean;
+  // allowsMultipleSelection: boolean;
+  // canChooseFiles: boolean;
+  // canResolveUbiquitousConflicts: boolean;
+  // canDownloadUbiquitousContents: boolean;
+  // isAccessoryViewDisclosed: boolean;
+}
+
+export class HTMLNSTextParagraphElement extends HTMLNSTextElementElement {
+  readonly nativeObject = NSTextParagraph.new();
+
+  // readonly attributedString: NSAttributedString;
+  // readonly paragraphContentRange: NSTextRange;
+  // readonly paragraphSeparatorRange: NSTextRange;
+}
+
+export class HTMLNSPDFImageRepElement extends HTMLNSImageRepElement {
+  readonly nativeObject = NSPDFImageRep.new();
+
+  // readonly PDFRepresentation: NSData;
+  // readonly bounds: CGRect;
+  // currentPage: number;
+  // readonly pageCount: number;
+}
+
+export class HTMLNSPageControllerElement extends HTMLNSViewControllerElement {
+  readonly nativeObject = NSPageController.new();
+  get delegate(): NSPageControllerDelegateImpl {
+    return (this.nativeObject.delegate ??= NSPageControllerDelegateImpl.new()) as NSPageControllerDelegateImpl;
+  }
+
+  // readonly selectedViewController: NSViewController;
+  // transitionStyle: interop.Enum<typeof NSPageControllerTransitionStyle>;
+  // selectedIndex: number;
+
+  set pagecontrolleridentifierforobject(value: (pageController: NSPageController, object: interop.Object) => NSString) {
+    this.delegate.pageControllerIdentifierForObject = value;
+  }
+  set pagecontrollerviewcontrollerforidentifier(value: (pageController: NSPageController, identifier: NSString | string) => NSViewController) {
+    this.delegate.pageControllerViewControllerForIdentifier = value;
+  }
+  set pagecontrollerframeforobject(value: (pageController: NSPageController, object: interop.Object | null) => CGRect) {
+    this.delegate.pageControllerFrameForObject = value;
+  }
+  set pagecontrollerprepareviewcontrollerwithobject(value: (pageController: NSPageController, viewController: NSViewController, object: interop.Object | null) => void) {
+    this.delegate.pageControllerPrepareViewControllerWithObject = value;
+  }
+  set pagecontrollerdidtransitiontoobject(value: (pageController: NSPageController, object: interop.Object) => void) {
+    this.delegate.pageControllerDidTransitionToObject = value;
+  }
+  set pagecontrollerwillstartlivetransition(value: (pageController: NSPageController) => void) {
+    this.delegate.pageControllerWillStartLiveTransition = value;
+  }
+  set pagecontrollerdidendlivetransition(value: (pageController: NSPageController) => void) {
+    this.delegate.pageControllerDidEndLiveTransition = value;
+  }
+}
+
+export class HTMLNSComboBoxElement extends HTMLNSTextFieldElement {
+
+  // @ts-ignore
+  readonly nativeObject = NSComboBox.new();
+  get delegate(): NSComboBoxDelegateImpl {
+    return (this.nativeObject.delegate ??= NSComboBoxDelegateImpl.new()) as NSComboBoxDelegateImpl;
+  }
+
+  // hasVerticalScroller: boolean;
+  // intercellSpacing: CGSize;
+  // itemHeight: number;
+  // numberOfVisibleItems: number;
+  // isButtonBordered: boolean;
+  // usesDataSource: boolean;
+  // readonly indexOfSelectedItem: number;
+  // readonly numberOfItems: number;
+  // completes: boolean;
+  // dataSource: NSComboBoxDataSource;
+  // readonly objectValueOfSelectedItem: interop.Object;
+  // readonly objectValues: NSArray;
+
+  set comboboxwillpopup(value: (notification: NSNotification) => void) {
+    this.delegate.comboBoxWillPopUp = value;
+  }
+  set comboboxwilldismiss(value: (notification: NSNotification) => void) {
+    this.delegate.comboBoxWillDismiss = value;
+  }
+  set comboboxselectiondidchange(value: (notification: NSNotification) => void) {
+    this.delegate.comboBoxSelectionDidChange = value;
+  }
+  set comboboxselectionischanging(value: (notification: NSNotification) => void) {
+    this.delegate.comboBoxSelectionIsChanging = value;
+  }
+}
+
+export class HTMLNSSliderElement extends HTMLNSControlElement {
+  readonly nativeObject = NSSlider.new();
+
+  // sliderType: interop.Enum<typeof NSSliderType>;
+  // minValue: number;
+  // maxValue: number;
+  // altIncrementValue: number;
+  // readonly knobThickness: number;
+  // isVertical: boolean;
+  // trackFillColor: NSColor;
+  // numberOfTickMarks: number;
+  // tickMarkPosition: interop.Enum<typeof NSTickMarkPosition>;
+  // allowsTickMarkValuesOnly: boolean;
+  // accessibilityValue: interop.Object;
+  // accessibilityFrame: CGRect;
+  // accessibilityParent: interop.Object;
+  // isAccessibilityFocused: boolean;
+  // readonly hash: number;
+  // readonly superclass: interop.Object;
+  // readonly isProxy: boolean;
+  // readonly zone: interop.Pointer;
+  // readonly description: NSString;
+  // readonly debugDescription: NSString;
+}
+
+export class HTMLNSSearchFieldElement extends HTMLNSTextFieldElement {
+
+  // @ts-ignore
+  readonly nativeObject = NSSearchField.new();
+  get delegate(): NSSearchFieldDelegateImpl {
+    return (this.nativeObject.delegate ??= NSSearchFieldDelegateImpl.new()) as NSSearchFieldDelegateImpl;
+  }
+
+  // readonly searchTextBounds: CGRect;
+  // readonly searchButtonBounds: CGRect;
+  // readonly cancelButtonBounds: CGRect;
+  // searchMenuTemplate: NSMenu;
+  // sendsWholeSearchString: boolean;
+  // maximumRecents: number;
+  // sendsSearchStringImmediately: boolean;
+  // centersPlaceholder: boolean;
+
+  set searchfielddidstartsearching(value: (sender: NSSearchField) => void) {
+    this.delegate.searchFieldDidStartSearching = value;
+  }
+  set searchfielddidendsearching(value: (sender: NSSearchField) => void) {
+    this.delegate.searchFieldDidEndSearching = value;
+  }
+}
+
+export class HTMLNSTokenFieldElement extends HTMLNSTextFieldElement {
+
+  // @ts-ignore
+  readonly nativeObject = NSTokenField.new();
+  get delegate(): NSTokenFieldDelegateImpl {
+    return (this.nativeObject.delegate ??= NSTokenFieldDelegateImpl.new()) as NSTokenFieldDelegateImpl;
+  }
+
+  // tokenStyle: interop.Enum<typeof NSTokenStyle>;
+  // completionDelay: number;
+  // defaultCompletionDelay: number;
+  // tokenizingCharacterSet: NSCharacterSet;
+  // defaultTokenizingCharacterSet: NSCharacterSet;
+
+  set tokenfieldcompletionsforsubstringindexoftokenindexofselecteditem(value: (tokenField: NSTokenField, substring: NSString | string, tokenIndex: number, selectedIndex: interop.PointerConvertible) => NSArray) {
+    this.delegate.tokenFieldCompletionsForSubstringIndexOfTokenIndexOfSelectedItem = value;
+  }
+  set tokenfieldshouldaddobjectsatindex(value: (tokenField: NSTokenField, tokens: NSArray | unknown[], index: number) => NSArray) {
+    this.delegate.tokenFieldShouldAddObjectsAtIndex = value;
+  }
+  set tokenfielddisplaystringforrepresentedobject(value: (tokenField: NSTokenField, representedObject: interop.Object) => NSString) {
+    this.delegate.tokenFieldDisplayStringForRepresentedObject = value;
+  }
+  set tokenfieldeditingstringforrepresentedobject(value: (tokenField: NSTokenField, representedObject: interop.Object) => NSString) {
+    this.delegate.tokenFieldEditingStringForRepresentedObject = value;
+  }
+  set tokenfieldrepresentedobjectforeditingstring(value: (tokenField: NSTokenField, editingString: NSString | string) => interop.Object) {
+    this.delegate.tokenFieldRepresentedObjectForEditingString = value;
+  }
+  set tokenfieldwriterepresentedobjectstopasteboard(value: (tokenField: NSTokenField, objects: NSArray | unknown[], pboard: NSPasteboard) => boolean) {
+    this.delegate.tokenFieldWriteRepresentedObjectsToPasteboard = value;
+  }
+  set tokenfieldreadfrompasteboard(value: (tokenField: NSTokenField, pboard: NSPasteboard) => NSArray) {
+    this.delegate.tokenFieldReadFromPasteboard = value;
+  }
+  set tokenfieldmenuforrepresentedobject(value: (tokenField: NSTokenField, representedObject: interop.Object) => NSMenu) {
+    this.delegate.tokenFieldMenuForRepresentedObject = value;
+  }
+  set tokenfieldhasmenuforrepresentedobject(value: (tokenField: NSTokenField, representedObject: interop.Object) => boolean) {
+    this.delegate.tokenFieldHasMenuForRepresentedObject = value;
+  }
+  set tokenfieldstyleforrepresentedobject(value: (tokenField: NSTokenField, representedObject: interop.Object) => interop.Enum<typeof NSTokenStyle>) {
+    this.delegate.tokenFieldStyleForRepresentedObject = value;
+  }
+}
+
+export class HTMLNSTableViewElement extends HTMLNSControlElement {
+
+  // @ts-ignore
+  readonly nativeObject = NSTableView.new();
+  get delegate(): NSTableViewDelegateImpl {
+    return (this.nativeObject.delegate ??= NSTableViewDelegateImpl.new()) as NSTableViewDelegateImpl;
+  }
+
+  // dataSource: NSTableViewDataSource;
+  // headerView: NSTableHeaderView;
+  // cornerView: NSView;
+  // allowsColumnReordering: boolean;
+  // allowsColumnResizing: boolean;
+  // columnAutoresizingStyle: interop.Enum<typeof NSTableViewColumnAutoresizingStyle>;
+  // gridStyleMask: interop.Enum<typeof NSTableViewGridLineStyle>;
+  // intercellSpacing: CGSize;
+  // usesAlternatingRowBackgroundColors: boolean;
+  // backgroundColor: NSColor;
+  // gridColor: NSColor;
+  // rowSizeStyle: interop.Enum<typeof NSTableViewRowSizeStyle>;
+  // readonly effectiveRowSizeStyle: interop.Enum<typeof NSTableViewRowSizeStyle>;
+  // rowHeight: number;
+  // readonly tableColumns: NSArray;
+  // readonly numberOfColumns: number;
+  // readonly numberOfRows: number;
+  // readonly editedColumn: number;
+  // readonly editedRow: number;
+  // readonly clickedColumn: number;
+  // readonly clickedRow: number;
+  // doubleAction: string;
+  // highlightedTableColumn: NSTableColumn;
+  // verticalMotionCanBeginDrag: boolean;
+  // allowsMultipleSelection: boolean;
+  // allowsEmptySelection: boolean;
+  // allowsColumnSelection: boolean;
+  // readonly selectedColumnIndexes: NSIndexSet;
+  // readonly selectedRowIndexes: NSIndexSet;
+  // readonly selectedColumn: number;
+  // readonly selectedRow: number;
+  // readonly numberOfSelectedColumns: number;
+  // readonly numberOfSelectedRows: number;
+  // allowsTypeSelect: boolean;
+  // style: interop.Enum<typeof NSTableViewStyle>;
+  // readonly effectiveStyle: interop.Enum<typeof NSTableViewStyle>;
+  // selectionHighlightStyle: interop.Enum<typeof NSTableViewSelectionHighlightStyle>;
+  // draggingDestinationFeedbackStyle: interop.Enum<typeof NSTableViewDraggingDestinationFeedbackStyle>;
+  // autosaveTableColumns: boolean;
+  // floatsGroupRows: boolean;
+  // rowActionsVisible: boolean;
+  // readonly hiddenRowIndexes: NSIndexSet;
+  // readonly registeredNibsByIdentifier: NSDictionary;
+  // usesStaticContents: boolean;
+  // userInterfaceLayoutDirection: interop.Enum<typeof NSUserInterfaceLayoutDirection>;
+  // usesAutomaticRowHeights: boolean;
+  // readonly hash: number;
+  // readonly superclass: interop.Object;
+  // readonly isProxy: boolean;
+  // readonly zone: interop.Pointer;
+  // readonly description: NSString;
+  // readonly debugDescription: NSString;
+  // accessibilityFrame: CGRect;
+  // accessibilityParent: interop.Object;
+  // isAccessibilityFocused: boolean;
+
+  set tableviewviewfortablecolumnrow(value: (tableView: NSTableView, tableColumn: NSTableColumn | null, row: number) => NSView) {
+    this.delegate.tableViewViewForTableColumnRow = value;
+  }
+  set tableviewrowviewforrow(value: (tableView: NSTableView, row: number) => NSTableRowView) {
+    this.delegate.tableViewRowViewForRow = value;
+  }
+  set tableviewdidaddrowviewforrow(value: (tableView: NSTableView, rowView: NSTableRowView, row: number) => void) {
+    this.delegate.tableViewDidAddRowViewForRow = value;
+  }
+  set tableviewdidremoverowviewforrow(value: (tableView: NSTableView, rowView: NSTableRowView, row: number) => void) {
+    this.delegate.tableViewDidRemoveRowViewForRow = value;
+  }
+  set tableviewwilldisplaycellfortablecolumnrow(value: (tableView: NSTableView, cell: interop.Object, tableColumn: NSTableColumn | null, row: number) => void) {
+    this.delegate.tableViewWillDisplayCellForTableColumnRow = value;
+  }
+  set tableviewshouldedittablecolumnrow(value: (tableView: NSTableView, tableColumn: NSTableColumn | null, row: number) => boolean) {
+    this.delegate.tableViewShouldEditTableColumnRow = value;
+  }
+  set tableviewtooltipforcellrecttablecolumnrowmouselocation(value: (tableView: NSTableView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, row: number, mouseLocation: CGPoint) => NSString) {
+    this.delegate.tableViewToolTipForCellRectTableColumnRowMouseLocation = value;
+  }
+  set tableviewshouldshowcellexpansionfortablecolumnrow(value: (tableView: NSTableView, tableColumn: NSTableColumn | null, row: number) => boolean) {
+    this.delegate.tableViewShouldShowCellExpansionForTableColumnRow = value;
+  }
+  set tableviewshouldtrackcellfortablecolumnrow(value: (tableView: NSTableView, cell: NSCell, tableColumn: NSTableColumn | null, row: number) => boolean) {
+    this.delegate.tableViewShouldTrackCellForTableColumnRow = value;
+  }
+  set tableviewdatacellfortablecolumnrow(value: (tableView: NSTableView, tableColumn: NSTableColumn | null, row: number) => NSCell) {
+    this.delegate.tableViewDataCellForTableColumnRow = value;
+  }
+  set selectionshouldchangeintableview(value: (tableView: NSTableView) => boolean) {
+    this.delegate.selectionShouldChangeInTableView = value;
+  }
+  set tableviewshouldselectrow(value: (tableView: NSTableView, row: number) => boolean) {
+    this.delegate.tableViewShouldSelectRow = value;
+  }
+  set tableviewselectionindexesforproposedselection(value: (tableView: NSTableView, proposedSelectionIndexes: NSIndexSet) => NSIndexSet) {
+    this.delegate.tableViewSelectionIndexesForProposedSelection = value;
+  }
+  set tableviewshouldselecttablecolumn(value: (tableView: NSTableView, tableColumn: NSTableColumn | null) => boolean) {
+    this.delegate.tableViewShouldSelectTableColumn = value;
+  }
+  set tableviewmousedowninheaderoftablecolumn(value: (tableView: NSTableView, tableColumn: NSTableColumn) => void) {
+    this.delegate.tableViewMouseDownInHeaderOfTableColumn = value;
+  }
+  set tableviewdidclicktablecolumn(value: (tableView: NSTableView, tableColumn: NSTableColumn) => void) {
+    this.delegate.tableViewDidClickTableColumn = value;
+  }
+  set tableviewdiddragtablecolumn(value: (tableView: NSTableView, tableColumn: NSTableColumn) => void) {
+    this.delegate.tableViewDidDragTableColumn = value;
+  }
+  set tableviewheightofrow(value: (tableView: NSTableView, row: number) => number) {
+    this.delegate.tableViewHeightOfRow = value;
+  }
+  set tableviewtypeselectstringfortablecolumnrow(value: (tableView: NSTableView, tableColumn: NSTableColumn | null, row: number) => NSString) {
+    this.delegate.tableViewTypeSelectStringForTableColumnRow = value;
+  }
+  set tableviewnexttypeselectmatchfromrowtorowforstring(value: (tableView: NSTableView, startRow: number, endRow: number, searchString: NSString | string) => number) {
+    this.delegate.tableViewNextTypeSelectMatchFromRowToRowForString = value;
+  }
+  set tableviewshouldtypeselectforeventwithcurrentsearchstring(value: (tableView: NSTableView, event: NSEvent, searchString: NSString | string | null) => boolean) {
+    this.delegate.tableViewShouldTypeSelectForEventWithCurrentSearchString = value;
+  }
+  set tableviewisgrouprow(value: (tableView: NSTableView, row: number) => boolean) {
+    this.delegate.tableViewIsGroupRow = value;
+  }
+  set tableviewsizetofitwidthofcolumn(value: (tableView: NSTableView, column: number) => number) {
+    this.delegate.tableViewSizeToFitWidthOfColumn = value;
+  }
+  set tableviewshouldreordercolumntocolumn(value: (tableView: NSTableView, columnIndex: number, newColumnIndex: number) => boolean) {
+    this.delegate.tableViewShouldReorderColumnToColumn = value;
+  }
+  set tableviewrowactionsforrowedge(value: (tableView: NSTableView, row: number, edge: interop.Enum<typeof NSTableRowActionEdge>) => NSArray) {
+    this.delegate.tableViewRowActionsForRowEdge = value;
+  }
+  set tableviewusercanchangevisibilityoftablecolumn(value: (tableView: NSTableView, column: NSTableColumn) => boolean) {
+    this.delegate.tableViewUserCanChangeVisibilityOfTableColumn = value;
+  }
+  set tableviewuserdidchangevisibilityoftablecolumns(value: (tableView: NSTableView, columns: NSArray | unknown[]) => void) {
+    this.delegate.tableViewUserDidChangeVisibilityOfTableColumns = value;
+  }
+  set tableviewselectiondidchange(value: (notification: NSNotification) => void) {
+    this.delegate.tableViewSelectionDidChange = value;
+  }
+  set tableviewcolumndidmove(value: (notification: NSNotification) => void) {
+    this.delegate.tableViewColumnDidMove = value;
+  }
+  set tableviewcolumndidresize(value: (notification: NSNotification) => void) {
+    this.delegate.tableViewColumnDidResize = value;
+  }
+  set tableviewselectionischanging(value: (notification: NSNotification) => void) {
+    this.delegate.tableViewSelectionIsChanging = value;
+  }
+}
+
+export class HTMLNSScrubberTextItemViewElement extends HTMLNSScrubberItemViewElement {
+  readonly nativeObject = NSScrubberTextItemView.new();
+
+  // readonly textField: NSTextField;
+}
+
+export class HTMLNSButtonElement extends HTMLNSControlElement {
+
+  // @ts-ignore
+  readonly nativeObject = NSButton.new();
+
+  // attributedTitle: NSAttributedString;
+  // attributedAlternateTitle: NSAttributedString;
+  // hasDestructiveAction: boolean;
+  // sound: NSSound;
+  // isSpringLoaded: boolean;
+  // maxAcceleratorLevel: number;
+  // bezelStyle: interop.Enum<typeof NSBezelStyle>;
+  // isBordered: boolean;
+  // isTransparent: boolean;
+  // showsBorderOnlyWhileMouseInside: boolean;
+  // bezelColor: NSColor;
+  // contentTintColor: NSColor;
+  // image: NSImage;
+  // alternateImage: NSImage;
+  // imagePosition: interop.Enum<typeof NSCellImagePosition>;
+  // imageScaling: interop.Enum<typeof NSImageScaling>;
+  // imageHugsTitle: boolean;
+  // symbolConfiguration: NSImageSymbolConfiguration;
+  // state: number;
+  // allowsMixedState: boolean;
+  // keyEquivalentModifierMask: interop.Enum<typeof NSEventModifierFlags>;
+  // readonly activeCompressionOptions: NSUserInterfaceCompressionOptions;
+  // accessibilityFrame: CGRect;
+  // accessibilityParent: interop.Object;
+  // isAccessibilityFocused: boolean;
+  // readonly hash: number;
+  // readonly superclass: interop.Object;
+  // readonly isProxy: boolean;
+  // readonly zone: interop.Pointer;
+  // readonly description: NSString;
+  // readonly debugDescription: NSString;
+}
+
+export class HTMLNSScrubberSelectionViewElement extends HTMLNSScrubberArrangedViewElement {
+  readonly nativeObject = NSScrubberSelectionView.new();
+
+}
+
+export class HTMLNSSearchFieldCellElement extends HTMLNSTextFieldCellElement {
+  readonly nativeObject = NSSearchFieldCell.new();
+
+  // searchButtonCell: NSButtonCell;
+  // cancelButtonCell: NSButtonCell;
+  // searchMenuTemplate: NSMenu;
+  // sendsWholeSearchString: boolean;
+  // maximumRecents: number;
+  // sendsSearchStringImmediately: boolean;
+}
+
+export class HTMLNSRunningApplicationElement extends HTMLNSObjectElement {
+  readonly nativeObject = NSRunningApplication.new();
+
+  // readonly isTerminated: boolean;
+  // readonly isFinishedLaunching: boolean;
+  // readonly isHidden: boolean;
+  // readonly isActive: boolean;
+  // readonly ownsMenuBar: boolean;
+  // readonly activationPolicy: interop.Enum<typeof NSApplicationActivationPolicy>;
+  // readonly localizedName: NSString;
+  // readonly bundleIdentifier: NSString;
+  // readonly bundleURL: NSURL;
+  // readonly executableURL: NSURL;
+  // readonly processIdentifier: number;
+  // readonly launchDate: NSDate;
+  // readonly icon: NSImage;
+  // readonly executableArchitecture: number;
+  // currentApplication: NSRunningApplication;
+}
+
+export class HTMLNSSpellCheckerElement extends HTMLNSObjectElement {
+  readonly nativeObject = NSSpellChecker.new();
+
+  // sharedSpellChecker: NSSpellChecker;
+  // sharedSpellCheckerExists: boolean;
+  // readonly userReplacementsDictionary: NSDictionary;
+  // readonly spellingPanel: NSPanel;
+  // accessoryView: NSView;
+  // readonly substitutionsPanel: NSPanel;
+  // substitutionsPanelAccessoryViewController: NSViewController;
+  // readonly availableLanguages: NSArray;
+  // readonly userPreferredLanguages: NSArray;
+  // automaticallyIdentifiesLanguages: boolean;
+  // isAutomaticTextReplacementEnabled: boolean;
+  // isAutomaticSpellingCorrectionEnabled: boolean;
+  // isAutomaticQuoteSubstitutionEnabled: boolean;
+  // isAutomaticDashSubstitutionEnabled: boolean;
+  // isAutomaticCapitalizationEnabled: boolean;
+  // isAutomaticPeriodSubstitutionEnabled: boolean;
+  // isAutomaticTextCompletionEnabled: boolean;
+  // isAutomaticInlinePredictionEnabled: boolean;
+}
+
+export class HTMLNSPopUpButtonElement extends HTMLNSButtonElement {
+
+  // @ts-ignore
+  readonly nativeObject = NSPopUpButton.new();
+
+  // menu: NSMenu;
+  // pullsDown: boolean;
+  // autoenablesItems: boolean;
+  // preferredEdge: interop.Enum<typeof NSRectEdge>;
+  // readonly itemArray: NSArray;
+  // readonly numberOfItems: number;
+  // readonly lastItem: NSMenuItem;
+  // readonly selectedItem: NSMenuItem;
+  // readonly indexOfSelectedItem: number;
+  // readonly selectedTag: number;
+  // readonly itemTitles: NSArray;
+  // readonly titleOfSelectedItem: NSString;
+}
+
+export class HTMLNSStatusBarButtonElement extends HTMLNSButtonElement {
+  readonly nativeObject = NSStatusBarButton.new();
+
+  // appearsDisabled: boolean;
+}
+
+export class HTMLNSTextListElementElement extends HTMLNSTextParagraphElement {
+
+  // @ts-ignore
+  readonly nativeObject = NSTextListElement.new();
+
+  // readonly textList: NSTextList;
+  // readonly contents: NSAttributedString;
+  // readonly markerAttributes: NSDictionary;
+  // readonly attributedString: NSAttributedString;
+  // readonly childElements: NSArray;
+  // readonly parentElement: NSTextListElement;
+}
+
+export class HTMLNSPredicateEditorElement extends HTMLNSRuleEditorElement {
+  readonly nativeObject = NSPredicateEditor.new();
+
+}
+
+export class HTMLNSColorPanelElement extends HTMLNSPanelElement {
+  readonly nativeObject = NSColorPanel.new();
+
+  // sharedColorPanel: NSColorPanel;
+  // sharedColorPanelExists: boolean;
+  // accessoryView: NSView;
+  // isContinuous: boolean;
+  // showsAlpha: boolean;
+  // mode: interop.Enum<typeof NSColorPanelMode>;
+  // color: NSColor;
+  // readonly alpha: number;
+}
+
+export class HTMLNSPathControlElement extends HTMLNSControlElement {
+  readonly nativeObject = NSPathControl.new();
+  get delegate(): NSPathControlDelegateImpl {
+    return (this.nativeObject.delegate ??= NSPathControlDelegateImpl.new()) as NSPathControlDelegateImpl;
+  }
+
+  // isEditable: boolean;
+  // placeholderAttributedString: NSAttributedString;
+  // URL: NSURL;
+  // doubleAction: string;
+  // pathStyle: interop.Enum<typeof NSPathStyle>;
+  // readonly clickedPathItem: NSPathControlItem;
+  // backgroundColor: NSColor;
+  // menu: NSMenu;
+
+  set pathcontrolshoulddragitemwithpasteboard(value: (pathControl: NSPathControl, pathItem: NSPathControlItem, pasteboard: NSPasteboard) => boolean) {
+    this.delegate.pathControlShouldDragItemWithPasteboard = value;
+  }
+  set pathcontrolshoulddragpathcomponentcellwithpasteboard(value: (pathControl: NSPathControl, pathComponentCell: NSPathComponentCell, pasteboard: NSPasteboard) => boolean) {
+    this.delegate.pathControlShouldDragPathComponentCellWithPasteboard = value;
+  }
+  set pathcontrolvalidatedrop(value: (pathControl: NSPathControl, info: NSDraggingInfo) => interop.Enum<typeof NSDragOperation>) {
+    this.delegate.pathControlValidateDrop = value;
+  }
+  set pathcontrolacceptdrop(value: (pathControl: NSPathControl, info: NSDraggingInfo) => boolean) {
+    this.delegate.pathControlAcceptDrop = value;
+  }
+  set pathcontrolwilldisplayopenpanel(value: (pathControl: NSPathControl, openPanel: NSOpenPanel) => void) {
+    this.delegate.pathControlWillDisplayOpenPanel = value;
+  }
+  set pathcontrolwillpopupmenu(value: (pathControl: NSPathControl, menu: NSMenu) => void) {
+    this.delegate.pathControlWillPopUpMenu = value;
+  }
+}
+
+export class HTMLNSAnimationElement extends HTMLNSObjectElement {
+  readonly nativeObject = NSAnimation.new();
+  get delegate(): NSAnimationDelegateImpl {
+    return (this.nativeObject.delegate ??= NSAnimationDelegateImpl.new()) as NSAnimationDelegateImpl;
+  }
+
+  // readonly isAnimating: boolean;
+  // currentProgress: number;
+  // duration: number;
+  // animationBlockingMode: interop.Enum<typeof NSAnimationBlockingMode>;
+  // frameRate: number;
+  // animationCurve: interop.Enum<typeof NSAnimationCurve>;
+  // readonly currentValue: number;
+  // readonly runLoopModesForAnimating: NSArray;
+
+  set animationshouldstart(value: (animation: NSAnimation) => boolean) {
+    this.delegate.animationShouldStart = value;
+  }
+  set animationdidstop(value: (animation: NSAnimation) => void) {
+    this.delegate.animationDidStop = value;
+  }
+  set animationdidend(value: (animation: NSAnimation) => void) {
+    this.delegate.animationDidEnd = value;
+  }
+  set animationvalueforprogress(value: (animation: NSAnimation, progress: number) => number) {
+    this.delegate.animationValueForProgress = value;
+  }
+  set animationdidreachprogressmark(value: (animation: NSAnimation, progress: number) => void) {
+    this.delegate.animationDidReachProgressMark = value;
+  }
+}
+
+export class HTMLNSViewAnimationElement extends HTMLNSAnimationElement {
+  readonly nativeObject = NSViewAnimation.new();
+
+}
+
+export class HTMLNSScrollerElement extends HTMLNSControlElement {
+  readonly nativeObject = NSScroller.new();
+
+  // isCompatibleWithOverlayScrollers: boolean;
+  // preferredScrollerStyle: interop.Enum<typeof NSScrollerStyle>;
+  // scrollerStyle: interop.Enum<typeof NSScrollerStyle>;
+  // knobStyle: interop.Enum<typeof NSScrollerKnobStyle>;
+  // readonly usableParts: interop.Enum<typeof NSUsableScrollerParts>;
+  // controlSize: interop.Enum<typeof NSControlSize>;
+  // readonly hitPart: interop.Enum<typeof NSScrollerPart>;
+  // knobProportion: number;
+  // arrowsPosition: interop.Enum<typeof NSScrollArrowPosition>;
+  // controlTint: interop.Enum<typeof NSControlTint>;
+}
+
+export class HTMLNSComboButtonElement extends HTMLNSControlElement {
+  readonly nativeObject = NSComboButton.new();
+
+  // image: NSImage;
+  // imageScaling: interop.Enum<typeof NSImageScaling>;
+  // menu: NSMenu;
+  // style: interop.Enum<typeof NSComboButtonStyle>;
+}
+
+export class HTMLNSOutlineViewElement extends HTMLNSTableViewElement {
+
+  // @ts-ignore
+  readonly nativeObject = NSOutlineView.new();
+  get delegate(): NSOutlineViewDelegateImpl {
+    return (this.nativeObject.delegate ??= NSOutlineViewDelegateImpl.new()) as NSOutlineViewDelegateImpl;
+  }
+
+  // dataSource: NSOutlineViewDataSource;
+  // outlineTableColumn: NSTableColumn;
+  // indentationPerLevel: number;
+  // indentationMarkerFollowsCell: boolean;
+  // autoresizesOutlineColumn: boolean;
+  // autosaveExpandedItems: boolean;
+  // userInterfaceLayoutDirection: interop.Enum<typeof NSUserInterfaceLayoutDirection>;
+  // stronglyReferencesItems: boolean;
+  // accessibilityFrame: CGRect;
+  // accessibilityParent: interop.Object;
+  // isAccessibilityFocused: boolean;
+  // readonly hash: number;
+  // readonly superclass: interop.Object;
+  // readonly isProxy: boolean;
+  // readonly zone: interop.Pointer;
+  // readonly description: NSString;
+  // readonly debugDescription: NSString;
+
+  set outlineviewviewfortablecolumnitem(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object) => NSView) {
+    this.delegate.outlineViewViewForTableColumnItem = value;
+  }
+  set outlineviewrowviewforitem(value: (outlineView: NSOutlineView, item: interop.Object) => NSTableRowView) {
+    this.delegate.outlineViewRowViewForItem = value;
+  }
+  set outlineviewdidaddrowviewforrow(value: (outlineView: NSOutlineView, rowView: NSTableRowView, row: number) => void) {
+    this.delegate.outlineViewDidAddRowViewForRow = value;
+  }
+  set outlineviewdidremoverowviewforrow(value: (outlineView: NSOutlineView, rowView: NSTableRowView, row: number) => void) {
+    this.delegate.outlineViewDidRemoveRowViewForRow = value;
+  }
+  set outlineviewwilldisplaycellfortablecolumnitem(value: (outlineView: NSOutlineView, cell: interop.Object, tableColumn: NSTableColumn | null, item: interop.Object) => void) {
+    this.delegate.outlineViewWillDisplayCellForTableColumnItem = value;
+  }
+  set outlineviewshouldedittablecolumnitem(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object) => boolean) {
+    this.delegate.outlineViewShouldEditTableColumnItem = value;
+  }
+  set selectionshouldchangeinoutlineview(value: (outlineView: NSOutlineView) => boolean) {
+    this.delegate.selectionShouldChangeInOutlineView = value;
+  }
+  set outlineviewshouldselectitem(value: (outlineView: NSOutlineView, item: interop.Object) => boolean) {
+    this.delegate.outlineViewShouldSelectItem = value;
+  }
+  set outlineviewselectionindexesforproposedselection(value: (outlineView: NSOutlineView, proposedSelectionIndexes: NSIndexSet) => NSIndexSet) {
+    this.delegate.outlineViewSelectionIndexesForProposedSelection = value;
+  }
+  set outlineviewshouldselecttablecolumn(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null) => boolean) {
+    this.delegate.outlineViewShouldSelectTableColumn = value;
+  }
+  set outlineviewmousedowninheaderoftablecolumn(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn) => void) {
+    this.delegate.outlineViewMouseDownInHeaderOfTableColumn = value;
+  }
+  set outlineviewdidclicktablecolumn(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn) => void) {
+    this.delegate.outlineViewDidClickTableColumn = value;
+  }
+  set outlineviewdiddragtablecolumn(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn) => void) {
+    this.delegate.outlineViewDidDragTableColumn = value;
+  }
+  set outlineviewtooltipforcellrecttablecolumnitemmouselocation(value: (outlineView: NSOutlineView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, item: interop.Object, mouseLocation: CGPoint) => NSString) {
+    this.delegate.outlineViewToolTipForCellRectTableColumnItemMouseLocation = value;
+  }
+  set outlineviewheightofrowbyitem(value: (outlineView: NSOutlineView, item: interop.Object) => number) {
+    this.delegate.outlineViewHeightOfRowByItem = value;
+  }
+  set outlineviewtintconfigurationforitem(value: (outlineView: NSOutlineView, item: interop.Object) => NSTintConfiguration) {
+    this.delegate.outlineViewTintConfigurationForItem = value;
+  }
+  set outlineviewtypeselectstringfortablecolumnitem(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object) => NSString) {
+    this.delegate.outlineViewTypeSelectStringForTableColumnItem = value;
+  }
+  set outlineviewnexttypeselectmatchfromitemtoitemforstring(value: (outlineView: NSOutlineView, startItem: interop.Object, endItem: interop.Object, searchString: NSString | string) => interop.Object) {
+    this.delegate.outlineViewNextTypeSelectMatchFromItemToItemForString = value;
+  }
+  set outlineviewshouldtypeselectforeventwithcurrentsearchstring(value: (outlineView: NSOutlineView, event: NSEvent, searchString: NSString | string | null) => boolean) {
+    this.delegate.outlineViewShouldTypeSelectForEventWithCurrentSearchString = value;
+  }
+  set outlineviewshouldshowcellexpansionfortablecolumnitem(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object) => boolean) {
+    this.delegate.outlineViewShouldShowCellExpansionForTableColumnItem = value;
+  }
+  set outlineviewshouldtrackcellfortablecolumnitem(value: (outlineView: NSOutlineView, cell: NSCell, tableColumn: NSTableColumn | null, item: interop.Object) => boolean) {
+    this.delegate.outlineViewShouldTrackCellForTableColumnItem = value;
+  }
+  set outlineviewdatacellfortablecolumnitem(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object) => NSCell) {
+    this.delegate.outlineViewDataCellForTableColumnItem = value;
+  }
+  set outlineviewisgroupitem(value: (outlineView: NSOutlineView, item: interop.Object) => boolean) {
+    this.delegate.outlineViewIsGroupItem = value;
+  }
+  set outlineviewshouldexpanditem(value: (outlineView: NSOutlineView, item: interop.Object) => boolean) {
+    this.delegate.outlineViewShouldExpandItem = value;
+  }
+  set outlineviewshouldcollapseitem(value: (outlineView: NSOutlineView, item: interop.Object) => boolean) {
+    this.delegate.outlineViewShouldCollapseItem = value;
+  }
+  set outlineviewwilldisplayoutlinecellfortablecolumnitem(value: (outlineView: NSOutlineView, cell: interop.Object, tableColumn: NSTableColumn | null, item: interop.Object) => void) {
+    this.delegate.outlineViewWillDisplayOutlineCellForTableColumnItem = value;
+  }
+  set outlineviewsizetofitwidthofcolumn(value: (outlineView: NSOutlineView, column: number) => number) {
+    this.delegate.outlineViewSizeToFitWidthOfColumn = value;
+  }
+  set outlineviewshouldreordercolumntocolumn(value: (outlineView: NSOutlineView, columnIndex: number, newColumnIndex: number) => boolean) {
+    this.delegate.outlineViewShouldReorderColumnToColumn = value;
+  }
+  set outlineviewshouldshowoutlinecellforitem(value: (outlineView: NSOutlineView, item: interop.Object) => boolean) {
+    this.delegate.outlineViewShouldShowOutlineCellForItem = value;
+  }
+  set outlineviewusercanchangevisibilityoftablecolumn(value: (outlineView: NSOutlineView, column: NSTableColumn) => boolean) {
+    this.delegate.outlineViewUserCanChangeVisibilityOfTableColumn = value;
+  }
+  set outlineviewuserdidchangevisibilityoftablecolumns(value: (outlineView: NSOutlineView, columns: NSArray | unknown[]) => void) {
+    this.delegate.outlineViewUserDidChangeVisibilityOfTableColumns = value;
+  }
+  set outlineviewselectiondidchange(value: (notification: NSNotification) => void) {
+    this.delegate.outlineViewSelectionDidChange = value;
+  }
+  set outlineviewcolumndidmove(value: (notification: NSNotification) => void) {
+    this.delegate.outlineViewColumnDidMove = value;
+  }
+  set outlineviewcolumndidresize(value: (notification: NSNotification) => void) {
+    this.delegate.outlineViewColumnDidResize = value;
+  }
+  set outlineviewselectionischanging(value: (notification: NSNotification) => void) {
+    this.delegate.outlineViewSelectionIsChanging = value;
+  }
+  set outlineviewitemwillexpand(value: (notification: NSNotification) => void) {
+    this.delegate.outlineViewItemWillExpand = value;
+  }
+  set outlineviewitemdidexpand(value: (notification: NSNotification) => void) {
+    this.delegate.outlineViewItemDidExpand = value;
+  }
+  set outlineviewitemwillcollapse(value: (notification: NSNotification) => void) {
+    this.delegate.outlineViewItemWillCollapse = value;
+  }
+  set outlineviewitemdidcollapse(value: (notification: NSNotification) => void) {
+    this.delegate.outlineViewItemDidCollapse = value;
+  }
+}
+
+export class HTMLNSDraggingImageComponentElement extends HTMLNSObjectElement {
+  readonly nativeObject = NSDraggingImageComponent.new();
+
+  // contents: interop.Object;
+  // frame: CGRect;
 }
 
 // Delegates

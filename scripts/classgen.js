@@ -12,12 +12,12 @@ const objcLib = 'objc';
 
 /** @type {import('node:util').ParseArgsConfig['options'] & {}} */
 const options = {
-  appkitdts: {
+  input: {
     type: 'string',
-    short: 'a',
+    short: 'i',
     default: resolve(
       import.meta.resolve(`${objcLib}/package.json`).replace(/^file:\/\//, ''),
-      '../types/AppKit.d.ts'
+      '../types'
     ),
   },
   output: {
@@ -28,10 +28,17 @@ const options = {
 };
 
 const {
-  values: { appkitdts, output },
+  values: { input, output },
 } = parseArgs({ args: process.argv.slice(2), options });
 
-const lines = readFileSync(appkitdts, 'utf-8').split('\n');
+const runtimeLines = readFileSync(
+  resolve(input, 'Runtime.d.ts'),
+  'utf-8'
+).split('\n');
+const appKitLines = readFileSync(resolve(input, 'AppKit.d.ts'), 'utf-8').split(
+  '\n'
+);
+const lines = [...runtimeLines, ...appKitLines];
 const result = parseDeclaration(lines);
 // console.log(result);
 
@@ -256,23 +263,16 @@ function parseDeclaration(lines) {
   );
 
   const HTMLNSObjectElement = `
-export abstract class HTMLNSObjectElement extends HTMLElement {
+export abstract class HTMLNativeObjectElement extends HTMLElement {
   /**
    * The native object from the Obj-C runtime that this HTML Element wraps.
    */
-  abstract readonly nativeObject: NSObject;
-
-  /**
-   * All properties in the inheritance hierarchy referring to a delegate.
-   */
-  protected declare knownDelegates?: Array<
-    [key: string, delegate: typeof NSObject]
-  >;
+  abstract readonly nativeObject: NativeObject;
 }
 `.trim();
 
   return `
-${imports.join('\n')}
+${[...new Set(imports)].join('\n')}
 
 ${HTMLNSObjectElement}
 
@@ -332,8 +332,13 @@ function parseViewClassHeader(line, tsIgnoring) {
   // Warning: class may extend a class that is only declared later on.
   const [_header, className, superclass, _implementees] = match;
 
-  // We're only interested in view classes.
-  if (className.endsWith('Protocol') || superclass === 'NativeObject') {
+  // We're only interested in view classes, and NSObject.
+  if (
+    className !== 'NSObject' &&
+    (className.startsWith('OS_') ||
+      className.endsWith('Protocol') ||
+      superclass === 'NativeObject')
+  ) {
     return null;
   }
 
@@ -608,7 +613,7 @@ function parseDelegateHeader(line) {
  * @param {Map<string, string>} heredity
  */
 function* sortClasses(classes, heredity) {
-  const providedClasses = new Set(['NSObject']);
+  const providedClasses = new Set(['NativeObject']);
   let classesCopy = [...classes];
   let prevLength = classesCopy.length;
 
