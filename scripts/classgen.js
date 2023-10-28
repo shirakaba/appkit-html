@@ -274,6 +274,15 @@ function parseDeclaration(lines) {
 
   const HTMLNSObjectElement = `
 export abstract class HTMLNativeObjectElement extends HTMLElement {
+  protected static getAttributesRecord(){
+    return Object.getOwnPropertyNames(this.prototype)
+    .reduce<Record<string, string>>((acc, prop) => {
+      acc[prop.toLowerCase()] = prop;
+      return acc;
+    }, {});
+  }
+  protected static readonly attributes = this.getAttributesRecord();
+
   /**
    * The native object from the Obj-C runtime that this HTML Element wraps.
    */
@@ -362,6 +371,7 @@ function parseViewClassHeader(line, tsIgnoring) {
 
   const header = `export class HTML${className}Element extends HTML${superclass}Element {`;
   const contents = [
+    '  static readonly attributes = { ...super.attributes, ...this.getAttributesRecord() };',
     /**
      * Obj-C can express some relationships that TS can't (e.g. override some
      * methods with an incompatible signature), so we have to resort to ts-ignore
