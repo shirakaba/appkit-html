@@ -158,7 +158,10 @@ function parseDeclaration(lines) {
     }
   }
 
-  const processedClasses = [...sortClasses(classes, heredity)].map(
+  // Note: also filters out ineligible classes.
+  const sortedClasses = [...sortClasses(classes, heredity)];
+
+  const processedClasses = sortedClasses.map(
     ({ header, className, contents, footer, fields }) => {
       /** @type {{ [propName: string]: string; }} */
       const delegatesByClassValue = delegatesByClass[className] ?? {};
@@ -316,6 +319,26 @@ function parseDeclaration(lines) {
 
   const HTMLNSObjectElement = `
 export abstract class HTMLNativeObjectElement extends HTMLElement {
+  static defineCustomElement(){
+    const callerClass = Object.getPrototypeOf(this).constructor as typeof HTMLElement;
+
+    // Smart, but falls apart on things like NSATSTypesetter.
+    // const elementNameMatch = callerClass.name.match(/^([A-Z]+)([A-Z].*)/);
+    // if(!elementNameMatch){
+    //   throw new Error('Unable to define Custom Element as namespace was unable to be parsed.');
+    // }
+    // const [,namespace, classPortion] = elementNameMatch;
+
+    const namespace = 'NS';
+    if(!callerClass.name.startsWith(namespace)){
+      console.warn(\`Unable to define Custom Element "\${callerClass.name}", as namespace unexpectedly began with something other than \${namespace}.\`);
+      return;
+    }
+    const className = callerClass.name.slice(namespace.length);
+
+    customElements.define(\`\${namespace}-\${className}\`.toLowerCase(), callerClass);
+  }
+
   /**
    * Build a record of lowercased native attributes to their original camelcase.
    */
@@ -361,8 +384,58 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
 }
 `.trim();
 
+  const tagNameMap = sortedClasses
+    .sort((a, b) => {
+      const lowerA = a.className.toLowerCase();
+      const lowerB = b.className.toLowerCase();
+
+      if (lowerA === lowerB) {
+        return 0;
+      }
+
+      return lowerA > lowerB ? 1 : -1;
+    })
+    .map(({ className }) => {
+      if (!className.startsWith('NS')) {
+        return `    // ?: HTML${className}Element;`;
+      }
+
+      // const tagNameMatch = className.match(/^([A-Z]+)([A-Z].*)/);
+      // if (!tagNameMatch) {
+      //   throw new Error(
+      //     'Unable to define Custom Element as namespace was unable to be parsed.'
+      //   );
+      // }
+      // const [, namespace, classPortion] = tagNameMatch;
+      const namespace = 'ns';
+      const classPortion = className.slice('ns'.length);
+
+      const tagName = `${namespace}-${classPortion}`.toLowerCase();
+      return `    "${tagName}": HTML${className}Element;`;
+    })
+    .join('\n');
+
+  const globalDeclarations = `
+// Call e.g. HTMLNSAlertElement.defineCustomElement(); to register each Custom
+// Element.
+declare global {
+  interface AppKitCustomElementTagNameMap {
+${tagNameMap}
+  }
+
+  interface Document {
+    createElement<K extends keyof AppKitCustomElementTagNameMap>(
+      tagName: K,
+      options?: ElementCreationOptions
+    ): AppKitCustomElementTagNameMap[K];
+  }
+}
+`.trim();
+
   return `
 ${[...new Set(imports)].join('\n')}
+
+${globalDeclarations}
 
 ${HTMLNSObjectElement}
 
