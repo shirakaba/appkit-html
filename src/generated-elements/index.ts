@@ -8,50 +8,310 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    * The native object from the Obj-C runtime that this HTML Element wraps.
    */
   abstract readonly nativeObject: NativeObject;
+
+  protected static readonly attributesMap: Record<string, string> = {};
 }
 
 export class HTMLNSObjectElement extends HTMLNativeObjectElement {
   readonly nativeObject = NSObject.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessibilityactiondescription: 'accessibilityActionDescription',
+    accessibilityactionnames: 'accessibilityActionNames',
+    accessibilityarrayattributecount: 'accessibilityArrayAttributeCount',
+    accessibilityarrayattributevaluesindexmaxcount: 'accessibilityArrayAttributeValuesIndexMaxCount',
+    accessibilityattributenames: 'accessibilityAttributeNames',
+    accessibilityattributevalue: 'accessibilityAttributeValue',
+    accessibilityattributevalueforparameter: 'accessibilityAttributeValueForParameter',
+    accessibilityfocuseduielement: 'accessibilityFocusedUIElement',
+    accessibilityhittest: 'accessibilityHitTest',
+    accessibilityindexofchild: 'accessibilityIndexOfChild',
+    accessibilityisattributesettable: 'accessibilityIsAttributeSettable',
+    accessibilityisignored: 'accessibilityIsIgnored',
+    accessibilitynotifieswhendestroyed: 'accessibilityNotifiesWhenDestroyed',
+    accessibilityparameterizedattributenames: 'accessibilityParameterizedAttributeNames',
+    accessibilityperformaction: 'accessibilityPerformAction',
+    accessibilitysetoverridevalueforattribute: 'accessibilitySetOverrideValueForAttribute',
+    accessibilitysetvalueforattribute: 'accessibilitySetValueForAttribute',
+    accessinstancevariablesdirectly: 'accessInstanceVariablesDirectly',
+    addobserverforkeypathoptionscontext: 'addObserverForKeyPathOptionsContext',
+    alloc: 'alloc',
+    allocwithzone: 'allocWithZone',
+    applicationdelegatehandleskey: 'applicationDelegateHandlesKey',
+    attemptrecoveryfromerroroptionindex: 'attemptRecoveryFromErrorOptionIndex',
+    attemptrecoveryfromerroroptionindexdelegatedidrecoverselectorcontextinfo: 'attemptRecoveryFromErrorOptionIndexDelegateDidRecoverSelectorContextInfo',
+    attributekeys: 'attributeKeys',
+    autocontentaccessingproxy: 'autoContentAccessingProxy',
+    automaticallynotifiesobserversforkey: 'automaticallyNotifiesObserversForKey',
+    autorelease: 'autorelease',
+    awakeafterusingcoder: 'awakeAfterUsingCoder',
+    awakefromnib: 'awakeFromNib',
+    bindtoobjectwithkeypathoptions: 'bindToObjectWithKeyPathOptions',
+    cancelpreviousperformrequestswithtarget: 'cancelPreviousPerformRequestsWithTarget',
+    cancelpreviousperformrequestswithtargetselectorobject: 'cancelPreviousPerformRequestsWithTargetSelectorObject',
+    changecolor: 'changeColor',
+    changefont: 'changeFont',
+    class: 'class',
+    classcode: 'classCode',
+    classdescription: 'classDescription',
+    classfallbacksforkeyedarchiver: 'classFallbacksForKeyedArchiver',
+    classforarchiver: 'classForArchiver',
+    classforcoder: 'classForCoder',
+    classforkeyedarchiver: 'classForKeyedArchiver',
+    classforkeyedunarchiver: 'classForKeyedUnarchiver',
+    classforportcoder: 'classForPortCoder',
+    classname: 'className',
+    coercevalueforkey: 'coerceValueForKey',
+    commitediting: 'commitEditing',
+    commiteditingandreturnerror: 'commitEditingAndReturnError',
+    commiteditingwithdelegatedidcommitselectorcontextinfo: 'commitEditingWithDelegateDidCommitSelectorContextInfo',
+    conformstoprotocol: 'conformsToProtocol',
+    controltextdidbeginediting: 'controlTextDidBeginEditing',
+    controltextdidchange: 'controlTextDidChange',
+    controltextdidendediting: 'controlTextDidEndEditing',
+    copy: 'copy',
+    copyscriptingvalueforkeywithproperties: 'copyScriptingValueForKeyWithProperties',
+    copywithzone: 'copyWithZone',
+    dealloc: 'dealloc',
+    debugdescription: 'debugDescription',
+    defaultplaceholderformarkerwithbinding: 'defaultPlaceholderForMarkerWithBinding',
+    description: 'description',
+    dictionarywithvaluesforkeys: 'dictionaryWithValuesForKeys',
+    didchangevalueforkey: 'didChangeValueForKey',
+    didchangevalueforkeywithsetmutationusingobjects: 'didChangeValueForKeyWithSetMutationUsingObjects',
+    didchangevaluesatindexesforkey: 'didChangeValuesAtIndexesForKey',
+    discardediting: 'discardEditing',
+    doescontain: 'doesContain',
+    doesnotrecognizeselector: 'doesNotRecognizeSelector',
+    draggedimagebeganat: 'draggedImageBeganAt',
+    draggedimageendedatdeposited: 'draggedImageEndedAtDeposited',
+    draggedimageendedatoperation: 'draggedImageEndedAtOperation',
+    draggedimagemovedto: 'draggedImageMovedTo',
+    draggingsourceoperationmaskforlocal: 'draggingSourceOperationMaskForLocal',
+    exposebinding: 'exposeBinding',
+    exposedbindings: 'exposedBindings',
+    filemanagershouldproceedaftererror: 'fileManagerShouldProceedAfterError',
+    filemanagerwillprocesspath: 'fileManagerWillProcessPath',
+    finalize: 'finalize',
+    finalizeforwebscript: 'finalizeForWebScript',
+    fontmanagerwillincludefont: 'fontManagerWillIncludeFont',
+    forwardingtargetforselector: 'forwardingTargetForSelector',
+    forwardinvocation: 'forwardInvocation',
+    handlequerywithunboundkey: 'handleQueryWithUnboundKey',
+    handletakevalueforunboundkey: 'handleTakeValueForUnboundKey',
+    hash: 'hash',
+    ignoremodifierkeyswhiledragging: 'ignoreModifierKeysWhileDragging',
+    indicesofobjectsbyevaluatingobjectspecifier: 'indicesOfObjectsByEvaluatingObjectSpecifier',
+    infoforbinding: 'infoForBinding',
+    init: 'init',
+    initialize: 'initialize',
+    insertvalueatindexinpropertywithkey: 'insertValueAtIndexInPropertyWithKey',
+    insertvalueinpropertywithkey: 'insertValueInPropertyWithKey',
+    instancemethodforselector: 'instanceMethodForSelector',
+    instancemethodsignatureforselector: 'instanceMethodSignatureForSelector',
+    instancesrespondtoselector: 'instancesRespondToSelector',
+    inverseforrelationshipkey: 'inverseForRelationshipKey',
+    invokedefaultmethodwitharguments: 'invokeDefaultMethodWithArguments',
+    invokeundefinedmethodfromwebscriptwitharguments: 'invokeUndefinedMethodFromWebScriptWithArguments',
+    iscaseinsensitivelike: 'isCaseInsensitiveLike',
+    isequal: 'isEqual',
+    isequalto: 'isEqualTo',
+    isgreaterthan: 'isGreaterThan',
+    isgreaterthanorequalto: 'isGreaterThanOrEqualTo',
+    iskeyexcludedfromwebscript: 'isKeyExcludedFromWebScript',
+    iskindofclass: 'isKindOfClass',
+    islessthan: 'isLessThan',
+    islessthanorequalto: 'isLessThanOrEqualTo',
+    islike: 'isLike',
+    ismemberofclass: 'isMemberOfClass',
+    isnotequalto: 'isNotEqualTo',
+    isproxy: 'isProxy',
+    isselectorexcludedfromwebscript: 'isSelectorExcludedFromWebScript',
+    issubclassofclass: 'isSubclassOfClass',
+    keypathsforvaluesaffectingvalueforkey: 'keyPathsForValuesAffectingValueForKey',
+    layershouldinheritcontentsscalefromwindow: 'layerShouldInheritContentsScaleFromWindow',
+    load: 'load',
+    methodforselector: 'methodForSelector',
+    methodsignatureforselector: 'methodSignatureForSelector',
+    mutablearrayvalueforkey: 'mutableArrayValueForKey',
+    mutablearrayvalueforkeypath: 'mutableArrayValueForKeyPath',
+    mutablecopy: 'mutableCopy',
+    mutablecopywithzone: 'mutableCopyWithZone',
+    mutableorderedsetvalueforkey: 'mutableOrderedSetValueForKey',
+    mutableorderedsetvalueforkeypath: 'mutableOrderedSetValueForKeyPath',
+    mutablesetvalueforkey: 'mutableSetValueForKey',
+    mutablesetvalueforkeypath: 'mutableSetValueForKeyPath',
+    namesofpromisedfilesdroppedatdestination: 'namesOfPromisedFilesDroppedAtDestination',
+    new: 'new',
+    newscriptingobjectofclassforvalueforkeywithcontentsvalueproperties: 'newScriptingObjectOfClassForValueForKeyWithContentsValueProperties',
+    objectdidbeginediting: 'objectDidBeginEditing',
+    objectdidendediting: 'objectDidEndEditing',
+    objectforwebscript: 'objectForWebScript',
+    objectspecifier: 'objectSpecifier',
+    observationinfo: 'observationInfo',
+    observevalueforkeypathofobjectchangecontext: 'observeValueForKeyPathOfObjectChangeContext',
+    optiondescriptionsforbinding: 'optionDescriptionsForBinding',
+    panelcomparefilenamewithcasesensitive: 'panelCompareFilenameWithCaseSensitive',
+    paneldirectorydidchange: 'panelDirectoryDidChange',
+    panelisvalidfilename: 'panelIsValidFilename',
+    panelshouldshowfilename: 'panelShouldShowFilename',
+    pasteboardchangedowner: 'pasteboardChangedOwner',
+    pasteboardprovidedatafortype: 'pasteboardProvideDataForType',
+    performselector: 'performSelector',
+    performselectorinbackgroundwithobject: 'performSelectorInBackgroundWithObject',
+    performselectoronmainthreadwithobjectwaituntildone: 'performSelectorOnMainThreadWithObjectWaitUntilDone',
+    performselectoronmainthreadwithobjectwaituntildonemodes: 'performSelectorOnMainThreadWithObjectWaitUntilDoneModes',
+    performselectoronthreadwithobjectwaituntildone: 'performSelectorOnThreadWithObjectWaitUntilDone',
+    performselectoronthreadwithobjectwaituntildonemodes: 'performSelectorOnThreadWithObjectWaitUntilDoneModes',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectafterdelay: 'performSelectorWithObjectAfterDelay',
+    performselectorwithobjectafterdelayinmodes: 'performSelectorWithObjectAfterDelayInModes',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    prepareforinterfacebuilder: 'prepareForInterfaceBuilder',
+    provideimagedatabytesperroworiginsizeuserinfo: 'provideImageDataBytesPerRowOriginSizeUserInfo',
+    release: 'release',
+    removeobserverforkeypath: 'removeObserverForKeyPath',
+    removeobserverforkeypathcontext: 'removeObserverForKeyPathContext',
+    removevalueatindexfrompropertywithkey: 'removeValueAtIndexFromPropertyWithKey',
+    replacementobjectforarchiver: 'replacementObjectForArchiver',
+    replacementobjectforcoder: 'replacementObjectForCoder',
+    replacementobjectforkeyedarchiver: 'replacementObjectForKeyedArchiver',
+    replacementobjectforportcoder: 'replacementObjectForPortCoder',
+    replacevalueatindexinpropertywithkeywithvalue: 'replaceValueAtIndexInPropertyWithKeyWithValue',
+    resolveclassmethod: 'resolveClassMethod',
+    resolveinstancemethod: 'resolveInstanceMethod',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    scriptingbeginswith: 'scriptingBeginsWith',
+    scriptingcontains: 'scriptingContains',
+    scriptingendswith: 'scriptingEndsWith',
+    scriptingisequalto: 'scriptingIsEqualTo',
+    scriptingisgreaterthan: 'scriptingIsGreaterThan',
+    scriptingisgreaterthanorequalto: 'scriptingIsGreaterThanOrEqualTo',
+    scriptingislessthan: 'scriptingIsLessThan',
+    scriptingislessthanorequalto: 'scriptingIsLessThanOrEqualTo',
+    scriptingproperties: 'scriptingProperties',
+    scriptingvalueforspecifier: 'scriptingValueForSpecifier',
+    self: 'self',
+    setdefaultplaceholderformarkerwithbinding: 'setDefaultPlaceholderForMarkerWithBinding',
+    setkeystriggerchangenotificationsfordependentkey: 'setKeysTriggerChangeNotificationsForDependentKey',
+    setnilvalueforkey: 'setNilValueForKey',
+    setvalueforkey: 'setValueForKey',
+    setvalueforkeypath: 'setValueForKeyPath',
+    setvalueforundefinedkey: 'setValueForUndefinedKey',
+    setvaluesforkeyswithdictionary: 'setValuesForKeysWithDictionary',
+    setversion: 'setVersion',
+    storedvalueforkey: 'storedValueForKey',
+    superclass: 'superclass',
+    tableviewwriterowstopasteboard: 'tableViewWriteRowsToPasteboard',
+    takestoredvalueforkey: 'takeStoredValueForKey',
+    takevalueforkey: 'takeValueForKey',
+    takevalueforkeypath: 'takeValueForKeyPath',
+    takevaluesfromdictionary: 'takeValuesFromDictionary',
+    textstoragedidprocessediting: 'textStorageDidProcessEditing',
+    textstoragewillprocessediting: 'textStorageWillProcessEditing',
+    tomanyrelationshipkeys: 'toManyRelationshipKeys',
+    toonerelationshipkeys: 'toOneRelationshipKeys',
+    unabletosetnilforkey: 'unableToSetNilForKey',
+    unbind: 'unbind',
+    urlresourcedatadidbecomeavailable: 'URLResourceDataDidBecomeAvailable',
+    urlresourcedidcancelloading: 'URLResourceDidCancelLoading',
+    urlresourcedidfailloadingwithreason: 'URLResourceDidFailLoadingWithReason',
+    urlresourcedidfinishloading: 'URLResourceDidFinishLoading',
+    usestoredaccessor: 'useStoredAccessor',
+    validatemenuitem: 'validateMenuItem',
+    validatetoolbaritem: 'validateToolbarItem',
+    validatevalueforkeyerror: 'validateValueForKeyError',
+    validatevalueforkeypatherror: 'validateValueForKeyPathError',
+    validmodesforfontpanel: 'validModesForFontPanel',
+    valueatindexinpropertywithkey: 'valueAtIndexInPropertyWithKey',
+    valueclassforbinding: 'valueClassForBinding',
+    valueforkey: 'valueForKey',
+    valueforkeypath: 'valueForKeyPath',
+    valueforundefinedkey: 'valueForUndefinedKey',
+    valuesforkeys: 'valuesForKeys',
+    valuewithnameinpropertywithkey: 'valueWithNameInPropertyWithKey',
+    valuewithuniqueidinpropertywithkey: 'valueWithUniqueIDInPropertyWithKey',
+    version: 'version',
+    viewstringfortooltippointuserdata: 'viewStringForToolTipPointUserData',
+    webframe: 'webFrame',
+    webplugincontainerloadrequestinframe: 'webPlugInContainerLoadRequestInFrame',
+    webplugincontainerselectioncolor: 'webPlugInContainerSelectionColor',
+    webplugincontainershowstatus: 'webPlugInContainerShowStatus',
+    webplugindestroy: 'webPlugInDestroy',
+    webplugininitialize: 'webPlugInInitialize',
+    webpluginmainresourcedidfailwitherror: 'webPlugInMainResourceDidFailWithError',
+    webpluginmainresourcedidfinishloading: 'webPlugInMainResourceDidFinishLoading',
+    webpluginmainresourcedidreceivedata: 'webPlugInMainResourceDidReceiveData',
+    webpluginmainresourcedidreceiveresponse: 'webPlugInMainResourceDidReceiveResponse',
+    webpluginsetisselected: 'webPlugInSetIsSelected',
+    webpluginstart: 'webPlugInStart',
+    webpluginstop: 'webPlugInStop',
+    webscriptnameforkey: 'webScriptNameForKey',
+    webscriptnameforselector: 'webScriptNameForSelector',
+    willchangevalueforkey: 'willChangeValueForKey',
+    willchangevalueforkeywithsetmutationusingobjects: 'willChangeValueForKeyWithSetMutationUsingObjects',
+    willchangevaluesatindexesforkey: 'willChangeValuesAtIndexesForKey',
+    zone: 'zone',
+  }
 
-  // readonly classForCoder: interop.Object;
-  // readonly autoContentAccessingProxy: interop.Object;
-  // accessInstanceVariablesDirectly: boolean;
-  // readonly classForKeyedArchiver: interop.Object;
-  // readonly classForArchiver: interop.Object;
-  // readonly classForPortCoder: interop.Object;
-  // readonly classDescription: NSClassDescription;
-  // readonly attributeKeys: NSArray;
-  // readonly toOneRelationshipKeys: NSArray;
-  // readonly toManyRelationshipKeys: NSArray;
-  // readonly classCode: number;
-  // readonly className: NSString;
-  // readonly objectSpecifier: NSScriptObjectSpecifier;
   // readonly accessibilityFocusedUIElement: interop.Object;
   // readonly accessibilityNotifiesWhenDestroyed: boolean;
-  // readonly exposedBindings: NSArray;
-  // readonly objectForWebScript: interop.Object;
-  // readonly webPlugInContainerSelectionColor: NSColor;
-  // readonly webFrame: WebFrame;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
+  // accessInstanceVariablesDirectly: boolean;
+  // readonly attributeKeys: NSArray;
+  // readonly autoContentAccessingProxy: interop.Object;
+  // readonly classCode: number;
+  // readonly classDescription: NSClassDescription;
+  // readonly classForArchiver: interop.Object;
+  // readonly classForCoder: interop.Object;
+  // readonly classForKeyedArchiver: interop.Object;
+  // readonly classForPortCoder: interop.Object;
+  // readonly className: NSString;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly exposedBindings: NSArray;
+  // readonly hash: number;
+  // readonly isProxy: boolean;
+  // readonly objectForWebScript: interop.Object;
+  // readonly objectSpecifier: NSScriptObjectSpecifier;
+  // readonly superclass: interop.Object;
+  // readonly toManyRelationshipKeys: NSArray;
+  // readonly toOneRelationshipKeys: NSArray;
+  // readonly webFrame: WebFrame;
+  // readonly webPlugInContainerSelectionColor: NSColor;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSWindowTabGroupElement extends HTMLNSObjectElement {
   readonly nativeObject = NSWindowTabGroup.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    addwindow: 'addWindow',
+    identifier: 'identifier',
+    insertwindowatindex: 'insertWindowAtIndex',
+    isoverviewvisible: 'isOverviewVisible',
+    istabbarvisible: 'isTabBarVisible',
+    removewindow: 'removeWindow',
+    selectedwindow: 'selectedWindow',
+    windows: 'windows',
+  }
 
   // readonly identifier: NSString;
-  // readonly windows: NSArray;
   // isOverviewVisible: boolean;
   // readonly isTabBarVisible: boolean;
   // selectedWindow: NSWindow | null;
+  // readonly windows: NSArray;
 }
 
 export class HTMLNSAccessibilityCustomRotorSearchParametersElement extends HTMLNSObjectElement {
   readonly nativeObject = NSAccessibilityCustomRotorSearchParameters.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    currentitem: 'currentItem',
+    filterstring: 'filterString',
+    searchdirection: 'searchDirection',
+  }
 
   // currentItem: NSAccessibilityCustomRotorItemResult;
   // searchDirection: interop.Enum<typeof NSAccessibilityCustomRotorSearchDirection>;
@@ -59,398 +319,1189 @@ export class HTMLNSAccessibilityCustomRotorSearchParametersElement extends HTMLN
 
 export class HTMLNSFontManagerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSFontManager.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    action: 'action',
+    addcollectionoptions: 'addCollectionOptions',
+    addfontdescriptorstocollection: 'addFontDescriptorsToCollection',
+    addfonttrait: 'addFontTrait',
+    autorelease: 'autorelease',
+    availablefontfamilies: 'availableFontFamilies',
+    availablefontnamesmatchingfontdescriptor: 'availableFontNamesMatchingFontDescriptor',
+    availablefontnameswithtraits: 'availableFontNamesWithTraits',
+    availablefonts: 'availableFonts',
+    availablemembersoffontfamily: 'availableMembersOfFontFamily',
+    class: 'class',
+    collectionnames: 'collectionNames',
+    conformstoprotocol: 'conformsToProtocol',
+    convertattributes: 'convertAttributes',
+    convertfont: 'convertFont',
+    convertfonttoface: 'convertFontToFace',
+    convertfonttofamily: 'convertFontToFamily',
+    convertfonttohavetrait: 'convertFontToHaveTrait',
+    convertfonttonothavetrait: 'convertFontToNotHaveTrait',
+    convertfonttosize: 'convertFontToSize',
+    convertfonttraits: 'convertFontTraits',
+    convertweightoffont: 'convertWeightOfFont',
+    currentfontaction: 'currentFontAction',
+    debugdescription: 'debugDescription',
+    delegate: 'delegate',
+    description: 'description',
+    fontdescriptorsincollection: 'fontDescriptorsInCollection',
+    fontmenu: 'fontMenu',
+    fontnamedhastraits: 'fontNamedHasTraits',
+    fontpanel: 'fontPanel',
+    fontwithfamilytraitsweightsize: 'fontWithFamilyTraitsWeightSize',
+    hash: 'hash',
+    isenabled: 'isEnabled',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    ismultiple: 'isMultiple',
+    isproxy: 'isProxy',
+    localizednameforfamilyface: 'localizedNameForFamilyFace',
+    modifyfont: 'modifyFont',
+    modifyfontviapanel: 'modifyFontViaPanel',
+    orderfrontfontpanel: 'orderFrontFontPanel',
+    orderfrontstylespanel: 'orderFrontStylesPanel',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    release: 'release',
+    removecollection: 'removeCollection',
+    removefontdescriptorfromcollection: 'removeFontDescriptorFromCollection',
+    removefonttrait: 'removeFontTrait',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    selectedfont: 'selectedFont',
+    self: 'self',
+    sendaction: 'sendAction',
+    setfontmanagerfactory: 'setFontManagerFactory',
+    setfontmenu: 'setFontMenu',
+    setfontpanelfactory: 'setFontPanelFactory',
+    setselectedattributesismultiple: 'setSelectedAttributesIsMultiple',
+    setselectedfontismultiple: 'setSelectedFontIsMultiple',
+    sharedfontmanager: 'sharedFontManager',
+    superclass: 'superclass',
+    target: 'target',
+    traitsoffont: 'traitsOfFont',
+    validatemenuitem: 'validateMenuItem',
+    weightoffont: 'weightOfFont',
+    zone: 'zone',
+  }
 
-  // sharedFontManager: NSFontManager;
-  // readonly isMultiple: boolean;
-  // readonly selectedFont: NSFont;
-  // readonly availableFonts: NSArray;
-  // readonly availableFontFamilies: NSArray;
-  // isEnabled: boolean;
   // action: string;
-  // delegate: interop.Object;
+  // readonly availableFontFamilies: NSArray;
+  // readonly availableFonts: NSArray;
   // readonly collectionNames: NSArray;
   // readonly currentFontAction: interop.Enum<typeof NSFontAction>;
-  // target: interop.Object;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
   // readonly debugDescription: NSString;
+  // delegate: interop.Object;
+  // readonly description: NSString;
+  // readonly hash: number;
+  // isEnabled: boolean;
+  // readonly isMultiple: boolean;
+  // readonly isProxy: boolean;
+  // readonly selectedFont: NSFont;
+  // sharedFontManager: NSFontManager;
+  // readonly superclass: interop.Object;
+  // target: interop.Object;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSScrubberLayoutElement extends HTMLNSObjectElement {
   readonly nativeObject = NSScrubberLayout.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    automaticallymirrorsinrighttoleftlayout: 'automaticallyMirrorsInRightToLeftLayout',
+    encodewithcoder: 'encodeWithCoder',
+    init: 'init',
+    initwithcoder: 'initWithCoder',
+    invalidatelayout: 'invalidateLayout',
+    layoutattributesclass: 'layoutAttributesClass',
+    layoutattributesforitematindex: 'layoutAttributesForItemAtIndex',
+    layoutattributesforitemsinrect: 'layoutAttributesForItemsInRect',
+    preparelayout: 'prepareLayout',
+    scrubber: 'scrubber',
+    scrubbercontentsize: 'scrubberContentSize',
+    shouldinvalidatelayoutforchangefromvisiblerecttovisiblerect: 'shouldInvalidateLayoutForChangeFromVisibleRectToVisibleRect',
+    shouldinvalidatelayoutforhighlightchange: 'shouldInvalidateLayoutForHighlightChange',
+    shouldinvalidatelayoutforselectionchange: 'shouldInvalidateLayoutForSelectionChange',
+    visiblerect: 'visibleRect',
+  }
 
+  // readonly automaticallyMirrorsInRightToLeftLayout: boolean;
   // layoutAttributesClass: interop.Object;
   // readonly scrubber: NSScrubber;
-  // readonly visibleRect: CGRect;
   // readonly scrubberContentSize: CGSize;
-  // readonly shouldInvalidateLayoutForSelectionChange: boolean;
   // readonly shouldInvalidateLayoutForHighlightChange: boolean;
-  // readonly automaticallyMirrorsInRightToLeftLayout: boolean;
+  // readonly shouldInvalidateLayoutForSelectionChange: boolean;
+  // readonly visibleRect: CGRect;
 }
 
 export class HTMLNSCollectionViewUpdateItemElement extends HTMLNSObjectElement {
   readonly nativeObject = NSCollectionViewUpdateItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    indexpathafterupdate: 'indexPathAfterUpdate',
+    indexpathbeforeupdate: 'indexPathBeforeUpdate',
+    updateaction: 'updateAction',
+  }
 
-  // readonly indexPathBeforeUpdate: NSIndexPath;
   // readonly indexPathAfterUpdate: NSIndexPath;
+  // readonly indexPathBeforeUpdate: NSIndexPath;
   // readonly updateAction: interop.Enum<typeof NSCollectionUpdateAction>;
 }
 
 export class HTMLNSControllerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSController.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    autorelease: 'autorelease',
+    class: 'class',
+    commitediting: 'commitEditing',
+    commiteditingandreturnerror: 'commitEditingAndReturnError',
+    commiteditingwithdelegatedidcommitselectorcontextinfo: 'commitEditingWithDelegateDidCommitSelectorContextInfo',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    discardediting: 'discardEditing',
+    encodewithcoder: 'encodeWithCoder',
+    hash: 'hash',
+    init: 'init',
+    initwithcoder: 'initWithCoder',
+    isediting: 'isEditing',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    objectdidbeginediting: 'objectDidBeginEditing',
+    objectdidendediting: 'objectDidEndEditing',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    superclass: 'superclass',
+    zone: 'zone',
+  }
 
-  // readonly isEditing: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly hash: number;
+  // readonly isEditing: boolean;
+  // readonly isProxy: boolean;
+  // readonly superclass: interop.Object;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSHelpManagerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSHelpManager.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    contexthelpforobject: 'contextHelpForObject',
+    findstringinbook: 'findStringInBook',
+    iscontexthelpmodeactive: 'isContextHelpModeActive',
+    openhelpanchorinbook: 'openHelpAnchorInBook',
+    registerbooksinbundle: 'registerBooksInBundle',
+    removecontexthelpforobject: 'removeContextHelpForObject',
+    setcontexthelpforobject: 'setContextHelpForObject',
+    sharedhelpmanager: 'sharedHelpManager',
+    showcontexthelpforobjectlocationhint: 'showContextHelpForObjectLocationHint',
+  }
 
-  // sharedHelpManager: NSHelpManager;
   // isContextHelpModeActive: boolean;
+  // sharedHelpManager: NSHelpManager;
 }
 
 export class HTMLNSOpenGLPixelFormatElement extends HTMLNSObjectElement {
   readonly nativeObject = NSOpenGLPixelFormat.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    attributes: 'attributes',
+    cglpixelformatobj: 'CGLPixelFormatObj',
+    encodewithcoder: 'encodeWithCoder',
+    getvaluesforattributeforvirtualscreen: 'getValuesForAttributeForVirtualScreen',
+    initwithattributes: 'initWithAttributes',
+    initwithcglpixelformatobj: 'initWithCGLPixelFormatObj',
+    initwithcoder: 'initWithCoder',
+    initwithdata: 'initWithData',
+    numberofvirtualscreens: 'numberOfVirtualScreens',
+    setattributes: 'setAttributes',
+  }
 
-  // readonly numberOfVirtualScreens: number;
   // readonly CGLPixelFormatObj: interop.Pointer;
+  // readonly numberOfVirtualScreens: number;
 }
 
 export class HTMLNSTextAttachmentElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextAttachment.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    allowstextattachmentview: 'allowsTextAttachmentView',
+    attachmentboundsforattributeslocationtextcontainerproposedlinefragmentposition: 'attachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition',
+    attachmentboundsfortextcontainerproposedlinefragmentglyphpositioncharacterindex: 'attachmentBoundsForTextContainerProposedLineFragmentGlyphPositionCharacterIndex',
+    attachmentcell: 'attachmentCell',
+    autorelease: 'autorelease',
+    bounds: 'bounds',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    contents: 'contents',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    encodewithcoder: 'encodeWithCoder',
+    filetype: 'fileType',
+    filewrapper: 'fileWrapper',
+    hash: 'hash',
+    image: 'image',
+    imageforboundsattributeslocationtextcontainer: 'imageForBoundsAttributesLocationTextContainer',
+    imageforboundstextcontainercharacterindex: 'imageForBoundsTextContainerCharacterIndex',
+    initwithcoder: 'initWithCoder',
+    initwithdataoftype: 'initWithDataOfType',
+    initwithfilewrapper: 'initWithFileWrapper',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    linelayoutpadding: 'lineLayoutPadding',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    registertextattachmentviewproviderclassforfiletype: 'registerTextAttachmentViewProviderClassForFileType',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    superclass: 'superclass',
+    supportssecurecoding: 'supportsSecureCoding',
+    textattachmentviewproviderclassforfiletype: 'textAttachmentViewProviderClassForFileType',
+    usestextattachmentview: 'usesTextAttachmentView',
+    viewproviderforparentviewlocationtextcontainer: 'viewProviderForParentViewLocationTextContainer',
+    zone: 'zone',
+  }
 
-  // contents: NSData;
-  // image: NSImage;
-  // bounds: CGRect;
-  // fileWrapper: NSFileWrapper;
-  // attachmentCell: NSTextAttachmentCell;
-  // lineLayoutPadding: number;
   // allowsTextAttachmentView: boolean;
-  // readonly usesTextAttachmentView: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
+  // attachmentCell: NSTextAttachmentCell;
+  // bounds: CGRect;
+  // contents: NSData;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // fileWrapper: NSFileWrapper;
+  // readonly hash: number;
+  // image: NSImage;
+  // readonly isProxy: boolean;
+  // lineLayoutPadding: number;
+  // readonly superclass: interop.Object;
   // supportsSecureCoding: boolean;
+  // readonly usesTextAttachmentView: boolean;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSCollectionViewLayoutElement extends HTMLNSObjectElement {
   readonly nativeObject = NSCollectionViewLayout.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    collectionview: 'collectionView',
+    collectionviewcontentsize: 'collectionViewContentSize',
+    encodewithcoder: 'encodeWithCoder',
+    finalizeanimatedboundschange: 'finalizeAnimatedBoundsChange',
+    finalizecollectionviewupdates: 'finalizeCollectionViewUpdates',
+    finalizelayouttransition: 'finalizeLayoutTransition',
+    finallayoutattributesfordisappearingdecorationelementofkindatindexpath: 'finalLayoutAttributesForDisappearingDecorationElementOfKindAtIndexPath',
+    finallayoutattributesfordisappearingitematindexpath: 'finalLayoutAttributesForDisappearingItemAtIndexPath',
+    finallayoutattributesfordisappearingsupplementaryelementofkindatindexpath: 'finalLayoutAttributesForDisappearingSupplementaryElementOfKindAtIndexPath',
+    indexpathstodeletefordecorationviewofkind: 'indexPathsToDeleteForDecorationViewOfKind',
+    indexpathstodeleteforsupplementaryviewofkind: 'indexPathsToDeleteForSupplementaryViewOfKind',
+    indexpathstoinsertfordecorationviewofkind: 'indexPathsToInsertForDecorationViewOfKind',
+    indexpathstoinsertforsupplementaryviewofkind: 'indexPathsToInsertForSupplementaryViewOfKind',
+    initiallayoutattributesforappearingdecorationelementofkindatindexpath: 'initialLayoutAttributesForAppearingDecorationElementOfKindAtIndexPath',
+    initiallayoutattributesforappearingitematindexpath: 'initialLayoutAttributesForAppearingItemAtIndexPath',
+    initiallayoutattributesforappearingsupplementaryelementofkindatindexpath: 'initialLayoutAttributesForAppearingSupplementaryElementOfKindAtIndexPath',
+    initwithcoder: 'initWithCoder',
+    invalidatelayout: 'invalidateLayout',
+    invalidatelayoutwithcontext: 'invalidateLayoutWithContext',
+    invalidationcontextclass: 'invalidationContextClass',
+    invalidationcontextforboundschange: 'invalidationContextForBoundsChange',
+    invalidationcontextforpreferredlayoutattributeswithoriginalattributes: 'invalidationContextForPreferredLayoutAttributesWithOriginalAttributes',
+    layoutattributesclass: 'layoutAttributesClass',
+    layoutattributesfordecorationviewofkindatindexpath: 'layoutAttributesForDecorationViewOfKindAtIndexPath',
+    layoutattributesfordroptargetatpoint: 'layoutAttributesForDropTargetAtPoint',
+    layoutattributesforelementsinrect: 'layoutAttributesForElementsInRect',
+    layoutattributesforinteritemgapbeforeindexpath: 'layoutAttributesForInterItemGapBeforeIndexPath',
+    layoutattributesforitematindexpath: 'layoutAttributesForItemAtIndexPath',
+    layoutattributesforsupplementaryviewofkindatindexpath: 'layoutAttributesForSupplementaryViewOfKindAtIndexPath',
+    prepareforanimatedboundschange: 'prepareForAnimatedBoundsChange',
+    prepareforcollectionviewupdates: 'prepareForCollectionViewUpdates',
+    preparefortransitionfromlayout: 'prepareForTransitionFromLayout',
+    preparefortransitiontolayout: 'prepareForTransitionToLayout',
+    preparelayout: 'prepareLayout',
+    registerclassfordecorationviewofkind: 'registerClassForDecorationViewOfKind',
+    registernibfordecorationviewofkind: 'registerNibForDecorationViewOfKind',
+    shouldinvalidatelayoutforboundschange: 'shouldInvalidateLayoutForBoundsChange',
+    shouldinvalidatelayoutforpreferredlayoutattributeswithoriginalattributes: 'shouldInvalidateLayoutForPreferredLayoutAttributesWithOriginalAttributes',
+    targetcontentoffsetforproposedcontentoffset: 'targetContentOffsetForProposedContentOffset',
+    targetcontentoffsetforproposedcontentoffsetwithscrollingvelocity: 'targetContentOffsetForProposedContentOffsetWithScrollingVelocity',
+  }
 
   // readonly collectionView: NSCollectionView;
-  // layoutAttributesClass: interop.Object;
-  // invalidationContextClass: interop.Object;
   // readonly collectionViewContentSize: CGSize;
+  // invalidationContextClass: interop.Object;
+  // layoutAttributesClass: interop.Object;
 }
 
 export class HTMLNSPasteboardItemElement extends HTMLNSObjectElement {
   readonly nativeObject = NSPasteboardItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    autorelease: 'autorelease',
+    availabletypefromarray: 'availableTypeFromArray',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    datafortype: 'dataForType',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    hash: 'hash',
+    initwithpasteboardpropertylistoftype: 'initWithPasteboardPropertyListOfType',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    pasteboardpropertylistfortype: 'pasteboardPropertyListForType',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    propertylistfortype: 'propertyListForType',
+    readabletypesforpasteboard: 'readableTypesForPasteboard',
+    readingoptionsfortypepasteboard: 'readingOptionsForTypePasteboard',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    setdatafortype: 'setDataForType',
+    setdataproviderfortypes: 'setDataProviderForTypes',
+    setpropertylistfortype: 'setPropertyListForType',
+    setstringfortype: 'setStringForType',
+    stringfortype: 'stringForType',
+    superclass: 'superclass',
+    types: 'types',
+    writabletypesforpasteboard: 'writableTypesForPasteboard',
+    writingoptionsfortypepasteboard: 'writingOptionsForTypePasteboard',
+    zone: 'zone',
+  }
 
-  // readonly types: NSArray;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly hash: number;
+  // readonly isProxy: boolean;
+  // readonly superclass: interop.Object;
+  // readonly types: NSArray;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSScrubberFlowLayoutElement extends HTMLNSScrubberLayoutElement {
   readonly nativeObject = NSScrubberFlowLayout.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    invalidatelayoutforitemsatindexes: 'invalidateLayoutForItemsAtIndexes',
+    itemsize: 'itemSize',
+    itemspacing: 'itemSpacing',
+  }
 
-  // itemSpacing: number;
   // itemSize: CGSize;
+  // itemSpacing: number;
 }
 
 export class HTMLNSTextElementElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextElement.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    childelements: 'childElements',
+    elementrange: 'elementRange',
+    initwithtextcontentmanager: 'initWithTextContentManager',
+    isrepresentedelement: 'isRepresentedElement',
+    parentelement: 'parentElement',
+    textcontentmanager: 'textContentManager',
+  }
 
-  // textContentManager: NSTextContentManager;
-  // elementRange: NSTextRange;
   // readonly childElements: NSArray;
-  // readonly parentElement: NSTextElement;
+  // elementRange: NSTextRange;
   // readonly isRepresentedElement: boolean;
+  // readonly parentElement: NSTextElement;
+  // textContentManager: NSTextContentManager;
 }
 
 export class HTMLNSTextSelectionNavigationElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextSelectionNavigation.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    allowsnoncontiguousranges: 'allowsNonContiguousRanges',
+    deletionrangesfortextselectiondirectiondestinationallowsdecomposition: 'deletionRangesForTextSelectionDirectionDestinationAllowsDecomposition',
+    destinationselectionfortextselectiondirectiondestinationextendingconfined: 'destinationSelectionForTextSelectionDirectionDestinationExtendingConfined',
+    flushlayoutcache: 'flushLayoutCache',
+    initwithdatasource: 'initWithDataSource',
+    resolvedinsertionlocationfortextselectionwritingdirection: 'resolvedInsertionLocationForTextSelectionWritingDirection',
+    rotatescoordinatesystemforlayoutorientation: 'rotatesCoordinateSystemForLayoutOrientation',
+    textselectiondatasource: 'textSelectionDataSource',
+    textselectionforselectiongranularityenclosingpointincontaineratlocation: 'textSelectionForSelectionGranularityEnclosingPointInContainerAtLocation',
+    textselectionforselectiongranularityenclosingtextselection: 'textSelectionForSelectionGranularityEnclosingTextSelection',
+    textselectionsinteractingatpointincontaineratlocationanchorsmodifiersselectingbounds: 'textSelectionsInteractingAtPointInContainerAtLocationAnchorsModifiersSelectingBounds',
+  }
 
-  // readonly textSelectionDataSource: NSTextSelectionDataSource | null;
   // allowsNonContiguousRanges: boolean;
   // rotatesCoordinateSystemForLayoutOrientation: boolean;
+  // readonly textSelectionDataSource: NSTextSelectionDataSource | null;
 }
 
 export class HTMLNSTextRangeElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextRange.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    containslocation: 'containsLocation',
+    containsrange: 'containsRange',
+    endlocation: 'endLocation',
+    initwithlocation: 'initWithLocation',
+    initwithlocationendlocation: 'initWithLocationEndLocation',
+    intersectswithtextrange: 'intersectsWithTextRange',
+    isempty: 'isEmpty',
+    isequaltotextrange: 'isEqualToTextRange',
+    location: 'location',
+    textrangebyformingunionwithtextrange: 'textRangeByFormingUnionWithTextRange',
+    textrangebyintersectingwithtextrange: 'textRangeByIntersectingWithTextRange',
+  }
 
+  // readonly endLocation: NSTextLocation;
   // readonly isEmpty: boolean;
   // readonly location: NSTextLocation;
-  // readonly endLocation: NSTextLocation;
 }
 
 export class HTMLNSPressureConfigurationElement extends HTMLNSObjectElement {
   readonly nativeObject = NSPressureConfiguration.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    initwithpressurebehavior: 'initWithPressureBehavior',
+    pressurebehavior: 'pressureBehavior',
+    set: 'set',
+  }
 
   // readonly pressureBehavior: interop.Enum<typeof NSPressureBehavior>;
 }
 
 export class HTMLNSHapticFeedbackManagerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSHapticFeedbackManager.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    defaultperformer: 'defaultPerformer',
+  }
 
   // defaultPerformer: NSHapticFeedbackPerformer;
 }
 
 export class HTMLNSTextBlockElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextBlock.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    backgroundcolor: 'backgroundColor',
+    bordercolorforedge: 'borderColorForEdge',
+    boundsrectforcontentrectinrecttextcontainercharacterrange: 'boundsRectForContentRectInRectTextContainerCharacterRange',
+    contentwidth: 'contentWidth',
+    contentwidthvaluetype: 'contentWidthValueType',
+    copywithzone: 'copyWithZone',
+    drawbackgroundwithframeinviewcharacterrangelayoutmanager: 'drawBackgroundWithFrameInViewCharacterRangeLayoutManager',
+    encodewithcoder: 'encodeWithCoder',
+    init: 'init',
+    initwithcoder: 'initWithCoder',
+    rectforlayoutatpointinrecttextcontainercharacterrange: 'rectForLayoutAtPointInRectTextContainerCharacterRange',
+    setbordercolor: 'setBorderColor',
+    setbordercolorforedge: 'setBorderColorForEdge',
+    setcontentwidthtype: 'setContentWidthType',
+    setvaluetypefordimension: 'setValueTypeForDimension',
+    setwidthtypeforlayer: 'setWidthTypeForLayer',
+    setwidthtypeforlayeredge: 'setWidthTypeForLayerEdge',
+    supportssecurecoding: 'supportsSecureCoding',
+    valuefordimension: 'valueForDimension',
+    valuetypefordimension: 'valueTypeForDimension',
+    verticalalignment: 'verticalAlignment',
+    widthforlayeredge: 'widthForLayerEdge',
+    widthvaluetypeforlayeredge: 'widthValueTypeForLayerEdge',
+  }
 
+  // backgroundColor: NSColor;
   // readonly contentWidth: number;
   // readonly contentWidthValueType: interop.Enum<typeof NSTextBlockValueType>;
-  // verticalAlignment: interop.Enum<typeof NSTextBlockVerticalAlignment>;
-  // backgroundColor: NSColor;
   // supportsSecureCoding: boolean;
+  // verticalAlignment: interop.Enum<typeof NSTextBlockVerticalAlignment>;
 }
 
 export class HTMLNSTextListElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextList.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    copywithzone: 'copyWithZone',
+    encodewithcoder: 'encodeWithCoder',
+    initwithcoder: 'initWithCoder',
+    initwithmarkerformatoptions: 'initWithMarkerFormatOptions',
+    initwithmarkerformatoptionsstartingitemnumber: 'initWithMarkerFormatOptionsStartingItemNumber',
+    isordered: 'isOrdered',
+    listoptions: 'listOptions',
+    markerforitemnumber: 'markerForItemNumber',
+    markerformat: 'markerFormat',
+    startingitemnumber: 'startingItemNumber',
+    supportssecurecoding: 'supportsSecureCoding',
+  }
 
-  // readonly markerFormat: NSString;
-  // readonly listOptions: interop.Enum<typeof NSTextListOptions>;
-  // startingItemNumber: number;
   // readonly isOrdered: boolean;
+  // readonly listOptions: interop.Enum<typeof NSTextListOptions>;
+  // readonly markerFormat: NSString;
+  // startingItemNumber: number;
   // supportsSecureCoding: boolean;
 }
 
 export class HTMLNSTreeNodeElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTreeNode.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    childnodes: 'childNodes',
+    descendantnodeatindexpath: 'descendantNodeAtIndexPath',
+    indexpath: 'indexPath',
+    initwithrepresentedobject: 'initWithRepresentedObject',
+    isleaf: 'isLeaf',
+    mutablechildnodes: 'mutableChildNodes',
+    parentnode: 'parentNode',
+    representedobject: 'representedObject',
+    sortwithsortdescriptorsrecursively: 'sortWithSortDescriptorsRecursively',
+    treenodewithrepresentedobject: 'treeNodeWithRepresentedObject',
+  }
 
-  // readonly representedObject: interop.Object;
+  // readonly childNodes: NSArray;
   // readonly indexPath: NSIndexPath;
   // readonly isLeaf: boolean;
-  // readonly childNodes: NSArray;
   // readonly mutableChildNodes: NSMutableArray;
   // readonly parentNode: NSTreeNode;
+  // readonly representedObject: interop.Object;
 }
 
 export class HTMLNSObjectControllerElement extends HTMLNSControllerElement {
   readonly nativeObject = NSObjectController.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    add: 'add',
+    addobject: 'addObject',
+    automaticallypreparescontent: 'automaticallyPreparesContent',
+    canadd: 'canAdd',
+    canremove: 'canRemove',
+    content: 'content',
+    defaultfetchrequest: 'defaultFetchRequest',
+    entityname: 'entityName',
+    fetch: 'fetch',
+    fetchpredicate: 'fetchPredicate',
+    fetchwithrequestmergeerror: 'fetchWithRequestMergeError',
+    initwithcoder: 'initWithCoder',
+    initwithcontent: 'initWithContent',
+    iseditable: 'isEditable',
+    managedobjectcontext: 'managedObjectContext',
+    newobject: 'newObject',
+    objectclass: 'objectClass',
+    preparecontent: 'prepareContent',
+    remove: 'remove',
+    removeobject: 'removeObject',
+    selectedobjects: 'selectedObjects',
+    selection: 'selection',
+    useslazyfetching: 'usesLazyFetching',
+    validateuserinterfaceitem: 'validateUserInterfaceItem',
+  }
 
-  // content: interop.Object;
-  // readonly selection: interop.Object;
-  // readonly selectedObjects: NSArray;
   // automaticallyPreparesContent: boolean;
-  // objectClass: interop.Object;
-  // isEditable: boolean;
   // readonly canAdd: boolean;
   // readonly canRemove: boolean;
-  // managedObjectContext: NSManagedObjectContext;
+  // content: interop.Object;
   // fetchPredicate: NSPredicate;
+  // isEditable: boolean;
+  // managedObjectContext: NSManagedObjectContext;
+  // objectClass: interop.Object;
+  // readonly selectedObjects: NSArray;
+  // readonly selection: interop.Object;
   // usesLazyFetching: boolean;
 }
 
 export class HTMLNSGlyphInfoElement extends HTMLNSObjectElement {
   readonly nativeObject = NSGlyphInfo.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    basestring: 'baseString',
+    charactercollection: 'characterCollection',
+    characteridentifier: 'characterIdentifier',
+    copywithzone: 'copyWithZone',
+    encodewithcoder: 'encodeWithCoder',
+    glyphid: 'glyphID',
+    glyphinfowithcgglyphforfontbasestring: 'glyphInfoWithCGGlyphForFontBaseString',
+    glyphinfowithcharacteridentifiercollectionbasestring: 'glyphInfoWithCharacterIdentifierCollectionBaseString',
+    glyphinfowithglyphforfontbasestring: 'glyphInfoWithGlyphForFontBaseString',
+    glyphinfowithglyphnameforfontbasestring: 'glyphInfoWithGlyphNameForFontBaseString',
+    glyphname: 'glyphName',
+    initwithcoder: 'initWithCoder',
+    supportssecurecoding: 'supportsSecureCoding',
+  }
 
-  // readonly glyphID: number;
   // readonly baseString: NSString;
-  // readonly glyphName: NSString;
-  // readonly characterIdentifier: number;
   // readonly characterCollection: interop.Enum<typeof NSCharacterCollection>;
+  // readonly characterIdentifier: number;
+  // readonly glyphID: number;
+  // readonly glyphName: NSString;
   // supportsSecureCoding: boolean;
 }
 
 export class HTMLNSTableViewDiffableDataSourceElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTableViewDiffableDataSource.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    applysnapshotanimatingdifferences: 'applySnapshotAnimatingDifferences',
+    applysnapshotanimatingdifferencescompletion: 'applySnapshotAnimatingDifferencesCompletion',
+    autorelease: 'autorelease',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    defaultrowanimation: 'defaultRowAnimation',
+    description: 'description',
+    hash: 'hash',
+    initwithtableviewcellprovider: 'initWithTableViewCellProvider',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    itemidentifierforrow: 'itemIdentifierForRow',
+    numberofrowsintableview: 'numberOfRowsInTableView',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    rowforitemidentifier: 'rowForItemIdentifier',
+    rowforsectionidentifier: 'rowForSectionIdentifier',
+    rowviewprovider: 'rowViewProvider',
+    sectionheaderviewprovider: 'sectionHeaderViewProvider',
+    sectionidentifierforrow: 'sectionIdentifierForRow',
+    self: 'self',
+    snapshot: 'snapshot',
+    superclass: 'superclass',
+    tableviewacceptdroprowdropoperation: 'tableViewAcceptDropRowDropOperation',
+    tableviewdraggingsessionendedatpointoperation: 'tableViewDraggingSessionEndedAtPointOperation',
+    tableviewdraggingsessionwillbeginatpointforrowindexes: 'tableViewDraggingSessionWillBeginAtPointForRowIndexes',
+    tableviewnamesofpromisedfilesdroppedatdestinationfordraggedrowswithindexes: 'tableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes',
+    tableviewobjectvaluefortablecolumnrow: 'tableViewObjectValueForTableColumnRow',
+    tableviewpasteboardwriterforrow: 'tableViewPasteboardWriterForRow',
+    tableviewsetobjectvaluefortablecolumnrow: 'tableViewSetObjectValueForTableColumnRow',
+    tableviewsortdescriptorsdidchange: 'tableViewSortDescriptorsDidChange',
+    tableviewupdatedraggingitemsfordrag: 'tableViewUpdateDraggingItemsForDrag',
+    tableviewvalidatedropproposedrowproposeddropoperation: 'tableViewValidateDropProposedRowProposedDropOperation',
+    tableviewwriterowswithindexestopasteboard: 'tableViewWriteRowsWithIndexesToPasteboard',
+    zone: 'zone',
+  }
 
+  // readonly debugDescription: NSString;
+  // defaultRowAnimation: interop.Enum<typeof NSTableViewAnimationOptions>;
+  // readonly description: NSString;
+  // readonly hash: number;
+  // readonly isProxy: boolean;
   // rowViewProvider: (p1: NSTableView, p2: number, p3: interop.Object) => NSTableRowView;
   // sectionHeaderViewProvider: (p1: NSTableView, p2: number, p3: interop.Object) => NSView;
-  // defaultRowAnimation: interop.Enum<typeof NSTableViewAnimationOptions>;
-  // readonly hash: number;
   // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
   // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
 }
 
 export class HTMLNSOpenGLPixelBufferElement extends HTMLNSObjectElement {
   readonly nativeObject = NSOpenGLPixelBuffer.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    cglpbufferobj: 'CGLPBufferObj',
+    initwithcglpbufferobj: 'initWithCGLPBufferObj',
+    initwithtexturetargettextureinternalformattexturemaxmipmaplevelpixelswidepixelshigh: 'initWithTextureTargetTextureInternalFormatTextureMaxMipMapLevelPixelsWidePixelsHigh',
+    pixelshigh: 'pixelsHigh',
+    pixelswide: 'pixelsWide',
+    textureinternalformat: 'textureInternalFormat',
+    texturemaxmipmaplevel: 'textureMaxMipMapLevel',
+    texturetarget: 'textureTarget',
+  }
 
   // readonly CGLPBufferObj: interop.Pointer;
-  // readonly pixelsWide: number;
   // readonly pixelsHigh: number;
-  // readonly textureTarget: number;
+  // readonly pixelsWide: number;
   // readonly textureInternalFormat: number;
   // readonly textureMaxMipMapLevel: number;
+  // readonly textureTarget: number;
 }
 
 export class HTMLNSCellElement extends HTMLNSObjectElement {
   readonly nativeObject = NSCell.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    acceptsfirstresponder: 'acceptsFirstResponder',
+    accessibilityactivationpoint: 'accessibilityActivationPoint',
+    accessibilityallowedvalues: 'accessibilityAllowedValues',
+    accessibilityapplicationfocuseduielement: 'accessibilityApplicationFocusedUIElement',
+    accessibilityattributedstringforrange: 'accessibilityAttributedStringForRange',
+    accessibilityattributeduserinputlabels: 'accessibilityAttributedUserInputLabels',
+    accessibilitycancelbutton: 'accessibilityCancelButton',
+    accessibilitycellforcolumnrow: 'accessibilityCellForColumnRow',
+    accessibilitychildren: 'accessibilityChildren',
+    accessibilitychildreninnavigationorder: 'accessibilityChildrenInNavigationOrder',
+    accessibilityclearbutton: 'accessibilityClearButton',
+    accessibilityclosebutton: 'accessibilityCloseButton',
+    accessibilitycolumncount: 'accessibilityColumnCount',
+    accessibilitycolumnheaderuielements: 'accessibilityColumnHeaderUIElements',
+    accessibilitycolumnindexrange: 'accessibilityColumnIndexRange',
+    accessibilitycolumns: 'accessibilityColumns',
+    accessibilitycolumntitles: 'accessibilityColumnTitles',
+    accessibilitycontents: 'accessibilityContents',
+    accessibilitycriticalvalue: 'accessibilityCriticalValue',
+    accessibilitycustomactions: 'accessibilityCustomActions',
+    accessibilitycustomrotors: 'accessibilityCustomRotors',
+    accessibilitydecrementbutton: 'accessibilityDecrementButton',
+    accessibilitydefaultbutton: 'accessibilityDefaultButton',
+    accessibilitydisclosedbyrow: 'accessibilityDisclosedByRow',
+    accessibilitydisclosedrows: 'accessibilityDisclosedRows',
+    accessibilitydisclosurelevel: 'accessibilityDisclosureLevel',
+    accessibilitydocument: 'accessibilityDocument',
+    accessibilityextrasmenubar: 'accessibilityExtrasMenuBar',
+    accessibilityfilename: 'accessibilityFilename',
+    accessibilityfocusedwindow: 'accessibilityFocusedWindow',
+    accessibilityframe: 'accessibilityFrame',
+    accessibilityframeforrange: 'accessibilityFrameForRange',
+    accessibilityfullscreenbutton: 'accessibilityFullScreenButton',
+    accessibilitygrowarea: 'accessibilityGrowArea',
+    accessibilityhandles: 'accessibilityHandles',
+    accessibilityheader: 'accessibilityHeader',
+    accessibilityhelp: 'accessibilityHelp',
+    accessibilityhorizontalscrollbar: 'accessibilityHorizontalScrollBar',
+    accessibilityhorizontalunitdescription: 'accessibilityHorizontalUnitDescription',
+    accessibilityhorizontalunits: 'accessibilityHorizontalUnits',
+    accessibilityidentifier: 'accessibilityIdentifier',
+    accessibilityincrementbutton: 'accessibilityIncrementButton',
+    accessibilityindex: 'accessibilityIndex',
+    accessibilityinsertionpointlinenumber: 'accessibilityInsertionPointLineNumber',
+    accessibilitylabel: 'accessibilityLabel',
+    accessibilitylabeluielements: 'accessibilityLabelUIElements',
+    accessibilitylabelvalue: 'accessibilityLabelValue',
+    accessibilitylayoutpointforscreenpoint: 'accessibilityLayoutPointForScreenPoint',
+    accessibilitylayoutsizeforscreensize: 'accessibilityLayoutSizeForScreenSize',
+    accessibilitylineforindex: 'accessibilityLineForIndex',
+    accessibilitylinkeduielements: 'accessibilityLinkedUIElements',
+    accessibilitymainwindow: 'accessibilityMainWindow',
+    accessibilitymarkergroupuielement: 'accessibilityMarkerGroupUIElement',
+    accessibilitymarkertypedescription: 'accessibilityMarkerTypeDescription',
+    accessibilitymarkeruielements: 'accessibilityMarkerUIElements',
+    accessibilitymarkervalues: 'accessibilityMarkerValues',
+    accessibilitymaxvalue: 'accessibilityMaxValue',
+    accessibilitymenubar: 'accessibilityMenuBar',
+    accessibilityminimizebutton: 'accessibilityMinimizeButton',
+    accessibilityminvalue: 'accessibilityMinValue',
+    accessibilitynextcontents: 'accessibilityNextContents',
+    accessibilitynumberofcharacters: 'accessibilityNumberOfCharacters',
+    accessibilityorientation: 'accessibilityOrientation',
+    accessibilityoverflowbutton: 'accessibilityOverflowButton',
+    accessibilityparent: 'accessibilityParent',
+    accessibilityperformcancel: 'accessibilityPerformCancel',
+    accessibilityperformconfirm: 'accessibilityPerformConfirm',
+    accessibilityperformdecrement: 'accessibilityPerformDecrement',
+    accessibilityperformdelete: 'accessibilityPerformDelete',
+    accessibilityperformincrement: 'accessibilityPerformIncrement',
+    accessibilityperformpick: 'accessibilityPerformPick',
+    accessibilityperformpress: 'accessibilityPerformPress',
+    accessibilityperformraise: 'accessibilityPerformRaise',
+    accessibilityperformshowalternateui: 'accessibilityPerformShowAlternateUI',
+    accessibilityperformshowdefaultui: 'accessibilityPerformShowDefaultUI',
+    accessibilityperformshowmenu: 'accessibilityPerformShowMenu',
+    accessibilityplaceholdervalue: 'accessibilityPlaceholderValue',
+    accessibilitypreviouscontents: 'accessibilityPreviousContents',
+    accessibilityproxy: 'accessibilityProxy',
+    accessibilityrangeforindex: 'accessibilityRangeForIndex',
+    accessibilityrangeforline: 'accessibilityRangeForLine',
+    accessibilityrangeforposition: 'accessibilityRangeForPosition',
+    accessibilityrole: 'accessibilityRole',
+    accessibilityroledescription: 'accessibilityRoleDescription',
+    accessibilityrowcount: 'accessibilityRowCount',
+    accessibilityrowheaderuielements: 'accessibilityRowHeaderUIElements',
+    accessibilityrowindexrange: 'accessibilityRowIndexRange',
+    accessibilityrows: 'accessibilityRows',
+    accessibilityrtfforrange: 'accessibilityRTFForRange',
+    accessibilityrulermarkertype: 'accessibilityRulerMarkerType',
+    accessibilityscreenpointforlayoutpoint: 'accessibilityScreenPointForLayoutPoint',
+    accessibilityscreensizeforlayoutsize: 'accessibilityScreenSizeForLayoutSize',
+    accessibilitysearchbutton: 'accessibilitySearchButton',
+    accessibilitysearchmenu: 'accessibilitySearchMenu',
+    accessibilityselectedcells: 'accessibilitySelectedCells',
+    accessibilityselectedchildren: 'accessibilitySelectedChildren',
+    accessibilityselectedcolumns: 'accessibilitySelectedColumns',
+    accessibilityselectedrows: 'accessibilitySelectedRows',
+    accessibilityselectedtext: 'accessibilitySelectedText',
+    accessibilityselectedtextrange: 'accessibilitySelectedTextRange',
+    accessibilityselectedtextranges: 'accessibilitySelectedTextRanges',
+    accessibilityservesastitleforuielements: 'accessibilityServesAsTitleForUIElements',
+    accessibilitysharedcharacterrange: 'accessibilitySharedCharacterRange',
+    accessibilitysharedfocuselements: 'accessibilitySharedFocusElements',
+    accessibilitysharedtextuielements: 'accessibilitySharedTextUIElements',
+    accessibilityshownmenu: 'accessibilityShownMenu',
+    accessibilitysortdirection: 'accessibilitySortDirection',
+    accessibilitysplitters: 'accessibilitySplitters',
+    accessibilitystringforrange: 'accessibilityStringForRange',
+    accessibilitystylerangeforindex: 'accessibilityStyleRangeForIndex',
+    accessibilitysubrole: 'accessibilitySubrole',
+    accessibilitytabs: 'accessibilityTabs',
+    accessibilitytitle: 'accessibilityTitle',
+    accessibilitytitleuielement: 'accessibilityTitleUIElement',
+    accessibilitytoolbarbutton: 'accessibilityToolbarButton',
+    accessibilitytopleveluielement: 'accessibilityTopLevelUIElement',
+    accessibilityunitdescription: 'accessibilityUnitDescription',
+    accessibilityunits: 'accessibilityUnits',
+    accessibilityurl: 'accessibilityURL',
+    accessibilityuserinputlabels: 'accessibilityUserInputLabels',
+    accessibilityvalue: 'accessibilityValue',
+    accessibilityvaluedescription: 'accessibilityValueDescription',
+    accessibilityverticalscrollbar: 'accessibilityVerticalScrollBar',
+    accessibilityverticalunitdescription: 'accessibilityVerticalUnitDescription',
+    accessibilityverticalunits: 'accessibilityVerticalUnits',
+    accessibilityvisiblecells: 'accessibilityVisibleCells',
+    accessibilityvisiblecharacterrange: 'accessibilityVisibleCharacterRange',
+    accessibilityvisiblechildren: 'accessibilityVisibleChildren',
+    accessibilityvisiblecolumns: 'accessibilityVisibleColumns',
+    accessibilityvisiblerows: 'accessibilityVisibleRows',
+    accessibilitywarningvalue: 'accessibilityWarningValue',
+    accessibilitywindow: 'accessibilityWindow',
+    accessibilitywindows: 'accessibilityWindows',
+    accessibilityzoombutton: 'accessibilityZoomButton',
+    action: 'action',
+    alignment: 'alignment',
+    allowseditingtextattributes: 'allowsEditingTextAttributes',
+    allowsmixedstate: 'allowsMixedState',
+    allowsundo: 'allowsUndo',
+    attributedstringvalue: 'attributedStringValue',
+    autorelease: 'autorelease',
+    backgroundstyle: 'backgroundStyle',
+    basewritingdirection: 'baseWritingDirection',
+    calcdrawinfo: 'calcDrawInfo',
+    cellattribute: 'cellAttribute',
+    cellsize: 'cellSize',
+    cellsizeforbounds: 'cellSizeForBounds',
+    class: 'class',
+    compare: 'compare',
+    conformstoprotocol: 'conformsToProtocol',
+    continuetrackingatinview: 'continueTrackingAtInView',
+    controlsize: 'controlSize',
+    controltint: 'controlTint',
+    controlview: 'controlView',
+    copywithzone: 'copyWithZone',
+    debugdescription: 'debugDescription',
+    defaultfocusringtype: 'defaultFocusRingType',
+    defaultmenu: 'defaultMenu',
+    description: 'description',
+    doublevalue: 'doubleValue',
+    draggingimagecomponentswithframeinview: 'draggingImageComponentsWithFrameInView',
+    drawfocusringmaskwithframeinview: 'drawFocusRingMaskWithFrameInView',
+    drawingrectforbounds: 'drawingRectForBounds',
+    drawinteriorwithframeinview: 'drawInteriorWithFrameInView',
+    drawwithexpansionframeinview: 'drawWithExpansionFrameInView',
+    drawwithframeinview: 'drawWithFrameInView',
+    editwithframeinvieweditordelegateevent: 'editWithFrameInViewEditorDelegateEvent',
+    encodewithcoder: 'encodeWithCoder',
+    endediting: 'endEditing',
+    entrytype: 'entryType',
+    expansionframewithframeinview: 'expansionFrameWithFrameInView',
+    fieldeditorforview: 'fieldEditorForView',
+    floatvalue: 'floatValue',
+    focusringmaskboundsforframeinview: 'focusRingMaskBoundsForFrameInView',
+    focusringtype: 'focusRingType',
+    font: 'font',
+    formatter: 'formatter',
+    getperiodicdelayinterval: 'getPeriodicDelayInterval',
+    hash: 'hash',
+    hasvalidobjectvalue: 'hasValidObjectValue',
+    highlightcolorwithframeinview: 'highlightColorWithFrameInView',
+    highlightwithframeinview: 'highlightWithFrameInView',
+    hittestforeventinrectofview: 'hitTestForEventInRectOfView',
+    identifier: 'identifier',
+    image: 'image',
+    imagerectforbounds: 'imageRectForBounds',
+    importsgraphics: 'importsGraphics',
+    init: 'init',
+    initimagecell: 'initImageCell',
+    inittextcell: 'initTextCell',
+    initwithcoder: 'initWithCoder',
+    integervalue: 'integerValue',
+    interiorbackgroundstyle: 'interiorBackgroundStyle',
+    intvalue: 'intValue',
+    isaccessibilityalternateuivisible: 'isAccessibilityAlternateUIVisible',
+    isaccessibilitydisclosed: 'isAccessibilityDisclosed',
+    isaccessibilityedited: 'isAccessibilityEdited',
+    isaccessibilityelement: 'isAccessibilityElement',
+    isaccessibilityenabled: 'isAccessibilityEnabled',
+    isaccessibilityexpanded: 'isAccessibilityExpanded',
+    isaccessibilityfocused: 'isAccessibilityFocused',
+    isaccessibilityfrontmost: 'isAccessibilityFrontmost',
+    isaccessibilityhidden: 'isAccessibilityHidden',
+    isaccessibilitymain: 'isAccessibilityMain',
+    isaccessibilityminimized: 'isAccessibilityMinimized',
+    isaccessibilitymodal: 'isAccessibilityModal',
+    isaccessibilityorderedbyrow: 'isAccessibilityOrderedByRow',
+    isaccessibilityprotectedcontent: 'isAccessibilityProtectedContent',
+    isaccessibilityrequired: 'isAccessibilityRequired',
+    isaccessibilityselected: 'isAccessibilitySelected',
+    isaccessibilityselectorallowed: 'isAccessibilitySelectorAllowed',
+    isbezeled: 'isBezeled',
+    isbordered: 'isBordered',
+    iscontinuous: 'isContinuous',
+    iseditable: 'isEditable',
+    isenabled: 'isEnabled',
+    isentryacceptable: 'isEntryAcceptable',
+    isequal: 'isEqual',
+    ishighlighted: 'isHighlighted',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isopaque: 'isOpaque',
+    isproxy: 'isProxy',
+    isscrollable: 'isScrollable',
+    isselectable: 'isSelectable',
+    keyequivalent: 'keyEquivalent',
+    linebreakmode: 'lineBreakMode',
+    menu: 'menu',
+    menuforeventinrectofview: 'menuForEventInRectOfView',
+    mnemonic: 'mnemonic',
+    mnemoniclocation: 'mnemonicLocation',
+    mousedownflags: 'mouseDownFlags',
+    nextstate: 'nextState',
+    objectvalue: 'objectValue',
+    performclick: 'performClick',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    preferstrackinguntilmouseup: 'prefersTrackingUntilMouseUp',
+    refusesfirstresponder: 'refusesFirstResponder',
+    release: 'release',
+    representedobject: 'representedObject',
+    resetcursorrectinview: 'resetCursorRectInView',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    selectwithframeinvieweditordelegatestartlength: 'selectWithFrameInViewEditorDelegateStartLength',
+    self: 'self',
+    sendactionon: 'sendActionOn',
+    sendsactiononendediting: 'sendsActionOnEndEditing',
+    setcellattributeto: 'setCellAttributeTo',
+    setentrytype: 'setEntryType',
+    setfloatingpointformatleftright: 'setFloatingPointFormatLeftRight',
+    setmnemoniclocation: 'setMnemonicLocation',
+    settitlewithmnemonic: 'setTitleWithMnemonic',
+    setupfieldeditorattributes: 'setUpFieldEditorAttributes',
+    showsfirstresponder: 'showsFirstResponder',
+    starttrackingatinview: 'startTrackingAtInView',
+    state: 'state',
+    stoptrackingatinviewmouseisup: 'stopTrackingAtInViewMouseIsUp',
+    stringvalue: 'stringValue',
+    superclass: 'superclass',
+    tag: 'tag',
+    takedoublevaluefrom: 'takeDoubleValueFrom',
+    takefloatvaluefrom: 'takeFloatValueFrom',
+    takeintegervaluefrom: 'takeIntegerValueFrom',
+    takeintvaluefrom: 'takeIntValueFrom',
+    takeobjectvaluefrom: 'takeObjectValueFrom',
+    takestringvaluefrom: 'takeStringValueFrom',
+    target: 'target',
+    title: 'title',
+    titlerectforbounds: 'titleRectForBounds',
+    trackmouseinrectofviewuntilmouseup: 'trackMouseInRectOfViewUntilMouseUp',
+    truncateslastvisibleline: 'truncatesLastVisibleLine',
+    type: 'type',
+    userinterfacelayoutdirection: 'userInterfaceLayoutDirection',
+    usessinglelinemode: 'usesSingleLineMode',
+    wantsnotificationformarkedtext: 'wantsNotificationForMarkedText',
+    wraps: 'wraps',
+    zone: 'zone',
+  }
 
-  // prefersTrackingUntilMouseUp: boolean;
-  // controlView: NSView;
-  // type: interop.Enum<typeof NSCellType>;
-  // state: number;
-  // target: interop.Object;
-  // action: string;
-  // tag: number;
-  // readonly isOpaque: boolean;
-  // isEnabled: boolean;
-  // isContinuous: boolean;
-  // isEditable: boolean;
-  // isSelectable: boolean;
-  // isBordered: boolean;
-  // isBezeled: boolean;
-  // isScrollable: boolean;
-  // isHighlighted: boolean;
-  // alignment: interop.Enum<typeof NSTextAlignment>;
-  // wraps: boolean;
-  // font: NSFont;
-  // readonly keyEquivalent: NSString;
-  // formatter: NSFormatter;
-  // objectValue: interop.Object;
-  // readonly hasValidObjectValue: boolean;
-  // intValue: number;
-  // floatValue: number;
-  // doubleValue: number;
-  // integerValue: number;
-  // image: NSImage;
-  // controlSize: interop.Enum<typeof NSControlSize>;
-  // representedObject: interop.Object;
-  // readonly cellSize: CGSize;
-  // readonly mouseDownFlags: number;
-  // menu: NSMenu;
-  // defaultMenu: NSMenu;
-  // sendsActionOnEndEditing: boolean;
-  // baseWritingDirection: interop.Enum<typeof NSWritingDirection>;
-  // lineBreakMode: interop.Enum<typeof NSLineBreakMode>;
-  // allowsUndo: boolean;
-  // truncatesLastVisibleLine: boolean;
-  // userInterfaceLayoutDirection: interop.Enum<typeof NSUserInterfaceLayoutDirection>;
-  // usesSingleLineMode: boolean;
-  // refusesFirstResponder: boolean;
   // readonly acceptsFirstResponder: boolean;
-  // showsFirstResponder: boolean;
-  // focusRingType: interop.Enum<typeof NSFocusRingType>;
-  // defaultFocusRingType: interop.Enum<typeof NSFocusRingType>;
-  // readonly wantsNotificationForMarkedText: boolean;
-  // attributedStringValue: NSAttributedString;
-  // allowsEditingTextAttributes: boolean;
-  // importsGraphics: boolean;
-  // allowsMixedState: boolean;
-  // readonly nextState: number;
-  // backgroundStyle: interop.Enum<typeof NSBackgroundStyle>;
-  // readonly interiorBackgroundStyle: interop.Enum<typeof NSBackgroundStyle>;
-  // controlTint: interop.Enum<typeof NSControlTint>;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
-  // isAccessibilityElement: boolean;
-  // accessibilityFrame: CGRect;
-  // isAccessibilityFocused: boolean;
   // accessibilityActivationPoint: CGPoint;
-  // accessibilityTopLevelUIElement: interop.Object;
-  // accessibilityURL: NSURL;
-  // accessibilityValue: interop.Object;
-  // accessibilityTitleUIElement: interop.Object;
-  // accessibilityOrientation: interop.Enum<typeof NSAccessibilityOrientation>;
-  // accessibilityOverflowButton: interop.Object;
-  // accessibilityParent: interop.Object;
-  // accessibilitySearchButton: interop.Object;
-  // accessibilitySearchMenu: interop.Object;
-  // isAccessibilitySelected: boolean;
-  // accessibilityShownMenu: interop.Object;
-  // accessibilityMinValue: interop.Object;
-  // accessibilityMaxValue: interop.Object;
-  // accessibilityWindow: interop.Object;
-  // isAccessibilityExpanded: boolean;
-  // isAccessibilityEdited: boolean;
-  // isAccessibilityEnabled: boolean;
-  // accessibilityClearButton: interop.Object;
-  // accessibilityCancelButton: interop.Object;
-  // isAccessibilityProtectedContent: boolean;
-  // isAccessibilityAlternateUIVisible: boolean;
-  // isAccessibilityRequired: boolean;
   // accessibilityApplicationFocusedUIElement: interop.Object;
-  // accessibilityMainWindow: interop.Object;
-  // isAccessibilityHidden: boolean;
-  // isAccessibilityFrontmost: boolean;
-  // accessibilityFocusedWindow: interop.Object;
-  // accessibilityExtrasMenuBar: interop.Object;
-  // accessibilityMenuBar: interop.Object;
-  // isAccessibilityOrderedByRow: boolean;
-  // accessibilityHorizontalUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityVerticalUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityWarningValue: interop.Object;
+  // accessibilityCancelButton: interop.Object;
+  // accessibilityClearButton: interop.Object;
+  // accessibilityCloseButton: interop.Object;
+  // accessibilityColumnCount: number;
+  // accessibilityColumnIndexRange: _NSRange;
   // accessibilityCriticalValue: interop.Object;
-  // isAccessibilityDisclosed: boolean;
+  // accessibilityDecrementButton: interop.Object;
+  // accessibilityDefaultButton: interop.Object;
   // accessibilityDisclosedByRow: interop.Object;
   // accessibilityDisclosedRows: interop.Object;
   // accessibilityDisclosureLevel: number;
-  // accessibilityMarkerValues: interop.Object;
-  // accessibilityMarkerGroupUIElement: interop.Object;
-  // accessibilityUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityRulerMarkerType: interop.Enum<typeof NSAccessibilityRulerMarkerType>;
-  // accessibilityHorizontalScrollBar: interop.Object;
-  // accessibilityVerticalScrollBar: interop.Object;
-  // accessibilityLabelValue: number;
-  // accessibilityDecrementButton: interop.Object;
-  // accessibilityIncrementButton: interop.Object;
-  // accessibilityHeader: interop.Object;
-  // accessibilityColumnCount: number;
-  // accessibilityRowCount: number;
-  // accessibilityIndex: number;
-  // accessibilitySortDirection: interop.Enum<typeof NSAccessibilitySortDirection>;
-  // accessibilityRowIndexRange: _NSRange;
-  // accessibilityColumnIndexRange: _NSRange;
-  // accessibilityInsertionPointLineNumber: number;
-  // accessibilitySharedCharacterRange: _NSRange;
-  // accessibilityVisibleCharacterRange: _NSRange;
-  // accessibilityNumberOfCharacters: number;
-  // accessibilitySelectedTextRange: _NSRange;
-  // accessibilityToolbarButton: interop.Object;
-  // isAccessibilityModal: boolean;
-  // accessibilityProxy: interop.Object;
-  // isAccessibilityMain: boolean;
+  // accessibilityExtrasMenuBar: interop.Object;
+  // accessibilityFocusedWindow: interop.Object;
+  // accessibilityFrame: CGRect;
   // accessibilityFullScreenButton: interop.Object;
   // accessibilityGrowArea: interop.Object;
-  // accessibilityDefaultButton: interop.Object;
-  // accessibilityCloseButton: interop.Object;
-  // accessibilityZoomButton: interop.Object;
+  // accessibilityHeader: interop.Object;
+  // accessibilityHorizontalScrollBar: interop.Object;
+  // accessibilityHorizontalUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityIncrementButton: interop.Object;
+  // accessibilityIndex: number;
+  // accessibilityInsertionPointLineNumber: number;
+  // accessibilityLabelValue: number;
+  // accessibilityMainWindow: interop.Object;
+  // accessibilityMarkerGroupUIElement: interop.Object;
+  // accessibilityMarkerValues: interop.Object;
+  // accessibilityMaxValue: interop.Object;
+  // accessibilityMenuBar: interop.Object;
   // accessibilityMinimizeButton: interop.Object;
+  // accessibilityMinValue: interop.Object;
+  // accessibilityNumberOfCharacters: number;
+  // accessibilityOrientation: interop.Enum<typeof NSAccessibilityOrientation>;
+  // accessibilityOverflowButton: interop.Object;
+  // accessibilityParent: interop.Object;
+  // accessibilityProxy: interop.Object;
+  // accessibilityRowCount: number;
+  // accessibilityRowIndexRange: _NSRange;
+  // accessibilityRulerMarkerType: interop.Enum<typeof NSAccessibilityRulerMarkerType>;
+  // accessibilitySearchButton: interop.Object;
+  // accessibilitySearchMenu: interop.Object;
+  // accessibilitySelectedTextRange: _NSRange;
+  // accessibilitySharedCharacterRange: _NSRange;
+  // accessibilityShownMenu: interop.Object;
+  // accessibilitySortDirection: interop.Enum<typeof NSAccessibilitySortDirection>;
+  // accessibilityTitleUIElement: interop.Object;
+  // accessibilityToolbarButton: interop.Object;
+  // accessibilityTopLevelUIElement: interop.Object;
+  // accessibilityUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityURL: NSURL;
+  // accessibilityValue: interop.Object;
+  // accessibilityVerticalScrollBar: interop.Object;
+  // accessibilityVerticalUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityVisibleCharacterRange: _NSRange;
+  // accessibilityWarningValue: interop.Object;
+  // accessibilityWindow: interop.Object;
+  // accessibilityZoomButton: interop.Object;
+  // action: string;
+  // alignment: interop.Enum<typeof NSTextAlignment>;
+  // allowsEditingTextAttributes: boolean;
+  // allowsMixedState: boolean;
+  // allowsUndo: boolean;
+  // attributedStringValue: NSAttributedString;
+  // backgroundStyle: interop.Enum<typeof NSBackgroundStyle>;
+  // baseWritingDirection: interop.Enum<typeof NSWritingDirection>;
+  // readonly cellSize: CGSize;
+  // controlSize: interop.Enum<typeof NSControlSize>;
+  // controlTint: interop.Enum<typeof NSControlTint>;
+  // controlView: NSView;
+  // readonly debugDescription: NSString;
+  // defaultFocusRingType: interop.Enum<typeof NSFocusRingType>;
+  // defaultMenu: NSMenu;
+  // readonly description: NSString;
+  // doubleValue: number;
+  // floatValue: number;
+  // focusRingType: interop.Enum<typeof NSFocusRingType>;
+  // font: NSFont;
+  // formatter: NSFormatter;
+  // readonly hash: number;
+  // readonly hasValidObjectValue: boolean;
+  // image: NSImage;
+  // importsGraphics: boolean;
+  // integerValue: number;
+  // readonly interiorBackgroundStyle: interop.Enum<typeof NSBackgroundStyle>;
+  // intValue: number;
+  // isAccessibilityAlternateUIVisible: boolean;
+  // isAccessibilityDisclosed: boolean;
+  // isAccessibilityEdited: boolean;
+  // isAccessibilityElement: boolean;
+  // isAccessibilityEnabled: boolean;
+  // isAccessibilityExpanded: boolean;
+  // isAccessibilityFocused: boolean;
+  // isAccessibilityFrontmost: boolean;
+  // isAccessibilityHidden: boolean;
+  // isAccessibilityMain: boolean;
   // isAccessibilityMinimized: boolean;
+  // isAccessibilityModal: boolean;
+  // isAccessibilityOrderedByRow: boolean;
+  // isAccessibilityProtectedContent: boolean;
+  // isAccessibilityRequired: boolean;
+  // isAccessibilitySelected: boolean;
+  // isBezeled: boolean;
+  // isBordered: boolean;
+  // isContinuous: boolean;
+  // isEditable: boolean;
+  // isEnabled: boolean;
+  // isHighlighted: boolean;
+  // readonly isOpaque: boolean;
+  // readonly isProxy: boolean;
+  // isScrollable: boolean;
+  // isSelectable: boolean;
+  // readonly keyEquivalent: NSString;
+  // lineBreakMode: interop.Enum<typeof NSLineBreakMode>;
+  // menu: NSMenu;
+  // readonly mouseDownFlags: number;
+  // readonly nextState: number;
+  // objectValue: interop.Object;
+  // prefersTrackingUntilMouseUp: boolean;
+  // refusesFirstResponder: boolean;
+  // representedObject: interop.Object;
+  // sendsActionOnEndEditing: boolean;
+  // showsFirstResponder: boolean;
+  // state: number;
+  // readonly superclass: interop.Object;
+  // tag: number;
+  // target: interop.Object;
+  // truncatesLastVisibleLine: boolean;
+  // type: interop.Enum<typeof NSCellType>;
+  // userInterfaceLayoutDirection: interop.Enum<typeof NSUserInterfaceLayoutDirection>;
+  // usesSingleLineMode: boolean;
+  // readonly wantsNotificationForMarkedText: boolean;
+  // wraps: boolean;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSStatusItemElement extends HTMLNSObjectElement {
   readonly nativeObject = NSStatusItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    action: 'action',
+    alternateimage: 'alternateImage',
+    attributedtitle: 'attributedTitle',
+    autosavename: 'autosaveName',
+    behavior: 'behavior',
+    button: 'button',
+    doubleaction: 'doubleAction',
+    drawstatusbarbackgroundinrectwithhighlight: 'drawStatusBarBackgroundInRectWithHighlight',
+    highlightmode: 'highlightMode',
+    image: 'image',
+    isenabled: 'isEnabled',
+    isvisible: 'isVisible',
+    length: 'length',
+    menu: 'menu',
+    popupstatusitemmenu: 'popUpStatusItemMenu',
+    sendactionon: 'sendActionOn',
+    statusbar: 'statusBar',
+    target: 'target',
+    title: 'title',
+    tooltip: 'toolTip',
+    view: 'view',
+  }
 
-  // readonly statusBar: NSStatusBar | null;
+  // action: string;
+  // alternateImage: NSImage;
+  // attributedTitle: NSAttributedString;
+  // behavior: interop.Enum<typeof NSStatusItemBehavior>;
+  // readonly button: NSStatusBarButton;
+  // doubleAction: string;
+  // highlightMode: boolean;
+  // image: NSImage;
+  // isEnabled: boolean;
+  // isVisible: boolean;
   // length: number;
   // menu: NSMenu;
-  // readonly button: NSStatusBarButton;
-  // behavior: interop.Enum<typeof NSStatusItemBehavior>;
-  // isVisible: boolean;
-  // action: string;
-  // doubleAction: string;
+  // readonly statusBar: NSStatusBar | null;
   // target: interop.Object;
-  // attributedTitle: NSAttributedString;
-  // image: NSImage;
-  // alternateImage: NSImage;
-  // isEnabled: boolean;
-  // highlightMode: boolean;
   // view: NSView;
 }
 
@@ -459,9 +1510,20 @@ export class HTMLNSSpeechRecognizerElement extends HTMLNSObjectElement {
   get delegate(): NSSpeechRecognizerDelegateImpl {
     return (this.nativeObject.delegate ??= NSSpeechRecognizerDelegateImpl.new()) as NSSpeechRecognizerDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    blocksotherrecognizers: 'blocksOtherRecognizers',
+    commands: 'commands',
+    delegate: 'delegate',
+    displayedcommandstitle: 'displayedCommandsTitle',
+    init: 'init',
+    listensinforegroundonly: 'listensInForegroundOnly',
+    startlistening: 'startListening',
+    stoplistening: 'stopListening',
+  }
 
-  // listensInForegroundOnly: boolean;
   // blocksOtherRecognizers: boolean;
+  // listensInForegroundOnly: boolean;
 
   set speechrecognizerdidrecognizecommand(value: (sender: NSSpeechRecognizer, command: NSString | string) => void) {
     this.delegate.speechRecognizerDidRecognizeCommand = value;
@@ -470,6 +1532,14 @@ export class HTMLNSSpeechRecognizerElement extends HTMLNSObjectElement {
 
 export class HTMLNSCollectionLayoutGroupCustomItemElement extends HTMLNSObjectElement {
   readonly nativeObject = NSCollectionLayoutGroupCustomItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    copywithzone: 'copyWithZone',
+    customitemwithframe: 'customItemWithFrame',
+    customitemwithframezindex: 'customItemWithFrameZIndex',
+    frame: 'frame',
+    zindex: 'zIndex',
+  }
 
   // readonly frame: CGRect;
   // readonly zIndex: number;
@@ -477,70 +1547,148 @@ export class HTMLNSCollectionLayoutGroupCustomItemElement extends HTMLNSObjectEl
 
 export class HTMLNSTableViewRowActionElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTableViewRowAction.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    backgroundcolor: 'backgroundColor',
+    copywithzone: 'copyWithZone',
+    image: 'image',
+    rowactionwithstyletitlehandler: 'rowActionWithStyleTitleHandler',
+    style: 'style',
+    title: 'title',
+  }
 
-  // readonly style: interop.Enum<typeof NSTableViewRowActionStyle>;
   // backgroundColor: NSColor;
   // image: NSImage;
+  // readonly style: interop.Enum<typeof NSTableViewRowActionStyle>;
 }
 
 export class HTMLNSTextAttachmentViewProviderElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextAttachmentViewProvider.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    attachmentboundsforattributeslocationtextcontainerproposedlinefragmentposition: 'attachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition',
+    initwithtextattachmentparentviewtextlayoutmanagerlocation: 'initWithTextAttachmentParentViewTextLayoutManagerLocation',
+    loadview: 'loadView',
+    location: 'location',
+    textattachment: 'textAttachment',
+    textlayoutmanager: 'textLayoutManager',
+    trackstextattachmentviewbounds: 'tracksTextAttachmentViewBounds',
+    view: 'view',
+  }
 
+  // readonly location: NSTextLocation;
   // readonly textAttachment: NSTextAttachment | null;
   // readonly textLayoutManager: NSTextLayoutManager;
-  // readonly location: NSTextLocation;
-  // view: NSView;
   // tracksTextAttachmentViewBounds: boolean;
+  // view: NSView;
 }
 
 export class HTMLNSToolbarItemElement extends HTMLNSObjectElement {
   readonly nativeObject = NSToolbarItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    action: 'action',
+    allowsduplicatesintoolbar: 'allowsDuplicatesInToolbar',
+    autovalidates: 'autovalidates',
+    copywithzone: 'copyWithZone',
+    image: 'image',
+    initwithitemidentifier: 'initWithItemIdentifier',
+    isbordered: 'isBordered',
+    isenabled: 'isEnabled',
+    isnavigational: 'isNavigational',
+    isvisible: 'isVisible',
+    itemidentifier: 'itemIdentifier',
+    label: 'label',
+    maxsize: 'maxSize',
+    menuformrepresentation: 'menuFormRepresentation',
+    minsize: 'minSize',
+    palettelabel: 'paletteLabel',
+    possiblelabels: 'possibleLabels',
+    tag: 'tag',
+    target: 'target',
+    title: 'title',
+    toolbar: 'toolbar',
+    tooltip: 'toolTip',
+    validate: 'validate',
+    view: 'view',
+    visibilitypriority: 'visibilityPriority',
+  }
 
-  // readonly itemIdentifier: NSString;
-  // readonly toolbar: NSToolbar;
-  // possibleLabels: NSSet;
-  // menuFormRepresentation: NSMenuItem;
-  // tag: number;
-  // target: interop.Object;
   // action: string;
-  // isEnabled: boolean;
+  // readonly allowsDuplicatesInToolbar: boolean;
+  // autovalidates: boolean;
   // image: NSImage;
   // isBordered: boolean;
+  // isEnabled: boolean;
   // isNavigational: boolean;
-  // view: NSView;
   // readonly isVisible: boolean;
-  // minSize: CGSize;
+  // readonly itemIdentifier: NSString;
   // maxSize: CGSize;
+  // menuFormRepresentation: NSMenuItem;
+  // minSize: CGSize;
+  // possibleLabels: NSSet;
+  // tag: number;
+  // target: interop.Object;
+  // readonly toolbar: NSToolbar;
+  // view: NSView;
   // visibilityPriority: number;
-  // autovalidates: boolean;
-  // readonly allowsDuplicatesInToolbar: boolean;
 }
 
 export class HTMLNSGlyphGeneratorElement extends HTMLNSObjectElement {
   readonly nativeObject = NSGlyphGenerator.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    generateglyphsforglyphstoragedesirednumberofcharactersglyphindexcharacterindex: 'generateGlyphsForGlyphStorageDesiredNumberOfCharactersGlyphIndexCharacterIndex',
+    sharedglyphgenerator: 'sharedGlyphGenerator',
+  }
 
   // sharedGlyphGenerator: NSGlyphGenerator;
 }
 
 export class HTMLNSGridCellElement extends HTMLNSObjectElement {
   readonly nativeObject = NSGridCell.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    column: 'column',
+    contentview: 'contentView',
+    customplacementconstraints: 'customPlacementConstraints',
+    emptycontentview: 'emptyContentView',
+    encodewithcoder: 'encodeWithCoder',
+    initwithcoder: 'initWithCoder',
+    row: 'row',
+    rowalignment: 'rowAlignment',
+    xplacement: 'xPlacement',
+    yplacement: 'yPlacement',
+  }
 
+  // readonly column: NSGridColumn | null;
   // contentView: NSView;
   // emptyContentView: NSView;
   // readonly row: NSGridRow | null;
-  // readonly column: NSGridColumn | null;
+  // rowAlignment: interop.Enum<typeof NSGridRowAlignment>;
   // xPlacement: interop.Enum<typeof NSGridCellPlacement>;
   // yPlacement: interop.Enum<typeof NSGridCellPlacement>;
-  // rowAlignment: interop.Enum<typeof NSGridRowAlignment>;
 }
 
 export class HTMLNSColorSamplerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSColorSampler.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    showsamplerwithselectionhandler: 'showSamplerWithSelectionHandler',
+  }
 
 }
 
 export class HTMLNSPDFPanelElement extends HTMLNSObjectElement {
   readonly nativeObject = NSPDFPanel.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessorycontroller: 'accessoryController',
+    beginsheetwithpdfinfomodalforwindowcompletionhandler: 'beginSheetWithPDFInfoModalForWindowCompletionHandler',
+    defaultfilename: 'defaultFileName',
+    options: 'options',
+    panel: 'panel',
+  }
 
   // accessoryController: NSViewController;
   // options: interop.Enum<typeof NSPDFPanelOptions>;
@@ -548,6 +1696,22 @@ export class HTMLNSPDFPanelElement extends HTMLNSObjectElement {
 
 export class HTMLNSPageLayoutElement extends HTMLNSObjectElement {
   readonly nativeObject = NSPageLayout.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessorycontrollers: 'accessoryControllers',
+    accessoryview: 'accessoryView',
+    addaccessorycontroller: 'addAccessoryController',
+    beginsheetusingprintinfoonwindowcompletionhandler: 'beginSheetUsingPrintInfoOnWindowCompletionHandler',
+    beginsheetwithprintinfomodalforwindowdelegatedidendselectorcontextinfo: 'beginSheetWithPrintInfoModalForWindowDelegateDidEndSelectorContextInfo',
+    pagelayout: 'pageLayout',
+    printinfo: 'printInfo',
+    readprintinfo: 'readPrintInfo',
+    removeaccessorycontroller: 'removeAccessoryController',
+    runmodal: 'runModal',
+    runmodalwithprintinfo: 'runModalWithPrintInfo',
+    setaccessoryview: 'setAccessoryView',
+    writeprintinfo: 'writePrintInfo',
+  }
 
   // readonly accessoryControllers: NSArray;
   // readonly printInfo: NSPrintInfo;
@@ -555,139 +1719,406 @@ export class HTMLNSPageLayoutElement extends HTMLNSObjectElement {
 
 export class HTMLNSScreenElement extends HTMLNSObjectElement {
   readonly nativeObject = NSScreen.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    auxiliarytopleftarea: 'auxiliaryTopLeftArea',
+    auxiliarytoprightarea: 'auxiliaryTopRightArea',
+    backingalignedrectoptions: 'backingAlignedRectOptions',
+    backingscalefactor: 'backingScaleFactor',
+    canrepresentdisplaygamut: 'canRepresentDisplayGamut',
+    colorspace: 'colorSpace',
+    convertrectfrombacking: 'convertRectFromBacking',
+    convertrecttobacking: 'convertRectToBacking',
+    deepestscreen: 'deepestScreen',
+    depth: 'depth',
+    devicedescription: 'deviceDescription',
+    displaylinkwithtargetselector: 'displayLinkWithTargetSelector',
+    displayupdategranularity: 'displayUpdateGranularity',
+    frame: 'frame',
+    lastdisplayupdatetimestamp: 'lastDisplayUpdateTimestamp',
+    localizedname: 'localizedName',
+    mainscreen: 'mainScreen',
+    maximumextendeddynamicrangecolorcomponentvalue: 'maximumExtendedDynamicRangeColorComponentValue',
+    maximumframespersecond: 'maximumFramesPerSecond',
+    maximumpotentialextendeddynamicrangecolorcomponentvalue: 'maximumPotentialExtendedDynamicRangeColorComponentValue',
+    maximumreferenceextendeddynamicrangecolorcomponentvalue: 'maximumReferenceExtendedDynamicRangeColorComponentValue',
+    maximumrefreshinterval: 'maximumRefreshInterval',
+    minimumrefreshinterval: 'minimumRefreshInterval',
+    safeareainsets: 'safeAreaInsets',
+    screens: 'screens',
+    screenshaveseparatespaces: 'screensHaveSeparateSpaces',
+    supportedwindowdepths: 'supportedWindowDepths',
+    userspacescalefactor: 'userSpaceScaleFactor',
+    visibleframe: 'visibleFrame',
+  }
 
-  // screens: NSArray;
-  // mainScreen: NSScreen;
-  // deepestScreen: NSScreen;
-  // screensHaveSeparateSpaces: boolean;
-  // readonly depth: interop.Enum<typeof NSWindowDepth>;
-  // readonly frame: CGRect;
-  // readonly visibleFrame: CGRect;
-  // readonly deviceDescription: NSDictionary;
-  // readonly colorSpace: NSColorSpace;
-  // readonly supportedWindowDepths: interop.Pointer;
-  // readonly backingScaleFactor: number;
-  // readonly localizedName: NSString;
-  // readonly safeAreaInsets: NSEdgeInsets;
   // readonly auxiliaryTopLeftArea: CGRect;
   // readonly auxiliaryTopRightArea: CGRect;
+  // readonly backingScaleFactor: number;
+  // readonly colorSpace: NSColorSpace;
+  // deepestScreen: NSScreen;
+  // readonly depth: interop.Enum<typeof NSWindowDepth>;
+  // readonly deviceDescription: NSDictionary;
+  // readonly displayUpdateGranularity: number;
+  // readonly frame: CGRect;
+  // readonly lastDisplayUpdateTimestamp: number;
+  // readonly localizedName: NSString;
+  // mainScreen: NSScreen;
   // readonly maximumExtendedDynamicRangeColorComponentValue: number;
+  // readonly maximumFramesPerSecond: number;
   // readonly maximumPotentialExtendedDynamicRangeColorComponentValue: number;
   // readonly maximumReferenceExtendedDynamicRangeColorComponentValue: number;
-  // readonly maximumFramesPerSecond: number;
-  // readonly minimumRefreshInterval: number;
   // readonly maximumRefreshInterval: number;
-  // readonly displayUpdateGranularity: number;
-  // readonly lastDisplayUpdateTimestamp: number;
+  // readonly minimumRefreshInterval: number;
+  // readonly safeAreaInsets: NSEdgeInsets;
+  // screens: NSArray;
+  // screensHaveSeparateSpaces: boolean;
+  // readonly supportedWindowDepths: interop.Pointer;
+  // readonly visibleFrame: CGRect;
 }
 
 export class HTMLNSImageSymbolConfigurationElement extends HTMLNSObjectElement {
   readonly nativeObject = NSImageSymbolConfiguration.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    configurationbyapplyingconfiguration: 'configurationByApplyingConfiguration',
+    configurationpreferringhierarchical: 'configurationPreferringHierarchical',
+    configurationpreferringmonochrome: 'configurationPreferringMonochrome',
+    configurationpreferringmulticolor: 'configurationPreferringMulticolor',
+    configurationwithhierarchicalcolor: 'configurationWithHierarchicalColor',
+    configurationwithpalettecolors: 'configurationWithPaletteColors',
+    configurationwithpointsizeweight: 'configurationWithPointSizeWeight',
+    configurationwithpointsizeweightscale: 'configurationWithPointSizeWeightScale',
+    configurationwithscale: 'configurationWithScale',
+    configurationwithtextstyle: 'configurationWithTextStyle',
+    configurationwithtextstylescale: 'configurationWithTextStyleScale',
+    copywithzone: 'copyWithZone',
+    encodewithcoder: 'encodeWithCoder',
+    initwithcoder: 'initWithCoder',
+    supportssecurecoding: 'supportsSecureCoding',
+  }
 
   // supportsSecureCoding: boolean;
 }
 
 export class HTMLNSRulerMarkerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSRulerMarker.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    copywithzone: 'copyWithZone',
+    drawrect: 'drawRect',
+    encodewithcoder: 'encodeWithCoder',
+    image: 'image',
+    imageorigin: 'imageOrigin',
+    imagerectinruler: 'imageRectInRuler',
+    initwithcoder: 'initWithCoder',
+    initwithrulerviewmarkerlocationimageimageorigin: 'initWithRulerViewMarkerLocationImageImageOrigin',
+    isdragging: 'isDragging',
+    ismovable: 'isMovable',
+    isremovable: 'isRemovable',
+    markerlocation: 'markerLocation',
+    representedobject: 'representedObject',
+    ruler: 'ruler',
+    thicknessrequiredinruler: 'thicknessRequiredInRuler',
+    trackmouseadding: 'trackMouseAdding',
+  }
 
-  // readonly ruler: NSRulerView | null;
-  // markerLocation: number;
   // image: NSImage;
   // imageOrigin: CGPoint;
+  // readonly imageRectInRuler: CGRect;
+  // readonly isDragging: boolean;
   // isMovable: boolean;
   // isRemovable: boolean;
-  // readonly isDragging: boolean;
+  // markerLocation: number;
   // representedObject: NSCopying;
-  // readonly imageRectInRuler: CGRect;
+  // readonly ruler: NSRulerView | null;
   // readonly thicknessRequiredInRuler: number;
 }
 
 export class HTMLNSFilePromiseReceiverElement extends HTMLNSObjectElement {
   readonly nativeObject = NSFilePromiseReceiver.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    autorelease: 'autorelease',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    filenames: 'fileNames',
+    filetypes: 'fileTypes',
+    hash: 'hash',
+    initwithpasteboardpropertylistoftype: 'initWithPasteboardPropertyListOfType',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    readabledraggedtypes: 'readableDraggedTypes',
+    readabletypesforpasteboard: 'readableTypesForPasteboard',
+    readingoptionsfortypepasteboard: 'readingOptionsForTypePasteboard',
+    receivepromisedfilesatdestinationoptionsoperationqueuereader: 'receivePromisedFilesAtDestinationOptionsOperationQueueReader',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    superclass: 'superclass',
+    zone: 'zone',
+  }
 
-  // readableDraggedTypes: NSArray;
-  // readonly fileTypes: NSArray;
-  // readonly fileNames: NSArray;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly fileNames: NSArray;
+  // readonly fileTypes: NSArray;
+  // readonly hash: number;
+  // readonly isProxy: boolean;
+  // readableDraggedTypes: NSArray;
+  // readonly superclass: interop.Object;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSColorPickerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSColorPicker.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    alphacontroladdedorremoved: 'alphaControlAddedOrRemoved',
+    attachcolorlist: 'attachColorList',
+    buttontooltip: 'buttonToolTip',
+    colorpanel: 'colorPanel',
+    detachcolorlist: 'detachColorList',
+    initwithpickermaskcolorpanel: 'initWithPickerMaskColorPanel',
+    insertnewbuttonimagein: 'insertNewButtonImageIn',
+    mincontentsize: 'minContentSize',
+    providenewbuttonimage: 'provideNewButtonImage',
+    setmode: 'setMode',
+    viewsizechanged: 'viewSizeChanged',
+  }
 
-  // readonly colorPanel: NSColorPanel;
-  // readonly provideNewButtonImage: NSImage;
   // readonly buttonToolTip: NSString;
+  // readonly colorPanel: NSColorPanel;
   // readonly minContentSize: CGSize;
+  // readonly provideNewButtonImage: NSImage;
 }
 
 export class HTMLNSBrowserCellElement extends HTMLNSCellElement {
   readonly nativeObject = NSBrowserCell.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    alternateimage: 'alternateImage',
+    branchimage: 'branchImage',
+    highlightcolorinview: 'highlightColorInView',
+    highlightedbranchimage: 'highlightedBranchImage',
+    image: 'image',
+    initimagecell: 'initImageCell',
+    inittextcell: 'initTextCell',
+    initwithcoder: 'initWithCoder',
+    isleaf: 'isLeaf',
+    isloaded: 'isLoaded',
+    reset: 'reset',
+    set: 'set',
+  }
 
+  // alternateImage: NSImage;
   // branchImage: NSImage;
   // highlightedBranchImage: NSImage;
+  // image: NSImage;
   // isLeaf: boolean;
   // isLoaded: boolean;
-  // image: NSImage;
-  // alternateImage: NSImage;
 }
 
 export class HTMLNSImageRepElement extends HTMLNSObjectElement {
   readonly nativeObject = NSImageRep.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    bitspersample: 'bitsPerSample',
+    caninitwithdata: 'canInitWithData',
+    caninitwithpasteboard: 'canInitWithPasteboard',
+    cgimageforproposedrectcontexthints: 'CGImageForProposedRectContextHints',
+    colorspacename: 'colorSpaceName',
+    copywithzone: 'copyWithZone',
+    draw: 'draw',
+    drawatpoint: 'drawAtPoint',
+    drawinrect: 'drawInRect',
+    drawinrectfromrectoperationfractionrespectflippedhints: 'drawInRectFromRectOperationFractionRespectFlippedHints',
+    encodewithcoder: 'encodeWithCoder',
+    hasalpha: 'hasAlpha',
+    imagefiletypes: 'imageFileTypes',
+    imagepasteboardtypes: 'imagePasteboardTypes',
+    imagerepclassfordata: 'imageRepClassForData',
+    imagerepclassforfiletype: 'imageRepClassForFileType',
+    imagerepclassforpasteboardtype: 'imageRepClassForPasteboardType',
+    imagerepclassfortype: 'imageRepClassForType',
+    imagerepswithcontentsoffile: 'imageRepsWithContentsOfFile',
+    imagerepswithcontentsofurl: 'imageRepsWithContentsOfURL',
+    imagerepswithpasteboard: 'imageRepsWithPasteboard',
+    imagerepwithcontentsoffile: 'imageRepWithContentsOfFile',
+    imagerepwithcontentsofurl: 'imageRepWithContentsOfURL',
+    imagerepwithpasteboard: 'imageRepWithPasteboard',
+    imagetypes: 'imageTypes',
+    imageunfilteredfiletypes: 'imageUnfilteredFileTypes',
+    imageunfilteredpasteboardtypes: 'imageUnfilteredPasteboardTypes',
+    imageunfilteredtypes: 'imageUnfilteredTypes',
+    init: 'init',
+    initwithcoder: 'initWithCoder',
+    isopaque: 'isOpaque',
+    layoutdirection: 'layoutDirection',
+    pixelshigh: 'pixelsHigh',
+    pixelswide: 'pixelsWide',
+    registeredimagerepclasses: 'registeredImageRepClasses',
+    registerimagerepclass: 'registerImageRepClass',
+    size: 'size',
+    unregisterimagerepclass: 'unregisterImageRepClass',
+  }
 
-  // size: CGSize;
-  // hasAlpha: boolean;
-  // isOpaque: boolean;
   // bitsPerSample: number;
-  // pixelsWide: number;
-  // pixelsHigh: number;
-  // layoutDirection: interop.Enum<typeof NSImageLayoutDirection>;
-  // registeredImageRepClasses: NSArray;
-  // imageUnfilteredTypes: NSArray;
+  // hasAlpha: boolean;
   // imageTypes: NSArray;
+  // imageUnfilteredTypes: NSArray;
+  // isOpaque: boolean;
+  // layoutDirection: interop.Enum<typeof NSImageLayoutDirection>;
+  // pixelsHigh: number;
+  // pixelsWide: number;
+  // registeredImageRepClasses: NSArray;
+  // size: CGSize;
 }
 
 export class HTMLNSFontCollectionElement extends HTMLNSObjectElement {
   readonly nativeObject = NSFontCollection.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    allfontcollectionnames: 'allFontCollectionNames',
+    copywithzone: 'copyWithZone',
+    encodewithcoder: 'encodeWithCoder',
+    exclusiondescriptors: 'exclusionDescriptors',
+    fontcollectionwithallavailabledescriptors: 'fontCollectionWithAllAvailableDescriptors',
+    fontcollectionwithdescriptors: 'fontCollectionWithDescriptors',
+    fontcollectionwithlocale: 'fontCollectionWithLocale',
+    fontcollectionwithname: 'fontCollectionWithName',
+    fontcollectionwithnamevisibility: 'fontCollectionWithNameVisibility',
+    hidefontcollectionwithnamevisibilityerror: 'hideFontCollectionWithNameVisibilityError',
+    initwithcoder: 'initWithCoder',
+    matchingdescriptors: 'matchingDescriptors',
+    matchingdescriptorsforfamily: 'matchingDescriptorsForFamily',
+    matchingdescriptorsforfamilyoptions: 'matchingDescriptorsForFamilyOptions',
+    matchingdescriptorswithoptions: 'matchingDescriptorsWithOptions',
+    mutablecopywithzone: 'mutableCopyWithZone',
+    querydescriptors: 'queryDescriptors',
+    renamefontcollectionwithnamevisibilitytonameerror: 'renameFontCollectionWithNameVisibilityToNameError',
+    showfontcollectionwithnamevisibilityerror: 'showFontCollectionWithNameVisibilityError',
+  }
 
-  // fontCollectionWithAllAvailableDescriptors: NSFontCollection;
   // allFontCollectionNames: NSArray;
-  // readonly queryDescriptors: NSArray;
   // readonly exclusionDescriptors: NSArray;
+  // fontCollectionWithAllAvailableDescriptors: NSFontCollection;
   // readonly matchingDescriptors: NSArray;
+  // readonly queryDescriptors: NSArray;
 }
 
 export class HTMLNSFontAssetRequestElement extends HTMLNSObjectElement {
   readonly nativeObject = NSFontAssetRequest.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    autorelease: 'autorelease',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    downloadedfontdescriptors: 'downloadedFontDescriptors',
+    downloadfontassetswithcompletionhandler: 'downloadFontAssetsWithCompletionHandler',
+    hash: 'hash',
+    initwithfontdescriptorsoptions: 'initWithFontDescriptorsOptions',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    progress: 'progress',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    superclass: 'superclass',
+    zone: 'zone',
+  }
 
-  // readonly downloadedFontDescriptors: NSArray;
-  // readonly progress: NSProgress;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly downloadedFontDescriptors: NSArray;
+  // readonly hash: number;
+  // readonly isProxy: boolean;
+  // readonly progress: NSProgress;
+  // readonly superclass: interop.Object;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSFontDescriptorElement extends HTMLNSObjectElement {
   readonly nativeObject = NSFontDescriptor.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    copywithzone: 'copyWithZone',
+    encodewithcoder: 'encodeWithCoder',
+    fontattributes: 'fontAttributes',
+    fontdescriptorbyaddingattributes: 'fontDescriptorByAddingAttributes',
+    fontdescriptorwithdesign: 'fontDescriptorWithDesign',
+    fontdescriptorwithface: 'fontDescriptorWithFace',
+    fontdescriptorwithfamily: 'fontDescriptorWithFamily',
+    fontdescriptorwithfontattributes: 'fontDescriptorWithFontAttributes',
+    fontdescriptorwithmatrix: 'fontDescriptorWithMatrix',
+    fontdescriptorwithnamematrix: 'fontDescriptorWithNameMatrix',
+    fontdescriptorwithnamesize: 'fontDescriptorWithNameSize',
+    fontdescriptorwithsize: 'fontDescriptorWithSize',
+    fontdescriptorwithsymbolictraits: 'fontDescriptorWithSymbolicTraits',
+    initwithcoder: 'initWithCoder',
+    initwithfontattributes: 'initWithFontAttributes',
+    matchingfontdescriptorswithmandatorykeys: 'matchingFontDescriptorsWithMandatoryKeys',
+    matchingfontdescriptorwithmandatorykeys: 'matchingFontDescriptorWithMandatoryKeys',
+    matrix: 'matrix',
+    objectforkey: 'objectForKey',
+    pointsize: 'pointSize',
+    postscriptname: 'postscriptName',
+    preferredfontdescriptorfortextstyleoptions: 'preferredFontDescriptorForTextStyleOptions',
+    requiresfontassetrequest: 'requiresFontAssetRequest',
+    supportssecurecoding: 'supportsSecureCoding',
+    symbolictraits: 'symbolicTraits',
+  }
 
-  // readonly postscriptName: NSString;
-  // readonly pointSize: number;
-  // readonly matrix: NSAffineTransform;
-  // readonly symbolicTraits: interop.Enum<typeof NSFontDescriptorSymbolicTraits>;
-  // readonly requiresFontAssetRequest: boolean;
   // readonly fontAttributes: NSDictionary;
+  // readonly matrix: NSAffineTransform;
+  // readonly pointSize: number;
+  // readonly postscriptName: NSString;
+  // readonly requiresFontAssetRequest: boolean;
   // supportsSecureCoding: boolean;
+  // readonly symbolicTraits: interop.Enum<typeof NSFontDescriptorSymbolicTraits>;
 }
 
 export class HTMLNSGradientElement extends HTMLNSObjectElement {
   readonly nativeObject = NSGradient.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    colorspace: 'colorSpace',
+    copywithzone: 'copyWithZone',
+    drawfromcenterradiustocenterradiusoptions: 'drawFromCenterRadiusToCenterRadiusOptions',
+    drawfrompointtopointoptions: 'drawFromPointToPointOptions',
+    drawinbezierpathangle: 'drawInBezierPathAngle',
+    drawinbezierpathrelativecenterposition: 'drawInBezierPathRelativeCenterPosition',
+    drawinrectangle: 'drawInRectAngle',
+    drawinrectrelativecenterposition: 'drawInRectRelativeCenterPosition',
+    encodewithcoder: 'encodeWithCoder',
+    getcolorlocationatindex: 'getColorLocationAtIndex',
+    initwithcoder: 'initWithCoder',
+    initwithcolors: 'initWithColors',
+    initwithcolorsandlocations: 'initWithColorsAndLocations',
+    initwithcolorsatlocationscolorspace: 'initWithColorsAtLocationsColorSpace',
+    initwithstartingcolorendingcolor: 'initWithStartingColorEndingColor',
+    interpolatedcoloratlocation: 'interpolatedColorAtLocation',
+    numberofcolorstops: 'numberOfColorStops',
+    supportssecurecoding: 'supportsSecureCoding',
+  }
 
   // readonly colorSpace: NSColorSpace;
   // readonly numberOfColorStops: number;
@@ -696,24 +2127,48 @@ export class HTMLNSGradientElement extends HTMLNSObjectElement {
 
 export class HTMLNSCollectionLayoutEdgeSpacingElement extends HTMLNSObjectElement {
   readonly nativeObject = NSCollectionLayoutEdgeSpacing.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    bottom: 'bottom',
+    copywithzone: 'copyWithZone',
+    leading: 'leading',
+    spacingforleadingtoptrailingbottom: 'spacingForLeadingTopTrailingBottom',
+    top: 'top',
+    trailing: 'trailing',
+  }
 
+  // readonly bottom: NSCollectionLayoutSpacing;
   // readonly leading: NSCollectionLayoutSpacing;
   // readonly top: NSCollectionLayoutSpacing;
   // readonly trailing: NSCollectionLayoutSpacing;
-  // readonly bottom: NSCollectionLayoutSpacing;
 }
 
 export class HTMLNSCollectionLayoutSizeElement extends HTMLNSObjectElement {
   readonly nativeObject = NSCollectionLayoutSize.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    copywithzone: 'copyWithZone',
+    heightdimension: 'heightDimension',
+    sizewithwidthdimensionheightdimension: 'sizeWithWidthDimensionHeightDimension',
+    widthdimension: 'widthDimension',
+  }
 
-  // readonly widthDimension: NSCollectionLayoutDimension;
   // readonly heightDimension: NSCollectionLayoutDimension;
+  // readonly widthDimension: NSCollectionLayoutDimension;
 }
 
 export class HTMLNSSharingServicePickerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSSharingServicePicker.new();
   get delegate(): NSSharingServicePickerDelegateImpl {
     return (this.nativeObject.delegate ??= NSSharingServicePickerDelegateImpl.new()) as NSSharingServicePickerDelegateImpl;
+  }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    close: 'close',
+    delegate: 'delegate',
+    initwithitems: 'initWithItems',
+    showrelativetorectofviewpreferrededge: 'showRelativeToRectOfViewPreferredEdge',
+    standardsharemenuitem: 'standardShareMenuItem',
   }
 
   // readonly standardShareMenuItem: NSMenuItem;
@@ -731,29 +2186,58 @@ export class HTMLNSSharingServicePickerElement extends HTMLNSObjectElement {
 
 export class HTMLNSCollectionViewCompositionalLayoutConfigurationElement extends HTMLNSObjectElement {
   readonly nativeObject = NSCollectionViewCompositionalLayoutConfiguration.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    boundarysupplementaryitems: 'boundarySupplementaryItems',
+    copywithzone: 'copyWithZone',
+    intersectionspacing: 'interSectionSpacing',
+    scrolldirection: 'scrollDirection',
+  }
 
-  // scrollDirection: interop.Enum<typeof NSCollectionViewScrollDirection>;
   // interSectionSpacing: number;
+  // scrollDirection: interop.Enum<typeof NSCollectionViewScrollDirection>;
 }
 
 export class HTMLNSCollectionViewLayoutInvalidationContextElement extends HTMLNSObjectElement {
   readonly nativeObject = NSCollectionViewLayoutInvalidationContext.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    contentoffsetadjustment: 'contentOffsetAdjustment',
+    contentsizeadjustment: 'contentSizeAdjustment',
+    invalidatedatasourcecounts: 'invalidateDataSourceCounts',
+    invalidateddecorationindexpaths: 'invalidatedDecorationIndexPaths',
+    invalidatedecorationelementsofkindatindexpaths: 'invalidateDecorationElementsOfKindAtIndexPaths',
+    invalidateditemindexpaths: 'invalidatedItemIndexPaths',
+    invalidatedsupplementaryindexpaths: 'invalidatedSupplementaryIndexPaths',
+    invalidateeverything: 'invalidateEverything',
+    invalidateitemsatindexpaths: 'invalidateItemsAtIndexPaths',
+    invalidatesupplementaryelementsofkindatindexpaths: 'invalidateSupplementaryElementsOfKindAtIndexPaths',
+  }
 
-  // readonly invalidateEverything: boolean;
-  // readonly invalidateDataSourceCounts: boolean;
-  // readonly invalidatedItemIndexPaths: NSSet;
-  // readonly invalidatedSupplementaryIndexPaths: NSDictionary;
-  // readonly invalidatedDecorationIndexPaths: NSDictionary;
   // contentOffsetAdjustment: CGPoint;
   // contentSizeAdjustment: CGSize;
+  // readonly invalidateDataSourceCounts: boolean;
+  // readonly invalidatedDecorationIndexPaths: NSDictionary;
+  // readonly invalidatedItemIndexPaths: NSSet;
+  // readonly invalidatedSupplementaryIndexPaths: NSDictionary;
+  // readonly invalidateEverything: boolean;
 }
 
 export class HTMLNSStoryboardSegueElement extends HTMLNSObjectElement {
   readonly nativeObject = NSStoryboardSegue.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    destinationcontroller: 'destinationController',
+    identifier: 'identifier',
+    initwithidentifiersourcedestination: 'initWithIdentifierSourceDestination',
+    perform: 'perform',
+    seguewithidentifiersourcedestinationperformhandler: 'segueWithIdentifierSourceDestinationPerformHandler',
+    sourcecontroller: 'sourceController',
+  }
 
+  // readonly destinationController: interop.Object;
   // readonly identifier: NSString;
   // readonly sourceController: interop.Object;
-  // readonly destinationController: interop.Object;
 }
 
 export class HTMLNSTouchBarElement extends HTMLNSObjectElement {
@@ -761,11 +2245,29 @@ export class HTMLNSTouchBarElement extends HTMLNSObjectElement {
   get delegate(): NSTouchBarDelegateImpl {
     return (this.nativeObject.delegate ??= NSTouchBarDelegateImpl.new()) as NSTouchBarDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    customizationalloweditemidentifiers: 'customizationAllowedItemIdentifiers',
+    customizationidentifier: 'customizationIdentifier',
+    customizationrequireditemidentifiers: 'customizationRequiredItemIdentifiers',
+    defaultitemidentifiers: 'defaultItemIdentifiers',
+    delegate: 'delegate',
+    encodewithcoder: 'encodeWithCoder',
+    escapekeyreplacementitemidentifier: 'escapeKeyReplacementItemIdentifier',
+    init: 'init',
+    initwithcoder: 'initWithCoder',
+    isautomaticcustomizetouchbarmenuitemenabled: 'isAutomaticCustomizeTouchBarMenuItemEnabled',
+    isvisible: 'isVisible',
+    itemforidentifier: 'itemForIdentifier',
+    itemidentifiers: 'itemIdentifiers',
+    principalitemidentifier: 'principalItemIdentifier',
+    templateitems: 'templateItems',
+  }
 
+  // isAutomaticCustomizeTouchBarMenuItemEnabled: boolean;
+  // readonly isVisible: boolean;
   // readonly itemIdentifiers: NSArray;
   // templateItems: NSSet;
-  // readonly isVisible: boolean;
-  // isAutomaticCustomizeTouchBarMenuItemEnabled: boolean;
 
   set touchbarmakeitemforidentifier(value: (touchBar: NSTouchBar, identifier: NSString | string) => NSTouchBarItem) {
     this.delegate.touchBarMakeItemForIdentifier = value;
@@ -774,73 +2276,308 @@ export class HTMLNSTouchBarElement extends HTMLNSObjectElement {
 
 export class HTMLNSActionCellElement extends HTMLNSCellElement {
   readonly nativeObject = NSActionCell.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    action: 'action',
+    tag: 'tag',
+    target: 'target',
+  }
 
-  // target: interop.Object;
   // action: string;
   // tag: number;
+  // target: interop.Object;
 }
 
 export class HTMLNSColorListElement extends HTMLNSObjectElement {
   readonly nativeObject = NSColorList.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    allkeys: 'allKeys',
+    availablecolorlists: 'availableColorLists',
+    colorlistnamed: 'colorListNamed',
+    colorwithkey: 'colorWithKey',
+    encodewithcoder: 'encodeWithCoder',
+    initwithcoder: 'initWithCoder',
+    initwithname: 'initWithName',
+    initwithnamefromfile: 'initWithNameFromFile',
+    insertcolorkeyatindex: 'insertColorKeyAtIndex',
+    iseditable: 'isEditable',
+    name: 'name',
+    removecolorwithkey: 'removeColorWithKey',
+    removefile: 'removeFile',
+    setcolorforkey: 'setColorForKey',
+    supportssecurecoding: 'supportsSecureCoding',
+    writetofile: 'writeToFile',
+    writetourlerror: 'writeToURLError',
+  }
 
-  // availableColorLists: NSArray;
-  // readonly name: NSString;
   // readonly allKeys: NSArray;
+  // availableColorLists: NSArray;
   // readonly isEditable: boolean;
+  // readonly name: NSString;
   // supportsSecureCoding: boolean;
 }
 
 export class HTMLNSDocumentElement extends HTMLNSObjectElement {
   readonly nativeObject = NSDocument.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accommodatepresenteditemdeletionwithcompletionhandler: 'accommodatePresentedItemDeletionWithCompletionHandler',
+    accommodatepresentedsubitemdeletionaturlcompletionhandler: 'accommodatePresentedSubitemDeletionAtURLCompletionHandler',
+    addwindowcontroller: 'addWindowController',
+    allowedclassesforrestorablestatekeypath: 'allowedClassesForRestorableStateKeyPath',
+    allowsdocumentsharing: 'allowsDocumentSharing',
+    autorelease: 'autorelease',
+    autosavedcontentsfileurl: 'autosavedContentsFileURL',
+    autosavedocumentwithdelegatedidautosaveselectorcontextinfo: 'autosaveDocumentWithDelegateDidAutosaveSelectorContextInfo',
+    autosavesdrafts: 'autosavesDrafts',
+    autosavesinplace: 'autosavesInPlace',
+    autosavewithimplicitcancellabilitycompletionhandler: 'autosaveWithImplicitCancellabilityCompletionHandler',
+    autosavingfiletype: 'autosavingFileType',
+    autosavingisimplicitlycancellable: 'autosavingIsImplicitlyCancellable',
+    backupfileurl: 'backupFileURL',
+    browsedocumentversions: 'browseDocumentVersions',
+    canasynchronouslywritetourloftypeforsaveoperation: 'canAsynchronouslyWriteToURLOfTypeForSaveOperation',
+    canclosedocumentwithdelegateshouldcloseselectorcontextinfo: 'canCloseDocumentWithDelegateShouldCloseSelectorContextInfo',
+    canconcurrentlyreaddocumentsoftype: 'canConcurrentlyReadDocumentsOfType',
+    changecounttokenforsaveoperation: 'changeCountTokenForSaveOperation',
+    checkautosavingsafetyandreturnerror: 'checkAutosavingSafetyAndReturnError',
+    class: 'class',
+    close: 'close',
+    conformstoprotocol: 'conformsToProtocol',
+    continueactivityusingblock: 'continueActivityUsingBlock',
+    continueasynchronousworkonmainthreadusingblock: 'continueAsynchronousWorkOnMainThreadUsingBlock',
+    dataoftypeerror: 'dataOfTypeError',
+    datarepresentationoftype: 'dataRepresentationOfType',
+    debugdescription: 'debugDescription',
+    defaultdraftname: 'defaultDraftName',
+    description: 'description',
+    displayname: 'displayName',
+    duplicateandreturnerror: 'duplicateAndReturnError',
+    duplicatedocument: 'duplicateDocument',
+    duplicatedocumentwithdelegatedidduplicateselectorcontextinfo: 'duplicateDocumentWithDelegateDidDuplicateSelectorContextInfo',
+    encoderestorablestatewithcoder: 'encodeRestorableStateWithCoder',
+    encoderestorablestatewithcoderbackgroundqueue: 'encodeRestorableStateWithCoderBackgroundQueue',
+    fileattributestowritetofileoftypesaveoperation: 'fileAttributesToWriteToFileOfTypeSaveOperation',
+    fileattributestowritetourloftypeforsaveoperationoriginalcontentsurlerror: 'fileAttributesToWriteToURLOfTypeForSaveOperationOriginalContentsURLError',
+    filemodificationdate: 'fileModificationDate',
+    filename: 'fileName',
+    filenameextensionfortypesaveoperation: 'fileNameExtensionForTypeSaveOperation',
+    filenameextensionwashiddeninlastrunsavepanel: 'fileNameExtensionWasHiddenInLastRunSavePanel',
+    filetype: 'fileType',
+    filetypefromlastrunsavepanel: 'fileTypeFromLastRunSavePanel',
+    fileurl: 'fileURL',
+    filewrapperoftypeerror: 'fileWrapperOfTypeError',
+    filewrapperrepresentationoftype: 'fileWrapperRepresentationOfType',
+    handleclosescriptcommand: 'handleCloseScriptCommand',
+    handleprintscriptcommand: 'handlePrintScriptCommand',
+    handlesavescriptcommand: 'handleSaveScriptCommand',
+    hash: 'hash',
+    hasunautosavedchanges: 'hasUnautosavedChanges',
+    hasundomanager: 'hasUndoManager',
+    init: 'init',
+    initforurlwithcontentsofurloftypeerror: 'initForURLWithContentsOfURLOfTypeError',
+    initwithcontentsoffileoftype: 'initWithContentsOfFileOfType',
+    initwithcontentsofurloftype: 'initWithContentsOfURLOfType',
+    initwithcontentsofurloftypeerror: 'initWithContentsOfURLOfTypeError',
+    initwithtypeerror: 'initWithTypeError',
+    invalidaterestorablestate: 'invalidateRestorableState',
+    isbrowsingversions: 'isBrowsingVersions',
+    isdocumentedited: 'isDocumentEdited',
+    isdraft: 'isDraft',
+    isentirefileloaded: 'isEntireFileLoaded',
+    isequal: 'isEqual',
+    isinviewingmode: 'isInViewingMode',
+    iskindofclass: 'isKindOfClass',
+    islocked: 'isLocked',
+    ismemberofclass: 'isMemberOfClass',
+    isnativetype: 'isNativeType',
+    isproxy: 'isProxy',
+    keepbackupfile: 'keepBackupFile',
+    lastcomponentoffilename: 'lastComponentOfFileName',
+    loaddatarepresentationoftype: 'loadDataRepresentationOfType',
+    loadfilewrapperrepresentationoftype: 'loadFileWrapperRepresentationOfType',
+    lockdocument: 'lockDocument',
+    lockdocumentwithcompletionhandler: 'lockDocumentWithCompletionHandler',
+    lockwithcompletionhandler: 'lockWithCompletionHandler',
+    makewindowcontrollers: 'makeWindowControllers',
+    movedocument: 'moveDocument',
+    movedocumenttoubiquitycontainer: 'moveDocumentToUbiquityContainer',
+    movedocumentwithcompletionhandler: 'moveDocumentWithCompletionHandler',
+    movetourlcompletionhandler: 'moveToURLCompletionHandler',
+    objectdidbeginediting: 'objectDidBeginEditing',
+    objectdidendediting: 'objectDidEndEditing',
+    objectspecifier: 'objectSpecifier',
+    observedpresenteditemubiquityattributes: 'observedPresentedItemUbiquityAttributes',
+    pdfprintoperation: 'PDFPrintOperation',
+    performactivitywithsynchronouswaitingusingblock: 'performActivityWithSynchronousWaitingUsingBlock',
+    performasynchronousfileaccessusingblock: 'performAsynchronousFileAccessUsingBlock',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    performsynchronousfileaccessusingblock: 'performSynchronousFileAccessUsingBlock',
+    preparepagelayout: 'preparePageLayout',
+    preparesavepanel: 'prepareSavePanel',
+    preparesharingservicepicker: 'prepareSharingServicePicker',
+    presenteditemdidchange: 'presentedItemDidChange',
+    presenteditemdidchangeubiquityattributes: 'presentedItemDidChangeUbiquityAttributes',
+    presenteditemdidgainversion: 'presentedItemDidGainVersion',
+    presenteditemdidloseversion: 'presentedItemDidLoseVersion',
+    presenteditemdidmovetourl: 'presentedItemDidMoveToURL',
+    presenteditemdidresolveconflictversion: 'presentedItemDidResolveConflictVersion',
+    presenteditemoperationqueue: 'presentedItemOperationQueue',
+    presenteditemurl: 'presentedItemURL',
+    presentedsubitematurldidgainversion: 'presentedSubitemAtURLDidGainVersion',
+    presentedsubitematurldidloseversion: 'presentedSubitemAtURLDidLoseVersion',
+    presentedsubitematurldidmovetourl: 'presentedSubitemAtURLDidMoveToURL',
+    presentedsubitematurldidresolveconflictversion: 'presentedSubitemAtURLDidResolveConflictVersion',
+    presentedsubitemdidappearaturl: 'presentedSubitemDidAppearAtURL',
+    presentedsubitemdidchangeaturl: 'presentedSubitemDidChangeAtURL',
+    presenterror: 'presentError',
+    presenterrormodalforwindowdelegatedidpresentselectorcontextinfo: 'presentErrorModalForWindowDelegateDidPresentSelectorContextInfo',
+    preservesversions: 'preservesVersions',
+    previewrepresentableactivityitems: 'previewRepresentableActivityItems',
+    primarypresenteditemurl: 'primaryPresentedItemURL',
+    printdocument: 'printDocument',
+    printdocumentwithsettingsshowprintpaneldelegatedidprintselectorcontextinfo: 'printDocumentWithSettingsShowPrintPanelDelegateDidPrintSelectorContextInfo',
+    printinfo: 'printInfo',
+    printoperationwithsettingserror: 'printOperationWithSettingsError',
+    printshowingprintpanel: 'printShowingPrintPanel',
+    readabletypes: 'readableTypes',
+    readfromdataoftypeerror: 'readFromDataOfTypeError',
+    readfromfileoftype: 'readFromFileOfType',
+    readfromfilewrapperoftypeerror: 'readFromFileWrapperOfTypeError',
+    readfromurloftype: 'readFromURLOfType',
+    readfromurloftypeerror: 'readFromURLOfTypeError',
+    release: 'release',
+    relinquishpresenteditemtoreader: 'relinquishPresentedItemToReader',
+    relinquishpresenteditemtowriter: 'relinquishPresentedItemToWriter',
+    removewindowcontroller: 'removeWindowController',
+    renamedocument: 'renameDocument',
+    respondstoselector: 'respondsToSelector',
+    restorablestatekeypaths: 'restorableStateKeyPaths',
+    restoredocumentwindowwithidentifierstatecompletionhandler: 'restoreDocumentWindowWithIdentifierStateCompletionHandler',
+    restorestatewithcoder: 'restoreStateWithCoder',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    revertdocumenttosaved: 'revertDocumentToSaved',
+    reverttocontentsofurloftypeerror: 'revertToContentsOfURLOfTypeError',
+    reverttosavedfromfileoftype: 'revertToSavedFromFileOfType',
+    reverttosavedfromurloftype: 'revertToSavedFromURLOfType',
+    runmodalpagelayoutwithprintinfo: 'runModalPageLayoutWithPrintInfo',
+    runmodalpagelayoutwithprintinfodelegatedidrunselectorcontextinfo: 'runModalPageLayoutWithPrintInfoDelegateDidRunSelectorContextInfo',
+    runmodalprintoperationdelegatedidrunselectorcontextinfo: 'runModalPrintOperationDelegateDidRunSelectorContextInfo',
+    runmodalsavepanelforsaveoperationdelegatedidsaveselectorcontextinfo: 'runModalSavePanelForSaveOperationDelegateDidSaveSelectorContextInfo',
+    runpagelayout: 'runPageLayout',
+    savedocument: 'saveDocument',
+    savedocumentas: 'saveDocumentAs',
+    savedocumentto: 'saveDocumentTo',
+    savedocumenttopdf: 'saveDocumentToPDF',
+    savedocumentwithdelegatedidsaveselectorcontextinfo: 'saveDocumentWithDelegateDidSaveSelectorContextInfo',
+    savepresenteditemchangeswithcompletionhandler: 'savePresentedItemChangesWithCompletionHandler',
+    savetofilesaveoperationdelegatedidsaveselectorcontextinfo: 'saveToFileSaveOperationDelegateDidSaveSelectorContextInfo',
+    savetourloftypeforsaveoperationcompletionhandler: 'saveToURLOfTypeForSaveOperationCompletionHandler',
+    savetourloftypeforsaveoperationdelegatedidsaveselectorcontextinfo: 'saveToURLOfTypeForSaveOperationDelegateDidSaveSelectorContextInfo',
+    savetourloftypeforsaveoperationerror: 'saveToURLOfTypeForSaveOperationError',
+    scheduleautosaving: 'scheduleAutosaving',
+    self: 'self',
+    setfilename: 'setFileName',
+    setwindow: 'setWindow',
+    sharedocumentwithsharingservicecompletionhandler: 'shareDocumentWithSharingServiceCompletionHandler',
+    shouldchangeprintinfo: 'shouldChangePrintInfo',
+    shouldclosewindowcontrollerdelegateshouldcloseselectorcontextinfo: 'shouldCloseWindowControllerDelegateShouldCloseSelectorContextInfo',
+    shouldrunsavepanelwithaccessoryview: 'shouldRunSavePanelWithAccessoryView',
+    showwindows: 'showWindows',
+    stopbrowsingversionswithcompletionhandler: 'stopBrowsingVersionsWithCompletionHandler',
+    superclass: 'superclass',
+    unblockuserinteraction: 'unblockUserInteraction',
+    undomanager: 'undoManager',
+    unlockdocument: 'unlockDocument',
+    unlockdocumentwithcompletionhandler: 'unlockDocumentWithCompletionHandler',
+    unlockwithcompletionhandler: 'unlockWithCompletionHandler',
+    updatechangecount: 'updateChangeCount',
+    updatechangecountwithtokenforsaveoperation: 'updateChangeCountWithTokenForSaveOperation',
+    updateuseractivitystate: 'updateUserActivityState',
+    useractivity: 'userActivity',
+    usesubiquitousstorage: 'usesUbiquitousStorage',
+    validatemenuitem: 'validateMenuItem',
+    validateuserinterfaceitem: 'validateUserInterfaceItem',
+    willnotpresenterror: 'willNotPresentError',
+    willpresenterror: 'willPresentError',
+    windowcontrollerdidloadnib: 'windowControllerDidLoadNib',
+    windowcontrollers: 'windowControllers',
+    windowcontrollerwillloadnib: 'windowControllerWillLoadNib',
+    windowforsheet: 'windowForSheet',
+    windownibname: 'windowNibName',
+    writabletypes: 'writableTypes',
+    writabletypesforsaveoperation: 'writableTypesForSaveOperation',
+    writesafelytourloftypeforsaveoperationerror: 'writeSafelyToURLOfTypeForSaveOperationError',
+    writetofileoftype: 'writeToFileOfType',
+    writetofileoftypeoriginalfilesaveoperation: 'writeToFileOfTypeOriginalFileSaveOperation',
+    writetourloftype: 'writeToURLOfType',
+    writetourloftypeerror: 'writeToURLOfTypeError',
+    writetourloftypeforsaveoperationoriginalcontentsurlerror: 'writeToURLOfTypeForSaveOperationOriginalContentsURLError',
+    writewithbackuptofileoftypesaveoperation: 'writeWithBackupToFileOfTypeSaveOperation',
+    zone: 'zone',
+  }
 
-  // fileURL: NSURL;
-  // fileModificationDate: NSDate;
-  // isDraft: boolean;
-  // readonly isEntireFileLoaded: boolean;
+  // readonly allowsDocumentSharing: boolean;
+  // autosavedContentsFileURL: NSURL;
+  // autosavesDrafts: boolean;
+  // autosavesInPlace: boolean;
+  // readonly autosavingFileType: NSString;
   // readonly autosavingIsImplicitlyCancellable: boolean;
-  // readonly keepBackupFile: boolean;
   // readonly backupFileURL: NSURL;
-  // readonly shouldRunSavePanelWithAccessoryView: boolean;
+  // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // fileModificationDate: NSDate;
   // readonly fileNameExtensionWasHiddenInLastRunSavePanel: boolean;
   // readonly fileTypeFromLastRunSavePanel: NSString;
+  // fileURL: NSURL;
+  // readonly hash: number;
   // readonly hasUnautosavedChanges: boolean;
-  // autosavesInPlace: boolean;
-  // preservesVersions: boolean;
-  // readonly isBrowsingVersions: boolean;
-  // autosavesDrafts: boolean;
-  // readonly autosavingFileType: NSString;
-  // autosavedContentsFileURL: NSURL;
-  // readonly isLocked: boolean;
-  // printInfo: NSPrintInfo;
-  // readonly PDFPrintOperation: NSPrintOperation;
-  // readonly allowsDocumentSharing: boolean;
-  // readonly isDocumentEdited: boolean;
-  // readonly isInViewingMode: boolean;
-  // undoManager: NSUndoManager;
   // hasUndoManager: boolean;
-  // readonly windowNibName: NSString;
+  // readonly isBrowsingVersions: boolean;
+  // readonly isDocumentEdited: boolean;
+  // isDraft: boolean;
+  // readonly isEntireFileLoaded: boolean;
+  // readonly isInViewingMode: boolean;
+  // readonly isLocked: boolean;
+  // readonly isProxy: boolean;
+  // readonly keepBackupFile: boolean;
+  // readonly objectSpecifier: NSScriptObjectSpecifier;
+  // readonly observedPresentedItemUbiquityAttributes: NSSet;
+  // readonly PDFPrintOperation: NSPrintOperation;
+  // readonly presentedItemOperationQueue: NSOperationQueue;
+  // readonly presentedItemURL: NSURL;
+  // preservesVersions: boolean;
+  // readonly primaryPresentedItemURL: NSURL;
+  // printInfo: NSPrintInfo;
+  // readableTypes: NSArray;
+  // restorableStateKeyPaths: NSArray;
+  // readonly shouldRunSavePanelWithAccessoryView: boolean;
+  // readonly superclass: interop.Object;
+  // undoManager: NSUndoManager;
+  // userActivity: NSUserActivity;
+  // usesUbiquitousStorage: boolean;
   // readonly windowControllers: NSArray;
   // readonly windowForSheet: NSWindow;
-  // readableTypes: NSArray;
+  // readonly windowNibName: NSString;
   // writableTypes: NSArray;
-  // usesUbiquitousStorage: boolean;
-  // readonly presentedItemURL: NSURL;
-  // readonly observedPresentedItemUbiquityAttributes: NSSet;
-  // userActivity: NSUserActivity;
-  // readonly objectSpecifier: NSScriptObjectSpecifier;
-  // restorableStateKeyPaths: NSArray;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
   // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
-  // readonly presentedItemOperationQueue: NSOperationQueue;
-  // readonly primaryPresentedItemURL: NSURL;
 }
 
 export class HTMLNSBindingSelectionMarkerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSBindingSelectionMarker.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    copywithzone: 'copyWithZone',
+    defaultplaceholderformarkeronclasswithbinding: 'defaultPlaceholderForMarkerOnClassWithBinding',
+    multiplevaluesselectionmarker: 'multipleValuesSelectionMarker',
+    noselectionmarker: 'noSelectionMarker',
+    notapplicableselectionmarker: 'notApplicableSelectionMarker',
+    setdefaultplaceholderformarkeronclasswithbinding: 'setDefaultPlaceholderForMarkerOnClassWithBinding',
+  }
 
   // multipleValuesSelectionMarker: NSBindingSelectionMarker;
   // noSelectionMarker: NSBindingSelectionMarker;
@@ -849,150 +2586,528 @@ export class HTMLNSBindingSelectionMarkerElement extends HTMLNSObjectElement {
 
 export class HTMLNSTextTabElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextTab.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    alignment: 'alignment',
+    columnterminatorsforlocale: 'columnTerminatorsForLocale',
+    copywithzone: 'copyWithZone',
+    encodewithcoder: 'encodeWithCoder',
+    initwithcoder: 'initWithCoder',
+    initwithtextalignmentlocationoptions: 'initWithTextAlignmentLocationOptions',
+    initwithtypelocation: 'initWithTypeLocation',
+    location: 'location',
+    options: 'options',
+    supportssecurecoding: 'supportsSecureCoding',
+    tabstoptype: 'tabStopType',
+  }
 
   // readonly alignment: interop.Enum<typeof NSTextAlignment>;
   // readonly location: number;
   // readonly options: NSDictionary;
-  // readonly tabStopType: interop.Enum<typeof NSTextTabType>;
   // supportsSecureCoding: boolean;
+  // readonly tabStopType: interop.Enum<typeof NSTextTabType>;
 }
 
 export class HTMLNSResponderElement extends HTMLNSObjectElement {
   readonly nativeObject = NSResponder.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    acceptsfirstresponder: 'acceptsFirstResponder',
+    allowedclassesforrestorablestatekeypath: 'allowedClassesForRestorableStateKeyPath',
+    becomefirstresponder: 'becomeFirstResponder',
+    begingesturewithevent: 'beginGestureWithEvent',
+    changemodewithevent: 'changeModeWithEvent',
+    cursorupdate: 'cursorUpdate',
+    encoderestorablestatewithcoder: 'encodeRestorableStateWithCoder',
+    encoderestorablestatewithcoderbackgroundqueue: 'encodeRestorableStateWithCoderBackgroundQueue',
+    encodewithcoder: 'encodeWithCoder',
+    endgesturewithevent: 'endGestureWithEvent',
+    flagschanged: 'flagsChanged',
+    flushbufferedkeyevents: 'flushBufferedKeyEvents',
+    helprequested: 'helpRequested',
+    init: 'init',
+    initwithcoder: 'initWithCoder',
+    interfacestyle: 'interfaceStyle',
+    interpretkeyevents: 'interpretKeyEvents',
+    invalidaterestorablestate: 'invalidateRestorableState',
+    keydown: 'keyDown',
+    keyup: 'keyUp',
+    magnifywithevent: 'magnifyWithEvent',
+    maketouchbar: 'makeTouchBar',
+    menu: 'menu',
+    mousedown: 'mouseDown',
+    mousedragged: 'mouseDragged',
+    mouseentered: 'mouseEntered',
+    mouseexited: 'mouseExited',
+    mousemoved: 'mouseMoved',
+    mouseup: 'mouseUp',
+    newwindowfortab: 'newWindowForTab',
+    nextresponder: 'nextResponder',
+    noresponderfor: 'noResponderFor',
+    othermousedown: 'otherMouseDown',
+    othermousedragged: 'otherMouseDragged',
+    othermouseup: 'otherMouseUp',
+    performkeyequivalent: 'performKeyEquivalent',
+    performmnemonic: 'performMnemonic',
+    performtextfinderaction: 'performTextFinderAction',
+    presenterror: 'presentError',
+    presenterrormodalforwindowdelegatedidpresentselectorcontextinfo: 'presentErrorModalForWindowDelegateDidPresentSelectorContextInfo',
+    pressurechangewithevent: 'pressureChangeWithEvent',
+    quicklookwithevent: 'quickLookWithEvent',
+    resignfirstresponder: 'resignFirstResponder',
+    restorablestatekeypaths: 'restorableStateKeyPaths',
+    restorestatewithcoder: 'restoreStateWithCoder',
+    rightmousedown: 'rightMouseDown',
+    rightmousedragged: 'rightMouseDragged',
+    rightmouseup: 'rightMouseUp',
+    rotatewithevent: 'rotateWithEvent',
+    scrollwheel: 'scrollWheel',
+    setinterfacestyle: 'setInterfaceStyle',
+    shouldbetreatedasinkevent: 'shouldBeTreatedAsInkEvent',
+    showcontexthelp: 'showContextHelp',
+    smartmagnifywithevent: 'smartMagnifyWithEvent',
+    supplementaltargetforactionsender: 'supplementalTargetForActionSender',
+    swipewithevent: 'swipeWithEvent',
+    tabletpoint: 'tabletPoint',
+    tabletproximity: 'tabletProximity',
+    touchbar: 'touchBar',
+    touchesbeganwithevent: 'touchesBeganWithEvent',
+    touchescancelledwithevent: 'touchesCancelledWithEvent',
+    touchesendedwithevent: 'touchesEndedWithEvent',
+    touchesmovedwithevent: 'touchesMovedWithEvent',
+    trytoperformwith: 'tryToPerformWith',
+    undomanager: 'undoManager',
+    updateuseractivitystate: 'updateUserActivityState',
+    useractivity: 'userActivity',
+    validateproposedfirstresponderforevent: 'validateProposedFirstResponderForEvent',
+    validrequestorforsendtypereturntype: 'validRequestorForSendTypeReturnType',
+    wantsforwardedscrolleventsforaxis: 'wantsForwardedScrollEventsForAxis',
+    wantsscrolleventsforswipetrackingonaxis: 'wantsScrollEventsForSwipeTrackingOnAxis',
+    willpresenterror: 'willPresentError',
+  }
 
-  // nextResponder: NSResponder;
   // readonly acceptsFirstResponder: boolean;
   // menu: NSMenu;
+  // nextResponder: NSResponder;
+  // restorableStateKeyPaths: NSArray;
+  // touchBar: NSTouchBar;
   // readonly undoManager: NSUndoManager;
   // userActivity: NSUserActivity;
-  // touchBar: NSTouchBar;
-  // restorableStateKeyPaths: NSArray;
 }
 
 export class HTMLNSTouchElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTouch.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    copywithzone: 'copyWithZone',
+    device: 'device',
+    devicesize: 'deviceSize',
+    identity: 'identity',
+    isresting: 'isResting',
+    locationinview: 'locationInView',
+    normalizedposition: 'normalizedPosition',
+    phase: 'phase',
+    previouslocationinview: 'previousLocationInView',
+    type: 'type',
+  }
 
-  // readonly identity: NSCopying;
-  // readonly phase: interop.Enum<typeof NSTouchPhase>;
-  // readonly normalizedPosition: CGPoint;
-  // readonly isResting: boolean;
   // readonly device: interop.Object;
   // readonly deviceSize: CGSize;
+  // readonly identity: NSCopying;
+  // readonly isResting: boolean;
+  // readonly normalizedPosition: CGPoint;
+  // readonly phase: interop.Enum<typeof NSTouchPhase>;
   // readonly type: interop.Enum<typeof NSTouchType>;
 }
 
 export class HTMLNSWorkspaceElement extends HTMLNSObjectElement {
   readonly nativeObject = NSWorkspace.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    absolutepathforappbundlewithidentifier: 'absolutePathForAppBundleWithIdentifier',
+    accessibilitydisplayshoulddifferentiatewithoutcolor: 'accessibilityDisplayShouldDifferentiateWithoutColor',
+    accessibilitydisplayshouldincreasecontrast: 'accessibilityDisplayShouldIncreaseContrast',
+    accessibilitydisplayshouldinvertcolors: 'accessibilityDisplayShouldInvertColors',
+    accessibilitydisplayshouldreducemotion: 'accessibilityDisplayShouldReduceMotion',
+    accessibilitydisplayshouldreducetransparency: 'accessibilityDisplayShouldReduceTransparency',
+    activatefileviewerselectingurls: 'activateFileViewerSelectingURLs',
+    activeapplication: 'activeApplication',
+    checkforremovablemedia: 'checkForRemovableMedia',
+    desktopimageoptionsforscreen: 'desktopImageOptionsForScreen',
+    desktopimageurlforscreen: 'desktopImageURLForScreen',
+    duplicateurlscompletionhandler: 'duplicateURLsCompletionHandler',
+    extendpoweroffby: 'extendPowerOffBy',
+    filelabelcolors: 'fileLabelColors',
+    filelabels: 'fileLabels',
+    filenameextensionisvalidfortype: 'filenameExtensionIsValidForType',
+    filesystemchanged: 'fileSystemChanged',
+    findapplications: 'findApplications',
+    frontmostapplication: 'frontmostApplication',
+    fullpathforapplication: 'fullPathForApplication',
+    getfilesysteminfoforpathisremovableiswritableisunmountabledescriptiontype: 'getFileSystemInfoForPathIsRemovableIsWritableIsUnmountableDescriptionType',
+    getinfoforfileapplicationtype: 'getInfoForFileApplicationType',
+    hideotherapplications: 'hideOtherApplications',
+    iconforcontenttype: 'iconForContentType',
+    iconforfile: 'iconForFile',
+    iconforfiles: 'iconForFiles',
+    iconforfiletype: 'iconForFileType',
+    isfilepackageatpath: 'isFilePackageAtPath',
+    isswitchcontrolenabled: 'isSwitchControlEnabled',
+    isvoiceoverenabled: 'isVoiceOverEnabled',
+    launchapplication: 'launchApplication',
+    launchapplicationaturloptionsconfigurationerror: 'launchApplicationAtURLOptionsConfigurationError',
+    launchapplicationshowiconautolaunch: 'launchApplicationShowIconAutolaunch',
+    launchappwithbundleidentifieroptionsadditionaleventparamdescriptorlaunchidentifier: 'launchAppWithBundleIdentifierOptionsAdditionalEventParamDescriptorLaunchIdentifier',
+    launchedapplications: 'launchedApplications',
+    localizeddescriptionfortype: 'localizedDescriptionForType',
+    menubarowningapplication: 'menuBarOwningApplication',
+    mountedlocalvolumepaths: 'mountedLocalVolumePaths',
+    mountedremovablemedia: 'mountedRemovableMedia',
+    mountnewremovablemedia: 'mountNewRemovableMedia',
+    notefilesystemchanged: 'noteFileSystemChanged',
+    noteuserdefaultschanged: 'noteUserDefaultsChanged',
+    notificationcenter: 'notificationCenter',
+    openapplicationaturlconfigurationcompletionhandler: 'openApplicationAtURLConfigurationCompletionHandler',
+    openfile: 'openFile',
+    openfilefromimageatinview: 'openFileFromImageAtInView',
+    openfilewithapplication: 'openFileWithApplication',
+    openfilewithapplicationanddeactivate: 'openFileWithApplicationAndDeactivate',
+    opentempfile: 'openTempFile',
+    openurl: 'openURL',
+    openurlconfigurationcompletionhandler: 'openURLConfigurationCompletionHandler',
+    openurloptionsconfigurationerror: 'openURLOptionsConfigurationError',
+    openurlswithappbundleidentifieroptionsadditionaleventparamdescriptorlaunchidentifiers: 'openURLsWithAppBundleIdentifierOptionsAdditionalEventParamDescriptorLaunchIdentifiers',
+    openurlswithapplicationaturlconfigurationcompletionhandler: 'openURLsWithApplicationAtURLConfigurationCompletionHandler',
+    openurlswithapplicationaturloptionsconfigurationerror: 'openURLsWithApplicationAtURLOptionsConfigurationError',
+    performfileoperationsourcedestinationfilestag: 'performFileOperationSourceDestinationFilesTag',
+    preferredfilenameextensionfortype: 'preferredFilenameExtensionForType',
+    recycleurlscompletionhandler: 'recycleURLsCompletionHandler',
+    requestauthorizationoftypecompletionhandler: 'requestAuthorizationOfTypeCompletionHandler',
+    runningapplications: 'runningApplications',
+    selectfileinfileviewerrootedatpath: 'selectFileInFileViewerRootedAtPath',
+    setdefaultapplicationaturltoopencontenttypecompletionhandler: 'setDefaultApplicationAtURLToOpenContentTypeCompletionHandler',
+    setdefaultapplicationaturltoopencontenttypeoffileaturlcompletionhandler: 'setDefaultApplicationAtURLToOpenContentTypeOfFileAtURLCompletionHandler',
+    setdefaultapplicationaturltoopenfileaturlcompletionhandler: 'setDefaultApplicationAtURLToOpenFileAtURLCompletionHandler',
+    setdefaultapplicationaturltoopenurlswithschemecompletionhandler: 'setDefaultApplicationAtURLToOpenURLsWithSchemeCompletionHandler',
+    setdesktopimageurlforscreenoptionserror: 'setDesktopImageURLForScreenOptionsError',
+    seticonforfileoptions: 'setIconForFileOptions',
+    sharedworkspace: 'sharedWorkspace',
+    showsearchresultsforquerystring: 'showSearchResultsForQueryString',
+    slideimagefromto: 'slideImageFromTo',
+    typeconformstotype: 'typeConformsToType',
+    typeoffileerror: 'typeOfFileError',
+    unmountandejectdeviceatpath: 'unmountAndEjectDeviceAtPath',
+    unmountandejectdeviceaturlerror: 'unmountAndEjectDeviceAtURLError',
+    urlforapplicationtoopencontenttype: 'URLForApplicationToOpenContentType',
+    urlforapplicationtoopenurl: 'URLForApplicationToOpenURL',
+    urlforapplicationwithbundleidentifier: 'URLForApplicationWithBundleIdentifier',
+    urlsforapplicationstoopencontenttype: 'URLsForApplicationsToOpenContentType',
+    urlsforapplicationstoopenurl: 'URLsForApplicationsToOpenURL',
+    urlsforapplicationswithbundleidentifier: 'URLsForApplicationsWithBundleIdentifier',
+    userdefaultschanged: 'userDefaultsChanged',
+  }
 
-  // sharedWorkspace: NSWorkspace;
-  // readonly notificationCenter: NSNotificationCenter;
-  // readonly fileLabels: NSArray;
-  // readonly fileLabelColors: NSArray;
-  // readonly frontmostApplication: NSRunningApplication;
-  // readonly menuBarOwningApplication: NSRunningApplication;
-  // readonly accessibilityDisplayShouldIncreaseContrast: boolean;
   // readonly accessibilityDisplayShouldDifferentiateWithoutColor: boolean;
-  // readonly accessibilityDisplayShouldReduceTransparency: boolean;
-  // readonly accessibilityDisplayShouldReduceMotion: boolean;
+  // readonly accessibilityDisplayShouldIncreaseContrast: boolean;
   // readonly accessibilityDisplayShouldInvertColors: boolean;
-  // readonly isVoiceOverEnabled: boolean;
+  // readonly accessibilityDisplayShouldReduceMotion: boolean;
+  // readonly accessibilityDisplayShouldReduceTransparency: boolean;
+  // readonly fileLabelColors: NSArray;
+  // readonly fileLabels: NSArray;
+  // readonly frontmostApplication: NSRunningApplication;
   // readonly isSwitchControlEnabled: boolean;
+  // readonly isVoiceOverEnabled: boolean;
+  // readonly menuBarOwningApplication: NSRunningApplication;
+  // readonly notificationCenter: NSNotificationCenter;
   // readonly runningApplications: NSArray;
+  // sharedWorkspace: NSWorkspace;
 }
 
 export class HTMLNSAccessibilityElementElement extends HTMLNSObjectElement {
   readonly nativeObject = NSAccessibilityElement.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessibilityactivationpoint: 'accessibilityActivationPoint',
+    accessibilityaddchildelement: 'accessibilityAddChildElement',
+    accessibilityallowedvalues: 'accessibilityAllowedValues',
+    accessibilityapplicationfocuseduielement: 'accessibilityApplicationFocusedUIElement',
+    accessibilityattributedstringforrange: 'accessibilityAttributedStringForRange',
+    accessibilityattributeduserinputlabels: 'accessibilityAttributedUserInputLabels',
+    accessibilitycancelbutton: 'accessibilityCancelButton',
+    accessibilitycellforcolumnrow: 'accessibilityCellForColumnRow',
+    accessibilitychildren: 'accessibilityChildren',
+    accessibilitychildreninnavigationorder: 'accessibilityChildrenInNavigationOrder',
+    accessibilityclearbutton: 'accessibilityClearButton',
+    accessibilityclosebutton: 'accessibilityCloseButton',
+    accessibilitycolumncount: 'accessibilityColumnCount',
+    accessibilitycolumnheaderuielements: 'accessibilityColumnHeaderUIElements',
+    accessibilitycolumnindexrange: 'accessibilityColumnIndexRange',
+    accessibilitycolumns: 'accessibilityColumns',
+    accessibilitycolumntitles: 'accessibilityColumnTitles',
+    accessibilitycontents: 'accessibilityContents',
+    accessibilitycriticalvalue: 'accessibilityCriticalValue',
+    accessibilitycustomactions: 'accessibilityCustomActions',
+    accessibilitycustomrotors: 'accessibilityCustomRotors',
+    accessibilitydecrementbutton: 'accessibilityDecrementButton',
+    accessibilitydefaultbutton: 'accessibilityDefaultButton',
+    accessibilitydisclosedbyrow: 'accessibilityDisclosedByRow',
+    accessibilitydisclosedrows: 'accessibilityDisclosedRows',
+    accessibilitydisclosurelevel: 'accessibilityDisclosureLevel',
+    accessibilitydocument: 'accessibilityDocument',
+    accessibilityelementwithroleframelabelparent: 'accessibilityElementWithRoleFrameLabelParent',
+    accessibilityextrasmenubar: 'accessibilityExtrasMenuBar',
+    accessibilityfilename: 'accessibilityFilename',
+    accessibilityfocusedwindow: 'accessibilityFocusedWindow',
+    accessibilityframe: 'accessibilityFrame',
+    accessibilityframeforrange: 'accessibilityFrameForRange',
+    accessibilityframeinparentspace: 'accessibilityFrameInParentSpace',
+    accessibilityfullscreenbutton: 'accessibilityFullScreenButton',
+    accessibilitygrowarea: 'accessibilityGrowArea',
+    accessibilityhandles: 'accessibilityHandles',
+    accessibilityheader: 'accessibilityHeader',
+    accessibilityhelp: 'accessibilityHelp',
+    accessibilityhorizontalscrollbar: 'accessibilityHorizontalScrollBar',
+    accessibilityhorizontalunitdescription: 'accessibilityHorizontalUnitDescription',
+    accessibilityhorizontalunits: 'accessibilityHorizontalUnits',
+    accessibilityidentifier: 'accessibilityIdentifier',
+    accessibilityincrementbutton: 'accessibilityIncrementButton',
+    accessibilityindex: 'accessibilityIndex',
+    accessibilityinsertionpointlinenumber: 'accessibilityInsertionPointLineNumber',
+    accessibilitylabel: 'accessibilityLabel',
+    accessibilitylabeluielements: 'accessibilityLabelUIElements',
+    accessibilitylabelvalue: 'accessibilityLabelValue',
+    accessibilitylayoutpointforscreenpoint: 'accessibilityLayoutPointForScreenPoint',
+    accessibilitylayoutsizeforscreensize: 'accessibilityLayoutSizeForScreenSize',
+    accessibilitylineforindex: 'accessibilityLineForIndex',
+    accessibilitylinkeduielements: 'accessibilityLinkedUIElements',
+    accessibilitymainwindow: 'accessibilityMainWindow',
+    accessibilitymarkergroupuielement: 'accessibilityMarkerGroupUIElement',
+    accessibilitymarkertypedescription: 'accessibilityMarkerTypeDescription',
+    accessibilitymarkeruielements: 'accessibilityMarkerUIElements',
+    accessibilitymarkervalues: 'accessibilityMarkerValues',
+    accessibilitymaxvalue: 'accessibilityMaxValue',
+    accessibilitymenubar: 'accessibilityMenuBar',
+    accessibilityminimizebutton: 'accessibilityMinimizeButton',
+    accessibilityminvalue: 'accessibilityMinValue',
+    accessibilitynextcontents: 'accessibilityNextContents',
+    accessibilitynumberofcharacters: 'accessibilityNumberOfCharacters',
+    accessibilityorientation: 'accessibilityOrientation',
+    accessibilityoverflowbutton: 'accessibilityOverflowButton',
+    accessibilityparent: 'accessibilityParent',
+    accessibilityperformcancel: 'accessibilityPerformCancel',
+    accessibilityperformconfirm: 'accessibilityPerformConfirm',
+    accessibilityperformdecrement: 'accessibilityPerformDecrement',
+    accessibilityperformdelete: 'accessibilityPerformDelete',
+    accessibilityperformincrement: 'accessibilityPerformIncrement',
+    accessibilityperformpick: 'accessibilityPerformPick',
+    accessibilityperformpress: 'accessibilityPerformPress',
+    accessibilityperformraise: 'accessibilityPerformRaise',
+    accessibilityperformshowalternateui: 'accessibilityPerformShowAlternateUI',
+    accessibilityperformshowdefaultui: 'accessibilityPerformShowDefaultUI',
+    accessibilityperformshowmenu: 'accessibilityPerformShowMenu',
+    accessibilityplaceholdervalue: 'accessibilityPlaceholderValue',
+    accessibilitypreviouscontents: 'accessibilityPreviousContents',
+    accessibilityproxy: 'accessibilityProxy',
+    accessibilityrangeforindex: 'accessibilityRangeForIndex',
+    accessibilityrangeforline: 'accessibilityRangeForLine',
+    accessibilityrangeforposition: 'accessibilityRangeForPosition',
+    accessibilityrole: 'accessibilityRole',
+    accessibilityroledescription: 'accessibilityRoleDescription',
+    accessibilityrowcount: 'accessibilityRowCount',
+    accessibilityrowheaderuielements: 'accessibilityRowHeaderUIElements',
+    accessibilityrowindexrange: 'accessibilityRowIndexRange',
+    accessibilityrows: 'accessibilityRows',
+    accessibilityrtfforrange: 'accessibilityRTFForRange',
+    accessibilityrulermarkertype: 'accessibilityRulerMarkerType',
+    accessibilityscreenpointforlayoutpoint: 'accessibilityScreenPointForLayoutPoint',
+    accessibilityscreensizeforlayoutsize: 'accessibilityScreenSizeForLayoutSize',
+    accessibilitysearchbutton: 'accessibilitySearchButton',
+    accessibilitysearchmenu: 'accessibilitySearchMenu',
+    accessibilityselectedcells: 'accessibilitySelectedCells',
+    accessibilityselectedchildren: 'accessibilitySelectedChildren',
+    accessibilityselectedcolumns: 'accessibilitySelectedColumns',
+    accessibilityselectedrows: 'accessibilitySelectedRows',
+    accessibilityselectedtext: 'accessibilitySelectedText',
+    accessibilityselectedtextrange: 'accessibilitySelectedTextRange',
+    accessibilityselectedtextranges: 'accessibilitySelectedTextRanges',
+    accessibilityservesastitleforuielements: 'accessibilityServesAsTitleForUIElements',
+    accessibilitysharedcharacterrange: 'accessibilitySharedCharacterRange',
+    accessibilitysharedfocuselements: 'accessibilitySharedFocusElements',
+    accessibilitysharedtextuielements: 'accessibilitySharedTextUIElements',
+    accessibilityshownmenu: 'accessibilityShownMenu',
+    accessibilitysortdirection: 'accessibilitySortDirection',
+    accessibilitysplitters: 'accessibilitySplitters',
+    accessibilitystringforrange: 'accessibilityStringForRange',
+    accessibilitystylerangeforindex: 'accessibilityStyleRangeForIndex',
+    accessibilitysubrole: 'accessibilitySubrole',
+    accessibilitytabs: 'accessibilityTabs',
+    accessibilitytitle: 'accessibilityTitle',
+    accessibilitytitleuielement: 'accessibilityTitleUIElement',
+    accessibilitytoolbarbutton: 'accessibilityToolbarButton',
+    accessibilitytopleveluielement: 'accessibilityTopLevelUIElement',
+    accessibilityunitdescription: 'accessibilityUnitDescription',
+    accessibilityunits: 'accessibilityUnits',
+    accessibilityurl: 'accessibilityURL',
+    accessibilityuserinputlabels: 'accessibilityUserInputLabels',
+    accessibilityvalue: 'accessibilityValue',
+    accessibilityvaluedescription: 'accessibilityValueDescription',
+    accessibilityverticalscrollbar: 'accessibilityVerticalScrollBar',
+    accessibilityverticalunitdescription: 'accessibilityVerticalUnitDescription',
+    accessibilityverticalunits: 'accessibilityVerticalUnits',
+    accessibilityvisiblecells: 'accessibilityVisibleCells',
+    accessibilityvisiblecharacterrange: 'accessibilityVisibleCharacterRange',
+    accessibilityvisiblechildren: 'accessibilityVisibleChildren',
+    accessibilityvisiblecolumns: 'accessibilityVisibleColumns',
+    accessibilityvisiblerows: 'accessibilityVisibleRows',
+    accessibilitywarningvalue: 'accessibilityWarningValue',
+    accessibilitywindow: 'accessibilityWindow',
+    accessibilitywindows: 'accessibilityWindows',
+    accessibilityzoombutton: 'accessibilityZoomButton',
+    autorelease: 'autorelease',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    hash: 'hash',
+    isaccessibilityalternateuivisible: 'isAccessibilityAlternateUIVisible',
+    isaccessibilitydisclosed: 'isAccessibilityDisclosed',
+    isaccessibilityedited: 'isAccessibilityEdited',
+    isaccessibilityelement: 'isAccessibilityElement',
+    isaccessibilityenabled: 'isAccessibilityEnabled',
+    isaccessibilityexpanded: 'isAccessibilityExpanded',
+    isaccessibilityfocused: 'isAccessibilityFocused',
+    isaccessibilityfrontmost: 'isAccessibilityFrontmost',
+    isaccessibilityhidden: 'isAccessibilityHidden',
+    isaccessibilitymain: 'isAccessibilityMain',
+    isaccessibilityminimized: 'isAccessibilityMinimized',
+    isaccessibilitymodal: 'isAccessibilityModal',
+    isaccessibilityorderedbyrow: 'isAccessibilityOrderedByRow',
+    isaccessibilityprotectedcontent: 'isAccessibilityProtectedContent',
+    isaccessibilityrequired: 'isAccessibilityRequired',
+    isaccessibilityselected: 'isAccessibilitySelected',
+    isaccessibilityselectorallowed: 'isAccessibilitySelectorAllowed',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    superclass: 'superclass',
+    zone: 'zone',
+  }
 
-  // accessibilityFrameInParentSpace: CGRect;
-  // isAccessibilityElement: boolean;
-  // accessibilityFrame: CGRect;
-  // isAccessibilityFocused: boolean;
   // accessibilityActivationPoint: CGPoint;
-  // accessibilityTopLevelUIElement: interop.Object;
-  // accessibilityURL: NSURL;
-  // accessibilityValue: interop.Object;
-  // accessibilityTitleUIElement: interop.Object;
-  // accessibilityOrientation: interop.Enum<typeof NSAccessibilityOrientation>;
-  // accessibilityOverflowButton: interop.Object;
-  // accessibilityParent: interop.Object;
-  // accessibilitySearchButton: interop.Object;
-  // accessibilitySearchMenu: interop.Object;
-  // isAccessibilitySelected: boolean;
-  // accessibilityShownMenu: interop.Object;
-  // accessibilityMinValue: interop.Object;
-  // accessibilityMaxValue: interop.Object;
-  // accessibilityWindow: interop.Object;
-  // isAccessibilityExpanded: boolean;
-  // isAccessibilityEdited: boolean;
-  // isAccessibilityEnabled: boolean;
-  // accessibilityClearButton: interop.Object;
-  // accessibilityCancelButton: interop.Object;
-  // isAccessibilityProtectedContent: boolean;
-  // isAccessibilityAlternateUIVisible: boolean;
-  // isAccessibilityRequired: boolean;
   // accessibilityApplicationFocusedUIElement: interop.Object;
-  // accessibilityMainWindow: interop.Object;
-  // isAccessibilityHidden: boolean;
-  // isAccessibilityFrontmost: boolean;
-  // accessibilityFocusedWindow: interop.Object;
-  // accessibilityExtrasMenuBar: interop.Object;
-  // accessibilityMenuBar: interop.Object;
-  // isAccessibilityOrderedByRow: boolean;
-  // accessibilityHorizontalUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityVerticalUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityWarningValue: interop.Object;
+  // accessibilityCancelButton: interop.Object;
+  // accessibilityClearButton: interop.Object;
+  // accessibilityCloseButton: interop.Object;
+  // accessibilityColumnCount: number;
+  // accessibilityColumnIndexRange: _NSRange;
   // accessibilityCriticalValue: interop.Object;
-  // isAccessibilityDisclosed: boolean;
+  // accessibilityDecrementButton: interop.Object;
+  // accessibilityDefaultButton: interop.Object;
   // accessibilityDisclosedByRow: interop.Object;
   // accessibilityDisclosedRows: interop.Object;
   // accessibilityDisclosureLevel: number;
-  // accessibilityMarkerValues: interop.Object;
-  // accessibilityMarkerGroupUIElement: interop.Object;
-  // accessibilityUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityRulerMarkerType: interop.Enum<typeof NSAccessibilityRulerMarkerType>;
-  // accessibilityHorizontalScrollBar: interop.Object;
-  // accessibilityVerticalScrollBar: interop.Object;
-  // accessibilityLabelValue: number;
-  // accessibilityDecrementButton: interop.Object;
-  // accessibilityIncrementButton: interop.Object;
-  // accessibilityHeader: interop.Object;
-  // accessibilityColumnCount: number;
-  // accessibilityRowCount: number;
-  // accessibilityIndex: number;
-  // accessibilitySortDirection: interop.Enum<typeof NSAccessibilitySortDirection>;
-  // accessibilityRowIndexRange: _NSRange;
-  // accessibilityColumnIndexRange: _NSRange;
-  // accessibilityInsertionPointLineNumber: number;
-  // accessibilitySharedCharacterRange: _NSRange;
-  // accessibilityVisibleCharacterRange: _NSRange;
-  // accessibilityNumberOfCharacters: number;
-  // accessibilitySelectedTextRange: _NSRange;
-  // accessibilityToolbarButton: interop.Object;
-  // isAccessibilityModal: boolean;
-  // accessibilityProxy: interop.Object;
-  // isAccessibilityMain: boolean;
+  // accessibilityExtrasMenuBar: interop.Object;
+  // accessibilityFocusedWindow: interop.Object;
+  // accessibilityFrame: CGRect;
+  // accessibilityFrameInParentSpace: CGRect;
   // accessibilityFullScreenButton: interop.Object;
   // accessibilityGrowArea: interop.Object;
-  // accessibilityDefaultButton: interop.Object;
-  // accessibilityCloseButton: interop.Object;
-  // accessibilityZoomButton: interop.Object;
+  // accessibilityHeader: interop.Object;
+  // accessibilityHorizontalScrollBar: interop.Object;
+  // accessibilityHorizontalUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityIncrementButton: interop.Object;
+  // accessibilityIndex: number;
+  // accessibilityInsertionPointLineNumber: number;
+  // accessibilityLabelValue: number;
+  // accessibilityMainWindow: interop.Object;
+  // accessibilityMarkerGroupUIElement: interop.Object;
+  // accessibilityMarkerValues: interop.Object;
+  // accessibilityMaxValue: interop.Object;
+  // accessibilityMenuBar: interop.Object;
   // accessibilityMinimizeButton: interop.Object;
-  // isAccessibilityMinimized: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
+  // accessibilityMinValue: interop.Object;
+  // accessibilityNumberOfCharacters: number;
+  // accessibilityOrientation: interop.Enum<typeof NSAccessibilityOrientation>;
+  // accessibilityOverflowButton: interop.Object;
+  // accessibilityParent: interop.Object;
+  // accessibilityProxy: interop.Object;
+  // accessibilityRowCount: number;
+  // accessibilityRowIndexRange: _NSRange;
+  // accessibilityRulerMarkerType: interop.Enum<typeof NSAccessibilityRulerMarkerType>;
+  // accessibilitySearchButton: interop.Object;
+  // accessibilitySearchMenu: interop.Object;
+  // accessibilitySelectedTextRange: _NSRange;
+  // accessibilitySharedCharacterRange: _NSRange;
+  // accessibilityShownMenu: interop.Object;
+  // accessibilitySortDirection: interop.Enum<typeof NSAccessibilitySortDirection>;
+  // accessibilityTitleUIElement: interop.Object;
+  // accessibilityToolbarButton: interop.Object;
+  // accessibilityTopLevelUIElement: interop.Object;
+  // accessibilityUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityURL: NSURL;
+  // accessibilityValue: interop.Object;
+  // accessibilityVerticalScrollBar: interop.Object;
+  // accessibilityVerticalUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityVisibleCharacterRange: _NSRange;
+  // accessibilityWarningValue: interop.Object;
+  // accessibilityWindow: interop.Object;
+  // accessibilityZoomButton: interop.Object;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly hash: number;
+  // isAccessibilityAlternateUIVisible: boolean;
+  // isAccessibilityDisclosed: boolean;
+  // isAccessibilityEdited: boolean;
+  // isAccessibilityElement: boolean;
+  // isAccessibilityEnabled: boolean;
+  // isAccessibilityExpanded: boolean;
+  // isAccessibilityFocused: boolean;
+  // isAccessibilityFrontmost: boolean;
+  // isAccessibilityHidden: boolean;
+  // isAccessibilityMain: boolean;
+  // isAccessibilityMinimized: boolean;
+  // isAccessibilityModal: boolean;
+  // isAccessibilityOrderedByRow: boolean;
+  // isAccessibilityProtectedContent: boolean;
+  // isAccessibilityRequired: boolean;
+  // isAccessibilitySelected: boolean;
+  // readonly isProxy: boolean;
+  // readonly superclass: interop.Object;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSNibElement extends HTMLNSObjectElement {
   readonly nativeObject = NSNib.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    encodewithcoder: 'encodeWithCoder',
+    initwithcoder: 'initWithCoder',
+    initwithcontentsofurl: 'initWithContentsOfURL',
+    initwithnibdatabundle: 'initWithNibDataBundle',
+    initwithnibnamedbundle: 'initWithNibNamedBundle',
+    instantiatenibwithexternalnametable: 'instantiateNibWithExternalNameTable',
+    instantiatenibwithownertoplevelobjects: 'instantiateNibWithOwnerTopLevelObjects',
+    instantiatewithownertoplevelobjects: 'instantiateWithOwnerTopLevelObjects',
+  }
 
 }
 
 export class HTMLNSMenuToolbarItemElement extends HTMLNSToolbarItemElement {
   readonly nativeObject = NSMenuToolbarItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    menu: 'menu',
+    showsindicator: 'showsIndicator',
+  }
 
   // menu: NSMenu;
   // showsIndicator: boolean;
@@ -1000,109 +3115,272 @@ export class HTMLNSMenuToolbarItemElement extends HTMLNSToolbarItemElement {
 
 export class HTMLNSSplitViewItemElement extends HTMLNSObjectElement {
   readonly nativeObject = NSSplitViewItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    allowsfullheightlayout: 'allowsFullHeightLayout',
+    animationforkey: 'animationForKey',
+    animations: 'animations',
+    animator: 'animator',
+    automaticmaximumthickness: 'automaticMaximumThickness',
+    behavior: 'behavior',
+    cancollapse: 'canCollapse',
+    cancollapsefromwindowresize: 'canCollapseFromWindowResize',
+    collapsebehavior: 'collapseBehavior',
+    contentlistwithviewcontroller: 'contentListWithViewController',
+    defaultanimationforkey: 'defaultAnimationForKey',
+    encodewithcoder: 'encodeWithCoder',
+    holdingpriority: 'holdingPriority',
+    initwithcoder: 'initWithCoder',
+    inspectorwithviewcontroller: 'inspectorWithViewController',
+    iscollapsed: 'isCollapsed',
+    isspringloaded: 'isSpringLoaded',
+    maximumthickness: 'maximumThickness',
+    minimumthickness: 'minimumThickness',
+    preferredthicknessfraction: 'preferredThicknessFraction',
+    sidebarwithviewcontroller: 'sidebarWithViewController',
+    splitviewitemwithviewcontroller: 'splitViewItemWithViewController',
+    titlebarseparatorstyle: 'titlebarSeparatorStyle',
+    viewcontroller: 'viewController',
+  }
 
-  // readonly behavior: interop.Enum<typeof NSSplitViewItemBehavior>;
-  // viewController: NSViewController;
-  // isCollapsed: boolean;
-  // canCollapse: boolean;
-  // collapseBehavior: interop.Enum<typeof NSSplitViewItemCollapseBehavior>;
-  // minimumThickness: number;
-  // maximumThickness: number;
-  // preferredThicknessFraction: number;
-  // holdingPriority: number;
-  // automaticMaximumThickness: number;
-  // isSpringLoaded: boolean;
-  // canCollapseFromWindowResize: boolean;
   // allowsFullHeightLayout: boolean;
+  // automaticMaximumThickness: number;
+  // readonly behavior: interop.Enum<typeof NSSplitViewItemBehavior>;
+  // canCollapse: boolean;
+  // canCollapseFromWindowResize: boolean;
+  // collapseBehavior: interop.Enum<typeof NSSplitViewItemCollapseBehavior>;
+  // holdingPriority: number;
+  // isCollapsed: boolean;
+  // isSpringLoaded: boolean;
+  // maximumThickness: number;
+  // minimumThickness: number;
+  // preferredThicknessFraction: number;
   // titlebarSeparatorStyle: interop.Enum<typeof NSTitlebarSeparatorStyle>;
+  // viewController: NSViewController;
 }
 
 export class HTMLNSShadowElement extends HTMLNSObjectElement {
   readonly nativeObject = NSShadow.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    copywithzone: 'copyWithZone',
+    encodewithcoder: 'encodeWithCoder',
+    init: 'init',
+    initwithcoder: 'initWithCoder',
+    set: 'set',
+    shadowblurradius: 'shadowBlurRadius',
+    shadowcolor: 'shadowColor',
+    shadowoffset: 'shadowOffset',
+    supportssecurecoding: 'supportsSecureCoding',
+  }
 
-  // shadowOffset: CGSize;
   // shadowBlurRadius: number;
   // shadowColor: NSColor;
+  // shadowOffset: CGSize;
   // supportsSecureCoding: boolean;
 }
 
 export class HTMLNSInputManagerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSInputManager.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    attributedsubstringfromrange: 'attributedSubstringFromRange',
+    characterindexforpoint: 'characterIndexForPoint',
+    conversationidentifier: 'conversationIdentifier',
+    currentinputmanager: 'currentInputManager',
+    cycletonextinputlanguage: 'cycleToNextInputLanguage',
+    cycletonextinputserverinlanguage: 'cycleToNextInputServerInLanguage',
+    docommandbyselector: 'doCommandBySelector',
+    firstrectforcharacterrange: 'firstRectForCharacterRange',
+    handlemouseevent: 'handleMouseEvent',
+    hasmarkedtext: 'hasMarkedText',
+    image: 'image',
+    initwithnamehost: 'initWithNameHost',
+    inserttext: 'insertText',
+    language: 'language',
+    localizedinputmanagername: 'localizedInputManagerName',
+    markedrange: 'markedRange',
+    markedtextabandoned: 'markedTextAbandoned',
+    markedtextselectionchangedclient: 'markedTextSelectionChangedClient',
+    selectedrange: 'selectedRange',
+    server: 'server',
+    setmarkedtextselectedrange: 'setMarkedTextSelectedRange',
+    unmarktext: 'unmarkText',
+    validattributesformarkedtext: 'validAttributesForMarkedText',
+    wantstodelaytextchangenotifications: 'wantsToDelayTextChangeNotifications',
+    wantstohandlemouseevents: 'wantsToHandleMouseEvents',
+    wantstointerpretallkeystrokes: 'wantsToInterpretAllKeystrokes',
+  }
 
   // selectedRange: _NSRange;
 }
 
 export class HTMLNSEventElement extends HTMLNSObjectElement {
   readonly nativeObject = NSEvent.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    absolutex: 'absoluteX',
+    absolutey: 'absoluteY',
+    absolutez: 'absoluteZ',
+    addglobalmonitorforeventsmatchingmaskhandler: 'addGlobalMonitorForEventsMatchingMaskHandler',
+    addlocalmonitorforeventsmatchingmaskhandler: 'addLocalMonitorForEventsMatchingMaskHandler',
+    alltouches: 'allTouches',
+    associatedeventsmask: 'associatedEventsMask',
+    buttonmask: 'buttonMask',
+    buttonnumber: 'buttonNumber',
+    capabilitymask: 'capabilityMask',
+    cgevent: 'CGEvent',
+    characters: 'characters',
+    charactersbyapplyingmodifiers: 'charactersByApplyingModifiers',
+    charactersignoringmodifiers: 'charactersIgnoringModifiers',
+    clickcount: 'clickCount',
+    coalescedtouchesfortouch: 'coalescedTouchesForTouch',
+    context: 'context',
+    copywithzone: 'copyWithZone',
+    data1: 'data1',
+    data2: 'data2',
+    deltax: 'deltaX',
+    deltay: 'deltaY',
+    deltaz: 'deltaZ',
+    deviceid: 'deviceID',
+    doubleclickinterval: 'doubleClickInterval',
+    encodewithcoder: 'encodeWithCoder',
+    enterexiteventwithtypelocationmodifierflagstimestampwindownumbercontexteventnumbertrackingnumberuserdata: 'enterExitEventWithTypeLocationModifierFlagsTimestampWindowNumberContextEventNumberTrackingNumberUserData',
+    eventnumber: 'eventNumber',
+    eventref: 'eventRef',
+    eventwithcgevent: 'eventWithCGEvent',
+    eventwitheventref: 'eventWithEventRef',
+    hasprecisescrollingdeltas: 'hasPreciseScrollingDeltas',
+    initwithcoder: 'initWithCoder',
+    isarepeat: 'isARepeat',
+    isdirectioninvertedfromdevice: 'isDirectionInvertedFromDevice',
+    isenteringproximity: 'isEnteringProximity',
+    ismousecoalescingenabled: 'isMouseCoalescingEnabled',
+    isswipetrackingfromscrolleventsenabled: 'isSwipeTrackingFromScrollEventsEnabled',
+    keycode: 'keyCode',
+    keyeventwithtypelocationmodifierflagstimestampwindownumbercontextcharacterscharactersignoringmodifiersisarepeatkeycode: 'keyEventWithTypeLocationModifierFlagsTimestampWindowNumberContextCharactersCharactersIgnoringModifiersIsARepeatKeyCode',
+    keyrepeatdelay: 'keyRepeatDelay',
+    keyrepeatinterval: 'keyRepeatInterval',
+    locationinnode: 'locationInNode',
+    locationinwindow: 'locationInWindow',
+    magnification: 'magnification',
+    modifierflags: 'modifierFlags',
+    momentumphase: 'momentumPhase',
+    mouseeventwithtypelocationmodifierflagstimestampwindownumbercontexteventnumberclickcountpressure: 'mouseEventWithTypeLocationModifierFlagsTimestampWindowNumberContextEventNumberClickCountPressure',
+    mouselocation: 'mouseLocation',
+    othereventwithtypelocationmodifierflagstimestampwindownumbercontextsubtypedata1data2: 'otherEventWithTypeLocationModifierFlagsTimestampWindowNumberContextSubtypeData1Data2',
+    phase: 'phase',
+    pointingdeviceid: 'pointingDeviceID',
+    pointingdeviceserialnumber: 'pointingDeviceSerialNumber',
+    pointingdevicetype: 'pointingDeviceType',
+    pressedmousebuttons: 'pressedMouseButtons',
+    pressure: 'pressure',
+    pressurebehavior: 'pressureBehavior',
+    removemonitor: 'removeMonitor',
+    rotation: 'rotation',
+    scrollingdeltax: 'scrollingDeltaX',
+    scrollingdeltay: 'scrollingDeltaY',
+    stage: 'stage',
+    stagetransition: 'stageTransition',
+    startperiodiceventsafterdelaywithperiod: 'startPeriodicEventsAfterDelayWithPeriod',
+    stopperiodicevents: 'stopPeriodicEvents',
+    subtype: 'subtype',
+    systemtabletid: 'systemTabletID',
+    tabletid: 'tabletID',
+    tangentialpressure: 'tangentialPressure',
+    tilt: 'tilt',
+    timestamp: 'timestamp',
+    touchesforview: 'touchesForView',
+    touchesmatchingphaseinview: 'touchesMatchingPhaseInView',
+    trackingarea: 'trackingArea',
+    trackingnumber: 'trackingNumber',
+    trackswipeeventwithoptionsdampenamountthresholdminmaxusinghandler: 'trackSwipeEventWithOptionsDampenAmountThresholdMinMaxUsingHandler',
+    type: 'type',
+    uniqueid: 'uniqueID',
+    userdata: 'userData',
+    vendordefined: 'vendorDefined',
+    vendorid: 'vendorID',
+    vendorpointingdevicetype: 'vendorPointingDeviceType',
+    window: 'window',
+    windownumber: 'windowNumber',
+  }
 
-  // readonly type: interop.Enum<typeof NSEventType>;
-  // readonly modifierFlags: interop.Enum<typeof NSEventModifierFlags>;
-  // readonly timestamp: number;
-  // readonly window: NSWindow;
-  // readonly windowNumber: number;
-  // readonly context: NSGraphicsContext;
-  // readonly clickCount: number;
-  // readonly buttonNumber: number;
-  // readonly eventNumber: number;
-  // readonly pressure: number;
-  // readonly locationInWindow: CGPoint;
-  // readonly deltaX: number;
-  // readonly deltaY: number;
-  // readonly deltaZ: number;
-  // readonly hasPreciseScrollingDeltas: boolean;
-  // readonly scrollingDeltaX: number;
-  // readonly scrollingDeltaY: number;
-  // readonly momentumPhase: interop.Enum<typeof NSEventPhase>;
-  // readonly isDirectionInvertedFromDevice: boolean;
-  // readonly characters: NSString;
-  // readonly charactersIgnoringModifiers: NSString;
-  // readonly isARepeat: boolean;
-  // readonly keyCode: number;
-  // readonly trackingNumber: number;
-  // readonly userData: interop.Pointer;
-  // readonly trackingArea: NSTrackingArea;
-  // readonly subtype: interop.Enum<typeof NSEventSubtype>;
-  // readonly data1: number;
-  // readonly data2: number;
-  // readonly eventRef: interop.Pointer;
-  // readonly CGEvent: interop.Pointer;
-  // isMouseCoalescingEnabled: boolean;
-  // readonly magnification: number;
-  // readonly deviceID: number;
-  // readonly rotation: number;
   // readonly absoluteX: number;
   // readonly absoluteY: number;
   // readonly absoluteZ: number;
-  // readonly buttonMask: interop.Enum<typeof NSEventButtonMask>;
-  // readonly tilt: CGPoint;
-  // readonly tangentialPressure: number;
-  // readonly vendorDefined: interop.Object;
-  // readonly vendorID: number;
-  // readonly tabletID: number;
-  // readonly pointingDeviceID: number;
-  // readonly systemTabletID: number;
-  // readonly vendorPointingDeviceType: number;
-  // readonly pointingDeviceSerialNumber: number;
-  // readonly uniqueID: number;
-  // readonly capabilityMask: number;
-  // readonly pointingDeviceType: interop.Enum<typeof NSPointingDeviceType>;
-  // readonly isEnteringProximity: boolean;
-  // readonly phase: interop.Enum<typeof NSEventPhase>;
-  // readonly stage: number;
-  // readonly stageTransition: number;
   // readonly associatedEventsMask: interop.Enum<typeof NSEventMask>;
-  // readonly pressureBehavior: interop.Enum<typeof NSPressureBehavior>;
-  // isSwipeTrackingFromScrollEventsEnabled: boolean;
-  // mouseLocation: CGPoint;
-  // modifierFlags: interop.Enum<typeof NSEventModifierFlags>;
-  // pressedMouseButtons: number;
+  // readonly buttonMask: interop.Enum<typeof NSEventButtonMask>;
+  // readonly buttonNumber: number;
+  // readonly capabilityMask: number;
+  // readonly CGEvent: interop.Pointer;
+  // readonly characters: NSString;
+  // readonly charactersIgnoringModifiers: NSString;
+  // readonly clickCount: number;
+  // readonly context: NSGraphicsContext;
+  // readonly data1: number;
+  // readonly data2: number;
+  // readonly deltaX: number;
+  // readonly deltaY: number;
+  // readonly deltaZ: number;
+  // readonly deviceID: number;
   // doubleClickInterval: number;
+  // readonly eventNumber: number;
+  // readonly eventRef: interop.Pointer;
+  // readonly hasPreciseScrollingDeltas: boolean;
+  // readonly isARepeat: boolean;
+  // readonly isDirectionInvertedFromDevice: boolean;
+  // readonly isEnteringProximity: boolean;
+  // isMouseCoalescingEnabled: boolean;
+  // isSwipeTrackingFromScrollEventsEnabled: boolean;
+  // readonly keyCode: number;
   // keyRepeatDelay: number;
   // keyRepeatInterval: number;
+  // readonly locationInWindow: CGPoint;
+  // readonly magnification: number;
+  // readonly modifierFlags: interop.Enum<typeof NSEventModifierFlags>;
+  // modifierFlags: interop.Enum<typeof NSEventModifierFlags>;
+  // readonly momentumPhase: interop.Enum<typeof NSEventPhase>;
+  // mouseLocation: CGPoint;
+  // readonly phase: interop.Enum<typeof NSEventPhase>;
+  // readonly pointingDeviceID: number;
+  // readonly pointingDeviceSerialNumber: number;
+  // readonly pointingDeviceType: interop.Enum<typeof NSPointingDeviceType>;
+  // pressedMouseButtons: number;
+  // readonly pressure: number;
+  // readonly pressureBehavior: interop.Enum<typeof NSPressureBehavior>;
+  // readonly rotation: number;
+  // readonly scrollingDeltaX: number;
+  // readonly scrollingDeltaY: number;
+  // readonly stage: number;
+  // readonly stageTransition: number;
+  // readonly subtype: interop.Enum<typeof NSEventSubtype>;
+  // readonly systemTabletID: number;
+  // readonly tabletID: number;
+  // readonly tangentialPressure: number;
+  // readonly tilt: CGPoint;
+  // readonly timestamp: number;
+  // readonly trackingArea: NSTrackingArea;
+  // readonly trackingNumber: number;
+  // readonly type: interop.Enum<typeof NSEventType>;
+  // readonly uniqueID: number;
+  // readonly userData: interop.Pointer;
+  // readonly vendorDefined: interop.Object;
+  // readonly vendorID: number;
+  // readonly vendorPointingDeviceType: number;
+  // readonly window: NSWindow;
+  // readonly windowNumber: number;
 }
 
 export class HTMLNSSliderAccessoryElement extends HTMLNSObjectElement {
   readonly nativeObject = NSSliderAccessory.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessorywithimage: 'accessoryWithImage',
+    behavior: 'behavior',
+    encodewithcoder: 'encodeWithCoder',
+    initwithcoder: 'initWithCoder',
+    isenabled: 'isEnabled',
+  }
 
   // behavior: NSSliderAccessoryBehavior;
   // isEnabled: boolean;
@@ -1110,18 +3388,62 @@ export class HTMLNSSliderAccessoryElement extends HTMLNSObjectElement {
 
 export class HTMLNSAccessibilityCustomRotorItemResultElement extends HTMLNSObjectElement {
   readonly nativeObject = NSAccessibilityCustomRotorItemResult.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    customlabel: 'customLabel',
+    initwithitemloadingtokencustomlabel: 'initWithItemLoadingTokenCustomLabel',
+    initwithtargetelement: 'initWithTargetElement',
+    itemloadingtoken: 'itemLoadingToken',
+    targetelement: 'targetElement',
+    targetrange: 'targetRange',
+  }
 
-  // readonly targetElement: NSAccessibilityElement;
   // readonly itemLoadingToken: NSObject;
+  // readonly targetElement: NSAccessibilityElement;
   // targetRange: _NSRange;
 }
 
 export class HTMLNSPasteboardElement extends HTMLNSObjectElement {
   readonly nativeObject = NSPasteboard.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    addtypesowner: 'addTypesOwner',
+    availabletypefromarray: 'availableTypeFromArray',
+    canreaditemwithdataconformingtotypes: 'canReadItemWithDataConformingToTypes',
+    canreadobjectforclassesoptions: 'canReadObjectForClassesOptions',
+    changecount: 'changeCount',
+    clearcontents: 'clearContents',
+    datafortype: 'dataForType',
+    declaretypesowner: 'declareTypesOwner',
+    generalpasteboard: 'generalPasteboard',
+    indexofpasteboarditem: 'indexOfPasteboardItem',
+    name: 'name',
+    pasteboardbyfilteringdataoftype: 'pasteboardByFilteringDataOfType',
+    pasteboardbyfilteringfile: 'pasteboardByFilteringFile',
+    pasteboardbyfilteringtypesinpasteboard: 'pasteboardByFilteringTypesInPasteboard',
+    pasteboarditems: 'pasteboardItems',
+    pasteboardwithname: 'pasteboardWithName',
+    pasteboardwithuniquename: 'pasteboardWithUniqueName',
+    preparefornewcontentswithoptions: 'prepareForNewContentsWithOptions',
+    propertylistfortype: 'propertyListForType',
+    readfilecontentstypetofile: 'readFileContentsTypeToFile',
+    readfilewrapper: 'readFileWrapper',
+    readobjectsforclassesoptions: 'readObjectsForClassesOptions',
+    releaseglobally: 'releaseGlobally',
+    setdatafortype: 'setDataForType',
+    setpropertylistfortype: 'setPropertyListForType',
+    setstringfortype: 'setStringForType',
+    stringfortype: 'stringForType',
+    types: 'types',
+    typesfilterableto: 'typesFilterableTo',
+    writefilecontents: 'writeFileContents',
+    writefilewrapper: 'writeFileWrapper',
+    writeobjects: 'writeObjects',
+  }
 
+  // readonly changeCount: number;
   // generalPasteboard: NSPasteboard;
   // readonly name: NSString;
-  // readonly changeCount: number;
   // readonly pasteboardItems: NSArray;
   // readonly types: NSArray;
 }
@@ -1131,205 +3453,655 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
   get delegate(): NSWindowDelegateImpl {
     return (this.nativeObject.delegate ??= NSWindowDelegateImpl.new()) as NSWindowDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    acceptsmousemovedevents: 'acceptsMouseMovedEvents',
+    accessibilityactivationpoint: 'accessibilityActivationPoint',
+    accessibilityallowedvalues: 'accessibilityAllowedValues',
+    accessibilityapplicationfocuseduielement: 'accessibilityApplicationFocusedUIElement',
+    accessibilityattributedstringforrange: 'accessibilityAttributedStringForRange',
+    accessibilityattributeduserinputlabels: 'accessibilityAttributedUserInputLabels',
+    accessibilitycancelbutton: 'accessibilityCancelButton',
+    accessibilitycellforcolumnrow: 'accessibilityCellForColumnRow',
+    accessibilitychildren: 'accessibilityChildren',
+    accessibilitychildreninnavigationorder: 'accessibilityChildrenInNavigationOrder',
+    accessibilityclearbutton: 'accessibilityClearButton',
+    accessibilityclosebutton: 'accessibilityCloseButton',
+    accessibilitycolumncount: 'accessibilityColumnCount',
+    accessibilitycolumnheaderuielements: 'accessibilityColumnHeaderUIElements',
+    accessibilitycolumnindexrange: 'accessibilityColumnIndexRange',
+    accessibilitycolumns: 'accessibilityColumns',
+    accessibilitycolumntitles: 'accessibilityColumnTitles',
+    accessibilitycontents: 'accessibilityContents',
+    accessibilitycriticalvalue: 'accessibilityCriticalValue',
+    accessibilitycustomactions: 'accessibilityCustomActions',
+    accessibilitycustomrotors: 'accessibilityCustomRotors',
+    accessibilitydecrementbutton: 'accessibilityDecrementButton',
+    accessibilitydefaultbutton: 'accessibilityDefaultButton',
+    accessibilitydisclosedbyrow: 'accessibilityDisclosedByRow',
+    accessibilitydisclosedrows: 'accessibilityDisclosedRows',
+    accessibilitydisclosurelevel: 'accessibilityDisclosureLevel',
+    accessibilitydocument: 'accessibilityDocument',
+    accessibilityextrasmenubar: 'accessibilityExtrasMenuBar',
+    accessibilityfilename: 'accessibilityFilename',
+    accessibilityfocusedwindow: 'accessibilityFocusedWindow',
+    accessibilityframe: 'accessibilityFrame',
+    accessibilityframeforrange: 'accessibilityFrameForRange',
+    accessibilityfullscreenbutton: 'accessibilityFullScreenButton',
+    accessibilitygrowarea: 'accessibilityGrowArea',
+    accessibilityhandles: 'accessibilityHandles',
+    accessibilityheader: 'accessibilityHeader',
+    accessibilityhelp: 'accessibilityHelp',
+    accessibilityhorizontalscrollbar: 'accessibilityHorizontalScrollBar',
+    accessibilityhorizontalunitdescription: 'accessibilityHorizontalUnitDescription',
+    accessibilityhorizontalunits: 'accessibilityHorizontalUnits',
+    accessibilityidentifier: 'accessibilityIdentifier',
+    accessibilityincrementbutton: 'accessibilityIncrementButton',
+    accessibilityindex: 'accessibilityIndex',
+    accessibilityinsertionpointlinenumber: 'accessibilityInsertionPointLineNumber',
+    accessibilitylabel: 'accessibilityLabel',
+    accessibilitylabeluielements: 'accessibilityLabelUIElements',
+    accessibilitylabelvalue: 'accessibilityLabelValue',
+    accessibilitylayoutpointforscreenpoint: 'accessibilityLayoutPointForScreenPoint',
+    accessibilitylayoutsizeforscreensize: 'accessibilityLayoutSizeForScreenSize',
+    accessibilitylineforindex: 'accessibilityLineForIndex',
+    accessibilitylinkeduielements: 'accessibilityLinkedUIElements',
+    accessibilitymainwindow: 'accessibilityMainWindow',
+    accessibilitymarkergroupuielement: 'accessibilityMarkerGroupUIElement',
+    accessibilitymarkertypedescription: 'accessibilityMarkerTypeDescription',
+    accessibilitymarkeruielements: 'accessibilityMarkerUIElements',
+    accessibilitymarkervalues: 'accessibilityMarkerValues',
+    accessibilitymaxvalue: 'accessibilityMaxValue',
+    accessibilitymenubar: 'accessibilityMenuBar',
+    accessibilityminimizebutton: 'accessibilityMinimizeButton',
+    accessibilityminvalue: 'accessibilityMinValue',
+    accessibilitynextcontents: 'accessibilityNextContents',
+    accessibilitynumberofcharacters: 'accessibilityNumberOfCharacters',
+    accessibilityorientation: 'accessibilityOrientation',
+    accessibilityoverflowbutton: 'accessibilityOverflowButton',
+    accessibilityparent: 'accessibilityParent',
+    accessibilityperformcancel: 'accessibilityPerformCancel',
+    accessibilityperformconfirm: 'accessibilityPerformConfirm',
+    accessibilityperformdecrement: 'accessibilityPerformDecrement',
+    accessibilityperformdelete: 'accessibilityPerformDelete',
+    accessibilityperformincrement: 'accessibilityPerformIncrement',
+    accessibilityperformpick: 'accessibilityPerformPick',
+    accessibilityperformpress: 'accessibilityPerformPress',
+    accessibilityperformraise: 'accessibilityPerformRaise',
+    accessibilityperformshowalternateui: 'accessibilityPerformShowAlternateUI',
+    accessibilityperformshowdefaultui: 'accessibilityPerformShowDefaultUI',
+    accessibilityperformshowmenu: 'accessibilityPerformShowMenu',
+    accessibilityplaceholdervalue: 'accessibilityPlaceholderValue',
+    accessibilitypreviouscontents: 'accessibilityPreviousContents',
+    accessibilityproxy: 'accessibilityProxy',
+    accessibilityrangeforindex: 'accessibilityRangeForIndex',
+    accessibilityrangeforline: 'accessibilityRangeForLine',
+    accessibilityrangeforposition: 'accessibilityRangeForPosition',
+    accessibilityrole: 'accessibilityRole',
+    accessibilityroledescription: 'accessibilityRoleDescription',
+    accessibilityrowcount: 'accessibilityRowCount',
+    accessibilityrowheaderuielements: 'accessibilityRowHeaderUIElements',
+    accessibilityrowindexrange: 'accessibilityRowIndexRange',
+    accessibilityrows: 'accessibilityRows',
+    accessibilityrtfforrange: 'accessibilityRTFForRange',
+    accessibilityrulermarkertype: 'accessibilityRulerMarkerType',
+    accessibilityscreenpointforlayoutpoint: 'accessibilityScreenPointForLayoutPoint',
+    accessibilityscreensizeforlayoutsize: 'accessibilityScreenSizeForLayoutSize',
+    accessibilitysearchbutton: 'accessibilitySearchButton',
+    accessibilitysearchmenu: 'accessibilitySearchMenu',
+    accessibilityselectedcells: 'accessibilitySelectedCells',
+    accessibilityselectedchildren: 'accessibilitySelectedChildren',
+    accessibilityselectedcolumns: 'accessibilitySelectedColumns',
+    accessibilityselectedrows: 'accessibilitySelectedRows',
+    accessibilityselectedtext: 'accessibilitySelectedText',
+    accessibilityselectedtextrange: 'accessibilitySelectedTextRange',
+    accessibilityselectedtextranges: 'accessibilitySelectedTextRanges',
+    accessibilityservesastitleforuielements: 'accessibilityServesAsTitleForUIElements',
+    accessibilitysharedcharacterrange: 'accessibilitySharedCharacterRange',
+    accessibilitysharedfocuselements: 'accessibilitySharedFocusElements',
+    accessibilitysharedtextuielements: 'accessibilitySharedTextUIElements',
+    accessibilityshownmenu: 'accessibilityShownMenu',
+    accessibilitysortdirection: 'accessibilitySortDirection',
+    accessibilitysplitters: 'accessibilitySplitters',
+    accessibilitystringforrange: 'accessibilityStringForRange',
+    accessibilitystylerangeforindex: 'accessibilityStyleRangeForIndex',
+    accessibilitysubrole: 'accessibilitySubrole',
+    accessibilitytabs: 'accessibilityTabs',
+    accessibilitytitle: 'accessibilityTitle',
+    accessibilitytitleuielement: 'accessibilityTitleUIElement',
+    accessibilitytoolbarbutton: 'accessibilityToolbarButton',
+    accessibilitytopleveluielement: 'accessibilityTopLevelUIElement',
+    accessibilityunitdescription: 'accessibilityUnitDescription',
+    accessibilityunits: 'accessibilityUnits',
+    accessibilityurl: 'accessibilityURL',
+    accessibilityuserinputlabels: 'accessibilityUserInputLabels',
+    accessibilityvalue: 'accessibilityValue',
+    accessibilityvaluedescription: 'accessibilityValueDescription',
+    accessibilityverticalscrollbar: 'accessibilityVerticalScrollBar',
+    accessibilityverticalunitdescription: 'accessibilityVerticalUnitDescription',
+    accessibilityverticalunits: 'accessibilityVerticalUnits',
+    accessibilityvisiblecells: 'accessibilityVisibleCells',
+    accessibilityvisiblecharacterrange: 'accessibilityVisibleCharacterRange',
+    accessibilityvisiblechildren: 'accessibilityVisibleChildren',
+    accessibilityvisiblecolumns: 'accessibilityVisibleColumns',
+    accessibilityvisiblerows: 'accessibilityVisibleRows',
+    accessibilitywarningvalue: 'accessibilityWarningValue',
+    accessibilitywindow: 'accessibilityWindow',
+    accessibilitywindows: 'accessibilityWindows',
+    accessibilityzoombutton: 'accessibilityZoomButton',
+    addchildwindowordered: 'addChildWindowOrdered',
+    addtabbedwindowordered: 'addTabbedWindowOrdered',
+    addtitlebaraccessoryviewcontroller: 'addTitlebarAccessoryViewController',
+    allowsautomaticwindowtabbing: 'allowsAutomaticWindowTabbing',
+    allowsconcurrentviewdrawing: 'allowsConcurrentViewDrawing',
+    allowstooltipswhenapplicationisinactive: 'allowsToolTipsWhenApplicationIsInactive',
+    alphavalue: 'alphaValue',
+    anchorattributefororientation: 'anchorAttributeForOrientation',
+    animationbehavior: 'animationBehavior',
+    animationforkey: 'animationForKey',
+    animationresizetime: 'animationResizeTime',
+    animations: 'animations',
+    animator: 'animator',
+    appearance: 'appearance',
+    appearancesource: 'appearanceSource',
+    arecursorrectsenabled: 'areCursorRectsEnabled',
+    aspectratio: 'aspectRatio',
+    attachedsheet: 'attachedSheet',
+    autorecalculatescontentborderthicknessforedge: 'autorecalculatesContentBorderThicknessForEdge',
+    autorecalculateskeyviewloop: 'autorecalculatesKeyViewLoop',
+    autorelease: 'autorelease',
+    backgroundcolor: 'backgroundColor',
+    backingalignedrectoptions: 'backingAlignedRectOptions',
+    backinglocation: 'backingLocation',
+    backingscalefactor: 'backingScaleFactor',
+    backingtype: 'backingType',
+    becomekeywindow: 'becomeKeyWindow',
+    becomemainwindow: 'becomeMainWindow',
+    begincriticalsheetcompletionhandler: 'beginCriticalSheetCompletionHandler',
+    beginsheetcompletionhandler: 'beginSheetCompletionHandler',
+    cacheimageinrect: 'cacheImageInRect',
+    canbecomekeywindow: 'canBecomeKeyWindow',
+    canbecomemainwindow: 'canBecomeMainWindow',
+    canbecomevisiblewithoutlogin: 'canBecomeVisibleWithoutLogin',
+    canhide: 'canHide',
+    canrepresentdisplaygamut: 'canRepresentDisplayGamut',
+    canstorecolor: 'canStoreColor',
+    cascadetopleftfrompoint: 'cascadeTopLeftFromPoint',
+    center: 'center',
+    childwindows: 'childWindows',
+    class: 'class',
+    close: 'close',
+    collectionbehavior: 'collectionBehavior',
+    colorspace: 'colorSpace',
+    conformstoprotocol: 'conformsToProtocol',
+    constrainframerecttoscreen: 'constrainFrameRectToScreen',
+    contentaspectratio: 'contentAspectRatio',
+    contentborderthicknessforedge: 'contentBorderThicknessForEdge',
+    contentlayoutguide: 'contentLayoutGuide',
+    contentlayoutrect: 'contentLayoutRect',
+    contentmaxsize: 'contentMaxSize',
+    contentminsize: 'contentMinSize',
+    contentrectforframerect: 'contentRectForFrameRect',
+    contentrectforframerectstylemask: 'contentRectForFrameRectStyleMask',
+    contentresizeincrements: 'contentResizeIncrements',
+    contentview: 'contentView',
+    contentviewcontroller: 'contentViewController',
+    convertbasetoscreen: 'convertBaseToScreen',
+    convertpointfrombacking: 'convertPointFromBacking',
+    convertpointfromscreen: 'convertPointFromScreen',
+    convertpointtobacking: 'convertPointToBacking',
+    convertpointtoscreen: 'convertPointToScreen',
+    convertrectfrombacking: 'convertRectFromBacking',
+    convertrectfromscreen: 'convertRectFromScreen',
+    convertrecttobacking: 'convertRectToBacking',
+    convertrecttoscreen: 'convertRectToScreen',
+    convertscreentobase: 'convertScreenToBase',
+    currentevent: 'currentEvent',
+    datawithepsinsiderect: 'dataWithEPSInsideRect',
+    datawithpdfinsiderect: 'dataWithPDFInsideRect',
+    debugdescription: 'debugDescription',
+    deepestscreen: 'deepestScreen',
+    defaultanimationforkey: 'defaultAnimationForKey',
+    defaultbuttoncell: 'defaultButtonCell',
+    defaultdepthlimit: 'defaultDepthLimit',
+    delegate: 'delegate',
+    deminiaturize: 'deminiaturize',
+    depthlimit: 'depthLimit',
+    description: 'description',
+    devicedescription: 'deviceDescription',
+    disablecursorrects: 'disableCursorRects',
+    disableflushwindow: 'disableFlushWindow',
+    disablekeyequivalentfordefaultbuttoncell: 'disableKeyEquivalentForDefaultButtonCell',
+    disablescreenupdatesuntilflush: 'disableScreenUpdatesUntilFlush',
+    disablesnapshotrestoration: 'disableSnapshotRestoration',
+    discardcachedimage: 'discardCachedImage',
+    discardcursorrects: 'discardCursorRects',
+    discardeventsmatchingmaskbeforeevent: 'discardEventsMatchingMaskBeforeEvent',
+    display: 'display',
+    displayifneeded: 'displayIfNeeded',
+    displaylinkwithtargetselector: 'displayLinkWithTargetSelector',
+    displayswhenscreenprofilechanges: 'displaysWhenScreenProfileChanges',
+    docktile: 'dockTile',
+    dragimageatoffseteventpasteboardsourceslideback: 'dragImageAtOffsetEventPasteboardSourceSlideBack',
+    drawers: 'drawers',
+    effectiveappearance: 'effectiveAppearance',
+    enablecursorrects: 'enableCursorRects',
+    enableflushwindow: 'enableFlushWindow',
+    enablekeyequivalentfordefaultbuttoncell: 'enableKeyEquivalentForDefaultButtonCell',
+    enablesnapshotrestoration: 'enableSnapshotRestoration',
+    endeditingfor: 'endEditingFor',
+    endsheet: 'endSheet',
+    endsheetreturncode: 'endSheetReturnCode',
+    fieldeditorforobject: 'fieldEditorForObject',
+    firstresponder: 'firstResponder',
+    flushwindow: 'flushWindow',
+    flushwindowifneeded: 'flushWindowIfNeeded',
+    frame: 'frame',
+    frameautosavename: 'frameAutosaveName',
+    framerectforcontentrect: 'frameRectForContentRect',
+    framerectforcontentrectstylemask: 'frameRectForContentRectStyleMask',
+    graphicscontext: 'graphicsContext',
+    gstate: 'gState',
+    handleclosescriptcommand: 'handleCloseScriptCommand',
+    handleprintscriptcommand: 'handlePrintScriptCommand',
+    handlesavescriptcommand: 'handleSaveScriptCommand',
+    hasactivewindowsharingsession: 'hasActiveWindowSharingSession',
+    hasclosebox: 'hasCloseBox',
+    hasdynamicdepthlimit: 'hasDynamicDepthLimit',
+    hash: 'hash',
+    hasshadow: 'hasShadow',
+    hastitlebar: 'hasTitleBar',
+    hidesondeactivate: 'hidesOnDeactivate',
+    identifier: 'identifier',
+    ignoresmouseevents: 'ignoresMouseEvents',
+    initialfirstresponder: 'initialFirstResponder',
+    initwithcontentrectstylemaskbackingdefer: 'initWithContentRectStyleMaskBackingDefer',
+    initwithcontentrectstylemaskbackingdeferscreen: 'initWithContentRectStyleMaskBackingDeferScreen',
+    initwithwindowref: 'initWithWindowRef',
+    inliveresize: 'inLiveResize',
+    inserttitlebaraccessoryviewcontrolleratindex: 'insertTitlebarAccessoryViewControllerAtIndex',
+    invalidatecursorrectsforview: 'invalidateCursorRectsForView',
+    invalidateshadow: 'invalidateShadow',
+    isaccessibilityalternateuivisible: 'isAccessibilityAlternateUIVisible',
+    isaccessibilitydisclosed: 'isAccessibilityDisclosed',
+    isaccessibilityedited: 'isAccessibilityEdited',
+    isaccessibilityelement: 'isAccessibilityElement',
+    isaccessibilityenabled: 'isAccessibilityEnabled',
+    isaccessibilityexpanded: 'isAccessibilityExpanded',
+    isaccessibilityfocused: 'isAccessibilityFocused',
+    isaccessibilityfrontmost: 'isAccessibilityFrontmost',
+    isaccessibilityhidden: 'isAccessibilityHidden',
+    isaccessibilitymain: 'isAccessibilityMain',
+    isaccessibilityminimized: 'isAccessibilityMinimized',
+    isaccessibilitymodal: 'isAccessibilityModal',
+    isaccessibilityorderedbyrow: 'isAccessibilityOrderedByRow',
+    isaccessibilityprotectedcontent: 'isAccessibilityProtectedContent',
+    isaccessibilityrequired: 'isAccessibilityRequired',
+    isaccessibilityselected: 'isAccessibilitySelected',
+    isaccessibilityselectorallowed: 'isAccessibilitySelectorAllowed',
+    isautodisplay: 'isAutodisplay',
+    isdocumentedited: 'isDocumentEdited',
+    isequal: 'isEqual',
+    isexcludedfromwindowsmenu: 'isExcludedFromWindowsMenu',
+    isfloatingpanel: 'isFloatingPanel',
+    isflushwindowdisabled: 'isFlushWindowDisabled',
+    iskeywindow: 'isKeyWindow',
+    iskindofclass: 'isKindOfClass',
+    ismainwindow: 'isMainWindow',
+    ismemberofclass: 'isMemberOfClass',
+    isminiaturizable: 'isMiniaturizable',
+    isminiaturized: 'isMiniaturized',
+    ismodalpanel: 'isModalPanel',
+    ismovable: 'isMovable',
+    ismovablebywindowbackground: 'isMovableByWindowBackground',
+    isonactivespace: 'isOnActiveSpace',
+    isoneshot: 'isOneShot',
+    isopaque: 'isOpaque',
+    isproxy: 'isProxy',
+    isreleasedwhenclosed: 'isReleasedWhenClosed',
+    isresizable: 'isResizable',
+    isrestorable: 'isRestorable',
+    issheet: 'isSheet',
+    isvisible: 'isVisible',
+    iszoomable: 'isZoomable',
+    iszoomed: 'isZoomed',
+    keyviewselectiondirection: 'keyViewSelectionDirection',
+    layoutifneeded: 'layoutIfNeeded',
+    level: 'level',
+    makefirstresponder: 'makeFirstResponder',
+    makekeyandorderfront: 'makeKeyAndOrderFront',
+    makekeywindow: 'makeKeyWindow',
+    makemainwindow: 'makeMainWindow',
+    maxfullscreencontentsize: 'maxFullScreenContentSize',
+    maxsize: 'maxSize',
+    menuchanged: 'menuChanged',
+    mergeallwindows: 'mergeAllWindows',
+    minframewidthwithtitlestylemask: 'minFrameWidthWithTitleStyleMask',
+    minfullscreencontentsize: 'minFullScreenContentSize',
+    miniaturize: 'miniaturize',
+    miniwindowimage: 'miniwindowImage',
+    miniwindowtitle: 'miniwindowTitle',
+    minsize: 'minSize',
+    mouselocationoutsideofeventstream: 'mouseLocationOutsideOfEventStream',
+    movetabtonewwindow: 'moveTabToNewWindow',
+    nexteventmatchingmask: 'nextEventMatchingMask',
+    nexteventmatchingmaskuntildateinmodedequeue: 'nextEventMatchingMaskUntilDateInModeDequeue',
+    occlusionstate: 'occlusionState',
+    orderback: 'orderBack',
+    orderedindex: 'orderedIndex',
+    orderfront: 'orderFront',
+    orderfrontregardless: 'orderFrontRegardless',
+    orderout: 'orderOut',
+    orderwindowrelativeto: 'orderWindowRelativeTo',
+    parentwindow: 'parentWindow',
+    performclose: 'performClose',
+    performminiaturize: 'performMiniaturize',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    performwindowdragwithevent: 'performWindowDragWithEvent',
+    performzoom: 'performZoom',
+    posteventatstart: 'postEventAtStart',
+    preferredbackinglocation: 'preferredBackingLocation',
+    preservescontentduringliveresize: 'preservesContentDuringLiveResize',
+    preventsapplicationterminationwhenmodal: 'preventsApplicationTerminationWhenModal',
+    print: 'print',
+    recalculatekeyviewloop: 'recalculateKeyViewLoop',
+    registerfordraggedtypes: 'registerForDraggedTypes',
+    release: 'release',
+    removechildwindow: 'removeChildWindow',
+    removeframeusingname: 'removeFrameUsingName',
+    removetitlebaraccessoryviewcontrolleratindex: 'removeTitlebarAccessoryViewControllerAtIndex',
+    representedfilename: 'representedFilename',
+    representedurl: 'representedURL',
+    resetcursorrects: 'resetCursorRects',
+    resignkeywindow: 'resignKeyWindow',
+    resignmainwindow: 'resignMainWindow',
+    resizeflags: 'resizeFlags',
+    resizeincrements: 'resizeIncrements',
+    respondstoselector: 'respondsToSelector',
+    restorationclass: 'restorationClass',
+    restorecachedimage: 'restoreCachedImage',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    runtoolbarcustomizationpalette: 'runToolbarCustomizationPalette',
+    saveframeusingname: 'saveFrameUsingName',
+    screen: 'screen',
+    selectkeyviewfollowingview: 'selectKeyViewFollowingView',
+    selectkeyviewprecedingview: 'selectKeyViewPrecedingView',
+    selectnextkeyview: 'selectNextKeyView',
+    selectnexttab: 'selectNextTab',
+    selectpreviouskeyview: 'selectPreviousKeyView',
+    selectprevioustab: 'selectPreviousTab',
+    self: 'self',
+    sendevent: 'sendEvent',
+    setanchorattributefororientation: 'setAnchorAttributeForOrientation',
+    setautorecalculatescontentborderthicknessforedge: 'setAutorecalculatesContentBorderThicknessForEdge',
+    setcontentborderthicknessforedge: 'setContentBorderThicknessForEdge',
+    setcontentsize: 'setContentSize',
+    setdynamicdepthlimit: 'setDynamicDepthLimit',
+    setframedisplay: 'setFrameDisplay',
+    setframedisplayanimate: 'setFrameDisplayAnimate',
+    setframefromstring: 'setFrameFromString',
+    setframeorigin: 'setFrameOrigin',
+    setframetopleftpoint: 'setFrameTopLeftPoint',
+    setframeusingname: 'setFrameUsingName',
+    setframeusingnameforce: 'setFrameUsingNameForce',
+    setisminiaturized: 'setIsMiniaturized',
+    setisvisible: 'setIsVisible',
+    setiszoomed: 'setIsZoomed',
+    settitlewithrepresentedfilename: 'setTitleWithRepresentedFilename',
+    sharingtype: 'sharingType',
+    sheetparent: 'sheetParent',
+    sheets: 'sheets',
+    showsresizeindicator: 'showsResizeIndicator',
+    showstoolbarbutton: 'showsToolbarButton',
+    standardwindowbutton: 'standardWindowButton',
+    standardwindowbuttonforstylemask: 'standardWindowButtonForStyleMask',
+    stringwithsavedframe: 'stringWithSavedFrame',
+    stylemask: 'styleMask',
+    subtitle: 'subtitle',
+    superclass: 'superclass',
+    tab: 'tab',
+    tabbedwindows: 'tabbedWindows',
+    tabbingidentifier: 'tabbingIdentifier',
+    tabbingmode: 'tabbingMode',
+    tabgroup: 'tabGroup',
+    title: 'title',
+    titlebaraccessoryviewcontrollers: 'titlebarAccessoryViewControllers',
+    titlebarappearstransparent: 'titlebarAppearsTransparent',
+    titlebarseparatorstyle: 'titlebarSeparatorStyle',
+    titlevisibility: 'titleVisibility',
+    togglefullscreen: 'toggleFullScreen',
+    toggletabbar: 'toggleTabBar',
+    toggletaboverview: 'toggleTabOverview',
+    toggletoolbarshown: 'toggleToolbarShown',
+    toolbar: 'toolbar',
+    toolbarstyle: 'toolbarStyle',
+    trackeventsmatchingmasktimeoutmodehandler: 'trackEventsMatchingMaskTimeoutModeHandler',
+    transferwindowsharingtowindowcompletionhandler: 'transferWindowSharingToWindowCompletionHandler',
+    trytoperformwith: 'tryToPerformWith',
+    unregisterdraggedtypes: 'unregisterDraggedTypes',
+    update: 'update',
+    updateconstraintsifneeded: 'updateConstraintsIfNeeded',
+    useoptimizeddrawing: 'useOptimizedDrawing',
+    userspacescalefactor: 'userSpaceScaleFactor',
+    usertabbingpreference: 'userTabbingPreference',
+    validatemenuitem: 'validateMenuItem',
+    validateuserinterfaceitem: 'validateUserInterfaceItem',
+    validrequestorforsendtypereturntype: 'validRequestorForSendTypeReturnType',
+    viewsneeddisplay: 'viewsNeedDisplay',
+    visualizeconstraints: 'visualizeConstraints',
+    windowcontroller: 'windowController',
+    windownumber: 'windowNumber',
+    windownumberatpointbelowwindowwithwindownumber: 'windowNumberAtPointBelowWindowWithWindowNumber',
+    windownumberswithoptions: 'windowNumbersWithOptions',
+    windowref: 'windowRef',
+    windowtitlebarlayoutdirection: 'windowTitlebarLayoutDirection',
+    windowwithcontentviewcontroller: 'windowWithContentViewController',
+    workswhenmodal: 'worksWhenModal',
+    zone: 'zone',
+    zoom: 'zoom',
+  }
 
-  // defaultDepthLimit: interop.Enum<typeof NSWindowDepth>;
-  // titleVisibility: interop.Enum<typeof NSWindowTitleVisibility>;
-  // titlebarAppearsTransparent: boolean;
-  // toolbarStyle: interop.Enum<typeof NSWindowToolbarStyle>;
-  // readonly contentLayoutRect: CGRect;
-  // readonly contentLayoutGuide: interop.Object;
-  // representedURL: NSURL;
-  // isExcludedFromWindowsMenu: boolean;
-  // contentView: NSView;
-  // readonly windowNumber: number;
-  // styleMask: interop.Enum<typeof NSWindowStyleMask>;
-  // readonly frame: CGRect;
-  // readonly inLiveResize: boolean;
-  // resizeIncrements: CGSize;
-  // aspectRatio: CGSize;
-  // contentResizeIncrements: CGSize;
-  // contentAspectRatio: CGSize;
-  // viewsNeedDisplay: boolean;
-  // preservesContentDuringLiveResize: boolean;
-  // readonly firstResponder: NSResponder | null;
-  // readonly resizeFlags: interop.Enum<typeof NSEventModifierFlags>;
-  // isReleasedWhenClosed: boolean;
-  // readonly isZoomed: boolean;
-  // readonly isMiniaturized: boolean;
-  // backgroundColor: NSColor;
-  // isMovable: boolean;
-  // isMovableByWindowBackground: boolean;
-  // hidesOnDeactivate: boolean;
-  // canHide: boolean;
-  // miniwindowImage: NSImage;
-  // readonly dockTile: NSDockTile;
-  // isDocumentEdited: boolean;
-  // readonly isVisible: boolean;
-  // readonly isKeyWindow: boolean;
-  // readonly isMainWindow: boolean;
-  // readonly canBecomeKeyWindow: boolean;
-  // readonly canBecomeMainWindow: boolean;
-  // readonly worksWhenModal: boolean;
-  // preventsApplicationTerminationWhenModal: boolean;
-  // readonly backingScaleFactor: number;
-  // allowsToolTipsWhenApplicationIsInactive: boolean;
-  // backingType: interop.Enum<typeof NSBackingStoreType>;
-  // level: number;
-  // depthLimit: interop.Enum<typeof NSWindowDepth>;
-  // readonly hasDynamicDepthLimit: boolean;
-  // readonly screen: NSScreen;
-  // readonly deepestScreen: NSScreen;
-  // hasShadow: boolean;
-  // alphaValue: number;
-  // isOpaque: boolean;
-  // sharingType: interop.Enum<typeof NSWindowSharingType>;
-  // allowsConcurrentViewDrawing: boolean;
-  // displaysWhenScreenProfileChanges: boolean;
-  // canBecomeVisibleWithoutLogin: boolean;
-  // collectionBehavior: interop.Enum<typeof NSWindowCollectionBehavior>;
-  // animationBehavior: interop.Enum<typeof NSWindowAnimationBehavior>;
-  // readonly isOnActiveSpace: boolean;
-  // readonly stringWithSavedFrame: NSString;
-  // readonly frameAutosaveName: NSString;
-  // minSize: CGSize;
-  // maxSize: CGSize;
-  // contentMinSize: CGSize;
-  // contentMaxSize: CGSize;
-  // minFullScreenContentSize: CGSize;
-  // maxFullScreenContentSize: CGSize;
-  // readonly deviceDescription: NSDictionary;
-  // windowController: NSWindowController;
-  // readonly sheets: NSArray;
-  // readonly attachedSheet: NSWindow;
-  // readonly isSheet: boolean;
-  // readonly sheetParent: NSWindow;
-  // readonly childWindows: NSArray;
-  // parentWindow: NSWindow;
-  // appearanceSource: NSObject;
-  // colorSpace: NSColorSpace;
-  // readonly occlusionState: interop.Enum<typeof NSWindowOcclusionState>;
-  // titlebarSeparatorStyle: interop.Enum<typeof NSTitlebarSeparatorStyle>;
-  // contentViewController: NSViewController;
-  // initialFirstResponder: NSView;
-  // readonly keyViewSelectionDirection: interop.Enum<typeof NSSelectionDirection>;
-  // defaultButtonCell: NSButtonCell;
-  // autorecalculatesKeyViewLoop: boolean;
-  // toolbar: NSToolbar;
-  // showsToolbarButton: boolean;
-  // allowsAutomaticWindowTabbing: boolean;
-  // userTabbingPreference: interop.Enum<typeof NSWindowUserTabbingPreference>;
-  // tabbingMode: interop.Enum<typeof NSWindowTabbingMode>;
-  // readonly tabbedWindows: NSArray;
-  // readonly tab: NSWindowTab;
-  // readonly tabGroup: NSWindowTabGroup;
-  // readonly hasActiveWindowSharingSession: boolean;
-  // readonly windowTitlebarLayoutDirection: interop.Enum<typeof NSUserInterfaceLayoutDirection>;
-  // readonly currentEvent: NSEvent;
   // acceptsMouseMovedEvents: boolean;
-  // ignoresMouseEvents: boolean;
-  // readonly mouseLocationOutsideOfEventStream: CGPoint;
-  // readonly areCursorRectsEnabled: boolean;
-  // readonly windowRef: interop.Pointer;
-  // readonly isFlushWindowDisabled: boolean;
-  // isAutodisplay: boolean;
-  // readonly graphicsContext: NSGraphicsContext;
-  // isOneShot: boolean;
-  // preferredBackingLocation: interop.Enum<typeof NSWindowBackingLocation>;
-  // readonly backingLocation: interop.Enum<typeof NSWindowBackingLocation>;
-  // showsResizeIndicator: boolean;
-  // readonly drawers: NSArray;
-  // readonly hasCloseBox: boolean;
-  // readonly hasTitleBar: boolean;
-  // readonly isFloatingPanel: boolean;
-  // readonly isMiniaturizable: boolean;
-  // readonly isModalPanel: boolean;
-  // readonly isResizable: boolean;
-  // readonly isZoomable: boolean;
-  // orderedIndex: number;
-  // isRestorable: boolean;
-  // restorationClass: NSWindowRestoration;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
-  // appearance: NSAppearance;
-  // readonly effectiveAppearance: NSAppearance;
-  // isAccessibilityElement: boolean;
-  // accessibilityFrame: CGRect;
-  // isAccessibilityFocused: boolean;
   // accessibilityActivationPoint: CGPoint;
-  // accessibilityTopLevelUIElement: interop.Object;
-  // accessibilityURL: NSURL;
-  // accessibilityValue: interop.Object;
-  // accessibilityTitleUIElement: interop.Object;
-  // accessibilityOrientation: interop.Enum<typeof NSAccessibilityOrientation>;
-  // accessibilityOverflowButton: interop.Object;
-  // accessibilityParent: interop.Object;
-  // accessibilitySearchButton: interop.Object;
-  // accessibilitySearchMenu: interop.Object;
-  // isAccessibilitySelected: boolean;
-  // accessibilityShownMenu: interop.Object;
-  // accessibilityMinValue: interop.Object;
-  // accessibilityMaxValue: interop.Object;
-  // accessibilityWindow: interop.Object;
-  // isAccessibilityExpanded: boolean;
-  // isAccessibilityEdited: boolean;
-  // isAccessibilityEnabled: boolean;
-  // accessibilityClearButton: interop.Object;
-  // accessibilityCancelButton: interop.Object;
-  // isAccessibilityProtectedContent: boolean;
-  // isAccessibilityAlternateUIVisible: boolean;
-  // isAccessibilityRequired: boolean;
   // accessibilityApplicationFocusedUIElement: interop.Object;
-  // accessibilityMainWindow: interop.Object;
-  // isAccessibilityHidden: boolean;
-  // isAccessibilityFrontmost: boolean;
-  // accessibilityFocusedWindow: interop.Object;
-  // accessibilityExtrasMenuBar: interop.Object;
-  // accessibilityMenuBar: interop.Object;
-  // isAccessibilityOrderedByRow: boolean;
-  // accessibilityHorizontalUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityVerticalUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityWarningValue: interop.Object;
+  // accessibilityCancelButton: interop.Object;
+  // accessibilityClearButton: interop.Object;
+  // accessibilityCloseButton: interop.Object;
+  // accessibilityColumnCount: number;
+  // accessibilityColumnIndexRange: _NSRange;
   // accessibilityCriticalValue: interop.Object;
-  // isAccessibilityDisclosed: boolean;
+  // accessibilityDecrementButton: interop.Object;
+  // accessibilityDefaultButton: interop.Object;
   // accessibilityDisclosedByRow: interop.Object;
   // accessibilityDisclosedRows: interop.Object;
   // accessibilityDisclosureLevel: number;
-  // accessibilityMarkerValues: interop.Object;
-  // accessibilityMarkerGroupUIElement: interop.Object;
-  // accessibilityUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityRulerMarkerType: interop.Enum<typeof NSAccessibilityRulerMarkerType>;
-  // accessibilityHorizontalScrollBar: interop.Object;
-  // accessibilityVerticalScrollBar: interop.Object;
-  // accessibilityLabelValue: number;
-  // accessibilityDecrementButton: interop.Object;
-  // accessibilityIncrementButton: interop.Object;
-  // accessibilityHeader: interop.Object;
-  // accessibilityColumnCount: number;
-  // accessibilityRowCount: number;
-  // accessibilityIndex: number;
-  // accessibilitySortDirection: interop.Enum<typeof NSAccessibilitySortDirection>;
-  // accessibilityRowIndexRange: _NSRange;
-  // accessibilityColumnIndexRange: _NSRange;
-  // accessibilityInsertionPointLineNumber: number;
-  // accessibilitySharedCharacterRange: _NSRange;
-  // accessibilityVisibleCharacterRange: _NSRange;
-  // accessibilityNumberOfCharacters: number;
-  // accessibilitySelectedTextRange: _NSRange;
-  // accessibilityToolbarButton: interop.Object;
-  // isAccessibilityModal: boolean;
-  // accessibilityProxy: interop.Object;
-  // isAccessibilityMain: boolean;
+  // accessibilityExtrasMenuBar: interop.Object;
+  // accessibilityFocusedWindow: interop.Object;
+  // accessibilityFrame: CGRect;
   // accessibilityFullScreenButton: interop.Object;
   // accessibilityGrowArea: interop.Object;
-  // accessibilityDefaultButton: interop.Object;
-  // accessibilityCloseButton: interop.Object;
-  // accessibilityZoomButton: interop.Object;
+  // accessibilityHeader: interop.Object;
+  // accessibilityHorizontalScrollBar: interop.Object;
+  // accessibilityHorizontalUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityIncrementButton: interop.Object;
+  // accessibilityIndex: number;
+  // accessibilityInsertionPointLineNumber: number;
+  // accessibilityLabelValue: number;
+  // accessibilityMainWindow: interop.Object;
+  // accessibilityMarkerGroupUIElement: interop.Object;
+  // accessibilityMarkerValues: interop.Object;
+  // accessibilityMaxValue: interop.Object;
+  // accessibilityMenuBar: interop.Object;
   // accessibilityMinimizeButton: interop.Object;
+  // accessibilityMinValue: interop.Object;
+  // accessibilityNumberOfCharacters: number;
+  // accessibilityOrientation: interop.Enum<typeof NSAccessibilityOrientation>;
+  // accessibilityOverflowButton: interop.Object;
+  // accessibilityParent: interop.Object;
+  // accessibilityProxy: interop.Object;
+  // accessibilityRowCount: number;
+  // accessibilityRowIndexRange: _NSRange;
+  // accessibilityRulerMarkerType: interop.Enum<typeof NSAccessibilityRulerMarkerType>;
+  // accessibilitySearchButton: interop.Object;
+  // accessibilitySearchMenu: interop.Object;
+  // accessibilitySelectedTextRange: _NSRange;
+  // accessibilitySharedCharacterRange: _NSRange;
+  // accessibilityShownMenu: interop.Object;
+  // accessibilitySortDirection: interop.Enum<typeof NSAccessibilitySortDirection>;
+  // accessibilityTitleUIElement: interop.Object;
+  // accessibilityToolbarButton: interop.Object;
+  // accessibilityTopLevelUIElement: interop.Object;
+  // accessibilityUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityURL: NSURL;
+  // accessibilityValue: interop.Object;
+  // accessibilityVerticalScrollBar: interop.Object;
+  // accessibilityVerticalUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityVisibleCharacterRange: _NSRange;
+  // accessibilityWarningValue: interop.Object;
+  // accessibilityWindow: interop.Object;
+  // accessibilityZoomButton: interop.Object;
+  // allowsAutomaticWindowTabbing: boolean;
+  // allowsConcurrentViewDrawing: boolean;
+  // allowsToolTipsWhenApplicationIsInactive: boolean;
+  // alphaValue: number;
+  // animationBehavior: interop.Enum<typeof NSWindowAnimationBehavior>;
+  // appearance: NSAppearance;
+  // appearanceSource: NSObject;
+  // readonly areCursorRectsEnabled: boolean;
+  // aspectRatio: CGSize;
+  // readonly attachedSheet: NSWindow;
+  // autorecalculatesKeyViewLoop: boolean;
+  // backgroundColor: NSColor;
+  // readonly backingLocation: interop.Enum<typeof NSWindowBackingLocation>;
+  // readonly backingScaleFactor: number;
+  // backingType: interop.Enum<typeof NSBackingStoreType>;
+  // readonly canBecomeKeyWindow: boolean;
+  // readonly canBecomeMainWindow: boolean;
+  // canBecomeVisibleWithoutLogin: boolean;
+  // canHide: boolean;
+  // readonly childWindows: NSArray;
+  // collectionBehavior: interop.Enum<typeof NSWindowCollectionBehavior>;
+  // colorSpace: NSColorSpace;
+  // contentAspectRatio: CGSize;
+  // readonly contentLayoutGuide: interop.Object;
+  // readonly contentLayoutRect: CGRect;
+  // contentMaxSize: CGSize;
+  // contentMinSize: CGSize;
+  // contentResizeIncrements: CGSize;
+  // contentView: NSView;
+  // contentViewController: NSViewController;
+  // readonly currentEvent: NSEvent;
+  // readonly debugDescription: NSString;
+  // readonly deepestScreen: NSScreen;
+  // defaultButtonCell: NSButtonCell;
+  // defaultDepthLimit: interop.Enum<typeof NSWindowDepth>;
+  // depthLimit: interop.Enum<typeof NSWindowDepth>;
+  // readonly description: NSString;
+  // readonly deviceDescription: NSDictionary;
+  // displaysWhenScreenProfileChanges: boolean;
+  // readonly dockTile: NSDockTile;
+  // readonly drawers: NSArray;
+  // readonly effectiveAppearance: NSAppearance;
+  // readonly firstResponder: NSResponder | null;
+  // readonly frame: CGRect;
+  // readonly frameAutosaveName: NSString;
+  // readonly graphicsContext: NSGraphicsContext;
+  // readonly hasActiveWindowSharingSession: boolean;
+  // readonly hasCloseBox: boolean;
+  // readonly hasDynamicDepthLimit: boolean;
+  // readonly hash: number;
+  // hasShadow: boolean;
+  // readonly hasTitleBar: boolean;
+  // hidesOnDeactivate: boolean;
+  // ignoresMouseEvents: boolean;
+  // initialFirstResponder: NSView;
+  // readonly inLiveResize: boolean;
+  // isAccessibilityAlternateUIVisible: boolean;
+  // isAccessibilityDisclosed: boolean;
+  // isAccessibilityEdited: boolean;
+  // isAccessibilityElement: boolean;
+  // isAccessibilityEnabled: boolean;
+  // isAccessibilityExpanded: boolean;
+  // isAccessibilityFocused: boolean;
+  // isAccessibilityFrontmost: boolean;
+  // isAccessibilityHidden: boolean;
+  // isAccessibilityMain: boolean;
   // isAccessibilityMinimized: boolean;
+  // isAccessibilityModal: boolean;
+  // isAccessibilityOrderedByRow: boolean;
+  // isAccessibilityProtectedContent: boolean;
+  // isAccessibilityRequired: boolean;
+  // isAccessibilitySelected: boolean;
+  // isAutodisplay: boolean;
+  // isDocumentEdited: boolean;
+  // isExcludedFromWindowsMenu: boolean;
+  // readonly isFloatingPanel: boolean;
+  // readonly isFlushWindowDisabled: boolean;
+  // readonly isKeyWindow: boolean;
+  // readonly isMainWindow: boolean;
+  // readonly isMiniaturizable: boolean;
+  // readonly isMiniaturized: boolean;
+  // readonly isModalPanel: boolean;
+  // isMovable: boolean;
+  // isMovableByWindowBackground: boolean;
+  // readonly isOnActiveSpace: boolean;
+  // isOneShot: boolean;
+  // isOpaque: boolean;
+  // readonly isProxy: boolean;
+  // isReleasedWhenClosed: boolean;
+  // readonly isResizable: boolean;
+  // isRestorable: boolean;
+  // readonly isSheet: boolean;
+  // readonly isVisible: boolean;
+  // readonly isZoomable: boolean;
+  // readonly isZoomed: boolean;
+  // readonly keyViewSelectionDirection: interop.Enum<typeof NSSelectionDirection>;
+  // level: number;
+  // maxFullScreenContentSize: CGSize;
+  // maxSize: CGSize;
+  // minFullScreenContentSize: CGSize;
+  // miniwindowImage: NSImage;
+  // minSize: CGSize;
+  // readonly mouseLocationOutsideOfEventStream: CGPoint;
+  // readonly occlusionState: interop.Enum<typeof NSWindowOcclusionState>;
+  // orderedIndex: number;
+  // parentWindow: NSWindow;
+  // preferredBackingLocation: interop.Enum<typeof NSWindowBackingLocation>;
+  // preservesContentDuringLiveResize: boolean;
+  // preventsApplicationTerminationWhenModal: boolean;
+  // representedURL: NSURL;
+  // readonly resizeFlags: interop.Enum<typeof NSEventModifierFlags>;
+  // resizeIncrements: CGSize;
+  // restorationClass: NSWindowRestoration;
+  // readonly screen: NSScreen;
+  // sharingType: interop.Enum<typeof NSWindowSharingType>;
+  // readonly sheetParent: NSWindow;
+  // readonly sheets: NSArray;
+  // showsResizeIndicator: boolean;
+  // showsToolbarButton: boolean;
+  // readonly stringWithSavedFrame: NSString;
+  // styleMask: interop.Enum<typeof NSWindowStyleMask>;
+  // readonly superclass: interop.Object;
+  // readonly tab: NSWindowTab;
+  // readonly tabbedWindows: NSArray;
+  // tabbingMode: interop.Enum<typeof NSWindowTabbingMode>;
+  // readonly tabGroup: NSWindowTabGroup;
+  // titlebarAppearsTransparent: boolean;
+  // titlebarSeparatorStyle: interop.Enum<typeof NSTitlebarSeparatorStyle>;
+  // titleVisibility: interop.Enum<typeof NSWindowTitleVisibility>;
+  // toolbar: NSToolbar;
+  // toolbarStyle: interop.Enum<typeof NSWindowToolbarStyle>;
+  // userTabbingPreference: interop.Enum<typeof NSWindowUserTabbingPreference>;
+  // viewsNeedDisplay: boolean;
+  // windowController: NSWindowController;
+  // readonly windowNumber: number;
+  // readonly windowRef: interop.Pointer;
+  // readonly windowTitlebarLayoutDirection: interop.Enum<typeof NSUserInterfaceLayoutDirection>;
+  // readonly worksWhenModal: boolean;
+  // readonly zone: interop.Pointer;
 
   set windowshouldclose(value: (sender: NSWindow) => boolean) {
     this.delegate.windowShouldClose = value;
@@ -1491,92 +4263,213 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
 
 export class HTMLNSScrubberLayoutAttributesElement extends HTMLNSObjectElement {
   readonly nativeObject = NSScrubberLayoutAttributes.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    alpha: 'alpha',
+    copywithzone: 'copyWithZone',
+    frame: 'frame',
+    itemindex: 'itemIndex',
+    layoutattributesforitematindex: 'layoutAttributesForItemAtIndex',
+  }
 
-  // itemIndex: number;
-  // frame: CGRect;
   // alpha: number;
+  // frame: CGRect;
+  // itemIndex: number;
 }
 
 export class HTMLNSTextLayoutFragmentElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextLayoutFragment.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    bottommargin: 'bottomMargin',
+    drawatpointincontext: 'drawAtPointInContext',
+    encodewithcoder: 'encodeWithCoder',
+    framefortextattachmentatlocation: 'frameForTextAttachmentAtLocation',
+    initwithcoder: 'initWithCoder',
+    initwithtextelementrange: 'initWithTextElementRange',
+    invalidatelayout: 'invalidateLayout',
+    layoutfragmentframe: 'layoutFragmentFrame',
+    layoutqueue: 'layoutQueue',
+    leadingpadding: 'leadingPadding',
+    rangeinelement: 'rangeInElement',
+    renderingsurfacebounds: 'renderingSurfaceBounds',
+    state: 'state',
+    supportssecurecoding: 'supportsSecureCoding',
+    textattachmentviewproviders: 'textAttachmentViewProviders',
+    textelement: 'textElement',
+    textlayoutmanager: 'textLayoutManager',
+    textlinefragmentfortextlocationisupstreamaffinity: 'textLineFragmentForTextLocationIsUpstreamAffinity',
+    textlinefragmentforverticaloffsetrequiresexactmatch: 'textLineFragmentForVerticalOffsetRequiresExactMatch',
+    textlinefragments: 'textLineFragments',
+    topmargin: 'topMargin',
+    trailingpadding: 'trailingPadding',
+  }
 
-  // readonly textLayoutManager: NSTextLayoutManager;
-  // readonly textElement: NSTextElement | null;
-  // readonly rangeInElement: NSTextRange;
-  // readonly textLineFragments: NSArray;
-  // layoutQueue: NSOperationQueue;
-  // readonly state: interop.Enum<typeof NSTextLayoutFragmentState>;
-  // readonly layoutFragmentFrame: CGRect;
-  // readonly renderingSurfaceBounds: CGRect;
-  // readonly leadingPadding: number;
-  // readonly trailingPadding: number;
-  // readonly topMargin: number;
   // readonly bottomMargin: number;
-  // readonly textAttachmentViewProviders: NSArray;
+  // readonly layoutFragmentFrame: CGRect;
+  // layoutQueue: NSOperationQueue;
+  // readonly leadingPadding: number;
+  // readonly rangeInElement: NSTextRange;
+  // readonly renderingSurfaceBounds: CGRect;
+  // readonly state: interop.Enum<typeof NSTextLayoutFragmentState>;
   // supportsSecureCoding: boolean;
+  // readonly textAttachmentViewProviders: NSArray;
+  // readonly textElement: NSTextElement | null;
+  // readonly textLayoutManager: NSTextLayoutManager;
+  // readonly textLineFragments: NSArray;
+  // readonly topMargin: number;
+  // readonly trailingPadding: number;
 }
 
 export class HTMLNSCursorElement extends HTMLNSObjectElement {
   readonly nativeObject = NSCursor.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    arrowcursor: 'arrowCursor',
+    closedhandcursor: 'closedHandCursor',
+    contextualmenucursor: 'contextualMenuCursor',
+    crosshaircursor: 'crosshairCursor',
+    currentcursor: 'currentCursor',
+    currentsystemcursor: 'currentSystemCursor',
+    disappearingitemcursor: 'disappearingItemCursor',
+    dragcopycursor: 'dragCopyCursor',
+    draglinkcursor: 'dragLinkCursor',
+    encodewithcoder: 'encodeWithCoder',
+    hide: 'hide',
+    hotspot: 'hotSpot',
+    ibeamcursor: 'IBeamCursor',
+    ibeamcursorforverticallayout: 'IBeamCursorForVerticalLayout',
+    image: 'image',
+    initwithcoder: 'initWithCoder',
+    initwithimageforegroundcolorhintbackgroundcolorhinthotspot: 'initWithImageForegroundColorHintBackgroundColorHintHotSpot',
+    initwithimagehotspot: 'initWithImageHotSpot',
+    issetonmouseentered: 'isSetOnMouseEntered',
+    issetonmouseexited: 'isSetOnMouseExited',
+    mouseentered: 'mouseEntered',
+    mouseexited: 'mouseExited',
+    openhandcursor: 'openHandCursor',
+    operationnotallowedcursor: 'operationNotAllowedCursor',
+    pointinghandcursor: 'pointingHandCursor',
+    pop: 'pop',
+    push: 'push',
+    resizedowncursor: 'resizeDownCursor',
+    resizeleftcursor: 'resizeLeftCursor',
+    resizeleftrightcursor: 'resizeLeftRightCursor',
+    resizerightcursor: 'resizeRightCursor',
+    resizeupcursor: 'resizeUpCursor',
+    resizeupdowncursor: 'resizeUpDownCursor',
+    set: 'set',
+    sethiddenuntilmousemoves: 'setHiddenUntilMouseMoves',
+    setonmouseentered: 'setOnMouseEntered',
+    setonmouseexited: 'setOnMouseExited',
+    supportssecurecoding: 'supportsSecureCoding',
+    unhide: 'unhide',
+  }
 
+  // arrowCursor: NSCursor;
+  // closedHandCursor: NSCursor;
+  // contextualMenuCursor: NSCursor;
+  // crosshairCursor: NSCursor;
   // currentCursor: NSCursor;
   // currentSystemCursor: NSCursor;
-  // arrowCursor: NSCursor;
-  // IBeamCursor: NSCursor;
-  // pointingHandCursor: NSCursor;
-  // closedHandCursor: NSCursor;
-  // openHandCursor: NSCursor;
-  // resizeLeftCursor: NSCursor;
-  // resizeRightCursor: NSCursor;
-  // resizeLeftRightCursor: NSCursor;
-  // resizeUpCursor: NSCursor;
-  // resizeDownCursor: NSCursor;
-  // resizeUpDownCursor: NSCursor;
-  // crosshairCursor: NSCursor;
   // disappearingItemCursor: NSCursor;
-  // operationNotAllowedCursor: NSCursor;
-  // dragLinkCursor: NSCursor;
   // dragCopyCursor: NSCursor;
-  // contextualMenuCursor: NSCursor;
+  // dragLinkCursor: NSCursor;
+  // readonly hotSpot: CGPoint;
+  // IBeamCursor: NSCursor;
   // IBeamCursorForVerticalLayout: NSCursor;
   // readonly image: NSImage;
-  // readonly hotSpot: CGPoint;
-  // readonly isSetOnMouseExited: boolean;
   // readonly isSetOnMouseEntered: boolean;
+  // readonly isSetOnMouseExited: boolean;
+  // openHandCursor: NSCursor;
+  // operationNotAllowedCursor: NSCursor;
+  // pointingHandCursor: NSCursor;
+  // resizeDownCursor: NSCursor;
+  // resizeLeftCursor: NSCursor;
+  // resizeLeftRightCursor: NSCursor;
+  // resizeRightCursor: NSCursor;
+  // resizeUpCursor: NSCursor;
+  // resizeUpDownCursor: NSCursor;
   // supportsSecureCoding: boolean;
 }
 
 export class HTMLNSTabViewItemElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTabViewItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    color: 'color',
+    drawlabelinrect: 'drawLabelInRect',
+    encodewithcoder: 'encodeWithCoder',
+    identifier: 'identifier',
+    image: 'image',
+    initialfirstresponder: 'initialFirstResponder',
+    initwithcoder: 'initWithCoder',
+    initwithidentifier: 'initWithIdentifier',
+    label: 'label',
+    sizeoflabel: 'sizeOfLabel',
+    tabstate: 'tabState',
+    tabview: 'tabView',
+    tabviewitemwithviewcontroller: 'tabViewItemWithViewController',
+    tooltip: 'toolTip',
+    view: 'view',
+    viewcontroller: 'viewController',
+  }
 
-  // identifier: interop.Object;
   // color: NSColor;
+  // identifier: interop.Object;
   // image: NSImage;
-  // view: NSView;
-  // viewController: NSViewController;
+  // initialFirstResponder: NSView;
   // readonly tabState: interop.Enum<typeof NSTabState>;
   // readonly tabView: NSTabView;
-  // initialFirstResponder: NSView;
+  // view: NSView;
+  // viewController: NSViewController;
 }
 
 export class HTMLNSMenuItemBadgeElement extends HTMLNSObjectElement {
   readonly nativeObject = NSMenuItemBadge.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    alertswithcount: 'alertsWithCount',
+    copywithzone: 'copyWithZone',
+    initwithcount: 'initWithCount',
+    initwithcounttype: 'initWithCountType',
+    initwithstring: 'initWithString',
+    itemcount: 'itemCount',
+    newitemswithcount: 'newItemsWithCount',
+    stringvalue: 'stringValue',
+    type: 'type',
+    updateswithcount: 'updatesWithCount',
+  }
 
   // readonly itemCount: number;
-  // readonly type: interop.Enum<typeof NSMenuItemBadgeType>;
   // readonly stringValue: NSString;
+  // readonly type: interop.Enum<typeof NSMenuItemBadgeType>;
 }
 
 export class HTMLNSGridColumnElement extends HTMLNSObjectElement {
   readonly nativeObject = NSGridColumn.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    cellatindex: 'cellAtIndex',
+    encodewithcoder: 'encodeWithCoder',
+    gridview: 'gridView',
+    initwithcoder: 'initWithCoder',
+    ishidden: 'isHidden',
+    leadingpadding: 'leadingPadding',
+    mergecellsinrange: 'mergeCellsInRange',
+    numberofcells: 'numberOfCells',
+    trailingpadding: 'trailingPadding',
+    width: 'width',
+    xplacement: 'xPlacement',
+  }
 
   // readonly gridView: NSGridView | null;
-  // readonly numberOfCells: number;
-  // xPlacement: interop.Enum<typeof NSGridCellPlacement>;
-  // width: number;
-  // leadingPadding: number;
-  // trailingPadding: number;
   // isHidden: boolean;
+  // leadingPadding: number;
+  // readonly numberOfCells: number;
+  // trailingPadding: number;
+  // width: number;
+  // xPlacement: interop.Enum<typeof NSGridCellPlacement>;
 }
 
 export class HTMLNSPathCellElement extends HTMLNSActionCellElement {
@@ -1584,20 +4477,66 @@ export class HTMLNSPathCellElement extends HTMLNSActionCellElement {
   get delegate(): NSPathCellDelegateImpl {
     return (this.nativeObject.delegate ??= NSPathCellDelegateImpl.new()) as NSPathCellDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    allowedtypes: 'allowedTypes',
+    autorelease: 'autorelease',
+    backgroundcolor: 'backgroundColor',
+    class: 'class',
+    clickedpathcomponentcell: 'clickedPathComponentCell',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    delegate: 'delegate',
+    description: 'description',
+    doubleaction: 'doubleAction',
+    hash: 'hash',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    mouseenteredwithframeinview: 'mouseEnteredWithFrameInView',
+    mouseexitedwithframeinview: 'mouseExitedWithFrameInView',
+    paneldidchangetodirectoryurl: 'panelDidChangeToDirectoryURL',
+    panelselectiondidchange: 'panelSelectionDidChange',
+    panelshouldenableurl: 'panelShouldEnableURL',
+    paneluserenteredfilenameconfirmed: 'panelUserEnteredFilenameConfirmed',
+    panelvalidateurlerror: 'panelValidateURLError',
+    panelwillexpand: 'panelWillExpand',
+    pathcomponentcellatpointwithframeinview: 'pathComponentCellAtPointWithFrameInView',
+    pathcomponentcellclass: 'pathComponentCellClass',
+    pathcomponentcells: 'pathComponentCells',
+    pathstyle: 'pathStyle',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    placeholderattributedstring: 'placeholderAttributedString',
+    placeholderstring: 'placeholderString',
+    rectofpathcomponentcellwithframeinview: 'rectOfPathComponentCellWithFrameInView',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    setobjectvalue: 'setObjectValue',
+    superclass: 'superclass',
+    url: 'URL',
+    validatemenuitem: 'validateMenuItem',
+    zone: 'zone',
+  }
 
-  // pathStyle: interop.Enum<typeof NSPathStyle>;
-  // URL: NSURL;
-  // pathComponentCellClass: interop.Object;
-  // readonly clickedPathComponentCell: NSPathComponentCell;
-  // doubleAction: string;
   // backgroundColor: NSColor;
-  // placeholderAttributedString: NSAttributedString;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
+  // readonly clickedPathComponentCell: NSPathComponentCell;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // doubleAction: string;
+  // readonly hash: number;
+  // readonly isProxy: boolean;
+  // pathComponentCellClass: interop.Object;
+  // pathStyle: interop.Enum<typeof NSPathStyle>;
+  // placeholderAttributedString: NSAttributedString;
+  // readonly superclass: interop.Object;
+  // URL: NSURL;
+  // readonly zone: interop.Pointer;
 
   set pathcellwilldisplayopenpanel(value: (pathCell: NSPathCell, openPanel: NSOpenPanel) => void) {
     this.delegate.pathCellWillDisplayOpenPanel = value;
@@ -1609,6 +4548,9 @@ export class HTMLNSPathCellElement extends HTMLNSActionCellElement {
 
 export class HTMLNSWorkspaceAuthorizationElement extends HTMLNSObjectElement {
   readonly nativeObject = NSWorkspaceAuthorization.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+  }
 
 }
 
@@ -1617,26 +4559,92 @@ export class HTMLNSTextLayoutManagerElement extends HTMLNSObjectElement {
   get delegate(): NSTextLayoutManagerDelegateImpl {
     return (this.nativeObject.delegate ??= NSTextLayoutManagerDelegateImpl.new()) as NSTextLayoutManagerDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    addrenderingattributevaluefortextrange: 'addRenderingAttributeValueForTextRange',
+    autorelease: 'autorelease',
+    basewritingdirectionatlocation: 'baseWritingDirectionAtLocation',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    delegate: 'delegate',
+    description: 'description',
+    documentrange: 'documentRange',
+    encodewithcoder: 'encodeWithCoder',
+    ensurelayoutforbounds: 'ensureLayoutForBounds',
+    ensurelayoutforrange: 'ensureLayoutForRange',
+    enumeratecaretoffsetsinlinefragmentatlocationusingblock: 'enumerateCaretOffsetsInLineFragmentAtLocationUsingBlock',
+    enumeratecontainerboundariesfromlocationreverseusingblock: 'enumerateContainerBoundariesFromLocationReverseUsingBlock',
+    enumeraterenderingattributesfromlocationreverseusingblock: 'enumerateRenderingAttributesFromLocationReverseUsingBlock',
+    enumeratesubstringsfromlocationoptionsusingblock: 'enumerateSubstringsFromLocationOptionsUsingBlock',
+    enumeratetextlayoutfragmentsfromlocationoptionsusingblock: 'enumerateTextLayoutFragmentsFromLocationOptionsUsingBlock',
+    enumeratetextsegmentsinrangetypeoptionsusingblock: 'enumerateTextSegmentsInRangeTypeOptionsUsingBlock',
+    hash: 'hash',
+    init: 'init',
+    initwithcoder: 'initWithCoder',
+    invalidatelayoutforrange: 'invalidateLayoutForRange',
+    invalidaterenderingattributesfortextrange: 'invalidateRenderingAttributesForTextRange',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    layoutqueue: 'layoutQueue',
+    limitslayoutforsuspiciouscontents: 'limitsLayoutForSuspiciousContents',
+    linefragmentrangeforpointincontaineratlocation: 'lineFragmentRangeForPointInContainerAtLocation',
+    linkrenderingattributes: 'linkRenderingAttributes',
+    locationfromlocationwithoffset: 'locationFromLocationWithOffset',
+    offsetfromlocationtolocation: 'offsetFromLocationToLocation',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    release: 'release',
+    removerenderingattributefortextrange: 'removeRenderingAttributeForTextRange',
+    renderingattributesforlinkatlocation: 'renderingAttributesForLinkAtLocation',
+    renderingattributesvalidator: 'renderingAttributesValidator',
+    replacecontentsinrangewithattributedstring: 'replaceContentsInRangeWithAttributedString',
+    replacecontentsinrangewithtextelements: 'replaceContentsInRangeWithTextElements',
+    replacetextcontentmanager: 'replaceTextContentManager',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    setrenderingattributesfortextrange: 'setRenderingAttributesForTextRange',
+    superclass: 'superclass',
+    supportssecurecoding: 'supportsSecureCoding',
+    textcontainer: 'textContainer',
+    textcontentmanager: 'textContentManager',
+    textlayoutfragmentforlocation: 'textLayoutFragmentForLocation',
+    textlayoutfragmentforposition: 'textLayoutFragmentForPosition',
+    textlayoutorientationatlocation: 'textLayoutOrientationAtLocation',
+    textrangeforselectiongranularityenclosinglocation: 'textRangeForSelectionGranularityEnclosingLocation',
+    textselectionnavigation: 'textSelectionNavigation',
+    textselections: 'textSelections',
+    textviewportlayoutcontroller: 'textViewportLayoutController',
+    usageboundsfortextcontainer: 'usageBoundsForTextContainer',
+    usesfontleading: 'usesFontLeading',
+    useshyphenation: 'usesHyphenation',
+    zone: 'zone',
+  }
 
-  // usesFontLeading: boolean;
-  // limitsLayoutForSuspiciousContents: boolean;
-  // usesHyphenation: boolean;
-  // readonly textContentManager: NSTextContentManager;
-  // textContainer: NSTextContainer;
-  // readonly usageBoundsForTextContainer: CGRect;
-  // readonly textViewportLayoutController: NSTextViewportLayoutController;
-  // layoutQueue: NSOperationQueue;
-  // textSelectionNavigation: NSTextSelectionNavigation;
-  // renderingAttributesValidator: (p1: NSTextLayoutManager, p2: NSTextLayoutFragment) => void;
-  // linkRenderingAttributes: NSDictionary;
-  // supportsSecureCoding: boolean;
+  // readonly debugDescription: NSString;
+  // readonly description: NSString;
   // readonly documentRange: NSTextRange;
   // readonly hash: number;
-  // readonly superclass: interop.Object;
   // readonly isProxy: boolean;
+  // layoutQueue: NSOperationQueue;
+  // limitsLayoutForSuspiciousContents: boolean;
+  // linkRenderingAttributes: NSDictionary;
+  // renderingAttributesValidator: (p1: NSTextLayoutManager, p2: NSTextLayoutFragment) => void;
+  // readonly superclass: interop.Object;
+  // supportsSecureCoding: boolean;
+  // textContainer: NSTextContainer;
+  // readonly textContentManager: NSTextContentManager;
+  // textSelectionNavigation: NSTextSelectionNavigation;
+  // readonly textViewportLayoutController: NSTextViewportLayoutController;
+  // readonly usageBoundsForTextContainer: CGRect;
+  // usesFontLeading: boolean;
+  // usesHyphenation: boolean;
   // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
 
   set textlayoutmanagertextlayoutfragmentforlocationintextelement(value: (textLayoutManager: NSTextLayoutManager, location: NSTextLocation, textElement: NSTextElement) => NSTextLayoutFragment) {
     this.delegate.textLayoutManagerTextLayoutFragmentForLocationInTextElement = value;
@@ -1651,9 +4659,16 @@ export class HTMLNSTextLayoutManagerElement extends HTMLNSObjectElement {
 
 export class HTMLNSWindowTabElement extends HTMLNSObjectElement {
   readonly nativeObject = NSWindowTab.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessoryview: 'accessoryView',
+    attributedtitle: 'attributedTitle',
+    title: 'title',
+    tooltip: 'toolTip',
+  }
 
-  // attributedTitle: NSAttributedString;
   // accessoryView: NSView;
+  // attributedTitle: NSAttributedString;
 }
 
 export class HTMLNSDrawerElement extends HTMLNSResponderElement {
@@ -1661,97 +4676,286 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
   get delegate(): NSDrawerDelegateImpl {
     return (this.nativeObject.delegate ??= NSDrawerDelegateImpl.new()) as NSDrawerDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessibilityactivationpoint: 'accessibilityActivationPoint',
+    accessibilityallowedvalues: 'accessibilityAllowedValues',
+    accessibilityapplicationfocuseduielement: 'accessibilityApplicationFocusedUIElement',
+    accessibilityattributedstringforrange: 'accessibilityAttributedStringForRange',
+    accessibilityattributeduserinputlabels: 'accessibilityAttributedUserInputLabels',
+    accessibilitycancelbutton: 'accessibilityCancelButton',
+    accessibilitycellforcolumnrow: 'accessibilityCellForColumnRow',
+    accessibilitychildren: 'accessibilityChildren',
+    accessibilitychildreninnavigationorder: 'accessibilityChildrenInNavigationOrder',
+    accessibilityclearbutton: 'accessibilityClearButton',
+    accessibilityclosebutton: 'accessibilityCloseButton',
+    accessibilitycolumncount: 'accessibilityColumnCount',
+    accessibilitycolumnheaderuielements: 'accessibilityColumnHeaderUIElements',
+    accessibilitycolumnindexrange: 'accessibilityColumnIndexRange',
+    accessibilitycolumns: 'accessibilityColumns',
+    accessibilitycolumntitles: 'accessibilityColumnTitles',
+    accessibilitycontents: 'accessibilityContents',
+    accessibilitycriticalvalue: 'accessibilityCriticalValue',
+    accessibilitycustomactions: 'accessibilityCustomActions',
+    accessibilitycustomrotors: 'accessibilityCustomRotors',
+    accessibilitydecrementbutton: 'accessibilityDecrementButton',
+    accessibilitydefaultbutton: 'accessibilityDefaultButton',
+    accessibilitydisclosedbyrow: 'accessibilityDisclosedByRow',
+    accessibilitydisclosedrows: 'accessibilityDisclosedRows',
+    accessibilitydisclosurelevel: 'accessibilityDisclosureLevel',
+    accessibilitydocument: 'accessibilityDocument',
+    accessibilityextrasmenubar: 'accessibilityExtrasMenuBar',
+    accessibilityfilename: 'accessibilityFilename',
+    accessibilityfocusedwindow: 'accessibilityFocusedWindow',
+    accessibilityframe: 'accessibilityFrame',
+    accessibilityframeforrange: 'accessibilityFrameForRange',
+    accessibilityfullscreenbutton: 'accessibilityFullScreenButton',
+    accessibilitygrowarea: 'accessibilityGrowArea',
+    accessibilityhandles: 'accessibilityHandles',
+    accessibilityheader: 'accessibilityHeader',
+    accessibilityhelp: 'accessibilityHelp',
+    accessibilityhorizontalscrollbar: 'accessibilityHorizontalScrollBar',
+    accessibilityhorizontalunitdescription: 'accessibilityHorizontalUnitDescription',
+    accessibilityhorizontalunits: 'accessibilityHorizontalUnits',
+    accessibilityidentifier: 'accessibilityIdentifier',
+    accessibilityincrementbutton: 'accessibilityIncrementButton',
+    accessibilityindex: 'accessibilityIndex',
+    accessibilityinsertionpointlinenumber: 'accessibilityInsertionPointLineNumber',
+    accessibilitylabel: 'accessibilityLabel',
+    accessibilitylabeluielements: 'accessibilityLabelUIElements',
+    accessibilitylabelvalue: 'accessibilityLabelValue',
+    accessibilitylayoutpointforscreenpoint: 'accessibilityLayoutPointForScreenPoint',
+    accessibilitylayoutsizeforscreensize: 'accessibilityLayoutSizeForScreenSize',
+    accessibilitylineforindex: 'accessibilityLineForIndex',
+    accessibilitylinkeduielements: 'accessibilityLinkedUIElements',
+    accessibilitymainwindow: 'accessibilityMainWindow',
+    accessibilitymarkergroupuielement: 'accessibilityMarkerGroupUIElement',
+    accessibilitymarkertypedescription: 'accessibilityMarkerTypeDescription',
+    accessibilitymarkeruielements: 'accessibilityMarkerUIElements',
+    accessibilitymarkervalues: 'accessibilityMarkerValues',
+    accessibilitymaxvalue: 'accessibilityMaxValue',
+    accessibilitymenubar: 'accessibilityMenuBar',
+    accessibilityminimizebutton: 'accessibilityMinimizeButton',
+    accessibilityminvalue: 'accessibilityMinValue',
+    accessibilitynextcontents: 'accessibilityNextContents',
+    accessibilitynumberofcharacters: 'accessibilityNumberOfCharacters',
+    accessibilityorientation: 'accessibilityOrientation',
+    accessibilityoverflowbutton: 'accessibilityOverflowButton',
+    accessibilityparent: 'accessibilityParent',
+    accessibilityperformcancel: 'accessibilityPerformCancel',
+    accessibilityperformconfirm: 'accessibilityPerformConfirm',
+    accessibilityperformdecrement: 'accessibilityPerformDecrement',
+    accessibilityperformdelete: 'accessibilityPerformDelete',
+    accessibilityperformincrement: 'accessibilityPerformIncrement',
+    accessibilityperformpick: 'accessibilityPerformPick',
+    accessibilityperformpress: 'accessibilityPerformPress',
+    accessibilityperformraise: 'accessibilityPerformRaise',
+    accessibilityperformshowalternateui: 'accessibilityPerformShowAlternateUI',
+    accessibilityperformshowdefaultui: 'accessibilityPerformShowDefaultUI',
+    accessibilityperformshowmenu: 'accessibilityPerformShowMenu',
+    accessibilityplaceholdervalue: 'accessibilityPlaceholderValue',
+    accessibilitypreviouscontents: 'accessibilityPreviousContents',
+    accessibilityproxy: 'accessibilityProxy',
+    accessibilityrangeforindex: 'accessibilityRangeForIndex',
+    accessibilityrangeforline: 'accessibilityRangeForLine',
+    accessibilityrangeforposition: 'accessibilityRangeForPosition',
+    accessibilityrole: 'accessibilityRole',
+    accessibilityroledescription: 'accessibilityRoleDescription',
+    accessibilityrowcount: 'accessibilityRowCount',
+    accessibilityrowheaderuielements: 'accessibilityRowHeaderUIElements',
+    accessibilityrowindexrange: 'accessibilityRowIndexRange',
+    accessibilityrows: 'accessibilityRows',
+    accessibilityrtfforrange: 'accessibilityRTFForRange',
+    accessibilityrulermarkertype: 'accessibilityRulerMarkerType',
+    accessibilityscreenpointforlayoutpoint: 'accessibilityScreenPointForLayoutPoint',
+    accessibilityscreensizeforlayoutsize: 'accessibilityScreenSizeForLayoutSize',
+    accessibilitysearchbutton: 'accessibilitySearchButton',
+    accessibilitysearchmenu: 'accessibilitySearchMenu',
+    accessibilityselectedcells: 'accessibilitySelectedCells',
+    accessibilityselectedchildren: 'accessibilitySelectedChildren',
+    accessibilityselectedcolumns: 'accessibilitySelectedColumns',
+    accessibilityselectedrows: 'accessibilitySelectedRows',
+    accessibilityselectedtext: 'accessibilitySelectedText',
+    accessibilityselectedtextrange: 'accessibilitySelectedTextRange',
+    accessibilityselectedtextranges: 'accessibilitySelectedTextRanges',
+    accessibilityservesastitleforuielements: 'accessibilityServesAsTitleForUIElements',
+    accessibilitysharedcharacterrange: 'accessibilitySharedCharacterRange',
+    accessibilitysharedfocuselements: 'accessibilitySharedFocusElements',
+    accessibilitysharedtextuielements: 'accessibilitySharedTextUIElements',
+    accessibilityshownmenu: 'accessibilityShownMenu',
+    accessibilitysortdirection: 'accessibilitySortDirection',
+    accessibilitysplitters: 'accessibilitySplitters',
+    accessibilitystringforrange: 'accessibilityStringForRange',
+    accessibilitystylerangeforindex: 'accessibilityStyleRangeForIndex',
+    accessibilitysubrole: 'accessibilitySubrole',
+    accessibilitytabs: 'accessibilityTabs',
+    accessibilitytitle: 'accessibilityTitle',
+    accessibilitytitleuielement: 'accessibilityTitleUIElement',
+    accessibilitytoolbarbutton: 'accessibilityToolbarButton',
+    accessibilitytopleveluielement: 'accessibilityTopLevelUIElement',
+    accessibilityunitdescription: 'accessibilityUnitDescription',
+    accessibilityunits: 'accessibilityUnits',
+    accessibilityurl: 'accessibilityURL',
+    accessibilityuserinputlabels: 'accessibilityUserInputLabels',
+    accessibilityvalue: 'accessibilityValue',
+    accessibilityvaluedescription: 'accessibilityValueDescription',
+    accessibilityverticalscrollbar: 'accessibilityVerticalScrollBar',
+    accessibilityverticalunitdescription: 'accessibilityVerticalUnitDescription',
+    accessibilityverticalunits: 'accessibilityVerticalUnits',
+    accessibilityvisiblecells: 'accessibilityVisibleCells',
+    accessibilityvisiblecharacterrange: 'accessibilityVisibleCharacterRange',
+    accessibilityvisiblechildren: 'accessibilityVisibleChildren',
+    accessibilityvisiblecolumns: 'accessibilityVisibleColumns',
+    accessibilityvisiblerows: 'accessibilityVisibleRows',
+    accessibilitywarningvalue: 'accessibilityWarningValue',
+    accessibilitywindow: 'accessibilityWindow',
+    accessibilitywindows: 'accessibilityWindows',
+    accessibilityzoombutton: 'accessibilityZoomButton',
+    autorelease: 'autorelease',
+    class: 'class',
+    close: 'close',
+    conformstoprotocol: 'conformsToProtocol',
+    contentsize: 'contentSize',
+    contentview: 'contentView',
+    debugdescription: 'debugDescription',
+    delegate: 'delegate',
+    description: 'description',
+    edge: 'edge',
+    hash: 'hash',
+    initwithcontentsizepreferrededge: 'initWithContentSizePreferredEdge',
+    isaccessibilityalternateuivisible: 'isAccessibilityAlternateUIVisible',
+    isaccessibilitydisclosed: 'isAccessibilityDisclosed',
+    isaccessibilityedited: 'isAccessibilityEdited',
+    isaccessibilityelement: 'isAccessibilityElement',
+    isaccessibilityenabled: 'isAccessibilityEnabled',
+    isaccessibilityexpanded: 'isAccessibilityExpanded',
+    isaccessibilityfocused: 'isAccessibilityFocused',
+    isaccessibilityfrontmost: 'isAccessibilityFrontmost',
+    isaccessibilityhidden: 'isAccessibilityHidden',
+    isaccessibilitymain: 'isAccessibilityMain',
+    isaccessibilityminimized: 'isAccessibilityMinimized',
+    isaccessibilitymodal: 'isAccessibilityModal',
+    isaccessibilityorderedbyrow: 'isAccessibilityOrderedByRow',
+    isaccessibilityprotectedcontent: 'isAccessibilityProtectedContent',
+    isaccessibilityrequired: 'isAccessibilityRequired',
+    isaccessibilityselected: 'isAccessibilitySelected',
+    isaccessibilityselectorallowed: 'isAccessibilitySelectorAllowed',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    leadingoffset: 'leadingOffset',
+    maxcontentsize: 'maxContentSize',
+    mincontentsize: 'minContentSize',
+    open: 'open',
+    openonedge: 'openOnEdge',
+    parentwindow: 'parentWindow',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    preferrededge: 'preferredEdge',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    state: 'state',
+    superclass: 'superclass',
+    toggle: 'toggle',
+    trailingoffset: 'trailingOffset',
+    zone: 'zone',
+  }
 
-  // parentWindow: NSWindow;
-  // contentView: NSView;
-  // preferredEdge: interop.Enum<typeof NSRectEdge>;
-  // readonly state: number;
-  // readonly edge: interop.Enum<typeof NSRectEdge>;
-  // contentSize: CGSize;
-  // minContentSize: CGSize;
-  // maxContentSize: CGSize;
-  // leadingOffset: number;
-  // trailingOffset: number;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
-  // isAccessibilityElement: boolean;
-  // accessibilityFrame: CGRect;
-  // isAccessibilityFocused: boolean;
   // accessibilityActivationPoint: CGPoint;
-  // accessibilityTopLevelUIElement: interop.Object;
-  // accessibilityURL: NSURL;
-  // accessibilityValue: interop.Object;
-  // accessibilityTitleUIElement: interop.Object;
-  // accessibilityOrientation: interop.Enum<typeof NSAccessibilityOrientation>;
-  // accessibilityOverflowButton: interop.Object;
-  // accessibilityParent: interop.Object;
-  // accessibilitySearchButton: interop.Object;
-  // accessibilitySearchMenu: interop.Object;
-  // isAccessibilitySelected: boolean;
-  // accessibilityShownMenu: interop.Object;
-  // accessibilityMinValue: interop.Object;
-  // accessibilityMaxValue: interop.Object;
-  // accessibilityWindow: interop.Object;
-  // isAccessibilityExpanded: boolean;
-  // isAccessibilityEdited: boolean;
-  // isAccessibilityEnabled: boolean;
-  // accessibilityClearButton: interop.Object;
-  // accessibilityCancelButton: interop.Object;
-  // isAccessibilityProtectedContent: boolean;
-  // isAccessibilityAlternateUIVisible: boolean;
-  // isAccessibilityRequired: boolean;
   // accessibilityApplicationFocusedUIElement: interop.Object;
-  // accessibilityMainWindow: interop.Object;
-  // isAccessibilityHidden: boolean;
-  // isAccessibilityFrontmost: boolean;
-  // accessibilityFocusedWindow: interop.Object;
-  // accessibilityExtrasMenuBar: interop.Object;
-  // accessibilityMenuBar: interop.Object;
-  // isAccessibilityOrderedByRow: boolean;
-  // accessibilityHorizontalUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityVerticalUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityWarningValue: interop.Object;
+  // accessibilityCancelButton: interop.Object;
+  // accessibilityClearButton: interop.Object;
+  // accessibilityCloseButton: interop.Object;
+  // accessibilityColumnCount: number;
+  // accessibilityColumnIndexRange: _NSRange;
   // accessibilityCriticalValue: interop.Object;
-  // isAccessibilityDisclosed: boolean;
+  // accessibilityDecrementButton: interop.Object;
+  // accessibilityDefaultButton: interop.Object;
   // accessibilityDisclosedByRow: interop.Object;
   // accessibilityDisclosedRows: interop.Object;
   // accessibilityDisclosureLevel: number;
-  // accessibilityMarkerValues: interop.Object;
-  // accessibilityMarkerGroupUIElement: interop.Object;
-  // accessibilityUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityRulerMarkerType: interop.Enum<typeof NSAccessibilityRulerMarkerType>;
-  // accessibilityHorizontalScrollBar: interop.Object;
-  // accessibilityVerticalScrollBar: interop.Object;
-  // accessibilityLabelValue: number;
-  // accessibilityDecrementButton: interop.Object;
-  // accessibilityIncrementButton: interop.Object;
-  // accessibilityHeader: interop.Object;
-  // accessibilityColumnCount: number;
-  // accessibilityRowCount: number;
-  // accessibilityIndex: number;
-  // accessibilitySortDirection: interop.Enum<typeof NSAccessibilitySortDirection>;
-  // accessibilityRowIndexRange: _NSRange;
-  // accessibilityColumnIndexRange: _NSRange;
-  // accessibilityInsertionPointLineNumber: number;
-  // accessibilitySharedCharacterRange: _NSRange;
-  // accessibilityVisibleCharacterRange: _NSRange;
-  // accessibilityNumberOfCharacters: number;
-  // accessibilitySelectedTextRange: _NSRange;
-  // accessibilityToolbarButton: interop.Object;
-  // isAccessibilityModal: boolean;
-  // accessibilityProxy: interop.Object;
-  // isAccessibilityMain: boolean;
+  // accessibilityExtrasMenuBar: interop.Object;
+  // accessibilityFocusedWindow: interop.Object;
+  // accessibilityFrame: CGRect;
   // accessibilityFullScreenButton: interop.Object;
   // accessibilityGrowArea: interop.Object;
-  // accessibilityDefaultButton: interop.Object;
-  // accessibilityCloseButton: interop.Object;
-  // accessibilityZoomButton: interop.Object;
+  // accessibilityHeader: interop.Object;
+  // accessibilityHorizontalScrollBar: interop.Object;
+  // accessibilityHorizontalUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityIncrementButton: interop.Object;
+  // accessibilityIndex: number;
+  // accessibilityInsertionPointLineNumber: number;
+  // accessibilityLabelValue: number;
+  // accessibilityMainWindow: interop.Object;
+  // accessibilityMarkerGroupUIElement: interop.Object;
+  // accessibilityMarkerValues: interop.Object;
+  // accessibilityMaxValue: interop.Object;
+  // accessibilityMenuBar: interop.Object;
   // accessibilityMinimizeButton: interop.Object;
+  // accessibilityMinValue: interop.Object;
+  // accessibilityNumberOfCharacters: number;
+  // accessibilityOrientation: interop.Enum<typeof NSAccessibilityOrientation>;
+  // accessibilityOverflowButton: interop.Object;
+  // accessibilityParent: interop.Object;
+  // accessibilityProxy: interop.Object;
+  // accessibilityRowCount: number;
+  // accessibilityRowIndexRange: _NSRange;
+  // accessibilityRulerMarkerType: interop.Enum<typeof NSAccessibilityRulerMarkerType>;
+  // accessibilitySearchButton: interop.Object;
+  // accessibilitySearchMenu: interop.Object;
+  // accessibilitySelectedTextRange: _NSRange;
+  // accessibilitySharedCharacterRange: _NSRange;
+  // accessibilityShownMenu: interop.Object;
+  // accessibilitySortDirection: interop.Enum<typeof NSAccessibilitySortDirection>;
+  // accessibilityTitleUIElement: interop.Object;
+  // accessibilityToolbarButton: interop.Object;
+  // accessibilityTopLevelUIElement: interop.Object;
+  // accessibilityUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityURL: NSURL;
+  // accessibilityValue: interop.Object;
+  // accessibilityVerticalScrollBar: interop.Object;
+  // accessibilityVerticalUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityVisibleCharacterRange: _NSRange;
+  // accessibilityWarningValue: interop.Object;
+  // accessibilityWindow: interop.Object;
+  // accessibilityZoomButton: interop.Object;
+  // contentSize: CGSize;
+  // contentView: NSView;
+  // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly edge: interop.Enum<typeof NSRectEdge>;
+  // readonly hash: number;
+  // isAccessibilityAlternateUIVisible: boolean;
+  // isAccessibilityDisclosed: boolean;
+  // isAccessibilityEdited: boolean;
+  // isAccessibilityElement: boolean;
+  // isAccessibilityEnabled: boolean;
+  // isAccessibilityExpanded: boolean;
+  // isAccessibilityFocused: boolean;
+  // isAccessibilityFrontmost: boolean;
+  // isAccessibilityHidden: boolean;
+  // isAccessibilityMain: boolean;
   // isAccessibilityMinimized: boolean;
+  // isAccessibilityModal: boolean;
+  // isAccessibilityOrderedByRow: boolean;
+  // isAccessibilityProtectedContent: boolean;
+  // isAccessibilityRequired: boolean;
+  // isAccessibilitySelected: boolean;
+  // readonly isProxy: boolean;
+  // leadingOffset: number;
+  // maxContentSize: CGSize;
+  // minContentSize: CGSize;
+  // parentWindow: NSWindow;
+  // preferredEdge: interop.Enum<typeof NSRectEdge>;
+  // readonly state: number;
+  // readonly superclass: interop.Object;
+  // trailingOffset: number;
+  // readonly zone: interop.Pointer;
 
   set drawershouldopen(value: (sender: NSDrawer) => boolean) {
     this.delegate.drawerShouldOpen = value;
@@ -1781,30 +4985,170 @@ export class HTMLNSLayoutManagerElement extends HTMLNSObjectElement {
   get delegate(): NSLayoutManagerDelegateImpl {
     return (this.nativeObject.delegate ??= NSLayoutManagerDelegateImpl.new()) as NSLayoutManagerDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    addtemporaryattributesforcharacterrange: 'addTemporaryAttributesForCharacterRange',
+    addtemporaryattributevalueforcharacterrange: 'addTemporaryAttributeValueForCharacterRange',
+    addtextcontainer: 'addTextContainer',
+    allowsnoncontiguouslayout: 'allowsNonContiguousLayout',
+    attachmentsizeforglyphatindex: 'attachmentSizeForGlyphAtIndex',
+    backgroundlayoutenabled: 'backgroundLayoutEnabled',
+    boundingrectforglyphrangeintextcontainer: 'boundingRectForGlyphRangeInTextContainer',
+    boundsrectfortextblockatindexeffectiverange: 'boundsRectForTextBlockAtIndexEffectiveRange',
+    boundsrectfortextblockglyphrange: 'boundsRectForTextBlockGlyphRange',
+    cgglyphatindex: 'CGGlyphAtIndex',
+    cgglyphatindexisvalidindex: 'CGGlyphAtIndexIsValidIndex',
+    characterindexforglyphatindex: 'characterIndexForGlyphAtIndex',
+    characterindexforpointintextcontainerfractionofdistancebetweeninsertionpoints: 'characterIndexForPointInTextContainerFractionOfDistanceBetweenInsertionPoints',
+    characterrangeforglyphrangeactualglyphrange: 'characterRangeForGlyphRangeActualGlyphRange',
+    defaultattachmentscaling: 'defaultAttachmentScaling',
+    defaultbaselineoffsetforfont: 'defaultBaselineOffsetForFont',
+    defaultlineheightforfont: 'defaultLineHeightForFont',
+    delegate: 'delegate',
+    deleteglyphsinrange: 'deleteGlyphsInRange',
+    drawbackgroundforglyphrangeatpoint: 'drawBackgroundForGlyphRangeAtPoint',
+    drawglyphsforglyphrangeatpoint: 'drawGlyphsForGlyphRangeAtPoint',
+    drawsoutsidelinefragmentforglyphatindex: 'drawsOutsideLineFragmentForGlyphAtIndex',
+    drawstrikethroughforglyphrangestrikethroughtypebaselineoffsetlinefragmentrectlinefragmentglyphrangecontainerorigin: 'drawStrikethroughForGlyphRangeStrikethroughTypeBaselineOffsetLineFragmentRectLineFragmentGlyphRangeContainerOrigin',
+    drawunderlineforglyphrangeunderlinetypebaselineoffsetlinefragmentrectlinefragmentglyphrangecontainerorigin: 'drawUnderlineForGlyphRangeUnderlineTypeBaselineOffsetLineFragmentRectLineFragmentGlyphRangeContainerOrigin',
+    encodewithcoder: 'encodeWithCoder',
+    ensureglyphsforcharacterrange: 'ensureGlyphsForCharacterRange',
+    ensureglyphsforglyphrange: 'ensureGlyphsForGlyphRange',
+    ensurelayoutforboundingrectintextcontainer: 'ensureLayoutForBoundingRectInTextContainer',
+    ensurelayoutforcharacterrange: 'ensureLayoutForCharacterRange',
+    ensurelayoutforglyphrange: 'ensureLayoutForGlyphRange',
+    ensurelayoutfortextcontainer: 'ensureLayoutForTextContainer',
+    enumerateenclosingrectsforglyphrangewithinselectedglyphrangeintextcontainerusingblock: 'enumerateEnclosingRectsForGlyphRangeWithinSelectedGlyphRangeInTextContainerUsingBlock',
+    enumeratelinefragmentsforglyphrangeusingblock: 'enumerateLineFragmentsForGlyphRangeUsingBlock',
+    extralinefragmentrect: 'extraLineFragmentRect',
+    extralinefragmenttextcontainer: 'extraLineFragmentTextContainer',
+    extralinefragmentusedrect: 'extraLineFragmentUsedRect',
+    fillbackgroundrectarraycountforcharacterrangecolor: 'fillBackgroundRectArrayCountForCharacterRangeColor',
+    firsttextview: 'firstTextView',
+    firstunlaidcharacterindex: 'firstUnlaidCharacterIndex',
+    firstunlaidglyphindex: 'firstUnlaidGlyphIndex',
+    fractionofdistancethroughglyphforpointintextcontainer: 'fractionOfDistanceThroughGlyphForPointInTextContainer',
+    getfirstunlaidcharacterindexglyphindex: 'getFirstUnlaidCharacterIndexGlyphIndex',
+    getglyphsinrangeglyphscharacterindexesglyphinscriptionselasticbits: 'getGlyphsInRangeGlyphsCharacterIndexesGlyphInscriptionsElasticBits',
+    getglyphsinrangeglyphscharacterindexesglyphinscriptionselasticbitsbidilevels: 'getGlyphsInRangeGlyphsCharacterIndexesGlyphInscriptionsElasticBitsBidiLevels',
+    getglyphsinrangeglyphspropertiescharacterindexesbidilevels: 'getGlyphsInRangeGlyphsPropertiesCharacterIndexesBidiLevels',
+    getglyphsrange: 'getGlyphsRange',
+    getlinefragmentinsertionpointsforcharacteratindexalternatepositionsindisplayorderpositionscharacterindexes: 'getLineFragmentInsertionPointsForCharacterAtIndexAlternatePositionsInDisplayOrderPositionsCharacterIndexes',
+    glyphatindex: 'glyphAtIndex',
+    glyphatindexisvalidindex: 'glyphAtIndexIsValidIndex',
+    glyphgenerator: 'glyphGenerator',
+    glyphindexforcharacteratindex: 'glyphIndexForCharacterAtIndex',
+    glyphindexforpointintextcontainer: 'glyphIndexForPointInTextContainer',
+    glyphindexforpointintextcontainerfractionofdistancethroughglyph: 'glyphIndexForPointInTextContainerFractionOfDistanceThroughGlyph',
+    glyphrangeforboundingrectintextcontainer: 'glyphRangeForBoundingRectInTextContainer',
+    glyphrangeforboundingrectwithoutadditionallayoutintextcontainer: 'glyphRangeForBoundingRectWithoutAdditionalLayoutInTextContainer',
+    glyphrangeforcharacterrangeactualcharacterrange: 'glyphRangeForCharacterRangeActualCharacterRange',
+    glyphrangefortextcontainer: 'glyphRangeForTextContainer',
+    hasnoncontiguouslayout: 'hasNonContiguousLayout',
+    hyphenationfactor: 'hyphenationFactor',
+    init: 'init',
+    initwithcoder: 'initWithCoder',
+    insertglyphatglyphindexcharacterindex: 'insertGlyphAtGlyphIndexCharacterIndex',
+    insertglyphslengthforstartingglyphatindexcharacterindex: 'insertGlyphsLengthForStartingGlyphAtIndexCharacterIndex',
+    inserttextcontaineratindex: 'insertTextContainerAtIndex',
+    intattributeforglyphatindex: 'intAttributeForGlyphAtIndex',
+    invalidatedisplayforcharacterrange: 'invalidateDisplayForCharacterRange',
+    invalidatedisplayforglyphrange: 'invalidateDisplayForGlyphRange',
+    invalidateglyphsforcharacterrangechangeinlengthactualcharacterrange: 'invalidateGlyphsForCharacterRangeChangeInLengthActualCharacterRange',
+    invalidateglyphsonlayoutinvalidationforglyphrange: 'invalidateGlyphsOnLayoutInvalidationForGlyphRange',
+    invalidatelayoutforcharacterrangeactualcharacterrange: 'invalidateLayoutForCharacterRangeActualCharacterRange',
+    invalidatelayoutforcharacterrangeissoftactualcharacterrange: 'invalidateLayoutForCharacterRangeIsSoftActualCharacterRange',
+    isvalidglyphindex: 'isValidGlyphIndex',
+    layoutmanagerownsfirstresponderinwindow: 'layoutManagerOwnsFirstResponderInWindow',
+    layoutrectfortextblockatindexeffectiverange: 'layoutRectForTextBlockAtIndexEffectiveRange',
+    layoutrectfortextblockglyphrange: 'layoutRectForTextBlockGlyphRange',
+    limitslayoutforsuspiciouscontents: 'limitsLayoutForSuspiciousContents',
+    linefragmentrectforglyphatindexeffectiverange: 'lineFragmentRectForGlyphAtIndexEffectiveRange',
+    linefragmentrectforglyphatindexeffectiverangewithoutadditionallayout: 'lineFragmentRectForGlyphAtIndexEffectiveRangeWithoutAdditionalLayout',
+    linefragmentusedrectforglyphatindexeffectiverange: 'lineFragmentUsedRectForGlyphAtIndexEffectiveRange',
+    linefragmentusedrectforglyphatindexeffectiverangewithoutadditionallayout: 'lineFragmentUsedRectForGlyphAtIndexEffectiveRangeWithoutAdditionalLayout',
+    locationforglyphatindex: 'locationForGlyphAtIndex',
+    notshownattributeforglyphatindex: 'notShownAttributeForGlyphAtIndex',
+    numberofglyphs: 'numberOfGlyphs',
+    processeditingfortextstorageeditedrangechangeinlengthinvalidatedrange: 'processEditingForTextStorageEditedRangeChangeInLengthInvalidatedRange',
+    propertyforglyphatindex: 'propertyForGlyphAtIndex',
+    rangeofnominallyspacedglyphscontainingindex: 'rangeOfNominallySpacedGlyphsContainingIndex',
+    rectarrayforcharacterrangewithinselectedcharacterrangeintextcontainerrectcount: 'rectArrayForCharacterRangeWithinSelectedCharacterRangeInTextContainerRectCount',
+    rectarrayforglyphrangewithinselectedglyphrangeintextcontainerrectcount: 'rectArrayForGlyphRangeWithinSelectedGlyphRangeInTextContainerRectCount',
+    removetemporaryattributeforcharacterrange: 'removeTemporaryAttributeForCharacterRange',
+    removetextcontaineratindex: 'removeTextContainerAtIndex',
+    replaceglyphatindexwithglyph: 'replaceGlyphAtIndexWithGlyph',
+    replacetextstorage: 'replaceTextStorage',
+    ruleraccessoryviewfortextviewparagraphstylerulerenabled: 'rulerAccessoryViewForTextViewParagraphStyleRulerEnabled',
+    rulermarkersfortextviewparagraphstyleruler: 'rulerMarkersForTextViewParagraphStyleRuler',
+    setattachmentsizeforglyphrange: 'setAttachmentSizeForGlyphRange',
+    setboundsrectfortextblockglyphrange: 'setBoundsRectForTextBlockGlyphRange',
+    setcharacterindexforglyphatindex: 'setCharacterIndexForGlyphAtIndex',
+    setdrawsoutsidelinefragmentforglyphatindex: 'setDrawsOutsideLineFragmentForGlyphAtIndex',
+    setextralinefragmentrectusedrecttextcontainer: 'setExtraLineFragmentRectUsedRectTextContainer',
+    setglyphspropertiescharacterindexesfontforglyphrange: 'setGlyphsPropertiesCharacterIndexesFontForGlyphRange',
+    setintattributevalueforglyphatindex: 'setIntAttributeValueForGlyphAtIndex',
+    setlayoutrectfortextblockglyphrange: 'setLayoutRectForTextBlockGlyphRange',
+    setlinefragmentrectforglyphrangeusedrect: 'setLineFragmentRectForGlyphRangeUsedRect',
+    setlocationforstartofglyphrange: 'setLocationForStartOfGlyphRange',
+    setlocationsstartingglyphindexescountforglyphrange: 'setLocationsStartingGlyphIndexesCountForGlyphRange',
+    setnotshownattributeforglyphatindex: 'setNotShownAttributeForGlyphAtIndex',
+    settemporaryattributesforcharacterrange: 'setTemporaryAttributesForCharacterRange',
+    settextcontainerforglyphrange: 'setTextContainerForGlyphRange',
+    showattachmentcellinrectcharacterindex: 'showAttachmentCellInRectCharacterIndex',
+    showcgglyphspositionscountfontmatrixattributesincontext: 'showCGGlyphsPositionsCountFontMatrixAttributesInContext',
+    showcgglyphspositionscountfonttextmatrixattributesincontext: 'showCGGlyphsPositionsCountFontTextMatrixAttributesInContext',
+    showpackedglyphslengthglyphrangeatpointfontcolorprintingadjustment: 'showPackedGlyphsLengthGlyphRangeAtPointFontColorPrintingAdjustment',
+    showscontrolcharacters: 'showsControlCharacters',
+    showsinvisiblecharacters: 'showsInvisibleCharacters',
+    strikethroughglyphrangestrikethroughtypelinefragmentrectlinefragmentglyphrangecontainerorigin: 'strikethroughGlyphRangeStrikethroughTypeLineFragmentRectLineFragmentGlyphRangeContainerOrigin',
+    substitutefontforfont: 'substituteFontForFont',
+    supportssecurecoding: 'supportsSecureCoding',
+    temporaryattributeatcharacterindexeffectiverange: 'temporaryAttributeAtCharacterIndexEffectiveRange',
+    temporaryattributeatcharacterindexlongesteffectiverangeinrange: 'temporaryAttributeAtCharacterIndexLongestEffectiveRangeInRange',
+    temporaryattributesatcharacterindexeffectiverange: 'temporaryAttributesAtCharacterIndexEffectiveRange',
+    temporaryattributesatcharacterindexlongesteffectiverangeinrange: 'temporaryAttributesAtCharacterIndexLongestEffectiveRangeInRange',
+    textcontainerchangedgeometry: 'textContainerChangedGeometry',
+    textcontainerchangedtextview: 'textContainerChangedTextView',
+    textcontainerforglyphatindexeffectiverange: 'textContainerForGlyphAtIndexEffectiveRange',
+    textcontainerforglyphatindexeffectiverangewithoutadditionallayout: 'textContainerForGlyphAtIndexEffectiveRangeWithoutAdditionalLayout',
+    textcontainers: 'textContainers',
+    textstorage: 'textStorage',
+    textstorageeditedrangechangeinlengthinvalidatedrange: 'textStorageEditedRangeChangeInLengthInvalidatedRange',
+    textviewforbeginningofselection: 'textViewForBeginningOfSelection',
+    truncatedglyphrangeinlinefragmentforglyphatindex: 'truncatedGlyphRangeInLineFragmentForGlyphAtIndex',
+    typesetter: 'typesetter',
+    typesetterbehavior: 'typesetterBehavior',
+    underlineglyphrangeunderlinetypelinefragmentrectlinefragmentglyphrangecontainerorigin: 'underlineGlyphRangeUnderlineTypeLineFragmentRectLineFragmentGlyphRangeContainerOrigin',
+    usedrectfortextcontainer: 'usedRectForTextContainer',
+    usesdefaulthyphenation: 'usesDefaultHyphenation',
+    usesfontleading: 'usesFontLeading',
+    usesscreenfonts: 'usesScreenFonts',
+  }
 
-  // textStorage: NSTextStorage;
-  // readonly textContainers: NSArray;
-  // showsInvisibleCharacters: boolean;
-  // showsControlCharacters: boolean;
-  // usesDefaultHyphenation: boolean;
-  // usesFontLeading: boolean;
   // allowsNonContiguousLayout: boolean;
-  // readonly hasNonContiguousLayout: boolean;
-  // limitsLayoutForSuspiciousContents: boolean;
   // backgroundLayoutEnabled: boolean;
   // defaultAttachmentScaling: interop.Enum<typeof NSImageScaling>;
+  // readonly extraLineFragmentRect: CGRect;
+  // readonly extraLineFragmentTextContainer: NSTextContainer;
+  // readonly extraLineFragmentUsedRect: CGRect;
+  // readonly firstTextView: NSTextView;
+  // glyphGenerator: NSGlyphGenerator;
+  // readonly hasNonContiguousLayout: boolean;
+  // hyphenationFactor: number;
+  // limitsLayoutForSuspiciousContents: boolean;
+  // readonly numberOfGlyphs: number;
+  // showsControlCharacters: boolean;
+  // showsInvisibleCharacters: boolean;
+  // supportsSecureCoding: boolean;
+  // readonly textContainers: NSArray;
+  // textStorage: NSTextStorage;
+  // readonly textViewForBeginningOfSelection: NSTextView;
   // typesetter: NSTypesetter;
   // typesetterBehavior: interop.Enum<typeof NSTypesetterBehavior>;
-  // readonly numberOfGlyphs: number;
-  // readonly extraLineFragmentRect: CGRect;
-  // readonly extraLineFragmentUsedRect: CGRect;
-  // readonly extraLineFragmentTextContainer: NSTextContainer;
-  // readonly firstTextView: NSTextView;
-  // readonly textViewForBeginningOfSelection: NSTextView;
+  // usesDefaultHyphenation: boolean;
+  // usesFontLeading: boolean;
   // usesScreenFonts: boolean;
-  // hyphenationFactor: number;
-  // glyphGenerator: NSGlyphGenerator;
-  // supportsSecureCoding: boolean;
 
   set layoutmanagershouldgenerateglyphspropertiescharacterindexesfontforglyphrange(value: (layoutManager: NSLayoutManager, glyphs: interop.PointerConvertible, props: interop.PointerConvertible, charIndexes: interop.PointerConvertible, aFont: NSFont, glyphRange: _NSRange) => number) {
     this.delegate.layoutManagerShouldGenerateGlyphsPropertiesCharacterIndexesFontForGlyphRange = value;
@@ -1852,14 +5196,33 @@ export class HTMLNSSharingServiceElement extends HTMLNSObjectElement {
   get delegate(): NSSharingServiceDelegateImpl {
     return (this.nativeObject.delegate ??= NSSharingServiceDelegateImpl.new()) as NSSharingServiceDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accountname: 'accountName',
+    alternateimage: 'alternateImage',
+    attachmentfileurls: 'attachmentFileURLs',
+    canperformwithitems: 'canPerformWithItems',
+    delegate: 'delegate',
+    image: 'image',
+    initwithtitleimagealternateimagehandler: 'initWithTitleImageAlternateImageHandler',
+    menuitemtitle: 'menuItemTitle',
+    messagebody: 'messageBody',
+    performwithitems: 'performWithItems',
+    permanentlink: 'permanentLink',
+    recipients: 'recipients',
+    sharingservicenamed: 'sharingServiceNamed',
+    sharingservicesforitems: 'sharingServicesForItems',
+    subject: 'subject',
+    title: 'title',
+  }
 
-  // readonly title: NSString;
-  // readonly image: NSImage;
+  // readonly accountName: NSString;
   // readonly alternateImage: NSImage;
+  // readonly attachmentFileURLs: NSArray;
+  // readonly image: NSImage;
   // readonly messageBody: NSString;
   // readonly permanentLink: NSURL;
-  // readonly accountName: NSString;
-  // readonly attachmentFileURLs: NSArray;
+  // readonly title: NSString;
 
   set sharingservicewillshareitems(value: (sharingService: NSSharingService, items: NSArray | unknown[]) => void) {
     this.delegate.sharingServiceWillShareItems = value;
@@ -1886,46 +5249,150 @@ export class HTMLNSSharingServiceElement extends HTMLNSObjectElement {
 
 export class HTMLNSTreeControllerElement extends HTMLNSObjectControllerElement {
   readonly nativeObject = NSTreeController.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    add: 'add',
+    addchild: 'addChild',
+    addselectionindexpaths: 'addSelectionIndexPaths',
+    alwaysusesmultiplevaluesmarker: 'alwaysUsesMultipleValuesMarker',
+    arrangedobjects: 'arrangedObjects',
+    avoidsemptyselection: 'avoidsEmptySelection',
+    canaddchild: 'canAddChild',
+    caninsert: 'canInsert',
+    caninsertchild: 'canInsertChild',
+    childrenkeypath: 'childrenKeyPath',
+    childrenkeypathfornode: 'childrenKeyPathForNode',
+    content: 'content',
+    countkeypath: 'countKeyPath',
+    countkeypathfornode: 'countKeyPathForNode',
+    insert: 'insert',
+    insertchild: 'insertChild',
+    insertobjectatarrangedobjectindexpath: 'insertObjectAtArrangedObjectIndexPath',
+    insertobjectsatarrangedobjectindexpaths: 'insertObjectsAtArrangedObjectIndexPaths',
+    leafkeypath: 'leafKeyPath',
+    leafkeypathfornode: 'leafKeyPathForNode',
+    movenodestoindexpath: 'moveNodesToIndexPath',
+    movenodetoindexpath: 'moveNodeToIndexPath',
+    preservesselection: 'preservesSelection',
+    rearrangeobjects: 'rearrangeObjects',
+    remove: 'remove',
+    removeobjectatarrangedobjectindexpath: 'removeObjectAtArrangedObjectIndexPath',
+    removeobjectsatarrangedobjectindexpaths: 'removeObjectsAtArrangedObjectIndexPaths',
+    removeselectionindexpaths: 'removeSelectionIndexPaths',
+    selectednodes: 'selectedNodes',
+    selectedobjects: 'selectedObjects',
+    selectionindexpath: 'selectionIndexPath',
+    selectionindexpaths: 'selectionIndexPaths',
+    selectsinsertedobjects: 'selectsInsertedObjects',
+    sortdescriptors: 'sortDescriptors',
+  }
 
+  // alwaysUsesMultipleValuesMarker: boolean;
   // readonly arrangedObjects: NSTreeNode;
-  // content: interop.Object;
+  // avoidsEmptySelection: boolean;
+  // readonly canAddChild: boolean;
   // readonly canInsert: boolean;
   // readonly canInsertChild: boolean;
-  // readonly canAddChild: boolean;
-  // avoidsEmptySelection: boolean;
+  // content: interop.Object;
   // preservesSelection: boolean;
-  // selectsInsertedObjects: boolean;
-  // alwaysUsesMultipleValuesMarker: boolean;
-  // readonly selectedObjects: NSArray;
-  // readonly selectionIndexPaths: NSArray;
-  // readonly selectionIndexPath: NSIndexPath;
   // readonly selectedNodes: NSArray;
+  // readonly selectedObjects: NSArray;
+  // readonly selectionIndexPath: NSIndexPath;
+  // readonly selectionIndexPaths: NSArray;
+  // selectsInsertedObjects: boolean;
 }
 
 export class HTMLNSTypesetterElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTypesetter.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    actionforcontrolcharacteratindex: 'actionForControlCharacterAtIndex',
+    attributedstring: 'attributedString',
+    attributesforextralinefragment: 'attributesForExtraLineFragment',
+    baselineoffsetinlayoutmanagerglyphindex: 'baselineOffsetInLayoutManagerGlyphIndex',
+    beginlinewithglyphatindex: 'beginLineWithGlyphAtIndex',
+    beginparagraph: 'beginParagraph',
+    bidiprocessingenabled: 'bidiProcessingEnabled',
+    boundingboxforcontrolglyphatindexfortextcontainerproposedlinefragmentglyphpositioncharacterindex: 'boundingBoxForControlGlyphAtIndexForTextContainerProposedLineFragmentGlyphPositionCharacterIndex',
+    characterrangeforglyphrangeactualglyphrange: 'characterRangeForGlyphRangeActualGlyphRange',
+    currentparagraphstyle: 'currentParagraphStyle',
+    currenttextcontainer: 'currentTextContainer',
+    defaulttypesetterbehavior: 'defaultTypesetterBehavior',
+    deleteglyphsinrange: 'deleteGlyphsInRange',
+    endlinewithglyphrange: 'endLineWithGlyphRange',
+    endparagraph: 'endParagraph',
+    getglyphsinrangeglyphscharacterindexesglyphinscriptionselasticbitsbidilevels: 'getGlyphsInRangeGlyphsCharacterIndexesGlyphInscriptionsElasticBitsBidiLevels',
+    getlinefragmentrectusedrectforparagraphseparatorglyphrangeatproposedorigin: 'getLineFragmentRectUsedRectForParagraphSeparatorGlyphRangeAtProposedOrigin',
+    getlinefragmentrectusedrectremainingrectforstartingglyphatindexproposedrectlinespacingparagraphspacingbeforeparagraphspacingafter: 'getLineFragmentRectUsedRectRemainingRectForStartingGlyphAtIndexProposedRectLineSpacingParagraphSpacingBeforeParagraphSpacingAfter',
+    glyphrangeforcharacterrangeactualcharacterrange: 'glyphRangeForCharacterRangeActualCharacterRange',
+    hyphenationfactor: 'hyphenationFactor',
+    hyphenationfactorforglyphatindex: 'hyphenationFactorForGlyphAtIndex',
+    hyphencharacterforglyphatindex: 'hyphenCharacterForGlyphAtIndex',
+    insertglyphatglyphindexcharacterindex: 'insertGlyphAtGlyphIndexCharacterIndex',
+    layoutcharactersinrangeforlayoutmanagermaximumnumberoflinefragments: 'layoutCharactersInRangeForLayoutManagerMaximumNumberOfLineFragments',
+    layoutglyphsinlayoutmanagerstartingatglyphindexmaxnumberoflinefragmentsnextglyphindex: 'layoutGlyphsInLayoutManagerStartingAtGlyphIndexMaxNumberOfLineFragmentsNextGlyphIndex',
+    layoutmanager: 'layoutManager',
+    layoutparagraphatpoint: 'layoutParagraphAtPoint',
+    linefragmentpadding: 'lineFragmentPadding',
+    linespacingafterglyphatindexwithproposedlinefragmentrect: 'lineSpacingAfterGlyphAtIndexWithProposedLineFragmentRect',
+    paragraphcharacterrange: 'paragraphCharacterRange',
+    paragraphglyphrange: 'paragraphGlyphRange',
+    paragraphseparatorcharacterrange: 'paragraphSeparatorCharacterRange',
+    paragraphseparatorglyphrange: 'paragraphSeparatorGlyphRange',
+    paragraphspacingafterglyphatindexwithproposedlinefragmentrect: 'paragraphSpacingAfterGlyphAtIndexWithProposedLineFragmentRect',
+    paragraphspacingbeforeglyphatindexwithproposedlinefragmentrect: 'paragraphSpacingBeforeGlyphAtIndexWithProposedLineFragmentRect',
+    printingadjustmentinlayoutmanagerfornominallyspacedglyphrangepackedglyphscount: 'printingAdjustmentInLayoutManagerForNominallySpacedGlyphRangePackedGlyphsCount',
+    setattachmentsizeforglyphrange: 'setAttachmentSizeForGlyphRange',
+    setbidilevelsforglyphrange: 'setBidiLevelsForGlyphRange',
+    setdrawsoutsidelinefragmentforglyphrange: 'setDrawsOutsideLineFragmentForGlyphRange',
+    sethardinvalidationforglyphrange: 'setHardInvalidationForGlyphRange',
+    setlinefragmentrectforglyphrangeusedrectbaselineoffset: 'setLineFragmentRectForGlyphRangeUsedRectBaselineOffset',
+    setlocationwithadvancementsforstartofglyphrange: 'setLocationWithAdvancementsForStartOfGlyphRange',
+    setnotshownattributeforglyphrange: 'setNotShownAttributeForGlyphRange',
+    setparagraphglyphrangeseparatorglyphrange: 'setParagraphGlyphRangeSeparatorGlyphRange',
+    sharedsystemtypesetter: 'sharedSystemTypesetter',
+    sharedsystemtypesetterforbehavior: 'sharedSystemTypesetterForBehavior',
+    shouldbreaklinebyhyphenatingbeforecharacteratindex: 'shouldBreakLineByHyphenatingBeforeCharacterAtIndex',
+    shouldbreaklinebywordbeforecharacteratindex: 'shouldBreakLineByWordBeforeCharacterAtIndex',
+    substitutefontforfont: 'substituteFontForFont',
+    substituteglyphsinrangewithglyphs: 'substituteGlyphsInRangeWithGlyphs',
+    textcontainers: 'textContainers',
+    texttabforglyphlocationwritingdirectionmaxlocation: 'textTabForGlyphLocationWritingDirectionMaxLocation',
+    typesetterbehavior: 'typesetterBehavior',
+    usesfontleading: 'usesFontLeading',
+    willsetlinefragmentrectforglyphrangeusedrectbaselineoffset: 'willSetLineFragmentRectForGlyphRangeUsedRectBaselineOffset',
+  }
 
-  // usesFontLeading: boolean;
-  // typesetterBehavior: interop.Enum<typeof NSTypesetterBehavior>;
-  // hyphenationFactor: number;
-  // lineFragmentPadding: number;
-  // bidiProcessingEnabled: boolean;
   // attributedString: NSAttributedString;
-  // readonly paragraphGlyphRange: _NSRange;
-  // readonly paragraphSeparatorGlyphRange: _NSRange;
-  // readonly paragraphCharacterRange: _NSRange;
-  // readonly paragraphSeparatorCharacterRange: _NSRange;
   // readonly attributesForExtraLineFragment: NSDictionary;
-  // readonly layoutManager: NSLayoutManager;
-  // readonly textContainers: NSArray;
-  // readonly currentTextContainer: NSTextContainer;
+  // bidiProcessingEnabled: boolean;
   // readonly currentParagraphStyle: NSParagraphStyle;
-  // sharedSystemTypesetter: NSTypesetter;
+  // readonly currentTextContainer: NSTextContainer;
   // defaultTypesetterBehavior: interop.Enum<typeof NSTypesetterBehavior>;
+  // hyphenationFactor: number;
+  // readonly layoutManager: NSLayoutManager;
+  // lineFragmentPadding: number;
+  // readonly paragraphCharacterRange: _NSRange;
+  // readonly paragraphGlyphRange: _NSRange;
+  // readonly paragraphSeparatorCharacterRange: _NSRange;
+  // readonly paragraphSeparatorGlyphRange: _NSRange;
+  // sharedSystemTypesetter: NSTypesetter;
+  // readonly textContainers: NSArray;
+  // typesetterBehavior: interop.Enum<typeof NSTypesetterBehavior>;
+  // usesFontLeading: boolean;
 }
 
 export class HTMLNSScrubberSelectionStyleElement extends HTMLNSObjectElement {
   readonly nativeObject = NSScrubberSelectionStyle.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    encodewithcoder: 'encodeWithCoder',
+    init: 'init',
+    initwithcoder: 'initWithCoder',
+    makeselectionview: 'makeSelectionView',
+    outlineoverlaystyle: 'outlineOverlayStyle',
+    roundedbackgroundstyle: 'roundedBackgroundStyle',
+  }
 
   // outlineOverlayStyle: NSScrubberSelectionStyle;
   // roundedBackgroundStyle: NSScrubberSelectionStyle;
@@ -1933,40 +5400,112 @@ export class HTMLNSScrubberSelectionStyleElement extends HTMLNSObjectElement {
 
 export class HTMLNSPreviewRepresentingActivityItemElement extends HTMLNSObjectElement {
   readonly nativeObject = NSPreviewRepresentingActivityItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    autorelease: 'autorelease',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    hash: 'hash',
+    iconprovider: 'iconProvider',
+    imageprovider: 'imageProvider',
+    initwithitemtitleimageicon: 'initWithItemTitleImageIcon',
+    initwithitemtitleimageprovidericonprovider: 'initWithItemTitleImageProviderIconProvider',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    item: 'item',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    superclass: 'superclass',
+    title: 'title',
+    zone: 'zone',
+  }
 
-  // readonly item: interop.Object;
-  // readonly title: NSString;
-  // readonly imageProvider: NSItemProvider;
-  // readonly iconProvider: NSItemProvider;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly hash: number;
+  // readonly iconProvider: NSItemProvider;
+  // readonly imageProvider: NSItemProvider;
+  // readonly isProxy: boolean;
+  // readonly item: interop.Object;
+  // readonly superclass: interop.Object;
+  // readonly title: NSString;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSDraggingSessionElement extends HTMLNSObjectElement {
   readonly nativeObject = NSDraggingSession.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    animatestostartingpositionsoncancelorfail: 'animatesToStartingPositionsOnCancelOrFail',
+    draggingformation: 'draggingFormation',
+    draggingleaderindex: 'draggingLeaderIndex',
+    dragginglocation: 'draggingLocation',
+    draggingpasteboard: 'draggingPasteboard',
+    draggingsequencenumber: 'draggingSequenceNumber',
+    enumeratedraggingitemswithoptionsforviewclassessearchoptionsusingblock: 'enumerateDraggingItemsWithOptionsForViewClassesSearchOptionsUsingBlock',
+  }
 
-  // draggingFormation: interop.Enum<typeof NSDraggingFormation>;
   // animatesToStartingPositionsOnCancelOrFail: boolean;
+  // draggingFormation: interop.Enum<typeof NSDraggingFormation>;
   // draggingLeaderIndex: number;
+  // readonly draggingLocation: CGPoint;
   // readonly draggingPasteboard: NSPasteboard;
   // readonly draggingSequenceNumber: number;
-  // readonly draggingLocation: CGPoint;
 }
 
 export class HTMLNSCollectionViewDiffableDataSourceElement extends HTMLNSObjectElement {
   readonly nativeObject = NSCollectionViewDiffableDataSource.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    applysnapshotanimatingdifferences: 'applySnapshotAnimatingDifferences',
+    autorelease: 'autorelease',
+    class: 'class',
+    collectionviewitemforrepresentedobjectatindexpath: 'collectionViewItemForRepresentedObjectAtIndexPath',
+    collectionviewnumberofitemsinsection: 'collectionViewNumberOfItemsInSection',
+    collectionviewviewforsupplementaryelementofkindatindexpath: 'collectionViewViewForSupplementaryElementOfKindAtIndexPath',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    hash: 'hash',
+    indexpathforitemidentifier: 'indexPathForItemIdentifier',
+    initwithcollectionviewitemprovider: 'initWithCollectionViewItemProvider',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    itemidentifierforindexpath: 'itemIdentifierForIndexPath',
+    numberofsectionsincollectionview: 'numberOfSectionsInCollectionView',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    snapshot: 'snapshot',
+    superclass: 'superclass',
+    supplementaryviewprovider: 'supplementaryViewProvider',
+    zone: 'zone',
+  }
 
-  // supplementaryViewProvider: (p1: NSCollectionView, p2: NSString | string, p3: NSIndexPath) => NSView;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly hash: number;
+  // readonly isProxy: boolean;
+  // readonly superclass: interop.Object;
+  // supplementaryViewProvider: (p1: NSCollectionView, p2: NSString | string, p3: NSIndexPath) => NSView;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSTextContentManagerElement extends HTMLNSObjectElement {
@@ -1974,20 +5513,66 @@ export class HTMLNSTextContentManagerElement extends HTMLNSObjectElement {
   get delegate(): NSTextContentManagerDelegateImpl {
     return (this.nativeObject.delegate ??= NSTextContentManagerDelegateImpl.new()) as NSTextContentManagerDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    addtextlayoutmanager: 'addTextLayoutManager',
+    adjustedrangefromrangeforeditingtextselection: 'adjustedRangeFromRangeForEditingTextSelection',
+    automaticallysynchronizestextlayoutmanagers: 'automaticallySynchronizesTextLayoutManagers',
+    automaticallysynchronizestobackingstore: 'automaticallySynchronizesToBackingStore',
+    autorelease: 'autorelease',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    delegate: 'delegate',
+    description: 'description',
+    documentrange: 'documentRange',
+    encodewithcoder: 'encodeWithCoder',
+    enumeratetextelementsfromlocationoptionsusingblock: 'enumerateTextElementsFromLocationOptionsUsingBlock',
+    haseditingtransaction: 'hasEditingTransaction',
+    hash: 'hash',
+    init: 'init',
+    initwithcoder: 'initWithCoder',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    locationfromlocationwithoffset: 'locationFromLocationWithOffset',
+    offsetfromlocationtolocation: 'offsetFromLocationToLocation',
+    performeditingtransactionusingblock: 'performEditingTransactionUsingBlock',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    primarytextlayoutmanager: 'primaryTextLayoutManager',
+    recordeditactioninrangenewtextrange: 'recordEditActionInRangeNewTextRange',
+    release: 'release',
+    removetextlayoutmanager: 'removeTextLayoutManager',
+    replacecontentsinrangewithtextelements: 'replaceContentsInRangeWithTextElements',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    superclass: 'superclass',
+    supportssecurecoding: 'supportsSecureCoding',
+    synchronizetextlayoutmanagers: 'synchronizeTextLayoutManagers',
+    synchronizetobackingstore: 'synchronizeToBackingStore',
+    textelementsforrange: 'textElementsForRange',
+    textlayoutmanagers: 'textLayoutManagers',
+    zone: 'zone',
+  }
 
-  // readonly textLayoutManagers: NSArray;
-  // primaryTextLayoutManager: NSTextLayoutManager;
-  // readonly hasEditingTransaction: boolean;
   // automaticallySynchronizesTextLayoutManagers: boolean;
   // automaticallySynchronizesToBackingStore: boolean;
-  // readonly documentRange: NSTextRange;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly documentRange: NSTextRange;
+  // readonly hasEditingTransaction: boolean;
+  // readonly hash: number;
+  // readonly isProxy: boolean;
+  // primaryTextLayoutManager: NSTextLayoutManager;
+  // readonly superclass: interop.Object;
   // supportsSecureCoding: boolean;
+  // readonly textLayoutManagers: NSArray;
+  // readonly zone: interop.Pointer;
 
   set textcontentmanagertextelementatlocation(value: (textContentManager: NSTextContentManager, location: NSTextLocation) => NSTextElement) {
     this.delegate.textContentManagerTextElementAtLocation = value;
@@ -1999,44 +5584,139 @@ export class HTMLNSTextContentManagerElement extends HTMLNSObjectElement {
 
 export class HTMLNSPrinterElement extends HTMLNSObjectElement {
   readonly nativeObject = NSPrinter.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    acceptsbinary: 'acceptsBinary',
+    booleanforkeyintable: 'booleanForKeyInTable',
+    copywithzone: 'copyWithZone',
+    devicedescription: 'deviceDescription',
+    domain: 'domain',
+    encodewithcoder: 'encodeWithCoder',
+    floatforkeyintable: 'floatForKeyInTable',
+    host: 'host',
+    imagerectforpaper: 'imageRectForPaper',
+    initwithcoder: 'initWithCoder',
+    intforkeyintable: 'intForKeyInTable',
+    iscolor: 'isColor',
+    isfontavailable: 'isFontAvailable',
+    iskeyintable: 'isKeyInTable',
+    isoutputstackinreverseorder: 'isOutputStackInReverseOrder',
+    languagelevel: 'languageLevel',
+    name: 'name',
+    note: 'note',
+    pagesizeforpaper: 'pageSizeForPaper',
+    printernames: 'printerNames',
+    printertypes: 'printerTypes',
+    printerwithname: 'printerWithName',
+    printerwithnamedomainincludeunavailable: 'printerWithNameDomainIncludeUnavailable',
+    printerwithtype: 'printerWithType',
+    rectforkeyintable: 'rectForKeyInTable',
+    sizeforkeyintable: 'sizeForKeyInTable',
+    statusfortable: 'statusForTable',
+    stringforkeyintable: 'stringForKeyInTable',
+    stringlistforkeyintable: 'stringListForKeyInTable',
+    type: 'type',
+  }
 
+  // readonly deviceDescription: NSDictionary;
+  // readonly languageLevel: number;
+  // readonly name: NSString;
   // printerNames: NSArray;
   // printerTypes: NSArray;
-  // readonly name: NSString;
   // readonly type: NSString;
-  // readonly languageLevel: number;
-  // readonly deviceDescription: NSDictionary;
 }
 
 export class HTMLNSAppearanceElement extends HTMLNSObjectElement {
   readonly nativeObject = NSAppearance.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    allowsvibrancy: 'allowsVibrancy',
+    appearancenamed: 'appearanceNamed',
+    bestmatchfromappearanceswithnames: 'bestMatchFromAppearancesWithNames',
+    currentappearance: 'currentAppearance',
+    currentdrawingappearance: 'currentDrawingAppearance',
+    encodewithcoder: 'encodeWithCoder',
+    initwithappearancenamedbundle: 'initWithAppearanceNamedBundle',
+    initwithcoder: 'initWithCoder',
+    name: 'name',
+    performascurrentdrawingappearance: 'performAsCurrentDrawingAppearance',
+    supportssecurecoding: 'supportsSecureCoding',
+  }
 
-  // readonly name: NSString;
+  // readonly allowsVibrancy: boolean;
   // currentAppearance: NSAppearance;
   // currentDrawingAppearance: NSAppearance;
-  // readonly allowsVibrancy: boolean;
+  // readonly name: NSString;
   // supportsSecureCoding: boolean;
 }
 
 export class HTMLNSTextInputContextElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextInputContext.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    acceptsglyphinfo: 'acceptsGlyphInfo',
+    activate: 'activate',
+    allowedinputsourcelocales: 'allowedInputSourceLocales',
+    client: 'client',
+    currentinputcontext: 'currentInputContext',
+    deactivate: 'deactivate',
+    discardmarkedtext: 'discardMarkedText',
+    handleevent: 'handleEvent',
+    initwithclient: 'initWithClient',
+    invalidatecharactercoordinates: 'invalidateCharacterCoordinates',
+    keyboardinputsources: 'keyboardInputSources',
+    localizednameforinputsource: 'localizedNameForInputSource',
+    selectedkeyboardinputsource: 'selectedKeyboardInputSource',
+    textinputclientdidendscrollingorzooming: 'textInputClientDidEndScrollingOrZooming',
+    textinputclientwillstartscrollingorzooming: 'textInputClientWillStartScrollingOrZooming',
+  }
 
-  // currentInputContext: NSTextInputContext;
-  // readonly client: NSTextInputClient;
   // acceptsGlyphInfo: boolean;
+  // readonly client: NSTextInputClient;
+  // currentInputContext: NSTextInputContext;
   // readonly keyboardInputSources: NSArray;
 }
 
 export class HTMLNSCustomImageRepElement extends HTMLNSImageRepElement {
   readonly nativeObject = NSCustomImageRep.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    delegate: 'delegate',
+    drawinghandler: 'drawingHandler',
+    drawselector: 'drawSelector',
+    initwithdrawselectordelegate: 'initWithDrawSelectorDelegate',
+    initwithsizeflippeddrawinghandler: 'initWithSizeFlippedDrawingHandler',
+  }
 
+  // readonly delegate: interop.Object;
   // readonly drawingHandler: (p1: CGRect) => boolean;
   // readonly drawSelector: string;
-  // readonly delegate: interop.Object;
 }
 
 export class HTMLNSTextCheckingControllerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextCheckingController.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    changespelling: 'changeSpelling',
+    checkspelling: 'checkSpelling',
+    checktextindocument: 'checkTextInDocument',
+    checktextinrangetypesoptions: 'checkTextInRangeTypesOptions',
+    checktextinselection: 'checkTextInSelection',
+    client: 'client',
+    considertextcheckingforrange: 'considerTextCheckingForRange',
+    didchangeselectedrange: 'didChangeSelectedRange',
+    didchangetextinrange: 'didChangeTextInRange',
+    ignorespelling: 'ignoreSpelling',
+    initwithclient: 'initWithClient',
+    insertedtextinrange: 'insertedTextInRange',
+    invalidate: 'invalidate',
+    menuatindexclickedonselectioneffectiverange: 'menuAtIndexClickedOnSelectionEffectiveRange',
+    orderfrontsubstitutionspanel: 'orderFrontSubstitutionsPanel',
+    showguesspanel: 'showGuessPanel',
+    spellcheckerdocumenttag: 'spellCheckerDocumentTag',
+    updatecandidates: 'updateCandidates',
+    validannotations: 'validAnnotations',
+  }
 
   // readonly client: NSTextCheckingClient;
   // spellCheckerDocumentTag: number;
@@ -2044,269 +5724,877 @@ export class HTMLNSTextCheckingControllerElement extends HTMLNSObjectElement {
 
 export class HTMLNSColorSpaceElement extends HTMLNSObjectElement {
   readonly nativeObject = NSColorSpace.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    adobergb1998colorspace: 'adobeRGB1998ColorSpace',
+    availablecolorspaceswithmodel: 'availableColorSpacesWithModel',
+    cgcolorspace: 'CGColorSpace',
+    colorspacemodel: 'colorSpaceModel',
+    colorsyncprofile: 'colorSyncProfile',
+    devicecmykcolorspace: 'deviceCMYKColorSpace',
+    devicegraycolorspace: 'deviceGrayColorSpace',
+    devicergbcolorspace: 'deviceRGBColorSpace',
+    displayp3colorspace: 'displayP3ColorSpace',
+    encodewithcoder: 'encodeWithCoder',
+    extendedgenericgamma22graycolorspace: 'extendedGenericGamma22GrayColorSpace',
+    extendedsrgbcolorspace: 'extendedSRGBColorSpace',
+    genericcmykcolorspace: 'genericCMYKColorSpace',
+    genericgamma22graycolorspace: 'genericGamma22GrayColorSpace',
+    genericgraycolorspace: 'genericGrayColorSpace',
+    genericrgbcolorspace: 'genericRGBColorSpace',
+    iccprofiledata: 'ICCProfileData',
+    initwithcgcolorspace: 'initWithCGColorSpace',
+    initwithcoder: 'initWithCoder',
+    initwithcolorsyncprofile: 'initWithColorSyncProfile',
+    initwithiccprofiledata: 'initWithICCProfileData',
+    localizedname: 'localizedName',
+    numberofcolorcomponents: 'numberOfColorComponents',
+    srgbcolorspace: 'sRGBColorSpace',
+    supportssecurecoding: 'supportsSecureCoding',
+  }
 
-  // readonly ICCProfileData: NSData;
-  // readonly colorSyncProfile: interop.Pointer;
-  // readonly CGColorSpace: interop.Pointer;
-  // readonly numberOfColorComponents: number;
-  // readonly colorSpaceModel: interop.Enum<typeof NSColorSpaceModel>;
-  // readonly localizedName: NSString;
-  // sRGBColorSpace: NSColorSpace;
-  // genericGamma22GrayColorSpace: NSColorSpace;
-  // extendedSRGBColorSpace: NSColorSpace;
-  // extendedGenericGamma22GrayColorSpace: NSColorSpace;
-  // displayP3ColorSpace: NSColorSpace;
   // adobeRGB1998ColorSpace: NSColorSpace;
-  // genericRGBColorSpace: NSColorSpace;
-  // genericGrayColorSpace: NSColorSpace;
-  // genericCMYKColorSpace: NSColorSpace;
-  // deviceRGBColorSpace: NSColorSpace;
-  // deviceGrayColorSpace: NSColorSpace;
+  // readonly CGColorSpace: interop.Pointer;
+  // readonly colorSpaceModel: interop.Enum<typeof NSColorSpaceModel>;
+  // readonly colorSyncProfile: interop.Pointer;
   // deviceCMYKColorSpace: NSColorSpace;
+  // deviceGrayColorSpace: NSColorSpace;
+  // deviceRGBColorSpace: NSColorSpace;
+  // displayP3ColorSpace: NSColorSpace;
+  // extendedGenericGamma22GrayColorSpace: NSColorSpace;
+  // extendedSRGBColorSpace: NSColorSpace;
+  // genericCMYKColorSpace: NSColorSpace;
+  // genericGamma22GrayColorSpace: NSColorSpace;
+  // genericGrayColorSpace: NSColorSpace;
+  // genericRGBColorSpace: NSColorSpace;
+  // readonly ICCProfileData: NSData;
+  // readonly localizedName: NSString;
+  // readonly numberOfColorComponents: number;
+  // sRGBColorSpace: NSColorSpace;
   // supportsSecureCoding: boolean;
 }
 
 export class HTMLNSAnimationContextElement extends HTMLNSObjectElement {
   readonly nativeObject = NSAnimationContext.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    allowsimplicitanimation: 'allowsImplicitAnimation',
+    begingrouping: 'beginGrouping',
+    completionhandler: 'completionHandler',
+    currentcontext: 'currentContext',
+    duration: 'duration',
+    endgrouping: 'endGrouping',
+    runanimationgroup: 'runAnimationGroup',
+    runanimationgroupcompletionhandler: 'runAnimationGroupCompletionHandler',
+    timingfunction: 'timingFunction',
+  }
 
+  // allowsImplicitAnimation: boolean;
+  // completionHandler: () => void;
   // currentContext: NSAnimationContext;
   // duration: number;
   // timingFunction: CAMediaTimingFunction;
-  // completionHandler: () => void;
-  // allowsImplicitAnimation: boolean;
 }
 
 export class HTMLNSStringDrawingContextElement extends HTMLNSObjectElement {
   readonly nativeObject = NSStringDrawingContext.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    actualscalefactor: 'actualScaleFactor',
+    minimumscalefactor: 'minimumScaleFactor',
+    totalbounds: 'totalBounds',
+  }
 
-  // minimumScaleFactor: number;
   // readonly actualScaleFactor: number;
+  // minimumScaleFactor: number;
   // readonly totalBounds: CGRect;
 }
 
 export class HTMLNSBezierPathElement extends HTMLNSObjectElement {
   readonly nativeObject = NSBezierPath.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    addclip: 'addClip',
+    appendbezierpath: 'appendBezierPath',
+    appendbezierpathwitharcfrompointtopointradius: 'appendBezierPathWithArcFromPointToPointRadius',
+    appendbezierpathwitharcwithcenterradiusstartangleendangle: 'appendBezierPathWithArcWithCenterRadiusStartAngleEndAngle',
+    appendbezierpathwitharcwithcenterradiusstartangleendangleclockwise: 'appendBezierPathWithArcWithCenterRadiusStartAngleEndAngleClockwise',
+    appendbezierpathwithcgglyphinfont: 'appendBezierPathWithCGGlyphInFont',
+    appendbezierpathwithcgglyphscountinfont: 'appendBezierPathWithCGGlyphsCountInFont',
+    appendbezierpathwithglyphinfont: 'appendBezierPathWithGlyphInFont',
+    appendbezierpathwithglyphscountinfont: 'appendBezierPathWithGlyphsCountInFont',
+    appendbezierpathwithovalinrect: 'appendBezierPathWithOvalInRect',
+    appendbezierpathwithpackedglyphs: 'appendBezierPathWithPackedGlyphs',
+    appendbezierpathwithpointscount: 'appendBezierPathWithPointsCount',
+    appendbezierpathwithrect: 'appendBezierPathWithRect',
+    appendbezierpathwithroundedrectxradiusyradius: 'appendBezierPathWithRoundedRectXRadiusYRadius',
+    bezierpath: 'bezierPath',
+    bezierpathbyflatteningpath: 'bezierPathByFlatteningPath',
+    bezierpathbyreversingpath: 'bezierPathByReversingPath',
+    bezierpathwithcgpath: 'bezierPathWithCGPath',
+    bezierpathwithovalinrect: 'bezierPathWithOvalInRect',
+    bezierpathwithrect: 'bezierPathWithRect',
+    bezierpathwithroundedrectxradiusyradius: 'bezierPathWithRoundedRectXRadiusYRadius',
+    bounds: 'bounds',
+    cachesbezierpath: 'cachesBezierPath',
+    cgpath: 'CGPath',
+    cliprect: 'clipRect',
+    closepath: 'closePath',
+    containspoint: 'containsPoint',
+    controlpointbounds: 'controlPointBounds',
+    copywithzone: 'copyWithZone',
+    currentpoint: 'currentPoint',
+    curvetopointcontrolpoint: 'curveToPointControlPoint',
+    curvetopointcontrolpoint1controlpoint2: 'curveToPointControlPoint1ControlPoint2',
+    defaultflatness: 'defaultFlatness',
+    defaultlinecapstyle: 'defaultLineCapStyle',
+    defaultlinejoinstyle: 'defaultLineJoinStyle',
+    defaultlinewidth: 'defaultLineWidth',
+    defaultmiterlimit: 'defaultMiterLimit',
+    defaultwindingrule: 'defaultWindingRule',
+    drawpackedglyphsatpoint: 'drawPackedGlyphsAtPoint',
+    elementatindex: 'elementAtIndex',
+    elementatindexassociatedpoints: 'elementAtIndexAssociatedPoints',
+    elementcount: 'elementCount',
+    encodewithcoder: 'encodeWithCoder',
+    fill: 'fill',
+    fillrect: 'fillRect',
+    flatness: 'flatness',
+    getlinedashcountphase: 'getLineDashCountPhase',
+    initwithcoder: 'initWithCoder',
+    isempty: 'isEmpty',
+    linecapstyle: 'lineCapStyle',
+    linejoinstyle: 'lineJoinStyle',
+    linetopoint: 'lineToPoint',
+    linewidth: 'lineWidth',
+    miterlimit: 'miterLimit',
+    movetopoint: 'moveToPoint',
+    relativecurvetopointcontrolpoint: 'relativeCurveToPointControlPoint',
+    relativecurvetopointcontrolpoint1controlpoint2: 'relativeCurveToPointControlPoint1ControlPoint2',
+    relativelinetopoint: 'relativeLineToPoint',
+    relativemovetopoint: 'relativeMoveToPoint',
+    removeallpoints: 'removeAllPoints',
+    setassociatedpointsatindex: 'setAssociatedPointsAtIndex',
+    setcachesbezierpath: 'setCachesBezierPath',
+    setclip: 'setClip',
+    setlinedashcountphase: 'setLineDashCountPhase',
+    stroke: 'stroke',
+    strokelinefrompointtopoint: 'strokeLineFromPointToPoint',
+    strokerect: 'strokeRect',
+    supportssecurecoding: 'supportsSecureCoding',
+    transformusingaffinetransform: 'transformUsingAffineTransform',
+    windingrule: 'windingRule',
+  }
 
-  // defaultMiterLimit: number;
+  // readonly bezierPathByFlatteningPath: NSBezierPath;
+  // readonly bezierPathByReversingPath: NSBezierPath;
+  // readonly bounds: CGRect;
+  // readonly controlPointBounds: CGRect;
+  // readonly currentPoint: CGPoint;
   // defaultFlatness: number;
-  // defaultWindingRule: interop.Enum<typeof NSWindingRule>;
   // defaultLineCapStyle: interop.Enum<typeof NSLineCapStyle>;
   // defaultLineJoinStyle: interop.Enum<typeof NSLineJoinStyle>;
   // defaultLineWidth: number;
-  // lineWidth: number;
+  // defaultMiterLimit: number;
+  // defaultWindingRule: interop.Enum<typeof NSWindingRule>;
+  // readonly elementCount: number;
+  // flatness: number;
+  // readonly isEmpty: boolean;
   // lineCapStyle: interop.Enum<typeof NSLineCapStyle>;
   // lineJoinStyle: interop.Enum<typeof NSLineJoinStyle>;
-  // windingRule: interop.Enum<typeof NSWindingRule>;
+  // lineWidth: number;
   // miterLimit: number;
-  // flatness: number;
-  // readonly bezierPathByFlatteningPath: NSBezierPath;
-  // readonly bezierPathByReversingPath: NSBezierPath;
-  // readonly isEmpty: boolean;
-  // readonly currentPoint: CGPoint;
-  // readonly controlPointBounds: CGRect;
-  // readonly bounds: CGRect;
-  // readonly elementCount: number;
   // supportsSecureCoding: boolean;
+  // windingRule: interop.Enum<typeof NSWindingRule>;
 }
 
 export class HTMLNSAccessibilityCustomActionElement extends HTMLNSObjectElement {
   readonly nativeObject = NSAccessibilityCustomAction.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    handler: 'handler',
+    initwithnamehandler: 'initWithNameHandler',
+    initwithnametargetselector: 'initWithNameTargetSelector',
+    name: 'name',
+    selector: 'selector',
+    target: 'target',
+  }
 
   // handler: () => boolean;
-  // target: NSObject;
   // selector: string;
+  // target: NSObject;
 }
 
 export class HTMLNSViewElement extends HTMLNSResponderElement {
   readonly nativeObject = NSView.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    acceptsfirstmouse: 'acceptsFirstMouse',
+    acceptstouchevents: 'acceptsTouchEvents',
+    accessibilityactivationpoint: 'accessibilityActivationPoint',
+    accessibilityallowedvalues: 'accessibilityAllowedValues',
+    accessibilityapplicationfocuseduielement: 'accessibilityApplicationFocusedUIElement',
+    accessibilityattributedstringforrange: 'accessibilityAttributedStringForRange',
+    accessibilityattributeduserinputlabels: 'accessibilityAttributedUserInputLabels',
+    accessibilitycancelbutton: 'accessibilityCancelButton',
+    accessibilitycellforcolumnrow: 'accessibilityCellForColumnRow',
+    accessibilitychildren: 'accessibilityChildren',
+    accessibilitychildreninnavigationorder: 'accessibilityChildrenInNavigationOrder',
+    accessibilityclearbutton: 'accessibilityClearButton',
+    accessibilityclosebutton: 'accessibilityCloseButton',
+    accessibilitycolumncount: 'accessibilityColumnCount',
+    accessibilitycolumnheaderuielements: 'accessibilityColumnHeaderUIElements',
+    accessibilitycolumnindexrange: 'accessibilityColumnIndexRange',
+    accessibilitycolumns: 'accessibilityColumns',
+    accessibilitycolumntitles: 'accessibilityColumnTitles',
+    accessibilitycontents: 'accessibilityContents',
+    accessibilitycriticalvalue: 'accessibilityCriticalValue',
+    accessibilitycustomactions: 'accessibilityCustomActions',
+    accessibilitycustomrotors: 'accessibilityCustomRotors',
+    accessibilitydecrementbutton: 'accessibilityDecrementButton',
+    accessibilitydefaultbutton: 'accessibilityDefaultButton',
+    accessibilitydisclosedbyrow: 'accessibilityDisclosedByRow',
+    accessibilitydisclosedrows: 'accessibilityDisclosedRows',
+    accessibilitydisclosurelevel: 'accessibilityDisclosureLevel',
+    accessibilitydocument: 'accessibilityDocument',
+    accessibilityextrasmenubar: 'accessibilityExtrasMenuBar',
+    accessibilityfilename: 'accessibilityFilename',
+    accessibilityfocusedwindow: 'accessibilityFocusedWindow',
+    accessibilityframe: 'accessibilityFrame',
+    accessibilityframeforrange: 'accessibilityFrameForRange',
+    accessibilityfullscreenbutton: 'accessibilityFullScreenButton',
+    accessibilitygrowarea: 'accessibilityGrowArea',
+    accessibilityhandles: 'accessibilityHandles',
+    accessibilityheader: 'accessibilityHeader',
+    accessibilityhelp: 'accessibilityHelp',
+    accessibilityhorizontalscrollbar: 'accessibilityHorizontalScrollBar',
+    accessibilityhorizontalunitdescription: 'accessibilityHorizontalUnitDescription',
+    accessibilityhorizontalunits: 'accessibilityHorizontalUnits',
+    accessibilityidentifier: 'accessibilityIdentifier',
+    accessibilityincrementbutton: 'accessibilityIncrementButton',
+    accessibilityindex: 'accessibilityIndex',
+    accessibilityinsertionpointlinenumber: 'accessibilityInsertionPointLineNumber',
+    accessibilitylabel: 'accessibilityLabel',
+    accessibilitylabeluielements: 'accessibilityLabelUIElements',
+    accessibilitylabelvalue: 'accessibilityLabelValue',
+    accessibilitylayoutpointforscreenpoint: 'accessibilityLayoutPointForScreenPoint',
+    accessibilitylayoutsizeforscreensize: 'accessibilityLayoutSizeForScreenSize',
+    accessibilitylineforindex: 'accessibilityLineForIndex',
+    accessibilitylinkeduielements: 'accessibilityLinkedUIElements',
+    accessibilitymainwindow: 'accessibilityMainWindow',
+    accessibilitymarkergroupuielement: 'accessibilityMarkerGroupUIElement',
+    accessibilitymarkertypedescription: 'accessibilityMarkerTypeDescription',
+    accessibilitymarkeruielements: 'accessibilityMarkerUIElements',
+    accessibilitymarkervalues: 'accessibilityMarkerValues',
+    accessibilitymaxvalue: 'accessibilityMaxValue',
+    accessibilitymenubar: 'accessibilityMenuBar',
+    accessibilityminimizebutton: 'accessibilityMinimizeButton',
+    accessibilityminvalue: 'accessibilityMinValue',
+    accessibilitynextcontents: 'accessibilityNextContents',
+    accessibilitynumberofcharacters: 'accessibilityNumberOfCharacters',
+    accessibilityorientation: 'accessibilityOrientation',
+    accessibilityoverflowbutton: 'accessibilityOverflowButton',
+    accessibilityparent: 'accessibilityParent',
+    accessibilityperformcancel: 'accessibilityPerformCancel',
+    accessibilityperformconfirm: 'accessibilityPerformConfirm',
+    accessibilityperformdecrement: 'accessibilityPerformDecrement',
+    accessibilityperformdelete: 'accessibilityPerformDelete',
+    accessibilityperformincrement: 'accessibilityPerformIncrement',
+    accessibilityperformpick: 'accessibilityPerformPick',
+    accessibilityperformpress: 'accessibilityPerformPress',
+    accessibilityperformraise: 'accessibilityPerformRaise',
+    accessibilityperformshowalternateui: 'accessibilityPerformShowAlternateUI',
+    accessibilityperformshowdefaultui: 'accessibilityPerformShowDefaultUI',
+    accessibilityperformshowmenu: 'accessibilityPerformShowMenu',
+    accessibilityplaceholdervalue: 'accessibilityPlaceholderValue',
+    accessibilitypreviouscontents: 'accessibilityPreviousContents',
+    accessibilityproxy: 'accessibilityProxy',
+    accessibilityrangeforindex: 'accessibilityRangeForIndex',
+    accessibilityrangeforline: 'accessibilityRangeForLine',
+    accessibilityrangeforposition: 'accessibilityRangeForPosition',
+    accessibilityrole: 'accessibilityRole',
+    accessibilityroledescription: 'accessibilityRoleDescription',
+    accessibilityrowcount: 'accessibilityRowCount',
+    accessibilityrowheaderuielements: 'accessibilityRowHeaderUIElements',
+    accessibilityrowindexrange: 'accessibilityRowIndexRange',
+    accessibilityrows: 'accessibilityRows',
+    accessibilityrtfforrange: 'accessibilityRTFForRange',
+    accessibilityrulermarkertype: 'accessibilityRulerMarkerType',
+    accessibilityscreenpointforlayoutpoint: 'accessibilityScreenPointForLayoutPoint',
+    accessibilityscreensizeforlayoutsize: 'accessibilityScreenSizeForLayoutSize',
+    accessibilitysearchbutton: 'accessibilitySearchButton',
+    accessibilitysearchmenu: 'accessibilitySearchMenu',
+    accessibilityselectedcells: 'accessibilitySelectedCells',
+    accessibilityselectedchildren: 'accessibilitySelectedChildren',
+    accessibilityselectedcolumns: 'accessibilitySelectedColumns',
+    accessibilityselectedrows: 'accessibilitySelectedRows',
+    accessibilityselectedtext: 'accessibilitySelectedText',
+    accessibilityselectedtextrange: 'accessibilitySelectedTextRange',
+    accessibilityselectedtextranges: 'accessibilitySelectedTextRanges',
+    accessibilityservesastitleforuielements: 'accessibilityServesAsTitleForUIElements',
+    accessibilitysharedcharacterrange: 'accessibilitySharedCharacterRange',
+    accessibilitysharedfocuselements: 'accessibilitySharedFocusElements',
+    accessibilitysharedtextuielements: 'accessibilitySharedTextUIElements',
+    accessibilityshownmenu: 'accessibilityShownMenu',
+    accessibilitysortdirection: 'accessibilitySortDirection',
+    accessibilitysplitters: 'accessibilitySplitters',
+    accessibilitystringforrange: 'accessibilityStringForRange',
+    accessibilitystylerangeforindex: 'accessibilityStyleRangeForIndex',
+    accessibilitysubrole: 'accessibilitySubrole',
+    accessibilitytabs: 'accessibilityTabs',
+    accessibilitytitle: 'accessibilityTitle',
+    accessibilitytitleuielement: 'accessibilityTitleUIElement',
+    accessibilitytoolbarbutton: 'accessibilityToolbarButton',
+    accessibilitytopleveluielement: 'accessibilityTopLevelUIElement',
+    accessibilityunitdescription: 'accessibilityUnitDescription',
+    accessibilityunits: 'accessibilityUnits',
+    accessibilityurl: 'accessibilityURL',
+    accessibilityuserinputlabels: 'accessibilityUserInputLabels',
+    accessibilityvalue: 'accessibilityValue',
+    accessibilityvaluedescription: 'accessibilityValueDescription',
+    accessibilityverticalscrollbar: 'accessibilityVerticalScrollBar',
+    accessibilityverticalunitdescription: 'accessibilityVerticalUnitDescription',
+    accessibilityverticalunits: 'accessibilityVerticalUnits',
+    accessibilityvisiblecells: 'accessibilityVisibleCells',
+    accessibilityvisiblecharacterrange: 'accessibilityVisibleCharacterRange',
+    accessibilityvisiblechildren: 'accessibilityVisibleChildren',
+    accessibilityvisiblecolumns: 'accessibilityVisibleColumns',
+    accessibilityvisiblerows: 'accessibilityVisibleRows',
+    accessibilitywarningvalue: 'accessibilityWarningValue',
+    accessibilitywindow: 'accessibilityWindow',
+    accessibilitywindows: 'accessibilityWindows',
+    accessibilityzoombutton: 'accessibilityZoomButton',
+    addconstraint: 'addConstraint',
+    addconstraints: 'addConstraints',
+    addcursorrectcursor: 'addCursorRectCursor',
+    addgesturerecognizer: 'addGestureRecognizer',
+    additionalsafeareainsets: 'additionalSafeAreaInsets',
+    addlayoutguide: 'addLayoutGuide',
+    addsubview: 'addSubview',
+    addsubviewpositionedrelativeto: 'addSubviewPositionedRelativeTo',
+    addtooltiprectowneruserdata: 'addToolTipRectOwnerUserData',
+    addtrackingarea: 'addTrackingArea',
+    addtrackingrectowneruserdataassumeinside: 'addTrackingRectOwnerUserDataAssumeInside',
+    adjustpageheightnewtopbottomlimit: 'adjustPageHeightNewTopBottomLimit',
+    adjustpagewidthnewleftrightlimit: 'adjustPageWidthNewLeftRightLimit',
+    adjustscroll: 'adjustScroll',
+    alignmentrectforframe: 'alignmentRectForFrame',
+    alignmentrectinsets: 'alignmentRectInsets',
+    allocategstate: 'allocateGState',
+    allowedtouchtypes: 'allowedTouchTypes',
+    allowsvibrancy: 'allowsVibrancy',
+    alphavalue: 'alphaValue',
+    ancestorsharedwithview: 'ancestorSharedWithView',
+    animationforkey: 'animationForKey',
+    animations: 'animations',
+    animator: 'animator',
+    appearance: 'appearance',
+    autorelease: 'autorelease',
+    autoresizessubviews: 'autoresizesSubviews',
+    autoresizingmask: 'autoresizingMask',
+    autoscroll: 'autoscroll',
+    backgroundfilters: 'backgroundFilters',
+    backingalignedrectoptions: 'backingAlignedRectOptions',
+    baselineoffsetfrombottom: 'baselineOffsetFromBottom',
+    begindocument: 'beginDocument',
+    begindraggingsessionwithitemseventsource: 'beginDraggingSessionWithItemsEventSource',
+    beginpageinrectatplacement: 'beginPageInRectAtPlacement',
+    bitmapimagerepforcachingdisplayinrect: 'bitmapImageRepForCachingDisplayInRect',
+    bottomanchor: 'bottomAnchor',
+    bounds: 'bounds',
+    boundsrotation: 'boundsRotation',
+    cachedisplayinrecttobitmapimagerep: 'cacheDisplayInRectToBitmapImageRep',
+    canbecomekeyview: 'canBecomeKeyView',
+    candidatelisttouchbaritem: 'candidateListTouchBarItem',
+    candraw: 'canDraw',
+    candrawconcurrently: 'canDrawConcurrently',
+    candrawsubviewsintolayer: 'canDrawSubviewsIntoLayer',
+    centerscanrect: 'centerScanRect',
+    centerxanchor: 'centerXAnchor',
+    centeryanchor: 'centerYAnchor',
+    class: 'class',
+    clipstobounds: 'clipsToBounds',
+    compositingfilter: 'compositingFilter',
+    concludedragoperation: 'concludeDragOperation',
+    conformstoprotocol: 'conformsToProtocol',
+    constraints: 'constraints',
+    constraintsaffectinglayoutfororientation: 'constraintsAffectingLayoutForOrientation',
+    contentcompressionresistancepriorityfororientation: 'contentCompressionResistancePriorityForOrientation',
+    contentfilters: 'contentFilters',
+    contenthuggingpriorityfororientation: 'contentHuggingPriorityForOrientation',
+    convertpointfrombacking: 'convertPointFromBacking',
+    convertpointfrombase: 'convertPointFromBase',
+    convertpointfromlayer: 'convertPointFromLayer',
+    convertpointfromview: 'convertPointFromView',
+    convertpointtobacking: 'convertPointToBacking',
+    convertpointtobase: 'convertPointToBase',
+    convertpointtolayer: 'convertPointToLayer',
+    convertpointtoview: 'convertPointToView',
+    convertrectfrombacking: 'convertRectFromBacking',
+    convertrectfrombase: 'convertRectFromBase',
+    convertrectfromlayer: 'convertRectFromLayer',
+    convertrectfromview: 'convertRectFromView',
+    convertrecttobacking: 'convertRectToBacking',
+    convertrecttobase: 'convertRectToBase',
+    convertrecttolayer: 'convertRectToLayer',
+    convertrecttoview: 'convertRectToView',
+    convertsizefrombacking: 'convertSizeFromBacking',
+    convertsizefrombase: 'convertSizeFromBase',
+    convertsizefromlayer: 'convertSizeFromLayer',
+    convertsizefromview: 'convertSizeFromView',
+    convertsizetobacking: 'convertSizeToBacking',
+    convertsizetobase: 'convertSizeToBase',
+    convertsizetolayer: 'convertSizeToLayer',
+    convertsizetoview: 'convertSizeToView',
+    datawithepsinsiderect: 'dataWithEPSInsideRect',
+    datawithpdfinsiderect: 'dataWithPDFInsideRect',
+    debugdescription: 'debugDescription',
+    defaultanimationforkey: 'defaultAnimationForKey',
+    defaultfocusringtype: 'defaultFocusRingType',
+    defaultmenu: 'defaultMenu',
+    description: 'description',
+    didaddsubview: 'didAddSubview',
+    didclosemenuwithevent: 'didCloseMenuWithEvent',
+    discardcursorrects: 'discardCursorRects',
+    display: 'display',
+    displayifneeded: 'displayIfNeeded',
+    displayifneededignoringopacity: 'displayIfNeededIgnoringOpacity',
+    displayifneededinrect: 'displayIfNeededInRect',
+    displayifneededinrectignoringopacity: 'displayIfNeededInRectIgnoringOpacity',
+    displaylinkwithtargetselector: 'displayLinkWithTargetSelector',
+    displayrect: 'displayRect',
+    displayrectignoringopacity: 'displayRectIgnoringOpacity',
+    displayrectignoringopacityincontext: 'displayRectIgnoringOpacityInContext',
+    dragfilefromrectslidebackevent: 'dragFileFromRectSlideBackEvent',
+    draggingended: 'draggingEnded',
+    draggingentered: 'draggingEntered',
+    draggingexited: 'draggingExited',
+    draggingupdated: 'draggingUpdated',
+    dragimageatoffseteventpasteboardsourceslideback: 'dragImageAtOffsetEventPasteboardSourceSlideBack',
+    dragpromisedfilesoftypesfromrectsourceslidebackevent: 'dragPromisedFilesOfTypesFromRectSourceSlideBackEvent',
+    drawfocusringmask: 'drawFocusRingMask',
+    drawpageborderwithsize: 'drawPageBorderWithSize',
+    drawrect: 'drawRect',
+    drawsheetborderwithsize: 'drawSheetBorderWithSize',
+    effectiveappearance: 'effectiveAppearance',
+    enclosingmenuitem: 'enclosingMenuItem',
+    enclosingscrollview: 'enclosingScrollView',
+    enddocument: 'endDocument',
+    endpage: 'endPage',
+    enterfullscreenmodewithoptions: 'enterFullScreenModeWithOptions',
+    exerciseambiguityinlayout: 'exerciseAmbiguityInLayout',
+    exitfullscreenmodewithoptions: 'exitFullScreenModeWithOptions',
+    firstbaselineanchor: 'firstBaselineAnchor',
+    firstbaselineoffsetfromtop: 'firstBaselineOffsetFromTop',
+    fittingsize: 'fittingSize',
+    focusringmaskbounds: 'focusRingMaskBounds',
+    focusringtype: 'focusRingType',
+    focusview: 'focusView',
+    frame: 'frame',
+    framecenterrotation: 'frameCenterRotation',
+    frameforalignmentrect: 'frameForAlignmentRect',
+    framerotation: 'frameRotation',
+    gesturerecognizers: 'gestureRecognizers',
+    getrectsbeingdrawncount: 'getRectsBeingDrawnCount',
+    getrectsexposedduringliveresizecount: 'getRectsExposedDuringLiveResizeCount',
+    gstate: 'gState',
+    hasambiguouslayout: 'hasAmbiguousLayout',
+    hash: 'hash',
+    heightadjustlimit: 'heightAdjustLimit',
+    heightanchor: 'heightAnchor',
+    hittest: 'hitTest',
+    identifier: 'identifier',
+    initwithcoder: 'initWithCoder',
+    initwithframe: 'initWithFrame',
+    inliveresize: 'inLiveResize',
+    inputcontext: 'inputContext',
+    intrinsiccontentsize: 'intrinsicContentSize',
+    invalidateintrinsiccontentsize: 'invalidateIntrinsicContentSize',
+    isaccessibilityalternateuivisible: 'isAccessibilityAlternateUIVisible',
+    isaccessibilitydisclosed: 'isAccessibilityDisclosed',
+    isaccessibilityedited: 'isAccessibilityEdited',
+    isaccessibilityelement: 'isAccessibilityElement',
+    isaccessibilityenabled: 'isAccessibilityEnabled',
+    isaccessibilityexpanded: 'isAccessibilityExpanded',
+    isaccessibilityfocused: 'isAccessibilityFocused',
+    isaccessibilityfrontmost: 'isAccessibilityFrontmost',
+    isaccessibilityhidden: 'isAccessibilityHidden',
+    isaccessibilitymain: 'isAccessibilityMain',
+    isaccessibilityminimized: 'isAccessibilityMinimized',
+    isaccessibilitymodal: 'isAccessibilityModal',
+    isaccessibilityorderedbyrow: 'isAccessibilityOrderedByRow',
+    isaccessibilityprotectedcontent: 'isAccessibilityProtectedContent',
+    isaccessibilityrequired: 'isAccessibilityRequired',
+    isaccessibilityselected: 'isAccessibilitySelected',
+    isaccessibilityselectorallowed: 'isAccessibilitySelectorAllowed',
+    iscompatiblewithresponsivescrolling: 'isCompatibleWithResponsiveScrolling',
+    isdescendantof: 'isDescendantOf',
+    isdrawingfindindicator: 'isDrawingFindIndicator',
+    isequal: 'isEqual',
+    isflipped: 'isFlipped',
+    ishidden: 'isHidden',
+    ishiddenorhashiddenancestor: 'isHiddenOrHasHiddenAncestor',
+    ishorizontalcontentsizeconstraintactive: 'isHorizontalContentSizeConstraintActive',
+    isinfullscreenmode: 'isInFullScreenMode',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isopaque: 'isOpaque',
+    isproxy: 'isProxy',
+    isrotatedfrombase: 'isRotatedFromBase',
+    isrotatedorscaledfrombase: 'isRotatedOrScaledFromBase',
+    isverticalcontentsizeconstraintactive: 'isVerticalContentSizeConstraintActive',
+    knowspagerange: 'knowsPageRange',
+    lastbaselineanchor: 'lastBaselineAnchor',
+    lastbaselineoffsetfrombottom: 'lastBaselineOffsetFromBottom',
+    layer: 'layer',
+    layercontentsplacement: 'layerContentsPlacement',
+    layercontentsredrawpolicy: 'layerContentsRedrawPolicy',
+    layerusescoreimagefilters: 'layerUsesCoreImageFilters',
+    layout: 'layout',
+    layoutguides: 'layoutGuides',
+    layoutmarginsguide: 'layoutMarginsGuide',
+    layoutsubtreeifneeded: 'layoutSubtreeIfNeeded',
+    leadinganchor: 'leadingAnchor',
+    leftanchor: 'leftAnchor',
+    locationofprintrect: 'locationOfPrintRect',
+    lockfocus: 'lockFocus',
+    lockfocusifcandraw: 'lockFocusIfCanDraw',
+    lockfocusifcandrawincontext: 'lockFocusIfCanDrawInContext',
+    makebackinglayer: 'makeBackingLayer',
+    menuforevent: 'menuForEvent',
+    mousedowncanmovewindow: 'mouseDownCanMoveWindow',
+    mouseinrect: 'mouseInRect',
+    needsdisplay: 'needsDisplay',
+    needslayout: 'needsLayout',
+    needspaneltobecomekey: 'needsPanelToBecomeKey',
+    needstodrawrect: 'needsToDrawRect',
+    needsupdateconstraints: 'needsUpdateConstraints',
+    nextkeyview: 'nextKeyView',
+    nextvalidkeyview: 'nextValidKeyView',
+    notefocusringmaskchanged: 'noteFocusRingMaskChanged',
+    opaqueancestor: 'opaqueAncestor',
+    pagefooter: 'pageFooter',
+    pageheader: 'pageHeader',
+    performdragoperation: 'performDragOperation',
+    performkeyequivalent: 'performKeyEquivalent',
+    performmnemonic: 'performMnemonic',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    postsboundschangednotifications: 'postsBoundsChangedNotifications',
+    postsframechangednotifications: 'postsFrameChangedNotifications',
+    preparecontentinrect: 'prepareContentInRect',
+    preparedcontentrect: 'preparedContentRect',
+    preparefordragoperation: 'prepareForDragOperation',
+    prepareforreuse: 'prepareForReuse',
+    preservescontentduringliveresize: 'preservesContentDuringLiveResize',
+    pressureconfiguration: 'pressureConfiguration',
+    previouskeyview: 'previousKeyView',
+    previousvalidkeyview: 'previousValidKeyView',
+    print: 'print',
+    printjobtitle: 'printJobTitle',
+    rectforpage: 'rectForPage',
+    rectforsmartmagnificationatpointinrect: 'rectForSmartMagnificationAtPointInRect',
+    rectpreservedduringliveresize: 'rectPreservedDuringLiveResize',
+    reflectscrolledclipview: 'reflectScrolledClipView',
+    registereddraggedtypes: 'registeredDraggedTypes',
+    registerfordraggedtypes: 'registerForDraggedTypes',
+    release: 'release',
+    releasegstate: 'releaseGState',
+    removealltooltips: 'removeAllToolTips',
+    removeconstraint: 'removeConstraint',
+    removeconstraints: 'removeConstraints',
+    removecursorrectcursor: 'removeCursorRectCursor',
+    removefromsuperview: 'removeFromSuperview',
+    removefromsuperviewwithoutneedingdisplay: 'removeFromSuperviewWithoutNeedingDisplay',
+    removegesturerecognizer: 'removeGestureRecognizer',
+    removelayoutguide: 'removeLayoutGuide',
+    removetooltip: 'removeToolTip',
+    removetrackingarea: 'removeTrackingArea',
+    removetrackingrect: 'removeTrackingRect',
+    renewgstate: 'renewGState',
+    replacesubviewwith: 'replaceSubviewWith',
+    requiresconstraintbasedlayout: 'requiresConstraintBasedLayout',
+    resetcursorrects: 'resetCursorRects',
+    resizesubviewswitholdsize: 'resizeSubviewsWithOldSize',
+    resizewitholdsuperviewsize: 'resizeWithOldSuperviewSize',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    rightanchor: 'rightAnchor',
+    rotatebyangle: 'rotateByAngle',
+    rulerviewdidaddmarker: 'rulerViewDidAddMarker',
+    rulerviewdidmovemarker: 'rulerViewDidMoveMarker',
+    rulerviewdidremovemarker: 'rulerViewDidRemoveMarker',
+    rulerviewhandlemousedown: 'rulerViewHandleMouseDown',
+    rulerviewlocationforpoint: 'rulerViewLocationForPoint',
+    rulerviewpointforlocation: 'rulerViewPointForLocation',
+    rulerviewshouldaddmarker: 'rulerViewShouldAddMarker',
+    rulerviewshouldmovemarker: 'rulerViewShouldMoveMarker',
+    rulerviewshouldremovemarker: 'rulerViewShouldRemoveMarker',
+    rulerviewwilladdmarkeratlocation: 'rulerViewWillAddMarkerAtLocation',
+    rulerviewwillmovemarkertolocation: 'rulerViewWillMoveMarkerToLocation',
+    rulerviewwillsetclientview: 'rulerViewWillSetClientView',
+    safeareainsets: 'safeAreaInsets',
+    safearealayoutguide: 'safeAreaLayoutGuide',
+    safearearect: 'safeAreaRect',
+    scaleunitsquaretosize: 'scaleUnitSquareToSize',
+    scrollclipviewtopoint: 'scrollClipViewToPoint',
+    scrollpoint: 'scrollPoint',
+    scrollrectby: 'scrollRectBy',
+    scrollrecttovisible: 'scrollRectToVisible',
+    self: 'self',
+    setboundsorigin: 'setBoundsOrigin',
+    setboundssize: 'setBoundsSize',
+    setcontentcompressionresistancepriorityfororientation: 'setContentCompressionResistancePriorityForOrientation',
+    setcontenthuggingpriorityfororientation: 'setContentHuggingPriorityForOrientation',
+    setframeorigin: 'setFrameOrigin',
+    setframesize: 'setFrameSize',
+    setkeyboardfocusringneedsdisplayinrect: 'setKeyboardFocusRingNeedsDisplayInRect',
+    setneedsdisplayinrect: 'setNeedsDisplayInRect',
+    setupgstate: 'setUpGState',
+    shadow: 'shadow',
+    shoulddelaywindoworderingforevent: 'shouldDelayWindowOrderingForEvent',
+    shoulddrawcolor: 'shouldDrawColor',
+    showdefinitionforattributedstringatpoint: 'showDefinitionForAttributedStringAtPoint',
+    showdefinitionforattributedstringrangeoptionsbaselineoriginprovider: 'showDefinitionForAttributedStringRangeOptionsBaselineOriginProvider',
+    sortsubviewsusingfunctioncontext: 'sortSubviewsUsingFunctionContext',
+    subviews: 'subviews',
+    superclass: 'superclass',
+    superview: 'superview',
+    tag: 'tag',
+    tooltip: 'toolTip',
+    topanchor: 'topAnchor',
+    trackingareas: 'trackingAreas',
+    trailinganchor: 'trailingAnchor',
+    translateorigintopoint: 'translateOriginToPoint',
+    translaterectsneedingdisplayinrectby: 'translateRectsNeedingDisplayInRectBy',
+    translatesautoresizingmaskintoconstraints: 'translatesAutoresizingMaskIntoConstraints',
+    unlockfocus: 'unlockFocus',
+    unregisterdraggedtypes: 'unregisterDraggedTypes',
+    updateconstraints: 'updateConstraints',
+    updateconstraintsforsubtreeifneeded: 'updateConstraintsForSubtreeIfNeeded',
+    updatedraggingitemsfordrag: 'updateDraggingItemsForDrag',
+    updatelayer: 'updateLayer',
+    updatetrackingareas: 'updateTrackingAreas',
+    userinterfacelayoutdirection: 'userInterfaceLayoutDirection',
+    viewdidchangebackingproperties: 'viewDidChangeBackingProperties',
+    viewdidchangeeffectiveappearance: 'viewDidChangeEffectiveAppearance',
+    viewdidendliveresize: 'viewDidEndLiveResize',
+    viewdidhide: 'viewDidHide',
+    viewdidmovetosuperview: 'viewDidMoveToSuperview',
+    viewdidmovetowindow: 'viewDidMoveToWindow',
+    viewdidunhide: 'viewDidUnhide',
+    viewwilldraw: 'viewWillDraw',
+    viewwillmovetosuperview: 'viewWillMoveToSuperview',
+    viewwillmovetowindow: 'viewWillMoveToWindow',
+    viewwillstartliveresize: 'viewWillStartLiveResize',
+    viewwithtag: 'viewWithTag',
+    visiblerect: 'visibleRect',
+    wantsbestresolutionopenglsurface: 'wantsBestResolutionOpenGLSurface',
+    wantsdefaultclipping: 'wantsDefaultClipping',
+    wantsextendeddynamicrangeopenglsurface: 'wantsExtendedDynamicRangeOpenGLSurface',
+    wantslayer: 'wantsLayer',
+    wantsperiodicdraggingupdates: 'wantsPeriodicDraggingUpdates',
+    wantsrestingtouches: 'wantsRestingTouches',
+    wantsupdatelayer: 'wantsUpdateLayer',
+    widthadjustlimit: 'widthAdjustLimit',
+    widthanchor: 'widthAnchor',
+    willopenmenuwithevent: 'willOpenMenuWithEvent',
+    willremovesubview: 'willRemoveSubview',
+    window: 'window',
+    writeepsinsiderecttopasteboard: 'writeEPSInsideRectToPasteboard',
+    writepdfinsiderecttopasteboard: 'writePDFInsideRectToPasteboard',
+    zone: 'zone',
+  }
 
-  // readonly window: NSWindow;
-  // readonly superview: NSView;
-  // readonly opaqueAncestor: NSView;
-  // isHidden: boolean;
-  // readonly isHiddenOrHasHiddenAncestor: boolean;
-  // readonly wantsDefaultClipping: boolean;
-  // postsFrameChangedNotifications: boolean;
-  // autoresizesSubviews: boolean;
-  // autoresizingMask: interop.Enum<typeof NSAutoresizingMaskOptions>;
-  // frame: CGRect;
-  // frameRotation: number;
-  // frameCenterRotation: number;
-  // boundsRotation: number;
-  // bounds: CGRect;
-  // readonly isFlipped: boolean;
-  // readonly isRotatedFromBase: boolean;
-  // readonly isRotatedOrScaledFromBase: boolean;
-  // readonly isOpaque: boolean;
-  // canDrawConcurrently: boolean;
-  // readonly canDraw: boolean;
-  // needsDisplay: boolean;
-  // focusView: NSView;
-  // readonly visibleRect: CGRect;
-  // readonly tag: number;
-  // readonly needsPanelToBecomeKey: boolean;
-  // readonly mouseDownCanMoveWindow: boolean;
   // acceptsTouchEvents: boolean;
-  // wantsRestingTouches: boolean;
-  // layerContentsRedrawPolicy: interop.Enum<typeof NSViewLayerContentsRedrawPolicy>;
-  // layerContentsPlacement: interop.Enum<typeof NSViewLayerContentsPlacement>;
-  // wantsLayer: boolean;
-  // layer: CALayer;
-  // readonly wantsUpdateLayer: boolean;
-  // canDrawSubviewsIntoLayer: boolean;
-  // needsLayout: boolean;
-  // alphaValue: number;
-  // layerUsesCoreImageFilters: boolean;
-  // compositingFilter: CIFilter;
-  // shadow: NSShadow;
-  // clipsToBounds: boolean;
-  // postsBoundsChangedNotifications: boolean;
-  // readonly enclosingScrollView: NSScrollView;
-  // defaultMenu: NSMenu;
-  // readonly inLiveResize: boolean;
-  // readonly preservesContentDuringLiveResize: boolean;
-  // readonly rectPreservedDuringLiveResize: CGRect;
-  // readonly inputContext: NSTextInputContext;
-  // userInterfaceLayoutDirection: interop.Enum<typeof NSUserInterfaceLayoutDirection>;
-  // isCompatibleWithResponsiveScrolling: boolean;
-  // preparedContentRect: CGRect;
-  // readonly allowsVibrancy: boolean;
-  // nextKeyView: NSView;
-  // readonly previousKeyView: NSView;
-  // readonly nextValidKeyView: NSView;
-  // readonly previousValidKeyView: NSView;
-  // readonly canBecomeKeyView: boolean;
-  // focusRingType: interop.Enum<typeof NSFocusRingType>;
-  // defaultFocusRingType: interop.Enum<typeof NSFocusRingType>;
-  // readonly focusRingMaskBounds: CGRect;
-  // readonly heightAdjustLimit: number;
-  // readonly widthAdjustLimit: number;
-  // readonly pageHeader: NSAttributedString;
-  // readonly pageFooter: NSAttributedString;
-  // readonly printJobTitle: NSString;
-  // readonly registeredDraggedTypes: NSArray;
-  // readonly isInFullScreenMode: boolean;
-  // readonly isDrawingFindIndicator: boolean;
-  // allowedTouchTypes: interop.Enum<typeof NSTouchTypeMask>;
-  // readonly safeAreaInsets: NSEdgeInsets;
-  // additionalSafeAreaInsets: NSEdgeInsets;
-  // readonly safeAreaLayoutGuide: NSLayoutGuide;
-  // readonly safeAreaRect: CGRect;
-  // readonly layoutMarginsGuide: NSLayoutGuide;
-  // readonly trackingAreas: NSArray;
-  // readonly enclosingMenuItem: NSMenuItem;
-  // readonly candidateListTouchBarItem: NSCandidateListTouchBarItem;
-  // readonly leadingAnchor: NSLayoutXAxisAnchor;
-  // readonly trailingAnchor: NSLayoutXAxisAnchor;
-  // readonly leftAnchor: NSLayoutXAxisAnchor;
-  // readonly rightAnchor: NSLayoutXAxisAnchor;
-  // readonly topAnchor: NSLayoutYAxisAnchor;
-  // readonly bottomAnchor: NSLayoutYAxisAnchor;
-  // readonly widthAnchor: NSLayoutDimension;
-  // readonly heightAnchor: NSLayoutDimension;
-  // readonly centerXAnchor: NSLayoutXAxisAnchor;
-  // readonly centerYAnchor: NSLayoutYAxisAnchor;
-  // readonly firstBaselineAnchor: NSLayoutYAxisAnchor;
-  // readonly lastBaselineAnchor: NSLayoutYAxisAnchor;
-  // readonly constraints: NSArray;
-  // needsUpdateConstraints: boolean;
-  // translatesAutoresizingMaskIntoConstraints: boolean;
-  // requiresConstraintBasedLayout: boolean;
-  // readonly alignmentRectInsets: NSEdgeInsets;
-  // readonly firstBaselineOffsetFromTop: number;
-  // readonly lastBaselineOffsetFromBottom: number;
-  // readonly baselineOffsetFromBottom: number;
-  // readonly intrinsicContentSize: CGSize;
-  // isHorizontalContentSizeConstraintActive: boolean;
-  // isVerticalContentSizeConstraintActive: boolean;
-  // readonly fittingSize: CGSize;
-  // readonly hasAmbiguousLayout: boolean;
-  // readonly layoutGuides: NSArray;
-  // wantsBestResolutionOpenGLSurface: boolean;
-  // wantsExtendedDynamicRangeOpenGLSurface: boolean;
-  // pressureConfiguration: NSPressureConfiguration;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
-  // appearance: NSAppearance;
-  // readonly effectiveAppearance: NSAppearance;
-  // isAccessibilityElement: boolean;
-  // accessibilityFrame: CGRect;
-  // isAccessibilityFocused: boolean;
   // accessibilityActivationPoint: CGPoint;
-  // accessibilityTopLevelUIElement: interop.Object;
-  // accessibilityURL: NSURL;
-  // accessibilityValue: interop.Object;
-  // accessibilityTitleUIElement: interop.Object;
-  // accessibilityOrientation: interop.Enum<typeof NSAccessibilityOrientation>;
-  // accessibilityOverflowButton: interop.Object;
-  // accessibilityParent: interop.Object;
-  // accessibilitySearchButton: interop.Object;
-  // accessibilitySearchMenu: interop.Object;
-  // isAccessibilitySelected: boolean;
-  // accessibilityShownMenu: interop.Object;
-  // accessibilityMinValue: interop.Object;
-  // accessibilityMaxValue: interop.Object;
-  // accessibilityWindow: interop.Object;
-  // isAccessibilityExpanded: boolean;
-  // isAccessibilityEdited: boolean;
-  // isAccessibilityEnabled: boolean;
-  // accessibilityClearButton: interop.Object;
-  // accessibilityCancelButton: interop.Object;
-  // isAccessibilityProtectedContent: boolean;
-  // isAccessibilityAlternateUIVisible: boolean;
-  // isAccessibilityRequired: boolean;
   // accessibilityApplicationFocusedUIElement: interop.Object;
-  // accessibilityMainWindow: interop.Object;
-  // isAccessibilityHidden: boolean;
-  // isAccessibilityFrontmost: boolean;
-  // accessibilityFocusedWindow: interop.Object;
-  // accessibilityExtrasMenuBar: interop.Object;
-  // accessibilityMenuBar: interop.Object;
-  // isAccessibilityOrderedByRow: boolean;
-  // accessibilityHorizontalUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityVerticalUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityWarningValue: interop.Object;
+  // accessibilityCancelButton: interop.Object;
+  // accessibilityClearButton: interop.Object;
+  // accessibilityCloseButton: interop.Object;
+  // accessibilityColumnCount: number;
+  // accessibilityColumnIndexRange: _NSRange;
   // accessibilityCriticalValue: interop.Object;
-  // isAccessibilityDisclosed: boolean;
+  // accessibilityDecrementButton: interop.Object;
+  // accessibilityDefaultButton: interop.Object;
   // accessibilityDisclosedByRow: interop.Object;
   // accessibilityDisclosedRows: interop.Object;
   // accessibilityDisclosureLevel: number;
-  // accessibilityMarkerValues: interop.Object;
-  // accessibilityMarkerGroupUIElement: interop.Object;
-  // accessibilityUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityRulerMarkerType: interop.Enum<typeof NSAccessibilityRulerMarkerType>;
-  // accessibilityHorizontalScrollBar: interop.Object;
-  // accessibilityVerticalScrollBar: interop.Object;
-  // accessibilityLabelValue: number;
-  // accessibilityDecrementButton: interop.Object;
-  // accessibilityIncrementButton: interop.Object;
-  // accessibilityHeader: interop.Object;
-  // accessibilityColumnCount: number;
-  // accessibilityRowCount: number;
-  // accessibilityIndex: number;
-  // accessibilitySortDirection: interop.Enum<typeof NSAccessibilitySortDirection>;
-  // accessibilityRowIndexRange: _NSRange;
-  // accessibilityColumnIndexRange: _NSRange;
-  // accessibilityInsertionPointLineNumber: number;
-  // accessibilitySharedCharacterRange: _NSRange;
-  // accessibilityVisibleCharacterRange: _NSRange;
-  // accessibilityNumberOfCharacters: number;
-  // accessibilitySelectedTextRange: _NSRange;
-  // accessibilityToolbarButton: interop.Object;
-  // isAccessibilityModal: boolean;
-  // accessibilityProxy: interop.Object;
-  // isAccessibilityMain: boolean;
+  // accessibilityExtrasMenuBar: interop.Object;
+  // accessibilityFocusedWindow: interop.Object;
+  // accessibilityFrame: CGRect;
   // accessibilityFullScreenButton: interop.Object;
   // accessibilityGrowArea: interop.Object;
-  // accessibilityDefaultButton: interop.Object;
-  // accessibilityCloseButton: interop.Object;
-  // accessibilityZoomButton: interop.Object;
+  // accessibilityHeader: interop.Object;
+  // accessibilityHorizontalScrollBar: interop.Object;
+  // accessibilityHorizontalUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityIncrementButton: interop.Object;
+  // accessibilityIndex: number;
+  // accessibilityInsertionPointLineNumber: number;
+  // accessibilityLabelValue: number;
+  // accessibilityMainWindow: interop.Object;
+  // accessibilityMarkerGroupUIElement: interop.Object;
+  // accessibilityMarkerValues: interop.Object;
+  // accessibilityMaxValue: interop.Object;
+  // accessibilityMenuBar: interop.Object;
   // accessibilityMinimizeButton: interop.Object;
+  // accessibilityMinValue: interop.Object;
+  // accessibilityNumberOfCharacters: number;
+  // accessibilityOrientation: interop.Enum<typeof NSAccessibilityOrientation>;
+  // accessibilityOverflowButton: interop.Object;
+  // accessibilityParent: interop.Object;
+  // accessibilityProxy: interop.Object;
+  // accessibilityRowCount: number;
+  // accessibilityRowIndexRange: _NSRange;
+  // accessibilityRulerMarkerType: interop.Enum<typeof NSAccessibilityRulerMarkerType>;
+  // accessibilitySearchButton: interop.Object;
+  // accessibilitySearchMenu: interop.Object;
+  // accessibilitySelectedTextRange: _NSRange;
+  // accessibilitySharedCharacterRange: _NSRange;
+  // accessibilityShownMenu: interop.Object;
+  // accessibilitySortDirection: interop.Enum<typeof NSAccessibilitySortDirection>;
+  // accessibilityTitleUIElement: interop.Object;
+  // accessibilityToolbarButton: interop.Object;
+  // accessibilityTopLevelUIElement: interop.Object;
+  // accessibilityUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityURL: NSURL;
+  // accessibilityValue: interop.Object;
+  // accessibilityVerticalScrollBar: interop.Object;
+  // accessibilityVerticalUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityVisibleCharacterRange: _NSRange;
+  // accessibilityWarningValue: interop.Object;
+  // accessibilityWindow: interop.Object;
+  // accessibilityZoomButton: interop.Object;
+  // additionalSafeAreaInsets: NSEdgeInsets;
+  // readonly alignmentRectInsets: NSEdgeInsets;
+  // allowedTouchTypes: interop.Enum<typeof NSTouchTypeMask>;
+  // readonly allowsVibrancy: boolean;
+  // alphaValue: number;
+  // appearance: NSAppearance;
+  // autoresizesSubviews: boolean;
+  // autoresizingMask: interop.Enum<typeof NSAutoresizingMaskOptions>;
+  // readonly baselineOffsetFromBottom: number;
+  // readonly bottomAnchor: NSLayoutYAxisAnchor;
+  // bounds: CGRect;
+  // boundsRotation: number;
+  // readonly canBecomeKeyView: boolean;
+  // readonly candidateListTouchBarItem: NSCandidateListTouchBarItem;
+  // readonly canDraw: boolean;
+  // canDrawConcurrently: boolean;
+  // canDrawSubviewsIntoLayer: boolean;
+  // readonly centerXAnchor: NSLayoutXAxisAnchor;
+  // readonly centerYAnchor: NSLayoutYAxisAnchor;
+  // clipsToBounds: boolean;
+  // compositingFilter: CIFilter;
+  // readonly constraints: NSArray;
+  // readonly debugDescription: NSString;
+  // defaultFocusRingType: interop.Enum<typeof NSFocusRingType>;
+  // defaultMenu: NSMenu;
+  // readonly description: NSString;
+  // readonly effectiveAppearance: NSAppearance;
+  // readonly enclosingMenuItem: NSMenuItem;
+  // readonly enclosingScrollView: NSScrollView;
+  // readonly firstBaselineAnchor: NSLayoutYAxisAnchor;
+  // readonly firstBaselineOffsetFromTop: number;
+  // readonly fittingSize: CGSize;
+  // readonly focusRingMaskBounds: CGRect;
+  // focusRingType: interop.Enum<typeof NSFocusRingType>;
+  // focusView: NSView;
+  // frame: CGRect;
+  // frameCenterRotation: number;
+  // frameRotation: number;
+  // readonly hasAmbiguousLayout: boolean;
+  // readonly hash: number;
+  // readonly heightAdjustLimit: number;
+  // readonly heightAnchor: NSLayoutDimension;
+  // readonly inLiveResize: boolean;
+  // readonly inputContext: NSTextInputContext;
+  // readonly intrinsicContentSize: CGSize;
+  // isAccessibilityAlternateUIVisible: boolean;
+  // isAccessibilityDisclosed: boolean;
+  // isAccessibilityEdited: boolean;
+  // isAccessibilityElement: boolean;
+  // isAccessibilityEnabled: boolean;
+  // isAccessibilityExpanded: boolean;
+  // isAccessibilityFocused: boolean;
+  // isAccessibilityFrontmost: boolean;
+  // isAccessibilityHidden: boolean;
+  // isAccessibilityMain: boolean;
   // isAccessibilityMinimized: boolean;
+  // isAccessibilityModal: boolean;
+  // isAccessibilityOrderedByRow: boolean;
+  // isAccessibilityProtectedContent: boolean;
+  // isAccessibilityRequired: boolean;
+  // isAccessibilitySelected: boolean;
+  // isCompatibleWithResponsiveScrolling: boolean;
+  // readonly isDrawingFindIndicator: boolean;
+  // readonly isFlipped: boolean;
+  // isHidden: boolean;
+  // readonly isHiddenOrHasHiddenAncestor: boolean;
+  // isHorizontalContentSizeConstraintActive: boolean;
+  // readonly isInFullScreenMode: boolean;
+  // readonly isOpaque: boolean;
+  // readonly isProxy: boolean;
+  // readonly isRotatedFromBase: boolean;
+  // readonly isRotatedOrScaledFromBase: boolean;
+  // isVerticalContentSizeConstraintActive: boolean;
+  // readonly lastBaselineAnchor: NSLayoutYAxisAnchor;
+  // readonly lastBaselineOffsetFromBottom: number;
+  // layer: CALayer;
+  // layerContentsPlacement: interop.Enum<typeof NSViewLayerContentsPlacement>;
+  // layerContentsRedrawPolicy: interop.Enum<typeof NSViewLayerContentsRedrawPolicy>;
+  // layerUsesCoreImageFilters: boolean;
+  // readonly layoutGuides: NSArray;
+  // readonly layoutMarginsGuide: NSLayoutGuide;
+  // readonly leadingAnchor: NSLayoutXAxisAnchor;
+  // readonly leftAnchor: NSLayoutXAxisAnchor;
+  // readonly mouseDownCanMoveWindow: boolean;
+  // needsDisplay: boolean;
+  // needsLayout: boolean;
+  // readonly needsPanelToBecomeKey: boolean;
+  // needsUpdateConstraints: boolean;
+  // nextKeyView: NSView;
+  // readonly nextValidKeyView: NSView;
+  // readonly opaqueAncestor: NSView;
+  // readonly pageFooter: NSAttributedString;
+  // readonly pageHeader: NSAttributedString;
+  // postsBoundsChangedNotifications: boolean;
+  // postsFrameChangedNotifications: boolean;
+  // preparedContentRect: CGRect;
+  // readonly preservesContentDuringLiveResize: boolean;
+  // pressureConfiguration: NSPressureConfiguration;
+  // readonly previousKeyView: NSView;
+  // readonly previousValidKeyView: NSView;
+  // readonly printJobTitle: NSString;
+  // readonly rectPreservedDuringLiveResize: CGRect;
+  // readonly registeredDraggedTypes: NSArray;
+  // requiresConstraintBasedLayout: boolean;
+  // readonly rightAnchor: NSLayoutXAxisAnchor;
+  // readonly safeAreaInsets: NSEdgeInsets;
+  // readonly safeAreaLayoutGuide: NSLayoutGuide;
+  // readonly safeAreaRect: CGRect;
+  // shadow: NSShadow;
+  // readonly superclass: interop.Object;
+  // readonly superview: NSView;
+  // readonly tag: number;
+  // readonly topAnchor: NSLayoutYAxisAnchor;
+  // readonly trackingAreas: NSArray;
+  // readonly trailingAnchor: NSLayoutXAxisAnchor;
+  // translatesAutoresizingMaskIntoConstraints: boolean;
+  // userInterfaceLayoutDirection: interop.Enum<typeof NSUserInterfaceLayoutDirection>;
+  // readonly visibleRect: CGRect;
+  // wantsBestResolutionOpenGLSurface: boolean;
+  // readonly wantsDefaultClipping: boolean;
+  // wantsExtendedDynamicRangeOpenGLSurface: boolean;
+  // wantsLayer: boolean;
+  // wantsRestingTouches: boolean;
+  // readonly wantsUpdateLayer: boolean;
+  // readonly widthAdjustLimit: number;
+  // readonly widthAnchor: NSLayoutDimension;
+  // readonly window: NSWindow;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSImageElement extends HTMLNSObjectElement {
@@ -2314,25 +6602,111 @@ export class HTMLNSImageElement extends HTMLNSObjectElement {
   get delegate(): NSImageDelegateImpl {
     return (this.nativeObject.delegate ??= NSImageDelegateImpl.new()) as NSImageDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessibilitydescription: 'accessibilityDescription',
+    addrepresentation: 'addRepresentation',
+    addrepresentations: 'addRepresentations',
+    alignmentrect: 'alignmentRect',
+    backgroundcolor: 'backgroundColor',
+    bestrepresentationfordevice: 'bestRepresentationForDevice',
+    bestrepresentationforrectcontexthints: 'bestRepresentationForRectContextHints',
+    cachedepthmatchesimagedepth: 'cacheDepthMatchesImageDepth',
+    cachemode: 'cacheMode',
+    cancelincrementalload: 'cancelIncrementalLoad',
+    caninitwithpasteboard: 'canInitWithPasteboard',
+    capinsets: 'capInsets',
+    cgimageforproposedrectcontexthints: 'CGImageForProposedRectContextHints',
+    compositetopointfromrectoperation: 'compositeToPointFromRectOperation',
+    compositetopointfromrectoperationfraction: 'compositeToPointFromRectOperationFraction',
+    compositetopointoperation: 'compositeToPointOperation',
+    compositetopointoperationfraction: 'compositeToPointOperationFraction',
+    delegate: 'delegate',
+    dissolvetopointfraction: 'dissolveToPointFraction',
+    dissolvetopointfromrectfraction: 'dissolveToPointFromRectFraction',
+    drawatpointfromrectoperationfraction: 'drawAtPointFromRectOperationFraction',
+    drawinrect: 'drawInRect',
+    drawinrectfromrectoperationfraction: 'drawInRectFromRectOperationFraction',
+    drawinrectfromrectoperationfractionrespectflippedhints: 'drawInRectFromRectOperationFractionRespectFlippedHints',
+    drawrepresentationinrect: 'drawRepresentationInRect',
+    hittestrectwithimagedestinationrectcontexthintsflipped: 'hitTestRectWithImageDestinationRectContextHintsFlipped',
+    imagefiletypes: 'imageFileTypes',
+    imagenamed: 'imageNamed',
+    imagepasteboardtypes: 'imagePasteboardTypes',
+    imagetypes: 'imageTypes',
+    imageunfilteredfiletypes: 'imageUnfilteredFileTypes',
+    imageunfilteredpasteboardtypes: 'imageUnfilteredPasteboardTypes',
+    imageunfilteredtypes: 'imageUnfilteredTypes',
+    imagewithlocale: 'imageWithLocale',
+    imagewithsizeflippeddrawinghandler: 'imageWithSizeFlippedDrawingHandler',
+    imagewithsymbolconfiguration: 'imageWithSymbolConfiguration',
+    imagewithsymbolnamebundlevariablevalue: 'imageWithSymbolNameBundleVariableValue',
+    imagewithsymbolnamevariablevalue: 'imageWithSymbolNameVariableValue',
+    imagewithsystemsymbolnameaccessibilitydescription: 'imageWithSystemSymbolNameAccessibilityDescription',
+    imagewithsystemsymbolnamevariablevalueaccessibilitydescription: 'imageWithSystemSymbolNameVariableValueAccessibilityDescription',
+    initbyreferencingfile: 'initByReferencingFile',
+    initbyreferencingurl: 'initByReferencingURL',
+    initwithcgimagesize: 'initWithCGImageSize',
+    initwithcoder: 'initWithCoder',
+    initwithcontentsoffile: 'initWithContentsOfFile',
+    initwithcontentsofurl: 'initWithContentsOfURL',
+    initwithdata: 'initWithData',
+    initwithdataignoringorientation: 'initWithDataIgnoringOrientation',
+    initwithiconref: 'initWithIconRef',
+    initwithpasteboard: 'initWithPasteboard',
+    initwithsize: 'initWithSize',
+    iscachedseparately: 'isCachedSeparately',
+    isdataretained: 'isDataRetained',
+    isflipped: 'isFlipped',
+    istemplate: 'isTemplate',
+    isvalid: 'isValid',
+    layercontentsforcontentsscale: 'layerContentsForContentsScale',
+    locale: 'locale',
+    lockfocus: 'lockFocus',
+    lockfocusflipped: 'lockFocusFlipped',
+    lockfocusonrepresentation: 'lockFocusOnRepresentation',
+    matchesonlyonbestfittingaxis: 'matchesOnlyOnBestFittingAxis',
+    matchesonmultipleresolution: 'matchesOnMultipleResolution',
+    name: 'name',
+    preferscolormatch: 'prefersColorMatch',
+    recache: 'recache',
+    recommendedlayercontentsscale: 'recommendedLayerContentsScale',
+    removerepresentation: 'removeRepresentation',
+    representations: 'representations',
+    resizingmode: 'resizingMode',
+    scaleswhenresized: 'scalesWhenResized',
+    setcachedepthmatchesimagedepth: 'setCacheDepthMatchesImageDepth',
+    setcachedseparately: 'setCachedSeparately',
+    setdataretained: 'setDataRetained',
+    setflipped: 'setFlipped',
+    setname: 'setName',
+    setscaleswhenresized: 'setScalesWhenResized',
+    size: 'size',
+    symbolconfiguration: 'symbolConfiguration',
+    tiffrepresentation: 'TIFFRepresentation',
+    tiffrepresentationusingcompressionfactor: 'TIFFRepresentationUsingCompressionFactor',
+    unlockfocus: 'unlockFocus',
+    usesepsonresolutionmismatch: 'usesEPSOnResolutionMismatch',
+  }
 
-  // size: CGSize;
+  // alignmentRect: CGRect;
   // backgroundColor: NSColor;
-  // usesEPSOnResolutionMismatch: boolean;
-  // prefersColorMatch: boolean;
-  // matchesOnMultipleResolution: boolean;
-  // matchesOnlyOnBestFittingAxis: boolean;
-  // readonly TIFFRepresentation: NSData;
-  // readonly representations: NSArray;
-  // readonly isValid: boolean;
+  // cacheMode: interop.Enum<typeof NSImageCacheMode>;
+  // capInsets: NSEdgeInsets;
   // imageTypes: NSArray;
   // imageUnfilteredTypes: NSArray;
-  // cacheMode: interop.Enum<typeof NSImageCacheMode>;
-  // alignmentRect: CGRect;
   // isTemplate: boolean;
-  // capInsets: NSEdgeInsets;
-  // resizingMode: interop.Enum<typeof NSImageResizingMode>;
-  // readonly symbolConfiguration: NSImageSymbolConfiguration;
+  // readonly isValid: boolean;
   // readonly locale: NSLocale;
+  // matchesOnlyOnBestFittingAxis: boolean;
+  // matchesOnMultipleResolution: boolean;
+  // prefersColorMatch: boolean;
+  // readonly representations: NSArray;
+  // resizingMode: interop.Enum<typeof NSImageResizingMode>;
+  // size: CGSize;
+  // readonly symbolConfiguration: NSImageSymbolConfiguration;
+  // readonly TIFFRepresentation: NSData;
+  // usesEPSOnResolutionMismatch: boolean;
 
   set imagedidnotdrawinrect(value: (sender: NSImage, rect: CGRect) => NSImage) {
     this.delegate.imageDidNotDrawInRect = value;
@@ -2356,23 +6730,52 @@ export class HTMLNSToolbarElement extends HTMLNSObjectElement {
   get delegate(): NSToolbarDelegateImpl {
     return (this.nativeObject.delegate ??= NSToolbarDelegateImpl.new()) as NSToolbarDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    allowsextensionitems: 'allowsExtensionItems',
+    allowsusercustomization: 'allowsUserCustomization',
+    autosavesconfiguration: 'autosavesConfiguration',
+    centereditemidentifier: 'centeredItemIdentifier',
+    centereditemidentifiers: 'centeredItemIdentifiers',
+    configurationdictionary: 'configurationDictionary',
+    customizationpaletteisrunning: 'customizationPaletteIsRunning',
+    delegate: 'delegate',
+    displaymode: 'displayMode',
+    fullscreenaccessoryview: 'fullScreenAccessoryView',
+    fullscreenaccessoryviewmaxheight: 'fullScreenAccessoryViewMaxHeight',
+    fullscreenaccessoryviewminheight: 'fullScreenAccessoryViewMinHeight',
+    identifier: 'identifier',
+    init: 'init',
+    initwithidentifier: 'initWithIdentifier',
+    insertitemwithitemidentifieratindex: 'insertItemWithItemIdentifierAtIndex',
+    isvisible: 'isVisible',
+    items: 'items',
+    removeitematindex: 'removeItemAtIndex',
+    runcustomizationpalette: 'runCustomizationPalette',
+    selecteditemidentifier: 'selectedItemIdentifier',
+    setconfigurationfromdictionary: 'setConfigurationFromDictionary',
+    showsbaselineseparator: 'showsBaselineSeparator',
+    sizemode: 'sizeMode',
+    validatevisibleitems: 'validateVisibleItems',
+    visibleitems: 'visibleItems',
+  }
 
-  // isVisible: boolean;
+  // allowsExtensionItems: boolean;
+  // allowsUserCustomization: boolean;
+  // autosavesConfiguration: boolean;
+  // centeredItemIdentifiers: NSSet;
+  // readonly configurationDictionary: NSDictionary;
   // readonly customizationPaletteIsRunning: boolean;
   // displayMode: interop.Enum<typeof NSToolbarDisplayMode>;
-  // sizeMode: interop.Enum<typeof NSToolbarSizeMode>;
-  // showsBaselineSeparator: boolean;
-  // allowsUserCustomization: boolean;
-  // readonly identifier: NSString;
-  // readonly items: NSArray;
-  // readonly visibleItems: NSArray;
-  // centeredItemIdentifiers: NSSet;
-  // autosavesConfiguration: boolean;
-  // readonly configurationDictionary: NSDictionary;
-  // allowsExtensionItems: boolean;
   // fullScreenAccessoryView: NSView;
-  // fullScreenAccessoryViewMinHeight: number;
   // fullScreenAccessoryViewMaxHeight: number;
+  // fullScreenAccessoryViewMinHeight: number;
+  // readonly identifier: NSString;
+  // isVisible: boolean;
+  // readonly items: NSArray;
+  // showsBaselineSeparator: boolean;
+  // sizeMode: interop.Enum<typeof NSToolbarSizeMode>;
+  // readonly visibleItems: NSArray;
 
   set toolbaritemforitemidentifierwillbeinsertedintotoolbar(value: (toolbar: NSToolbar, itemIdentifier: NSString | string, flag: boolean) => NSToolbarItem) {
     this.delegate.toolbarItemForItemIdentifierWillBeInsertedIntoToolbar = value;
@@ -2405,19 +6808,51 @@ export class HTMLNSTabViewElement extends HTMLNSViewElement {
   get delegate(): NSTabViewDelegateImpl {
     return (this.nativeObject.delegate ??= NSTabViewDelegateImpl.new()) as NSTabViewDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    addtabviewitem: 'addTabViewItem',
+    allowstruncatedlabels: 'allowsTruncatedLabels',
+    contentrect: 'contentRect',
+    controlsize: 'controlSize',
+    controltint: 'controlTint',
+    delegate: 'delegate',
+    drawsbackground: 'drawsBackground',
+    font: 'font',
+    indexoftabviewitem: 'indexOfTabViewItem',
+    indexoftabviewitemwithidentifier: 'indexOfTabViewItemWithIdentifier',
+    inserttabviewitematindex: 'insertTabViewItemAtIndex',
+    minimumsize: 'minimumSize',
+    numberoftabviewitems: 'numberOfTabViewItems',
+    removetabviewitem: 'removeTabViewItem',
+    selectedtabviewitem: 'selectedTabViewItem',
+    selectfirsttabviewitem: 'selectFirstTabViewItem',
+    selectlasttabviewitem: 'selectLastTabViewItem',
+    selectnexttabviewitem: 'selectNextTabViewItem',
+    selectprevioustabviewitem: 'selectPreviousTabViewItem',
+    selecttabviewitem: 'selectTabViewItem',
+    selecttabviewitematindex: 'selectTabViewItemAtIndex',
+    selecttabviewitemwithidentifier: 'selectTabViewItemWithIdentifier',
+    tabposition: 'tabPosition',
+    tabviewbordertype: 'tabViewBorderType',
+    tabviewitematindex: 'tabViewItemAtIndex',
+    tabviewitematpoint: 'tabViewItemAtPoint',
+    tabviewitems: 'tabViewItems',
+    tabviewtype: 'tabViewType',
+    takeselectedtabviewitemfromsender: 'takeSelectedTabViewItemFromSender',
+  }
 
-  // readonly selectedTabViewItem: NSTabViewItem;
+  // allowsTruncatedLabels: boolean;
+  // readonly contentRect: CGRect;
+  // controlSize: interop.Enum<typeof NSControlSize>;
+  // controlTint: interop.Enum<typeof NSControlTint>;
+  // drawsBackground: boolean;
   // font: NSFont;
-  // tabViewType: interop.Enum<typeof NSTabViewType>;
+  // readonly minimumSize: CGSize;
+  // readonly numberOfTabViewItems: number;
+  // readonly selectedTabViewItem: NSTabViewItem;
   // tabPosition: interop.Enum<typeof NSTabPosition>;
   // tabViewBorderType: interop.Enum<typeof NSTabViewBorderType>;
-  // allowsTruncatedLabels: boolean;
-  // readonly minimumSize: CGSize;
-  // drawsBackground: boolean;
-  // controlSize: interop.Enum<typeof NSControlSize>;
-  // readonly contentRect: CGRect;
-  // readonly numberOfTabViewItems: number;
-  // controlTint: interop.Enum<typeof NSControlTint>;
+  // tabViewType: interop.Enum<typeof NSTabViewType>;
 
   set tabviewshouldselecttabviewitem(value: (tabView: NSTabView, tabViewItem: NSTabViewItem | null) => boolean) {
     this.delegate.tabViewShouldSelectTabViewItem = value;
@@ -2438,117 +6873,399 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   get delegate(): NSApplicationDelegateImpl {
     return (this.nativeObject.delegate ??= NSApplicationDelegateImpl.new()) as NSApplicationDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    abortmodal: 'abortModal',
+    accessibilityactivationpoint: 'accessibilityActivationPoint',
+    accessibilityallowedvalues: 'accessibilityAllowedValues',
+    accessibilityapplicationfocuseduielement: 'accessibilityApplicationFocusedUIElement',
+    accessibilityattributedstringforrange: 'accessibilityAttributedStringForRange',
+    accessibilityattributeduserinputlabels: 'accessibilityAttributedUserInputLabels',
+    accessibilitycancelbutton: 'accessibilityCancelButton',
+    accessibilitycellforcolumnrow: 'accessibilityCellForColumnRow',
+    accessibilitychildren: 'accessibilityChildren',
+    accessibilitychildreninnavigationorder: 'accessibilityChildrenInNavigationOrder',
+    accessibilityclearbutton: 'accessibilityClearButton',
+    accessibilityclosebutton: 'accessibilityCloseButton',
+    accessibilitycolumncount: 'accessibilityColumnCount',
+    accessibilitycolumnheaderuielements: 'accessibilityColumnHeaderUIElements',
+    accessibilitycolumnindexrange: 'accessibilityColumnIndexRange',
+    accessibilitycolumns: 'accessibilityColumns',
+    accessibilitycolumntitles: 'accessibilityColumnTitles',
+    accessibilitycontents: 'accessibilityContents',
+    accessibilitycriticalvalue: 'accessibilityCriticalValue',
+    accessibilitycustomactions: 'accessibilityCustomActions',
+    accessibilitycustomrotors: 'accessibilityCustomRotors',
+    accessibilitydecrementbutton: 'accessibilityDecrementButton',
+    accessibilitydefaultbutton: 'accessibilityDefaultButton',
+    accessibilitydisclosedbyrow: 'accessibilityDisclosedByRow',
+    accessibilitydisclosedrows: 'accessibilityDisclosedRows',
+    accessibilitydisclosurelevel: 'accessibilityDisclosureLevel',
+    accessibilitydocument: 'accessibilityDocument',
+    accessibilityextrasmenubar: 'accessibilityExtrasMenuBar',
+    accessibilityfilename: 'accessibilityFilename',
+    accessibilityfocusedwindow: 'accessibilityFocusedWindow',
+    accessibilityframe: 'accessibilityFrame',
+    accessibilityframeforrange: 'accessibilityFrameForRange',
+    accessibilityfullscreenbutton: 'accessibilityFullScreenButton',
+    accessibilitygrowarea: 'accessibilityGrowArea',
+    accessibilityhandles: 'accessibilityHandles',
+    accessibilityheader: 'accessibilityHeader',
+    accessibilityhelp: 'accessibilityHelp',
+    accessibilityhorizontalscrollbar: 'accessibilityHorizontalScrollBar',
+    accessibilityhorizontalunitdescription: 'accessibilityHorizontalUnitDescription',
+    accessibilityhorizontalunits: 'accessibilityHorizontalUnits',
+    accessibilityidentifier: 'accessibilityIdentifier',
+    accessibilityincrementbutton: 'accessibilityIncrementButton',
+    accessibilityindex: 'accessibilityIndex',
+    accessibilityinsertionpointlinenumber: 'accessibilityInsertionPointLineNumber',
+    accessibilitylabel: 'accessibilityLabel',
+    accessibilitylabeluielements: 'accessibilityLabelUIElements',
+    accessibilitylabelvalue: 'accessibilityLabelValue',
+    accessibilitylayoutpointforscreenpoint: 'accessibilityLayoutPointForScreenPoint',
+    accessibilitylayoutsizeforscreensize: 'accessibilityLayoutSizeForScreenSize',
+    accessibilitylineforindex: 'accessibilityLineForIndex',
+    accessibilitylinkeduielements: 'accessibilityLinkedUIElements',
+    accessibilitymainwindow: 'accessibilityMainWindow',
+    accessibilitymarkergroupuielement: 'accessibilityMarkerGroupUIElement',
+    accessibilitymarkertypedescription: 'accessibilityMarkerTypeDescription',
+    accessibilitymarkeruielements: 'accessibilityMarkerUIElements',
+    accessibilitymarkervalues: 'accessibilityMarkerValues',
+    accessibilitymaxvalue: 'accessibilityMaxValue',
+    accessibilitymenubar: 'accessibilityMenuBar',
+    accessibilityminimizebutton: 'accessibilityMinimizeButton',
+    accessibilityminvalue: 'accessibilityMinValue',
+    accessibilitynextcontents: 'accessibilityNextContents',
+    accessibilitynumberofcharacters: 'accessibilityNumberOfCharacters',
+    accessibilityorientation: 'accessibilityOrientation',
+    accessibilityoverflowbutton: 'accessibilityOverflowButton',
+    accessibilityparent: 'accessibilityParent',
+    accessibilityperformcancel: 'accessibilityPerformCancel',
+    accessibilityperformconfirm: 'accessibilityPerformConfirm',
+    accessibilityperformdecrement: 'accessibilityPerformDecrement',
+    accessibilityperformdelete: 'accessibilityPerformDelete',
+    accessibilityperformincrement: 'accessibilityPerformIncrement',
+    accessibilityperformpick: 'accessibilityPerformPick',
+    accessibilityperformpress: 'accessibilityPerformPress',
+    accessibilityperformraise: 'accessibilityPerformRaise',
+    accessibilityperformshowalternateui: 'accessibilityPerformShowAlternateUI',
+    accessibilityperformshowdefaultui: 'accessibilityPerformShowDefaultUI',
+    accessibilityperformshowmenu: 'accessibilityPerformShowMenu',
+    accessibilityplaceholdervalue: 'accessibilityPlaceholderValue',
+    accessibilitypreviouscontents: 'accessibilityPreviousContents',
+    accessibilityproxy: 'accessibilityProxy',
+    accessibilityrangeforindex: 'accessibilityRangeForIndex',
+    accessibilityrangeforline: 'accessibilityRangeForLine',
+    accessibilityrangeforposition: 'accessibilityRangeForPosition',
+    accessibilityrole: 'accessibilityRole',
+    accessibilityroledescription: 'accessibilityRoleDescription',
+    accessibilityrowcount: 'accessibilityRowCount',
+    accessibilityrowheaderuielements: 'accessibilityRowHeaderUIElements',
+    accessibilityrowindexrange: 'accessibilityRowIndexRange',
+    accessibilityrows: 'accessibilityRows',
+    accessibilityrtfforrange: 'accessibilityRTFForRange',
+    accessibilityrulermarkertype: 'accessibilityRulerMarkerType',
+    accessibilityscreenpointforlayoutpoint: 'accessibilityScreenPointForLayoutPoint',
+    accessibilityscreensizeforlayoutsize: 'accessibilityScreenSizeForLayoutSize',
+    accessibilitysearchbutton: 'accessibilitySearchButton',
+    accessibilitysearchmenu: 'accessibilitySearchMenu',
+    accessibilityselectedcells: 'accessibilitySelectedCells',
+    accessibilityselectedchildren: 'accessibilitySelectedChildren',
+    accessibilityselectedcolumns: 'accessibilitySelectedColumns',
+    accessibilityselectedrows: 'accessibilitySelectedRows',
+    accessibilityselectedtext: 'accessibilitySelectedText',
+    accessibilityselectedtextrange: 'accessibilitySelectedTextRange',
+    accessibilityselectedtextranges: 'accessibilitySelectedTextRanges',
+    accessibilityservesastitleforuielements: 'accessibilityServesAsTitleForUIElements',
+    accessibilitysharedcharacterrange: 'accessibilitySharedCharacterRange',
+    accessibilitysharedfocuselements: 'accessibilitySharedFocusElements',
+    accessibilitysharedtextuielements: 'accessibilitySharedTextUIElements',
+    accessibilityshownmenu: 'accessibilityShownMenu',
+    accessibilitysortdirection: 'accessibilitySortDirection',
+    accessibilitysplitters: 'accessibilitySplitters',
+    accessibilitystringforrange: 'accessibilityStringForRange',
+    accessibilitystylerangeforindex: 'accessibilityStyleRangeForIndex',
+    accessibilitysubrole: 'accessibilitySubrole',
+    accessibilitytabs: 'accessibilityTabs',
+    accessibilitytitle: 'accessibilityTitle',
+    accessibilitytitleuielement: 'accessibilityTitleUIElement',
+    accessibilitytoolbarbutton: 'accessibilityToolbarButton',
+    accessibilitytopleveluielement: 'accessibilityTopLevelUIElement',
+    accessibilityunitdescription: 'accessibilityUnitDescription',
+    accessibilityunits: 'accessibilityUnits',
+    accessibilityurl: 'accessibilityURL',
+    accessibilityuserinputlabels: 'accessibilityUserInputLabels',
+    accessibilityvalue: 'accessibilityValue',
+    accessibilityvaluedescription: 'accessibilityValueDescription',
+    accessibilityverticalscrollbar: 'accessibilityVerticalScrollBar',
+    accessibilityverticalunitdescription: 'accessibilityVerticalUnitDescription',
+    accessibilityverticalunits: 'accessibilityVerticalUnits',
+    accessibilityvisiblecells: 'accessibilityVisibleCells',
+    accessibilityvisiblecharacterrange: 'accessibilityVisibleCharacterRange',
+    accessibilityvisiblechildren: 'accessibilityVisibleChildren',
+    accessibilityvisiblecolumns: 'accessibilityVisibleColumns',
+    accessibilityvisiblerows: 'accessibilityVisibleRows',
+    accessibilitywarningvalue: 'accessibilityWarningValue',
+    accessibilitywindow: 'accessibilityWindow',
+    accessibilitywindows: 'accessibilityWindows',
+    accessibilityzoombutton: 'accessibilityZoomButton',
+    activate: 'activate',
+    activatecontexthelpmode: 'activateContextHelpMode',
+    activateignoringotherapps: 'activateIgnoringOtherApps',
+    activationpolicy: 'activationPolicy',
+    addwindowsitemtitlefilename: 'addWindowsItemTitleFilename',
+    appearance: 'appearance',
+    applicationiconimage: 'applicationIconImage',
+    applicationprintfiles: 'applicationPrintFiles',
+    arrangeinfront: 'arrangeInFront',
+    autorelease: 'autorelease',
+    beginmodalsessionforwindow: 'beginModalSessionForWindow',
+    beginmodalsessionforwindowrelativetowindow: 'beginModalSessionForWindowRelativeToWindow',
+    beginsheetmodalforwindowmodaldelegatedidendselectorcontextinfo: 'beginSheetModalForWindowModalDelegateDidEndSelectorContextInfo',
+    canceluserattentionrequest: 'cancelUserAttentionRequest',
+    changewindowsitemtitlefilename: 'changeWindowsItemTitleFilename',
+    class: 'class',
+    completestaterestoration: 'completeStateRestoration',
+    conformstoprotocol: 'conformsToProtocol',
+    context: 'context',
+    currentevent: 'currentEvent',
+    currentsystempresentationoptions: 'currentSystemPresentationOptions',
+    deactivate: 'deactivate',
+    debugdescription: 'debugDescription',
+    delegate: 'delegate',
+    description: 'description',
+    detachdrawingthreadtotargetwithobject: 'detachDrawingThreadToTargetWithObject',
+    disablerelaunchonlogin: 'disableRelaunchOnLogin',
+    discardeventsmatchingmaskbeforeevent: 'discardEventsMatchingMaskBeforeEvent',
+    docktile: 'dockTile',
+    effectiveappearance: 'effectiveAppearance',
+    enabledremotenotificationtypes: 'enabledRemoteNotificationTypes',
+    enablerelaunchonlogin: 'enableRelaunchOnLogin',
+    endmodalsession: 'endModalSession',
+    endsheet: 'endSheet',
+    endsheetreturncode: 'endSheetReturnCode',
+    enumeratewindowswithoptionsusingblock: 'enumerateWindowsWithOptionsUsingBlock',
+    extendstaterestoration: 'extendStateRestoration',
+    finishlaunching: 'finishLaunching',
+    hash: 'hash',
+    helpmenu: 'helpMenu',
+    hide: 'hide',
+    hideotherapplications: 'hideOtherApplications',
+    isaccessibilityalternateuivisible: 'isAccessibilityAlternateUIVisible',
+    isaccessibilitydisclosed: 'isAccessibilityDisclosed',
+    isaccessibilityedited: 'isAccessibilityEdited',
+    isaccessibilityelement: 'isAccessibilityElement',
+    isaccessibilityenabled: 'isAccessibilityEnabled',
+    isaccessibilityexpanded: 'isAccessibilityExpanded',
+    isaccessibilityfocused: 'isAccessibilityFocused',
+    isaccessibilityfrontmost: 'isAccessibilityFrontmost',
+    isaccessibilityhidden: 'isAccessibilityHidden',
+    isaccessibilitymain: 'isAccessibilityMain',
+    isaccessibilityminimized: 'isAccessibilityMinimized',
+    isaccessibilitymodal: 'isAccessibilityModal',
+    isaccessibilityorderedbyrow: 'isAccessibilityOrderedByRow',
+    isaccessibilityprotectedcontent: 'isAccessibilityProtectedContent',
+    isaccessibilityrequired: 'isAccessibilityRequired',
+    isaccessibilityselected: 'isAccessibilitySelected',
+    isaccessibilityselectorallowed: 'isAccessibilitySelectorAllowed',
+    isactive: 'isActive',
+    isautomaticcustomizetouchbarmenuitemenabled: 'isAutomaticCustomizeTouchBarMenuItemEnabled',
+    isequal: 'isEqual',
+    isfullkeyboardaccessenabled: 'isFullKeyboardAccessEnabled',
+    ishidden: 'isHidden',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isprotecteddataavailable: 'isProtectedDataAvailable',
+    isproxy: 'isProxy',
+    isregisteredforremotenotifications: 'isRegisteredForRemoteNotifications',
+    isrunning: 'isRunning',
+    keywindow: 'keyWindow',
+    mainmenu: 'mainMenu',
+    mainwindow: 'mainWindow',
+    makewindowsperforminorder: 'makeWindowsPerformInOrder',
+    miniaturizeall: 'miniaturizeAll',
+    modalwindow: 'modalWindow',
+    nexteventmatchingmaskuntildateinmodedequeue: 'nextEventMatchingMaskUntilDateInModeDequeue',
+    occlusionstate: 'occlusionState',
+    ordereddocuments: 'orderedDocuments',
+    orderedwindows: 'orderedWindows',
+    orderfrontcharacterpalette: 'orderFrontCharacterPalette',
+    orderfrontcolorpanel: 'orderFrontColorPanel',
+    orderfrontstandardaboutpanel: 'orderFrontStandardAboutPanel',
+    orderfrontstandardaboutpanelwithoptions: 'orderFrontStandardAboutPanelWithOptions',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    posteventatstart: 'postEventAtStart',
+    presentationoptions: 'presentationOptions',
+    preventwindowordering: 'preventWindowOrdering',
+    registerforremotenotifications: 'registerForRemoteNotifications',
+    registerforremotenotificationtypes: 'registerForRemoteNotificationTypes',
+    registerservicesmenusendtypesreturntypes: 'registerServicesMenuSendTypesReturnTypes',
+    registeruserinterfaceitemsearchhandler: 'registerUserInterfaceItemSearchHandler',
+    release: 'release',
+    removewindowsitem: 'removeWindowsItem',
+    replytoapplicationshouldterminate: 'replyToApplicationShouldTerminate',
+    replytoopenorprint: 'replyToOpenOrPrint',
+    reportexception: 'reportException',
+    requestuserattention: 'requestUserAttention',
+    respondstoselector: 'respondsToSelector',
+    restorewindowwithidentifierstatecompletionhandler: 'restoreWindowWithIdentifierStateCompletionHandler',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    run: 'run',
+    runmodalforwindow: 'runModalForWindow',
+    runmodalforwindowrelativetowindow: 'runModalForWindowRelativeToWindow',
+    runmodalsession: 'runModalSession',
+    runpagelayout: 'runPageLayout',
+    searchstringinuserinterfaceitemstringsearchrangefoundrange: 'searchStringInUserInterfaceItemStringSearchRangeFoundRange',
+    self: 'self',
+    sendactiontofrom: 'sendActionToFrom',
+    sendevent: 'sendEvent',
+    servicesmenu: 'servicesMenu',
+    servicesprovider: 'servicesProvider',
+    setactivationpolicy: 'setActivationPolicy',
+    setwindowsneedupdate: 'setWindowsNeedUpdate',
+    sharedapplication: 'sharedApplication',
+    showhelp: 'showHelp',
+    stop: 'stop',
+    stopmodal: 'stopModal',
+    stopmodalwithcode: 'stopModalWithCode',
+    superclass: 'superclass',
+    targetforaction: 'targetForAction',
+    targetforactiontofrom: 'targetForActionToFrom',
+    terminate: 'terminate',
+    toggletouchbarcustomizationpalette: 'toggleTouchBarCustomizationPalette',
+    trytoperformwith: 'tryToPerformWith',
+    unhide: 'unhide',
+    unhideallapplications: 'unhideAllApplications',
+    unhidewithoutactivation: 'unhideWithoutActivation',
+    unregisterforremotenotifications: 'unregisterForRemoteNotifications',
+    unregisteruserinterfaceitemsearchhandler: 'unregisterUserInterfaceItemSearchHandler',
+    updatewindows: 'updateWindows',
+    updatewindowsitem: 'updateWindowsItem',
+    userinterfacelayoutdirection: 'userInterfaceLayoutDirection',
+    validatemenuitem: 'validateMenuItem',
+    validateuserinterfaceitem: 'validateUserInterfaceItem',
+    validrequestorforsendtypereturntype: 'validRequestorForSendTypeReturnType',
+    windows: 'windows',
+    windowsmenu: 'windowsMenu',
+    windowwithwindownumber: 'windowWithWindowNumber',
+    yieldactivationtoapplication: 'yieldActivationToApplication',
+    yieldactivationtoapplicationwithbundleidentifier: 'yieldActivationToApplicationWithBundleIdentifier',
+    zone: 'zone',
+  }
 
-  // sharedApplication: NSApplication;
-  // readonly mainWindow: NSWindow;
-  // readonly keyWindow: NSWindow;
-  // readonly isActive: boolean;
-  // readonly isHidden: boolean;
-  // readonly isRunning: boolean;
-  // readonly modalWindow: NSWindow;
-  // readonly windows: NSArray;
-  // mainMenu: NSMenu;
-  // helpMenu: NSMenu;
-  // applicationIconImage: NSImage;
-  // readonly dockTile: NSDockTile;
-  // presentationOptions: interop.Enum<typeof NSApplicationPresentationOptions>;
-  // readonly currentSystemPresentationOptions: interop.Enum<typeof NSApplicationPresentationOptions>;
-  // readonly occlusionState: interop.Enum<typeof NSApplicationOcclusionState>;
-  // readonly isProtectedDataAvailable: boolean;
-  // appearance: NSAppearance;
-  // readonly effectiveAppearance: NSAppearance;
-  // readonly currentEvent: NSEvent;
-  // windowsMenu: NSMenu;
-  // readonly isFullKeyboardAccessEnabled: boolean;
-  // servicesMenu: NSMenu;
-  // servicesProvider: interop.Object;
-  // readonly userInterfaceLayoutDirection: interop.Enum<typeof NSUserInterfaceLayoutDirection>;
-  // readonly isRegisteredForRemoteNotifications: boolean;
-  // readonly enabledRemoteNotificationTypes: interop.Enum<typeof NSRemoteNotificationType>;
-  // readonly context: NSGraphicsContext;
-  // isAutomaticCustomizeTouchBarMenuItemEnabled: boolean;
-  // readonly orderedDocuments: NSArray;
-  // readonly orderedWindows: NSArray;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
-  // isAccessibilityElement: boolean;
-  // accessibilityFrame: CGRect;
-  // isAccessibilityFocused: boolean;
   // accessibilityActivationPoint: CGPoint;
-  // accessibilityTopLevelUIElement: interop.Object;
-  // accessibilityURL: NSURL;
-  // accessibilityValue: interop.Object;
-  // accessibilityTitleUIElement: interop.Object;
-  // accessibilityOrientation: interop.Enum<typeof NSAccessibilityOrientation>;
-  // accessibilityOverflowButton: interop.Object;
-  // accessibilityParent: interop.Object;
-  // accessibilitySearchButton: interop.Object;
-  // accessibilitySearchMenu: interop.Object;
-  // isAccessibilitySelected: boolean;
-  // accessibilityShownMenu: interop.Object;
-  // accessibilityMinValue: interop.Object;
-  // accessibilityMaxValue: interop.Object;
-  // accessibilityWindow: interop.Object;
-  // isAccessibilityExpanded: boolean;
-  // isAccessibilityEdited: boolean;
-  // isAccessibilityEnabled: boolean;
-  // accessibilityClearButton: interop.Object;
-  // accessibilityCancelButton: interop.Object;
-  // isAccessibilityProtectedContent: boolean;
-  // isAccessibilityAlternateUIVisible: boolean;
-  // isAccessibilityRequired: boolean;
   // accessibilityApplicationFocusedUIElement: interop.Object;
-  // accessibilityMainWindow: interop.Object;
-  // isAccessibilityHidden: boolean;
-  // isAccessibilityFrontmost: boolean;
-  // accessibilityFocusedWindow: interop.Object;
-  // accessibilityExtrasMenuBar: interop.Object;
-  // accessibilityMenuBar: interop.Object;
-  // isAccessibilityOrderedByRow: boolean;
-  // accessibilityHorizontalUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityVerticalUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityWarningValue: interop.Object;
+  // accessibilityCancelButton: interop.Object;
+  // accessibilityClearButton: interop.Object;
+  // accessibilityCloseButton: interop.Object;
+  // accessibilityColumnCount: number;
+  // accessibilityColumnIndexRange: _NSRange;
   // accessibilityCriticalValue: interop.Object;
-  // isAccessibilityDisclosed: boolean;
+  // accessibilityDecrementButton: interop.Object;
+  // accessibilityDefaultButton: interop.Object;
   // accessibilityDisclosedByRow: interop.Object;
   // accessibilityDisclosedRows: interop.Object;
   // accessibilityDisclosureLevel: number;
-  // accessibilityMarkerValues: interop.Object;
-  // accessibilityMarkerGroupUIElement: interop.Object;
-  // accessibilityUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityRulerMarkerType: interop.Enum<typeof NSAccessibilityRulerMarkerType>;
-  // accessibilityHorizontalScrollBar: interop.Object;
-  // accessibilityVerticalScrollBar: interop.Object;
-  // accessibilityLabelValue: number;
-  // accessibilityDecrementButton: interop.Object;
-  // accessibilityIncrementButton: interop.Object;
-  // accessibilityHeader: interop.Object;
-  // accessibilityColumnCount: number;
-  // accessibilityRowCount: number;
-  // accessibilityIndex: number;
-  // accessibilitySortDirection: interop.Enum<typeof NSAccessibilitySortDirection>;
-  // accessibilityRowIndexRange: _NSRange;
-  // accessibilityColumnIndexRange: _NSRange;
-  // accessibilityInsertionPointLineNumber: number;
-  // accessibilitySharedCharacterRange: _NSRange;
-  // accessibilityVisibleCharacterRange: _NSRange;
-  // accessibilityNumberOfCharacters: number;
-  // accessibilitySelectedTextRange: _NSRange;
-  // accessibilityToolbarButton: interop.Object;
-  // isAccessibilityModal: boolean;
-  // accessibilityProxy: interop.Object;
-  // isAccessibilityMain: boolean;
+  // accessibilityExtrasMenuBar: interop.Object;
+  // accessibilityFocusedWindow: interop.Object;
+  // accessibilityFrame: CGRect;
   // accessibilityFullScreenButton: interop.Object;
   // accessibilityGrowArea: interop.Object;
-  // accessibilityDefaultButton: interop.Object;
-  // accessibilityCloseButton: interop.Object;
-  // accessibilityZoomButton: interop.Object;
+  // accessibilityHeader: interop.Object;
+  // accessibilityHorizontalScrollBar: interop.Object;
+  // accessibilityHorizontalUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityIncrementButton: interop.Object;
+  // accessibilityIndex: number;
+  // accessibilityInsertionPointLineNumber: number;
+  // accessibilityLabelValue: number;
+  // accessibilityMainWindow: interop.Object;
+  // accessibilityMarkerGroupUIElement: interop.Object;
+  // accessibilityMarkerValues: interop.Object;
+  // accessibilityMaxValue: interop.Object;
+  // accessibilityMenuBar: interop.Object;
   // accessibilityMinimizeButton: interop.Object;
+  // accessibilityMinValue: interop.Object;
+  // accessibilityNumberOfCharacters: number;
+  // accessibilityOrientation: interop.Enum<typeof NSAccessibilityOrientation>;
+  // accessibilityOverflowButton: interop.Object;
+  // accessibilityParent: interop.Object;
+  // accessibilityProxy: interop.Object;
+  // accessibilityRowCount: number;
+  // accessibilityRowIndexRange: _NSRange;
+  // accessibilityRulerMarkerType: interop.Enum<typeof NSAccessibilityRulerMarkerType>;
+  // accessibilitySearchButton: interop.Object;
+  // accessibilitySearchMenu: interop.Object;
+  // accessibilitySelectedTextRange: _NSRange;
+  // accessibilitySharedCharacterRange: _NSRange;
+  // accessibilityShownMenu: interop.Object;
+  // accessibilitySortDirection: interop.Enum<typeof NSAccessibilitySortDirection>;
+  // accessibilityTitleUIElement: interop.Object;
+  // accessibilityToolbarButton: interop.Object;
+  // accessibilityTopLevelUIElement: interop.Object;
+  // accessibilityUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityURL: NSURL;
+  // accessibilityValue: interop.Object;
+  // accessibilityVerticalScrollBar: interop.Object;
+  // accessibilityVerticalUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityVisibleCharacterRange: _NSRange;
+  // accessibilityWarningValue: interop.Object;
+  // accessibilityWindow: interop.Object;
+  // accessibilityZoomButton: interop.Object;
+  // appearance: NSAppearance;
+  // applicationIconImage: NSImage;
+  // readonly context: NSGraphicsContext;
+  // readonly currentEvent: NSEvent;
+  // readonly currentSystemPresentationOptions: interop.Enum<typeof NSApplicationPresentationOptions>;
+  // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly dockTile: NSDockTile;
+  // readonly effectiveAppearance: NSAppearance;
+  // readonly enabledRemoteNotificationTypes: interop.Enum<typeof NSRemoteNotificationType>;
+  // readonly hash: number;
+  // helpMenu: NSMenu;
+  // isAccessibilityAlternateUIVisible: boolean;
+  // isAccessibilityDisclosed: boolean;
+  // isAccessibilityEdited: boolean;
+  // isAccessibilityElement: boolean;
+  // isAccessibilityEnabled: boolean;
+  // isAccessibilityExpanded: boolean;
+  // isAccessibilityFocused: boolean;
+  // isAccessibilityFrontmost: boolean;
+  // isAccessibilityHidden: boolean;
+  // isAccessibilityMain: boolean;
   // isAccessibilityMinimized: boolean;
+  // isAccessibilityModal: boolean;
+  // isAccessibilityOrderedByRow: boolean;
+  // isAccessibilityProtectedContent: boolean;
+  // isAccessibilityRequired: boolean;
+  // isAccessibilitySelected: boolean;
+  // readonly isActive: boolean;
+  // isAutomaticCustomizeTouchBarMenuItemEnabled: boolean;
+  // readonly isFullKeyboardAccessEnabled: boolean;
+  // readonly isHidden: boolean;
+  // readonly isProtectedDataAvailable: boolean;
+  // readonly isProxy: boolean;
+  // readonly isRegisteredForRemoteNotifications: boolean;
+  // readonly isRunning: boolean;
+  // readonly keyWindow: NSWindow;
+  // mainMenu: NSMenu;
+  // readonly mainWindow: NSWindow;
+  // readonly modalWindow: NSWindow;
+  // readonly occlusionState: interop.Enum<typeof NSApplicationOcclusionState>;
+  // readonly orderedDocuments: NSArray;
+  // readonly orderedWindows: NSArray;
+  // presentationOptions: interop.Enum<typeof NSApplicationPresentationOptions>;
+  // servicesMenu: NSMenu;
+  // servicesProvider: interop.Object;
+  // sharedApplication: NSApplication;
+  // readonly superclass: interop.Object;
+  // readonly userInterfaceLayoutDirection: interop.Enum<typeof NSUserInterfaceLayoutDirection>;
+  // readonly windows: NSArray;
+  // windowsMenu: NSMenu;
+  // readonly zone: interop.Pointer;
 
   set applicationshouldterminate(value: (sender: NSApplication) => interop.Enum<typeof NSApplicationTerminateReply>) {
     this.delegate.applicationShouldTerminate = value;
@@ -2689,13 +7406,25 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
 
 export class HTMLNSTouchBarItemElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTouchBarItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    customizationlabel: 'customizationLabel',
+    encodewithcoder: 'encodeWithCoder',
+    identifier: 'identifier',
+    initwithcoder: 'initWithCoder',
+    initwithidentifier: 'initWithIdentifier',
+    isvisible: 'isVisible',
+    view: 'view',
+    viewcontroller: 'viewController',
+    visibilitypriority: 'visibilityPriority',
+  }
 
+  // readonly customizationLabel: NSString;
   // readonly identifier: NSString;
-  // visibilityPriority: number;
+  // readonly isVisible: boolean;
   // readonly view: NSView;
   // readonly viewController: NSViewController;
-  // readonly customizationLabel: NSString;
-  // readonly isVisible: boolean;
+  // visibilityPriority: number;
 }
 
 export class HTMLNSCandidateListTouchBarItemElement extends HTMLNSTouchBarItemElement {
@@ -2704,14 +7433,28 @@ export class HTMLNSCandidateListTouchBarItemElement extends HTMLNSTouchBarItemEl
   get delegate(): NSCandidateListTouchBarItemDelegateImpl {
     return (this.nativeObject.delegate ??= NSCandidateListTouchBarItemDelegateImpl.new()) as NSCandidateListTouchBarItemDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    allowscollapsing: 'allowsCollapsing',
+    allowstextinputcontextcandidates: 'allowsTextInputContextCandidates',
+    attributedstringforcandidate: 'attributedStringForCandidate',
+    candidates: 'candidates',
+    client: 'client',
+    customizationlabel: 'customizationLabel',
+    delegate: 'delegate',
+    iscandidatelistvisible: 'isCandidateListVisible',
+    iscollapsed: 'isCollapsed',
+    setcandidatesforselectedrangeinstring: 'setCandidatesForSelectedRangeInString',
+    updatewithinsertionpointvisibility: 'updateWithInsertionPointVisibility',
+  }
 
-  // client: NSView;
-  // isCollapsed: boolean;
   // allowsCollapsing: boolean;
-  // readonly isCandidateListVisible: boolean;
   // allowsTextInputContextCandidates: boolean;
   // attributedStringForCandidate: (p1: interop.Object, p2: number) => NSAttributedString;
   // readonly candidates: NSArray;
+  // client: NSView;
+  // readonly isCandidateListVisible: boolean;
+  // isCollapsed: boolean;
 
   set candidatelisttouchbaritembeginselectingcandidateatindex(value: (anItem: NSCandidateListTouchBarItem, index: number) => void) {
     this.delegate.candidateListTouchBarItemBeginSelectingCandidateAtIndex = value;
@@ -2729,51 +7472,150 @@ export class HTMLNSCandidateListTouchBarItemElement extends HTMLNSTouchBarItemEl
 
 export class HTMLNSWindowControllerElement extends HTMLNSResponderElement {
   readonly nativeObject = NSWindowController.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    autorelease: 'autorelease',
+    class: 'class',
+    close: 'close',
+    conformstoprotocol: 'conformsToProtocol',
+    contentviewcontroller: 'contentViewController',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    dismisscontroller: 'dismissController',
+    document: 'document',
+    hash: 'hash',
+    initwithcoder: 'initWithCoder',
+    initwithwindow: 'initWithWindow',
+    initwithwindownibname: 'initWithWindowNibName',
+    initwithwindownibnameowner: 'initWithWindowNibNameOwner',
+    initwithwindownibpathowner: 'initWithWindowNibPathOwner',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    iswindowloaded: 'isWindowLoaded',
+    loadwindow: 'loadWindow',
+    owner: 'owner',
+    performseguewithidentifiersender: 'performSegueWithIdentifierSender',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    prepareforseguesender: 'prepareForSegueSender',
+    previewrepresentableactivityitems: 'previewRepresentableActivityItems',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    setdocumentedited: 'setDocumentEdited',
+    shouldcascadewindows: 'shouldCascadeWindows',
+    shouldclosedocument: 'shouldCloseDocument',
+    shouldperformseguewithidentifiersender: 'shouldPerformSegueWithIdentifierSender',
+    showwindow: 'showWindow',
+    storyboard: 'storyboard',
+    superclass: 'superclass',
+    synchronizewindowtitlewithdocumentname: 'synchronizeWindowTitleWithDocumentName',
+    window: 'window',
+    windowdidload: 'windowDidLoad',
+    windowframeautosavename: 'windowFrameAutosaveName',
+    windownibname: 'windowNibName',
+    windownibpath: 'windowNibPath',
+    windowtitlefordocumentdisplayname: 'windowTitleForDocumentDisplayName',
+    windowwillload: 'windowWillLoad',
+    zone: 'zone',
+  }
 
-  // readonly windowNibName: NSString;
-  // readonly windowNibPath: NSString;
+  // contentViewController: NSViewController;
+  // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // document: interop.Object;
+  // readonly hash: number;
+  // readonly isProxy: boolean;
+  // readonly isWindowLoaded: boolean;
   // readonly owner: interop.Object | null;
   // shouldCascadeWindows: boolean;
-  // document: interop.Object;
   // shouldCloseDocument: boolean;
-  // contentViewController: NSViewController;
-  // window: NSWindow;
-  // readonly isWindowLoaded: boolean;
   // readonly storyboard: NSStoryboard;
-  // readonly hash: number;
   // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
+  // window: NSWindow;
+  // readonly windowNibName: NSString;
+  // readonly windowNibPath: NSString;
   // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
 }
 
 export class HTMLNSTextFieldCellElement extends HTMLNSActionCellElement {
   readonly nativeObject = NSTextFieldCell.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    allowedinputsourcelocales: 'allowedInputSourceLocales',
+    backgroundcolor: 'backgroundColor',
+    bezelstyle: 'bezelStyle',
+    drawsbackground: 'drawsBackground',
+    inittextcell: 'initTextCell',
+    initwithcoder: 'initWithCoder',
+    placeholderattributedstring: 'placeholderAttributedString',
+    placeholderstring: 'placeholderString',
+    setupfieldeditorattributes: 'setUpFieldEditorAttributes',
+    setwantsnotificationformarkedtext: 'setWantsNotificationForMarkedText',
+    textcolor: 'textColor',
+  }
 
   // backgroundColor: NSColor;
-  // drawsBackground: boolean;
-  // textColor: NSColor;
   // bezelStyle: interop.Enum<typeof NSTextFieldBezelStyle>;
+  // drawsBackground: boolean;
   // placeholderAttributedString: NSAttributedString;
+  // textColor: NSColor;
 }
 
 export class HTMLNSSliderCellElement extends HTMLNSActionCellElement {
   // @ts-ignore
   readonly nativeObject = NSSliderCell.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    allowstickmarkvaluesonly: 'allowsTickMarkValuesOnly',
+    altincrementvalue: 'altIncrementValue',
+    barrectflipped: 'barRectFlipped',
+    closesttickmarkvaluetovalue: 'closestTickMarkValueToValue',
+    drawbarinsideflipped: 'drawBarInsideFlipped',
+    drawknob: 'drawKnob',
+    drawtickmarks: 'drawTickMarks',
+    image: 'image',
+    indexoftickmarkatpoint: 'indexOfTickMarkAtPoint',
+    isvertical: 'isVertical',
+    knobrectflipped: 'knobRectFlipped',
+    knobthickness: 'knobThickness',
+    maxvalue: 'maxValue',
+    minvalue: 'minValue',
+    numberoftickmarks: 'numberOfTickMarks',
+    preferstrackinguntilmouseup: 'prefersTrackingUntilMouseUp',
+    rectoftickmarkatindex: 'rectOfTickMarkAtIndex',
+    setimage: 'setImage',
+    settitle: 'setTitle',
+    settitlecell: 'setTitleCell',
+    settitlecolor: 'setTitleColor',
+    settitlefont: 'setTitleFont',
+    slidertype: 'sliderType',
+    tickmarkposition: 'tickMarkPosition',
+    tickmarkvalueatindex: 'tickMarkValueAtIndex',
+    title: 'title',
+    titlecell: 'titleCell',
+    titlecolor: 'titleColor',
+    titlefont: 'titleFont',
+    trackrect: 'trackRect',
+  }
 
-  // prefersTrackingUntilMouseUp: boolean;
-  // minValue: number;
-  // maxValue: number;
-  // altIncrementValue: number;
-  // sliderType: interop.Enum<typeof NSSliderType>;
-  // isVertical: boolean;
-  // readonly trackRect: CGRect;
-  // readonly knobThickness: number;
-  // numberOfTickMarks: number;
-  // tickMarkPosition: interop.Enum<typeof NSTickMarkPosition>;
   // allowsTickMarkValuesOnly: boolean;
+  // altIncrementValue: number;
   // image: NSImage;
+  // isVertical: boolean;
+  // readonly knobThickness: number;
+  // maxValue: number;
+  // minValue: number;
+  // numberOfTickMarks: number;
+  // prefersTrackingUntilMouseUp: boolean;
+  // sliderType: interop.Enum<typeof NSSliderType>;
+  // tickMarkPosition: interop.Enum<typeof NSTickMarkPosition>;
+  // readonly trackRect: CGRect;
 }
 
 export class HTMLNSTokenFieldCellElement extends HTMLNSTextFieldCellElement {
@@ -2781,12 +7623,21 @@ export class HTMLNSTokenFieldCellElement extends HTMLNSTextFieldCellElement {
   get delegate(): NSTokenFieldCellDelegateImpl {
     return (this.nativeObject.delegate ??= NSTokenFieldCellDelegateImpl.new()) as NSTokenFieldCellDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    completiondelay: 'completionDelay',
+    defaultcompletiondelay: 'defaultCompletionDelay',
+    defaulttokenizingcharacterset: 'defaultTokenizingCharacterSet',
+    delegate: 'delegate',
+    tokenizingcharacterset: 'tokenizingCharacterSet',
+    tokenstyle: 'tokenStyle',
+  }
 
-  // tokenStyle: interop.Enum<typeof NSTokenStyle>;
   // completionDelay: number;
   // defaultCompletionDelay: number;
-  // tokenizingCharacterSet: NSCharacterSet;
   // defaultTokenizingCharacterSet: NSCharacterSet;
+  // tokenizingCharacterSet: NSCharacterSet;
+  // tokenStyle: interop.Enum<typeof NSTokenStyle>;
 
   set tokenfieldcellcompletionsforsubstringindexoftokenindexofselecteditem(value: (tokenFieldCell: NSTokenFieldCell, substring: NSString | string, tokenIndex: number, selectedIndex: interop.PointerConvertible) => NSArray) {
     this.delegate.tokenFieldCellCompletionsForSubstringIndexOfTokenIndexOfSelectedItem = value;
@@ -2822,6 +7673,10 @@ export class HTMLNSTokenFieldCellElement extends HTMLNSTextFieldCellElement {
 
 export class HTMLNSSharingServicePickerToolbarItemElement extends HTMLNSToolbarItemElement {
   readonly nativeObject = NSSharingServicePickerToolbarItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    delegate: 'delegate',
+  }
 
   // delegate: NSSharingServicePickerToolbarItemDelegate | null;
 }
@@ -2829,71 +7684,155 @@ export class HTMLNSSharingServicePickerToolbarItemElement extends HTMLNSToolbarI
 export class HTMLNSButtonTouchBarItemElement extends HTMLNSTouchBarItemElement {
   // @ts-ignore
   readonly nativeObject = NSButtonTouchBarItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    action: 'action',
+    bezelcolor: 'bezelColor',
+    buttontouchbaritemwithidentifierimagetargetaction: 'buttonTouchBarItemWithIdentifierImageTargetAction',
+    buttontouchbaritemwithidentifiertitleimagetargetaction: 'buttonTouchBarItemWithIdentifierTitleImageTargetAction',
+    buttontouchbaritemwithidentifiertitletargetaction: 'buttonTouchBarItemWithIdentifierTitleTargetAction',
+    customizationlabel: 'customizationLabel',
+    image: 'image',
+    isenabled: 'isEnabled',
+    target: 'target',
+    title: 'title',
+  }
 
-  // image: NSImage;
-  // bezelColor: NSColor;
-  // target: interop.Object;
   // action: string;
+  // bezelColor: NSColor;
+  // image: NSImage;
   // isEnabled: boolean;
+  // target: interop.Object;
 }
 
 export class HTMLNSTextTableBlockElement extends HTMLNSTextBlockElement {
   readonly nativeObject = NSTextTableBlock.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    columnspan: 'columnSpan',
+    initwithtablestartingrowrowspanstartingcolumncolumnspan: 'initWithTableStartingRowRowSpanStartingColumnColumnSpan',
+    rowspan: 'rowSpan',
+    startingcolumn: 'startingColumn',
+    startingrow: 'startingRow',
+    table: 'table',
+  }
 
-  // readonly table: NSTextTable;
-  // readonly startingRow: number;
+  // readonly columnSpan: number;
   // readonly rowSpan: number;
   // readonly startingColumn: number;
-  // readonly columnSpan: number;
+  // readonly startingRow: number;
+  // readonly table: NSTextTable;
 }
 
 export class HTMLNSComboBoxCellElement extends HTMLNSTextFieldCellElement {
   readonly nativeObject = NSComboBoxCell.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    additemswithobjectvalues: 'addItemsWithObjectValues',
+    additemwithobjectvalue: 'addItemWithObjectValue',
+    completedstring: 'completedString',
+    completes: 'completes',
+    datasource: 'dataSource',
+    deselectitematindex: 'deselectItemAtIndex',
+    hasverticalscroller: 'hasVerticalScroller',
+    indexofitemwithobjectvalue: 'indexOfItemWithObjectValue',
+    indexofselecteditem: 'indexOfSelectedItem',
+    insertitemwithobjectvalueatindex: 'insertItemWithObjectValueAtIndex',
+    intercellspacing: 'intercellSpacing',
+    isbuttonbordered: 'isButtonBordered',
+    itemheight: 'itemHeight',
+    itemobjectvalueatindex: 'itemObjectValueAtIndex',
+    notenumberofitemschanged: 'noteNumberOfItemsChanged',
+    numberofitems: 'numberOfItems',
+    numberofvisibleitems: 'numberOfVisibleItems',
+    objectvalueofselecteditem: 'objectValueOfSelectedItem',
+    objectvalues: 'objectValues',
+    reloaddata: 'reloadData',
+    removeallitems: 'removeAllItems',
+    removeitematindex: 'removeItemAtIndex',
+    removeitemwithobjectvalue: 'removeItemWithObjectValue',
+    scrollitematindextotop: 'scrollItemAtIndexToTop',
+    scrollitematindextovisible: 'scrollItemAtIndexToVisible',
+    selectitematindex: 'selectItemAtIndex',
+    selectitemwithobjectvalue: 'selectItemWithObjectValue',
+    usesdatasource: 'usesDataSource',
+  }
 
-  // hasVerticalScroller: boolean;
-  // intercellSpacing: CGSize;
-  // itemHeight: number;
-  // numberOfVisibleItems: number;
-  // isButtonBordered: boolean;
-  // usesDataSource: boolean;
-  // readonly indexOfSelectedItem: number;
-  // readonly numberOfItems: number;
   // completes: boolean;
   // dataSource: NSComboBoxCellDataSource;
+  // hasVerticalScroller: boolean;
+  // readonly indexOfSelectedItem: number;
+  // intercellSpacing: CGSize;
+  // isButtonBordered: boolean;
+  // itemHeight: number;
+  // readonly numberOfItems: number;
+  // numberOfVisibleItems: number;
   // readonly objectValueOfSelectedItem: interop.Object;
   // readonly objectValues: NSArray;
+  // usesDataSource: boolean;
 }
 
 export class HTMLNSSecureTextFieldCellElement extends HTMLNSTextFieldCellElement {
   readonly nativeObject = NSSecureTextFieldCell.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    echosbullets: 'echosBullets',
+  }
 
   // echosBullets: boolean;
 }
 
 export class HTMLNSTrackingSeparatorToolbarItemElement extends HTMLNSToolbarItemElement {
   readonly nativeObject = NSTrackingSeparatorToolbarItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    dividerindex: 'dividerIndex',
+    splitview: 'splitView',
+    trackingseparatortoolbaritemwithidentifiersplitviewdividerindex: 'trackingSeparatorToolbarItemWithIdentifierSplitViewDividerIndex',
+  }
 
-  // splitView: NSSplitView;
   // dividerIndex: number;
+  // splitView: NSSplitView;
 }
 
 export class HTMLNSStepperCellElement extends HTMLNSActionCellElement {
   readonly nativeObject = NSStepperCell.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    autorepeat: 'autorepeat',
+    increment: 'increment',
+    maxvalue: 'maxValue',
+    minvalue: 'minValue',
+    valuewraps: 'valueWraps',
+  }
 
-  // minValue: number;
-  // maxValue: number;
-  // increment: number;
-  // valueWraps: boolean;
   // autorepeat: boolean;
+  // increment: number;
+  // maxValue: number;
+  // minValue: number;
+  // valueWraps: boolean;
 }
 
 export class HTMLNSPopoverTouchBarItemElement extends HTMLNSTouchBarItemElement {
   // @ts-ignore
   readonly nativeObject = NSPopoverTouchBarItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    collapsedrepresentation: 'collapsedRepresentation',
+    collapsedrepresentationimage: 'collapsedRepresentationImage',
+    collapsedrepresentationlabel: 'collapsedRepresentationLabel',
+    customizationlabel: 'customizationLabel',
+    dismisspopover: 'dismissPopover',
+    makestandardactivatepopovergesturerecognizer: 'makeStandardActivatePopoverGestureRecognizer',
+    popovertouchbar: 'popoverTouchBar',
+    pressandholdtouchbar: 'pressAndHoldTouchBar',
+    showpopover: 'showPopover',
+    showsclosebutton: 'showsCloseButton',
+  }
 
-  // popoverTouchBar: NSTouchBar;
   // collapsedRepresentation: NSView;
   // collapsedRepresentationImage: NSImage;
+  // popoverTouchBar: NSTouchBar;
   // pressAndHoldTouchBar: NSTouchBar;
   // showsCloseButton: boolean;
 }
@@ -2901,6 +7840,17 @@ export class HTMLNSPopoverTouchBarItemElement extends HTMLNSTouchBarItemElement 
 export class HTMLNSPersistentDocumentElement extends HTMLNSDocumentElement {
   // @ts-ignore
   readonly nativeObject = NSPersistentDocument.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    configurepersistentstorecoordinatorforurloftypeerror: 'configurePersistentStoreCoordinatorForURLOfTypeError',
+    configurepersistentstorecoordinatorforurloftypemodelconfigurationstoreoptionserror: 'configurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError',
+    managedobjectcontext: 'managedObjectContext',
+    managedobjectmodel: 'managedObjectModel',
+    persistentstoretypeforfiletype: 'persistentStoreTypeForFileType',
+    readfromurloftypeerror: 'readFromURLOfTypeError',
+    reverttocontentsofurloftypeerror: 'revertToContentsOfURLOfTypeError',
+    writetourloftypeforsaveoperationoriginalcontentsurlerror: 'writeToURLOfTypeForSaveOperationOriginalContentsURLError',
+  }
 
   // managedObjectContext: NSManagedObjectContext;
   // readonly managedObjectModel: NSManagedObjectModel;
@@ -2909,17 +7859,40 @@ export class HTMLNSPersistentDocumentElement extends HTMLNSDocumentElement {
 export class HTMLNSColorPickerTouchBarItemElement extends HTMLNSTouchBarItemElement {
   // @ts-ignore
   readonly nativeObject = NSColorPickerTouchBarItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    action: 'action',
+    allowedcolorspaces: 'allowedColorSpaces',
+    color: 'color',
+    colorlist: 'colorList',
+    colorpickerwithidentifier: 'colorPickerWithIdentifier',
+    colorpickerwithidentifierbuttonimage: 'colorPickerWithIdentifierButtonImage',
+    customizationlabel: 'customizationLabel',
+    isenabled: 'isEnabled',
+    showsalpha: 'showsAlpha',
+    strokecolorpickerwithidentifier: 'strokeColorPickerWithIdentifier',
+    target: 'target',
+    textcolorpickerwithidentifier: 'textColorPickerWithIdentifier',
+  }
 
-  // color: NSColor;
-  // showsAlpha: boolean;
-  // colorList: NSColorList;
-  // target: interop.Object;
   // action: string;
+  // color: NSColor;
+  // colorList: NSColorList;
   // isEnabled: boolean;
+  // showsAlpha: boolean;
+  // target: interop.Object;
 }
 
 export class HTMLNSEPSImageRepElement extends HTMLNSImageRepElement {
   readonly nativeObject = NSEPSImageRep.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    boundingbox: 'boundingBox',
+    epsrepresentation: 'EPSRepresentation',
+    imagerepwithdata: 'imageRepWithData',
+    initwithdata: 'initWithData',
+    preparegstate: 'prepareGState',
+  }
 
   // readonly boundingBox: CGRect;
   // readonly EPSRepresentation: NSData;
@@ -2927,30 +7900,95 @@ export class HTMLNSEPSImageRepElement extends HTMLNSImageRepElement {
 
 export class HTMLNSCIImageRepElement extends HTMLNSImageRepElement {
   readonly nativeObject = NSCIImageRep.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    ciimage: 'CIImage',
+    imagerepwithciimage: 'imageRepWithCIImage',
+    initwithciimage: 'initWithCIImage',
+  }
 
   // readonly CIImage: CIImage;
 }
 
 export class HTMLNSBitmapImageRepElement extends HTMLNSImageRepElement {
   readonly nativeObject = NSBitmapImageRep.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    bitmapdata: 'bitmapData',
+    bitmapformat: 'bitmapFormat',
+    bitmapimagerepbyconvertingtocolorspacerenderingintent: 'bitmapImageRepByConvertingToColorSpaceRenderingIntent',
+    bitmapimagerepbyretaggingwithcolorspace: 'bitmapImageRepByRetaggingWithColorSpace',
+    bitsperpixel: 'bitsPerPixel',
+    bytesperplane: 'bytesPerPlane',
+    bytesperrow: 'bytesPerRow',
+    canbecompressedusing: 'canBeCompressedUsing',
+    cgimage: 'CGImage',
+    coloratxy: 'colorAtXY',
+    colorizebymappinggraytocolorblackmappingwhitemapping: 'colorizeByMappingGrayToColorBlackMappingWhiteMapping',
+    colorspace: 'colorSpace',
+    encodewithcoder: 'encodeWithCoder',
+    getbitmapdataplanes: 'getBitmapDataPlanes',
+    getcompressionfactor: 'getCompressionFactor',
+    getpixelatxy: 'getPixelAtXY',
+    gettiffcompressiontypescount: 'getTIFFCompressionTypesCount',
+    imagerepswithdata: 'imageRepsWithData',
+    imagerepwithdata: 'imageRepWithData',
+    incrementalloadfromdatacomplete: 'incrementalLoadFromDataComplete',
+    initforincrementalload: 'initForIncrementalLoad',
+    initwithbitmapdataplanespixelswidepixelshighbitspersamplesamplesperpixelhasalphaisplanarcolorspacenamebitmapformatbytesperrowbitsperpixel: 'initWithBitmapDataPlanesPixelsWidePixelsHighBitsPerSampleSamplesPerPixelHasAlphaIsPlanarColorSpaceNameBitmapFormatBytesPerRowBitsPerPixel',
+    initwithbitmapdataplanespixelswidepixelshighbitspersamplesamplesperpixelhasalphaisplanarcolorspacenamebytesperrowbitsperpixel: 'initWithBitmapDataPlanesPixelsWidePixelsHighBitsPerSampleSamplesPerPixelHasAlphaIsPlanarColorSpaceNameBytesPerRowBitsPerPixel',
+    initwithcgimage: 'initWithCGImage',
+    initwithciimage: 'initWithCIImage',
+    initwithcoder: 'initWithCoder',
+    initwithdata: 'initWithData',
+    initwithfocusedviewrect: 'initWithFocusedViewRect',
+    isplanar: 'isPlanar',
+    localizednamefortiffcompressiontype: 'localizedNameForTIFFCompressionType',
+    numberofplanes: 'numberOfPlanes',
+    representationofimagerepsinarrayusingtypeproperties: 'representationOfImageRepsInArrayUsingTypeProperties',
+    representationusingtypeproperties: 'representationUsingTypeProperties',
+    samplesperpixel: 'samplesPerPixel',
+    setcoloratxy: 'setColorAtXY',
+    setcompressionfactor: 'setCompressionFactor',
+    setpixelatxy: 'setPixelAtXY',
+    setpropertywithvalue: 'setPropertyWithValue',
+    supportssecurecoding: 'supportsSecureCoding',
+    tiffrepresentation: 'TIFFRepresentation',
+    tiffrepresentationofimagerepsinarray: 'TIFFRepresentationOfImageRepsInArray',
+    tiffrepresentationofimagerepsinarrayusingcompressionfactor: 'TIFFRepresentationOfImageRepsInArrayUsingCompressionFactor',
+    tiffrepresentationusingcompressionfactor: 'TIFFRepresentationUsingCompressionFactor',
+    valueforproperty: 'valueForProperty',
+  }
 
   // readonly bitmapData: interop.Pointer;
-  // readonly isPlanar: boolean;
-  // readonly samplesPerPixel: number;
-  // readonly bitsPerPixel: number;
-  // readonly bytesPerRow: number;
-  // readonly bytesPerPlane: number;
-  // readonly numberOfPlanes: number;
   // readonly bitmapFormat: interop.Enum<typeof NSBitmapFormat>;
-  // readonly TIFFRepresentation: NSData;
+  // readonly bitsPerPixel: number;
+  // readonly bytesPerPlane: number;
+  // readonly bytesPerRow: number;
   // readonly CGImage: interop.Pointer;
   // readonly colorSpace: NSColorSpace;
+  // readonly isPlanar: boolean;
+  // readonly numberOfPlanes: number;
+  // readonly samplesPerPixel: number;
   // supportsSecureCoding: boolean;
+  // readonly TIFFRepresentation: NSData;
 }
 
 export class HTMLNSMutableFontCollectionElement extends HTMLNSFontCollectionElement {
   // @ts-ignore
   readonly nativeObject = NSMutableFontCollection.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    addqueryfordescriptors: 'addQueryForDescriptors',
+    exclusiondescriptors: 'exclusionDescriptors',
+    fontcollectionwithallavailabledescriptors: 'fontCollectionWithAllAvailableDescriptors',
+    fontcollectionwithdescriptors: 'fontCollectionWithDescriptors',
+    fontcollectionwithlocale: 'fontCollectionWithLocale',
+    fontcollectionwithname: 'fontCollectionWithName',
+    fontcollectionwithnamevisibility: 'fontCollectionWithNameVisibility',
+    querydescriptors: 'queryDescriptors',
+    removequeryfordescriptors: 'removeQueryForDescriptors',
+  }
 
   // fontCollectionWithAllAvailableDescriptors: NSMutableFontCollection;
 }
@@ -2960,30 +7998,127 @@ export class HTMLNSCollectionViewElement extends HTMLNSViewElement {
   get delegate(): NSCollectionViewDelegateImpl {
     return (this.nativeObject.delegate ??= NSCollectionViewDelegateImpl.new()) as NSCollectionViewDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    allowsemptyselection: 'allowsEmptySelection',
+    allowsmultipleselection: 'allowsMultipleSelection',
+    autorelease: 'autorelease',
+    backgroundcolors: 'backgroundColors',
+    backgroundview: 'backgroundView',
+    backgroundviewscrollswithcontent: 'backgroundViewScrollsWithContent',
+    class: 'class',
+    collectionviewlayout: 'collectionViewLayout',
+    concludedragoperation: 'concludeDragOperation',
+    conformstoprotocol: 'conformsToProtocol',
+    content: 'content',
+    datasource: 'dataSource',
+    debugdescription: 'debugDescription',
+    delegate: 'delegate',
+    deleteitemsatindexpaths: 'deleteItemsAtIndexPaths',
+    deletesections: 'deleteSections',
+    description: 'description',
+    deselectall: 'deselectAll',
+    deselectitemsatindexpaths: 'deselectItemsAtIndexPaths',
+    draggingended: 'draggingEnded',
+    draggingentered: 'draggingEntered',
+    draggingexited: 'draggingExited',
+    draggingimageforitemsatindexeswitheventoffset: 'draggingImageForItemsAtIndexesWithEventOffset',
+    draggingimageforitemsatindexpathswitheventoffset: 'draggingImageForItemsAtIndexPathsWithEventOffset',
+    draggingsessionendedatpointoperation: 'draggingSessionEndedAtPointOperation',
+    draggingsessionmovedtopoint: 'draggingSessionMovedToPoint',
+    draggingsessionsourceoperationmaskfordraggingcontext: 'draggingSessionSourceOperationMaskForDraggingContext',
+    draggingsessionwillbeginatpoint: 'draggingSessionWillBeginAtPoint',
+    draggingupdated: 'draggingUpdated',
+    frameforitematindex: 'frameForItemAtIndex',
+    frameforitematindexwithnumberofitems: 'frameForItemAtIndexWithNumberOfItems',
+    hash: 'hash',
+    ignoremodifierkeysfordraggingsession: 'ignoreModifierKeysForDraggingSession',
+    indexpathforitem: 'indexPathForItem',
+    indexpathforitematpoint: 'indexPathForItemAtPoint',
+    indexpathsforvisibleitems: 'indexPathsForVisibleItems',
+    indexpathsforvisiblesupplementaryelementsofkind: 'indexPathsForVisibleSupplementaryElementsOfKind',
+    insertitemsatindexpaths: 'insertItemsAtIndexPaths',
+    insertsections: 'insertSections',
+    isequal: 'isEqual',
+    isfirstresponder: 'isFirstResponder',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    isselectable: 'isSelectable',
+    itematindex: 'itemAtIndex',
+    itematindexpath: 'itemAtIndexPath',
+    itemprototype: 'itemPrototype',
+    layoutattributesforitematindexpath: 'layoutAttributesForItemAtIndexPath',
+    layoutattributesforsupplementaryelementofkindatindexpath: 'layoutAttributesForSupplementaryElementOfKindAtIndexPath',
+    makeitemwithidentifierforindexpath: 'makeItemWithIdentifierForIndexPath',
+    makesupplementaryviewofkindwithidentifierforindexpath: 'makeSupplementaryViewOfKindWithIdentifierForIndexPath',
+    maxitemsize: 'maxItemSize',
+    maxnumberofcolumns: 'maxNumberOfColumns',
+    maxnumberofrows: 'maxNumberOfRows',
+    minitemsize: 'minItemSize',
+    moveitematindexpathtoindexpath: 'moveItemAtIndexPathToIndexPath',
+    movesectiontosection: 'moveSectionToSection',
+    newitemforrepresentedobject: 'newItemForRepresentedObject',
+    numberofitemsinsection: 'numberOfItemsInSection',
+    numberofsections: 'numberOfSections',
+    performbatchupdatescompletionhandler: 'performBatchUpdatesCompletionHandler',
+    performdragoperation: 'performDragOperation',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    prefetchdatasource: 'prefetchDataSource',
+    preparefordragoperation: 'prepareForDragOperation',
+    registerclassforitemwithidentifier: 'registerClassForItemWithIdentifier',
+    registerclassforsupplementaryviewofkindwithidentifier: 'registerClassForSupplementaryViewOfKindWithIdentifier',
+    registernibforitemwithidentifier: 'registerNibForItemWithIdentifier',
+    registernibforsupplementaryviewofkindwithidentifier: 'registerNibForSupplementaryViewOfKindWithIdentifier',
+    release: 'release',
+    reloaddata: 'reloadData',
+    reloaditemsatindexpaths: 'reloadItemsAtIndexPaths',
+    reloadsections: 'reloadSections',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    scrolltoitemsatindexpathsscrollposition: 'scrollToItemsAtIndexPathsScrollPosition',
+    selectall: 'selectAll',
+    selectionindexes: 'selectionIndexes',
+    selectionindexpaths: 'selectionIndexPaths',
+    selectitemsatindexpathsscrollposition: 'selectItemsAtIndexPathsScrollPosition',
+    self: 'self',
+    setdraggingsourceoperationmaskforlocal: 'setDraggingSourceOperationMaskForLocal',
+    superclass: 'superclass',
+    supplementaryviewforelementkindatindexpath: 'supplementaryViewForElementKindAtIndexPath',
+    togglesectioncollapse: 'toggleSectionCollapse',
+    updatedraggingitemsfordrag: 'updateDraggingItemsForDrag',
+    visibleitems: 'visibleItems',
+    visiblesupplementaryviewsofkind: 'visibleSupplementaryViewsOfKind',
+    wantsperiodicdraggingupdates: 'wantsPeriodicDraggingUpdates',
+    zone: 'zone',
+  }
 
-  // dataSource: NSCollectionViewDataSource;
-  // prefetchDataSource: NSCollectionViewPrefetching;
+  // allowsEmptySelection: boolean;
+  // allowsMultipleSelection: boolean;
   // backgroundView: NSView;
   // backgroundViewScrollsWithContent: boolean;
   // collectionViewLayout: NSCollectionViewLayout;
-  // readonly numberOfSections: number;
+  // dataSource: NSCollectionViewDataSource;
+  // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly hash: number;
   // readonly isFirstResponder: boolean;
+  // readonly isProxy: boolean;
   // isSelectable: boolean;
-  // allowsEmptySelection: boolean;
-  // allowsMultipleSelection: boolean;
+  // itemPrototype: NSCollectionViewItem;
+  // maxItemSize: CGSize;
+  // maxNumberOfColumns: number;
+  // maxNumberOfRows: number;
+  // minItemSize: CGSize;
+  // readonly numberOfSections: number;
+  // prefetchDataSource: NSCollectionViewPrefetching;
   // selectionIndexes: NSIndexSet;
   // selectionIndexPaths: NSSet;
-  // itemPrototype: NSCollectionViewItem;
-  // maxNumberOfRows: number;
-  // maxNumberOfColumns: number;
-  // minItemSize: CGSize;
-  // maxItemSize: CGSize;
-  // readonly hash: number;
   // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
   // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
 
   set collectionviewcandragitemsatindexpathswithevent(value: (collectionView: NSCollectionView, indexPaths: NSSet, event: NSEvent) => boolean) {
     this.delegate.collectionViewCanDragItemsAtIndexPathsWithEvent = value;
@@ -3077,197 +8212,471 @@ export class HTMLNSCollectionViewElement extends HTMLNSViewElement {
 export class HTMLNSButtonCellElement extends HTMLNSActionCellElement {
   // @ts-ignore
   readonly nativeObject = NSButtonCell.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    alternateimage: 'alternateImage',
+    alternatemnemonic: 'alternateMnemonic',
+    alternatemnemoniclocation: 'alternateMnemonicLocation',
+    alternatetitle: 'alternateTitle',
+    attributedalternatetitle: 'attributedAlternateTitle',
+    attributedtitle: 'attributedTitle',
+    backgroundcolor: 'backgroundColor',
+    bezelstyle: 'bezelStyle',
+    drawbezelwithframeinview: 'drawBezelWithFrameInView',
+    drawimagewithframeinview: 'drawImageWithFrameInView',
+    drawtitlewithframeinview: 'drawTitleWithFrameInView',
+    getperiodicdelayinterval: 'getPeriodicDelayInterval',
+    gradienttype: 'gradientType',
+    highlightsby: 'highlightsBy',
+    imagedimswhendisabled: 'imageDimsWhenDisabled',
+    imageposition: 'imagePosition',
+    imagescaling: 'imageScaling',
+    initimagecell: 'initImageCell',
+    inittextcell: 'initTextCell',
+    initwithcoder: 'initWithCoder',
+    isopaque: 'isOpaque',
+    istransparent: 'isTransparent',
+    keyequivalent: 'keyEquivalent',
+    keyequivalentfont: 'keyEquivalentFont',
+    keyequivalentmodifiermask: 'keyEquivalentModifierMask',
+    mouseentered: 'mouseEntered',
+    mouseexited: 'mouseExited',
+    performclick: 'performClick',
+    setalternatemnemoniclocation: 'setAlternateMnemonicLocation',
+    setalternatetitlewithmnemonic: 'setAlternateTitleWithMnemonic',
+    setbuttontype: 'setButtonType',
+    setkeyequivalentfontsize: 'setKeyEquivalentFontSize',
+    setperiodicdelayinterval: 'setPeriodicDelayInterval',
+    settitlewithmnemonic: 'setTitleWithMnemonic',
+    showsborderonlywhilemouseinside: 'showsBorderOnlyWhileMouseInside',
+    showsstateby: 'showsStateBy',
+    sound: 'sound',
+    title: 'title',
+  }
 
-  // bezelStyle: interop.Enum<typeof NSBezelStyle>;
-  // highlightsBy: interop.Enum<typeof NSCellStyleMask>;
-  // showsStateBy: interop.Enum<typeof NSCellStyleMask>;
-  // attributedTitle: NSAttributedString;
-  // attributedAlternateTitle: NSAttributedString;
   // alternateImage: NSImage;
+  // attributedAlternateTitle: NSAttributedString;
+  // attributedTitle: NSAttributedString;
+  // backgroundColor: NSColor;
+  // bezelStyle: interop.Enum<typeof NSBezelStyle>;
+  // gradientType: interop.Enum<typeof NSGradientType>;
+  // highlightsBy: interop.Enum<typeof NSCellStyleMask>;
+  // imageDimsWhenDisabled: boolean;
   // imagePosition: interop.Enum<typeof NSCellImagePosition>;
   // imageScaling: interop.Enum<typeof NSImageScaling>;
-  // keyEquivalentModifierMask: interop.Enum<typeof NSEventModifierFlags>;
-  // isTransparent: boolean;
   // readonly isOpaque: boolean;
-  // imageDimsWhenDisabled: boolean;
-  // showsBorderOnlyWhileMouseInside: boolean;
-  // sound: NSSound;
-  // backgroundColor: NSColor;
-  // gradientType: interop.Enum<typeof NSGradientType>;
+  // isTransparent: boolean;
   // keyEquivalentFont: NSFont;
+  // keyEquivalentModifierMask: interop.Enum<typeof NSEventModifierFlags>;
+  // showsBorderOnlyWhileMouseInside: boolean;
+  // showsStateBy: interop.Enum<typeof NSCellStyleMask>;
+  // sound: NSSound;
 }
 
 export class HTMLNSBoxElement extends HTMLNSViewElement {
   readonly nativeObject = NSBox.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    bordercolor: 'borderColor',
+    borderrect: 'borderRect',
+    bordertype: 'borderType',
+    borderwidth: 'borderWidth',
+    boxtype: 'boxType',
+    contentview: 'contentView',
+    contentviewmargins: 'contentViewMargins',
+    cornerradius: 'cornerRadius',
+    fillcolor: 'fillColor',
+    istransparent: 'isTransparent',
+    setframefromcontentframe: 'setFrameFromContentFrame',
+    settitlewithmnemonic: 'setTitleWithMnemonic',
+    sizetofit: 'sizeToFit',
+    title: 'title',
+    titlecell: 'titleCell',
+    titlefont: 'titleFont',
+    titleposition: 'titlePosition',
+    titlerect: 'titleRect',
+  }
 
-  // boxType: interop.Enum<typeof NSBoxType>;
-  // titlePosition: interop.Enum<typeof NSTitlePosition>;
-  // titleFont: NSFont;
-  // readonly borderRect: CGRect;
-  // readonly titleRect: CGRect;
-  // readonly titleCell: interop.Object;
-  // contentViewMargins: CGSize;
-  // contentView: NSView;
-  // isTransparent: boolean;
-  // borderWidth: number;
-  // cornerRadius: number;
   // borderColor: NSColor;
-  // fillColor: NSColor;
+  // readonly borderRect: CGRect;
   // borderType: interop.Enum<typeof NSBorderType>;
+  // borderWidth: number;
+  // boxType: interop.Enum<typeof NSBoxType>;
+  // contentView: NSView;
+  // contentViewMargins: CGSize;
+  // cornerRadius: number;
+  // fillColor: NSColor;
+  // isTransparent: boolean;
+  // readonly titleCell: interop.Object;
+  // titleFont: NSFont;
+  // titlePosition: interop.Enum<typeof NSTitlePosition>;
+  // readonly titleRect: CGRect;
 }
 
 export class HTMLNSScrollViewElement extends HTMLNSViewElement {
   // @ts-ignore
   readonly nativeObject = NSScrollView.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    addfloatingsubviewforaxis: 'addFloatingSubviewForAxis',
+    allowsmagnification: 'allowsMagnification',
+    autohidesscrollers: 'autohidesScrollers',
+    automaticallyadjustscontentinsets: 'automaticallyAdjustsContentInsets',
+    autorelease: 'autorelease',
+    backgroundcolor: 'backgroundColor',
+    bordertype: 'borderType',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    contentinsets: 'contentInsets',
+    contentsize: 'contentSize',
+    contentsizeforframesizehashorizontalscrollerhasverticalscrollerbordertype: 'contentSizeForFrameSizeHasHorizontalScrollerHasVerticalScrollerBorderType',
+    contentsizeforframesizehorizontalscrollerclassverticalscrollerclassbordertypecontrolsizescrollerstyle: 'contentSizeForFrameSizeHorizontalScrollerClassVerticalScrollerClassBorderTypeControlSizeScrollerStyle',
+    contentview: 'contentView',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    documentcursor: 'documentCursor',
+    documentview: 'documentView',
+    documentvisiblerect: 'documentVisibleRect',
+    drawsbackground: 'drawsBackground',
+    findbarposition: 'findBarPosition',
+    findbarview: 'findBarView',
+    findbarviewdidchangeheight: 'findBarViewDidChangeHeight',
+    flashscrollers: 'flashScrollers',
+    framesizeforcontentsizehashorizontalscrollerhasverticalscrollerbordertype: 'frameSizeForContentSizeHasHorizontalScrollerHasVerticalScrollerBorderType',
+    framesizeforcontentsizehorizontalscrollerclassverticalscrollerclassbordertypecontrolsizescrollerstyle: 'frameSizeForContentSizeHorizontalScrollerClassVerticalScrollerClassBorderTypeControlSizeScrollerStyle',
+    hash: 'hash',
+    hashorizontalruler: 'hasHorizontalRuler',
+    hashorizontalscroller: 'hasHorizontalScroller',
+    hasverticalruler: 'hasVerticalRuler',
+    hasverticalscroller: 'hasVerticalScroller',
+    horizontallinescroll: 'horizontalLineScroll',
+    horizontalpagescroll: 'horizontalPageScroll',
+    horizontalrulerview: 'horizontalRulerView',
+    horizontalscrollelasticity: 'horizontalScrollElasticity',
+    horizontalscroller: 'horizontalScroller',
+    initwithcoder: 'initWithCoder',
+    initwithframe: 'initWithFrame',
+    isequal: 'isEqual',
+    isfindbarvisible: 'isFindBarVisible',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    linescroll: 'lineScroll',
+    magnification: 'magnification',
+    magnifytofitrect: 'magnifyToFitRect',
+    maxmagnification: 'maxMagnification',
+    minmagnification: 'minMagnification',
+    pagescroll: 'pageScroll',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    reflectscrolledclipview: 'reflectScrolledClipView',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    rulersvisible: 'rulersVisible',
+    rulerviewclass: 'rulerViewClass',
+    scrollerinsets: 'scrollerInsets',
+    scrollerknobstyle: 'scrollerKnobStyle',
+    scrollerstyle: 'scrollerStyle',
+    scrollsdynamically: 'scrollsDynamically',
+    scrollwheel: 'scrollWheel',
+    self: 'self',
+    setmagnificationcenteredatpoint: 'setMagnificationCenteredAtPoint',
+    superclass: 'superclass',
+    tile: 'tile',
+    usespredominantaxisscrolling: 'usesPredominantAxisScrolling',
+    verticallinescroll: 'verticalLineScroll',
+    verticalpagescroll: 'verticalPageScroll',
+    verticalrulerview: 'verticalRulerView',
+    verticalscrollelasticity: 'verticalScrollElasticity',
+    verticalscroller: 'verticalScroller',
+    zone: 'zone',
+  }
 
-  // readonly documentVisibleRect: CGRect;
-  // readonly contentSize: CGSize;
-  // documentView: NSView;
-  // contentView: NSClipView;
-  // documentCursor: NSCursor;
-  // borderType: interop.Enum<typeof NSBorderType>;
-  // backgroundColor: NSColor;
-  // drawsBackground: boolean;
-  // hasVerticalScroller: boolean;
-  // hasHorizontalScroller: boolean;
-  // verticalScroller: NSScroller;
-  // horizontalScroller: NSScroller;
-  // autohidesScrollers: boolean;
-  // horizontalLineScroll: number;
-  // verticalLineScroll: number;
-  // lineScroll: number;
-  // horizontalPageScroll: number;
-  // verticalPageScroll: number;
-  // pageScroll: number;
-  // scrollsDynamically: boolean;
-  // scrollerStyle: interop.Enum<typeof NSScrollerStyle>;
-  // scrollerKnobStyle: interop.Enum<typeof NSScrollerKnobStyle>;
-  // horizontalScrollElasticity: interop.Enum<typeof NSScrollElasticity>;
-  // verticalScrollElasticity: interop.Enum<typeof NSScrollElasticity>;
-  // usesPredominantAxisScrolling: boolean;
   // allowsMagnification: boolean;
+  // autohidesScrollers: boolean;
+  // automaticallyAdjustsContentInsets: boolean;
+  // backgroundColor: NSColor;
+  // borderType: interop.Enum<typeof NSBorderType>;
+  // contentInsets: NSEdgeInsets;
+  // readonly contentSize: CGSize;
+  // contentView: NSClipView;
+  // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // documentCursor: NSCursor;
+  // documentView: NSView;
+  // readonly documentVisibleRect: CGRect;
+  // drawsBackground: boolean;
+  // findBarPosition: interop.Enum<typeof NSScrollViewFindBarPosition>;
+  // findBarView: NSView;
+  // readonly hash: number;
+  // hasHorizontalRuler: boolean;
+  // hasHorizontalScroller: boolean;
+  // hasVerticalRuler: boolean;
+  // hasVerticalScroller: boolean;
+  // horizontalLineScroll: number;
+  // horizontalPageScroll: number;
+  // horizontalRulerView: NSRulerView;
+  // horizontalScrollElasticity: interop.Enum<typeof NSScrollElasticity>;
+  // horizontalScroller: NSScroller;
+  // isFindBarVisible: boolean;
+  // readonly isProxy: boolean;
+  // lineScroll: number;
   // magnification: number;
   // maxMagnification: number;
   // minMagnification: number;
-  // automaticallyAdjustsContentInsets: boolean;
-  // contentInsets: NSEdgeInsets;
-  // scrollerInsets: NSEdgeInsets;
-  // rulerViewClass: interop.Object;
+  // pageScroll: number;
   // rulersVisible: boolean;
-  // hasHorizontalRuler: boolean;
-  // hasVerticalRuler: boolean;
-  // horizontalRulerView: NSRulerView;
-  // verticalRulerView: NSRulerView;
-  // findBarPosition: interop.Enum<typeof NSScrollViewFindBarPosition>;
-  // findBarView: NSView;
-  // isFindBarVisible: boolean;
-  // readonly hash: number;
+  // rulerViewClass: interop.Object;
+  // scrollerInsets: NSEdgeInsets;
+  // scrollerKnobStyle: interop.Enum<typeof NSScrollerKnobStyle>;
+  // scrollerStyle: interop.Enum<typeof NSScrollerStyle>;
+  // scrollsDynamically: boolean;
   // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
+  // usesPredominantAxisScrolling: boolean;
+  // verticalLineScroll: number;
+  // verticalPageScroll: number;
+  // verticalRulerView: NSRulerView;
+  // verticalScrollElasticity: interop.Enum<typeof NSScrollElasticity>;
+  // verticalScroller: NSScroller;
   // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
 }
 
 export class HTMLNSATSTypesetterElement extends HTMLNSTypesetterElement {
   readonly nativeObject = NSATSTypesetter.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    attributedstring: 'attributedString',
+    bidiprocessingenabled: 'bidiProcessingEnabled',
+    boundingboxforcontrolglyphatindexfortextcontainerproposedlinefragmentglyphpositioncharacterindex: 'boundingBoxForControlGlyphAtIndexForTextContainerProposedLineFragmentGlyphPositionCharacterIndex',
+    currenttextcontainer: 'currentTextContainer',
+    getglyphsinrangeglyphscharacterindexesglyphinscriptionselasticbits: 'getGlyphsInRangeGlyphsCharacterIndexesGlyphInscriptionsElasticBits',
+    getlinefragmentrectusedrectforparagraphseparatorglyphrangeatproposedorigin: 'getLineFragmentRectUsedRectForParagraphSeparatorGlyphRangeAtProposedOrigin',
+    hyphenationfactor: 'hyphenationFactor',
+    hyphenationfactorforglyphatindex: 'hyphenationFactorForGlyphAtIndex',
+    hyphencharacterforglyphatindex: 'hyphenCharacterForGlyphAtIndex',
+    layoutmanager: 'layoutManager',
+    layoutparagraphatpoint: 'layoutParagraphAtPoint',
+    linefragmentpadding: 'lineFragmentPadding',
+    linefragmentrectforproposedrectremainingrect: 'lineFragmentRectForProposedRectRemainingRect',
+    linespacingafterglyphatindexwithproposedlinefragmentrect: 'lineSpacingAfterGlyphAtIndexWithProposedLineFragmentRect',
+    paragraphglyphrange: 'paragraphGlyphRange',
+    paragraphseparatorglyphrange: 'paragraphSeparatorGlyphRange',
+    paragraphspacingafterglyphatindexwithproposedlinefragmentrect: 'paragraphSpacingAfterGlyphAtIndexWithProposedLineFragmentRect',
+    paragraphspacingbeforeglyphatindexwithproposedlinefragmentrect: 'paragraphSpacingBeforeGlyphAtIndexWithProposedLineFragmentRect',
+    sethardinvalidationforglyphrange: 'setHardInvalidationForGlyphRange',
+    setparagraphglyphrangeseparatorglyphrange: 'setParagraphGlyphRangeSeparatorGlyphRange',
+    sharedtypesetter: 'sharedTypesetter',
+    shouldbreaklinebyhyphenatingbeforecharacteratindex: 'shouldBreakLineByHyphenatingBeforeCharacterAtIndex',
+    shouldbreaklinebywordbeforecharacteratindex: 'shouldBreakLineByWordBeforeCharacterAtIndex',
+    substitutefontforfont: 'substituteFontForFont',
+    texttabforglyphlocationwritingdirectionmaxlocation: 'textTabForGlyphLocationWritingDirectionMaxLocation',
+    typesetterbehavior: 'typesetterBehavior',
+    usesfontleading: 'usesFontLeading',
+    willsetlinefragmentrectforglyphrangeusedrectbaselineoffset: 'willSetLineFragmentRectForGlyphRangeUsedRectBaselineOffset',
+  }
 
-  // sharedTypesetter: NSATSTypesetter;
-  // usesFontLeading: boolean;
-  // typesetterBehavior: interop.Enum<typeof NSTypesetterBehavior>;
-  // hyphenationFactor: number;
-  // lineFragmentPadding: number;
-  // bidiProcessingEnabled: boolean;
   // attributedString: NSAttributedString;
+  // bidiProcessingEnabled: boolean;
+  // readonly currentTextContainer: NSTextContainer;
+  // hyphenationFactor: number;
+  // readonly layoutManager: NSLayoutManager;
+  // lineFragmentPadding: number;
   // readonly paragraphGlyphRange: _NSRange;
   // readonly paragraphSeparatorGlyphRange: _NSRange;
-  // readonly layoutManager: NSLayoutManager;
-  // readonly currentTextContainer: NSTextContainer;
+  // sharedTypesetter: NSATSTypesetter;
+  // typesetterBehavior: interop.Enum<typeof NSTypesetterBehavior>;
+  // usesFontLeading: boolean;
 }
 
 export class HTMLNSTableCellViewElement extends HTMLNSViewElement {
   readonly nativeObject = NSTableCellView.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    backgroundstyle: 'backgroundStyle',
+    draggingimagecomponents: 'draggingImageComponents',
+    imageview: 'imageView',
+    objectvalue: 'objectValue',
+    rowsizestyle: 'rowSizeStyle',
+    textfield: 'textField',
+  }
 
-  // objectValue: interop.Object;
-  // textField: NSTextField;
-  // imageView: NSImageView;
   // backgroundStyle: interop.Enum<typeof NSBackgroundStyle>;
-  // rowSizeStyle: interop.Enum<typeof NSTableViewRowSizeStyle>;
   // readonly draggingImageComponents: NSArray;
+  // imageView: NSImageView;
+  // objectValue: interop.Object;
+  // rowSizeStyle: interop.Enum<typeof NSTableViewRowSizeStyle>;
+  // textField: NSTextField;
 }
 
 export class HTMLNSVisualEffectViewElement extends HTMLNSViewElement {
   readonly nativeObject = NSVisualEffectView.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    blendingmode: 'blendingMode',
+    interiorbackgroundstyle: 'interiorBackgroundStyle',
+    isemphasized: 'isEmphasized',
+    maskimage: 'maskImage',
+    material: 'material',
+    state: 'state',
+    viewdidmovetowindow: 'viewDidMoveToWindow',
+    viewwillmovetowindow: 'viewWillMoveToWindow',
+  }
 
-  // material: interop.Enum<typeof NSVisualEffectMaterial>;
-  // readonly interiorBackgroundStyle: interop.Enum<typeof NSBackgroundStyle>;
   // blendingMode: interop.Enum<typeof NSVisualEffectBlendingMode>;
-  // state: interop.Enum<typeof NSVisualEffectState>;
-  // maskImage: NSImage;
+  // readonly interiorBackgroundStyle: interop.Enum<typeof NSBackgroundStyle>;
   // isEmphasized: boolean;
+  // maskImage: NSImage;
+  // material: interop.Enum<typeof NSVisualEffectMaterial>;
+  // state: interop.Enum<typeof NSVisualEffectState>;
 }
 
 export class HTMLNSTableRowViewElement extends HTMLNSViewElement {
   readonly nativeObject = NSTableRowView.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessibilitydisclosurelevel: 'accessibilityDisclosureLevel',
+    accessibilityframe: 'accessibilityFrame',
+    accessibilityidentifier: 'accessibilityIdentifier',
+    accessibilityindex: 'accessibilityIndex',
+    accessibilityparent: 'accessibilityParent',
+    autorelease: 'autorelease',
+    backgroundcolor: 'backgroundColor',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    draggingdestinationfeedbackstyle: 'draggingDestinationFeedbackStyle',
+    drawbackgroundinrect: 'drawBackgroundInRect',
+    drawdraggingdestinationfeedbackinrect: 'drawDraggingDestinationFeedbackInRect',
+    drawselectioninrect: 'drawSelectionInRect',
+    drawseparatorinrect: 'drawSeparatorInRect',
+    hash: 'hash',
+    indentationfordropoperation: 'indentationForDropOperation',
+    interiorbackgroundstyle: 'interiorBackgroundStyle',
+    isaccessibilityfocused: 'isAccessibilityFocused',
+    isemphasized: 'isEmphasized',
+    isequal: 'isEqual',
+    isfloating: 'isFloating',
+    isgrouprowstyle: 'isGroupRowStyle',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isnextrowselected: 'isNextRowSelected',
+    ispreviousrowselected: 'isPreviousRowSelected',
+    isproxy: 'isProxy',
+    isselected: 'isSelected',
+    istargetfordropoperation: 'isTargetForDropOperation',
+    numberofcolumns: 'numberOfColumns',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    selectionhighlightstyle: 'selectionHighlightStyle',
+    self: 'self',
+    superclass: 'superclass',
+    viewatcolumn: 'viewAtColumn',
+    zone: 'zone',
+  }
 
-  // selectionHighlightStyle: interop.Enum<typeof NSTableViewSelectionHighlightStyle>;
-  // isEmphasized: boolean;
-  // isGroupRowStyle: boolean;
-  // isSelected: boolean;
-  // isPreviousRowSelected: boolean;
-  // isNextRowSelected: boolean;
-  // isFloating: boolean;
-  // isTargetForDropOperation: boolean;
-  // draggingDestinationFeedbackStyle: interop.Enum<typeof NSTableViewDraggingDestinationFeedbackStyle>;
-  // indentationForDropOperation: number;
-  // readonly interiorBackgroundStyle: interop.Enum<typeof NSBackgroundStyle>;
-  // backgroundColor: NSColor;
-  // readonly numberOfColumns: number;
-  // accessibilityIndex: number;
   // accessibilityDisclosureLevel: number;
   // accessibilityFrame: CGRect;
+  // accessibilityIndex: number;
   // accessibilityParent: interop.Object;
-  // isAccessibilityFocused: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
+  // backgroundColor: NSColor;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // draggingDestinationFeedbackStyle: interop.Enum<typeof NSTableViewDraggingDestinationFeedbackStyle>;
+  // readonly hash: number;
+  // indentationForDropOperation: number;
+  // readonly interiorBackgroundStyle: interop.Enum<typeof NSBackgroundStyle>;
+  // isAccessibilityFocused: boolean;
+  // isEmphasized: boolean;
+  // isFloating: boolean;
+  // isGroupRowStyle: boolean;
+  // isNextRowSelected: boolean;
+  // isPreviousRowSelected: boolean;
+  // readonly isProxy: boolean;
+  // isSelected: boolean;
+  // isTargetForDropOperation: boolean;
+  // readonly numberOfColumns: number;
+  // selectionHighlightStyle: interop.Enum<typeof NSTableViewSelectionHighlightStyle>;
+  // readonly superclass: interop.Object;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSCollectionViewGridLayoutElement extends HTMLNSCollectionViewLayoutElement {
   readonly nativeObject = NSCollectionViewGridLayout.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    backgroundcolors: 'backgroundColors',
+    margins: 'margins',
+    maximumitemsize: 'maximumItemSize',
+    maximumnumberofcolumns: 'maximumNumberOfColumns',
+    maximumnumberofrows: 'maximumNumberOfRows',
+    minimuminteritemspacing: 'minimumInteritemSpacing',
+    minimumitemsize: 'minimumItemSize',
+    minimumlinespacing: 'minimumLineSpacing',
+  }
 
   // margins: NSEdgeInsets;
-  // minimumInteritemSpacing: number;
-  // minimumLineSpacing: number;
-  // maximumNumberOfRows: number;
-  // maximumNumberOfColumns: number;
-  // minimumItemSize: CGSize;
   // maximumItemSize: CGSize;
+  // maximumNumberOfColumns: number;
+  // maximumNumberOfRows: number;
+  // minimumInteritemSpacing: number;
+  // minimumItemSize: CGSize;
+  // minimumLineSpacing: number;
 }
 
 export class HTMLNSCollectionLayoutSpacingElement extends HTMLNSObjectElement {
   readonly nativeObject = NSCollectionLayoutSpacing.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    copywithzone: 'copyWithZone',
+    fixedspacing: 'fixedSpacing',
+    flexiblespacing: 'flexibleSpacing',
+    isfixedspacing: 'isFixedSpacing',
+    isflexiblespacing: 'isFlexibleSpacing',
+    spacing: 'spacing',
+  }
 
-  // readonly spacing: number;
-  // readonly isFlexibleSpacing: boolean;
   // readonly isFixedSpacing: boolean;
+  // readonly isFlexibleSpacing: boolean;
+  // readonly spacing: number;
 }
 
 export class HTMLNSCachedImageRepElement extends HTMLNSImageRepElement {
   readonly nativeObject = NSCachedImageRep.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    initwithsizedepthseparatealpha: 'initWithSizeDepthSeparateAlpha',
+    initwithwindowrect: 'initWithWindowRect',
+    rect: 'rect',
+    window: 'window',
+  }
 
 }
 
 export class HTMLNSDockTileElement extends HTMLNSObjectElement {
   readonly nativeObject = NSDockTile.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    badgelabel: 'badgeLabel',
+    contentview: 'contentView',
+    display: 'display',
+    owner: 'owner',
+    showsapplicationbadge: 'showsApplicationBadge',
+    size: 'size',
+  }
 
-  // readonly size: CGSize;
   // contentView: NSView;
-  // showsApplicationBadge: boolean;
   // readonly owner: interop.Object | null;
+  // showsApplicationBadge: boolean;
+  // readonly size: CGSize;
 }
 
 export class HTMLNSAlertElement extends HTMLNSObjectElement {
@@ -3275,12 +8684,34 @@ export class HTMLNSAlertElement extends HTMLNSObjectElement {
   get delegate(): NSAlertDelegateImpl {
     return (this.nativeObject.delegate ??= NSAlertDelegateImpl.new()) as NSAlertDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessoryview: 'accessoryView',
+    addbuttonwithtitle: 'addButtonWithTitle',
+    alertstyle: 'alertStyle',
+    alertwitherror: 'alertWithError',
+    alertwithmessagetextdefaultbuttonalternatebuttonotherbuttoninformativetextwithformat: 'alertWithMessageTextDefaultButtonAlternateButtonOtherButtonInformativeTextWithFormat',
+    beginsheetmodalforwindowcompletionhandler: 'beginSheetModalForWindowCompletionHandler',
+    beginsheetmodalforwindowmodaldelegatedidendselectorcontextinfo: 'beginSheetModalForWindowModalDelegateDidEndSelectorContextInfo',
+    buttons: 'buttons',
+    delegate: 'delegate',
+    helpanchor: 'helpAnchor',
+    icon: 'icon',
+    informativetext: 'informativeText',
+    layout: 'layout',
+    messagetext: 'messageText',
+    runmodal: 'runModal',
+    showshelp: 'showsHelp',
+    showssuppressionbutton: 'showsSuppressionButton',
+    suppressionbutton: 'suppressionButton',
+    window: 'window',
+  }
 
-  // icon: NSImage;
-  // readonly buttons: NSArray;
-  // alertStyle: interop.Enum<typeof NSAlertStyle>;
-  // showsHelp: boolean;
   // accessoryView: NSView;
+  // alertStyle: interop.Enum<typeof NSAlertStyle>;
+  // readonly buttons: NSArray;
+  // icon: NSImage;
+  // showsHelp: boolean;
   // showsSuppressionButton: boolean;
   // readonly suppressionButton: NSButton;
   // readonly window: NSWindow;
@@ -3292,71 +8723,167 @@ export class HTMLNSAlertElement extends HTMLNSObjectElement {
 
 export class HTMLNSTextLineFragmentElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextLineFragment.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    attributedstring: 'attributedString',
+    characterindexforpoint: 'characterIndexForPoint',
+    characterrange: 'characterRange',
+    drawatpointincontext: 'drawAtPointInContext',
+    encodewithcoder: 'encodeWithCoder',
+    fractionofdistancethroughglyphforpoint: 'fractionOfDistanceThroughGlyphForPoint',
+    glyphorigin: 'glyphOrigin',
+    initwithattributedstringrange: 'initWithAttributedStringRange',
+    initwithcoder: 'initWithCoder',
+    initwithstringattributesrange: 'initWithStringAttributesRange',
+    locationforcharacteratindex: 'locationForCharacterAtIndex',
+    supportssecurecoding: 'supportsSecureCoding',
+    typographicbounds: 'typographicBounds',
+  }
 
   // readonly attributedString: NSAttributedString;
   // readonly characterRange: _NSRange;
-  // readonly typographicBounds: CGRect;
   // readonly glyphOrigin: CGPoint;
   // supportsSecureCoding: boolean;
+  // readonly typographicBounds: CGRect;
 }
 
 export class HTMLNSTextSelectionElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextSelection.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    affinity: 'affinity',
+    anchorpositionoffset: 'anchorPositionOffset',
+    encodewithcoder: 'encodeWithCoder',
+    granularity: 'granularity',
+    initwithcoder: 'initWithCoder',
+    initwithlocationaffinity: 'initWithLocationAffinity',
+    initwithrangeaffinitygranularity: 'initWithRangeAffinityGranularity',
+    initwithrangesaffinitygranularity: 'initWithRangesAffinityGranularity',
+    islogical: 'isLogical',
+    istransient: 'isTransient',
+    secondaryselectionlocation: 'secondarySelectionLocation',
+    supportssecurecoding: 'supportsSecureCoding',
+    textranges: 'textRanges',
+    textselectionwithtextranges: 'textSelectionWithTextRanges',
+    typingattributes: 'typingAttributes',
+  }
 
-  // readonly textRanges: NSArray;
-  // readonly granularity: interop.Enum<typeof NSTextSelectionGranularity>;
   // readonly affinity: interop.Enum<typeof NSTextSelectionAffinity>;
-  // readonly isTransient: boolean;
   // anchorPositionOffset: number;
+  // readonly granularity: interop.Enum<typeof NSTextSelectionGranularity>;
   // isLogical: boolean;
+  // readonly isTransient: boolean;
   // secondarySelectionLocation: NSTextLocation;
   // supportsSecureCoding: boolean;
+  // readonly textRanges: NSArray;
 }
 
 export class HTMLNSAlignmentFeedbackFilterElement extends HTMLNSObjectElement {
   readonly nativeObject = NSAlignmentFeedbackFilter.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    alignmentfeedbacktokenforhorizontalmovementinviewpreviousxalignedxdefaultx: 'alignmentFeedbackTokenForHorizontalMovementInViewPreviousXAlignedXDefaultX',
+    alignmentfeedbacktokenformovementinviewpreviouspointalignedpointdefaultpoint: 'alignmentFeedbackTokenForMovementInViewPreviousPointAlignedPointDefaultPoint',
+    alignmentfeedbacktokenforverticalmovementinviewpreviousyalignedydefaulty: 'alignmentFeedbackTokenForVerticalMovementInViewPreviousYAlignedYDefaultY',
+    inputeventmask: 'inputEventMask',
+    performfeedbackperformancetime: 'performFeedbackPerformanceTime',
+    updatewithevent: 'updateWithEvent',
+    updatewithpanrecognizer: 'updateWithPanRecognizer',
+  }
 
   // inputEventMask: interop.Enum<typeof NSEventMask>;
 }
 
 export class HTMLNSParagraphStyleElement extends HTMLNSObjectElement {
   readonly nativeObject = NSParagraphStyle.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    alignment: 'alignment',
+    allowsdefaulttighteningfortruncation: 'allowsDefaultTighteningForTruncation',
+    basewritingdirection: 'baseWritingDirection',
+    copywithzone: 'copyWithZone',
+    defaultparagraphstyle: 'defaultParagraphStyle',
+    defaulttabinterval: 'defaultTabInterval',
+    defaultwritingdirectionforlanguage: 'defaultWritingDirectionForLanguage',
+    encodewithcoder: 'encodeWithCoder',
+    firstlineheadindent: 'firstLineHeadIndent',
+    headerlevel: 'headerLevel',
+    headindent: 'headIndent',
+    hyphenationfactor: 'hyphenationFactor',
+    initwithcoder: 'initWithCoder',
+    linebreakmode: 'lineBreakMode',
+    linebreakstrategy: 'lineBreakStrategy',
+    lineheightmultiple: 'lineHeightMultiple',
+    linespacing: 'lineSpacing',
+    maximumlineheight: 'maximumLineHeight',
+    minimumlineheight: 'minimumLineHeight',
+    mutablecopywithzone: 'mutableCopyWithZone',
+    paragraphspacing: 'paragraphSpacing',
+    paragraphspacingbefore: 'paragraphSpacingBefore',
+    supportssecurecoding: 'supportsSecureCoding',
+    tabstops: 'tabStops',
+    tailindent: 'tailIndent',
+    textblocks: 'textBlocks',
+    textlists: 'textLists',
+    tighteningfactorfortruncation: 'tighteningFactorForTruncation',
+    usesdefaulthyphenation: 'usesDefaultHyphenation',
+  }
 
-  // defaultParagraphStyle: NSParagraphStyle;
-  // readonly lineSpacing: number;
-  // readonly paragraphSpacing: number;
   // readonly alignment: interop.Enum<typeof NSTextAlignment>;
-  // readonly headIndent: number;
-  // readonly tailIndent: number;
-  // readonly firstLineHeadIndent: number;
-  // readonly minimumLineHeight: number;
-  // readonly maximumLineHeight: number;
-  // readonly lineBreakMode: interop.Enum<typeof NSLineBreakMode>;
-  // readonly baseWritingDirection: interop.Enum<typeof NSWritingDirection>;
-  // readonly lineHeightMultiple: number;
-  // readonly paragraphSpacingBefore: number;
-  // readonly hyphenationFactor: number;
-  // readonly usesDefaultHyphenation: boolean;
-  // readonly tabStops: NSArray;
-  // readonly defaultTabInterval: number;
   // readonly allowsDefaultTighteningForTruncation: boolean;
-  // readonly tighteningFactorForTruncation: number;
+  // readonly baseWritingDirection: interop.Enum<typeof NSWritingDirection>;
+  // defaultParagraphStyle: NSParagraphStyle;
+  // readonly defaultTabInterval: number;
+  // readonly firstLineHeadIndent: number;
+  // readonly headerLevel: number;
+  // readonly headIndent: number;
+  // readonly hyphenationFactor: number;
+  // readonly lineBreakMode: interop.Enum<typeof NSLineBreakMode>;
+  // readonly lineBreakStrategy: interop.Enum<typeof NSLineBreakStrategy>;
+  // readonly lineHeightMultiple: number;
+  // readonly lineSpacing: number;
+  // readonly maximumLineHeight: number;
+  // readonly minimumLineHeight: number;
+  // readonly paragraphSpacing: number;
+  // readonly paragraphSpacingBefore: number;
+  // supportsSecureCoding: boolean;
+  // readonly tabStops: NSArray;
+  // readonly tailIndent: number;
   // readonly textBlocks: NSArray;
   // readonly textLists: NSArray;
-  // readonly headerLevel: number;
-  // readonly lineBreakStrategy: interop.Enum<typeof NSLineBreakStrategy>;
-  // supportsSecureCoding: boolean;
+  // readonly tighteningFactorForTruncation: number;
+  // readonly usesDefaultHyphenation: boolean;
 }
 
 export class HTMLNSDictionaryControllerKeyValuePairElement extends HTMLNSObjectElement {
   readonly nativeObject = NSDictionaryControllerKeyValuePair.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    isexplicitlyincluded: 'isExplicitlyIncluded',
+    key: 'key',
+    localizedkey: 'localizedKey',
+    value: 'value',
+  }
 
-  // value: interop.Object;
   // readonly isExplicitlyIncluded: boolean;
+  // value: interop.Object;
 }
 
 export class HTMLNSOpenGLViewElement extends HTMLNSViewElement {
   readonly nativeObject = NSOpenGLView.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    clearglcontext: 'clearGLContext',
+    defaultpixelformat: 'defaultPixelFormat',
+    initwithframepixelformat: 'initWithFramePixelFormat',
+    openglcontext: 'openGLContext',
+    pixelformat: 'pixelFormat',
+    prepareopengl: 'prepareOpenGL',
+    reshape: 'reshape',
+    update: 'update',
+    wantsbestresolutionopenglsurface: 'wantsBestResolutionOpenGLSurface',
+    wantsextendeddynamicrangeopenglsurface: 'wantsExtendedDynamicRangeOpenGLSurface',
+  }
 
   // openGLContext: NSOpenGLContext;
   // pixelFormat: NSOpenGLPixelFormat;
@@ -3366,323 +8893,912 @@ export class HTMLNSOpenGLViewElement extends HTMLNSViewElement {
 
 export class HTMLNSMovieElement extends HTMLNSObjectElement {
   readonly nativeObject = NSMovie.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    encodewithcoder: 'encodeWithCoder',
+    init: 'init',
+    initwithcoder: 'initWithCoder',
+    initwithmovie: 'initWithMovie',
+    qtmovie: 'QTMovie',
+  }
 
 }
 
 export class HTMLNSDataAssetElement extends HTMLNSObjectElement {
   readonly nativeObject = NSDataAsset.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    copywithzone: 'copyWithZone',
+    data: 'data',
+    initwithname: 'initWithName',
+    initwithnamebundle: 'initWithNameBundle',
+    name: 'name',
+    typeidentifier: 'typeIdentifier',
+  }
 
-  // readonly name: NSString;
   // readonly data: NSData;
+  // readonly name: NSString;
   // readonly typeIdentifier: NSString;
 }
 
 export class HTMLNSTableHeaderViewElement extends HTMLNSViewElement {
   readonly nativeObject = NSTableHeaderView.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    autorelease: 'autorelease',
+    class: 'class',
+    columnatpoint: 'columnAtPoint',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    draggedcolumn: 'draggedColumn',
+    draggeddistance: 'draggedDistance',
+    hash: 'hash',
+    headerrectofcolumn: 'headerRectOfColumn',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    release: 'release',
+    resizedcolumn: 'resizedColumn',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    superclass: 'superclass',
+    tableview: 'tableView',
+    viewstringfortooltippointuserdata: 'viewStringForToolTipPointUserData',
+    zone: 'zone',
+  }
 
-  // tableView: NSTableView;
+  // readonly debugDescription: NSString;
+  // readonly description: NSString;
   // readonly draggedColumn: number;
   // readonly draggedDistance: number;
-  // readonly resizedColumn: number;
   // readonly hash: number;
-  // readonly superclass: interop.Object;
   // readonly isProxy: boolean;
+  // readonly resizedColumn: number;
+  // readonly superclass: interop.Object;
+  // tableView: NSTableView;
   // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
 }
 
 export class HTMLNSTextInsertionIndicatorElement extends HTMLNSViewElement {
   readonly nativeObject = NSTextInsertionIndicator.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    automaticmodeoptions: 'automaticModeOptions',
+    color: 'color',
+    displaymode: 'displayMode',
+    effectsviewinserter: 'effectsViewInserter',
+  }
 
-  // displayMode: interop.Enum<typeof NSTextInsertionIndicatorDisplayMode>;
-  // color: NSColor;
   // automaticModeOptions: interop.Enum<typeof NSTextInsertionIndicatorAutomaticModeOptions>;
+  // color: NSColor;
+  // displayMode: interop.Enum<typeof NSTextInsertionIndicatorDisplayMode>;
   // effectsViewInserter: (p1: NSView) => void;
 }
 
 export class HTMLNSSegmentedCellElement extends HTMLNSActionCellElement {
   readonly nativeObject = NSSegmentedCell.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    drawsegmentinframewithview: 'drawSegmentInFrameWithView',
+    imageforsegment: 'imageForSegment',
+    imagescalingforsegment: 'imageScalingForSegment',
+    interiorbackgroundstyleforsegment: 'interiorBackgroundStyleForSegment',
+    isenabledforsegment: 'isEnabledForSegment',
+    isselectedforsegment: 'isSelectedForSegment',
+    labelforsegment: 'labelForSegment',
+    makenextsegmentkey: 'makeNextSegmentKey',
+    makeprevioussegmentkey: 'makePreviousSegmentKey',
+    menuforsegment: 'menuForSegment',
+    segmentcount: 'segmentCount',
+    segmentstyle: 'segmentStyle',
+    selectedsegment: 'selectedSegment',
+    selectsegmentwithtag: 'selectSegmentWithTag',
+    setenabledforsegment: 'setEnabledForSegment',
+    setimageforsegment: 'setImageForSegment',
+    setimagescalingforsegment: 'setImageScalingForSegment',
+    setlabelforsegment: 'setLabelForSegment',
+    setmenuforsegment: 'setMenuForSegment',
+    setselectedforsegment: 'setSelectedForSegment',
+    settagforsegment: 'setTagForSegment',
+    settooltipforsegment: 'setToolTipForSegment',
+    setwidthforsegment: 'setWidthForSegment',
+    tagforsegment: 'tagForSegment',
+    tooltipforsegment: 'toolTipForSegment',
+    trackingmode: 'trackingMode',
+    widthforsegment: 'widthForSegment',
+  }
 
   // segmentCount: number;
+  // segmentStyle: interop.Enum<typeof NSSegmentStyle>;
   // selectedSegment: number;
   // trackingMode: interop.Enum<typeof NSSegmentSwitchTracking>;
-  // segmentStyle: interop.Enum<typeof NSSegmentStyle>;
 }
 
 export class HTMLNSSliderAccessoryBehaviorElement extends HTMLNSObjectElement {
   readonly nativeObject = NSSliderAccessoryBehavior.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    automaticbehavior: 'automaticBehavior',
+    behaviorwithhandler: 'behaviorWithHandler',
+    behaviorwithtargetaction: 'behaviorWithTargetAction',
+    copywithzone: 'copyWithZone',
+    encodewithcoder: 'encodeWithCoder',
+    handleaction: 'handleAction',
+    initwithcoder: 'initWithCoder',
+    valueresetbehavior: 'valueResetBehavior',
+    valuestepbehavior: 'valueStepBehavior',
+  }
 
   // automaticBehavior: NSSliderAccessoryBehavior;
-  // valueStepBehavior: NSSliderAccessoryBehavior;
   // valueResetBehavior: NSSliderAccessoryBehavior;
+  // valueStepBehavior: NSSliderAccessoryBehavior;
 }
 
 export class HTMLNSInputServerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSInputServer.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    activeconversationchangedtonewconversation: 'activeConversationChangedToNewConversation',
+    activeconversationwillchangefromoldconversation: 'activeConversationWillChangeFromOldConversation',
+    canbedisabled: 'canBeDisabled',
+    docommandbyselectorclient: 'doCommandBySelectorClient',
+    initwithdelegatename: 'initWithDelegateName',
+    inputclientbecomeactive: 'inputClientBecomeActive',
+    inputclientdisabled: 'inputClientDisabled',
+    inputclientenabled: 'inputClientEnabled',
+    inputclientresignactive: 'inputClientResignActive',
+    inserttextclient: 'insertTextClient',
+    markedtextabandoned: 'markedTextAbandoned',
+    markedtextselectionchangedclient: 'markedTextSelectionChangedClient',
+    mousedownoncharacterindexatcoordinatewithmodifierclient: 'mouseDownOnCharacterIndexAtCoordinateWithModifierClient',
+    mousedraggedoncharacterindexatcoordinatewithmodifierclient: 'mouseDraggedOnCharacterIndexAtCoordinateWithModifierClient',
+    mouseuponcharacterindexatcoordinatewithmodifierclient: 'mouseUpOnCharacterIndexAtCoordinateWithModifierClient',
+    terminate: 'terminate',
+    wantstodelaytextchangenotifications: 'wantsToDelayTextChangeNotifications',
+    wantstohandlemouseevents: 'wantsToHandleMouseEvents',
+    wantstointerpretallkeystrokes: 'wantsToInterpretAllKeystrokes',
+  }
 
 }
 
 export class HTMLNSFormCellElement extends HTMLNSActionCellElement {
   // @ts-ignore
   readonly nativeObject = NSFormCell.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    attributedtitle: 'attributedTitle',
+    inittextcell: 'initTextCell',
+    initwithcoder: 'initWithCoder',
+    isopaque: 'isOpaque',
+    placeholderattributedstring: 'placeholderAttributedString',
+    placeholderstring: 'placeholderString',
+    preferredtextfieldwidth: 'preferredTextFieldWidth',
+    settitlewithmnemonic: 'setTitleWithMnemonic',
+    title: 'title',
+    titlealignment: 'titleAlignment',
+    titlebasewritingdirection: 'titleBaseWritingDirection',
+    titlefont: 'titleFont',
+    titlewidth: 'titleWidth',
+  }
 
-  // titleWidth: number;
-  // titleFont: NSFont;
+  // attributedTitle: NSAttributedString;
   // readonly isOpaque: boolean;
   // placeholderAttributedString: NSAttributedString;
+  // preferredTextFieldWidth: number;
   // titleAlignment: interop.Enum<typeof NSTextAlignment>;
   // titleBaseWritingDirection: interop.Enum<typeof NSWritingDirection>;
-  // preferredTextFieldWidth: number;
-  // attributedTitle: NSAttributedString;
+  // titleFont: NSFont;
+  // titleWidth: number;
 }
 
 export class HTMLNSFontElement extends HTMLNSObjectElement {
   readonly nativeObject = NSFont.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    advancementforcgglyph: 'advancementForCGGlyph',
+    advancementforglyph: 'advancementForGlyph',
+    ascender: 'ascender',
+    boldsystemfontofsize: 'boldSystemFontOfSize',
+    boundingrectforcgglyph: 'boundingRectForCGGlyph',
+    boundingrectforfont: 'boundingRectForFont',
+    boundingrectforglyph: 'boundingRectForGlyph',
+    capheight: 'capHeight',
+    controlcontentfontofsize: 'controlContentFontOfSize',
+    copywithzone: 'copyWithZone',
+    coveredcharacterset: 'coveredCharacterSet',
+    descender: 'descender',
+    displayname: 'displayName',
+    encodewithcoder: 'encodeWithCoder',
+    familyname: 'familyName',
+    fontdescriptor: 'fontDescriptor',
+    fontname: 'fontName',
+    fontwithdescriptorsize: 'fontWithDescriptorSize',
+    fontwithdescriptortexttransform: 'fontWithDescriptorTextTransform',
+    fontwithnamematrix: 'fontWithNameMatrix',
+    fontwithnamesize: 'fontWithNameSize',
+    fontwithsize: 'fontWithSize',
+    getadvancementsforcgglyphscount: 'getAdvancementsForCGGlyphsCount',
+    getadvancementsforglyphscount: 'getAdvancementsForGlyphsCount',
+    getadvancementsforpackedglyphslength: 'getAdvancementsForPackedGlyphsLength',
+    getboundingrectsforcgglyphscount: 'getBoundingRectsForCGGlyphsCount',
+    getboundingrectsforglyphscount: 'getBoundingRectsForGlyphsCount',
+    glyphwithname: 'glyphWithName',
+    initwithcoder: 'initWithCoder',
+    isfixedpitch: 'isFixedPitch',
+    isvertical: 'isVertical',
+    italicangle: 'italicAngle',
+    labelfontofsize: 'labelFontOfSize',
+    labelfontsize: 'labelFontSize',
+    leading: 'leading',
+    matrix: 'matrix',
+    maximumadvancement: 'maximumAdvancement',
+    menubarfontofsize: 'menuBarFontOfSize',
+    menufontofsize: 'menuFontOfSize',
+    messagefontofsize: 'messageFontOfSize',
+    monospaceddigitsystemfontofsizeweight: 'monospacedDigitSystemFontOfSizeWeight',
+    monospacedsystemfontofsizeweight: 'monospacedSystemFontOfSizeWeight',
+    mostcompatiblestringencoding: 'mostCompatibleStringEncoding',
+    numberofglyphs: 'numberOfGlyphs',
+    palettefontofsize: 'paletteFontOfSize',
+    pointsize: 'pointSize',
+    preferredfontfortextstyleoptions: 'preferredFontForTextStyleOptions',
+    printerfont: 'printerFont',
+    renderingmode: 'renderingMode',
+    screenfont: 'screenFont',
+    screenfontwithrenderingmode: 'screenFontWithRenderingMode',
+    set: 'set',
+    setincontext: 'setInContext',
+    setuserfixedpitchfont: 'setUserFixedPitchFont',
+    setuserfont: 'setUserFont',
+    smallsystemfontsize: 'smallSystemFontSize',
+    supportssecurecoding: 'supportsSecureCoding',
+    systemfontofsize: 'systemFontOfSize',
+    systemfontofsizeweight: 'systemFontOfSizeWeight',
+    systemfontofsizeweightwidth: 'systemFontOfSizeWeightWidth',
+    systemfontsize: 'systemFontSize',
+    systemfontsizeforcontrolsize: 'systemFontSizeForControlSize',
+    texttransform: 'textTransform',
+    titlebarfontofsize: 'titleBarFontOfSize',
+    tooltipsfontofsize: 'toolTipsFontOfSize',
+    underlineposition: 'underlinePosition',
+    underlinethickness: 'underlineThickness',
+    userfixedpitchfontofsize: 'userFixedPitchFontOfSize',
+    userfontofsize: 'userFontOfSize',
+    verticalfont: 'verticalFont',
+    xheight: 'xHeight',
+  }
 
-  // systemFontSize: number;
-  // smallSystemFontSize: number;
-  // labelFontSize: number;
-  // readonly fontName: NSString;
-  // readonly pointSize: number;
-  // readonly matrix: interop.Pointer;
-  // readonly familyName: NSString;
-  // readonly displayName: NSString;
-  // readonly fontDescriptor: NSFontDescriptor;
-  // readonly textTransform: NSAffineTransform;
-  // readonly numberOfGlyphs: number;
-  // readonly mostCompatibleStringEncoding: number;
-  // readonly coveredCharacterSet: NSCharacterSet;
-  // readonly boundingRectForFont: CGRect;
-  // readonly maximumAdvancement: CGSize;
   // readonly ascender: number;
+  // readonly boundingRectForFont: CGRect;
+  // readonly capHeight: number;
+  // readonly coveredCharacterSet: NSCharacterSet;
   // readonly descender: number;
+  // readonly displayName: NSString;
+  // readonly familyName: NSString;
+  // readonly fontDescriptor: NSFontDescriptor;
+  // readonly fontName: NSString;
+  // readonly isFixedPitch: boolean;
+  // readonly isVertical: boolean;
+  // readonly italicAngle: number;
+  // labelFontSize: number;
   // readonly leading: number;
+  // readonly matrix: interop.Pointer;
+  // readonly maximumAdvancement: CGSize;
+  // readonly mostCompatibleStringEncoding: number;
+  // readonly numberOfGlyphs: number;
+  // readonly pointSize: number;
+  // readonly printerFont: NSFont;
+  // readonly renderingMode: interop.Enum<typeof NSFontRenderingMode>;
+  // readonly screenFont: NSFont;
+  // smallSystemFontSize: number;
+  // supportsSecureCoding: boolean;
+  // systemFontSize: number;
+  // readonly textTransform: NSAffineTransform;
   // readonly underlinePosition: number;
   // readonly underlineThickness: number;
-  // readonly italicAngle: number;
-  // readonly capHeight: number;
-  // readonly xHeight: number;
-  // readonly isFixedPitch: boolean;
   // readonly verticalFont: NSFont;
-  // readonly isVertical: boolean;
-  // readonly printerFont: NSFont;
-  // readonly screenFont: NSFont;
-  // readonly renderingMode: interop.Enum<typeof NSFontRenderingMode>;
-  // supportsSecureCoding: boolean;
+  // readonly xHeight: number;
 }
 
 export class HTMLNSLayoutAnchorElement extends HTMLNSObjectElement {
   readonly nativeObject = NSLayoutAnchor.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    constraintequaltoanchor: 'constraintEqualToAnchor',
+    constraintequaltoanchorconstant: 'constraintEqualToAnchorConstant',
+    constraintgreaterthanorequaltoanchor: 'constraintGreaterThanOrEqualToAnchor',
+    constraintgreaterthanorequaltoanchorconstant: 'constraintGreaterThanOrEqualToAnchorConstant',
+    constraintlessthanorequaltoanchor: 'constraintLessThanOrEqualToAnchor',
+    constraintlessthanorequaltoanchorconstant: 'constraintLessThanOrEqualToAnchorConstant',
+    constraintsaffectinglayout: 'constraintsAffectingLayout',
+    copywithzone: 'copyWithZone',
+    encodewithcoder: 'encodeWithCoder',
+    hasambiguouslayout: 'hasAmbiguousLayout',
+    initwithcoder: 'initWithCoder',
+    item: 'item',
+    name: 'name',
+  }
 
-  // readonly name: NSString;
-  // readonly item: interop.Object;
-  // readonly hasAmbiguousLayout: boolean;
   // readonly constraintsAffectingLayout: NSArray;
+  // readonly hasAmbiguousLayout: boolean;
+  // readonly item: interop.Object;
+  // readonly name: NSString;
 }
 
 export class HTMLNSCollectionLayoutDimensionElement extends HTMLNSObjectElement {
   readonly nativeObject = NSCollectionLayoutDimension.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    absolutedimension: 'absoluteDimension',
+    copywithzone: 'copyWithZone',
+    dimension: 'dimension',
+    estimateddimension: 'estimatedDimension',
+    fractionalheightdimension: 'fractionalHeightDimension',
+    fractionalwidthdimension: 'fractionalWidthDimension',
+    isabsolute: 'isAbsolute',
+    isestimated: 'isEstimated',
+    isfractionalheight: 'isFractionalHeight',
+    isfractionalwidth: 'isFractionalWidth',
+  }
 
-  // readonly isFractionalWidth: boolean;
-  // readonly isFractionalHeight: boolean;
+  // readonly dimension: number;
   // readonly isAbsolute: boolean;
   // readonly isEstimated: boolean;
-  // readonly dimension: number;
+  // readonly isFractionalHeight: boolean;
+  // readonly isFractionalWidth: boolean;
 }
 
 export class HTMLNSCollectionViewLayoutAttributesElement extends HTMLNSObjectElement {
   readonly nativeObject = NSCollectionViewLayoutAttributes.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    alpha: 'alpha',
+    copywithzone: 'copyWithZone',
+    frame: 'frame',
+    indexpath: 'indexPath',
+    ishidden: 'isHidden',
+    layoutattributesfordecorationviewofkindwithindexpath: 'layoutAttributesForDecorationViewOfKindWithIndexPath',
+    layoutattributesforinteritemgapbeforeindexpath: 'layoutAttributesForInterItemGapBeforeIndexPath',
+    layoutattributesforitemwithindexpath: 'layoutAttributesForItemWithIndexPath',
+    layoutattributesforsupplementaryviewofkindwithindexpath: 'layoutAttributesForSupplementaryViewOfKindWithIndexPath',
+    representedelementcategory: 'representedElementCategory',
+    representedelementkind: 'representedElementKind',
+    size: 'size',
+    zindex: 'zIndex',
+  }
 
-  // frame: CGRect;
-  // size: CGSize;
   // alpha: number;
-  // zIndex: number;
-  // isHidden: boolean;
+  // frame: CGRect;
   // indexPath: NSIndexPath;
+  // isHidden: boolean;
   // readonly representedElementCategory: interop.Enum<typeof NSCollectionElementCategory>;
   // readonly representedElementKind: NSString;
+  // size: CGSize;
+  // zIndex: number;
 }
 
 export class HTMLNSUserInterfaceCompressionOptionsElement extends HTMLNSObjectElement {
   readonly nativeObject = NSUserInterfaceCompressionOptions.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    breakequalwidthsoption: 'breakEqualWidthsOption',
+    containsoptions: 'containsOptions',
+    copywithzone: 'copyWithZone',
+    encodewithcoder: 'encodeWithCoder',
+    hideimagesoption: 'hideImagesOption',
+    hidetextoption: 'hideTextOption',
+    init: 'init',
+    initwithcoder: 'initWithCoder',
+    initwithcompressionoptions: 'initWithCompressionOptions',
+    initwithidentifier: 'initWithIdentifier',
+    intersectsoptions: 'intersectsOptions',
+    isempty: 'isEmpty',
+    optionsbyaddingoptions: 'optionsByAddingOptions',
+    optionsbyremovingoptions: 'optionsByRemovingOptions',
+    reducemetricsoption: 'reduceMetricsOption',
+    standardoptions: 'standardOptions',
+  }
 
-  // readonly isEmpty: boolean;
+  // breakEqualWidthsOption: NSUserInterfaceCompressionOptions;
   // hideImagesOption: NSUserInterfaceCompressionOptions;
   // hideTextOption: NSUserInterfaceCompressionOptions;
+  // readonly isEmpty: boolean;
   // reduceMetricsOption: NSUserInterfaceCompressionOptions;
-  // breakEqualWidthsOption: NSUserInterfaceCompressionOptions;
   // standardOptions: NSUserInterfaceCompressionOptions;
 }
 
 export class HTMLNSTextAttachmentCellElement extends HTMLNSCellElement {
   // @ts-ignore
   readonly nativeObject = NSTextAttachmentCell.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    attachment: 'attachment',
+    autorelease: 'autorelease',
+    cellbaselineoffset: 'cellBaselineOffset',
+    cellframefortextcontainerproposedlinefragmentglyphpositioncharacterindex: 'cellFrameForTextContainerProposedLineFragmentGlyphPositionCharacterIndex',
+    cellsize: 'cellSize',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    drawwithframeinview: 'drawWithFrameInView',
+    drawwithframeinviewcharacterindex: 'drawWithFrameInViewCharacterIndex',
+    drawwithframeinviewcharacterindexlayoutmanager: 'drawWithFrameInViewCharacterIndexLayoutManager',
+    hash: 'hash',
+    highlightwithframeinview: 'highlightWithFrameInView',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    superclass: 'superclass',
+    trackmouseinrectofviewatcharacterindexuntilmouseup: 'trackMouseInRectOfViewAtCharacterIndexUntilMouseUp',
+    trackmouseinrectofviewuntilmouseup: 'trackMouseInRectOfViewUntilMouseUp',
+    wantstotrackmouse: 'wantsToTrackMouse',
+    wantstotrackmouseforeventinrectofviewatcharacterindex: 'wantsToTrackMouseForEventInRectOfViewAtCharacterIndex',
+    zone: 'zone',
+  }
 
-  // readonly cellSize: CGSize;
   // attachment: NSTextAttachment;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
+  // readonly cellSize: CGSize;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly hash: number;
+  // readonly isProxy: boolean;
+  // readonly superclass: interop.Object;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSMenuItemElement extends HTMLNSObjectElement {
   readonly nativeObject = NSMenuItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessibilityactivationpoint: 'accessibilityActivationPoint',
+    accessibilityallowedvalues: 'accessibilityAllowedValues',
+    accessibilityapplicationfocuseduielement: 'accessibilityApplicationFocusedUIElement',
+    accessibilityattributedstringforrange: 'accessibilityAttributedStringForRange',
+    accessibilityattributeduserinputlabels: 'accessibilityAttributedUserInputLabels',
+    accessibilitycancelbutton: 'accessibilityCancelButton',
+    accessibilitycellforcolumnrow: 'accessibilityCellForColumnRow',
+    accessibilitychildren: 'accessibilityChildren',
+    accessibilitychildreninnavigationorder: 'accessibilityChildrenInNavigationOrder',
+    accessibilityclearbutton: 'accessibilityClearButton',
+    accessibilityclosebutton: 'accessibilityCloseButton',
+    accessibilitycolumncount: 'accessibilityColumnCount',
+    accessibilitycolumnheaderuielements: 'accessibilityColumnHeaderUIElements',
+    accessibilitycolumnindexrange: 'accessibilityColumnIndexRange',
+    accessibilitycolumns: 'accessibilityColumns',
+    accessibilitycolumntitles: 'accessibilityColumnTitles',
+    accessibilitycontents: 'accessibilityContents',
+    accessibilitycriticalvalue: 'accessibilityCriticalValue',
+    accessibilitycustomactions: 'accessibilityCustomActions',
+    accessibilitycustomrotors: 'accessibilityCustomRotors',
+    accessibilitydecrementbutton: 'accessibilityDecrementButton',
+    accessibilitydefaultbutton: 'accessibilityDefaultButton',
+    accessibilitydisclosedbyrow: 'accessibilityDisclosedByRow',
+    accessibilitydisclosedrows: 'accessibilityDisclosedRows',
+    accessibilitydisclosurelevel: 'accessibilityDisclosureLevel',
+    accessibilitydocument: 'accessibilityDocument',
+    accessibilityextrasmenubar: 'accessibilityExtrasMenuBar',
+    accessibilityfilename: 'accessibilityFilename',
+    accessibilityfocusedwindow: 'accessibilityFocusedWindow',
+    accessibilityframe: 'accessibilityFrame',
+    accessibilityframeforrange: 'accessibilityFrameForRange',
+    accessibilityfullscreenbutton: 'accessibilityFullScreenButton',
+    accessibilitygrowarea: 'accessibilityGrowArea',
+    accessibilityhandles: 'accessibilityHandles',
+    accessibilityheader: 'accessibilityHeader',
+    accessibilityhelp: 'accessibilityHelp',
+    accessibilityhorizontalscrollbar: 'accessibilityHorizontalScrollBar',
+    accessibilityhorizontalunitdescription: 'accessibilityHorizontalUnitDescription',
+    accessibilityhorizontalunits: 'accessibilityHorizontalUnits',
+    accessibilityidentifier: 'accessibilityIdentifier',
+    accessibilityincrementbutton: 'accessibilityIncrementButton',
+    accessibilityindex: 'accessibilityIndex',
+    accessibilityinsertionpointlinenumber: 'accessibilityInsertionPointLineNumber',
+    accessibilitylabel: 'accessibilityLabel',
+    accessibilitylabeluielements: 'accessibilityLabelUIElements',
+    accessibilitylabelvalue: 'accessibilityLabelValue',
+    accessibilitylayoutpointforscreenpoint: 'accessibilityLayoutPointForScreenPoint',
+    accessibilitylayoutsizeforscreensize: 'accessibilityLayoutSizeForScreenSize',
+    accessibilitylineforindex: 'accessibilityLineForIndex',
+    accessibilitylinkeduielements: 'accessibilityLinkedUIElements',
+    accessibilitymainwindow: 'accessibilityMainWindow',
+    accessibilitymarkergroupuielement: 'accessibilityMarkerGroupUIElement',
+    accessibilitymarkertypedescription: 'accessibilityMarkerTypeDescription',
+    accessibilitymarkeruielements: 'accessibilityMarkerUIElements',
+    accessibilitymarkervalues: 'accessibilityMarkerValues',
+    accessibilitymaxvalue: 'accessibilityMaxValue',
+    accessibilitymenubar: 'accessibilityMenuBar',
+    accessibilityminimizebutton: 'accessibilityMinimizeButton',
+    accessibilityminvalue: 'accessibilityMinValue',
+    accessibilitynextcontents: 'accessibilityNextContents',
+    accessibilitynumberofcharacters: 'accessibilityNumberOfCharacters',
+    accessibilityorientation: 'accessibilityOrientation',
+    accessibilityoverflowbutton: 'accessibilityOverflowButton',
+    accessibilityparent: 'accessibilityParent',
+    accessibilityperformcancel: 'accessibilityPerformCancel',
+    accessibilityperformconfirm: 'accessibilityPerformConfirm',
+    accessibilityperformdecrement: 'accessibilityPerformDecrement',
+    accessibilityperformdelete: 'accessibilityPerformDelete',
+    accessibilityperformincrement: 'accessibilityPerformIncrement',
+    accessibilityperformpick: 'accessibilityPerformPick',
+    accessibilityperformpress: 'accessibilityPerformPress',
+    accessibilityperformraise: 'accessibilityPerformRaise',
+    accessibilityperformshowalternateui: 'accessibilityPerformShowAlternateUI',
+    accessibilityperformshowdefaultui: 'accessibilityPerformShowDefaultUI',
+    accessibilityperformshowmenu: 'accessibilityPerformShowMenu',
+    accessibilityplaceholdervalue: 'accessibilityPlaceholderValue',
+    accessibilitypreviouscontents: 'accessibilityPreviousContents',
+    accessibilityproxy: 'accessibilityProxy',
+    accessibilityrangeforindex: 'accessibilityRangeForIndex',
+    accessibilityrangeforline: 'accessibilityRangeForLine',
+    accessibilityrangeforposition: 'accessibilityRangeForPosition',
+    accessibilityrole: 'accessibilityRole',
+    accessibilityroledescription: 'accessibilityRoleDescription',
+    accessibilityrowcount: 'accessibilityRowCount',
+    accessibilityrowheaderuielements: 'accessibilityRowHeaderUIElements',
+    accessibilityrowindexrange: 'accessibilityRowIndexRange',
+    accessibilityrows: 'accessibilityRows',
+    accessibilityrtfforrange: 'accessibilityRTFForRange',
+    accessibilityrulermarkertype: 'accessibilityRulerMarkerType',
+    accessibilityscreenpointforlayoutpoint: 'accessibilityScreenPointForLayoutPoint',
+    accessibilityscreensizeforlayoutsize: 'accessibilityScreenSizeForLayoutSize',
+    accessibilitysearchbutton: 'accessibilitySearchButton',
+    accessibilitysearchmenu: 'accessibilitySearchMenu',
+    accessibilityselectedcells: 'accessibilitySelectedCells',
+    accessibilityselectedchildren: 'accessibilitySelectedChildren',
+    accessibilityselectedcolumns: 'accessibilitySelectedColumns',
+    accessibilityselectedrows: 'accessibilitySelectedRows',
+    accessibilityselectedtext: 'accessibilitySelectedText',
+    accessibilityselectedtextrange: 'accessibilitySelectedTextRange',
+    accessibilityselectedtextranges: 'accessibilitySelectedTextRanges',
+    accessibilityservesastitleforuielements: 'accessibilityServesAsTitleForUIElements',
+    accessibilitysharedcharacterrange: 'accessibilitySharedCharacterRange',
+    accessibilitysharedfocuselements: 'accessibilitySharedFocusElements',
+    accessibilitysharedtextuielements: 'accessibilitySharedTextUIElements',
+    accessibilityshownmenu: 'accessibilityShownMenu',
+    accessibilitysortdirection: 'accessibilitySortDirection',
+    accessibilitysplitters: 'accessibilitySplitters',
+    accessibilitystringforrange: 'accessibilityStringForRange',
+    accessibilitystylerangeforindex: 'accessibilityStyleRangeForIndex',
+    accessibilitysubrole: 'accessibilitySubrole',
+    accessibilitytabs: 'accessibilityTabs',
+    accessibilitytitle: 'accessibilityTitle',
+    accessibilitytitleuielement: 'accessibilityTitleUIElement',
+    accessibilitytoolbarbutton: 'accessibilityToolbarButton',
+    accessibilitytopleveluielement: 'accessibilityTopLevelUIElement',
+    accessibilityunitdescription: 'accessibilityUnitDescription',
+    accessibilityunits: 'accessibilityUnits',
+    accessibilityurl: 'accessibilityURL',
+    accessibilityuserinputlabels: 'accessibilityUserInputLabels',
+    accessibilityvalue: 'accessibilityValue',
+    accessibilityvaluedescription: 'accessibilityValueDescription',
+    accessibilityverticalscrollbar: 'accessibilityVerticalScrollBar',
+    accessibilityverticalunitdescription: 'accessibilityVerticalUnitDescription',
+    accessibilityverticalunits: 'accessibilityVerticalUnits',
+    accessibilityvisiblecells: 'accessibilityVisibleCells',
+    accessibilityvisiblecharacterrange: 'accessibilityVisibleCharacterRange',
+    accessibilityvisiblechildren: 'accessibilityVisibleChildren',
+    accessibilityvisiblecolumns: 'accessibilityVisibleColumns',
+    accessibilityvisiblerows: 'accessibilityVisibleRows',
+    accessibilitywarningvalue: 'accessibilityWarningValue',
+    accessibilitywindow: 'accessibilityWindow',
+    accessibilitywindows: 'accessibilityWindows',
+    accessibilityzoombutton: 'accessibilityZoomButton',
+    action: 'action',
+    allowsautomatickeyequivalentlocalization: 'allowsAutomaticKeyEquivalentLocalization',
+    allowsautomatickeyequivalentmirroring: 'allowsAutomaticKeyEquivalentMirroring',
+    allowskeyequivalentwhenhidden: 'allowsKeyEquivalentWhenHidden',
+    attributedtitle: 'attributedTitle',
+    autorelease: 'autorelease',
+    badge: 'badge',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    copywithzone: 'copyWithZone',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    encodewithcoder: 'encodeWithCoder',
+    hash: 'hash',
+    hassubmenu: 'hasSubmenu',
+    identifier: 'identifier',
+    image: 'image',
+    indentationlevel: 'indentationLevel',
+    initwithcoder: 'initWithCoder',
+    initwithtitleactionkeyequivalent: 'initWithTitleActionKeyEquivalent',
+    isaccessibilityalternateuivisible: 'isAccessibilityAlternateUIVisible',
+    isaccessibilitydisclosed: 'isAccessibilityDisclosed',
+    isaccessibilityedited: 'isAccessibilityEdited',
+    isaccessibilityelement: 'isAccessibilityElement',
+    isaccessibilityenabled: 'isAccessibilityEnabled',
+    isaccessibilityexpanded: 'isAccessibilityExpanded',
+    isaccessibilityfocused: 'isAccessibilityFocused',
+    isaccessibilityfrontmost: 'isAccessibilityFrontmost',
+    isaccessibilityhidden: 'isAccessibilityHidden',
+    isaccessibilitymain: 'isAccessibilityMain',
+    isaccessibilityminimized: 'isAccessibilityMinimized',
+    isaccessibilitymodal: 'isAccessibilityModal',
+    isaccessibilityorderedbyrow: 'isAccessibilityOrderedByRow',
+    isaccessibilityprotectedcontent: 'isAccessibilityProtectedContent',
+    isaccessibilityrequired: 'isAccessibilityRequired',
+    isaccessibilityselected: 'isAccessibilitySelected',
+    isaccessibilityselectorallowed: 'isAccessibilitySelectorAllowed',
+    isalternate: 'isAlternate',
+    isenabled: 'isEnabled',
+    isequal: 'isEqual',
+    ishidden: 'isHidden',
+    ishiddenorhashiddenancestor: 'isHiddenOrHasHiddenAncestor',
+    ishighlighted: 'isHighlighted',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    issectionheader: 'isSectionHeader',
+    isseparatoritem: 'isSeparatorItem',
+    keyequivalent: 'keyEquivalent',
+    keyequivalentmodifiermask: 'keyEquivalentModifierMask',
+    menu: 'menu',
+    mixedstateimage: 'mixedStateImage',
+    mnemonic: 'mnemonic',
+    mnemoniclocation: 'mnemonicLocation',
+    offstateimage: 'offStateImage',
+    onstateimage: 'onStateImage',
+    parentitem: 'parentItem',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    release: 'release',
+    representedobject: 'representedObject',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    sectionheaderwithtitle: 'sectionHeaderWithTitle',
+    self: 'self',
+    separatoritem: 'separatorItem',
+    setmnemoniclocation: 'setMnemonicLocation',
+    settitlewithmnemonic: 'setTitleWithMnemonic',
+    state: 'state',
+    submenu: 'submenu',
+    superclass: 'superclass',
+    tag: 'tag',
+    target: 'target',
+    title: 'title',
+    tooltip: 'toolTip',
+    userkeyequivalent: 'userKeyEquivalent',
+    usesuserkeyequivalents: 'usesUserKeyEquivalents',
+    view: 'view',
+    zone: 'zone',
+  }
 
-  // usesUserKeyEquivalents: boolean;
-  // menu: NSMenu;
-  // readonly hasSubmenu: boolean;
-  // submenu: NSMenu;
-  // readonly parentItem: NSMenuItem;
-  // attributedTitle: NSAttributedString;
-  // readonly isSeparatorItem: boolean;
-  // readonly isSectionHeader: boolean;
-  // keyEquivalentModifierMask: interop.Enum<typeof NSEventModifierFlags>;
-  // readonly userKeyEquivalent: NSString;
-  // allowsKeyEquivalentWhenHidden: boolean;
-  // allowsAutomaticKeyEquivalentLocalization: boolean;
-  // allowsAutomaticKeyEquivalentMirroring: boolean;
-  // image: NSImage;
-  // state: number;
-  // onStateImage: NSImage;
-  // offStateImage: NSImage;
-  // mixedStateImage: NSImage;
-  // isEnabled: boolean;
-  // isAlternate: boolean;
-  // indentationLevel: number;
-  // target: interop.Object;
-  // action: string;
-  // tag: number;
-  // representedObject: interop.Object;
-  // view: NSView;
-  // readonly isHighlighted: boolean;
-  // isHidden: boolean;
-  // readonly isHiddenOrHasHiddenAncestor: boolean;
-  // badge: NSMenuItemBadge;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
-  // isAccessibilityElement: boolean;
-  // accessibilityFrame: CGRect;
-  // isAccessibilityFocused: boolean;
   // accessibilityActivationPoint: CGPoint;
-  // accessibilityTopLevelUIElement: interop.Object;
-  // accessibilityURL: NSURL;
-  // accessibilityValue: interop.Object;
-  // accessibilityTitleUIElement: interop.Object;
-  // accessibilityOrientation: interop.Enum<typeof NSAccessibilityOrientation>;
-  // accessibilityOverflowButton: interop.Object;
-  // accessibilityParent: interop.Object;
-  // accessibilitySearchButton: interop.Object;
-  // accessibilitySearchMenu: interop.Object;
-  // isAccessibilitySelected: boolean;
-  // accessibilityShownMenu: interop.Object;
-  // accessibilityMinValue: interop.Object;
-  // accessibilityMaxValue: interop.Object;
-  // accessibilityWindow: interop.Object;
-  // isAccessibilityExpanded: boolean;
-  // isAccessibilityEdited: boolean;
-  // isAccessibilityEnabled: boolean;
-  // accessibilityClearButton: interop.Object;
-  // accessibilityCancelButton: interop.Object;
-  // isAccessibilityProtectedContent: boolean;
-  // isAccessibilityAlternateUIVisible: boolean;
-  // isAccessibilityRequired: boolean;
   // accessibilityApplicationFocusedUIElement: interop.Object;
-  // accessibilityMainWindow: interop.Object;
-  // isAccessibilityHidden: boolean;
-  // isAccessibilityFrontmost: boolean;
-  // accessibilityFocusedWindow: interop.Object;
-  // accessibilityExtrasMenuBar: interop.Object;
-  // accessibilityMenuBar: interop.Object;
-  // isAccessibilityOrderedByRow: boolean;
-  // accessibilityHorizontalUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityVerticalUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityWarningValue: interop.Object;
+  // accessibilityCancelButton: interop.Object;
+  // accessibilityClearButton: interop.Object;
+  // accessibilityCloseButton: interop.Object;
+  // accessibilityColumnCount: number;
+  // accessibilityColumnIndexRange: _NSRange;
   // accessibilityCriticalValue: interop.Object;
-  // isAccessibilityDisclosed: boolean;
+  // accessibilityDecrementButton: interop.Object;
+  // accessibilityDefaultButton: interop.Object;
   // accessibilityDisclosedByRow: interop.Object;
   // accessibilityDisclosedRows: interop.Object;
   // accessibilityDisclosureLevel: number;
-  // accessibilityMarkerValues: interop.Object;
-  // accessibilityMarkerGroupUIElement: interop.Object;
-  // accessibilityUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityRulerMarkerType: interop.Enum<typeof NSAccessibilityRulerMarkerType>;
-  // accessibilityHorizontalScrollBar: interop.Object;
-  // accessibilityVerticalScrollBar: interop.Object;
-  // accessibilityLabelValue: number;
-  // accessibilityDecrementButton: interop.Object;
-  // accessibilityIncrementButton: interop.Object;
-  // accessibilityHeader: interop.Object;
-  // accessibilityColumnCount: number;
-  // accessibilityRowCount: number;
-  // accessibilityIndex: number;
-  // accessibilitySortDirection: interop.Enum<typeof NSAccessibilitySortDirection>;
-  // accessibilityRowIndexRange: _NSRange;
-  // accessibilityColumnIndexRange: _NSRange;
-  // accessibilityInsertionPointLineNumber: number;
-  // accessibilitySharedCharacterRange: _NSRange;
-  // accessibilityVisibleCharacterRange: _NSRange;
-  // accessibilityNumberOfCharacters: number;
-  // accessibilitySelectedTextRange: _NSRange;
-  // accessibilityToolbarButton: interop.Object;
-  // isAccessibilityModal: boolean;
-  // accessibilityProxy: interop.Object;
-  // isAccessibilityMain: boolean;
+  // accessibilityExtrasMenuBar: interop.Object;
+  // accessibilityFocusedWindow: interop.Object;
+  // accessibilityFrame: CGRect;
   // accessibilityFullScreenButton: interop.Object;
   // accessibilityGrowArea: interop.Object;
-  // accessibilityDefaultButton: interop.Object;
-  // accessibilityCloseButton: interop.Object;
-  // accessibilityZoomButton: interop.Object;
+  // accessibilityHeader: interop.Object;
+  // accessibilityHorizontalScrollBar: interop.Object;
+  // accessibilityHorizontalUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityIncrementButton: interop.Object;
+  // accessibilityIndex: number;
+  // accessibilityInsertionPointLineNumber: number;
+  // accessibilityLabelValue: number;
+  // accessibilityMainWindow: interop.Object;
+  // accessibilityMarkerGroupUIElement: interop.Object;
+  // accessibilityMarkerValues: interop.Object;
+  // accessibilityMaxValue: interop.Object;
+  // accessibilityMenuBar: interop.Object;
   // accessibilityMinimizeButton: interop.Object;
+  // accessibilityMinValue: interop.Object;
+  // accessibilityNumberOfCharacters: number;
+  // accessibilityOrientation: interop.Enum<typeof NSAccessibilityOrientation>;
+  // accessibilityOverflowButton: interop.Object;
+  // accessibilityParent: interop.Object;
+  // accessibilityProxy: interop.Object;
+  // accessibilityRowCount: number;
+  // accessibilityRowIndexRange: _NSRange;
+  // accessibilityRulerMarkerType: interop.Enum<typeof NSAccessibilityRulerMarkerType>;
+  // accessibilitySearchButton: interop.Object;
+  // accessibilitySearchMenu: interop.Object;
+  // accessibilitySelectedTextRange: _NSRange;
+  // accessibilitySharedCharacterRange: _NSRange;
+  // accessibilityShownMenu: interop.Object;
+  // accessibilitySortDirection: interop.Enum<typeof NSAccessibilitySortDirection>;
+  // accessibilityTitleUIElement: interop.Object;
+  // accessibilityToolbarButton: interop.Object;
+  // accessibilityTopLevelUIElement: interop.Object;
+  // accessibilityUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityURL: NSURL;
+  // accessibilityValue: interop.Object;
+  // accessibilityVerticalScrollBar: interop.Object;
+  // accessibilityVerticalUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityVisibleCharacterRange: _NSRange;
+  // accessibilityWarningValue: interop.Object;
+  // accessibilityWindow: interop.Object;
+  // accessibilityZoomButton: interop.Object;
+  // action: string;
+  // allowsAutomaticKeyEquivalentLocalization: boolean;
+  // allowsAutomaticKeyEquivalentMirroring: boolean;
+  // allowsKeyEquivalentWhenHidden: boolean;
+  // attributedTitle: NSAttributedString;
+  // badge: NSMenuItemBadge;
+  // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly hash: number;
+  // readonly hasSubmenu: boolean;
+  // image: NSImage;
+  // indentationLevel: number;
+  // isAccessibilityAlternateUIVisible: boolean;
+  // isAccessibilityDisclosed: boolean;
+  // isAccessibilityEdited: boolean;
+  // isAccessibilityElement: boolean;
+  // isAccessibilityEnabled: boolean;
+  // isAccessibilityExpanded: boolean;
+  // isAccessibilityFocused: boolean;
+  // isAccessibilityFrontmost: boolean;
+  // isAccessibilityHidden: boolean;
+  // isAccessibilityMain: boolean;
   // isAccessibilityMinimized: boolean;
+  // isAccessibilityModal: boolean;
+  // isAccessibilityOrderedByRow: boolean;
+  // isAccessibilityProtectedContent: boolean;
+  // isAccessibilityRequired: boolean;
+  // isAccessibilitySelected: boolean;
+  // isAlternate: boolean;
+  // isEnabled: boolean;
+  // isHidden: boolean;
+  // readonly isHiddenOrHasHiddenAncestor: boolean;
+  // readonly isHighlighted: boolean;
+  // readonly isProxy: boolean;
+  // readonly isSectionHeader: boolean;
+  // readonly isSeparatorItem: boolean;
+  // keyEquivalentModifierMask: interop.Enum<typeof NSEventModifierFlags>;
+  // menu: NSMenu;
+  // mixedStateImage: NSImage;
+  // offStateImage: NSImage;
+  // onStateImage: NSImage;
+  // readonly parentItem: NSMenuItem;
+  // representedObject: interop.Object;
+  // state: number;
+  // submenu: NSMenu;
+  // readonly superclass: interop.Object;
+  // tag: number;
+  // target: interop.Object;
+  // readonly userKeyEquivalent: NSString;
+  // usesUserKeyEquivalents: boolean;
+  // view: NSView;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSPrintOperationElement extends HTMLNSObjectElement {
   readonly nativeObject = NSPrintOperation.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessoryview: 'accessoryView',
+    canspawnseparatethread: 'canSpawnSeparateThread',
+    cleanupoperation: 'cleanUpOperation',
+    context: 'context',
+    createcontext: 'createContext',
+    currentoperation: 'currentOperation',
+    currentpage: 'currentPage',
+    deliverresult: 'deliverResult',
+    destroycontext: 'destroyContext',
+    epsoperationwithviewinsiderecttodata: 'EPSOperationWithViewInsideRectToData',
+    epsoperationwithviewinsiderecttodataprintinfo: 'EPSOperationWithViewInsideRectToDataPrintInfo',
+    epsoperationwithviewinsiderecttopathprintinfo: 'EPSOperationWithViewInsideRectToPathPrintInfo',
+    iscopyingoperation: 'isCopyingOperation',
+    jobstylehint: 'jobStyleHint',
+    jobtitle: 'jobTitle',
+    pageorder: 'pageOrder',
+    pagerange: 'pageRange',
+    pdfoperationwithviewinsiderecttodata: 'PDFOperationWithViewInsideRectToData',
+    pdfoperationwithviewinsiderecttodataprintinfo: 'PDFOperationWithViewInsideRectToDataPrintInfo',
+    pdfoperationwithviewinsiderecttopathprintinfo: 'PDFOperationWithViewInsideRectToPathPrintInfo',
+    pdfpanel: 'PDFPanel',
+    preferredrenderingquality: 'preferredRenderingQuality',
+    printinfo: 'printInfo',
+    printoperationwithview: 'printOperationWithView',
+    printoperationwithviewprintinfo: 'printOperationWithViewPrintInfo',
+    printpanel: 'printPanel',
+    runoperation: 'runOperation',
+    runoperationmodalforwindowdelegatedidrunselectorcontextinfo: 'runOperationModalForWindowDelegateDidRunSelectorContextInfo',
+    setaccessoryview: 'setAccessoryView',
+    setjobstylehint: 'setJobStyleHint',
+    setshowpanels: 'setShowPanels',
+    showpanels: 'showPanels',
+    showsprintpanel: 'showsPrintPanel',
+    showsprogresspanel: 'showsProgressPanel',
+    view: 'view',
+  }
 
+  // canSpawnSeparateThread: boolean;
+  // readonly context: NSGraphicsContext;
   // currentOperation: NSPrintOperation;
+  // readonly currentPage: number;
   // readonly isCopyingOperation: boolean;
+  // pageOrder: interop.Enum<typeof NSPrintingPageOrder>;
+  // readonly pageRange: _NSRange;
+  // PDFPanel: NSPDFPanel;
   // readonly preferredRenderingQuality: interop.Enum<typeof NSPrintRenderingQuality>;
+  // printInfo: NSPrintInfo;
+  // printPanel: NSPrintPanel;
   // showsPrintPanel: boolean;
   // showsProgressPanel: boolean;
-  // printPanel: NSPrintPanel;
-  // PDFPanel: NSPDFPanel;
-  // canSpawnSeparateThread: boolean;
-  // pageOrder: interop.Enum<typeof NSPrintingPageOrder>;
   // readonly view: NSView;
-  // printInfo: NSPrintInfo;
-  // readonly context: NSGraphicsContext;
-  // readonly pageRange: _NSRange;
-  // readonly currentPage: number;
 }
 
 export class HTMLNSAccessibilityCustomRotorElement extends HTMLNSObjectElement {
   readonly nativeObject = NSAccessibilityCustomRotor.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    initwithlabelitemsearchdelegate: 'initWithLabelItemSearchDelegate',
+    initwithrotortypeitemsearchdelegate: 'initWithRotorTypeItemSearchDelegate',
+    itemloadingdelegate: 'itemLoadingDelegate',
+    itemsearchdelegate: 'itemSearchDelegate',
+    label: 'label',
+    type: 'type',
+  }
 
-  // type: interop.Enum<typeof NSAccessibilityCustomRotorType>;
-  // itemSearchDelegate: NSAccessibilityCustomRotorItemSearchDelegate | null;
   // itemLoadingDelegate: NSAccessibilityElementLoading;
+  // itemSearchDelegate: NSAccessibilityCustomRotorItemSearchDelegate | null;
+  // type: interop.Enum<typeof NSAccessibilityCustomRotorType>;
 }
 
 export class HTMLNSClipViewElement extends HTMLNSViewElement {
   readonly nativeObject = NSClipView.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    automaticallyadjustscontentinsets: 'automaticallyAdjustsContentInsets',
+    autoscroll: 'autoscroll',
+    backgroundcolor: 'backgroundColor',
+    constrainboundsrect: 'constrainBoundsRect',
+    constrainscrollpoint: 'constrainScrollPoint',
+    contentinsets: 'contentInsets',
+    copiesonscroll: 'copiesOnScroll',
+    documentcursor: 'documentCursor',
+    documentrect: 'documentRect',
+    documentview: 'documentView',
+    documentvisiblerect: 'documentVisibleRect',
+    drawsbackground: 'drawsBackground',
+    scrolltopoint: 'scrollToPoint',
+    viewboundschanged: 'viewBoundsChanged',
+    viewframechanged: 'viewFrameChanged',
+  }
 
-  // backgroundColor: NSColor;
-  // drawsBackground: boolean;
-  // documentView: NSView;
-  // readonly documentRect: CGRect;
-  // documentCursor: NSCursor;
-  // readonly documentVisibleRect: CGRect;
-  // contentInsets: NSEdgeInsets;
   // automaticallyAdjustsContentInsets: boolean;
+  // backgroundColor: NSColor;
+  // contentInsets: NSEdgeInsets;
   // copiesOnScroll: boolean;
+  // documentCursor: NSCursor;
+  // readonly documentRect: CGRect;
+  // documentView: NSView;
+  // readonly documentVisibleRect: CGRect;
+  // drawsBackground: boolean;
 }
 
 export class HTMLNSPopoverElement extends HTMLNSResponderElement {
@@ -3690,97 +9806,287 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
   get delegate(): NSPopoverDelegateImpl {
     return (this.nativeObject.delegate ??= NSPopoverDelegateImpl.new()) as NSPopoverDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessibilityactivationpoint: 'accessibilityActivationPoint',
+    accessibilityallowedvalues: 'accessibilityAllowedValues',
+    accessibilityapplicationfocuseduielement: 'accessibilityApplicationFocusedUIElement',
+    accessibilityattributedstringforrange: 'accessibilityAttributedStringForRange',
+    accessibilityattributeduserinputlabels: 'accessibilityAttributedUserInputLabels',
+    accessibilitycancelbutton: 'accessibilityCancelButton',
+    accessibilitycellforcolumnrow: 'accessibilityCellForColumnRow',
+    accessibilitychildren: 'accessibilityChildren',
+    accessibilitychildreninnavigationorder: 'accessibilityChildrenInNavigationOrder',
+    accessibilityclearbutton: 'accessibilityClearButton',
+    accessibilityclosebutton: 'accessibilityCloseButton',
+    accessibilitycolumncount: 'accessibilityColumnCount',
+    accessibilitycolumnheaderuielements: 'accessibilityColumnHeaderUIElements',
+    accessibilitycolumnindexrange: 'accessibilityColumnIndexRange',
+    accessibilitycolumns: 'accessibilityColumns',
+    accessibilitycolumntitles: 'accessibilityColumnTitles',
+    accessibilitycontents: 'accessibilityContents',
+    accessibilitycriticalvalue: 'accessibilityCriticalValue',
+    accessibilitycustomactions: 'accessibilityCustomActions',
+    accessibilitycustomrotors: 'accessibilityCustomRotors',
+    accessibilitydecrementbutton: 'accessibilityDecrementButton',
+    accessibilitydefaultbutton: 'accessibilityDefaultButton',
+    accessibilitydisclosedbyrow: 'accessibilityDisclosedByRow',
+    accessibilitydisclosedrows: 'accessibilityDisclosedRows',
+    accessibilitydisclosurelevel: 'accessibilityDisclosureLevel',
+    accessibilitydocument: 'accessibilityDocument',
+    accessibilityextrasmenubar: 'accessibilityExtrasMenuBar',
+    accessibilityfilename: 'accessibilityFilename',
+    accessibilityfocusedwindow: 'accessibilityFocusedWindow',
+    accessibilityframe: 'accessibilityFrame',
+    accessibilityframeforrange: 'accessibilityFrameForRange',
+    accessibilityfullscreenbutton: 'accessibilityFullScreenButton',
+    accessibilitygrowarea: 'accessibilityGrowArea',
+    accessibilityhandles: 'accessibilityHandles',
+    accessibilityheader: 'accessibilityHeader',
+    accessibilityhelp: 'accessibilityHelp',
+    accessibilityhorizontalscrollbar: 'accessibilityHorizontalScrollBar',
+    accessibilityhorizontalunitdescription: 'accessibilityHorizontalUnitDescription',
+    accessibilityhorizontalunits: 'accessibilityHorizontalUnits',
+    accessibilityidentifier: 'accessibilityIdentifier',
+    accessibilityincrementbutton: 'accessibilityIncrementButton',
+    accessibilityindex: 'accessibilityIndex',
+    accessibilityinsertionpointlinenumber: 'accessibilityInsertionPointLineNumber',
+    accessibilitylabel: 'accessibilityLabel',
+    accessibilitylabeluielements: 'accessibilityLabelUIElements',
+    accessibilitylabelvalue: 'accessibilityLabelValue',
+    accessibilitylayoutpointforscreenpoint: 'accessibilityLayoutPointForScreenPoint',
+    accessibilitylayoutsizeforscreensize: 'accessibilityLayoutSizeForScreenSize',
+    accessibilitylineforindex: 'accessibilityLineForIndex',
+    accessibilitylinkeduielements: 'accessibilityLinkedUIElements',
+    accessibilitymainwindow: 'accessibilityMainWindow',
+    accessibilitymarkergroupuielement: 'accessibilityMarkerGroupUIElement',
+    accessibilitymarkertypedescription: 'accessibilityMarkerTypeDescription',
+    accessibilitymarkeruielements: 'accessibilityMarkerUIElements',
+    accessibilitymarkervalues: 'accessibilityMarkerValues',
+    accessibilitymaxvalue: 'accessibilityMaxValue',
+    accessibilitymenubar: 'accessibilityMenuBar',
+    accessibilityminimizebutton: 'accessibilityMinimizeButton',
+    accessibilityminvalue: 'accessibilityMinValue',
+    accessibilitynextcontents: 'accessibilityNextContents',
+    accessibilitynumberofcharacters: 'accessibilityNumberOfCharacters',
+    accessibilityorientation: 'accessibilityOrientation',
+    accessibilityoverflowbutton: 'accessibilityOverflowButton',
+    accessibilityparent: 'accessibilityParent',
+    accessibilityperformcancel: 'accessibilityPerformCancel',
+    accessibilityperformconfirm: 'accessibilityPerformConfirm',
+    accessibilityperformdecrement: 'accessibilityPerformDecrement',
+    accessibilityperformdelete: 'accessibilityPerformDelete',
+    accessibilityperformincrement: 'accessibilityPerformIncrement',
+    accessibilityperformpick: 'accessibilityPerformPick',
+    accessibilityperformpress: 'accessibilityPerformPress',
+    accessibilityperformraise: 'accessibilityPerformRaise',
+    accessibilityperformshowalternateui: 'accessibilityPerformShowAlternateUI',
+    accessibilityperformshowdefaultui: 'accessibilityPerformShowDefaultUI',
+    accessibilityperformshowmenu: 'accessibilityPerformShowMenu',
+    accessibilityplaceholdervalue: 'accessibilityPlaceholderValue',
+    accessibilitypreviouscontents: 'accessibilityPreviousContents',
+    accessibilityproxy: 'accessibilityProxy',
+    accessibilityrangeforindex: 'accessibilityRangeForIndex',
+    accessibilityrangeforline: 'accessibilityRangeForLine',
+    accessibilityrangeforposition: 'accessibilityRangeForPosition',
+    accessibilityrole: 'accessibilityRole',
+    accessibilityroledescription: 'accessibilityRoleDescription',
+    accessibilityrowcount: 'accessibilityRowCount',
+    accessibilityrowheaderuielements: 'accessibilityRowHeaderUIElements',
+    accessibilityrowindexrange: 'accessibilityRowIndexRange',
+    accessibilityrows: 'accessibilityRows',
+    accessibilityrtfforrange: 'accessibilityRTFForRange',
+    accessibilityrulermarkertype: 'accessibilityRulerMarkerType',
+    accessibilityscreenpointforlayoutpoint: 'accessibilityScreenPointForLayoutPoint',
+    accessibilityscreensizeforlayoutsize: 'accessibilityScreenSizeForLayoutSize',
+    accessibilitysearchbutton: 'accessibilitySearchButton',
+    accessibilitysearchmenu: 'accessibilitySearchMenu',
+    accessibilityselectedcells: 'accessibilitySelectedCells',
+    accessibilityselectedchildren: 'accessibilitySelectedChildren',
+    accessibilityselectedcolumns: 'accessibilitySelectedColumns',
+    accessibilityselectedrows: 'accessibilitySelectedRows',
+    accessibilityselectedtext: 'accessibilitySelectedText',
+    accessibilityselectedtextrange: 'accessibilitySelectedTextRange',
+    accessibilityselectedtextranges: 'accessibilitySelectedTextRanges',
+    accessibilityservesastitleforuielements: 'accessibilityServesAsTitleForUIElements',
+    accessibilitysharedcharacterrange: 'accessibilitySharedCharacterRange',
+    accessibilitysharedfocuselements: 'accessibilitySharedFocusElements',
+    accessibilitysharedtextuielements: 'accessibilitySharedTextUIElements',
+    accessibilityshownmenu: 'accessibilityShownMenu',
+    accessibilitysortdirection: 'accessibilitySortDirection',
+    accessibilitysplitters: 'accessibilitySplitters',
+    accessibilitystringforrange: 'accessibilityStringForRange',
+    accessibilitystylerangeforindex: 'accessibilityStyleRangeForIndex',
+    accessibilitysubrole: 'accessibilitySubrole',
+    accessibilitytabs: 'accessibilityTabs',
+    accessibilitytitle: 'accessibilityTitle',
+    accessibilitytitleuielement: 'accessibilityTitleUIElement',
+    accessibilitytoolbarbutton: 'accessibilityToolbarButton',
+    accessibilitytopleveluielement: 'accessibilityTopLevelUIElement',
+    accessibilityunitdescription: 'accessibilityUnitDescription',
+    accessibilityunits: 'accessibilityUnits',
+    accessibilityurl: 'accessibilityURL',
+    accessibilityuserinputlabels: 'accessibilityUserInputLabels',
+    accessibilityvalue: 'accessibilityValue',
+    accessibilityvaluedescription: 'accessibilityValueDescription',
+    accessibilityverticalscrollbar: 'accessibilityVerticalScrollBar',
+    accessibilityverticalunitdescription: 'accessibilityVerticalUnitDescription',
+    accessibilityverticalunits: 'accessibilityVerticalUnits',
+    accessibilityvisiblecells: 'accessibilityVisibleCells',
+    accessibilityvisiblecharacterrange: 'accessibilityVisibleCharacterRange',
+    accessibilityvisiblechildren: 'accessibilityVisibleChildren',
+    accessibilityvisiblecolumns: 'accessibilityVisibleColumns',
+    accessibilityvisiblerows: 'accessibilityVisibleRows',
+    accessibilitywarningvalue: 'accessibilityWarningValue',
+    accessibilitywindow: 'accessibilityWindow',
+    accessibilitywindows: 'accessibilityWindows',
+    accessibilityzoombutton: 'accessibilityZoomButton',
+    animates: 'animates',
+    appearance: 'appearance',
+    autorelease: 'autorelease',
+    behavior: 'behavior',
+    class: 'class',
+    close: 'close',
+    conformstoprotocol: 'conformsToProtocol',
+    contentsize: 'contentSize',
+    contentviewcontroller: 'contentViewController',
+    debugdescription: 'debugDescription',
+    delegate: 'delegate',
+    description: 'description',
+    effectiveappearance: 'effectiveAppearance',
+    hasfullsizecontent: 'hasFullSizeContent',
+    hash: 'hash',
+    init: 'init',
+    initwithcoder: 'initWithCoder',
+    isaccessibilityalternateuivisible: 'isAccessibilityAlternateUIVisible',
+    isaccessibilitydisclosed: 'isAccessibilityDisclosed',
+    isaccessibilityedited: 'isAccessibilityEdited',
+    isaccessibilityelement: 'isAccessibilityElement',
+    isaccessibilityenabled: 'isAccessibilityEnabled',
+    isaccessibilityexpanded: 'isAccessibilityExpanded',
+    isaccessibilityfocused: 'isAccessibilityFocused',
+    isaccessibilityfrontmost: 'isAccessibilityFrontmost',
+    isaccessibilityhidden: 'isAccessibilityHidden',
+    isaccessibilitymain: 'isAccessibilityMain',
+    isaccessibilityminimized: 'isAccessibilityMinimized',
+    isaccessibilitymodal: 'isAccessibilityModal',
+    isaccessibilityorderedbyrow: 'isAccessibilityOrderedByRow',
+    isaccessibilityprotectedcontent: 'isAccessibilityProtectedContent',
+    isaccessibilityrequired: 'isAccessibilityRequired',
+    isaccessibilityselected: 'isAccessibilitySelected',
+    isaccessibilityselectorallowed: 'isAccessibilitySelectorAllowed',
+    isdetached: 'isDetached',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    isshown: 'isShown',
+    performclose: 'performClose',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    positioningrect: 'positioningRect',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    showrelativetorectofviewpreferrededge: 'showRelativeToRectOfViewPreferredEdge',
+    showrelativetotoolbaritem: 'showRelativeToToolbarItem',
+    superclass: 'superclass',
+    zone: 'zone',
+  }
 
-  // appearance: NSAppearance;
-  // readonly effectiveAppearance: NSAppearance;
-  // behavior: interop.Enum<typeof NSPopoverBehavior>;
-  // animates: boolean;
-  // contentViewController: NSViewController;
-  // contentSize: CGSize;
-  // readonly isShown: boolean;
-  // readonly isDetached: boolean;
-  // positioningRect: CGRect;
-  // hasFullSizeContent: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
-  // isAccessibilityElement: boolean;
-  // accessibilityFrame: CGRect;
-  // isAccessibilityFocused: boolean;
   // accessibilityActivationPoint: CGPoint;
-  // accessibilityTopLevelUIElement: interop.Object;
-  // accessibilityURL: NSURL;
-  // accessibilityValue: interop.Object;
-  // accessibilityTitleUIElement: interop.Object;
-  // accessibilityOrientation: interop.Enum<typeof NSAccessibilityOrientation>;
-  // accessibilityOverflowButton: interop.Object;
-  // accessibilityParent: interop.Object;
-  // accessibilitySearchButton: interop.Object;
-  // accessibilitySearchMenu: interop.Object;
-  // isAccessibilitySelected: boolean;
-  // accessibilityShownMenu: interop.Object;
-  // accessibilityMinValue: interop.Object;
-  // accessibilityMaxValue: interop.Object;
-  // accessibilityWindow: interop.Object;
-  // isAccessibilityExpanded: boolean;
-  // isAccessibilityEdited: boolean;
-  // isAccessibilityEnabled: boolean;
-  // accessibilityClearButton: interop.Object;
-  // accessibilityCancelButton: interop.Object;
-  // isAccessibilityProtectedContent: boolean;
-  // isAccessibilityAlternateUIVisible: boolean;
-  // isAccessibilityRequired: boolean;
   // accessibilityApplicationFocusedUIElement: interop.Object;
-  // accessibilityMainWindow: interop.Object;
-  // isAccessibilityHidden: boolean;
-  // isAccessibilityFrontmost: boolean;
-  // accessibilityFocusedWindow: interop.Object;
-  // accessibilityExtrasMenuBar: interop.Object;
-  // accessibilityMenuBar: interop.Object;
-  // isAccessibilityOrderedByRow: boolean;
-  // accessibilityHorizontalUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityVerticalUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityWarningValue: interop.Object;
+  // accessibilityCancelButton: interop.Object;
+  // accessibilityClearButton: interop.Object;
+  // accessibilityCloseButton: interop.Object;
+  // accessibilityColumnCount: number;
+  // accessibilityColumnIndexRange: _NSRange;
   // accessibilityCriticalValue: interop.Object;
-  // isAccessibilityDisclosed: boolean;
+  // accessibilityDecrementButton: interop.Object;
+  // accessibilityDefaultButton: interop.Object;
   // accessibilityDisclosedByRow: interop.Object;
   // accessibilityDisclosedRows: interop.Object;
   // accessibilityDisclosureLevel: number;
-  // accessibilityMarkerValues: interop.Object;
-  // accessibilityMarkerGroupUIElement: interop.Object;
-  // accessibilityUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityRulerMarkerType: interop.Enum<typeof NSAccessibilityRulerMarkerType>;
-  // accessibilityHorizontalScrollBar: interop.Object;
-  // accessibilityVerticalScrollBar: interop.Object;
-  // accessibilityLabelValue: number;
-  // accessibilityDecrementButton: interop.Object;
-  // accessibilityIncrementButton: interop.Object;
-  // accessibilityHeader: interop.Object;
-  // accessibilityColumnCount: number;
-  // accessibilityRowCount: number;
-  // accessibilityIndex: number;
-  // accessibilitySortDirection: interop.Enum<typeof NSAccessibilitySortDirection>;
-  // accessibilityRowIndexRange: _NSRange;
-  // accessibilityColumnIndexRange: _NSRange;
-  // accessibilityInsertionPointLineNumber: number;
-  // accessibilitySharedCharacterRange: _NSRange;
-  // accessibilityVisibleCharacterRange: _NSRange;
-  // accessibilityNumberOfCharacters: number;
-  // accessibilitySelectedTextRange: _NSRange;
-  // accessibilityToolbarButton: interop.Object;
-  // isAccessibilityModal: boolean;
-  // accessibilityProxy: interop.Object;
-  // isAccessibilityMain: boolean;
+  // accessibilityExtrasMenuBar: interop.Object;
+  // accessibilityFocusedWindow: interop.Object;
+  // accessibilityFrame: CGRect;
   // accessibilityFullScreenButton: interop.Object;
   // accessibilityGrowArea: interop.Object;
-  // accessibilityDefaultButton: interop.Object;
-  // accessibilityCloseButton: interop.Object;
-  // accessibilityZoomButton: interop.Object;
+  // accessibilityHeader: interop.Object;
+  // accessibilityHorizontalScrollBar: interop.Object;
+  // accessibilityHorizontalUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityIncrementButton: interop.Object;
+  // accessibilityIndex: number;
+  // accessibilityInsertionPointLineNumber: number;
+  // accessibilityLabelValue: number;
+  // accessibilityMainWindow: interop.Object;
+  // accessibilityMarkerGroupUIElement: interop.Object;
+  // accessibilityMarkerValues: interop.Object;
+  // accessibilityMaxValue: interop.Object;
+  // accessibilityMenuBar: interop.Object;
   // accessibilityMinimizeButton: interop.Object;
+  // accessibilityMinValue: interop.Object;
+  // accessibilityNumberOfCharacters: number;
+  // accessibilityOrientation: interop.Enum<typeof NSAccessibilityOrientation>;
+  // accessibilityOverflowButton: interop.Object;
+  // accessibilityParent: interop.Object;
+  // accessibilityProxy: interop.Object;
+  // accessibilityRowCount: number;
+  // accessibilityRowIndexRange: _NSRange;
+  // accessibilityRulerMarkerType: interop.Enum<typeof NSAccessibilityRulerMarkerType>;
+  // accessibilitySearchButton: interop.Object;
+  // accessibilitySearchMenu: interop.Object;
+  // accessibilitySelectedTextRange: _NSRange;
+  // accessibilitySharedCharacterRange: _NSRange;
+  // accessibilityShownMenu: interop.Object;
+  // accessibilitySortDirection: interop.Enum<typeof NSAccessibilitySortDirection>;
+  // accessibilityTitleUIElement: interop.Object;
+  // accessibilityToolbarButton: interop.Object;
+  // accessibilityTopLevelUIElement: interop.Object;
+  // accessibilityUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityURL: NSURL;
+  // accessibilityValue: interop.Object;
+  // accessibilityVerticalScrollBar: interop.Object;
+  // accessibilityVerticalUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityVisibleCharacterRange: _NSRange;
+  // accessibilityWarningValue: interop.Object;
+  // accessibilityWindow: interop.Object;
+  // accessibilityZoomButton: interop.Object;
+  // animates: boolean;
+  // appearance: NSAppearance;
+  // behavior: interop.Enum<typeof NSPopoverBehavior>;
+  // contentSize: CGSize;
+  // contentViewController: NSViewController;
+  // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly effectiveAppearance: NSAppearance;
+  // hasFullSizeContent: boolean;
+  // readonly hash: number;
+  // isAccessibilityAlternateUIVisible: boolean;
+  // isAccessibilityDisclosed: boolean;
+  // isAccessibilityEdited: boolean;
+  // isAccessibilityElement: boolean;
+  // isAccessibilityEnabled: boolean;
+  // isAccessibilityExpanded: boolean;
+  // isAccessibilityFocused: boolean;
+  // isAccessibilityFrontmost: boolean;
+  // isAccessibilityHidden: boolean;
+  // isAccessibilityMain: boolean;
   // isAccessibilityMinimized: boolean;
+  // isAccessibilityModal: boolean;
+  // isAccessibilityOrderedByRow: boolean;
+  // isAccessibilityProtectedContent: boolean;
+  // isAccessibilityRequired: boolean;
+  // isAccessibilitySelected: boolean;
+  // readonly isDetached: boolean;
+  // readonly isProxy: boolean;
+  // readonly isShown: boolean;
+  // positioningRect: CGRect;
+  // readonly superclass: interop.Object;
+  // readonly zone: interop.Pointer;
 
   set popovershouldclose(value: (popover: NSPopover) => boolean) {
     this.delegate.popoverShouldClose = value;
@@ -3811,6 +10117,12 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
 export class HTMLNSCustomTouchBarItemElement extends HTMLNSTouchBarItemElement {
   // @ts-ignore
   readonly nativeObject = NSCustomTouchBarItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    customizationlabel: 'customizationLabel',
+    view: 'view',
+    viewcontroller: 'viewController',
+  }
 
   // view: NSView;
   // viewController: NSViewController;
@@ -3821,20 +10133,66 @@ export class HTMLNSGestureRecognizerElement extends HTMLNSObjectElement {
   get delegate(): NSGestureRecognizerDelegateImpl {
     return (this.nativeObject.delegate ??= NSGestureRecognizerDelegateImpl.new()) as NSGestureRecognizerDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    action: 'action',
+    allowedtouchtypes: 'allowedTouchTypes',
+    canbepreventedbygesturerecognizer: 'canBePreventedByGestureRecognizer',
+    canpreventgesturerecognizer: 'canPreventGestureRecognizer',
+    delayskeyevents: 'delaysKeyEvents',
+    delaysmagnificationevents: 'delaysMagnificationEvents',
+    delaysothermousebuttonevents: 'delaysOtherMouseButtonEvents',
+    delaysprimarymousebuttonevents: 'delaysPrimaryMouseButtonEvents',
+    delaysrotationevents: 'delaysRotationEvents',
+    delayssecondarymousebuttonevents: 'delaysSecondaryMouseButtonEvents',
+    delegate: 'delegate',
+    encodewithcoder: 'encodeWithCoder',
+    flagschanged: 'flagsChanged',
+    initwithcoder: 'initWithCoder',
+    initwithtargetaction: 'initWithTargetAction',
+    isenabled: 'isEnabled',
+    keydown: 'keyDown',
+    keyup: 'keyUp',
+    locationinview: 'locationInView',
+    magnifywithevent: 'magnifyWithEvent',
+    mousedown: 'mouseDown',
+    mousedragged: 'mouseDragged',
+    mouseup: 'mouseUp',
+    othermousedown: 'otherMouseDown',
+    othermousedragged: 'otherMouseDragged',
+    othermouseup: 'otherMouseUp',
+    pressurechangewithevent: 'pressureChangeWithEvent',
+    pressureconfiguration: 'pressureConfiguration',
+    reset: 'reset',
+    rightmousedown: 'rightMouseDown',
+    rightmousedragged: 'rightMouseDragged',
+    rightmouseup: 'rightMouseUp',
+    rotatewithevent: 'rotateWithEvent',
+    shouldberequiredtofailbygesturerecognizer: 'shouldBeRequiredToFailByGestureRecognizer',
+    shouldrequirefailureofgesturerecognizer: 'shouldRequireFailureOfGestureRecognizer',
+    state: 'state',
+    tabletpoint: 'tabletPoint',
+    target: 'target',
+    touchesbeganwithevent: 'touchesBeganWithEvent',
+    touchescancelledwithevent: 'touchesCancelledWithEvent',
+    touchesendedwithevent: 'touchesEndedWithEvent',
+    touchesmovedwithevent: 'touchesMovedWithEvent',
+    view: 'view',
+  }
 
-  // target: interop.Object;
   // action: string;
-  // readonly state: interop.Enum<typeof NSGestureRecognizerState>;
-  // isEnabled: boolean;
-  // readonly view: NSView;
-  // pressureConfiguration: NSPressureConfiguration;
-  // delaysPrimaryMouseButtonEvents: boolean;
-  // delaysSecondaryMouseButtonEvents: boolean;
-  // delaysOtherMouseButtonEvents: boolean;
+  // allowedTouchTypes: interop.Enum<typeof NSTouchTypeMask>;
   // delaysKeyEvents: boolean;
   // delaysMagnificationEvents: boolean;
+  // delaysOtherMouseButtonEvents: boolean;
+  // delaysPrimaryMouseButtonEvents: boolean;
   // delaysRotationEvents: boolean;
-  // allowedTouchTypes: interop.Enum<typeof NSTouchTypeMask>;
+  // delaysSecondaryMouseButtonEvents: boolean;
+  // isEnabled: boolean;
+  // pressureConfiguration: NSPressureConfiguration;
+  // readonly state: interop.Enum<typeof NSGestureRecognizerState>;
+  // target: interop.Object;
+  // readonly view: NSView;
 
   set gesturerecognizershouldattempttorecognizewithevent(value: (gestureRecognizer: NSGestureRecognizer, event: NSEvent) => boolean) {
     this.delegate.gestureRecognizerShouldAttemptToRecognizeWithEvent = value;
@@ -3858,40 +10216,96 @@ export class HTMLNSGestureRecognizerElement extends HTMLNSObjectElement {
 
 export class HTMLNSStatusBarElement extends HTMLNSObjectElement {
   readonly nativeObject = NSStatusBar.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    isvertical: 'isVertical',
+    removestatusitem: 'removeStatusItem',
+    statusitemwithlength: 'statusItemWithLength',
+    systemstatusbar: 'systemStatusBar',
+    thickness: 'thickness',
+  }
 
-  // systemStatusBar: NSStatusBar;
   // readonly isVertical: boolean;
+  // systemStatusBar: NSStatusBar;
   // readonly thickness: number;
 }
 
 export class HTMLNSPDFInfoElement extends HTMLNSObjectElement {
   readonly nativeObject = NSPDFInfo.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    attributes: 'attributes',
+    copywithzone: 'copyWithZone',
+    encodewithcoder: 'encodeWithCoder',
+    initwithcoder: 'initWithCoder',
+    isfileextensionhidden: 'isFileExtensionHidden',
+    orientation: 'orientation',
+    papersize: 'paperSize',
+    tagnames: 'tagNames',
+    url: 'URL',
+  }
 
-  // URL: NSURL;
+  // readonly attributes: NSMutableDictionary;
   // isFileExtensionHidden: boolean;
   // orientation: interop.Enum<typeof NSPaperOrientation>;
   // paperSize: CGSize;
-  // readonly attributes: NSMutableDictionary;
+  // URL: NSURL;
 }
 
 export class HTMLNSTextTableElement extends HTMLNSTextBlockElement {
   readonly nativeObject = NSTextTable.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    boundsrectforblockcontentrectinrecttextcontainercharacterrange: 'boundsRectForBlockContentRectInRectTextContainerCharacterRange',
+    collapsesborders: 'collapsesBorders',
+    drawbackgroundforblockwithframeinviewcharacterrangelayoutmanager: 'drawBackgroundForBlockWithFrameInViewCharacterRangeLayoutManager',
+    hidesemptycells: 'hidesEmptyCells',
+    layoutalgorithm: 'layoutAlgorithm',
+    numberofcolumns: 'numberOfColumns',
+    rectforblocklayoutatpointinrecttextcontainercharacterrange: 'rectForBlockLayoutAtPointInRectTextContainerCharacterRange',
+  }
 
-  // numberOfColumns: number;
-  // layoutAlgorithm: interop.Enum<typeof NSTextTableLayoutAlgorithm>;
   // collapsesBorders: boolean;
   // hidesEmptyCells: boolean;
+  // layoutAlgorithm: interop.Enum<typeof NSTextTableLayoutAlgorithm>;
+  // numberOfColumns: number;
 }
 
 export class HTMLNSCollectionViewFlowLayoutInvalidationContextElement extends HTMLNSCollectionViewLayoutInvalidationContextElement {
   readonly nativeObject = NSCollectionViewFlowLayoutInvalidationContext.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    invalidateflowlayoutattributes: 'invalidateFlowLayoutAttributes',
+    invalidateflowlayoutdelegatemetrics: 'invalidateFlowLayoutDelegateMetrics',
+  }
 
-  // invalidateFlowLayoutDelegateMetrics: boolean;
   // invalidateFlowLayoutAttributes: boolean;
+  // invalidateFlowLayoutDelegateMetrics: boolean;
 }
 
 export class HTMLNSPrintPanelElement extends HTMLNSObjectElement {
   readonly nativeObject = NSPrintPanel.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessorycontrollers: 'accessoryControllers',
+    accessoryview: 'accessoryView',
+    addaccessorycontroller: 'addAccessoryController',
+    beginsheetusingprintinfoonwindowcompletionhandler: 'beginSheetUsingPrintInfoOnWindowCompletionHandler',
+    beginsheetwithprintinfomodalforwindowdelegatedidendselectorcontextinfo: 'beginSheetWithPrintInfoModalForWindowDelegateDidEndSelectorContextInfo',
+    defaultbuttontitle: 'defaultButtonTitle',
+    finalwriteprintinfo: 'finalWritePrintInfo',
+    helpanchor: 'helpAnchor',
+    jobstylehint: 'jobStyleHint',
+    options: 'options',
+    printinfo: 'printInfo',
+    printpanel: 'printPanel',
+    removeaccessorycontroller: 'removeAccessoryController',
+    runmodal: 'runModal',
+    runmodalwithprintinfo: 'runModalWithPrintInfo',
+    setaccessoryview: 'setAccessoryView',
+    setdefaultbuttontitle: 'setDefaultButtonTitle',
+    updatefromprintinfo: 'updateFromPrintInfo',
+  }
 
   // readonly accessoryControllers: NSArray;
   // options: interop.Enum<typeof NSPrintPanelOptions>;
@@ -3900,150 +10314,404 @@ export class HTMLNSPrintPanelElement extends HTMLNSObjectElement {
 
 export class HTMLNSDocumentControllerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSDocumentController.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    adddocument: 'addDocument',
+    allowsautomaticsharemenu: 'allowsAutomaticShareMenu',
+    autorelease: 'autorelease',
+    autosavingdelay: 'autosavingDelay',
+    beginopenpanelfortypescompletionhandler: 'beginOpenPanelForTypesCompletionHandler',
+    beginopenpanelwithcompletionhandler: 'beginOpenPanelWithCompletionHandler',
+    class: 'class',
+    clearrecentdocuments: 'clearRecentDocuments',
+    closealldocumentswithdelegatedidcloseallselectorcontextinfo: 'closeAllDocumentsWithDelegateDidCloseAllSelectorContextInfo',
+    conformstoprotocol: 'conformsToProtocol',
+    currentdirectory: 'currentDirectory',
+    currentdocument: 'currentDocument',
+    debugdescription: 'debugDescription',
+    defaulttype: 'defaultType',
+    description: 'description',
+    displaynamefortype: 'displayNameForType',
+    documentclassfortype: 'documentClassForType',
+    documentclassnames: 'documentClassNames',
+    documentforfilename: 'documentForFileName',
+    documentforurl: 'documentForURL',
+    documentforwindow: 'documentForWindow',
+    documents: 'documents',
+    duplicatedocumentwithcontentsofurlcopyingdisplaynameerror: 'duplicateDocumentWithContentsOfURLCopyingDisplayNameError',
+    encodewithcoder: 'encodeWithCoder',
+    fileextensionsfromtype: 'fileExtensionsFromType',
+    filenamesfromrunningopenpanel: 'fileNamesFromRunningOpenPanel',
+    hasediteddocuments: 'hasEditedDocuments',
+    hash: 'hash',
+    init: 'init',
+    initwithcoder: 'initWithCoder',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    makedocumentforurlwithcontentsofurloftypeerror: 'makeDocumentForURLWithContentsOfURLOfTypeError',
+    makedocumentwithcontentsoffileoftype: 'makeDocumentWithContentsOfFileOfType',
+    makedocumentwithcontentsofurloftype: 'makeDocumentWithContentsOfURLOfType',
+    makedocumentwithcontentsofurloftypeerror: 'makeDocumentWithContentsOfURLOfTypeError',
+    makeuntitleddocumentoftype: 'makeUntitledDocumentOfType',
+    makeuntitleddocumentoftypeerror: 'makeUntitledDocumentOfTypeError',
+    maximumrecentdocumentcount: 'maximumRecentDocumentCount',
+    newdocument: 'newDocument',
+    notenewrecentdocument: 'noteNewRecentDocument',
+    notenewrecentdocumenturl: 'noteNewRecentDocumentURL',
+    opendocument: 'openDocument',
+    opendocumentwithcontentsoffiledisplay: 'openDocumentWithContentsOfFileDisplay',
+    opendocumentwithcontentsofurldisplay: 'openDocumentWithContentsOfURLDisplay',
+    opendocumentwithcontentsofurldisplaycompletionhandler: 'openDocumentWithContentsOfURLDisplayCompletionHandler',
+    opendocumentwithcontentsofurldisplayerror: 'openDocumentWithContentsOfURLDisplayError',
+    openuntitleddocumentanddisplayerror: 'openUntitledDocumentAndDisplayError',
+    openuntitleddocumentoftypedisplay: 'openUntitledDocumentOfTypeDisplay',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    presenterror: 'presentError',
+    presenterrormodalforwindowdelegatedidpresentselectorcontextinfo: 'presentErrorModalForWindowDelegateDidPresentSelectorContextInfo',
+    recentdocumenturls: 'recentDocumentURLs',
+    release: 'release',
+    removedocument: 'removeDocument',
+    reopendocumentforurlwithcontentsofurldisplaycompletionhandler: 'reopenDocumentForURLWithContentsOfURLDisplayCompletionHandler',
+    reopendocumentforurlwithcontentsofurlerror: 'reopenDocumentForURLWithContentsOfURLError',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    reviewunsaveddocumentswithalerttitlecancellabledelegatedidreviewallselectorcontextinfo: 'reviewUnsavedDocumentsWithAlertTitleCancellableDelegateDidReviewAllSelectorContextInfo',
+    runmodalopenpanelfortypes: 'runModalOpenPanelForTypes',
+    savealldocuments: 'saveAllDocuments',
+    self: 'self',
+    setshouldcreateui: 'setShouldCreateUI',
+    shareddocumentcontroller: 'sharedDocumentController',
+    shouldcreateui: 'shouldCreateUI',
+    standardsharemenuitem: 'standardShareMenuItem',
+    superclass: 'superclass',
+    typeforcontentsofurlerror: 'typeForContentsOfURLError',
+    typefromfileextension: 'typeFromFileExtension',
+    urlsfromrunningopenpanel: 'URLsFromRunningOpenPanel',
+    validatemenuitem: 'validateMenuItem',
+    validateuserinterfaceitem: 'validateUserInterfaceItem',
+    willpresenterror: 'willPresentError',
+    zone: 'zone',
+  }
 
-  // sharedDocumentController: NSDocumentController;
-  // readonly documents: NSArray;
-  // readonly currentDocument: NSDocument;
-  // readonly currentDirectory: NSString;
-  // autosavingDelay: number;
-  // readonly hasEditedDocuments: boolean;
   // readonly allowsAutomaticShareMenu: boolean;
+  // autosavingDelay: number;
+  // readonly currentDirectory: NSString;
+  // readonly currentDocument: NSDocument;
+  // readonly debugDescription: NSString;
+  // readonly defaultType: NSString;
+  // readonly description: NSString;
+  // readonly documentClassNames: NSArray;
+  // readonly documents: NSArray;
+  // readonly hasEditedDocuments: boolean;
+  // readonly hash: number;
+  // readonly isProxy: boolean;
   // readonly maximumRecentDocumentCount: number;
   // readonly recentDocumentURLs: NSArray;
-  // readonly defaultType: NSString;
-  // readonly documentClassNames: NSArray;
-  // readonly hash: number;
+  // sharedDocumentController: NSDocumentController;
   // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
   // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
 }
 
 export class HTMLNSStepperTouchBarItemElement extends HTMLNSTouchBarItemElement {
   // @ts-ignore
   readonly nativeObject = NSStepperTouchBarItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    action: 'action',
+    customizationlabel: 'customizationLabel',
+    increment: 'increment',
+    maxvalue: 'maxValue',
+    minvalue: 'minValue',
+    steppertouchbaritemwithidentifierdrawinghandler: 'stepperTouchBarItemWithIdentifierDrawingHandler',
+    steppertouchbaritemwithidentifierformatter: 'stepperTouchBarItemWithIdentifierFormatter',
+    target: 'target',
+    value: 'value',
+  }
 
+  // action: string;
+  // increment: number;
   // maxValue: number;
   // minValue: number;
-  // increment: number;
-  // value: number;
   // target: interop.Object;
-  // action: string;
+  // value: number;
 }
 
 export class HTMLNSPrintInfoElement extends HTMLNSObjectElement {
   readonly nativeObject = NSPrintInfo.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    bottommargin: 'bottomMargin',
+    copywithzone: 'copyWithZone',
+    defaultprinter: 'defaultPrinter',
+    dictionary: 'dictionary',
+    encodewithcoder: 'encodeWithCoder',
+    horizontalpagination: 'horizontalPagination',
+    imageablepagebounds: 'imageablePageBounds',
+    init: 'init',
+    initwithcoder: 'initWithCoder',
+    initwithdictionary: 'initWithDictionary',
+    ishorizontallycentered: 'isHorizontallyCentered',
+    isselectiononly: 'isSelectionOnly',
+    isverticallycentered: 'isVerticallyCentered',
+    jobdisposition: 'jobDisposition',
+    leftmargin: 'leftMargin',
+    localizedpapername: 'localizedPaperName',
+    orientation: 'orientation',
+    papername: 'paperName',
+    papersize: 'paperSize',
+    pmpageformat: 'PMPageFormat',
+    pmprintsession: 'PMPrintSession',
+    pmprintsettings: 'PMPrintSettings',
+    printer: 'printer',
+    printsettings: 'printSettings',
+    rightmargin: 'rightMargin',
+    scalingfactor: 'scalingFactor',
+    setupprintoperationdefaultvalues: 'setUpPrintOperationDefaultValues',
+    sharedprintinfo: 'sharedPrintInfo',
+    sizeforpapername: 'sizeForPaperName',
+    takesettingsfrompdfinfo: 'takeSettingsFromPDFInfo',
+    topmargin: 'topMargin',
+    updatefrompmpageformat: 'updateFromPMPageFormat',
+    updatefrompmprintsettings: 'updateFromPMPrintSettings',
+    verticalpagination: 'verticalPagination',
+  }
 
-  // sharedPrintInfo: NSPrintInfo;
-  // paperSize: CGSize;
-  // orientation: interop.Enum<typeof NSPaperOrientation>;
-  // scalingFactor: number;
-  // leftMargin: number;
-  // rightMargin: number;
-  // topMargin: number;
   // bottomMargin: number;
-  // isHorizontallyCentered: boolean;
-  // isVerticallyCentered: boolean;
-  // horizontalPagination: interop.Enum<typeof NSPrintingPaginationMode>;
-  // verticalPagination: interop.Enum<typeof NSPrintingPaginationMode>;
-  // printer: NSPrinter;
-  // readonly imageablePageBounds: CGRect;
-  // readonly localizedPaperName: NSString;
   // defaultPrinter: NSPrinter;
-  // readonly printSettings: NSMutableDictionary;
+  // horizontalPagination: interop.Enum<typeof NSPrintingPaginationMode>;
+  // readonly imageablePageBounds: CGRect;
+  // isHorizontallyCentered: boolean;
   // isSelectionOnly: boolean;
+  // isVerticallyCentered: boolean;
+  // leftMargin: number;
+  // readonly localizedPaperName: NSString;
+  // orientation: interop.Enum<typeof NSPaperOrientation>;
+  // paperSize: CGSize;
+  // printer: NSPrinter;
+  // readonly printSettings: NSMutableDictionary;
+  // rightMargin: number;
+  // scalingFactor: number;
+  // sharedPrintInfo: NSPrintInfo;
+  // topMargin: number;
+  // verticalPagination: interop.Enum<typeof NSPrintingPaginationMode>;
 }
 
 export class HTMLNSTextFinderElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextFinder.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    cancelfindindicator: 'cancelFindIndicator',
+    client: 'client',
+    drawincrementalmatchhighlightinrect: 'drawIncrementalMatchHighlightInRect',
+    encodewithcoder: 'encodeWithCoder',
+    findbarcontainer: 'findBarContainer',
+    findindicatorneedsupdate: 'findIndicatorNeedsUpdate',
+    incrementalmatchranges: 'incrementalMatchRanges',
+    incrementalsearchingshoulddimcontentview: 'incrementalSearchingShouldDimContentView',
+    init: 'init',
+    initwithcoder: 'initWithCoder',
+    isincrementalsearchingenabled: 'isIncrementalSearchingEnabled',
+    noteclientstringwillchange: 'noteClientStringWillChange',
+    performaction: 'performAction',
+    validateaction: 'validateAction',
+  }
 
   // client: NSTextFinderClient;
   // findBarContainer: NSTextFinderBarContainer;
   // findIndicatorNeedsUpdate: boolean;
-  // isIncrementalSearchingEnabled: boolean;
-  // incrementalSearchingShouldDimContentView: boolean;
   // readonly incrementalMatchRanges: NSArray;
+  // incrementalSearchingShouldDimContentView: boolean;
+  // isIncrementalSearchingEnabled: boolean;
 }
 
 export class HTMLNSCollectionViewTransitionLayoutElement extends HTMLNSCollectionViewLayoutElement {
   readonly nativeObject = NSCollectionViewTransitionLayout.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    currentlayout: 'currentLayout',
+    initwithcurrentlayoutnextlayout: 'initWithCurrentLayoutNextLayout',
+    nextlayout: 'nextLayout',
+    transitionprogress: 'transitionProgress',
+    updatevalueforanimatedkey: 'updateValueForAnimatedKey',
+    valueforanimatedkey: 'valueForAnimatedKey',
+  }
 
-  // transitionProgress: number;
   // readonly currentLayout: NSCollectionViewLayout;
   // readonly nextLayout: NSCollectionViewLayout;
+  // transitionProgress: number;
 }
 
 export class HTMLNSToolbarItemGroupElement extends HTMLNSToolbarItemElement {
   readonly nativeObject = NSToolbarItemGroup.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    controlrepresentation: 'controlRepresentation',
+    groupwithitemidentifierimagesselectionmodelabelstargetaction: 'groupWithItemIdentifierImagesSelectionModeLabelsTargetAction',
+    groupwithitemidentifiertitlesselectionmodelabelstargetaction: 'groupWithItemIdentifierTitlesSelectionModeLabelsTargetAction',
+    isselectedatindex: 'isSelectedAtIndex',
+    selectedindex: 'selectedIndex',
+    selectionmode: 'selectionMode',
+    setselectedatindex: 'setSelectedAtIndex',
+    subitems: 'subitems',
+  }
 
   // controlRepresentation: interop.Enum<typeof NSToolbarItemGroupControlRepresentation>;
-  // selectionMode: interop.Enum<typeof NSToolbarItemGroupSelectionMode>;
   // selectedIndex: number;
+  // selectionMode: interop.Enum<typeof NSToolbarItemGroupSelectionMode>;
 }
 
 export class HTMLNSTableColumnElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTableColumn.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    datacell: 'dataCell',
+    datacellforrow: 'dataCellForRow',
+    encodewithcoder: 'encodeWithCoder',
+    headercell: 'headerCell',
+    headertooltip: 'headerToolTip',
+    identifier: 'identifier',
+    initwithcoder: 'initWithCoder',
+    initwithidentifier: 'initWithIdentifier',
+    iseditable: 'isEditable',
+    ishidden: 'isHidden',
+    isresizable: 'isResizable',
+    maxwidth: 'maxWidth',
+    minwidth: 'minWidth',
+    resizingmask: 'resizingMask',
+    setresizable: 'setResizable',
+    sizetofit: 'sizeToFit',
+    sortdescriptorprototype: 'sortDescriptorPrototype',
+    tableview: 'tableView',
+    title: 'title',
+    width: 'width',
+  }
 
-  // tableView: NSTableView;
-  // width: number;
-  // minWidth: number;
-  // maxWidth: number;
+  // dataCell: interop.Object;
   // headerCell: NSTableHeaderCell;
   // isEditable: boolean;
-  // sortDescriptorPrototype: NSSortDescriptor;
-  // resizingMask: interop.Enum<typeof NSTableColumnResizingOptions>;
   // isHidden: boolean;
-  // dataCell: interop.Object;
+  // maxWidth: number;
+  // minWidth: number;
+  // resizingMask: interop.Enum<typeof NSTableColumnResizingOptions>;
+  // sortDescriptorPrototype: NSSortDescriptor;
+  // tableView: NSTableView;
+  // width: number;
 }
 
 export class HTMLNSPICTImageRepElement extends HTMLNSImageRepElement {
   readonly nativeObject = NSPICTImageRep.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    boundingbox: 'boundingBox',
+    imagerepwithdata: 'imageRepWithData',
+    initwithdata: 'initWithData',
+    pictrepresentation: 'PICTRepresentation',
+  }
 
-  // readonly PICTRepresentation: NSData;
   // readonly boundingBox: CGRect;
+  // readonly PICTRepresentation: NSData;
 }
 
 export class HTMLNSWorkspaceOpenConfigurationElement extends HTMLNSObjectElement {
   readonly nativeObject = NSWorkspaceOpenConfiguration.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    activates: 'activates',
+    addstorecentitems: 'addsToRecentItems',
+    allowsrunningapplicationsubstitution: 'allowsRunningApplicationSubstitution',
+    appleevent: 'appleEvent',
+    architecture: 'architecture',
+    arguments: 'arguments',
+    configuration: 'configuration',
+    copywithzone: 'copyWithZone',
+    createsnewapplicationinstance: 'createsNewApplicationInstance',
+    environment: 'environment',
+    hides: 'hides',
+    hidesothers: 'hidesOthers',
+    isforprinting: 'isForPrinting',
+    promptsuserifneeded: 'promptsUserIfNeeded',
+    requiresuniversallinks: 'requiresUniversalLinks',
+  }
 
-  // promptsUserIfNeeded: boolean;
-  // addsToRecentItems: boolean;
   // activates: boolean;
-  // hides: boolean;
-  // hidesOthers: boolean;
-  // isForPrinting: boolean;
-  // createsNewApplicationInstance: boolean;
+  // addsToRecentItems: boolean;
   // allowsRunningApplicationSubstitution: boolean;
   // appleEvent: NSAppleEventDescriptor;
   // architecture: number;
+  // createsNewApplicationInstance: boolean;
+  // hides: boolean;
+  // hidesOthers: boolean;
+  // isForPrinting: boolean;
+  // promptsUserIfNeeded: boolean;
   // requiresUniversalLinks: boolean;
 }
 
 export class HTMLNSPredicateEditorRowTemplateElement extends HTMLNSObjectElement {
   readonly nativeObject = NSPredicateEditorRowTemplate.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    compoundtypes: 'compoundTypes',
+    copywithzone: 'copyWithZone',
+    displayablesubpredicatesofpredicate: 'displayableSubpredicatesOfPredicate',
+    encodewithcoder: 'encodeWithCoder',
+    initwithcoder: 'initWithCoder',
+    initwithcompoundtypes: 'initWithCompoundTypes',
+    initwithleftexpressionsrightexpressionattributetypemodifieroperatorsoptions: 'initWithLeftExpressionsRightExpressionAttributeTypeModifierOperatorsOptions',
+    initwithleftexpressionsrightexpressionsmodifieroperatorsoptions: 'initWithLeftExpressionsRightExpressionsModifierOperatorsOptions',
+    leftexpressions: 'leftExpressions',
+    matchforpredicate: 'matchForPredicate',
+    modifier: 'modifier',
+    operators: 'operators',
+    options: 'options',
+    predicatewithsubpredicates: 'predicateWithSubpredicates',
+    rightexpressionattributetype: 'rightExpressionAttributeType',
+    rightexpressions: 'rightExpressions',
+    setpredicate: 'setPredicate',
+    templateswithattributekeypathsinentitydescription: 'templatesWithAttributeKeyPathsInEntityDescription',
+    templateviews: 'templateViews',
+  }
 
-  // readonly templateViews: NSArray;
+  // readonly compoundTypes: NSArray;
   // readonly leftExpressions: NSArray;
-  // readonly rightExpressions: NSArray;
-  // readonly rightExpressionAttributeType: interop.Enum<typeof NSAttributeType>;
   // readonly modifier: interop.Enum<typeof NSComparisonPredicateModifier>;
   // readonly operators: NSArray;
   // readonly options: number;
-  // readonly compoundTypes: NSArray;
+  // readonly rightExpressionAttributeType: interop.Enum<typeof NSAttributeType>;
+  // readonly rightExpressions: NSArray;
+  // readonly templateViews: NSArray;
 }
 
 export class HTMLNSMediaLibraryBrowserControllerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSMediaLibraryBrowserController.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    frame: 'frame',
+    isvisible: 'isVisible',
+    medialibraries: 'mediaLibraries',
+    sharedmedialibrarybrowsercontroller: 'sharedMediaLibraryBrowserController',
+    togglepanel: 'togglePanel',
+  }
 
-  // sharedMediaLibraryBrowserController: NSMediaLibraryBrowserController;
-  // isVisible: boolean;
   // frame: CGRect;
+  // isVisible: boolean;
   // mediaLibraries: interop.Enum<typeof NSMediaLibrary>;
+  // sharedMediaLibraryBrowserController: NSMediaLibraryBrowserController;
 }
 
 export class HTMLNSPathControlItemElement extends HTMLNSObjectElement {
   readonly nativeObject = NSPathControlItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    attributedtitle: 'attributedTitle',
+    image: 'image',
+    title: 'title',
+    url: 'URL',
+  }
 
   // attributedTitle: NSAttributedString;
   // image: NSImage;
@@ -4053,40 +10721,93 @@ export class HTMLNSPathControlItemElement extends HTMLNSObjectElement {
 export class HTMLNSSliderTouchBarItemElement extends HTMLNSTouchBarItemElement {
   // @ts-ignore
   readonly nativeObject = NSSliderTouchBarItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    action: 'action',
+    customizationlabel: 'customizationLabel',
+    doublevalue: 'doubleValue',
+    label: 'label',
+    maximumsliderwidth: 'maximumSliderWidth',
+    maximumvalueaccessory: 'maximumValueAccessory',
+    minimumsliderwidth: 'minimumSliderWidth',
+    minimumvalueaccessory: 'minimumValueAccessory',
+    slider: 'slider',
+    target: 'target',
+    valueaccessorywidth: 'valueAccessoryWidth',
+    view: 'view',
+  }
 
-  // readonly view: NSView;
-  // slider: NSSlider;
-  // doubleValue: number;
-  // minimumSliderWidth: number;
-  // maximumSliderWidth: number;
-  // minimumValueAccessory: NSSliderAccessory;
-  // maximumValueAccessory: NSSliderAccessory;
-  // valueAccessoryWidth: number;
-  // target: interop.Object;
   // action: string;
+  // doubleValue: number;
+  // maximumSliderWidth: number;
+  // maximumValueAccessory: NSSliderAccessory;
+  // minimumSliderWidth: number;
+  // minimumValueAccessory: NSSliderAccessory;
+  // slider: NSSlider;
+  // target: interop.Object;
+  // valueAccessoryWidth: number;
+  // readonly view: NSView;
 }
 
 export class HTMLNSTableHeaderCellElement extends HTMLNSTextFieldCellElement {
   readonly nativeObject = NSTableHeaderCell.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    drawsortindicatorwithframeinviewascendingpriority: 'drawSortIndicatorWithFrameInViewAscendingPriority',
+    sortindicatorrectforbounds: 'sortIndicatorRectForBounds',
+  }
 
 }
 
 export class HTMLNSMenuItemCellElement extends HTMLNSButtonCellElement {
   // @ts-ignore
   readonly nativeObject = NSMenuItemCell.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    calcsize: 'calcSize',
+    drawborderandbackgroundwithframeinview: 'drawBorderAndBackgroundWithFrameInView',
+    drawimagewithframeinview: 'drawImageWithFrameInView',
+    drawkeyequivalentwithframeinview: 'drawKeyEquivalentWithFrameInView',
+    drawseparatoritemwithframeinview: 'drawSeparatorItemWithFrameInView',
+    drawstateimagewithframeinview: 'drawStateImageWithFrameInView',
+    drawtitlewithframeinview: 'drawTitleWithFrameInView',
+    imagewidth: 'imageWidth',
+    inittextcell: 'initTextCell',
+    initwithcoder: 'initWithCoder',
+    keyequivalentrectforbounds: 'keyEquivalentRectForBounds',
+    keyequivalentwidth: 'keyEquivalentWidth',
+    menuitem: 'menuItem',
+    needsdisplay: 'needsDisplay',
+    needssizing: 'needsSizing',
+    stateimagerectforbounds: 'stateImageRectForBounds',
+    stateimagewidth: 'stateImageWidth',
+    tag: 'tag',
+    titlerectforbounds: 'titleRectForBounds',
+    titlewidth: 'titleWidth',
+  }
 
-  // menuItem: NSMenuItem;
-  // needsSizing: boolean;
-  // needsDisplay: boolean;
-  // readonly stateImageWidth: number;
   // readonly imageWidth: number;
-  // readonly titleWidth: number;
   // readonly keyEquivalentWidth: number;
+  // menuItem: NSMenuItem;
+  // needsDisplay: boolean;
+  // needsSizing: boolean;
+  // readonly stateImageWidth: number;
   // tag: number;
+  // readonly titleWidth: number;
 }
 
 export class HTMLNSPanGestureRecognizerElement extends HTMLNSGestureRecognizerElement {
   readonly nativeObject = NSPanGestureRecognizer.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    buttonmask: 'buttonMask',
+    encodewithcoder: 'encodeWithCoder',
+    initwithcoder: 'initWithCoder',
+    numberoftouchesrequired: 'numberOfTouchesRequired',
+    settranslationinview: 'setTranslationInView',
+    translationinview: 'translationInView',
+    velocityinview: 'velocityInView',
+  }
 
   // buttonMask: number;
   // numberOfTouchesRequired: number;
@@ -4094,6 +10815,14 @@ export class HTMLNSPanGestureRecognizerElement extends HTMLNSGestureRecognizerEl
 
 export class HTMLNSClickGestureRecognizerElement extends HTMLNSGestureRecognizerElement {
   readonly nativeObject = NSClickGestureRecognizer.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    buttonmask: 'buttonMask',
+    encodewithcoder: 'encodeWithCoder',
+    initwithcoder: 'initWithCoder',
+    numberofclicksrequired: 'numberOfClicksRequired',
+    numberoftouchesrequired: 'numberOfTouchesRequired',
+  }
 
   // buttonMask: number;
   // numberOfClicksRequired: number;
@@ -4102,76 +10831,194 @@ export class HTMLNSClickGestureRecognizerElement extends HTMLNSGestureRecognizer
 
 export class HTMLNSLayoutYAxisAnchorElement extends HTMLNSLayoutAnchorElement {
   readonly nativeObject = NSLayoutYAxisAnchor.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    anchorwithoffsettoanchor: 'anchorWithOffsetToAnchor',
+    constraintequaltosystemspacingbelowanchormultiplier: 'constraintEqualToSystemSpacingBelowAnchorMultiplier',
+    constraintgreaterthanorequaltosystemspacingbelowanchormultiplier: 'constraintGreaterThanOrEqualToSystemSpacingBelowAnchorMultiplier',
+    constraintlessthanorequaltosystemspacingbelowanchormultiplier: 'constraintLessThanOrEqualToSystemSpacingBelowAnchorMultiplier',
+  }
 
 }
 
 export class HTMLNSMagnificationGestureRecognizerElement extends HTMLNSGestureRecognizerElement {
   readonly nativeObject = NSMagnificationGestureRecognizer.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    magnification: 'magnification',
+  }
 
   // magnification: number;
 }
 
 export class HTMLNSImageCellElement extends HTMLNSCellElement {
   readonly nativeObject = NSImageCell.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    copywithzone: 'copyWithZone',
+    encodewithcoder: 'encodeWithCoder',
+    imagealignment: 'imageAlignment',
+    imageframestyle: 'imageFrameStyle',
+    imagescaling: 'imageScaling',
+    initwithcoder: 'initWithCoder',
+  }
 
   // imageAlignment: interop.Enum<typeof NSImageAlignment>;
-  // imageScaling: interop.Enum<typeof NSImageScaling>;
   // imageFrameStyle: interop.Enum<typeof NSImageFrameStyle>;
+  // imageScaling: interop.Enum<typeof NSImageScaling>;
 }
 
 export class HTMLNSSearchToolbarItemElement extends HTMLNSToolbarItemElement {
   readonly nativeObject = NSSearchToolbarItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    beginsearchinteraction: 'beginSearchInteraction',
+    endsearchinteraction: 'endSearchInteraction',
+    preferredwidthforsearchfield: 'preferredWidthForSearchField',
+    resignsfirstresponderwithcancel: 'resignsFirstResponderWithCancel',
+    searchfield: 'searchField',
+  }
 
-  // searchField: NSSearchField;
-  // resignsFirstResponderWithCancel: boolean;
   // preferredWidthForSearchField: number;
+  // resignsFirstResponderWithCancel: boolean;
+  // searchField: NSSearchField;
 }
 
 export class HTMLNSPickerTouchBarItemElement extends HTMLNSTouchBarItemElement {
   // @ts-ignore
   readonly nativeObject = NSPickerTouchBarItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    action: 'action',
+    collapsedrepresentationimage: 'collapsedRepresentationImage',
+    collapsedrepresentationlabel: 'collapsedRepresentationLabel',
+    controlrepresentation: 'controlRepresentation',
+    customizationlabel: 'customizationLabel',
+    imageatindex: 'imageAtIndex',
+    isenabled: 'isEnabled',
+    isenabledatindex: 'isEnabledAtIndex',
+    labelatindex: 'labelAtIndex',
+    numberofoptions: 'numberOfOptions',
+    pickertouchbaritemwithidentifierimagesselectionmodetargetaction: 'pickerTouchBarItemWithIdentifierImagesSelectionModeTargetAction',
+    pickertouchbaritemwithidentifierlabelsselectionmodetargetaction: 'pickerTouchBarItemWithIdentifierLabelsSelectionModeTargetAction',
+    selectedindex: 'selectedIndex',
+    selectioncolor: 'selectionColor',
+    selectionmode: 'selectionMode',
+    setenabledatindex: 'setEnabledAtIndex',
+    setimageatindex: 'setImageAtIndex',
+    setlabelatindex: 'setLabelAtIndex',
+    target: 'target',
+  }
 
-  // controlRepresentation: interop.Enum<typeof NSPickerTouchBarItemControlRepresentation>;
+  // action: string;
   // collapsedRepresentationImage: NSImage;
+  // controlRepresentation: interop.Enum<typeof NSPickerTouchBarItemControlRepresentation>;
+  // isEnabled: boolean;
+  // numberOfOptions: number;
   // selectedIndex: number;
   // selectionColor: NSColor;
   // selectionMode: interop.Enum<typeof NSPickerTouchBarItemSelectionMode>;
-  // numberOfOptions: number;
   // target: interop.Object;
-  // action: string;
-  // isEnabled: boolean;
 }
 
 export class HTMLNSArrayControllerElement extends HTMLNSObjectControllerElement {
   readonly nativeObject = NSArrayController.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    add: 'add',
+    addobject: 'addObject',
+    addobjects: 'addObjects',
+    addselectedobjects: 'addSelectedObjects',
+    addselectionindexes: 'addSelectionIndexes',
+    alwaysusesmultiplevaluesmarker: 'alwaysUsesMultipleValuesMarker',
+    arrangedobjects: 'arrangedObjects',
+    arrangeobjects: 'arrangeObjects',
+    automaticallyrearrangesobjects: 'automaticallyRearrangesObjects',
+    automaticrearrangementkeypaths: 'automaticRearrangementKeyPaths',
+    avoidsemptyselection: 'avoidsEmptySelection',
+    caninsert: 'canInsert',
+    canselectnext: 'canSelectNext',
+    canselectprevious: 'canSelectPrevious',
+    clearsfilterpredicateoninsertion: 'clearsFilterPredicateOnInsertion',
+    didchangearrangementcriteria: 'didChangeArrangementCriteria',
+    filterpredicate: 'filterPredicate',
+    insert: 'insert',
+    insertobjectatarrangedobjectindex: 'insertObjectAtArrangedObjectIndex',
+    insertobjectsatarrangedobjectindexes: 'insertObjectsAtArrangedObjectIndexes',
+    preservesselection: 'preservesSelection',
+    rearrangeobjects: 'rearrangeObjects',
+    remove: 'remove',
+    removeobject: 'removeObject',
+    removeobjectatarrangedobjectindex: 'removeObjectAtArrangedObjectIndex',
+    removeobjects: 'removeObjects',
+    removeobjectsatarrangedobjectindexes: 'removeObjectsAtArrangedObjectIndexes',
+    removeselectedobjects: 'removeSelectedObjects',
+    removeselectionindexes: 'removeSelectionIndexes',
+    selectedobjects: 'selectedObjects',
+    selectionindex: 'selectionIndex',
+    selectionindexes: 'selectionIndexes',
+    selectnext: 'selectNext',
+    selectprevious: 'selectPrevious',
+    selectsinsertedobjects: 'selectsInsertedObjects',
+    sortdescriptors: 'sortDescriptors',
+  }
 
+  // alwaysUsesMultipleValuesMarker: boolean;
+  // readonly arrangedObjects: interop.Object;
   // automaticallyRearrangesObjects: boolean;
   // readonly automaticRearrangementKeyPaths: NSArray;
-  // filterPredicate: NSPredicate;
-  // clearsFilterPredicateOnInsertion: boolean;
-  // readonly arrangedObjects: interop.Object;
   // avoidsEmptySelection: boolean;
-  // preservesSelection: boolean;
-  // selectsInsertedObjects: boolean;
-  // alwaysUsesMultipleValuesMarker: boolean;
-  // readonly selectionIndexes: NSIndexSet;
-  // readonly selectionIndex: number;
-  // readonly selectedObjects: NSArray;
   // readonly canInsert: boolean;
   // readonly canSelectNext: boolean;
   // readonly canSelectPrevious: boolean;
+  // clearsFilterPredicateOnInsertion: boolean;
+  // filterPredicate: NSPredicate;
+  // preservesSelection: boolean;
+  // readonly selectedObjects: NSArray;
+  // readonly selectionIndex: number;
+  // readonly selectionIndexes: NSIndexSet;
+  // selectsInsertedObjects: boolean;
 }
 
 export class HTMLNSGridViewElement extends HTMLNSViewElement {
   readonly nativeObject = NSGridView.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    addcolumnwithviews: 'addColumnWithViews',
+    addrowwithviews: 'addRowWithViews',
+    cellatcolumnindexrowindex: 'cellAtColumnIndexRowIndex',
+    cellforview: 'cellForView',
+    columnatindex: 'columnAtIndex',
+    columnspacing: 'columnSpacing',
+    gridviewwithnumberofcolumnsrows: 'gridViewWithNumberOfColumnsRows',
+    gridviewwithviews: 'gridViewWithViews',
+    indexofcolumn: 'indexOfColumn',
+    indexofrow: 'indexOfRow',
+    initwithcoder: 'initWithCoder',
+    initwithframe: 'initWithFrame',
+    insertcolumnatindexwithviews: 'insertColumnAtIndexWithViews',
+    insertrowatindexwithviews: 'insertRowAtIndexWithViews',
+    mergecellsinhorizontalrangeverticalrange: 'mergeCellsInHorizontalRangeVerticalRange',
+    movecolumnatindextoindex: 'moveColumnAtIndexToIndex',
+    moverowatindextoindex: 'moveRowAtIndexToIndex',
+    numberofcolumns: 'numberOfColumns',
+    numberofrows: 'numberOfRows',
+    removecolumnatindex: 'removeColumnAtIndex',
+    removerowatindex: 'removeRowAtIndex',
+    rowalignment: 'rowAlignment',
+    rowatindex: 'rowAtIndex',
+    rowspacing: 'rowSpacing',
+    xplacement: 'xPlacement',
+    yplacement: 'yPlacement',
+  }
 
-  // readonly numberOfRows: number;
+  // columnSpacing: number;
   // readonly numberOfColumns: number;
-  // xPlacement: interop.Enum<typeof NSGridCellPlacement>;
-  // yPlacement: interop.Enum<typeof NSGridCellPlacement>;
+  // readonly numberOfRows: number;
   // rowAlignment: interop.Enum<typeof NSGridRowAlignment>;
   // rowSpacing: number;
-  // columnSpacing: number;
+  // xPlacement: interop.Enum<typeof NSGridCellPlacement>;
+  // yPlacement: interop.Enum<typeof NSGridCellPlacement>;
 }
 
 export class HTMLNSSplitViewElement extends HTMLNSViewElement {
@@ -4179,13 +11026,37 @@ export class HTMLNSSplitViewElement extends HTMLNSViewElement {
   get delegate(): NSSplitViewDelegateImpl {
     return (this.nativeObject.delegate ??= NSSplitViewDelegateImpl.new()) as NSSplitViewDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    addarrangedsubview: 'addArrangedSubview',
+    adjustsubviews: 'adjustSubviews',
+    arrangedsubviews: 'arrangedSubviews',
+    arrangesallsubviews: 'arrangesAllSubviews',
+    autosavename: 'autosaveName',
+    delegate: 'delegate',
+    dividercolor: 'dividerColor',
+    dividerstyle: 'dividerStyle',
+    dividerthickness: 'dividerThickness',
+    drawdividerinrect: 'drawDividerInRect',
+    holdingpriorityforsubviewatindex: 'holdingPriorityForSubviewAtIndex',
+    insertarrangedsubviewatindex: 'insertArrangedSubviewAtIndex',
+    ispanesplitter: 'isPaneSplitter',
+    issubviewcollapsed: 'isSubviewCollapsed',
+    isvertical: 'isVertical',
+    maxpossiblepositionofdivideratindex: 'maxPossiblePositionOfDividerAtIndex',
+    minpossiblepositionofdivideratindex: 'minPossiblePositionOfDividerAtIndex',
+    removearrangedsubview: 'removeArrangedSubview',
+    setholdingpriorityforsubviewatindex: 'setHoldingPriorityForSubviewAtIndex',
+    setispanesplitter: 'setIsPaneSplitter',
+    setpositionofdivideratindex: 'setPositionOfDividerAtIndex',
+  }
 
-  // isVertical: boolean;
-  // dividerStyle: interop.Enum<typeof NSSplitViewDividerStyle>;
-  // readonly dividerColor: NSColor;
-  // readonly dividerThickness: number;
-  // arrangesAllSubviews: boolean;
   // readonly arrangedSubviews: NSArray;
+  // arrangesAllSubviews: boolean;
+  // readonly dividerColor: NSColor;
+  // dividerStyle: interop.Enum<typeof NSSplitViewDividerStyle>;
+  // readonly dividerThickness: number;
+  // isVertical: boolean;
 
   set splitviewcancollapsesubview(value: (splitView: NSSplitView, subview: NSView) => boolean) {
     this.delegate.splitViewCanCollapseSubview = value;
@@ -4227,6 +11098,18 @@ export class HTMLNSSplitViewElement extends HTMLNSViewElement {
 
 export class HTMLNSLayoutDimensionElement extends HTMLNSLayoutAnchorElement {
   readonly nativeObject = NSLayoutDimension.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    constraintequaltoanchormultiplier: 'constraintEqualToAnchorMultiplier',
+    constraintequaltoanchormultiplierconstant: 'constraintEqualToAnchorMultiplierConstant',
+    constraintequaltoconstant: 'constraintEqualToConstant',
+    constraintgreaterthanorequaltoanchormultiplier: 'constraintGreaterThanOrEqualToAnchorMultiplier',
+    constraintgreaterthanorequaltoanchormultiplierconstant: 'constraintGreaterThanOrEqualToAnchorMultiplierConstant',
+    constraintgreaterthanorequaltoconstant: 'constraintGreaterThanOrEqualToConstant',
+    constraintlessthanorequaltoanchormultiplier: 'constraintLessThanOrEqualToAnchorMultiplier',
+    constraintlessthanorequaltoanchormultiplierconstant: 'constraintLessThanOrEqualToAnchorMultiplierConstant',
+    constraintlessthanorequaltoconstant: 'constraintLessThanOrEqualToConstant',
+  }
 
 }
 
@@ -4235,20 +11118,39 @@ export class HTMLNSDatePickerCellElement extends HTMLNSActionCellElement {
   get delegate(): NSDatePickerCellDelegateImpl {
     return (this.nativeObject.delegate ??= NSDatePickerCellDelegateImpl.new()) as NSDatePickerCellDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    backgroundcolor: 'backgroundColor',
+    calendar: 'calendar',
+    datepickerelements: 'datePickerElements',
+    datepickermode: 'datePickerMode',
+    datepickerstyle: 'datePickerStyle',
+    datevalue: 'dateValue',
+    delegate: 'delegate',
+    drawsbackground: 'drawsBackground',
+    inittextcell: 'initTextCell',
+    initwithcoder: 'initWithCoder',
+    locale: 'locale',
+    maxdate: 'maxDate',
+    mindate: 'minDate',
+    textcolor: 'textColor',
+    timeinterval: 'timeInterval',
+    timezone: 'timeZone',
+  }
 
-  // datePickerStyle: interop.Enum<typeof NSDatePickerStyle>;
-  // drawsBackground: boolean;
   // backgroundColor: NSColor;
-  // textColor: NSColor;
-  // datePickerMode: interop.Enum<typeof NSDatePickerMode>;
-  // datePickerElements: interop.Enum<typeof NSDatePickerElementFlags>;
   // calendar: NSCalendar;
-  // locale: NSLocale;
-  // timeZone: NSTimeZone;
+  // datePickerElements: interop.Enum<typeof NSDatePickerElementFlags>;
+  // datePickerMode: interop.Enum<typeof NSDatePickerMode>;
+  // datePickerStyle: interop.Enum<typeof NSDatePickerStyle>;
   // dateValue: NSDate;
-  // timeInterval: number;
-  // minDate: NSDate;
+  // drawsBackground: boolean;
+  // locale: NSLocale;
   // maxDate: NSDate;
+  // minDate: NSDate;
+  // textColor: NSColor;
+  // timeInterval: number;
+  // timeZone: NSTimeZone;
 
   set datepickercellvalidateproposeddatevaluetimeinterval(value: (datePickerCell: NSDatePickerCell, proposedDateValue: interop.PointerConvertible, proposedTimeInterval: interop.PointerConvertible) => void) {
     this.delegate.datePickerCellValidateProposedDateValueTimeInterval = value;
@@ -4257,63 +11159,210 @@ export class HTMLNSDatePickerCellElement extends HTMLNSActionCellElement {
 
 export class HTMLNSViewControllerElement extends HTMLNSResponderElement {
   readonly nativeObject = NSViewController.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    addchildviewcontroller: 'addChildViewController',
+    autorelease: 'autorelease',
+    childviewcontrollers: 'childViewControllers',
+    class: 'class',
+    commitediting: 'commitEditing',
+    commiteditingandreturnerror: 'commitEditingAndReturnError',
+    commiteditingwithdelegatedidcommitselectorcontextinfo: 'commitEditingWithDelegateDidCommitSelectorContextInfo',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    discardediting: 'discardEditing',
+    dismisscontroller: 'dismissController',
+    dismissviewcontroller: 'dismissViewController',
+    extensioncontext: 'extensionContext',
+    hash: 'hash',
+    identifier: 'identifier',
+    initwithcoder: 'initWithCoder',
+    initwithnibnamebundle: 'initWithNibNameBundle',
+    insertchildviewcontrolleratindex: 'insertChildViewControllerAtIndex',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    isviewloaded: 'isViewLoaded',
+    loadview: 'loadView',
+    loadviewifneeded: 'loadViewIfNeeded',
+    nibbundle: 'nibBundle',
+    nibname: 'nibName',
+    parentviewcontroller: 'parentViewController',
+    performseguewithidentifiersender: 'performSegueWithIdentifierSender',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    preferredcontentsize: 'preferredContentSize',
+    preferredcontentsizedidchangeforviewcontroller: 'preferredContentSizeDidChangeForViewController',
+    preferredmaximumsize: 'preferredMaximumSize',
+    preferredminimumsize: 'preferredMinimumSize',
+    preferredscreenorigin: 'preferredScreenOrigin',
+    prepareforseguesender: 'prepareForSegueSender',
+    presentedviewcontrollers: 'presentedViewControllers',
+    presentingviewcontroller: 'presentingViewController',
+    presentviewcontrolleranimator: 'presentViewControllerAnimator',
+    presentviewcontrollerasmodalwindow: 'presentViewControllerAsModalWindow',
+    presentviewcontrolleraspopoverrelativetorectofviewpreferrededgebehavior: 'presentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehavior',
+    presentviewcontrolleraspopoverrelativetorectofviewpreferrededgebehaviorhasfullsizecontent: 'presentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehaviorHasFullSizeContent',
+    presentviewcontrollerassheet: 'presentViewControllerAsSheet',
+    release: 'release',
+    removechildviewcontrolleratindex: 'removeChildViewControllerAtIndex',
+    removefromparentviewcontroller: 'removeFromParentViewController',
+    representedobject: 'representedObject',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    shouldperformseguewithidentifiersender: 'shouldPerformSegueWithIdentifierSender',
+    sourceitemview: 'sourceItemView',
+    storyboard: 'storyboard',
+    superclass: 'superclass',
+    title: 'title',
+    transitionfromviewcontrollertoviewcontrolleroptionscompletionhandler: 'transitionFromViewControllerToViewControllerOptionsCompletionHandler',
+    updateviewconstraints: 'updateViewConstraints',
+    view: 'view',
+    viewdidappear: 'viewDidAppear',
+    viewdiddisappear: 'viewDidDisappear',
+    viewdidlayout: 'viewDidLayout',
+    viewdidload: 'viewDidLoad',
+    viewifloaded: 'viewIfLoaded',
+    viewwillappear: 'viewWillAppear',
+    viewwilldisappear: 'viewWillDisappear',
+    viewwilllayout: 'viewWillLayout',
+    viewwilltransitiontosize: 'viewWillTransitionToSize',
+    zone: 'zone',
+  }
 
-  // readonly nibName: NSString;
-  // readonly nibBundle: NSBundle;
-  // representedObject: interop.Object;
-  // view: NSView;
-  // readonly viewIfLoaded: NSView;
+  // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly extensionContext: NSExtensionContext;
+  // readonly hash: number;
+  // readonly isProxy: boolean;
   // readonly isViewLoaded: boolean;
+  // readonly nibBundle: NSBundle;
+  // readonly nibName: NSString;
+  // readonly parentViewController: NSViewController;
   // preferredContentSize: CGSize;
+  // readonly preferredMaximumSize: CGSize;
+  // readonly preferredMinimumSize: CGSize;
+  // preferredScreenOrigin: CGPoint;
   // readonly presentedViewControllers: NSArray;
   // readonly presentingViewController: NSViewController;
-  // readonly parentViewController: NSViewController;
-  // readonly storyboard: NSStoryboard;
-  // readonly extensionContext: NSExtensionContext;
+  // representedObject: interop.Object;
   // sourceItemView: NSView;
-  // preferredScreenOrigin: CGPoint;
-  // readonly preferredMinimumSize: CGSize;
-  // readonly preferredMaximumSize: CGSize;
-  // readonly hash: number;
+  // readonly storyboard: NSStoryboard;
   // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
+  // view: NSView;
+  // readonly viewIfLoaded: NSView;
   // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
 }
 
 export class HTMLNSPressGestureRecognizerElement extends HTMLNSGestureRecognizerElement {
   readonly nativeObject = NSPressGestureRecognizer.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    allowablemovement: 'allowableMovement',
+    buttonmask: 'buttonMask',
+    encodewithcoder: 'encodeWithCoder',
+    initwithcoder: 'initWithCoder',
+    minimumpressduration: 'minimumPressDuration',
+    numberoftouchesrequired: 'numberOfTouchesRequired',
+  }
 
+  // allowableMovement: number;
   // buttonMask: number;
   // minimumPressDuration: number;
-  // allowableMovement: number;
   // numberOfTouchesRequired: number;
 }
 
 export class HTMLNSPopUpButtonCellElement extends HTMLNSMenuItemCellElement {
   readonly nativeObject = NSPopUpButtonCell.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    additemswithtitles: 'addItemsWithTitles',
+    additemwithtitle: 'addItemWithTitle',
+    altersstateofselecteditem: 'altersStateOfSelectedItem',
+    arrowposition: 'arrowPosition',
+    attachpopupwithframeinview: 'attachPopUpWithFrameInView',
+    autoenablesitems: 'autoenablesItems',
+    autorelease: 'autorelease',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    dismisspopup: 'dismissPopUp',
+    hash: 'hash',
+    indexofitem: 'indexOfItem',
+    indexofitemwithrepresentedobject: 'indexOfItemWithRepresentedObject',
+    indexofitemwithtag: 'indexOfItemWithTag',
+    indexofitemwithtargetandaction: 'indexOfItemWithTargetAndAction',
+    indexofitemwithtitle: 'indexOfItemWithTitle',
+    indexofselecteditem: 'indexOfSelectedItem',
+    inittextcellpullsdown: 'initTextCellPullsDown',
+    initwithcoder: 'initWithCoder',
+    insertitemwithtitleatindex: 'insertItemWithTitleAtIndex',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    itemarray: 'itemArray',
+    itematindex: 'itemAtIndex',
+    itemtitleatindex: 'itemTitleAtIndex',
+    itemtitles: 'itemTitles',
+    itemwithtitle: 'itemWithTitle',
+    lastitem: 'lastItem',
+    menu: 'menu',
+    numberofitems: 'numberOfItems',
+    performclickwithframeinview: 'performClickWithFrameInView',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    preferrededge: 'preferredEdge',
+    pullsdown: 'pullsDown',
+    release: 'release',
+    removeallitems: 'removeAllItems',
+    removeitematindex: 'removeItemAtIndex',
+    removeitemwithtitle: 'removeItemWithTitle',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    selecteditem: 'selectedItem',
+    selectitem: 'selectItem',
+    selectitematindex: 'selectItemAtIndex',
+    selectitemwithtag: 'selectItemWithTag',
+    selectitemwithtitle: 'selectItemWithTitle',
+    self: 'self',
+    settitle: 'setTitle',
+    superclass: 'superclass',
+    synchronizetitleandselecteditem: 'synchronizeTitleAndSelectedItem',
+    titleofselecteditem: 'titleOfSelectedItem',
+    usesitemfrommenu: 'usesItemFromMenu',
+    validatemenuitem: 'validateMenuItem',
+    zone: 'zone',
+  }
 
-  // menu: NSMenu;
-  // pullsDown: boolean;
-  // autoenablesItems: boolean;
-  // preferredEdge: interop.Enum<typeof NSRectEdge>;
-  // usesItemFromMenu: boolean;
   // altersStateOfSelectedItem: boolean;
-  // readonly itemArray: NSArray;
-  // readonly numberOfItems: number;
-  // readonly lastItem: NSMenuItem;
-  // readonly selectedItem: NSMenuItem;
-  // readonly indexOfSelectedItem: number;
-  // readonly itemTitles: NSArray;
-  // readonly titleOfSelectedItem: NSString;
   // arrowPosition: interop.Enum<typeof NSPopUpArrowPosition>;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
+  // autoenablesItems: boolean;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly hash: number;
+  // readonly indexOfSelectedItem: number;
+  // readonly isProxy: boolean;
+  // readonly itemArray: NSArray;
+  // readonly itemTitles: NSArray;
+  // readonly lastItem: NSMenuItem;
+  // menu: NSMenu;
+  // readonly numberOfItems: number;
+  // preferredEdge: interop.Enum<typeof NSRectEdge>;
+  // pullsDown: boolean;
+  // readonly selectedItem: NSMenuItem;
+  // readonly superclass: interop.Object;
+  // readonly titleOfSelectedItem: NSString;
+  // usesItemFromMenu: boolean;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSTextElement extends HTMLNSViewElement {
@@ -4322,25 +11371,83 @@ export class HTMLNSTextElement extends HTMLNSViewElement {
   get delegate(): NSTextDelegateImpl {
     return (this.nativeObject.delegate ??= NSTextDelegateImpl.new()) as NSTextDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    aligncenter: 'alignCenter',
+    alignleft: 'alignLeft',
+    alignment: 'alignment',
+    alignright: 'alignRight',
+    backgroundcolor: 'backgroundColor',
+    basewritingdirection: 'baseWritingDirection',
+    changefont: 'changeFont',
+    changespelling: 'changeSpelling',
+    checkspelling: 'checkSpelling',
+    copy: 'copy',
+    copyfont: 'copyFont',
+    copyruler: 'copyRuler',
+    cut: 'cut',
+    delegate: 'delegate',
+    delete: 'delete',
+    drawsbackground: 'drawsBackground',
+    font: 'font',
+    ignorespelling: 'ignoreSpelling',
+    importsgraphics: 'importsGraphics',
+    initwithcoder: 'initWithCoder',
+    initwithframe: 'initWithFrame',
+    iseditable: 'isEditable',
+    isfieldeditor: 'isFieldEditor',
+    ishorizontallyresizable: 'isHorizontallyResizable',
+    isrichtext: 'isRichText',
+    isrulervisible: 'isRulerVisible',
+    isselectable: 'isSelectable',
+    isverticallyresizable: 'isVerticallyResizable',
+    maxsize: 'maxSize',
+    minsize: 'minSize',
+    paste: 'paste',
+    pastefont: 'pasteFont',
+    pasteruler: 'pasteRuler',
+    readrtfdfromfile: 'readRTFDFromFile',
+    replacecharactersinrangewithrtf: 'replaceCharactersInRangeWithRTF',
+    replacecharactersinrangewithrtfd: 'replaceCharactersInRangeWithRTFD',
+    replacecharactersinrangewithstring: 'replaceCharactersInRangeWithString',
+    rtfdfromrange: 'RTFDFromRange',
+    rtffromrange: 'RTFFromRange',
+    scrollrangetovisible: 'scrollRangeToVisible',
+    selectall: 'selectAll',
+    selectedrange: 'selectedRange',
+    setfontrange: 'setFontRange',
+    settextcolorrange: 'setTextColorRange',
+    showguesspanel: 'showGuessPanel',
+    sizetofit: 'sizeToFit',
+    string: 'string',
+    subscript: 'subscript',
+    superscript: 'superscript',
+    textcolor: 'textColor',
+    toggleruler: 'toggleRuler',
+    underline: 'underline',
+    unscript: 'unscript',
+    usesfontpanel: 'usesFontPanel',
+    writertfdtofileatomically: 'writeRTFDToFileAtomically',
+  }
 
-  // isEditable: boolean;
-  // isSelectable: boolean;
-  // isRichText: boolean;
-  // importsGraphics: boolean;
-  // isFieldEditor: boolean;
-  // usesFontPanel: boolean;
-  // drawsBackground: boolean;
-  // backgroundColor: NSColor;
-  // readonly isRulerVisible: boolean;
-  // selectedRange: _NSRange;
-  // font: NSFont;
-  // textColor: NSColor;
   // alignment: interop.Enum<typeof NSTextAlignment>;
+  // backgroundColor: NSColor;
   // baseWritingDirection: interop.Enum<typeof NSWritingDirection>;
+  // drawsBackground: boolean;
+  // font: NSFont;
+  // importsGraphics: boolean;
+  // isEditable: boolean;
+  // isFieldEditor: boolean;
+  // isHorizontallyResizable: boolean;
+  // isRichText: boolean;
+  // readonly isRulerVisible: boolean;
+  // isSelectable: boolean;
+  // isVerticallyResizable: boolean;
   // maxSize: CGSize;
   // minSize: CGSize;
-  // isHorizontallyResizable: boolean;
-  // isVerticallyResizable: boolean;
+  // selectedRange: _NSRange;
+  // textColor: NSColor;
+  // usesFontPanel: boolean;
 
   set textshouldbeginediting(value: (textObject: NSText) => boolean) {
     this.delegate.textShouldBeginEditing = value;
@@ -4361,17 +11468,57 @@ export class HTMLNSTextElement extends HTMLNSViewElement {
 
 export class HTMLNSDiffableDataSourceSnapshotElement extends HTMLNSObjectElement {
   readonly nativeObject = NSDiffableDataSourceSnapshot.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    appenditemswithidentifiers: 'appendItemsWithIdentifiers',
+    appenditemswithidentifiersintosectionwithidentifier: 'appendItemsWithIdentifiersIntoSectionWithIdentifier',
+    appendsectionswithidentifiers: 'appendSectionsWithIdentifiers',
+    copywithzone: 'copyWithZone',
+    deleteallitems: 'deleteAllItems',
+    deleteitemswithidentifiers: 'deleteItemsWithIdentifiers',
+    deletesectionswithidentifiers: 'deleteSectionsWithIdentifiers',
+    indexofitemidentifier: 'indexOfItemIdentifier',
+    indexofsectionidentifier: 'indexOfSectionIdentifier',
+    insertitemswithidentifiersafteritemwithidentifier: 'insertItemsWithIdentifiersAfterItemWithIdentifier',
+    insertitemswithidentifiersbeforeitemwithidentifier: 'insertItemsWithIdentifiersBeforeItemWithIdentifier',
+    insertsectionswithidentifiersaftersectionwithidentifier: 'insertSectionsWithIdentifiersAfterSectionWithIdentifier',
+    insertsectionswithidentifiersbeforesectionwithidentifier: 'insertSectionsWithIdentifiersBeforeSectionWithIdentifier',
+    itemidentifiers: 'itemIdentifiers',
+    itemidentifiersinsectionwithidentifier: 'itemIdentifiersInSectionWithIdentifier',
+    moveitemwithidentifierafteritemwithidentifier: 'moveItemWithIdentifierAfterItemWithIdentifier',
+    moveitemwithidentifierbeforeitemwithidentifier: 'moveItemWithIdentifierBeforeItemWithIdentifier',
+    movesectionwithidentifieraftersectionwithidentifier: 'moveSectionWithIdentifierAfterSectionWithIdentifier',
+    movesectionwithidentifierbeforesectionwithidentifier: 'moveSectionWithIdentifierBeforeSectionWithIdentifier',
+    numberofitems: 'numberOfItems',
+    numberofitemsinsection: 'numberOfItemsInSection',
+    numberofsections: 'numberOfSections',
+    reloaditemswithidentifiers: 'reloadItemsWithIdentifiers',
+    reloadsectionswithidentifiers: 'reloadSectionsWithIdentifiers',
+    sectionidentifierforsectioncontainingitemidentifier: 'sectionIdentifierForSectionContainingItemIdentifier',
+    sectionidentifiers: 'sectionIdentifiers',
+  }
 
+  // readonly itemIdentifiers: NSArray;
   // readonly numberOfItems: number;
   // readonly numberOfSections: number;
   // readonly sectionIdentifiers: NSArray;
-  // readonly itemIdentifiers: NSArray;
 }
 
 export class HTMLNSTextViewportLayoutControllerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextViewportLayoutController.new();
   get delegate(): NSTextViewportLayoutControllerDelegateImpl {
     return (this.nativeObject.delegate ??= NSTextViewportLayoutControllerDelegateImpl.new()) as NSTextViewportLayoutControllerDelegateImpl;
+  }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    adjustviewportbyverticaloffset: 'adjustViewportByVerticalOffset',
+    delegate: 'delegate',
+    initwithtextlayoutmanager: 'initWithTextLayoutManager',
+    layoutviewport: 'layoutViewport',
+    relocateviewporttotextlocation: 'relocateViewportToTextLocation',
+    textlayoutmanager: 'textLayoutManager',
+    viewportbounds: 'viewportBounds',
+    viewportrange: 'viewportRange',
   }
 
   // readonly textLayoutManager: NSTextLayoutManager | null;
@@ -4394,84 +11541,212 @@ export class HTMLNSTextViewportLayoutControllerElement extends HTMLNSObjectEleme
 
 export class HTMLNSTintConfigurationElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTintConfiguration.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    adaptstouseraccentcolor: 'adaptsToUserAccentColor',
+    basetintcolor: 'baseTintColor',
+    copywithzone: 'copyWithZone',
+    defaulttintconfiguration: 'defaultTintConfiguration',
+    encodewithcoder: 'encodeWithCoder',
+    equivalentcontenttintcolor: 'equivalentContentTintColor',
+    initwithcoder: 'initWithCoder',
+    monochrometintconfiguration: 'monochromeTintConfiguration',
+    supportssecurecoding: 'supportsSecureCoding',
+    tintconfigurationwithfixedcolor: 'tintConfigurationWithFixedColor',
+    tintconfigurationwithpreferredcolor: 'tintConfigurationWithPreferredColor',
+  }
 
-  // defaultTintConfiguration: NSTintConfiguration;
-  // monochromeTintConfiguration: NSTintConfiguration;
-  // readonly baseTintColor: NSColor;
-  // readonly equivalentContentTintColor: NSColor;
   // readonly adaptsToUserAccentColor: boolean;
+  // readonly baseTintColor: NSColor;
+  // defaultTintConfiguration: NSTintConfiguration;
+  // readonly equivalentContentTintColor: NSColor;
+  // monochromeTintConfiguration: NSTintConfiguration;
   // supportsSecureCoding: boolean;
 }
 
 export class HTMLNSUserDefaultsControllerElement extends HTMLNSControllerElement {
   readonly nativeObject = NSUserDefaultsController.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    appliesimmediately: 'appliesImmediately',
+    defaults: 'defaults',
+    hasunappliedchanges: 'hasUnappliedChanges',
+    initialvalues: 'initialValues',
+    initwithcoder: 'initWithCoder',
+    initwithdefaultsinitialvalues: 'initWithDefaultsInitialValues',
+    revert: 'revert',
+    reverttoinitialvalues: 'revertToInitialValues',
+    save: 'save',
+    shareduserdefaultscontroller: 'sharedUserDefaultsController',
+    values: 'values',
+  }
 
-  // sharedUserDefaultsController: NSUserDefaultsController;
-  // readonly defaults: NSUserDefaults;
   // appliesImmediately: boolean;
+  // readonly defaults: NSUserDefaults;
   // readonly hasUnappliedChanges: boolean;
+  // sharedUserDefaultsController: NSUserDefaultsController;
   // readonly values: interop.Object;
 }
 
 export class HTMLNSOpenGLContextElement extends HTMLNSObjectElement {
   readonly nativeObject = NSOpenGLContext.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    cglcontextobj: 'CGLContextObj',
+    clearcurrentcontext: 'clearCurrentContext',
+    cleardrawable: 'clearDrawable',
+    copyattributesfromcontextwithmask: 'copyAttributesFromContextWithMask',
+    createtexturefromviewinternalformat: 'createTextureFromViewInternalFormat',
+    currentcontext: 'currentContext',
+    currentvirtualscreen: 'currentVirtualScreen',
+    flushbuffer: 'flushBuffer',
+    getvaluesforparameter: 'getValuesForParameter',
+    initwithcglcontextobj: 'initWithCGLContextObj',
+    initwithformatsharecontext: 'initWithFormatShareContext',
+    lock: 'lock',
+    makecurrentcontext: 'makeCurrentContext',
+    pixelbuffer: 'pixelBuffer',
+    pixelbuffercubemapface: 'pixelBufferCubeMapFace',
+    pixelbuffermipmaplevel: 'pixelBufferMipMapLevel',
+    pixelformat: 'pixelFormat',
+    setfullscreen: 'setFullScreen',
+    setoffscreenwidthheightrowbytes: 'setOffScreenWidthHeightRowbytes',
+    setpixelbuffercubemapfacemipmaplevelcurrentvirtualscreen: 'setPixelBufferCubeMapFaceMipMapLevelCurrentVirtualScreen',
+    settextureimagetopixelbuffercolorbuffer: 'setTextureImageToPixelBufferColorBuffer',
+    setvaluesforparameter: 'setValuesForParameter',
+    unlock: 'unlock',
+    update: 'update',
+    view: 'view',
+  }
 
-  // readonly pixelFormat: NSOpenGLPixelFormat;
-  // view: NSView;
+  // readonly CGLContextObj: interop.Pointer;
   // currentContext: NSOpenGLContext;
   // currentVirtualScreen: number;
-  // readonly CGLContextObj: interop.Pointer;
+  // readonly pixelFormat: NSOpenGLPixelFormat;
+  // view: NSView;
 }
 
 export class HTMLNSProgressIndicatorElement extends HTMLNSViewElement {
   // @ts-ignore
   readonly nativeObject = NSProgressIndicator.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessibilityframe: 'accessibilityFrame',
+    accessibilityidentifier: 'accessibilityIdentifier',
+    accessibilityparent: 'accessibilityParent',
+    accessibilityvalue: 'accessibilityValue',
+    animate: 'animate',
+    animationdelay: 'animationDelay',
+    autorelease: 'autorelease',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    controlsize: 'controlSize',
+    controltint: 'controlTint',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    doublevalue: 'doubleValue',
+    hash: 'hash',
+    incrementby: 'incrementBy',
+    isaccessibilityfocused: 'isAccessibilityFocused',
+    isbezeled: 'isBezeled',
+    isdisplayedwhenstopped: 'isDisplayedWhenStopped',
+    isequal: 'isEqual',
+    isindeterminate: 'isIndeterminate',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    maxvalue: 'maxValue',
+    minvalue: 'minValue',
+    observedprogress: 'observedProgress',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    setanimationdelay: 'setAnimationDelay',
+    sizetofit: 'sizeToFit',
+    startanimation: 'startAnimation',
+    stopanimation: 'stopAnimation',
+    style: 'style',
+    superclass: 'superclass',
+    usesthreadedanimation: 'usesThreadedAnimation',
+    zone: 'zone',
+  }
 
-  // isIndeterminate: boolean;
-  // controlSize: interop.Enum<typeof NSControlSize>;
-  // doubleValue: number;
-  // minValue: number;
-  // maxValue: number;
-  // observedProgress: NSProgress;
-  // usesThreadedAnimation: boolean;
-  // style: interop.Enum<typeof NSProgressIndicatorStyle>;
-  // isDisplayedWhenStopped: boolean;
-  // isBezeled: boolean;
-  // controlTint: interop.Enum<typeof NSControlTint>;
-  // accessibilityValue: NSNumber;
   // accessibilityFrame: CGRect;
   // accessibilityParent: interop.Object;
-  // isAccessibilityFocused: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
+  // accessibilityValue: NSNumber;
+  // controlSize: interop.Enum<typeof NSControlSize>;
+  // controlTint: interop.Enum<typeof NSControlTint>;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // doubleValue: number;
+  // readonly hash: number;
+  // isAccessibilityFocused: boolean;
+  // isBezeled: boolean;
+  // isDisplayedWhenStopped: boolean;
+  // isIndeterminate: boolean;
+  // readonly isProxy: boolean;
+  // maxValue: number;
+  // minValue: number;
+  // observedProgress: NSProgress;
+  // style: interop.Enum<typeof NSProgressIndicatorStyle>;
+  // readonly superclass: interop.Object;
+  // usesThreadedAnimation: boolean;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSScrubberArrangedViewElement extends HTMLNSViewElement {
   readonly nativeObject = NSScrubberArrangedView.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    applylayoutattributes: 'applyLayoutAttributes',
+    ishighlighted: 'isHighlighted',
+    isselected: 'isSelected',
+  }
 
-  // isSelected: boolean;
   // isHighlighted: boolean;
+  // isSelected: boolean;
 }
 
 export class HTMLNSLayoutConstraintElement extends HTMLNSObjectElement {
   readonly nativeObject = NSLayoutConstraint.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    activateconstraints: 'activateConstraints',
+    constant: 'constant',
+    constraintswithvisualformatoptionsmetricsviews: 'constraintsWithVisualFormatOptionsMetricsViews',
+    constraintwithitemattributerelatedbytoitemattributemultiplierconstant: 'constraintWithItemAttributeRelatedByToItemAttributeMultiplierConstant',
+    deactivateconstraints: 'deactivateConstraints',
+    firstanchor: 'firstAnchor',
+    firstattribute: 'firstAttribute',
+    firstitem: 'firstItem',
+    identifier: 'identifier',
+    isactive: 'isActive',
+    multiplier: 'multiplier',
+    priority: 'priority',
+    relation: 'relation',
+    secondanchor: 'secondAnchor',
+    secondattribute: 'secondAttribute',
+    seconditem: 'secondItem',
+    shouldbearchived: 'shouldBeArchived',
+  }
 
-  // priority: number;
-  // shouldBeArchived: boolean;
-  // readonly firstItem: interop.Object;
-  // readonly secondItem: interop.Object;
-  // readonly firstAttribute: interop.Enum<typeof NSLayoutAttribute>;
-  // readonly secondAttribute: interop.Enum<typeof NSLayoutAttribute>;
-  // readonly firstAnchor: NSLayoutAnchor;
-  // readonly secondAnchor: NSLayoutAnchor;
-  // readonly relation: interop.Enum<typeof NSLayoutRelation>;
-  // readonly multiplier: number;
   // constant: number;
+  // readonly firstAnchor: NSLayoutAnchor;
+  // readonly firstAttribute: interop.Enum<typeof NSLayoutAttribute>;
+  // readonly firstItem: interop.Object;
   // isActive: boolean;
+  // readonly multiplier: number;
+  // priority: number;
+  // readonly relation: interop.Enum<typeof NSLayoutRelation>;
+  // readonly secondAnchor: NSLayoutAnchor;
+  // readonly secondAttribute: interop.Enum<typeof NSLayoutAttribute>;
+  // readonly secondItem: interop.Object;
+  // shouldBeArchived: boolean;
 }
 
 export class HTMLNSSpeechSynthesizerElement extends HTMLNSObjectElement {
@@ -4479,14 +11754,39 @@ export class HTMLNSSpeechSynthesizerElement extends HTMLNSObjectElement {
   get delegate(): NSSpeechSynthesizerDelegateImpl {
     return (this.nativeObject.delegate ??= NSSpeechSynthesizerDelegateImpl.new()) as NSSpeechSynthesizerDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    addspeechdictionary: 'addSpeechDictionary',
+    attributesforvoice: 'attributesForVoice',
+    availablevoices: 'availableVoices',
+    continuespeaking: 'continueSpeaking',
+    defaultvoice: 'defaultVoice',
+    delegate: 'delegate',
+    initwithvoice: 'initWithVoice',
+    isanyapplicationspeaking: 'isAnyApplicationSpeaking',
+    isspeaking: 'isSpeaking',
+    objectforpropertyerror: 'objectForPropertyError',
+    pausespeakingatboundary: 'pauseSpeakingAtBoundary',
+    phonemesfromtext: 'phonemesFromText',
+    rate: 'rate',
+    setobjectforpropertyerror: 'setObjectForPropertyError',
+    setvoice: 'setVoice',
+    startspeakingstring: 'startSpeakingString',
+    startspeakingstringtourl: 'startSpeakingStringToURL',
+    stopspeaking: 'stopSpeaking',
+    stopspeakingatboundary: 'stopSpeakingAtBoundary',
+    usesfeedbackwindow: 'usesFeedbackWindow',
+    voice: 'voice',
+    volume: 'volume',
+  }
 
+  // availableVoices: NSArray;
+  // defaultVoice: NSString;
+  // isAnyApplicationSpeaking: boolean;
   // readonly isSpeaking: boolean;
   // rate: number;
-  // volume: number;
   // usesFeedbackWindow: boolean;
-  // isAnyApplicationSpeaking: boolean;
-  // defaultVoice: NSString;
-  // availableVoices: NSArray;
+  // volume: number;
 
   set speechsynthesizerdidfinishspeaking(value: (sender: NSSpeechSynthesizer, finishedSpeaking: boolean) => void) {
     this.delegate.speechSynthesizerDidFinishSpeaking = value;
@@ -4508,36 +11808,83 @@ export class HTMLNSSpeechSynthesizerElement extends HTMLNSObjectElement {
 export class HTMLNSMutableParagraphStyleElement extends HTMLNSParagraphStyleElement {
   // @ts-ignore
   readonly nativeObject = NSMutableParagraphStyle.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    addtabstop: 'addTabStop',
+    alignment: 'alignment',
+    allowsdefaulttighteningfortruncation: 'allowsDefaultTighteningForTruncation',
+    basewritingdirection: 'baseWritingDirection',
+    defaulttabinterval: 'defaultTabInterval',
+    firstlineheadindent: 'firstLineHeadIndent',
+    headerlevel: 'headerLevel',
+    headindent: 'headIndent',
+    hyphenationfactor: 'hyphenationFactor',
+    linebreakmode: 'lineBreakMode',
+    linebreakstrategy: 'lineBreakStrategy',
+    lineheightmultiple: 'lineHeightMultiple',
+    linespacing: 'lineSpacing',
+    maximumlineheight: 'maximumLineHeight',
+    minimumlineheight: 'minimumLineHeight',
+    paragraphspacing: 'paragraphSpacing',
+    paragraphspacingbefore: 'paragraphSpacingBefore',
+    removetabstop: 'removeTabStop',
+    setparagraphstyle: 'setParagraphStyle',
+    tabstops: 'tabStops',
+    tailindent: 'tailIndent',
+    textblocks: 'textBlocks',
+    textlists: 'textLists',
+    tighteningfactorfortruncation: 'tighteningFactorForTruncation',
+    usesdefaulthyphenation: 'usesDefaultHyphenation',
+  }
 
-  // lineSpacing: number;
-  // paragraphSpacing: number;
   // alignment: interop.Enum<typeof NSTextAlignment>;
-  // firstLineHeadIndent: number;
-  // headIndent: number;
-  // tailIndent: number;
-  // lineBreakMode: interop.Enum<typeof NSLineBreakMode>;
-  // minimumLineHeight: number;
-  // maximumLineHeight: number;
-  // baseWritingDirection: interop.Enum<typeof NSWritingDirection>;
-  // lineHeightMultiple: number;
-  // paragraphSpacingBefore: number;
-  // hyphenationFactor: number;
-  // usesDefaultHyphenation: boolean;
-  // defaultTabInterval: number;
   // allowsDefaultTighteningForTruncation: boolean;
-  // tighteningFactorForTruncation: number;
+  // baseWritingDirection: interop.Enum<typeof NSWritingDirection>;
+  // defaultTabInterval: number;
+  // firstLineHeadIndent: number;
   // headerLevel: number;
+  // headIndent: number;
+  // hyphenationFactor: number;
+  // lineBreakMode: interop.Enum<typeof NSLineBreakMode>;
   // lineBreakStrategy: interop.Enum<typeof NSLineBreakStrategy>;
+  // lineHeightMultiple: number;
+  // lineSpacing: number;
+  // maximumLineHeight: number;
+  // minimumLineHeight: number;
+  // paragraphSpacing: number;
+  // paragraphSpacingBefore: number;
+  // tailIndent: number;
+  // tighteningFactorForTruncation: number;
+  // usesDefaultHyphenation: boolean;
 }
 
 export class HTMLNSStoryboardElement extends HTMLNSObjectElement {
   readonly nativeObject = NSStoryboard.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    instantiatecontrollerwithidentifier: 'instantiateControllerWithIdentifier',
+    instantiatecontrollerwithidentifiercreator: 'instantiateControllerWithIdentifierCreator',
+    instantiateinitialcontroller: 'instantiateInitialController',
+    instantiateinitialcontrollerwithcreator: 'instantiateInitialControllerWithCreator',
+    mainstoryboard: 'mainStoryboard',
+    storyboardwithnamebundle: 'storyboardWithNameBundle',
+  }
 
   // mainStoryboard: NSStoryboard;
 }
 
 export class HTMLNSCollectionLayoutItemElement extends HTMLNSObjectElement {
   readonly nativeObject = NSCollectionLayoutItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    contentinsets: 'contentInsets',
+    copywithzone: 'copyWithZone',
+    edgespacing: 'edgeSpacing',
+    itemwithlayoutsize: 'itemWithLayoutSize',
+    itemwithlayoutsizesupplementaryitems: 'itemWithLayoutSizeSupplementaryItems',
+    layoutsize: 'layoutSize',
+    supplementaryitems: 'supplementaryItems',
+  }
 
   // contentInsets: NSDirectionalEdgeInsets;
   // edgeSpacing: NSCollectionLayoutEdgeSpacing;
@@ -4547,6 +11894,18 @@ export class HTMLNSCollectionLayoutItemElement extends HTMLNSObjectElement {
 
 export class HTMLNSCollectionLayoutSectionElement extends HTMLNSObjectElement {
   readonly nativeObject = NSCollectionLayoutSection.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    boundarysupplementaryitems: 'boundarySupplementaryItems',
+    contentinsets: 'contentInsets',
+    copywithzone: 'copyWithZone',
+    decorationitems: 'decorationItems',
+    intergroupspacing: 'interGroupSpacing',
+    orthogonalscrollingbehavior: 'orthogonalScrollingBehavior',
+    sectionwithgroup: 'sectionWithGroup',
+    supplementariesfollowcontentinsets: 'supplementariesFollowContentInsets',
+    visibleitemsinvalidationhandler: 'visibleItemsInvalidationHandler',
+  }
 
   // contentInsets: NSDirectionalEdgeInsets;
   // interGroupSpacing: number;
@@ -4558,12 +11917,25 @@ export class HTMLNSCollectionLayoutSectionElement extends HTMLNSObjectElement {
 export class HTMLNSGroupTouchBarItemElement extends HTMLNSTouchBarItemElement {
   // @ts-ignore
   readonly nativeObject = NSGroupTouchBarItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    alertstylegroupitemwithidentifier: 'alertStyleGroupItemWithIdentifier',
+    customizationlabel: 'customizationLabel',
+    effectivecompressionoptions: 'effectiveCompressionOptions',
+    groupitemwithidentifieritems: 'groupItemWithIdentifierItems',
+    groupitemwithidentifieritemsallowedcompressionoptions: 'groupItemWithIdentifierItemsAllowedCompressionOptions',
+    grouptouchbar: 'groupTouchBar',
+    groupuserinterfacelayoutdirection: 'groupUserInterfaceLayoutDirection',
+    preferreditemwidth: 'preferredItemWidth',
+    prefersequalwidths: 'prefersEqualWidths',
+    prioritizedcompressionoptions: 'prioritizedCompressionOptions',
+  }
 
+  // readonly effectiveCompressionOptions: NSUserInterfaceCompressionOptions;
   // groupTouchBar: NSTouchBar;
   // groupUserInterfaceLayoutDirection: interop.Enum<typeof NSUserInterfaceLayoutDirection>;
-  // prefersEqualWidths: boolean;
   // preferredItemWidth: number;
-  // readonly effectiveCompressionOptions: NSUserInterfaceCompressionOptions;
+  // prefersEqualWidths: boolean;
 }
 
 export class HTMLNSMenuElement extends HTMLNSObjectElement {
@@ -4571,105 +11943,349 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
   get delegate(): NSMenuDelegateImpl {
     return (this.nativeObject.delegate ??= NSMenuDelegateImpl.new()) as NSMenuDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessibilityactivationpoint: 'accessibilityActivationPoint',
+    accessibilityallowedvalues: 'accessibilityAllowedValues',
+    accessibilityapplicationfocuseduielement: 'accessibilityApplicationFocusedUIElement',
+    accessibilityattributedstringforrange: 'accessibilityAttributedStringForRange',
+    accessibilityattributeduserinputlabels: 'accessibilityAttributedUserInputLabels',
+    accessibilitycancelbutton: 'accessibilityCancelButton',
+    accessibilitycellforcolumnrow: 'accessibilityCellForColumnRow',
+    accessibilitychildren: 'accessibilityChildren',
+    accessibilitychildreninnavigationorder: 'accessibilityChildrenInNavigationOrder',
+    accessibilityclearbutton: 'accessibilityClearButton',
+    accessibilityclosebutton: 'accessibilityCloseButton',
+    accessibilitycolumncount: 'accessibilityColumnCount',
+    accessibilitycolumnheaderuielements: 'accessibilityColumnHeaderUIElements',
+    accessibilitycolumnindexrange: 'accessibilityColumnIndexRange',
+    accessibilitycolumns: 'accessibilityColumns',
+    accessibilitycolumntitles: 'accessibilityColumnTitles',
+    accessibilitycontents: 'accessibilityContents',
+    accessibilitycriticalvalue: 'accessibilityCriticalValue',
+    accessibilitycustomactions: 'accessibilityCustomActions',
+    accessibilitycustomrotors: 'accessibilityCustomRotors',
+    accessibilitydecrementbutton: 'accessibilityDecrementButton',
+    accessibilitydefaultbutton: 'accessibilityDefaultButton',
+    accessibilitydisclosedbyrow: 'accessibilityDisclosedByRow',
+    accessibilitydisclosedrows: 'accessibilityDisclosedRows',
+    accessibilitydisclosurelevel: 'accessibilityDisclosureLevel',
+    accessibilitydocument: 'accessibilityDocument',
+    accessibilityextrasmenubar: 'accessibilityExtrasMenuBar',
+    accessibilityfilename: 'accessibilityFilename',
+    accessibilityfocusedwindow: 'accessibilityFocusedWindow',
+    accessibilityframe: 'accessibilityFrame',
+    accessibilityframeforrange: 'accessibilityFrameForRange',
+    accessibilityfullscreenbutton: 'accessibilityFullScreenButton',
+    accessibilitygrowarea: 'accessibilityGrowArea',
+    accessibilityhandles: 'accessibilityHandles',
+    accessibilityheader: 'accessibilityHeader',
+    accessibilityhelp: 'accessibilityHelp',
+    accessibilityhorizontalscrollbar: 'accessibilityHorizontalScrollBar',
+    accessibilityhorizontalunitdescription: 'accessibilityHorizontalUnitDescription',
+    accessibilityhorizontalunits: 'accessibilityHorizontalUnits',
+    accessibilityidentifier: 'accessibilityIdentifier',
+    accessibilityincrementbutton: 'accessibilityIncrementButton',
+    accessibilityindex: 'accessibilityIndex',
+    accessibilityinsertionpointlinenumber: 'accessibilityInsertionPointLineNumber',
+    accessibilitylabel: 'accessibilityLabel',
+    accessibilitylabeluielements: 'accessibilityLabelUIElements',
+    accessibilitylabelvalue: 'accessibilityLabelValue',
+    accessibilitylayoutpointforscreenpoint: 'accessibilityLayoutPointForScreenPoint',
+    accessibilitylayoutsizeforscreensize: 'accessibilityLayoutSizeForScreenSize',
+    accessibilitylineforindex: 'accessibilityLineForIndex',
+    accessibilitylinkeduielements: 'accessibilityLinkedUIElements',
+    accessibilitymainwindow: 'accessibilityMainWindow',
+    accessibilitymarkergroupuielement: 'accessibilityMarkerGroupUIElement',
+    accessibilitymarkertypedescription: 'accessibilityMarkerTypeDescription',
+    accessibilitymarkeruielements: 'accessibilityMarkerUIElements',
+    accessibilitymarkervalues: 'accessibilityMarkerValues',
+    accessibilitymaxvalue: 'accessibilityMaxValue',
+    accessibilitymenubar: 'accessibilityMenuBar',
+    accessibilityminimizebutton: 'accessibilityMinimizeButton',
+    accessibilityminvalue: 'accessibilityMinValue',
+    accessibilitynextcontents: 'accessibilityNextContents',
+    accessibilitynumberofcharacters: 'accessibilityNumberOfCharacters',
+    accessibilityorientation: 'accessibilityOrientation',
+    accessibilityoverflowbutton: 'accessibilityOverflowButton',
+    accessibilityparent: 'accessibilityParent',
+    accessibilityperformcancel: 'accessibilityPerformCancel',
+    accessibilityperformconfirm: 'accessibilityPerformConfirm',
+    accessibilityperformdecrement: 'accessibilityPerformDecrement',
+    accessibilityperformdelete: 'accessibilityPerformDelete',
+    accessibilityperformincrement: 'accessibilityPerformIncrement',
+    accessibilityperformpick: 'accessibilityPerformPick',
+    accessibilityperformpress: 'accessibilityPerformPress',
+    accessibilityperformraise: 'accessibilityPerformRaise',
+    accessibilityperformshowalternateui: 'accessibilityPerformShowAlternateUI',
+    accessibilityperformshowdefaultui: 'accessibilityPerformShowDefaultUI',
+    accessibilityperformshowmenu: 'accessibilityPerformShowMenu',
+    accessibilityplaceholdervalue: 'accessibilityPlaceholderValue',
+    accessibilitypreviouscontents: 'accessibilityPreviousContents',
+    accessibilityproxy: 'accessibilityProxy',
+    accessibilityrangeforindex: 'accessibilityRangeForIndex',
+    accessibilityrangeforline: 'accessibilityRangeForLine',
+    accessibilityrangeforposition: 'accessibilityRangeForPosition',
+    accessibilityrole: 'accessibilityRole',
+    accessibilityroledescription: 'accessibilityRoleDescription',
+    accessibilityrowcount: 'accessibilityRowCount',
+    accessibilityrowheaderuielements: 'accessibilityRowHeaderUIElements',
+    accessibilityrowindexrange: 'accessibilityRowIndexRange',
+    accessibilityrows: 'accessibilityRows',
+    accessibilityrtfforrange: 'accessibilityRTFForRange',
+    accessibilityrulermarkertype: 'accessibilityRulerMarkerType',
+    accessibilityscreenpointforlayoutpoint: 'accessibilityScreenPointForLayoutPoint',
+    accessibilityscreensizeforlayoutsize: 'accessibilityScreenSizeForLayoutSize',
+    accessibilitysearchbutton: 'accessibilitySearchButton',
+    accessibilitysearchmenu: 'accessibilitySearchMenu',
+    accessibilityselectedcells: 'accessibilitySelectedCells',
+    accessibilityselectedchildren: 'accessibilitySelectedChildren',
+    accessibilityselectedcolumns: 'accessibilitySelectedColumns',
+    accessibilityselectedrows: 'accessibilitySelectedRows',
+    accessibilityselectedtext: 'accessibilitySelectedText',
+    accessibilityselectedtextrange: 'accessibilitySelectedTextRange',
+    accessibilityselectedtextranges: 'accessibilitySelectedTextRanges',
+    accessibilityservesastitleforuielements: 'accessibilityServesAsTitleForUIElements',
+    accessibilitysharedcharacterrange: 'accessibilitySharedCharacterRange',
+    accessibilitysharedfocuselements: 'accessibilitySharedFocusElements',
+    accessibilitysharedtextuielements: 'accessibilitySharedTextUIElements',
+    accessibilityshownmenu: 'accessibilityShownMenu',
+    accessibilitysortdirection: 'accessibilitySortDirection',
+    accessibilitysplitters: 'accessibilitySplitters',
+    accessibilitystringforrange: 'accessibilityStringForRange',
+    accessibilitystylerangeforindex: 'accessibilityStyleRangeForIndex',
+    accessibilitysubrole: 'accessibilitySubrole',
+    accessibilitytabs: 'accessibilityTabs',
+    accessibilitytitle: 'accessibilityTitle',
+    accessibilitytitleuielement: 'accessibilityTitleUIElement',
+    accessibilitytoolbarbutton: 'accessibilityToolbarButton',
+    accessibilitytopleveluielement: 'accessibilityTopLevelUIElement',
+    accessibilityunitdescription: 'accessibilityUnitDescription',
+    accessibilityunits: 'accessibilityUnits',
+    accessibilityurl: 'accessibilityURL',
+    accessibilityuserinputlabels: 'accessibilityUserInputLabels',
+    accessibilityvalue: 'accessibilityValue',
+    accessibilityvaluedescription: 'accessibilityValueDescription',
+    accessibilityverticalscrollbar: 'accessibilityVerticalScrollBar',
+    accessibilityverticalunitdescription: 'accessibilityVerticalUnitDescription',
+    accessibilityverticalunits: 'accessibilityVerticalUnits',
+    accessibilityvisiblecells: 'accessibilityVisibleCells',
+    accessibilityvisiblecharacterrange: 'accessibilityVisibleCharacterRange',
+    accessibilityvisiblechildren: 'accessibilityVisibleChildren',
+    accessibilityvisiblecolumns: 'accessibilityVisibleColumns',
+    accessibilityvisiblerows: 'accessibilityVisibleRows',
+    accessibilitywarningvalue: 'accessibilityWarningValue',
+    accessibilitywindow: 'accessibilityWindow',
+    accessibilitywindows: 'accessibilityWindows',
+    accessibilityzoombutton: 'accessibilityZoomButton',
+    additem: 'addItem',
+    additemwithtitleactionkeyequivalent: 'addItemWithTitleActionKeyEquivalent',
+    allowscontextmenuplugins: 'allowsContextMenuPlugIns',
+    appearance: 'appearance',
+    attachedmenu: 'attachedMenu',
+    autoenablesitems: 'autoenablesItems',
+    autorelease: 'autorelease',
+    canceltracking: 'cancelTracking',
+    canceltrackingwithoutanimation: 'cancelTrackingWithoutAnimation',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    contextmenurepresentation: 'contextMenuRepresentation',
+    copywithzone: 'copyWithZone',
+    debugdescription: 'debugDescription',
+    delegate: 'delegate',
+    description: 'description',
+    effectiveappearance: 'effectiveAppearance',
+    encodewithcoder: 'encodeWithCoder',
+    font: 'font',
+    hash: 'hash',
+    helprequested: 'helpRequested',
+    highlighteditem: 'highlightedItem',
+    identifier: 'identifier',
+    indexofitem: 'indexOfItem',
+    indexofitemwithrepresentedobject: 'indexOfItemWithRepresentedObject',
+    indexofitemwithsubmenu: 'indexOfItemWithSubmenu',
+    indexofitemwithtag: 'indexOfItemWithTag',
+    indexofitemwithtargetandaction: 'indexOfItemWithTargetAndAction',
+    indexofitemwithtitle: 'indexOfItemWithTitle',
+    initwithcoder: 'initWithCoder',
+    initwithtitle: 'initWithTitle',
+    insertitematindex: 'insertItemAtIndex',
+    insertitemwithtitleactionkeyequivalentatindex: 'insertItemWithTitleActionKeyEquivalentAtIndex',
+    isaccessibilityalternateuivisible: 'isAccessibilityAlternateUIVisible',
+    isaccessibilitydisclosed: 'isAccessibilityDisclosed',
+    isaccessibilityedited: 'isAccessibilityEdited',
+    isaccessibilityelement: 'isAccessibilityElement',
+    isaccessibilityenabled: 'isAccessibilityEnabled',
+    isaccessibilityexpanded: 'isAccessibilityExpanded',
+    isaccessibilityfocused: 'isAccessibilityFocused',
+    isaccessibilityfrontmost: 'isAccessibilityFrontmost',
+    isaccessibilityhidden: 'isAccessibilityHidden',
+    isaccessibilitymain: 'isAccessibilityMain',
+    isaccessibilityminimized: 'isAccessibilityMinimized',
+    isaccessibilitymodal: 'isAccessibilityModal',
+    isaccessibilityorderedbyrow: 'isAccessibilityOrderedByRow',
+    isaccessibilityprotectedcontent: 'isAccessibilityProtectedContent',
+    isaccessibilityrequired: 'isAccessibilityRequired',
+    isaccessibilityselected: 'isAccessibilitySelected',
+    isaccessibilityselectorallowed: 'isAccessibilitySelectorAllowed',
+    isattached: 'isAttached',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    istornoff: 'isTornOff',
+    itemarray: 'itemArray',
+    itematindex: 'itemAtIndex',
+    itemchanged: 'itemChanged',
+    itemwithtag: 'itemWithTag',
+    itemwithtitle: 'itemWithTitle',
+    locationforsubmenu: 'locationForSubmenu',
+    menubarheight: 'menuBarHeight',
+    menubarvisible: 'menuBarVisible',
+    menuchangedmessagesenabled: 'menuChangedMessagesEnabled',
+    menurepresentation: 'menuRepresentation',
+    menuzone: 'menuZone',
+    minimumwidth: 'minimumWidth',
+    numberofitems: 'numberOfItems',
+    palettemenuwithcolorstitlesselectionhandler: 'paletteMenuWithColorsTitlesSelectionHandler',
+    palettemenuwithcolorstitlestemplateimageselectionhandler: 'paletteMenuWithColorsTitlesTemplateImageSelectionHandler',
+    performactionforitematindex: 'performActionForItemAtIndex',
+    performkeyequivalent: 'performKeyEquivalent',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    popupcontextmenuwitheventforview: 'popUpContextMenuWithEventForView',
+    popupcontextmenuwitheventforviewwithfont: 'popUpContextMenuWithEventForViewWithFont',
+    popupmenupositioningitematlocationinview: 'popUpMenuPositioningItemAtLocationInView',
+    presentationstyle: 'presentationStyle',
+    propertiestoupdate: 'propertiesToUpdate',
+    release: 'release',
+    removeallitems: 'removeAllItems',
+    removeitem: 'removeItem',
+    removeitematindex: 'removeItemAtIndex',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    selecteditems: 'selectedItems',
+    selectionmode: 'selectionMode',
+    self: 'self',
+    setcontextmenurepresentation: 'setContextMenuRepresentation',
+    setmenubarvisible: 'setMenuBarVisible',
+    setmenurepresentation: 'setMenuRepresentation',
+    setmenuzone: 'setMenuZone',
+    setsubmenuforitem: 'setSubmenuForItem',
+    settearoffmenurepresentation: 'setTearOffMenuRepresentation',
+    showsstatecolumn: 'showsStateColumn',
+    size: 'size',
+    sizetofit: 'sizeToFit',
+    submenuaction: 'submenuAction',
+    superclass: 'superclass',
+    supermenu: 'supermenu',
+    tearoffmenurepresentation: 'tearOffMenuRepresentation',
+    title: 'title',
+    update: 'update',
+    userinterfacelayoutdirection: 'userInterfaceLayoutDirection',
+    zone: 'zone',
+  }
 
-  // supermenu: NSMenu;
-  // readonly numberOfItems: number;
-  // autoenablesItems: boolean;
-  // readonly menuBarHeight: number;
-  // readonly highlightedItem: NSMenuItem;
-  // minimumWidth: number;
-  // readonly size: CGSize;
-  // font: NSFont;
-  // allowsContextMenuPlugIns: boolean;
-  // showsStateColumn: boolean;
-  // userInterfaceLayoutDirection: interop.Enum<typeof NSUserInterfaceLayoutDirection>;
-  // presentationStyle: interop.Enum<typeof NSMenuPresentationStyle>;
-  // selectionMode: interop.Enum<typeof NSMenuSelectionMode>;
-  // readonly propertiesToUpdate: interop.Enum<typeof NSMenuProperties>;
-  // menuChangedMessagesEnabled: boolean;
-  // readonly isTornOff: boolean;
-  // appearance: NSAppearance;
-  // readonly effectiveAppearance: NSAppearance;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
-  // isAccessibilityElement: boolean;
-  // accessibilityFrame: CGRect;
-  // isAccessibilityFocused: boolean;
   // accessibilityActivationPoint: CGPoint;
-  // accessibilityTopLevelUIElement: interop.Object;
-  // accessibilityURL: NSURL;
-  // accessibilityValue: interop.Object;
-  // accessibilityTitleUIElement: interop.Object;
-  // accessibilityOrientation: interop.Enum<typeof NSAccessibilityOrientation>;
-  // accessibilityOverflowButton: interop.Object;
-  // accessibilityParent: interop.Object;
-  // accessibilitySearchButton: interop.Object;
-  // accessibilitySearchMenu: interop.Object;
-  // isAccessibilitySelected: boolean;
-  // accessibilityShownMenu: interop.Object;
-  // accessibilityMinValue: interop.Object;
-  // accessibilityMaxValue: interop.Object;
-  // accessibilityWindow: interop.Object;
-  // isAccessibilityExpanded: boolean;
-  // isAccessibilityEdited: boolean;
-  // isAccessibilityEnabled: boolean;
-  // accessibilityClearButton: interop.Object;
-  // accessibilityCancelButton: interop.Object;
-  // isAccessibilityProtectedContent: boolean;
-  // isAccessibilityAlternateUIVisible: boolean;
-  // isAccessibilityRequired: boolean;
   // accessibilityApplicationFocusedUIElement: interop.Object;
-  // accessibilityMainWindow: interop.Object;
-  // isAccessibilityHidden: boolean;
-  // isAccessibilityFrontmost: boolean;
-  // accessibilityFocusedWindow: interop.Object;
-  // accessibilityExtrasMenuBar: interop.Object;
-  // accessibilityMenuBar: interop.Object;
-  // isAccessibilityOrderedByRow: boolean;
-  // accessibilityHorizontalUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityVerticalUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityWarningValue: interop.Object;
+  // accessibilityCancelButton: interop.Object;
+  // accessibilityClearButton: interop.Object;
+  // accessibilityCloseButton: interop.Object;
+  // accessibilityColumnCount: number;
+  // accessibilityColumnIndexRange: _NSRange;
   // accessibilityCriticalValue: interop.Object;
-  // isAccessibilityDisclosed: boolean;
+  // accessibilityDecrementButton: interop.Object;
+  // accessibilityDefaultButton: interop.Object;
   // accessibilityDisclosedByRow: interop.Object;
   // accessibilityDisclosedRows: interop.Object;
   // accessibilityDisclosureLevel: number;
-  // accessibilityMarkerValues: interop.Object;
-  // accessibilityMarkerGroupUIElement: interop.Object;
-  // accessibilityUnits: interop.Enum<typeof NSAccessibilityUnits>;
-  // accessibilityRulerMarkerType: interop.Enum<typeof NSAccessibilityRulerMarkerType>;
-  // accessibilityHorizontalScrollBar: interop.Object;
-  // accessibilityVerticalScrollBar: interop.Object;
-  // accessibilityLabelValue: number;
-  // accessibilityDecrementButton: interop.Object;
-  // accessibilityIncrementButton: interop.Object;
-  // accessibilityHeader: interop.Object;
-  // accessibilityColumnCount: number;
-  // accessibilityRowCount: number;
-  // accessibilityIndex: number;
-  // accessibilitySortDirection: interop.Enum<typeof NSAccessibilitySortDirection>;
-  // accessibilityRowIndexRange: _NSRange;
-  // accessibilityColumnIndexRange: _NSRange;
-  // accessibilityInsertionPointLineNumber: number;
-  // accessibilitySharedCharacterRange: _NSRange;
-  // accessibilityVisibleCharacterRange: _NSRange;
-  // accessibilityNumberOfCharacters: number;
-  // accessibilitySelectedTextRange: _NSRange;
-  // accessibilityToolbarButton: interop.Object;
-  // isAccessibilityModal: boolean;
-  // accessibilityProxy: interop.Object;
-  // isAccessibilityMain: boolean;
+  // accessibilityExtrasMenuBar: interop.Object;
+  // accessibilityFocusedWindow: interop.Object;
+  // accessibilityFrame: CGRect;
   // accessibilityFullScreenButton: interop.Object;
   // accessibilityGrowArea: interop.Object;
-  // accessibilityDefaultButton: interop.Object;
-  // accessibilityCloseButton: interop.Object;
-  // accessibilityZoomButton: interop.Object;
+  // accessibilityHeader: interop.Object;
+  // accessibilityHorizontalScrollBar: interop.Object;
+  // accessibilityHorizontalUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityIncrementButton: interop.Object;
+  // accessibilityIndex: number;
+  // accessibilityInsertionPointLineNumber: number;
+  // accessibilityLabelValue: number;
+  // accessibilityMainWindow: interop.Object;
+  // accessibilityMarkerGroupUIElement: interop.Object;
+  // accessibilityMarkerValues: interop.Object;
+  // accessibilityMaxValue: interop.Object;
+  // accessibilityMenuBar: interop.Object;
   // accessibilityMinimizeButton: interop.Object;
+  // accessibilityMinValue: interop.Object;
+  // accessibilityNumberOfCharacters: number;
+  // accessibilityOrientation: interop.Enum<typeof NSAccessibilityOrientation>;
+  // accessibilityOverflowButton: interop.Object;
+  // accessibilityParent: interop.Object;
+  // accessibilityProxy: interop.Object;
+  // accessibilityRowCount: number;
+  // accessibilityRowIndexRange: _NSRange;
+  // accessibilityRulerMarkerType: interop.Enum<typeof NSAccessibilityRulerMarkerType>;
+  // accessibilitySearchButton: interop.Object;
+  // accessibilitySearchMenu: interop.Object;
+  // accessibilitySelectedTextRange: _NSRange;
+  // accessibilitySharedCharacterRange: _NSRange;
+  // accessibilityShownMenu: interop.Object;
+  // accessibilitySortDirection: interop.Enum<typeof NSAccessibilitySortDirection>;
+  // accessibilityTitleUIElement: interop.Object;
+  // accessibilityToolbarButton: interop.Object;
+  // accessibilityTopLevelUIElement: interop.Object;
+  // accessibilityUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityURL: NSURL;
+  // accessibilityValue: interop.Object;
+  // accessibilityVerticalScrollBar: interop.Object;
+  // accessibilityVerticalUnits: interop.Enum<typeof NSAccessibilityUnits>;
+  // accessibilityVisibleCharacterRange: _NSRange;
+  // accessibilityWarningValue: interop.Object;
+  // accessibilityWindow: interop.Object;
+  // accessibilityZoomButton: interop.Object;
+  // allowsContextMenuPlugIns: boolean;
+  // appearance: NSAppearance;
+  // autoenablesItems: boolean;
+  // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly effectiveAppearance: NSAppearance;
+  // font: NSFont;
+  // readonly hash: number;
+  // readonly highlightedItem: NSMenuItem;
+  // isAccessibilityAlternateUIVisible: boolean;
+  // isAccessibilityDisclosed: boolean;
+  // isAccessibilityEdited: boolean;
+  // isAccessibilityElement: boolean;
+  // isAccessibilityEnabled: boolean;
+  // isAccessibilityExpanded: boolean;
+  // isAccessibilityFocused: boolean;
+  // isAccessibilityFrontmost: boolean;
+  // isAccessibilityHidden: boolean;
+  // isAccessibilityMain: boolean;
   // isAccessibilityMinimized: boolean;
+  // isAccessibilityModal: boolean;
+  // isAccessibilityOrderedByRow: boolean;
+  // isAccessibilityProtectedContent: boolean;
+  // isAccessibilityRequired: boolean;
+  // isAccessibilitySelected: boolean;
+  // readonly isProxy: boolean;
+  // readonly isTornOff: boolean;
+  // readonly menuBarHeight: number;
+  // menuChangedMessagesEnabled: boolean;
+  // minimumWidth: number;
+  // readonly numberOfItems: number;
+  // presentationStyle: interop.Enum<typeof NSMenuPresentationStyle>;
+  // readonly propertiesToUpdate: interop.Enum<typeof NSMenuProperties>;
+  // selectionMode: interop.Enum<typeof NSMenuSelectionMode>;
+  // showsStateColumn: boolean;
+  // readonly size: CGSize;
+  // readonly superclass: interop.Object;
+  // supermenu: NSMenu;
+  // userInterfaceLayoutDirection: interop.Enum<typeof NSUserInterfaceLayoutDirection>;
+  // readonly zone: interop.Pointer;
 
   set menuneedsupdate(value: (menu: NSMenu) => void) {
     this.delegate.menuNeedsUpdate = value;
@@ -4699,54 +12315,135 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
 
 export class HTMLNSScrubberProportionalLayoutElement extends HTMLNSScrubberLayoutElement {
   readonly nativeObject = NSScrubberProportionalLayout.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    initwithcoder: 'initWithCoder',
+    initwithnumberofvisibleitems: 'initWithNumberOfVisibleItems',
+    numberofvisibleitems: 'numberOfVisibleItems',
+  }
 
   // numberOfVisibleItems: number;
 }
 
 export class HTMLNSTextContainerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextContainer.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    containersize: 'containerSize',
+    containspoint: 'containsPoint',
+    encodewithcoder: 'encodeWithCoder',
+    exclusionpaths: 'exclusionPaths',
+    heighttrackstextview: 'heightTracksTextView',
+    initwithcoder: 'initWithCoder',
+    initwithcontainersize: 'initWithContainerSize',
+    initwithsize: 'initWithSize',
+    issimplerectangulartextcontainer: 'isSimpleRectangularTextContainer',
+    layoutmanager: 'layoutManager',
+    layoutorientation: 'layoutOrientation',
+    linebreakmode: 'lineBreakMode',
+    linefragmentpadding: 'lineFragmentPadding',
+    linefragmentrectforproposedrectatindexwritingdirectionremainingrect: 'lineFragmentRectForProposedRectAtIndexWritingDirectionRemainingRect',
+    linefragmentrectforproposedrectsweepdirectionmovementdirectionremainingrect: 'lineFragmentRectForProposedRectSweepDirectionMovementDirectionRemainingRect',
+    maximumnumberoflines: 'maximumNumberOfLines',
+    replacelayoutmanager: 'replaceLayoutManager',
+    size: 'size',
+    supportssecurecoding: 'supportsSecureCoding',
+    textlayoutmanager: 'textLayoutManager',
+    textview: 'textView',
+    widthtrackstextview: 'widthTracksTextView',
+  }
 
+  // containerSize: CGSize;
+  // heightTracksTextView: boolean;
+  // readonly isSimpleRectangularTextContainer: boolean;
   // layoutManager: NSLayoutManager;
-  // readonly textLayoutManager: NSTextLayoutManager;
-  // size: CGSize;
+  // readonly layoutOrientation: interop.Enum<typeof NSTextLayoutOrientation>;
   // lineBreakMode: interop.Enum<typeof NSLineBreakMode>;
   // lineFragmentPadding: number;
   // maximumNumberOfLines: number;
-  // readonly isSimpleRectangularTextContainer: boolean;
-  // widthTracksTextView: boolean;
-  // heightTracksTextView: boolean;
-  // textView: NSTextView;
-  // containerSize: CGSize;
+  // size: CGSize;
   // supportsSecureCoding: boolean;
-  // readonly layoutOrientation: interop.Enum<typeof NSTextLayoutOrientation>;
+  // readonly textLayoutManager: NSTextLayoutManager;
+  // textView: NSTextView;
+  // widthTracksTextView: boolean;
 }
 
 export class HTMLNSPanelElement extends HTMLNSWindowElement {
   // @ts-ignore
   readonly nativeObject = NSPanel.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    becomeskeyonlyifneeded: 'becomesKeyOnlyIfNeeded',
+    isfloatingpanel: 'isFloatingPanel',
+    workswhenmodal: 'worksWhenModal',
+  }
 
-  // isFloatingPanel: boolean;
   // becomesKeyOnlyIfNeeded: boolean;
+  // isFloatingPanel: boolean;
   // worksWhenModal: boolean;
 }
 
 export class HTMLNSTitlebarAccessoryViewControllerElement extends HTMLNSViewControllerElement {
   readonly nativeObject = NSTitlebarAccessoryViewController.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    animationdidend: 'animationDidEnd',
+    animationdidreachprogressmark: 'animationDidReachProgressMark',
+    animationdidstop: 'animationDidStop',
+    animationforkey: 'animationForKey',
+    animations: 'animations',
+    animationshouldstart: 'animationShouldStart',
+    animationvalueforprogress: 'animationValueForProgress',
+    animator: 'animator',
+    automaticallyadjustssize: 'automaticallyAdjustsSize',
+    autorelease: 'autorelease',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    defaultanimationforkey: 'defaultAnimationForKey',
+    description: 'description',
+    fullscreenminheight: 'fullScreenMinHeight',
+    hash: 'hash',
+    isequal: 'isEqual',
+    ishidden: 'isHidden',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    layoutattribute: 'layoutAttribute',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    superclass: 'superclass',
+    viewdidappear: 'viewDidAppear',
+    viewdiddisappear: 'viewDidDisappear',
+    viewwillappear: 'viewWillAppear',
+    zone: 'zone',
+  }
 
-  // layoutAttribute: interop.Enum<typeof NSLayoutAttribute>;
-  // fullScreenMinHeight: number;
-  // isHidden: boolean;
   // automaticallyAdjustsSize: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // fullScreenMinHeight: number;
+  // readonly hash: number;
+  // isHidden: boolean;
+  // readonly isProxy: boolean;
+  // layoutAttribute: interop.Enum<typeof NSLayoutAttribute>;
+  // readonly superclass: interop.Object;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSRotationGestureRecognizerElement extends HTMLNSGestureRecognizerElement {
   readonly nativeObject = NSRotationGestureRecognizer.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    rotation: 'rotation',
+    rotationindegrees: 'rotationInDegrees',
+  }
 
   // rotation: number;
   // rotationInDegrees: number;
@@ -4754,57 +12451,141 @@ export class HTMLNSRotationGestureRecognizerElement extends HTMLNSGestureRecogni
 
 export class HTMLNSDraggingItemElement extends HTMLNSObjectElement {
   readonly nativeObject = NSDraggingItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    draggingframe: 'draggingFrame',
+    imagecomponents: 'imageComponents',
+    imagecomponentsprovider: 'imageComponentsProvider',
+    initwithpasteboardwriter: 'initWithPasteboardWriter',
+    item: 'item',
+    setdraggingframecontents: 'setDraggingFrameContents',
+  }
 
-  // readonly item: interop.Object;
   // draggingFrame: CGRect;
-  // imageComponentsProvider: () => NSArray;
   // readonly imageComponents: NSArray;
+  // imageComponentsProvider: () => NSArray;
+  // readonly item: interop.Object;
 }
 
 export class HTMLNSCollectionViewCompositionalLayoutElement extends HTMLNSCollectionViewLayoutElement {
   readonly nativeObject = NSCollectionViewCompositionalLayout.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    configuration: 'configuration',
+    initwithsection: 'initWithSection',
+    initwithsectionconfiguration: 'initWithSectionConfiguration',
+    initwithsectionprovider: 'initWithSectionProvider',
+    initwithsectionproviderconfiguration: 'initWithSectionProviderConfiguration',
+  }
 
   // configuration: NSCollectionViewCompositionalLayoutConfiguration;
 }
 
 export class HTMLNSTrackingAreaElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTrackingArea.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    copywithzone: 'copyWithZone',
+    encodewithcoder: 'encodeWithCoder',
+    initwithcoder: 'initWithCoder',
+    initwithrectoptionsowneruserinfo: 'initWithRectOptionsOwnerUserInfo',
+    options: 'options',
+    owner: 'owner',
+    rect: 'rect',
+    userinfo: 'userInfo',
+  }
 
-  // readonly rect: CGRect;
   // readonly options: interop.Enum<typeof NSTrackingAreaOptions>;
   // readonly owner: interop.Object;
+  // readonly rect: CGRect;
   // readonly userInfo: NSDictionary;
 }
 
 export class HTMLNSCollectionLayoutSupplementaryItemElement extends HTMLNSCollectionLayoutItemElement {
   readonly nativeObject = NSCollectionLayoutSupplementaryItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    containeranchor: 'containerAnchor',
+    copywithzone: 'copyWithZone',
+    elementkind: 'elementKind',
+    itemanchor: 'itemAnchor',
+    supplementaryitemwithlayoutsizeelementkindcontaineranchor: 'supplementaryItemWithLayoutSizeElementKindContainerAnchor',
+    supplementaryitemwithlayoutsizeelementkindcontaineranchoritemanchor: 'supplementaryItemWithLayoutSizeElementKindContainerAnchorItemAnchor',
+    zindex: 'zIndex',
+  }
 
-  // zIndex: number;
-  // readonly elementKind: NSString;
   // readonly containerAnchor: NSCollectionLayoutAnchor;
+  // readonly elementKind: NSString;
   // readonly itemAnchor: NSCollectionLayoutAnchor;
+  // zIndex: number;
 }
 
 export class HTMLNSCollectionViewItemElement extends HTMLNSViewControllerElement {
   readonly nativeObject = NSCollectionViewItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    applylayoutattributes: 'applyLayoutAttributes',
+    autorelease: 'autorelease',
+    class: 'class',
+    collectionview: 'collectionView',
+    conformstoprotocol: 'conformsToProtocol',
+    copywithzone: 'copyWithZone',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    didtransitionfromlayouttolayout: 'didTransitionFromLayoutToLayout',
+    draggingimagecomponents: 'draggingImageComponents',
+    hash: 'hash',
+    highlightstate: 'highlightState',
+    identifier: 'identifier',
+    imageview: 'imageView',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    isselected: 'isSelected',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    preferredlayoutattributesfittingattributes: 'preferredLayoutAttributesFittingAttributes',
+    prepareforreuse: 'prepareForReuse',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    superclass: 'superclass',
+    textfield: 'textField',
+    willtransitionfromlayouttolayout: 'willTransitionFromLayoutToLayout',
+    zone: 'zone',
+  }
 
   // readonly collectionView: NSCollectionView;
-  // isSelected: boolean;
-  // highlightState: interop.Enum<typeof NSCollectionViewItemHighlightState>;
-  // imageView: NSImageView;
-  // textField: NSTextField;
+  // readonly debugDescription: NSString;
+  // readonly description: NSString;
   // readonly draggingImageComponents: NSArray;
   // readonly hash: number;
-  // readonly superclass: interop.Object;
+  // highlightState: interop.Enum<typeof NSCollectionViewItemHighlightState>;
+  // imageView: NSImageView;
   // readonly isProxy: boolean;
+  // isSelected: boolean;
+  // readonly superclass: interop.Object;
+  // textField: NSTextField;
   // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
 }
 
 export class HTMLNSDictionaryControllerElement extends HTMLNSArrayControllerElement {
   // @ts-ignore
   readonly nativeObject = NSDictionaryController.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    excludedkeys: 'excludedKeys',
+    includedkeys: 'includedKeys',
+    initialkey: 'initialKey',
+    initialvalue: 'initialValue',
+    localizedkeydictionary: 'localizedKeyDictionary',
+    localizedkeytable: 'localizedKeyTable',
+    newobject: 'newObject',
+  }
 
   // initialValue: interop.Object;
 }
@@ -4815,18 +12596,57 @@ export class HTMLNSSavePanelElement extends HTMLNSPanelElement {
   get delegate(): NSOpenSavePanelDelegateImpl {
     return (this.nativeObject.delegate ??= NSOpenSavePanelDelegateImpl.new()) as NSOpenSavePanelDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessoryview: 'accessoryView',
+    allowedcontenttypes: 'allowedContentTypes',
+    allowedfiletypes: 'allowedFileTypes',
+    allowsotherfiletypes: 'allowsOtherFileTypes',
+    beginsheetfordirectoryfilemodalforwindowmodaldelegatedidendselectorcontextinfo: 'beginSheetForDirectoryFileModalForWindowModalDelegateDidEndSelectorContextInfo',
+    beginsheetmodalforwindowcompletionhandler: 'beginSheetModalForWindowCompletionHandler',
+    beginwithcompletionhandler: 'beginWithCompletionHandler',
+    cancel: 'cancel',
+    cancreatedirectories: 'canCreateDirectories',
+    canselecthiddenextension: 'canSelectHiddenExtension',
+    delegate: 'delegate',
+    directory: 'directory',
+    directoryurl: 'directoryURL',
+    filename: 'filename',
+    identifier: 'identifier',
+    isexpanded: 'isExpanded',
+    isextensionhidden: 'isExtensionHidden',
+    message: 'message',
+    namefieldlabel: 'nameFieldLabel',
+    namefieldstringvalue: 'nameFieldStringValue',
+    ok: 'ok',
+    prompt: 'prompt',
+    requiredfiletype: 'requiredFileType',
+    runmodal: 'runModal',
+    runmodalfordirectoryfile: 'runModalForDirectoryFile',
+    savepanel: 'savePanel',
+    selecttext: 'selectText',
+    setdirectory: 'setDirectory',
+    setrequiredfiletype: 'setRequiredFileType',
+    showshiddenfiles: 'showsHiddenFiles',
+    showstagfield: 'showsTagField',
+    tagnames: 'tagNames',
+    title: 'title',
+    treatsfilepackagesasdirectories: 'treatsFilePackagesAsDirectories',
+    url: 'URL',
+    validatevisiblecolumns: 'validateVisibleColumns',
+  }
 
-  // readonly URL: NSURL;
-  // directoryURL: NSURL;
-  // allowsOtherFileTypes: boolean;
   // accessoryView: NSView;
-  // readonly isExpanded: boolean;
+  // allowsOtherFileTypes: boolean;
   // canCreateDirectories: boolean;
   // canSelectHiddenExtension: boolean;
+  // directoryURL: NSURL;
+  // readonly isExpanded: boolean;
   // isExtensionHidden: boolean;
-  // treatsFilePackagesAsDirectories: boolean;
   // showsHiddenFiles: boolean;
   // showsTagField: boolean;
+  // treatsFilePackagesAsDirectories: boolean;
+  // readonly URL: NSURL;
 
   set panelshouldenableurl(value: (sender: interop.Object, url: NSURL) => boolean) {
     this.delegate.panelShouldEnableURL = value;
@@ -4850,66 +12670,164 @@ export class HTMLNSSavePanelElement extends HTMLNSPanelElement {
 
 export class HTMLNSCollectionLayoutDecorationItemElement extends HTMLNSCollectionLayoutItemElement {
   readonly nativeObject = NSCollectionLayoutDecorationItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    backgrounddecorationitemwithelementkind: 'backgroundDecorationItemWithElementKind',
+    copywithzone: 'copyWithZone',
+    elementkind: 'elementKind',
+    zindex: 'zIndex',
+  }
 
-  // zIndex: number;
   // readonly elementKind: NSString;
+  // zIndex: number;
 }
 
 export class HTMLNSSplitViewControllerElement extends HTMLNSViewControllerElement {
   readonly nativeObject = NSSplitViewController.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    addsplitviewitem: 'addSplitViewItem',
+    autorelease: 'autorelease',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    hash: 'hash',
+    insertsplitviewitematindex: 'insertSplitViewItemAtIndex',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    minimumthicknessforinlinesidebars: 'minimumThicknessForInlineSidebars',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    release: 'release',
+    removesplitviewitem: 'removeSplitViewItem',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    splitview: 'splitView',
+    splitviewadditionaleffectiverectofdivideratindex: 'splitViewAdditionalEffectiveRectOfDividerAtIndex',
+    splitviewcancollapsesubview: 'splitViewCanCollapseSubview',
+    splitviewconstrainmaxcoordinateofsubviewat: 'splitViewConstrainMaxCoordinateOfSubviewAt',
+    splitviewconstrainmincoordinateofsubviewat: 'splitViewConstrainMinCoordinateOfSubviewAt',
+    splitviewconstrainsplitpositionofsubviewat: 'splitViewConstrainSplitPositionOfSubviewAt',
+    splitviewdidresizesubviews: 'splitViewDidResizeSubviews',
+    splitvieweffectiverectfordrawnrectofdivideratindex: 'splitViewEffectiveRectForDrawnRectOfDividerAtIndex',
+    splitviewitemforviewcontroller: 'splitViewItemForViewController',
+    splitviewitems: 'splitViewItems',
+    splitviewresizesubviewswitholdsize: 'splitViewResizeSubviewsWithOldSize',
+    splitviewshouldadjustsizeofsubview: 'splitViewShouldAdjustSizeOfSubview',
+    splitviewshouldcollapsesubviewfordoubleclickondivideratindex: 'splitViewShouldCollapseSubviewForDoubleClickOnDividerAtIndex',
+    splitviewshouldhidedivideratindex: 'splitViewShouldHideDividerAtIndex',
+    splitviewwillresizesubviews: 'splitViewWillResizeSubviews',
+    superclass: 'superclass',
+    toggleinspector: 'toggleInspector',
+    togglesidebar: 'toggleSidebar',
+    validateuserinterfaceitem: 'validateUserInterfaceItem',
+    viewdidload: 'viewDidLoad',
+    zone: 'zone',
+  }
 
-  // splitView: NSSplitView;
-  // minimumThicknessForInlineSidebars: number;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly hash: number;
+  // readonly isProxy: boolean;
+  // minimumThicknessForInlineSidebars: number;
+  // splitView: NSSplitView;
+  // readonly superclass: interop.Object;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSFontPanelElement extends HTMLNSPanelElement {
   // @ts-ignore
   readonly nativeObject = NSFontPanel.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessoryview: 'accessoryView',
+    isenabled: 'isEnabled',
+    panelconvertfont: 'panelConvertFont',
+    reloaddefaultfontfamilies: 'reloadDefaultFontFamilies',
+    setpanelfontismultiple: 'setPanelFontIsMultiple',
+    sharedfontpanel: 'sharedFontPanel',
+    sharedfontpanelexists: 'sharedFontPanelExists',
+    workswhenmodal: 'worksWhenModal',
+  }
 
+  // accessoryView: NSView;
+  // isEnabled: boolean;
   // sharedFontPanel: NSFontPanel;
   // sharedFontPanelExists: boolean;
-  // accessoryView: NSView;
   // worksWhenModal: boolean;
-  // isEnabled: boolean;
 }
 
 export class HTMLNSScrubberItemViewElement extends HTMLNSScrubberArrangedViewElement {
   readonly nativeObject = NSScrubberItemView.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+  }
 
 }
 
 export class HTMLNSCollectionLayoutBoundarySupplementaryItemElement extends HTMLNSCollectionLayoutSupplementaryItemElement {
   readonly nativeObject = NSCollectionLayoutBoundarySupplementaryItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    alignment: 'alignment',
+    boundarysupplementaryitemwithlayoutsizeelementkindalignment: 'boundarySupplementaryItemWithLayoutSizeElementKindAlignment',
+    boundarysupplementaryitemwithlayoutsizeelementkindalignmentabsoluteoffset: 'boundarySupplementaryItemWithLayoutSizeElementKindAlignmentAbsoluteOffset',
+    copywithzone: 'copyWithZone',
+    extendsboundary: 'extendsBoundary',
+    offset: 'offset',
+    pintovisiblebounds: 'pinToVisibleBounds',
+  }
 
-  // extendsBoundary: boolean;
-  // pinToVisibleBounds: boolean;
   // readonly alignment: interop.Enum<typeof NSRectAlignment>;
+  // extendsBoundary: boolean;
   // readonly offset: CGPoint;
+  // pinToVisibleBounds: boolean;
 }
 
 export class HTMLNSCollectionViewFlowLayoutElement extends HTMLNSCollectionViewLayoutElement {
   readonly nativeObject = NSCollectionViewFlowLayout.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    collapsesectionatindex: 'collapseSectionAtIndex',
+    estimateditemsize: 'estimatedItemSize',
+    expandsectionatindex: 'expandSectionAtIndex',
+    footerreferencesize: 'footerReferenceSize',
+    headerreferencesize: 'headerReferenceSize',
+    itemsize: 'itemSize',
+    minimuminteritemspacing: 'minimumInteritemSpacing',
+    minimumlinespacing: 'minimumLineSpacing',
+    scrolldirection: 'scrollDirection',
+    sectionatindexiscollapsed: 'sectionAtIndexIsCollapsed',
+    sectionfooterspintovisiblebounds: 'sectionFootersPinToVisibleBounds',
+    sectionheaderspintovisiblebounds: 'sectionHeadersPinToVisibleBounds',
+    sectioninset: 'sectionInset',
+  }
 
-  // minimumLineSpacing: number;
-  // minimumInteritemSpacing: number;
-  // itemSize: CGSize;
   // estimatedItemSize: CGSize;
-  // scrollDirection: interop.Enum<typeof NSCollectionViewScrollDirection>;
-  // headerReferenceSize: CGSize;
   // footerReferenceSize: CGSize;
-  // sectionInset: NSEdgeInsets;
-  // sectionHeadersPinToVisibleBounds: boolean;
+  // headerReferenceSize: CGSize;
+  // itemSize: CGSize;
+  // minimumInteritemSpacing: number;
+  // minimumLineSpacing: number;
+  // scrollDirection: interop.Enum<typeof NSCollectionViewScrollDirection>;
   // sectionFootersPinToVisibleBounds: boolean;
+  // sectionHeadersPinToVisibleBounds: boolean;
+  // sectionInset: NSEdgeInsets;
 }
 
 export class HTMLNSPathComponentCellElement extends HTMLNSTextFieldCellElement {
   readonly nativeObject = NSPathComponentCell.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    image: 'image',
+    url: 'URL',
+  }
 
   // image: NSImage;
   // URL: NSURL;
@@ -4920,22 +12838,54 @@ export class HTMLNSScrubberElement extends HTMLNSViewElement {
   get delegate(): NSScrubberDelegateImpl {
     return (this.nativeObject.delegate ??= NSScrubberDelegateImpl.new()) as NSScrubberDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    backgroundcolor: 'backgroundColor',
+    backgroundview: 'backgroundView',
+    datasource: 'dataSource',
+    delegate: 'delegate',
+    floatsselectionviews: 'floatsSelectionViews',
+    highlightedindex: 'highlightedIndex',
+    initwithcoder: 'initWithCoder',
+    initwithframe: 'initWithFrame',
+    insertitemsatindexes: 'insertItemsAtIndexes',
+    iscontinuous: 'isContinuous',
+    itemalignment: 'itemAlignment',
+    itemviewforitematindex: 'itemViewForItemAtIndex',
+    makeitemwithidentifierowner: 'makeItemWithIdentifierOwner',
+    mode: 'mode',
+    moveitematindextoindex: 'moveItemAtIndexToIndex',
+    numberofitems: 'numberOfItems',
+    performsequentialbatchupdates: 'performSequentialBatchUpdates',
+    registerclassforitemidentifier: 'registerClassForItemIdentifier',
+    registernibforitemidentifier: 'registerNibForItemIdentifier',
+    reloaddata: 'reloadData',
+    reloaditemsatindexes: 'reloadItemsAtIndexes',
+    removeitemsatindexes: 'removeItemsAtIndexes',
+    scrollitematindextoalignment: 'scrollItemAtIndexToAlignment',
+    scrubberlayout: 'scrubberLayout',
+    selectedindex: 'selectedIndex',
+    selectionbackgroundstyle: 'selectionBackgroundStyle',
+    selectionoverlaystyle: 'selectionOverlayStyle',
+    showsadditionalcontentindicators: 'showsAdditionalContentIndicators',
+    showsarrowbuttons: 'showsArrowButtons',
+  }
 
-  // dataSource: NSScrubberDataSource;
-  // scrubberLayout: NSScrubberLayout;
-  // readonly numberOfItems: number;
-  // readonly highlightedIndex: number;
-  // selectedIndex: number;
-  // mode: interop.Enum<typeof NSScrubberMode>;
-  // itemAlignment: interop.Enum<typeof NSScrubberAlignment>;
-  // isContinuous: boolean;
-  // floatsSelectionViews: boolean;
-  // selectionBackgroundStyle: NSScrubberSelectionStyle;
-  // selectionOverlayStyle: NSScrubberSelectionStyle;
-  // showsArrowButtons: boolean;
-  // showsAdditionalContentIndicators: boolean;
   // backgroundColor: NSColor;
   // backgroundView: NSView;
+  // dataSource: NSScrubberDataSource;
+  // floatsSelectionViews: boolean;
+  // readonly highlightedIndex: number;
+  // isContinuous: boolean;
+  // itemAlignment: interop.Enum<typeof NSScrubberAlignment>;
+  // mode: interop.Enum<typeof NSScrubberMode>;
+  // readonly numberOfItems: number;
+  // scrubberLayout: NSScrubberLayout;
+  // selectedIndex: number;
+  // selectionBackgroundStyle: NSScrubberSelectionStyle;
+  // selectionOverlayStyle: NSScrubberSelectionStyle;
+  // showsAdditionalContentIndicators: boolean;
+  // showsArrowButtons: boolean;
 
   set scrubberdidselectitematindex(value: (scrubber: NSScrubber, selectedIndex: number) => void) {
     this.delegate.scrubberDidSelectItemAtIndex = value;
@@ -4960,33 +12910,94 @@ export class HTMLNSScrubberElement extends HTMLNSViewElement {
 export class HTMLNSControlElement extends HTMLNSViewElement {
   // @ts-ignore
   readonly nativeObject = NSControl.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    abortediting: 'abortEditing',
+    action: 'action',
+    alignment: 'alignment',
+    allowsexpansiontooltips: 'allowsExpansionToolTips',
+    attributedstringvalue: 'attributedStringValue',
+    basewritingdirection: 'baseWritingDirection',
+    calcsize: 'calcSize',
+    cell: 'cell',
+    cellclass: 'cellClass',
+    controlsize: 'controlSize',
+    currenteditor: 'currentEditor',
+    doublevalue: 'doubleValue',
+    drawcell: 'drawCell',
+    drawcellinside: 'drawCellInside',
+    drawwithexpansionframeinview: 'drawWithExpansionFrameInView',
+    editwithframeeditordelegateevent: 'editWithFrameEditorDelegateEvent',
+    endediting: 'endEditing',
+    expansionframewithframe: 'expansionFrameWithFrame',
+    floatvalue: 'floatValue',
+    font: 'font',
+    formatter: 'formatter',
+    ignoresmulticlick: 'ignoresMultiClick',
+    initwithcoder: 'initWithCoder',
+    initwithframe: 'initWithFrame',
+    integervalue: 'integerValue',
+    intvalue: 'intValue',
+    invalidateintrinsiccontentsizeforcell: 'invalidateIntrinsicContentSizeForCell',
+    iscontinuous: 'isContinuous',
+    isenabled: 'isEnabled',
+    ishighlighted: 'isHighlighted',
+    linebreakmode: 'lineBreakMode',
+    mousedown: 'mouseDown',
+    objectvalue: 'objectValue',
+    performclick: 'performClick',
+    refusesfirstresponder: 'refusesFirstResponder',
+    selectcell: 'selectCell',
+    selectedcell: 'selectedCell',
+    selectedtag: 'selectedTag',
+    selectwithframeeditordelegatestartlength: 'selectWithFrameEditorDelegateStartLength',
+    sendactionon: 'sendActionOn',
+    sendactionto: 'sendActionTo',
+    setfloatingpointformatleftright: 'setFloatingPointFormatLeftRight',
+    setneedsdisplay: 'setNeedsDisplay',
+    sizethatfits: 'sizeThatFits',
+    sizetofit: 'sizeToFit',
+    stringvalue: 'stringValue',
+    tag: 'tag',
+    takedoublevaluefrom: 'takeDoubleValueFrom',
+    takefloatvaluefrom: 'takeFloatValueFrom',
+    takeintegervaluefrom: 'takeIntegerValueFrom',
+    takeintvaluefrom: 'takeIntValueFrom',
+    takeobjectvaluefrom: 'takeObjectValueFrom',
+    takestringvaluefrom: 'takeStringValueFrom',
+    target: 'target',
+    updatecell: 'updateCell',
+    updatecellinside: 'updateCellInside',
+    usessinglelinemode: 'usesSingleLineMode',
+    validateediting: 'validateEditing',
+  }
 
-  // target: interop.Object;
   // action: string;
-  // tag: number;
+  // alignment: interop.Enum<typeof NSTextAlignment>;
+  // allowsExpansionToolTips: boolean;
+  // attributedStringValue: NSAttributedString;
+  // baseWritingDirection: interop.Enum<typeof NSWritingDirection>;
+  // cell: NSCell;
+  // cellClass: interop.Object;
+  // controlSize: interop.Enum<typeof NSControlSize>;
+  // doubleValue: number;
+  // floatValue: number;
+  // font: NSFont;
+  // formatter: NSFormatter;
   // ignoresMultiClick: boolean;
+  // integerValue: number;
+  // intValue: number;
   // isContinuous: boolean;
   // isEnabled: boolean;
-  // refusesFirstResponder: boolean;
   // isHighlighted: boolean;
-  // controlSize: interop.Enum<typeof NSControlSize>;
-  // formatter: NSFormatter;
-  // objectValue: interop.Object;
-  // attributedStringValue: NSAttributedString;
-  // intValue: number;
-  // integerValue: number;
-  // floatValue: number;
-  // doubleValue: number;
-  // font: NSFont;
-  // usesSingleLineMode: boolean;
   // lineBreakMode: interop.Enum<typeof NSLineBreakMode>;
-  // alignment: interop.Enum<typeof NSTextAlignment>;
-  // baseWritingDirection: interop.Enum<typeof NSWritingDirection>;
-  // allowsExpansionToolTips: boolean;
-  // cellClass: interop.Object;
-  // cell: NSCell;
+  // objectValue: interop.Object;
+  // refusesFirstResponder: boolean;
   // readonly selectedCell: NSCell;
   // readonly selectedTag: number;
+  // tag: number;
+  // target: interop.Object;
+  // usesSingleLineMode: boolean;
 }
 
 export class HTMLNSStackViewElement extends HTMLNSViewElement {
@@ -4994,17 +13005,48 @@ export class HTMLNSStackViewElement extends HTMLNSViewElement {
   get delegate(): NSStackViewDelegateImpl {
     return (this.nativeObject.delegate ??= NSStackViewDelegateImpl.new()) as NSStackViewDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    addarrangedsubview: 'addArrangedSubview',
+    addviewingravity: 'addViewInGravity',
+    alignment: 'alignment',
+    arrangedsubviews: 'arrangedSubviews',
+    clippingresistancepriorityfororientation: 'clippingResistancePriorityForOrientation',
+    customspacingafterview: 'customSpacingAfterView',
+    delegate: 'delegate',
+    detachedviews: 'detachedViews',
+    detacheshiddenviews: 'detachesHiddenViews',
+    distribution: 'distribution',
+    edgeinsets: 'edgeInsets',
+    hasequalspacing: 'hasEqualSpacing',
+    huggingpriorityfororientation: 'huggingPriorityForOrientation',
+    insertarrangedsubviewatindex: 'insertArrangedSubviewAtIndex',
+    insertviewatindexingravity: 'insertViewAtIndexInGravity',
+    orientation: 'orientation',
+    removearrangedsubview: 'removeArrangedSubview',
+    removeview: 'removeView',
+    setclippingresistancepriorityfororientation: 'setClippingResistancePriorityForOrientation',
+    setcustomspacingafterview: 'setCustomSpacingAfterView',
+    sethuggingpriorityfororientation: 'setHuggingPriorityForOrientation',
+    setviewsingravity: 'setViewsInGravity',
+    setvisibilitypriorityforview: 'setVisibilityPriorityForView',
+    spacing: 'spacing',
+    stackviewwithviews: 'stackViewWithViews',
+    views: 'views',
+    viewsingravity: 'viewsInGravity',
+    visibilitypriorityforview: 'visibilityPriorityForView',
+  }
 
-  // orientation: interop.Enum<typeof NSUserInterfaceLayoutOrientation>;
   // alignment: interop.Enum<typeof NSLayoutAttribute>;
-  // edgeInsets: NSEdgeInsets;
-  // distribution: interop.Enum<typeof NSStackViewDistribution>;
-  // spacing: number;
-  // detachesHiddenViews: boolean;
   // readonly arrangedSubviews: NSArray;
   // readonly detachedViews: NSArray;
-  // readonly views: NSArray;
+  // detachesHiddenViews: boolean;
+  // distribution: interop.Enum<typeof NSStackViewDistribution>;
+  // edgeInsets: NSEdgeInsets;
   // hasEqualSpacing: boolean;
+  // orientation: interop.Enum<typeof NSUserInterfaceLayoutOrientation>;
+  // spacing: number;
+  // readonly views: NSArray;
 
   set stackviewwilldetachviews(value: (stackView: NSStackView, views: NSArray | unknown[]) => void) {
     this.delegate.stackViewWillDetachViews = value;
@@ -5016,25 +13058,61 @@ export class HTMLNSStackViewElement extends HTMLNSViewElement {
 
 export class HTMLNSRulerViewElement extends HTMLNSViewElement {
   readonly nativeObject = NSRulerView.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessoryview: 'accessoryView',
+    addmarker: 'addMarker',
+    baselinelocation: 'baselineLocation',
+    clientview: 'clientView',
+    drawhashmarksandlabelsinrect: 'drawHashMarksAndLabelsInRect',
+    drawmarkersinrect: 'drawMarkersInRect',
+    initwithcoder: 'initWithCoder',
+    initwithscrollvieworientation: 'initWithScrollViewOrientation',
+    invalidatehashmarks: 'invalidateHashMarks',
+    isflipped: 'isFlipped',
+    markers: 'markers',
+    measurementunits: 'measurementUnits',
+    moverulerlinefromlocationtolocation: 'moveRulerlineFromLocationToLocation',
+    orientation: 'orientation',
+    originoffset: 'originOffset',
+    registerunitwithnameabbreviationunittopointsconversionfactorstepupcyclestepdowncycle: 'registerUnitWithNameAbbreviationUnitToPointsConversionFactorStepUpCycleStepDownCycle',
+    removemarker: 'removeMarker',
+    requiredthickness: 'requiredThickness',
+    reservedthicknessforaccessoryview: 'reservedThicknessForAccessoryView',
+    reservedthicknessformarkers: 'reservedThicknessForMarkers',
+    rulethickness: 'ruleThickness',
+    scrollview: 'scrollView',
+    trackmarkerwithmouseevent: 'trackMarkerWithMouseEvent',
+  }
 
-  // scrollView: NSScrollView;
-  // orientation: interop.Enum<typeof NSRulerOrientation>;
-  // readonly baselineLocation: number;
-  // readonly requiredThickness: number;
-  // ruleThickness: number;
-  // reservedThicknessForMarkers: number;
-  // reservedThicknessForAccessoryView: number;
-  // originOffset: number;
-  // clientView: NSView;
   // accessoryView: NSView;
+  // readonly baselineLocation: number;
+  // clientView: NSView;
   // readonly isFlipped: boolean;
+  // orientation: interop.Enum<typeof NSRulerOrientation>;
+  // originOffset: number;
+  // readonly requiredThickness: number;
+  // reservedThicknessForAccessoryView: number;
+  // reservedThicknessForMarkers: number;
+  // ruleThickness: number;
+  // scrollView: NSScrollView;
 }
 
 export class HTMLNSTextAlternativesElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextAlternatives.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    alternativestrings: 'alternativeStrings',
+    encodewithcoder: 'encodeWithCoder',
+    initwithcoder: 'initWithCoder',
+    initwithprimarystringalternativestrings: 'initWithPrimaryStringAlternativeStrings',
+    noteselectedalternativestring: 'noteSelectedAlternativeString',
+    primarystring: 'primaryString',
+    supportssecurecoding: 'supportsSecureCoding',
+  }
 
-  // readonly primaryString: NSString;
   // readonly alternativeStrings: NSArray;
+  // readonly primaryString: NSString;
   // supportsSecureCoding: boolean;
 }
 
@@ -5043,21 +13121,78 @@ export class HTMLNSSoundElement extends HTMLNSObjectElement {
   get delegate(): NSSoundDelegateImpl {
     return (this.nativeObject.delegate ??= NSSoundDelegateImpl.new()) as NSSoundDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    autorelease: 'autorelease',
+    caninitwithpasteboard: 'canInitWithPasteboard',
+    channelmapping: 'channelMapping',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    copywithzone: 'copyWithZone',
+    currenttime: 'currentTime',
+    debugdescription: 'debugDescription',
+    delegate: 'delegate',
+    description: 'description',
+    duration: 'duration',
+    encodewithcoder: 'encodeWithCoder',
+    hash: 'hash',
+    initwithcoder: 'initWithCoder',
+    initwithcontentsoffilebyreference: 'initWithContentsOfFileByReference',
+    initwithcontentsofurlbyreference: 'initWithContentsOfURLByReference',
+    initwithdata: 'initWithData',
+    initwithpasteboard: 'initWithPasteboard',
+    initwithpasteboardpropertylistoftype: 'initWithPasteboardPropertyListOfType',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isplaying: 'isPlaying',
+    isproxy: 'isProxy',
+    loops: 'loops',
+    name: 'name',
+    pasteboardpropertylistfortype: 'pasteboardPropertyListForType',
+    pause: 'pause',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    play: 'play',
+    playbackdeviceidentifier: 'playbackDeviceIdentifier',
+    readabletypesforpasteboard: 'readableTypesForPasteboard',
+    readingoptionsfortypepasteboard: 'readingOptionsForTypePasteboard',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    resume: 'resume',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    setchannelmapping: 'setChannelMapping',
+    soundnamed: 'soundNamed',
+    soundunfilteredfiletypes: 'soundUnfilteredFileTypes',
+    soundunfilteredpasteboardtypes: 'soundUnfilteredPasteboardTypes',
+    soundunfilteredtypes: 'soundUnfilteredTypes',
+    stop: 'stop',
+    superclass: 'superclass',
+    supportssecurecoding: 'supportsSecureCoding',
+    volume: 'volume',
+    writabletypesforpasteboard: 'writableTypesForPasteboard',
+    writetopasteboard: 'writeToPasteboard',
+    writingoptionsfortypepasteboard: 'writingOptionsForTypePasteboard',
+    zone: 'zone',
+  }
 
+  // currentTime: number;
+  // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly duration: number;
+  // readonly hash: number;
+  // readonly isPlaying: boolean;
+  // readonly isProxy: boolean;
+  // loops: boolean;
   // readonly name: NSString;
   // soundUnfilteredTypes: NSArray;
-  // readonly isPlaying: boolean;
-  // readonly duration: number;
-  // volume: number;
-  // currentTime: number;
-  // loops: boolean;
-  // supportsSecureCoding: boolean;
-  // readonly hash: number;
   // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
+  // supportsSecureCoding: boolean;
+  // volume: number;
   // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
 
   set sounddidfinishplaying(value: (sound: NSSound, flag: boolean) => void) {
     this.delegate.soundDidFinishPlaying = value;
@@ -5066,165 +13201,415 @@ export class HTMLNSSoundElement extends HTMLNSObjectElement {
 
 export class HTMLNSGridRowElement extends HTMLNSObjectElement {
   readonly nativeObject = NSGridRow.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    bottompadding: 'bottomPadding',
+    cellatindex: 'cellAtIndex',
+    encodewithcoder: 'encodeWithCoder',
+    gridview: 'gridView',
+    height: 'height',
+    initwithcoder: 'initWithCoder',
+    ishidden: 'isHidden',
+    mergecellsinrange: 'mergeCellsInRange',
+    numberofcells: 'numberOfCells',
+    rowalignment: 'rowAlignment',
+    toppadding: 'topPadding',
+    yplacement: 'yPlacement',
+  }
 
-  // readonly gridView: NSGridView | null;
-  // readonly numberOfCells: number;
-  // yPlacement: interop.Enum<typeof NSGridCellPlacement>;
-  // rowAlignment: interop.Enum<typeof NSGridRowAlignment>;
-  // height: number;
-  // topPadding: number;
   // bottomPadding: number;
+  // readonly gridView: NSGridView | null;
+  // height: number;
   // isHidden: boolean;
+  // readonly numberOfCells: number;
+  // rowAlignment: interop.Enum<typeof NSGridRowAlignment>;
+  // topPadding: number;
+  // yPlacement: interop.Enum<typeof NSGridCellPlacement>;
 }
 
 export class HTMLNSCollectionLayoutAnchorElement extends HTMLNSObjectElement {
   readonly nativeObject = NSCollectionLayoutAnchor.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    copywithzone: 'copyWithZone',
+    edges: 'edges',
+    isabsoluteoffset: 'isAbsoluteOffset',
+    isfractionaloffset: 'isFractionalOffset',
+    layoutanchorwithedges: 'layoutAnchorWithEdges',
+    layoutanchorwithedgesabsoluteoffset: 'layoutAnchorWithEdgesAbsoluteOffset',
+    layoutanchorwithedgesfractionaloffset: 'layoutAnchorWithEdgesFractionalOffset',
+    offset: 'offset',
+  }
 
   // readonly edges: interop.Enum<typeof NSDirectionalRectEdge>;
-  // readonly offset: CGPoint;
   // readonly isAbsoluteOffset: boolean;
   // readonly isFractionalOffset: boolean;
+  // readonly offset: CGPoint;
 }
 
 export class HTMLNSColorElement extends HTMLNSObjectElement {
   readonly nativeObject = NSColor.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    alphacomponent: 'alphaComponent',
+    alternateselectedcontrolcolor: 'alternateSelectedControlColor',
+    alternateselectedcontroltextcolor: 'alternateSelectedControlTextColor',
+    alternatingcontentbackgroundcolors: 'alternatingContentBackgroundColors',
+    autorelease: 'autorelease',
+    blackcolor: 'blackColor',
+    blackcomponent: 'blackComponent',
+    blendedcolorwithfractionofcolor: 'blendedColorWithFractionOfColor',
+    bluecolor: 'blueColor',
+    bluecomponent: 'blueComponent',
+    brightnesscomponent: 'brightnessComponent',
+    browncolor: 'brownColor',
+    catalognamecomponent: 'catalogNameComponent',
+    cgcolor: 'CGColor',
+    class: 'class',
+    clearcolor: 'clearColor',
+    colorforcontroltint: 'colorForControlTint',
+    colorfrompasteboard: 'colorFromPasteboard',
+    colornamecomponent: 'colorNameComponent',
+    colornamed: 'colorNamed',
+    colornamedbundle: 'colorNamedBundle',
+    colorspace: 'colorSpace',
+    colorspacename: 'colorSpaceName',
+    colorusingcolorspace: 'colorUsingColorSpace',
+    colorusingcolorspacename: 'colorUsingColorSpaceName',
+    colorusingcolorspacenamedevice: 'colorUsingColorSpaceNameDevice',
+    colorusingtype: 'colorUsingType',
+    colorwithalphacomponent: 'colorWithAlphaComponent',
+    colorwithcalibratedhuesaturationbrightnessalpha: 'colorWithCalibratedHueSaturationBrightnessAlpha',
+    colorwithcalibratedredgreenbluealpha: 'colorWithCalibratedRedGreenBlueAlpha',
+    colorwithcalibratedwhitealpha: 'colorWithCalibratedWhiteAlpha',
+    colorwithcatalognamecolorname: 'colorWithCatalogNameColorName',
+    colorwithcgcolor: 'colorWithCGColor',
+    colorwithcicolor: 'colorWithCIColor',
+    colorwithcolorspacecomponentscount: 'colorWithColorSpaceComponentsCount',
+    colorwithcolorspacehuesaturationbrightnessalpha: 'colorWithColorSpaceHueSaturationBrightnessAlpha',
+    colorwithdevicecyanmagentayellowblackalpha: 'colorWithDeviceCyanMagentaYellowBlackAlpha',
+    colorwithdevicehuesaturationbrightnessalpha: 'colorWithDeviceHueSaturationBrightnessAlpha',
+    colorwithdeviceredgreenbluealpha: 'colorWithDeviceRedGreenBlueAlpha',
+    colorwithdevicewhitealpha: 'colorWithDeviceWhiteAlpha',
+    colorwithdisplayp3redgreenbluealpha: 'colorWithDisplayP3RedGreenBlueAlpha',
+    colorwithgenericgamma22whitealpha: 'colorWithGenericGamma22WhiteAlpha',
+    colorwithhuesaturationbrightnessalpha: 'colorWithHueSaturationBrightnessAlpha',
+    colorwithnamedynamicprovider: 'colorWithNameDynamicProvider',
+    colorwithpatternimage: 'colorWithPatternImage',
+    colorwithredgreenbluealpha: 'colorWithRedGreenBlueAlpha',
+    colorwithsrgbredgreenbluealpha: 'colorWithSRGBRedGreenBlueAlpha',
+    colorwithsystemeffect: 'colorWithSystemEffect',
+    colorwithwhitealpha: 'colorWithWhiteAlpha',
+    conformstoprotocol: 'conformsToProtocol',
+    controlaccentcolor: 'controlAccentColor',
+    controlalternatingrowbackgroundcolors: 'controlAlternatingRowBackgroundColors',
+    controlbackgroundcolor: 'controlBackgroundColor',
+    controlcolor: 'controlColor',
+    controldarkshadowcolor: 'controlDarkShadowColor',
+    controlhighlightcolor: 'controlHighlightColor',
+    controllighthighlightcolor: 'controlLightHighlightColor',
+    controlshadowcolor: 'controlShadowColor',
+    controltextcolor: 'controlTextColor',
+    copywithzone: 'copyWithZone',
+    currentcontroltint: 'currentControlTint',
+    cyancolor: 'cyanColor',
+    cyancomponent: 'cyanComponent',
+    darkgraycolor: 'darkGrayColor',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    disabledcontroltextcolor: 'disabledControlTextColor',
+    drawswatchinrect: 'drawSwatchInRect',
+    encodewithcoder: 'encodeWithCoder',
+    findhighlightcolor: 'findHighlightColor',
+    getcomponents: 'getComponents',
+    getcyanmagentayellowblackalpha: 'getCyanMagentaYellowBlackAlpha',
+    gethuesaturationbrightnessalpha: 'getHueSaturationBrightnessAlpha',
+    getredgreenbluealpha: 'getRedGreenBlueAlpha',
+    getwhitealpha: 'getWhiteAlpha',
+    graycolor: 'grayColor',
+    greencolor: 'greenColor',
+    greencomponent: 'greenComponent',
+    gridcolor: 'gridColor',
+    hash: 'hash',
+    headercolor: 'headerColor',
+    headertextcolor: 'headerTextColor',
+    highlightcolor: 'highlightColor',
+    highlightwithlevel: 'highlightWithLevel',
+    huecomponent: 'hueComponent',
+    ignoresalpha: 'ignoresAlpha',
+    init: 'init',
+    initwithcoder: 'initWithCoder',
+    initwithpasteboardpropertylistoftype: 'initWithPasteboardPropertyListOfType',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    keyboardfocusindicatorcolor: 'keyboardFocusIndicatorColor',
+    knobcolor: 'knobColor',
+    labelcolor: 'labelColor',
+    lightgraycolor: 'lightGrayColor',
+    linkcolor: 'linkColor',
+    localizedcatalognamecomponent: 'localizedCatalogNameComponent',
+    localizedcolornamecomponent: 'localizedColorNameComponent',
+    magentacolor: 'magentaColor',
+    magentacomponent: 'magentaComponent',
+    numberofcomponents: 'numberOfComponents',
+    orangecolor: 'orangeColor',
+    pasteboardpropertylistfortype: 'pasteboardPropertyListForType',
+    patternimage: 'patternImage',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    placeholdertextcolor: 'placeholderTextColor',
+    purplecolor: 'purpleColor',
+    quaternarylabelcolor: 'quaternaryLabelColor',
+    quaternarysystemfillcolor: 'quaternarySystemFillColor',
+    quinarylabelcolor: 'quinaryLabelColor',
+    quinarysystemfillcolor: 'quinarySystemFillColor',
+    readabletypesforpasteboard: 'readableTypesForPasteboard',
+    readingoptionsfortypepasteboard: 'readingOptionsForTypePasteboard',
+    redcolor: 'redColor',
+    redcomponent: 'redComponent',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    saturationcomponent: 'saturationComponent',
+    scrollbarcolor: 'scrollBarColor',
+    scrubbertexturedbackgroundcolor: 'scrubberTexturedBackgroundColor',
+    secondarylabelcolor: 'secondaryLabelColor',
+    secondaryselectedcontrolcolor: 'secondarySelectedControlColor',
+    secondarysystemfillcolor: 'secondarySystemFillColor',
+    selectedcontentbackgroundcolor: 'selectedContentBackgroundColor',
+    selectedcontrolcolor: 'selectedControlColor',
+    selectedcontroltextcolor: 'selectedControlTextColor',
+    selectedknobcolor: 'selectedKnobColor',
+    selectedmenuitemcolor: 'selectedMenuItemColor',
+    selectedmenuitemtextcolor: 'selectedMenuItemTextColor',
+    selectedtextbackgroundcolor: 'selectedTextBackgroundColor',
+    selectedtextcolor: 'selectedTextColor',
+    self: 'self',
+    separatorcolor: 'separatorColor',
+    set: 'set',
+    setfill: 'setFill',
+    setstroke: 'setStroke',
+    shadowcolor: 'shadowColor',
+    shadowwithlevel: 'shadowWithLevel',
+    superclass: 'superclass',
+    supportssecurecoding: 'supportsSecureCoding',
+    systembluecolor: 'systemBlueColor',
+    systembrowncolor: 'systemBrownColor',
+    systemcyancolor: 'systemCyanColor',
+    systemfillcolor: 'systemFillColor',
+    systemgraycolor: 'systemGrayColor',
+    systemgreencolor: 'systemGreenColor',
+    systemindigocolor: 'systemIndigoColor',
+    systemmintcolor: 'systemMintColor',
+    systemorangecolor: 'systemOrangeColor',
+    systempinkcolor: 'systemPinkColor',
+    systempurplecolor: 'systemPurpleColor',
+    systemredcolor: 'systemRedColor',
+    systemtealcolor: 'systemTealColor',
+    systemyellowcolor: 'systemYellowColor',
+    tertiarylabelcolor: 'tertiaryLabelColor',
+    tertiarysystemfillcolor: 'tertiarySystemFillColor',
+    textbackgroundcolor: 'textBackgroundColor',
+    textcolor: 'textColor',
+    textinsertionpointcolor: 'textInsertionPointColor',
+    type: 'type',
+    underpagebackgroundcolor: 'underPageBackgroundColor',
+    unemphasizedselectedcontentbackgroundcolor: 'unemphasizedSelectedContentBackgroundColor',
+    unemphasizedselectedtextbackgroundcolor: 'unemphasizedSelectedTextBackgroundColor',
+    unemphasizedselectedtextcolor: 'unemphasizedSelectedTextColor',
+    whitecolor: 'whiteColor',
+    whitecomponent: 'whiteComponent',
+    windowbackgroundcolor: 'windowBackgroundColor',
+    windowframecolor: 'windowFrameColor',
+    windowframetextcolor: 'windowFrameTextColor',
+    writabletypesforpasteboard: 'writableTypesForPasteboard',
+    writetopasteboard: 'writeToPasteboard',
+    writingoptionsfortypepasteboard: 'writingOptionsForTypePasteboard',
+    yellowcolor: 'yellowColor',
+    yellowcomponent: 'yellowComponent',
+    zone: 'zone',
+  }
 
-  // readonly type: interop.Enum<typeof NSColorType>;
-  // blackColor: NSColor;
-  // darkGrayColor: NSColor;
-  // lightGrayColor: NSColor;
-  // whiteColor: NSColor;
-  // grayColor: NSColor;
-  // redColor: NSColor;
-  // greenColor: NSColor;
-  // blueColor: NSColor;
-  // cyanColor: NSColor;
-  // yellowColor: NSColor;
-  // magentaColor: NSColor;
-  // orangeColor: NSColor;
-  // purpleColor: NSColor;
-  // brownColor: NSColor;
-  // clearColor: NSColor;
-  // labelColor: NSColor;
-  // secondaryLabelColor: NSColor;
-  // tertiaryLabelColor: NSColor;
-  // quaternaryLabelColor: NSColor;
-  // quinaryLabelColor: NSColor;
-  // linkColor: NSColor;
-  // placeholderTextColor: NSColor;
-  // windowFrameTextColor: NSColor;
-  // selectedMenuItemTextColor: NSColor;
-  // alternateSelectedControlTextColor: NSColor;
-  // headerTextColor: NSColor;
-  // separatorColor: NSColor;
-  // gridColor: NSColor;
-  // windowBackgroundColor: NSColor;
-  // underPageBackgroundColor: NSColor;
-  // controlBackgroundColor: NSColor;
-  // selectedContentBackgroundColor: NSColor;
-  // unemphasizedSelectedContentBackgroundColor: NSColor;
-  // alternatingContentBackgroundColors: NSArray;
-  // findHighlightColor: NSColor;
-  // textColor: NSColor;
-  // textBackgroundColor: NSColor;
-  // textInsertionPointColor: NSColor;
-  // selectedTextColor: NSColor;
-  // selectedTextBackgroundColor: NSColor;
-  // unemphasizedSelectedTextBackgroundColor: NSColor;
-  // unemphasizedSelectedTextColor: NSColor;
-  // controlColor: NSColor;
-  // controlTextColor: NSColor;
-  // selectedControlColor: NSColor;
-  // selectedControlTextColor: NSColor;
-  // disabledControlTextColor: NSColor;
-  // keyboardFocusIndicatorColor: NSColor;
-  // scrubberTexturedBackgroundColor: NSColor;
-  // systemRedColor: NSColor;
-  // systemGreenColor: NSColor;
-  // systemBlueColor: NSColor;
-  // systemOrangeColor: NSColor;
-  // systemYellowColor: NSColor;
-  // systemBrownColor: NSColor;
-  // systemPinkColor: NSColor;
-  // systemPurpleColor: NSColor;
-  // systemGrayColor: NSColor;
-  // systemTealColor: NSColor;
-  // systemIndigoColor: NSColor;
-  // systemMintColor: NSColor;
-  // systemCyanColor: NSColor;
-  // systemFillColor: NSColor;
-  // secondarySystemFillColor: NSColor;
-  // tertiarySystemFillColor: NSColor;
-  // quaternarySystemFillColor: NSColor;
-  // quinarySystemFillColor: NSColor;
-  // controlAccentColor: NSColor;
-  // currentControlTint: interop.Enum<typeof NSControlTint>;
-  // highlightColor: NSColor;
-  // shadowColor: NSColor;
-  // readonly catalogNameComponent: NSString;
-  // readonly colorNameComponent: NSString;
-  // readonly localizedCatalogNameComponent: NSString;
-  // readonly localizedColorNameComponent: NSString;
-  // readonly redComponent: number;
-  // readonly greenComponent: number;
-  // readonly blueComponent: number;
-  // readonly hueComponent: number;
-  // readonly saturationComponent: number;
-  // readonly brightnessComponent: number;
-  // readonly whiteComponent: number;
-  // readonly cyanComponent: number;
-  // readonly magentaComponent: number;
-  // readonly yellowComponent: number;
-  // readonly blackComponent: number;
-  // readonly colorSpace: NSColorSpace;
-  // readonly numberOfComponents: number;
-  // readonly patternImage: NSImage;
   // readonly alphaComponent: number;
+  // alternateSelectedControlColor: NSColor;
+  // alternateSelectedControlTextColor: NSColor;
+  // alternatingContentBackgroundColors: NSArray;
+  // blackColor: NSColor;
+  // readonly blackComponent: number;
+  // blueColor: NSColor;
+  // readonly blueComponent: number;
+  // readonly brightnessComponent: number;
+  // brownColor: NSColor;
+  // readonly catalogNameComponent: NSString;
   // readonly CGColor: interop.Pointer;
-  // ignoresAlpha: boolean;
+  // clearColor: NSColor;
+  // readonly colorNameComponent: NSString;
+  // readonly colorSpace: NSColorSpace;
+  // readonly colorSpaceName: NSString;
+  // controlAccentColor: NSColor;
+  // controlAlternatingRowBackgroundColors: NSArray;
+  // controlBackgroundColor: NSColor;
+  // controlColor: NSColor;
+  // controlDarkShadowColor: NSColor;
   // controlHighlightColor: NSColor;
   // controlLightHighlightColor: NSColor;
   // controlShadowColor: NSColor;
-  // controlDarkShadowColor: NSColor;
-  // scrollBarColor: NSColor;
-  // knobColor: NSColor;
-  // selectedKnobColor: NSColor;
-  // windowFrameColor: NSColor;
-  // selectedMenuItemColor: NSColor;
-  // headerColor: NSColor;
-  // secondarySelectedControlColor: NSColor;
-  // alternateSelectedControlColor: NSColor;
-  // controlAlternatingRowBackgroundColors: NSArray;
-  // readonly colorSpaceName: NSString;
-  // supportsSecureCoding: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
+  // controlTextColor: NSColor;
+  // currentControlTint: interop.Enum<typeof NSControlTint>;
+  // cyanColor: NSColor;
+  // readonly cyanComponent: number;
+  // darkGrayColor: NSColor;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // disabledControlTextColor: NSColor;
+  // findHighlightColor: NSColor;
+  // grayColor: NSColor;
+  // greenColor: NSColor;
+  // readonly greenComponent: number;
+  // gridColor: NSColor;
+  // readonly hash: number;
+  // headerColor: NSColor;
+  // headerTextColor: NSColor;
+  // highlightColor: NSColor;
+  // readonly hueComponent: number;
+  // ignoresAlpha: boolean;
+  // readonly isProxy: boolean;
+  // keyboardFocusIndicatorColor: NSColor;
+  // knobColor: NSColor;
+  // labelColor: NSColor;
+  // lightGrayColor: NSColor;
+  // linkColor: NSColor;
+  // readonly localizedCatalogNameComponent: NSString;
+  // readonly localizedColorNameComponent: NSString;
+  // magentaColor: NSColor;
+  // readonly magentaComponent: number;
+  // readonly numberOfComponents: number;
+  // orangeColor: NSColor;
+  // readonly patternImage: NSImage;
+  // placeholderTextColor: NSColor;
+  // purpleColor: NSColor;
+  // quaternaryLabelColor: NSColor;
+  // quaternarySystemFillColor: NSColor;
+  // quinaryLabelColor: NSColor;
+  // quinarySystemFillColor: NSColor;
+  // redColor: NSColor;
+  // readonly redComponent: number;
+  // readonly saturationComponent: number;
+  // scrollBarColor: NSColor;
+  // scrubberTexturedBackgroundColor: NSColor;
+  // secondaryLabelColor: NSColor;
+  // secondarySelectedControlColor: NSColor;
+  // secondarySystemFillColor: NSColor;
+  // selectedContentBackgroundColor: NSColor;
+  // selectedControlColor: NSColor;
+  // selectedControlTextColor: NSColor;
+  // selectedKnobColor: NSColor;
+  // selectedMenuItemColor: NSColor;
+  // selectedMenuItemTextColor: NSColor;
+  // selectedTextBackgroundColor: NSColor;
+  // selectedTextColor: NSColor;
+  // separatorColor: NSColor;
+  // shadowColor: NSColor;
+  // readonly superclass: interop.Object;
+  // supportsSecureCoding: boolean;
+  // systemBlueColor: NSColor;
+  // systemBrownColor: NSColor;
+  // systemCyanColor: NSColor;
+  // systemFillColor: NSColor;
+  // systemGrayColor: NSColor;
+  // systemGreenColor: NSColor;
+  // systemIndigoColor: NSColor;
+  // systemMintColor: NSColor;
+  // systemOrangeColor: NSColor;
+  // systemPinkColor: NSColor;
+  // systemPurpleColor: NSColor;
+  // systemRedColor: NSColor;
+  // systemTealColor: NSColor;
+  // systemYellowColor: NSColor;
+  // tertiaryLabelColor: NSColor;
+  // tertiarySystemFillColor: NSColor;
+  // textBackgroundColor: NSColor;
+  // textColor: NSColor;
+  // textInsertionPointColor: NSColor;
+  // readonly type: interop.Enum<typeof NSColorType>;
+  // underPageBackgroundColor: NSColor;
+  // unemphasizedSelectedContentBackgroundColor: NSColor;
+  // unemphasizedSelectedTextBackgroundColor: NSColor;
+  // unemphasizedSelectedTextColor: NSColor;
+  // whiteColor: NSColor;
+  // readonly whiteComponent: number;
+  // windowBackgroundColor: NSColor;
+  // windowFrameColor: NSColor;
+  // windowFrameTextColor: NSColor;
+  // yellowColor: NSColor;
+  // readonly yellowComponent: number;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSGraphicsContextElement extends HTMLNSObjectElement {
   readonly nativeObject = NSGraphicsContext.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    attributes: 'attributes',
+    cgcontext: 'CGContext',
+    cicontext: 'CIContext',
+    colorrenderingintent: 'colorRenderingIntent',
+    compositingoperation: 'compositingOperation',
+    currentcontext: 'currentContext',
+    currentcontextdrawingtoscreen: 'currentContextDrawingToScreen',
+    flushgraphics: 'flushGraphics',
+    focusstack: 'focusStack',
+    graphicscontextwithattributes: 'graphicsContextWithAttributes',
+    graphicscontextwithbitmapimagerep: 'graphicsContextWithBitmapImageRep',
+    graphicscontextwithcgcontextflipped: 'graphicsContextWithCGContextFlipped',
+    graphicscontextwithgraphicsportflipped: 'graphicsContextWithGraphicsPortFlipped',
+    graphicscontextwithwindow: 'graphicsContextWithWindow',
+    graphicsport: 'graphicsPort',
+    imageinterpolation: 'imageInterpolation',
+    isdrawingtoscreen: 'isDrawingToScreen',
+    isflipped: 'isFlipped',
+    patternphase: 'patternPhase',
+    restoregraphicsstate: 'restoreGraphicsState',
+    savegraphicsstate: 'saveGraphicsState',
+    setfocusstack: 'setFocusStack',
+    setgraphicsstate: 'setGraphicsState',
+    shouldantialias: 'shouldAntialias',
+  }
 
-  // currentContext: NSGraphicsContext;
   // readonly attributes: NSDictionary;
-  // readonly isDrawingToScreen: boolean;
   // readonly CGContext: interop.Pointer;
-  // readonly isFlipped: boolean;
-  // shouldAntialias: boolean;
-  // imageInterpolation: interop.Enum<typeof NSImageInterpolation>;
-  // patternPhase: CGPoint;
-  // compositingOperation: interop.Enum<typeof NSCompositingOperation>;
-  // colorRenderingIntent: interop.Enum<typeof NSColorRenderingIntent>;
   // readonly CIContext: CIContext;
+  // colorRenderingIntent: interop.Enum<typeof NSColorRenderingIntent>;
+  // compositingOperation: interop.Enum<typeof NSCompositingOperation>;
+  // currentContext: NSGraphicsContext;
   // readonly graphicsPort: interop.Pointer;
+  // imageInterpolation: interop.Enum<typeof NSImageInterpolation>;
+  // readonly isDrawingToScreen: boolean;
+  // readonly isFlipped: boolean;
+  // patternPhase: CGPoint;
+  // shouldAntialias: boolean;
 }
 
 export class HTMLNSCollectionLayoutGroupElement extends HTMLNSCollectionLayoutItemElement {
   // @ts-ignore
   readonly nativeObject = NSCollectionLayoutGroup.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    copywithzone: 'copyWithZone',
+    customgroupwithlayoutsizeitemprovider: 'customGroupWithLayoutSizeItemProvider',
+    horizontalgroupwithlayoutsizesubitemcount: 'horizontalGroupWithLayoutSizeSubitemCount',
+    horizontalgroupwithlayoutsizesubitems: 'horizontalGroupWithLayoutSizeSubitems',
+    interitemspacing: 'interItemSpacing',
+    subitems: 'subitems',
+    supplementaryitems: 'supplementaryItems',
+    verticalgroupwithlayoutsizesubitemcount: 'verticalGroupWithLayoutSizeSubitemCount',
+    verticalgroupwithlayoutsizesubitems: 'verticalGroupWithLayoutSizeSubitems',
+    visualdescription: 'visualDescription',
+  }
 
   // interItemSpacing: NSCollectionLayoutSpacing;
   // readonly subitems: NSArray;
@@ -5232,20 +13617,40 @@ export class HTMLNSCollectionLayoutGroupElement extends HTMLNSCollectionLayoutIt
 
 export class HTMLNSLayoutGuideElement extends HTMLNSObjectElement {
   readonly nativeObject = NSLayoutGuide.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    bottomanchor: 'bottomAnchor',
+    centerxanchor: 'centerXAnchor',
+    centeryanchor: 'centerYAnchor',
+    constraintsaffectinglayoutfororientation: 'constraintsAffectingLayoutForOrientation',
+    encodewithcoder: 'encodeWithCoder',
+    frame: 'frame',
+    hasambiguouslayout: 'hasAmbiguousLayout',
+    heightanchor: 'heightAnchor',
+    identifier: 'identifier',
+    initwithcoder: 'initWithCoder',
+    leadinganchor: 'leadingAnchor',
+    leftanchor: 'leftAnchor',
+    owningview: 'owningView',
+    rightanchor: 'rightAnchor',
+    topanchor: 'topAnchor',
+    trailinganchor: 'trailingAnchor',
+    widthanchor: 'widthAnchor',
+  }
 
-  // readonly frame: CGRect;
-  // owningView: NSView;
-  // readonly leadingAnchor: NSLayoutXAxisAnchor;
-  // readonly trailingAnchor: NSLayoutXAxisAnchor;
-  // readonly leftAnchor: NSLayoutXAxisAnchor;
-  // readonly rightAnchor: NSLayoutXAxisAnchor;
-  // readonly topAnchor: NSLayoutYAxisAnchor;
   // readonly bottomAnchor: NSLayoutYAxisAnchor;
-  // readonly widthAnchor: NSLayoutDimension;
-  // readonly heightAnchor: NSLayoutDimension;
   // readonly centerXAnchor: NSLayoutXAxisAnchor;
   // readonly centerYAnchor: NSLayoutYAxisAnchor;
+  // readonly frame: CGRect;
   // readonly hasAmbiguousLayout: boolean;
+  // readonly heightAnchor: NSLayoutDimension;
+  // readonly leadingAnchor: NSLayoutXAxisAnchor;
+  // readonly leftAnchor: NSLayoutXAxisAnchor;
+  // owningView: NSView;
+  // readonly rightAnchor: NSLayoutXAxisAnchor;
+  // readonly topAnchor: NSLayoutYAxisAnchor;
+  // readonly trailingAnchor: NSLayoutXAxisAnchor;
+  // readonly widthAnchor: NSLayoutDimension;
 }
 
 export class HTMLNSFilePromiseProviderElement extends HTMLNSObjectElement {
@@ -5253,14 +13658,45 @@ export class HTMLNSFilePromiseProviderElement extends HTMLNSObjectElement {
   get delegate(): NSFilePromiseProviderDelegateImpl {
     return (this.nativeObject.delegate ??= NSFilePromiseProviderDelegateImpl.new()) as NSFilePromiseProviderDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    autorelease: 'autorelease',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    delegate: 'delegate',
+    description: 'description',
+    filetype: 'fileType',
+    hash: 'hash',
+    init: 'init',
+    initwithfiletypedelegate: 'initWithFileTypeDelegate',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    pasteboardpropertylistfortype: 'pasteboardPropertyListForType',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    superclass: 'superclass',
+    userinfo: 'userInfo',
+    writabletypesforpasteboard: 'writableTypesForPasteboard',
+    writingoptionsfortypepasteboard: 'writingOptionsForTypePasteboard',
+    zone: 'zone',
+  }
 
-  // userInfo: interop.Object;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly hash: number;
+  // readonly isProxy: boolean;
+  // readonly superclass: interop.Object;
+  // userInfo: interop.Object;
+  // readonly zone: interop.Pointer;
 
   set filepromiseproviderfilenamefortype(value: (filePromiseProvider: NSFilePromiseProvider, fileType: NSString | string) => NSString) {
     this.delegate.filePromiseProviderFileNameForType = value;
@@ -5275,15 +13711,29 @@ export class HTMLNSFilePromiseProviderElement extends HTMLNSObjectElement {
 
 export class HTMLNSLevelIndicatorCellElement extends HTMLNSActionCellElement {
   readonly nativeObject = NSLevelIndicatorCell.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    criticalvalue: 'criticalValue',
+    initwithlevelindicatorstyle: 'initWithLevelIndicatorStyle',
+    levelindicatorstyle: 'levelIndicatorStyle',
+    maxvalue: 'maxValue',
+    minvalue: 'minValue',
+    numberofmajortickmarks: 'numberOfMajorTickMarks',
+    numberoftickmarks: 'numberOfTickMarks',
+    rectoftickmarkatindex: 'rectOfTickMarkAtIndex',
+    tickmarkposition: 'tickMarkPosition',
+    tickmarkvalueatindex: 'tickMarkValueAtIndex',
+    warningvalue: 'warningValue',
+  }
 
-  // levelIndicatorStyle: interop.Enum<typeof NSLevelIndicatorStyle>;
-  // minValue: number;
-  // maxValue: number;
-  // warningValue: number;
   // criticalValue: number;
-  // tickMarkPosition: interop.Enum<typeof NSTickMarkPosition>;
-  // numberOfTickMarks: number;
+  // levelIndicatorStyle: interop.Enum<typeof NSLevelIndicatorStyle>;
+  // maxValue: number;
+  // minValue: number;
   // numberOfMajorTickMarks: number;
+  // numberOfTickMarks: number;
+  // tickMarkPosition: interop.Enum<typeof NSTickMarkPosition>;
+  // warningValue: number;
 }
 
 export class HTMLNSDatePickerElement extends HTMLNSControlElement {
@@ -5291,23 +13741,43 @@ export class HTMLNSDatePickerElement extends HTMLNSControlElement {
   get delegate(): NSDatePickerCellDelegateImpl {
     return (this.nativeObject.delegate ??= NSDatePickerCellDelegateImpl.new()) as NSDatePickerCellDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    backgroundcolor: 'backgroundColor',
+    calendar: 'calendar',
+    datepickerelements: 'datePickerElements',
+    datepickermode: 'datePickerMode',
+    datepickerstyle: 'datePickerStyle',
+    datevalue: 'dateValue',
+    delegate: 'delegate',
+    drawsbackground: 'drawsBackground',
+    isbezeled: 'isBezeled',
+    isbordered: 'isBordered',
+    locale: 'locale',
+    maxdate: 'maxDate',
+    mindate: 'minDate',
+    presentscalendaroverlay: 'presentsCalendarOverlay',
+    textcolor: 'textColor',
+    timeinterval: 'timeInterval',
+    timezone: 'timeZone',
+  }
 
+  // backgroundColor: NSColor;
+  // calendar: NSCalendar;
+  // datePickerElements: interop.Enum<typeof NSDatePickerElementFlags>;
+  // datePickerMode: interop.Enum<typeof NSDatePickerMode>;
   // datePickerStyle: interop.Enum<typeof NSDatePickerStyle>;
+  // dateValue: NSDate;
+  // drawsBackground: boolean;
   // isBezeled: boolean;
   // isBordered: boolean;
-  // drawsBackground: boolean;
-  // backgroundColor: NSColor;
-  // textColor: NSColor;
-  // datePickerMode: interop.Enum<typeof NSDatePickerMode>;
-  // datePickerElements: interop.Enum<typeof NSDatePickerElementFlags>;
-  // calendar: NSCalendar;
   // locale: NSLocale;
-  // timeZone: NSTimeZone;
-  // dateValue: NSDate;
-  // timeInterval: number;
-  // minDate: NSDate;
   // maxDate: NSDate;
+  // minDate: NSDate;
   // presentsCalendarOverlay: boolean;
+  // textColor: NSColor;
+  // timeInterval: number;
+  // timeZone: NSTimeZone;
 
   set datepickercellvalidateproposeddatevaluetimeinterval(value: (datePickerCell: NSDatePickerCell, proposedDateValue: interop.PointerConvertible, proposedTimeInterval: interop.PointerConvertible) => void) {
     this.delegate.datePickerCellValidateProposedDateValueTimeInterval = value;
@@ -5316,10 +13786,16 @@ export class HTMLNSDatePickerElement extends HTMLNSControlElement {
 
 export class HTMLNSScrubberImageItemViewElement extends HTMLNSScrubberItemViewElement {
   readonly nativeObject = NSScrubberImageItemView.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    image: 'image',
+    imagealignment: 'imageAlignment',
+    imageview: 'imageView',
+  }
 
-  // readonly imageView: NSImageView;
   // image: NSImage;
   // imageAlignment: interop.Enum<typeof NSImageAlignment>;
+  // readonly imageView: NSImageView;
 }
 
 export class HTMLNSMatrixElement extends HTMLNSControlElement {
@@ -5327,38 +13803,142 @@ export class HTMLNSMatrixElement extends HTMLNSControlElement {
   get delegate(): NSMatrixDelegateImpl {
     return (this.nativeObject.delegate ??= NSMatrixDelegateImpl.new()) as NSMatrixDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    acceptsfirstmouse: 'acceptsFirstMouse',
+    addcolumn: 'addColumn',
+    addcolumnwithcells: 'addColumnWithCells',
+    addrow: 'addRow',
+    addrowwithcells: 'addRowWithCells',
+    allowsemptyselection: 'allowsEmptySelection',
+    autorecalculatescellsize: 'autorecalculatesCellSize',
+    autorelease: 'autorelease',
+    autosizescells: 'autosizesCells',
+    backgroundcolor: 'backgroundColor',
+    cellatrowcolumn: 'cellAtRowColumn',
+    cellbackgroundcolor: 'cellBackgroundColor',
+    cellclass: 'cellClass',
+    cellframeatrowcolumn: 'cellFrameAtRowColumn',
+    cells: 'cells',
+    cellsize: 'cellSize',
+    cellwithtag: 'cellWithTag',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    delegate: 'delegate',
+    description: 'description',
+    deselectallcells: 'deselectAllCells',
+    deselectselectedcell: 'deselectSelectedCell',
+    doubleaction: 'doubleAction',
+    drawcellatrowcolumn: 'drawCellAtRowColumn',
+    drawsbackground: 'drawsBackground',
+    drawscellbackground: 'drawsCellBackground',
+    getnumberofrowscolumns: 'getNumberOfRowsColumns',
+    getrowcolumnforpoint: 'getRowColumnForPoint',
+    getrowcolumnofcell: 'getRowColumnOfCell',
+    hash: 'hash',
+    highlightcellatrowcolumn: 'highlightCellAtRowColumn',
+    initwithframe: 'initWithFrame',
+    initwithframemodecellclassnumberofrowsnumberofcolumns: 'initWithFrameModeCellClassNumberOfRowsNumberOfColumns',
+    initwithframemodeprototypenumberofrowsnumberofcolumns: 'initWithFrameModePrototypeNumberOfRowsNumberOfColumns',
+    insertcolumn: 'insertColumn',
+    insertcolumnwithcells: 'insertColumnWithCells',
+    insertrow: 'insertRow',
+    insertrowwithcells: 'insertRowWithCells',
+    intercellspacing: 'intercellSpacing',
+    isautoscroll: 'isAutoscroll',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    isselectionbyrect: 'isSelectionByRect',
+    keycell: 'keyCell',
+    makecellatrowcolumn: 'makeCellAtRowColumn',
+    mode: 'mode',
+    mousedown: 'mouseDown',
+    mousedownflags: 'mouseDownFlags',
+    numberofcolumns: 'numberOfColumns',
+    numberofrows: 'numberOfRows',
+    performkeyequivalent: 'performKeyEquivalent',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    prototype: 'prototype',
+    putcellatrowcolumn: 'putCellAtRowColumn',
+    release: 'release',
+    removecolumn: 'removeColumn',
+    removerow: 'removeRow',
+    renewrowscolumns: 'renewRowsColumns',
+    resetcursorrects: 'resetCursorRects',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    scrollcelltovisibleatrowcolumn: 'scrollCellToVisibleAtRowColumn',
+    selectall: 'selectAll',
+    selectcellatrowcolumn: 'selectCellAtRowColumn',
+    selectcellwithtag: 'selectCellWithTag',
+    selectedcell: 'selectedCell',
+    selectedcells: 'selectedCells',
+    selectedcolumn: 'selectedColumn',
+    selectedrow: 'selectedRow',
+    selecttext: 'selectText',
+    selecttextatrowcolumn: 'selectTextAtRowColumn',
+    self: 'self',
+    sendaction: 'sendAction',
+    sendactiontoforallcells: 'sendActionToForAllCells',
+    senddoubleaction: 'sendDoubleAction',
+    setscrollable: 'setScrollable',
+    setselectionfromtoanchorhighlight: 'setSelectionFromToAnchorHighlight',
+    setstateatrowcolumn: 'setStateAtRowColumn',
+    settooltipforcell: 'setToolTipForCell',
+    setvalidatesize: 'setValidateSize',
+    sizetocells: 'sizeToCells',
+    sortusingfunctioncontext: 'sortUsingFunctionContext',
+    sortusingselector: 'sortUsingSelector',
+    superclass: 'superclass',
+    tabkeytraversescells: 'tabKeyTraversesCells',
+    textdidbeginediting: 'textDidBeginEditing',
+    textdidchange: 'textDidChange',
+    textdidendediting: 'textDidEndEditing',
+    textshouldbeginediting: 'textShouldBeginEditing',
+    textshouldendediting: 'textShouldEndEditing',
+    tooltipforcell: 'toolTipForCell',
+    validateuserinterfaceitem: 'validateUserInterfaceItem',
+    viewstringfortooltippointuserdata: 'viewStringForToolTipPointUserData',
+    zone: 'zone',
+  }
 
-  // cellClass: interop.Object;
-  // prototype: NSCell;
-  // mode: interop.Enum<typeof NSMatrixMode>;
   // allowsEmptySelection: boolean;
-  // readonly cells: NSArray;
-  // readonly selectedCell: NSCell;
-  // readonly selectedCells: NSArray;
-  // readonly selectedRow: number;
-  // readonly selectedColumn: number;
-  // isSelectionByRect: boolean;
-  // cellSize: CGSize;
-  // intercellSpacing: CGSize;
+  // autorecalculatesCellSize: boolean;
+  // autosizesCells: boolean;
   // backgroundColor: NSColor;
   // cellBackgroundColor: NSColor;
-  // drawsCellBackground: boolean;
-  // drawsBackground: boolean;
-  // readonly numberOfRows: number;
-  // readonly numberOfColumns: number;
-  // doubleAction: string;
-  // autosizesCells: boolean;
-  // isAutoscroll: boolean;
-  // readonly mouseDownFlags: number;
-  // autorecalculatesCellSize: boolean;
-  // tabKeyTraversesCells: boolean;
-  // keyCell: NSCell;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
+  // cellClass: interop.Object;
+  // readonly cells: NSArray;
+  // cellSize: CGSize;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // doubleAction: string;
+  // drawsBackground: boolean;
+  // drawsCellBackground: boolean;
+  // readonly hash: number;
+  // intercellSpacing: CGSize;
+  // isAutoscroll: boolean;
+  // readonly isProxy: boolean;
+  // isSelectionByRect: boolean;
+  // keyCell: NSCell;
+  // mode: interop.Enum<typeof NSMatrixMode>;
+  // readonly mouseDownFlags: number;
+  // readonly numberOfColumns: number;
+  // readonly numberOfRows: number;
+  // prototype: NSCell;
+  // readonly selectedCell: NSCell;
+  // readonly selectedCells: NSArray;
+  // readonly selectedColumn: number;
+  // readonly selectedRow: number;
+  // readonly superclass: interop.Object;
+  // tabKeyTraversesCells: boolean;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSRuleEditorElement extends HTMLNSControlElement {
@@ -5366,15 +13946,48 @@ export class HTMLNSRuleEditorElement extends HTMLNSControlElement {
   get delegate(): NSRuleEditorDelegateImpl {
     return (this.nativeObject.delegate ??= NSRuleEditorDelegateImpl.new()) as NSRuleEditorDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    addrow: 'addRow',
+    canremoveallrows: 'canRemoveAllRows',
+    criteriaforrow: 'criteriaForRow',
+    criteriakeypath: 'criteriaKeyPath',
+    delegate: 'delegate',
+    displayvaluesforrow: 'displayValuesForRow',
+    displayvalueskeypath: 'displayValuesKeyPath',
+    formattingdictionary: 'formattingDictionary',
+    formattingstringsfilename: 'formattingStringsFilename',
+    insertrowatindexwithtypeassubrowofrowanimate: 'insertRowAtIndexWithTypeAsSubrowOfRowAnimate',
+    iseditable: 'isEditable',
+    nestingmode: 'nestingMode',
+    numberofrows: 'numberOfRows',
+    parentrowforrow: 'parentRowForRow',
+    predicate: 'predicate',
+    predicateforrow: 'predicateForRow',
+    reloadcriteria: 'reloadCriteria',
+    reloadpredicate: 'reloadPredicate',
+    removerowatindex: 'removeRowAtIndex',
+    removerowsatindexesincludesubrows: 'removeRowsAtIndexesIncludeSubrows',
+    rowclass: 'rowClass',
+    rowfordisplayvalue: 'rowForDisplayValue',
+    rowheight: 'rowHeight',
+    rowtypeforrow: 'rowTypeForRow',
+    rowtypekeypath: 'rowTypeKeyPath',
+    selectedrowindexes: 'selectedRowIndexes',
+    selectrowindexesbyextendingselection: 'selectRowIndexesByExtendingSelection',
+    setcriteriaanddisplayvaluesforrowatindex: 'setCriteriaAndDisplayValuesForRowAtIndex',
+    subrowindexesforrow: 'subrowIndexesForRow',
+    subrowskeypath: 'subrowsKeyPath',
+  }
 
-  // nestingMode: interop.Enum<typeof NSRuleEditorNestingMode>;
-  // rowHeight: number;
-  // isEditable: boolean;
   // canRemoveAllRows: boolean;
-  // readonly predicate: NSPredicate;
+  // isEditable: boolean;
+  // nestingMode: interop.Enum<typeof NSRuleEditorNestingMode>;
   // readonly numberOfRows: number;
-  // readonly selectedRowIndexes: NSIndexSet;
+  // readonly predicate: NSPredicate;
   // rowClass: interop.Object;
+  // rowHeight: number;
+  // readonly selectedRowIndexes: NSIndexSet;
 
   set ruleeditornumberofchildrenforcriterionwithrowtype(value: (editor: NSRuleEditor, criterion: interop.Object | null, rowType: interop.Enum<typeof NSRuleEditorRowType>) => number) {
     this.delegate.ruleEditorNumberOfChildrenForCriterionWithRowType = value;
@@ -5395,37 +14008,113 @@ export class HTMLNSRuleEditorElement extends HTMLNSControlElement {
 
 export class HTMLNSSegmentedControlElement extends HTMLNSControlElement {
   readonly nativeObject = NSSegmentedControl.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    activecompressionoptions: 'activeCompressionOptions',
+    alignmentforsegment: 'alignmentForSegment',
+    compresswithprioritizedcompressionoptions: 'compressWithPrioritizedCompressionOptions',
+    doublevalueforselectedsegment: 'doubleValueForSelectedSegment',
+    imageforsegment: 'imageForSegment',
+    imagescalingforsegment: 'imageScalingForSegment',
+    indexofselecteditem: 'indexOfSelectedItem',
+    isenabledforsegment: 'isEnabledForSegment',
+    isselectedforsegment: 'isSelectedForSegment',
+    isspringloaded: 'isSpringLoaded',
+    labelforsegment: 'labelForSegment',
+    menuforsegment: 'menuForSegment',
+    minimumsizewithprioritizedcompressionoptions: 'minimumSizeWithPrioritizedCompressionOptions',
+    segmentcount: 'segmentCount',
+    segmentdistribution: 'segmentDistribution',
+    segmentedcontrolwithimagestrackingmodetargetaction: 'segmentedControlWithImagesTrackingModeTargetAction',
+    segmentedcontrolwithlabelstrackingmodetargetaction: 'segmentedControlWithLabelsTrackingModeTargetAction',
+    segmentstyle: 'segmentStyle',
+    selectedsegment: 'selectedSegment',
+    selectedsegmentbezelcolor: 'selectedSegmentBezelColor',
+    selectsegmentwithtag: 'selectSegmentWithTag',
+    setalignmentforsegment: 'setAlignmentForSegment',
+    setenabledforsegment: 'setEnabledForSegment',
+    setimageforsegment: 'setImageForSegment',
+    setimagescalingforsegment: 'setImageScalingForSegment',
+    setlabelforsegment: 'setLabelForSegment',
+    setmenuforsegment: 'setMenuForSegment',
+    setselectedforsegment: 'setSelectedForSegment',
+    setshowsmenuindicatorforsegment: 'setShowsMenuIndicatorForSegment',
+    settagforsegment: 'setTagForSegment',
+    settooltipforsegment: 'setToolTipForSegment',
+    setwidthforsegment: 'setWidthForSegment',
+    showsmenuindicatorforsegment: 'showsMenuIndicatorForSegment',
+    tagforsegment: 'tagForSegment',
+    tooltipforsegment: 'toolTipForSegment',
+    trackingmode: 'trackingMode',
+    widthforsegment: 'widthForSegment',
+  }
 
-  // segmentCount: number;
-  // selectedSegment: number;
-  // segmentStyle: interop.Enum<typeof NSSegmentStyle>;
-  // isSpringLoaded: boolean;
-  // trackingMode: interop.Enum<typeof NSSegmentSwitchTracking>;
-  // readonly doubleValueForSelectedSegment: number;
-  // selectedSegmentBezelColor: NSColor;
-  // readonly indexOfSelectedItem: number;
-  // segmentDistribution: interop.Enum<typeof NSSegmentDistribution>;
   // readonly activeCompressionOptions: NSUserInterfaceCompressionOptions;
+  // readonly doubleValueForSelectedSegment: number;
+  // readonly indexOfSelectedItem: number;
+  // isSpringLoaded: boolean;
+  // segmentCount: number;
+  // segmentDistribution: interop.Enum<typeof NSSegmentDistribution>;
+  // segmentStyle: interop.Enum<typeof NSSegmentStyle>;
+  // selectedSegment: number;
+  // selectedSegmentBezelColor: NSColor;
+  // trackingMode: interop.Enum<typeof NSSegmentSwitchTracking>;
 }
 
 export class HTMLNSStepperElement extends HTMLNSControlElement {
   readonly nativeObject = NSStepper.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessibilityframe: 'accessibilityFrame',
+    accessibilityidentifier: 'accessibilityIdentifier',
+    accessibilitylabel: 'accessibilityLabel',
+    accessibilityparent: 'accessibilityParent',
+    accessibilityperformdecrement: 'accessibilityPerformDecrement',
+    accessibilityperformincrement: 'accessibilityPerformIncrement',
+    accessibilityvalue: 'accessibilityValue',
+    autorelease: 'autorelease',
+    autorepeat: 'autorepeat',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    hash: 'hash',
+    increment: 'increment',
+    isaccessibilityfocused: 'isAccessibilityFocused',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    maxvalue: 'maxValue',
+    minvalue: 'minValue',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    superclass: 'superclass',
+    valuewraps: 'valueWraps',
+    zone: 'zone',
+  }
 
-  // minValue: number;
-  // maxValue: number;
-  // increment: number;
-  // valueWraps: boolean;
-  // autorepeat: boolean;
-  // accessibilityValue: interop.Object;
   // accessibilityFrame: CGRect;
   // accessibilityParent: interop.Object;
-  // isAccessibilityFocused: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
+  // accessibilityValue: interop.Object;
+  // autorepeat: boolean;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly hash: number;
+  // increment: number;
+  // isAccessibilityFocused: boolean;
+  // readonly isProxy: boolean;
+  // maxValue: number;
+  // minValue: number;
+  // readonly superclass: interop.Object;
+  // valueWraps: boolean;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSBrowserElement extends HTMLNSControlElement {
@@ -5434,39 +14123,137 @@ export class HTMLNSBrowserElement extends HTMLNSControlElement {
   get delegate(): NSBrowserDelegateImpl {
     return (this.nativeObject.delegate ??= NSBrowserDelegateImpl.new()) as NSBrowserDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    acceptsarrowkeys: 'acceptsArrowKeys',
+    addcolumn: 'addColumn',
+    allowsbranchselection: 'allowsBranchSelection',
+    allowsemptyselection: 'allowsEmptySelection',
+    allowsmultipleselection: 'allowsMultipleSelection',
+    allowstypeselect: 'allowsTypeSelect',
+    autohidesscroller: 'autohidesScroller',
+    backgroundcolor: 'backgroundColor',
+    candragrowswithindexesincolumnwithevent: 'canDragRowsWithIndexesInColumnWithEvent',
+    cellclass: 'cellClass',
+    cellprototype: 'cellPrototype',
+    clickedcolumn: 'clickedColumn',
+    clickedrow: 'clickedRow',
+    columncontentwidthforcolumnwidth: 'columnContentWidthForColumnWidth',
+    columnofmatrix: 'columnOfMatrix',
+    columnresizingtype: 'columnResizingType',
+    columnsautosavename: 'columnsAutosaveName',
+    columnwidthforcolumncontentwidth: 'columnWidthForColumnContentWidth',
+    defaultcolumnwidth: 'defaultColumnWidth',
+    delegate: 'delegate',
+    displayallcolumns: 'displayAllColumns',
+    displaycolumn: 'displayColumn',
+    doclick: 'doClick',
+    dodoubleclick: 'doDoubleClick',
+    doubleaction: 'doubleAction',
+    draggingimageforrowswithindexesincolumnwitheventoffset: 'draggingImageForRowsWithIndexesInColumnWithEventOffset',
+    drawtitleofcolumninrect: 'drawTitleOfColumnInRect',
+    edititematindexpathwitheventselect: 'editItemAtIndexPathWithEventSelect',
+    firstvisiblecolumn: 'firstVisibleColumn',
+    frameofcolumn: 'frameOfColumn',
+    frameofinsideofcolumn: 'frameOfInsideOfColumn',
+    frameofrowincolumn: 'frameOfRowInColumn',
+    getrowcolumnforpoint: 'getRowColumnForPoint',
+    hashorizontalscroller: 'hasHorizontalScroller',
+    indexpathforcolumn: 'indexPathForColumn',
+    isleafitem: 'isLeafItem',
+    isloaded: 'isLoaded',
+    istitled: 'isTitled',
+    itematindexpath: 'itemAtIndexPath',
+    itematrowincolumn: 'itemAtRowInColumn',
+    lastcolumn: 'lastColumn',
+    lastvisiblecolumn: 'lastVisibleColumn',
+    loadcolumnzero: 'loadColumnZero',
+    loadedcellatrowcolumn: 'loadedCellAtRowColumn',
+    matrixclass: 'matrixClass',
+    matrixincolumn: 'matrixInColumn',
+    maxvisiblecolumns: 'maxVisibleColumns',
+    mincolumnwidth: 'minColumnWidth',
+    noteheightofrowswithindexeschangedincolumn: 'noteHeightOfRowsWithIndexesChangedInColumn',
+    numberofvisiblecolumns: 'numberOfVisibleColumns',
+    parentforitemsincolumn: 'parentForItemsInColumn',
+    path: 'path',
+    pathseparator: 'pathSeparator',
+    pathtocolumn: 'pathToColumn',
+    prefersallcolumnuserresizing: 'prefersAllColumnUserResizing',
+    reloadcolumn: 'reloadColumn',
+    reloaddataforrowindexesincolumn: 'reloadDataForRowIndexesInColumn',
+    removesavedcolumnswithautosavename: 'removeSavedColumnsWithAutosaveName',
+    reusescolumns: 'reusesColumns',
+    rowheight: 'rowHeight',
+    scrollcolumnsleftby: 'scrollColumnsLeftBy',
+    scrollcolumnsrightby: 'scrollColumnsRightBy',
+    scrollcolumntovisible: 'scrollColumnToVisible',
+    scrollrowtovisibleincolumn: 'scrollRowToVisibleInColumn',
+    scrollviascroller: 'scrollViaScroller',
+    selectall: 'selectAll',
+    selectedcell: 'selectedCell',
+    selectedcellincolumn: 'selectedCellInColumn',
+    selectedcells: 'selectedCells',
+    selectedcolumn: 'selectedColumn',
+    selectedrowincolumn: 'selectedRowInColumn',
+    selectedrowindexesincolumn: 'selectedRowIndexesInColumn',
+    selectionindexpath: 'selectionIndexPath',
+    selectionindexpaths: 'selectionIndexPaths',
+    selectrowincolumn: 'selectRowInColumn',
+    selectrowindexesincolumn: 'selectRowIndexesInColumn',
+    sendaction: 'sendAction',
+    sendsactiononarrowkeys: 'sendsActionOnArrowKeys',
+    separatescolumns: 'separatesColumns',
+    setacceptsarrowkeys: 'setAcceptsArrowKeys',
+    setcellclass: 'setCellClass',
+    setdefaultcolumnwidth: 'setDefaultColumnWidth',
+    setdraggingsourceoperationmaskforlocal: 'setDraggingSourceOperationMaskForLocal',
+    setmatrixclass: 'setMatrixClass',
+    setpath: 'setPath',
+    settitleofcolumn: 'setTitleOfColumn',
+    setwidthofcolumn: 'setWidthOfColumn',
+    takestitlefrompreviouscolumn: 'takesTitleFromPreviousColumn',
+    tile: 'tile',
+    titleframeofcolumn: 'titleFrameOfColumn',
+    titleheight: 'titleHeight',
+    titleofcolumn: 'titleOfColumn',
+    updatescroller: 'updateScroller',
+    validatevisiblecolumns: 'validateVisibleColumns',
+    widthofcolumn: 'widthOfColumn',
+  }
 
-  // cellClass: interop.Object;
-  // readonly isLoaded: boolean;
-  // doubleAction: string;
-  // cellPrototype: interop.Object;
-  // reusesColumns: boolean;
-  // hasHorizontalScroller: boolean;
-  // autohidesScroller: boolean;
-  // separatesColumns: boolean;
-  // isTitled: boolean;
-  // minColumnWidth: number;
-  // maxVisibleColumns: number;
-  // allowsMultipleSelection: boolean;
   // allowsBranchSelection: boolean;
   // allowsEmptySelection: boolean;
-  // takesTitleFromPreviousColumn: boolean;
-  // sendsActionOnArrowKeys: boolean;
+  // allowsMultipleSelection: boolean;
+  // allowsTypeSelect: boolean;
+  // autohidesScroller: boolean;
+  // backgroundColor: NSColor;
+  // cellClass: interop.Object;
+  // cellPrototype: interop.Object;
   // readonly clickedColumn: number;
   // readonly clickedRow: number;
-  // readonly selectedColumn: number;
+  // columnResizingType: interop.Enum<typeof NSBrowserColumnResizingType>;
+  // doubleAction: string;
+  // readonly firstVisibleColumn: number;
+  // hasHorizontalScroller: boolean;
+  // readonly isLoaded: boolean;
+  // isTitled: boolean;
+  // lastColumn: number;
+  // readonly lastVisibleColumn: number;
+  // maxVisibleColumns: number;
+  // minColumnWidth: number;
+  // readonly numberOfVisibleColumns: number;
+  // prefersAllColumnUserResizing: boolean;
+  // reusesColumns: boolean;
+  // rowHeight: number;
   // readonly selectedCell: interop.Object;
   // readonly selectedCells: NSArray;
+  // readonly selectedColumn: number;
   // selectionIndexPath: NSIndexPath;
-  // lastColumn: number;
-  // readonly numberOfVisibleColumns: number;
-  // readonly firstVisibleColumn: number;
-  // readonly lastVisibleColumn: number;
+  // sendsActionOnArrowKeys: boolean;
+  // separatesColumns: boolean;
+  // takesTitleFromPreviousColumn: boolean;
   // readonly titleHeight: number;
-  // columnResizingType: interop.Enum<typeof NSBrowserColumnResizingType>;
-  // prefersAllColumnUserResizing: boolean;
-  // rowHeight: number;
-  // allowsTypeSelect: boolean;
-  // backgroundColor: NSColor;
 
   set browsernumberofrowsincolumn(value: (sender: NSBrowser, column: number) => number) {
     this.delegate.browserNumberOfRowsInColumn = value;
@@ -5578,35 +14365,102 @@ export class HTMLNSTextFieldElement extends HTMLNSControlElement {
   get delegate(): NSTextFieldDelegateImpl {
     return (this.nativeObject.delegate ??= NSTextFieldDelegateImpl.new()) as NSTextFieldDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    acceptsfirstresponder: 'acceptsFirstResponder',
+    accessibilityattributedstringforrange: 'accessibilityAttributedStringForRange',
+    accessibilityframe: 'accessibilityFrame',
+    accessibilityframeforrange: 'accessibilityFrameForRange',
+    accessibilityidentifier: 'accessibilityIdentifier',
+    accessibilitylineforindex: 'accessibilityLineForIndex',
+    accessibilityparent: 'accessibilityParent',
+    accessibilityrangeforline: 'accessibilityRangeForLine',
+    accessibilitystringforrange: 'accessibilityStringForRange',
+    accessibilityvalue: 'accessibilityValue',
+    accessibilityvisiblecharacterrange: 'accessibilityVisibleCharacterRange',
+    allowscharacterpickertouchbaritem: 'allowsCharacterPickerTouchBarItem',
+    allowsdefaulttighteningfortruncation: 'allowsDefaultTighteningForTruncation',
+    allowseditingtextattributes: 'allowsEditingTextAttributes',
+    autorelease: 'autorelease',
+    backgroundcolor: 'backgroundColor',
+    bezelstyle: 'bezelStyle',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    contenttype: 'contentType',
+    debugdescription: 'debugDescription',
+    delegate: 'delegate',
+    description: 'description',
+    drawsbackground: 'drawsBackground',
+    hash: 'hash',
+    importsgraphics: 'importsGraphics',
+    isaccessibilityfocused: 'isAccessibilityFocused',
+    isautomatictextcompletionenabled: 'isAutomaticTextCompletionEnabled',
+    isbezeled: 'isBezeled',
+    isbordered: 'isBordered',
+    iseditable: 'isEditable',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    isselectable: 'isSelectable',
+    labelwithattributedstring: 'labelWithAttributedString',
+    labelwithstring: 'labelWithString',
+    linebreakstrategy: 'lineBreakStrategy',
+    maximumnumberoflines: 'maximumNumberOfLines',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    placeholderattributedstring: 'placeholderAttributedString',
+    placeholderstring: 'placeholderString',
+    preferredmaxlayoutwidth: 'preferredMaxLayoutWidth',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    selecttext: 'selectText',
+    self: 'self',
+    settitlewithmnemonic: 'setTitleWithMnemonic',
+    superclass: 'superclass',
+    textcolor: 'textColor',
+    textdidbeginediting: 'textDidBeginEditing',
+    textdidchange: 'textDidChange',
+    textdidendediting: 'textDidEndEditing',
+    textfieldwithstring: 'textFieldWithString',
+    textshouldbeginediting: 'textShouldBeginEditing',
+    textshouldendediting: 'textShouldEndEditing',
+    validateuserinterfaceitem: 'validateUserInterfaceItem',
+    wrappinglabelwithstring: 'wrappingLabelWithString',
+    zone: 'zone',
+  }
 
-  // placeholderAttributedString: NSAttributedString;
-  // backgroundColor: NSColor;
-  // drawsBackground: boolean;
-  // textColor: NSColor;
-  // isBordered: boolean;
-  // isBezeled: boolean;
-  // isEditable: boolean;
-  // isSelectable: boolean;
   // readonly acceptsFirstResponder: boolean;
-  // bezelStyle: interop.Enum<typeof NSTextFieldBezelStyle>;
-  // preferredMaxLayoutWidth: number;
-  // maximumNumberOfLines: number;
-  // allowsDefaultTighteningForTruncation: boolean;
-  // lineBreakStrategy: interop.Enum<typeof NSLineBreakStrategy>;
-  // isAutomaticTextCompletionEnabled: boolean;
-  // allowsCharacterPickerTouchBarItem: boolean;
-  // allowsEditingTextAttributes: boolean;
-  // importsGraphics: boolean;
-  // accessibilityVisibleCharacterRange: _NSRange;
   // accessibilityFrame: CGRect;
   // accessibilityParent: interop.Object;
-  // isAccessibilityFocused: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
+  // accessibilityVisibleCharacterRange: _NSRange;
+  // allowsCharacterPickerTouchBarItem: boolean;
+  // allowsDefaultTighteningForTruncation: boolean;
+  // allowsEditingTextAttributes: boolean;
+  // backgroundColor: NSColor;
+  // bezelStyle: interop.Enum<typeof NSTextFieldBezelStyle>;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // drawsBackground: boolean;
+  // readonly hash: number;
+  // importsGraphics: boolean;
+  // isAccessibilityFocused: boolean;
+  // isAutomaticTextCompletionEnabled: boolean;
+  // isBezeled: boolean;
+  // isBordered: boolean;
+  // isEditable: boolean;
+  // readonly isProxy: boolean;
+  // isSelectable: boolean;
+  // lineBreakStrategy: interop.Enum<typeof NSLineBreakStrategy>;
+  // maximumNumberOfLines: number;
+  // placeholderAttributedString: NSAttributedString;
+  // preferredMaxLayoutWidth: number;
+  // readonly superclass: interop.Object;
+  // textColor: NSColor;
+  // readonly zone: interop.Pointer;
 
   set textfieldtextviewcandidatesforselectedrange(value: (textField: NSTextField, textView: NSTextView, selectedRange: _NSRange) => NSArray) {
     this.delegate.textFieldTextViewCandidatesForSelectedRange = value;
@@ -5618,58 +14472,159 @@ export class HTMLNSTextFieldElement extends HTMLNSControlElement {
 
 export class HTMLNSLevelIndicatorElement extends HTMLNSControlElement {
   readonly nativeObject = NSLevelIndicator.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    criticalfillcolor: 'criticalFillColor',
+    criticalvalue: 'criticalValue',
+    drawstieredcapacitylevels: 'drawsTieredCapacityLevels',
+    fillcolor: 'fillColor',
+    iseditable: 'isEditable',
+    levelindicatorstyle: 'levelIndicatorStyle',
+    maxvalue: 'maxValue',
+    minvalue: 'minValue',
+    numberofmajortickmarks: 'numberOfMajorTickMarks',
+    numberoftickmarks: 'numberOfTickMarks',
+    placeholdervisibility: 'placeholderVisibility',
+    ratingimage: 'ratingImage',
+    ratingplaceholderimage: 'ratingPlaceholderImage',
+    rectoftickmarkatindex: 'rectOfTickMarkAtIndex',
+    tickmarkposition: 'tickMarkPosition',
+    tickmarkvalueatindex: 'tickMarkValueAtIndex',
+    warningfillcolor: 'warningFillColor',
+    warningvalue: 'warningValue',
+  }
 
-  // levelIndicatorStyle: interop.Enum<typeof NSLevelIndicatorStyle>;
-  // isEditable: boolean;
-  // minValue: number;
-  // maxValue: number;
-  // warningValue: number;
-  // criticalValue: number;
-  // tickMarkPosition: interop.Enum<typeof NSTickMarkPosition>;
-  // numberOfTickMarks: number;
-  // numberOfMajorTickMarks: number;
-  // fillColor: NSColor;
-  // warningFillColor: NSColor;
   // criticalFillColor: NSColor;
+  // criticalValue: number;
   // drawsTieredCapacityLevels: boolean;
+  // fillColor: NSColor;
+  // isEditable: boolean;
+  // levelIndicatorStyle: interop.Enum<typeof NSLevelIndicatorStyle>;
+  // maxValue: number;
+  // minValue: number;
+  // numberOfMajorTickMarks: number;
+  // numberOfTickMarks: number;
   // placeholderVisibility: interop.Enum<typeof NSLevelIndicatorPlaceholderVisibility>;
   // ratingImage: NSImage;
   // ratingPlaceholderImage: NSImage;
+  // tickMarkPosition: interop.Enum<typeof NSTickMarkPosition>;
+  // warningFillColor: NSColor;
+  // warningValue: number;
 }
 
 export class HTMLNSFormElement extends HTMLNSMatrixElement {
   readonly nativeObject = NSForm.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    addentry: 'addEntry',
+    cellatindex: 'cellAtIndex',
+    drawcellatindex: 'drawCellAtIndex',
+    indexofcellwithtag: 'indexOfCellWithTag',
+    indexofselecteditem: 'indexOfSelectedItem',
+    insertentryatindex: 'insertEntryAtIndex',
+    preferredtextfieldwidth: 'preferredTextFieldWidth',
+    removeentryatindex: 'removeEntryAtIndex',
+    selecttextatindex: 'selectTextAtIndex',
+    setbezeled: 'setBezeled',
+    setbordered: 'setBordered',
+    setentrywidth: 'setEntryWidth',
+    setframesize: 'setFrameSize',
+    setinterlinespacing: 'setInterlineSpacing',
+    setpreferredtextfieldwidth: 'setPreferredTextFieldWidth',
+    settextalignment: 'setTextAlignment',
+    settextbasewritingdirection: 'setTextBaseWritingDirection',
+    settextfont: 'setTextFont',
+    settitlealignment: 'setTitleAlignment',
+    settitlebasewritingdirection: 'setTitleBaseWritingDirection',
+    settitlefont: 'setTitleFont',
+  }
 
 }
 
 export class HTMLNSImageViewElement extends HTMLNSControlElement {
   readonly nativeObject = NSImageView.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessibilityframe: 'accessibilityFrame',
+    accessibilityidentifier: 'accessibilityIdentifier',
+    accessibilitylabel: 'accessibilityLabel',
+    accessibilityparent: 'accessibilityParent',
+    addsymboleffect: 'addSymbolEffect',
+    addsymboleffectoptions: 'addSymbolEffectOptions',
+    addsymboleffectoptionsanimated: 'addSymbolEffectOptionsAnimated',
+    allowscutcopypaste: 'allowsCutCopyPaste',
+    animates: 'animates',
+    autorelease: 'autorelease',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    contenttintcolor: 'contentTintColor',
+    debugdescription: 'debugDescription',
+    defaultpreferredimagedynamicrange: 'defaultPreferredImageDynamicRange',
+    description: 'description',
+    hash: 'hash',
+    image: 'image',
+    imagealignment: 'imageAlignment',
+    imagedynamicrange: 'imageDynamicRange',
+    imageframestyle: 'imageFrameStyle',
+    imagescaling: 'imageScaling',
+    imageviewwithimage: 'imageViewWithImage',
+    isaccessibilityfocused: 'isAccessibilityFocused',
+    iseditable: 'isEditable',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    preferredimagedynamicrange: 'preferredImageDynamicRange',
+    release: 'release',
+    removeallsymboleffects: 'removeAllSymbolEffects',
+    removeallsymboleffectswithoptions: 'removeAllSymbolEffectsWithOptions',
+    removeallsymboleffectswithoptionsanimated: 'removeAllSymbolEffectsWithOptionsAnimated',
+    removesymboleffectoftype: 'removeSymbolEffectOfType',
+    removesymboleffectoftypeoptions: 'removeSymbolEffectOfTypeOptions',
+    removesymboleffectoftypeoptionsanimated: 'removeSymbolEffectOfTypeOptionsAnimated',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    setsymbolimagewithcontenttransition: 'setSymbolImageWithContentTransition',
+    setsymbolimagewithcontenttransitionoptions: 'setSymbolImageWithContentTransitionOptions',
+    superclass: 'superclass',
+    symbolconfiguration: 'symbolConfiguration',
+    validatemenuitem: 'validateMenuItem',
+    zone: 'zone',
+  }
 
-  // image: NSImage;
-  // isEditable: boolean;
-  // imageAlignment: interop.Enum<typeof NSImageAlignment>;
-  // imageScaling: interop.Enum<typeof NSImageScaling>;
-  // imageFrameStyle: interop.Enum<typeof NSImageFrameStyle>;
-  // symbolConfiguration: NSImageSymbolConfiguration;
-  // contentTintColor: NSColor;
-  // animates: boolean;
-  // allowsCutCopyPaste: boolean;
-  // defaultPreferredImageDynamicRange: interop.Enum<typeof NSImageDynamicRange>;
-  // preferredImageDynamicRange: interop.Enum<typeof NSImageDynamicRange>;
-  // readonly imageDynamicRange: interop.Enum<typeof NSImageDynamicRange>;
   // accessibilityFrame: CGRect;
   // accessibilityParent: interop.Object;
-  // isAccessibilityFocused: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
+  // allowsCutCopyPaste: boolean;
+  // animates: boolean;
+  // contentTintColor: NSColor;
   // readonly debugDescription: NSString;
+  // defaultPreferredImageDynamicRange: interop.Enum<typeof NSImageDynamicRange>;
+  // readonly description: NSString;
+  // readonly hash: number;
+  // image: NSImage;
+  // imageAlignment: interop.Enum<typeof NSImageAlignment>;
+  // readonly imageDynamicRange: interop.Enum<typeof NSImageDynamicRange>;
+  // imageFrameStyle: interop.Enum<typeof NSImageFrameStyle>;
+  // imageScaling: interop.Enum<typeof NSImageScaling>;
+  // isAccessibilityFocused: boolean;
+  // isEditable: boolean;
+  // readonly isProxy: boolean;
+  // preferredImageDynamicRange: interop.Enum<typeof NSImageDynamicRange>;
+  // readonly superclass: interop.Object;
+  // symbolConfiguration: NSImageSymbolConfiguration;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSSecureTextFieldElement extends HTMLNSTextFieldElement {
   readonly nativeObject = NSSecureTextField.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+  }
 
 }
 
@@ -5679,81 +14634,416 @@ export class HTMLNSTextViewElement extends HTMLNSTextElement {
   get delegate(): NSTextViewDelegateImpl {
     return (this.nativeObject.delegate ??= NSTextViewDelegateImpl.new()) as NSTextViewDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    acceptabledragtypes: 'acceptableDragTypes',
+    acceptsglyphinfo: 'acceptsGlyphInfo',
+    accessibilityattributedstringforrange: 'accessibilityAttributedStringForRange',
+    accessibilityframe: 'accessibilityFrame',
+    accessibilityframeforrange: 'accessibilityFrameForRange',
+    accessibilityidentifier: 'accessibilityIdentifier',
+    accessibilitylineforindex: 'accessibilityLineForIndex',
+    accessibilityparent: 'accessibilityParent',
+    accessibilityrangeforline: 'accessibilityRangeForLine',
+    accessibilitystringforrange: 'accessibilityStringForRange',
+    accessibilityvalue: 'accessibilityValue',
+    accessibilityvisiblecharacterrange: 'accessibilityVisibleCharacterRange',
+    alignjustified: 'alignJustified',
+    allowedinputsourcelocales: 'allowedInputSourceLocales',
+    allowscharacterpickertouchbaritem: 'allowsCharacterPickerTouchBarItem',
+    allowsdocumentbackgroundcolorchange: 'allowsDocumentBackgroundColorChange',
+    allowsimageediting: 'allowsImageEditing',
+    allowsundo: 'allowsUndo',
+    attributedstring: 'attributedString',
+    attributedsubstringforproposedrangeactualrange: 'attributedSubstringForProposedRangeActualRange',
+    attributedsubstringfromrange: 'attributedSubstringFromRange',
+    autorelease: 'autorelease',
+    backgroundcolor: 'backgroundColor',
+    baselinedeltaforcharacteratindex: 'baselineDeltaForCharacterAtIndex',
+    breakundocoalescing: 'breakUndoCoalescing',
+    canceloperation: 'cancelOperation',
+    candidatelisttouchbaritem: 'candidateListTouchBarItem',
+    capitalizeword: 'capitalizeWord',
+    centerselectioninvisiblearea: 'centerSelectionInVisibleArea',
+    changeattributes: 'changeAttributes',
+    changecaseofletter: 'changeCaseOfLetter',
+    changecolor: 'changeColor',
+    changedocumentbackgroundcolor: 'changeDocumentBackgroundColor',
+    changelayoutorientation: 'changeLayoutOrientation',
+    characterindexforinsertionatpoint: 'characterIndexForInsertionAtPoint',
+    characterindexforpoint: 'characterIndexForPoint',
+    checktextindocument: 'checkTextInDocument',
+    checktextinrangetypesoptions: 'checkTextInRangeTypesOptions',
+    checktextinselection: 'checkTextInSelection',
+    class: 'class',
+    cleanupafterdragoperation: 'cleanUpAfterDragOperation',
+    clickedonlinkatindex: 'clickedOnLinkAtIndex',
+    complete: 'complete',
+    completionsforpartialwordrangeindexofselecteditem: 'completionsForPartialWordRangeIndexOfSelectedItem',
+    conformstoprotocol: 'conformsToProtocol',
+    contenttype: 'contentType',
+    conversationidentifier: 'conversationIdentifier',
+    debugdescription: 'debugDescription',
+    defaultparagraphstyle: 'defaultParagraphStyle',
+    delegate: 'delegate',
+    deletebackward: 'deleteBackward',
+    deletebackwardbydecomposingpreviouscharacter: 'deleteBackwardByDecomposingPreviousCharacter',
+    deleteforward: 'deleteForward',
+    deletetobeginningofline: 'deleteToBeginningOfLine',
+    deletetobeginningofparagraph: 'deleteToBeginningOfParagraph',
+    deletetoendofline: 'deleteToEndOfLine',
+    deletetoendofparagraph: 'deleteToEndOfParagraph',
+    deletetomark: 'deleteToMark',
+    deletewordbackward: 'deleteWordBackward',
+    deletewordforward: 'deleteWordForward',
+    description: 'description',
+    didchangetext: 'didChangeText',
+    displayslinktooltips: 'displaysLinkToolTips',
+    docommandbyselector: 'doCommandBySelector',
+    documentvisiblerect: 'documentVisibleRect',
+    draggingsessionendedatpointoperation: 'draggingSessionEndedAtPointOperation',
+    draggingsessionmovedtopoint: 'draggingSessionMovedToPoint',
+    draggingsessionsourceoperationmaskfordraggingcontext: 'draggingSessionSourceOperationMaskForDraggingContext',
+    draggingsessionwillbeginatpoint: 'draggingSessionWillBeginAtPoint',
+    dragimageforselectionwitheventorigin: 'dragImageForSelectionWithEventOrigin',
+    dragoperationfordragginginfotype: 'dragOperationForDraggingInfoType',
+    dragselectionwitheventoffsetslideback: 'dragSelectionWithEventOffsetSlideBack',
+    drawinsertionpointinrectcolorturnedon: 'drawInsertionPointInRectColorTurnedOn',
+    drawsbackground: 'drawsBackground',
+    drawsverticallyforcharacteratindex: 'drawsVerticallyForCharacterAtIndex',
+    drawviewbackgroundinrect: 'drawViewBackgroundInRect',
+    enabledtextcheckingtypes: 'enabledTextCheckingTypes',
+    fieldeditor: 'fieldEditor',
+    firstrectforcharacterrange: 'firstRectForCharacterRange',
+    firstrectforcharacterrangeactualrange: 'firstRectForCharacterRangeActualRange',
+    fractionofdistancethroughglyphforpoint: 'fractionOfDistanceThroughGlyphForPoint',
+    handletextcheckingresultsforrangetypesoptionsorthographywordcount: 'handleTextCheckingResultsForRangeTypesOptionsOrthographyWordCount',
+    hash: 'hash',
+    hasmarkedtext: 'hasMarkedText',
+    ignoremodifierkeysfordraggingsession: 'ignoreModifierKeysForDraggingSession',
+    importsgraphics: 'importsGraphics',
+    indent: 'indent',
+    initusingtextlayoutmanager: 'initUsingTextLayoutManager',
+    initwithcoder: 'initWithCoder',
+    initwithframe: 'initWithFrame',
+    initwithframetextcontainer: 'initWithFrameTextContainer',
+    inlinepredictiontype: 'inlinePredictionType',
+    insertbacktab: 'insertBacktab',
+    insertcompletionforpartialwordrangemovementisfinal: 'insertCompletionForPartialWordRangeMovementIsFinal',
+    insertcontainerbreak: 'insertContainerBreak',
+    insertdoublequoteignoringsubstitution: 'insertDoubleQuoteIgnoringSubstitution',
+    insertionpointcolor: 'insertionPointColor',
+    insertlinebreak: 'insertLineBreak',
+    insertnewline: 'insertNewline',
+    insertnewlineignoringfieldeditor: 'insertNewlineIgnoringFieldEditor',
+    insertparagraphseparator: 'insertParagraphSeparator',
+    insertsinglequoteignoringsubstitution: 'insertSingleQuoteIgnoringSubstitution',
+    inserttab: 'insertTab',
+    inserttabignoringfieldeditor: 'insertTabIgnoringFieldEditor',
+    inserttext: 'insertText',
+    inserttextreplacementrange: 'insertTextReplacementRange',
+    invalidatetextcontainerorigin: 'invalidateTextContainerOrigin',
+    isaccessibilityfocused: 'isAccessibilityFocused',
+    isautomaticdashsubstitutionenabled: 'isAutomaticDashSubstitutionEnabled',
+    isautomaticdatadetectionenabled: 'isAutomaticDataDetectionEnabled',
+    isautomaticlinkdetectionenabled: 'isAutomaticLinkDetectionEnabled',
+    isautomaticquotesubstitutionenabled: 'isAutomaticQuoteSubstitutionEnabled',
+    isautomaticspellingcorrectionenabled: 'isAutomaticSpellingCorrectionEnabled',
+    isautomatictextcompletionenabled: 'isAutomaticTextCompletionEnabled',
+    isautomatictextreplacementenabled: 'isAutomaticTextReplacementEnabled',
+    iscoalescingundo: 'isCoalescingUndo',
+    iscontinuousspellcheckingenabled: 'isContinuousSpellCheckingEnabled',
+    iseditable: 'isEditable',
+    isequal: 'isEqual',
+    isfieldeditor: 'isFieldEditor',
+    isgrammarcheckingenabled: 'isGrammarCheckingEnabled',
+    isincrementalsearchingenabled: 'isIncrementalSearchingEnabled',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    isrichtext: 'isRichText',
+    isrulervisible: 'isRulerVisible',
+    isselectable: 'isSelectable',
+    layoutmanager: 'layoutManager',
+    layoutorientation: 'layoutOrientation',
+    linktextattributes: 'linkTextAttributes',
+    loosenkerning: 'loosenKerning',
+    lowerbaseline: 'lowerBaseline',
+    lowercaseword: 'lowercaseWord',
+    makebasewritingdirectionlefttoright: 'makeBaseWritingDirectionLeftToRight',
+    makebasewritingdirectionnatural: 'makeBaseWritingDirectionNatural',
+    makebasewritingdirectionrighttoleft: 'makeBaseWritingDirectionRightToLeft',
+    maketextwritingdirectionlefttoright: 'makeTextWritingDirectionLeftToRight',
+    maketextwritingdirectionnatural: 'makeTextWritingDirectionNatural',
+    maketextwritingdirectionrighttoleft: 'makeTextWritingDirectionRightToLeft',
+    markedrange: 'markedRange',
+    markedtextattributes: 'markedTextAttributes',
+    movebackward: 'moveBackward',
+    movebackwardandmodifyselection: 'moveBackwardAndModifySelection',
+    movedown: 'moveDown',
+    movedownandmodifyselection: 'moveDownAndModifySelection',
+    moveforward: 'moveForward',
+    moveforwardandmodifyselection: 'moveForwardAndModifySelection',
+    moveleft: 'moveLeft',
+    moveleftandmodifyselection: 'moveLeftAndModifySelection',
+    moveparagraphbackwardandmodifyselection: 'moveParagraphBackwardAndModifySelection',
+    moveparagraphforwardandmodifyselection: 'moveParagraphForwardAndModifySelection',
+    moveright: 'moveRight',
+    moverightandmodifyselection: 'moveRightAndModifySelection',
+    movetobeginningofdocument: 'moveToBeginningOfDocument',
+    movetobeginningofdocumentandmodifyselection: 'moveToBeginningOfDocumentAndModifySelection',
+    movetobeginningofline: 'moveToBeginningOfLine',
+    movetobeginningoflineandmodifyselection: 'moveToBeginningOfLineAndModifySelection',
+    movetobeginningofparagraph: 'moveToBeginningOfParagraph',
+    movetobeginningofparagraphandmodifyselection: 'moveToBeginningOfParagraphAndModifySelection',
+    movetoendofdocument: 'moveToEndOfDocument',
+    movetoendofdocumentandmodifyselection: 'moveToEndOfDocumentAndModifySelection',
+    movetoendofline: 'moveToEndOfLine',
+    movetoendoflineandmodifyselection: 'moveToEndOfLineAndModifySelection',
+    movetoendofparagraph: 'moveToEndOfParagraph',
+    movetoendofparagraphandmodifyselection: 'moveToEndOfParagraphAndModifySelection',
+    movetoleftendofline: 'moveToLeftEndOfLine',
+    movetoleftendoflineandmodifyselection: 'moveToLeftEndOfLineAndModifySelection',
+    movetorightendofline: 'moveToRightEndOfLine',
+    movetorightendoflineandmodifyselection: 'moveToRightEndOfLineAndModifySelection',
+    moveup: 'moveUp',
+    moveupandmodifyselection: 'moveUpAndModifySelection',
+    movewordbackward: 'moveWordBackward',
+    movewordbackwardandmodifyselection: 'moveWordBackwardAndModifySelection',
+    movewordforward: 'moveWordForward',
+    movewordforwardandmodifyselection: 'moveWordForwardAndModifySelection',
+    movewordleft: 'moveWordLeft',
+    movewordleftandmodifyselection: 'moveWordLeftAndModifySelection',
+    movewordright: 'moveWordRight',
+    movewordrightandmodifyselection: 'moveWordRightAndModifySelection',
+    orderfrontlinkpanel: 'orderFrontLinkPanel',
+    orderfrontlistpanel: 'orderFrontListPanel',
+    orderfrontsharingservicepicker: 'orderFrontSharingServicePicker',
+    orderfrontspacingpanel: 'orderFrontSpacingPanel',
+    orderfrontsubstitutionspanel: 'orderFrontSubstitutionsPanel',
+    orderfronttablepanel: 'orderFrontTablePanel',
+    outline: 'outline',
+    pagedown: 'pageDown',
+    pagedownandmodifyselection: 'pageDownAndModifySelection',
+    pageup: 'pageUp',
+    pageupandmodifyselection: 'pageUpAndModifySelection',
+    pasteasplaintext: 'pasteAsPlainText',
+    pasteasrichtext: 'pasteAsRichText',
+    performfindpanelaction: 'performFindPanelAction',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    performvalidatedreplacementinrangewithattributedstring: 'performValidatedReplacementInRangeWithAttributedString',
+    preferredpasteboardtypefromarrayrestrictedtotypesfromarray: 'preferredPasteboardTypeFromArrayRestrictedToTypesFromArray',
+    preferredtextaccessoryplacement: 'preferredTextAccessoryPlacement',
+    quicklookpreviewableitemsinranges: 'quickLookPreviewableItemsInRanges',
+    quicklookpreviewitems: 'quickLookPreviewItems',
+    raisebaseline: 'raiseBaseline',
+    rangeforusercharacterattributechange: 'rangeForUserCharacterAttributeChange',
+    rangeforusercompletion: 'rangeForUserCompletion',
+    rangeforuserparagraphattributechange: 'rangeForUserParagraphAttributeChange',
+    rangeforusertextchange: 'rangeForUserTextChange',
+    rangesforusercharacterattributechange: 'rangesForUserCharacterAttributeChange',
+    rangesforuserparagraphattributechange: 'rangesForUserParagraphAttributeChange',
+    rangesforusertextchange: 'rangesForUserTextChange',
+    readablepasteboardtypes: 'readablePasteboardTypes',
+    readselectionfrompasteboard: 'readSelectionFromPasteboard',
+    readselectionfrompasteboardtype: 'readSelectionFromPasteboardType',
+    registerforservices: 'registerForServices',
+    release: 'release',
+    replacetextcontainer: 'replaceTextContainer',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    rulerviewdidaddmarker: 'rulerViewDidAddMarker',
+    rulerviewdidmovemarker: 'rulerViewDidMoveMarker',
+    rulerviewdidremovemarker: 'rulerViewDidRemoveMarker',
+    rulerviewhandlemousedown: 'rulerViewHandleMouseDown',
+    rulerviewshouldaddmarker: 'rulerViewShouldAddMarker',
+    rulerviewshouldmovemarker: 'rulerViewShouldMoveMarker',
+    rulerviewshouldremovemarker: 'rulerViewShouldRemoveMarker',
+    rulerviewwilladdmarkeratlocation: 'rulerViewWillAddMarkerAtLocation',
+    rulerviewwillmovemarkertolocation: 'rulerViewWillMoveMarkerToLocation',
+    scrollabledocumentcontenttextview: 'scrollableDocumentContentTextView',
+    scrollableplaindocumentcontenttextview: 'scrollablePlainDocumentContentTextView',
+    scrollabletextview: 'scrollableTextView',
+    scrolllinedown: 'scrollLineDown',
+    scrolllineup: 'scrollLineUp',
+    scrollpagedown: 'scrollPageDown',
+    scrollpageup: 'scrollPageUp',
+    scrolltobeginningofdocument: 'scrollToBeginningOfDocument',
+    scrolltoendofdocument: 'scrollToEndOfDocument',
+    selectall: 'selectAll',
+    selectedrange: 'selectedRange',
+    selectedranges: 'selectedRanges',
+    selectedtextattributes: 'selectedTextAttributes',
+    selectionaffinity: 'selectionAffinity',
+    selectiongranularity: 'selectionGranularity',
+    selectionrangeforproposedrangegranularity: 'selectionRangeForProposedRangeGranularity',
+    selectline: 'selectLine',
+    selectparagraph: 'selectParagraph',
+    selecttomark: 'selectToMark',
+    selectword: 'selectWord',
+    self: 'self',
+    setalignmentrange: 'setAlignmentRange',
+    setbasewritingdirectionrange: 'setBaseWritingDirectionRange',
+    setconstrainedframesize: 'setConstrainedFrameSize',
+    setmark: 'setMark',
+    setmarkedtextselectedrange: 'setMarkedTextSelectedRange',
+    setmarkedtextselectedrangereplacementrange: 'setMarkedTextSelectedRangeReplacementRange',
+    setneedsdisplayinrectavoidadditionallayout: 'setNeedsDisplayInRectAvoidAdditionalLayout',
+    setselectedrange: 'setSelectedRange',
+    setselectedrangeaffinitystillselecting: 'setSelectedRangeAffinityStillSelecting',
+    setselectedrangesaffinitystillselecting: 'setSelectedRangesAffinityStillSelecting',
+    setspellingstaterange: 'setSpellingStateRange',
+    shouldchangetextinrangereplacementstring: 'shouldChangeTextInRangeReplacementString',
+    shouldchangetextinrangesreplacementstrings: 'shouldChangeTextInRangesReplacementStrings',
+    shoulddrawinsertionpoint: 'shouldDrawInsertionPoint',
+    showfindindicatorforrange: 'showFindIndicatorForRange',
+    smartdeleterangeforproposedrange: 'smartDeleteRangeForProposedRange',
+    smartinsertafterstringforstringreplacingrange: 'smartInsertAfterStringForStringReplacingRange',
+    smartinsertbeforestringforstringreplacingrange: 'smartInsertBeforeStringForStringReplacingRange',
+    smartinsertdeleteenabled: 'smartInsertDeleteEnabled',
+    smartinsertforstringreplacingrangebeforestringafterstring: 'smartInsertForStringReplacingRangeBeforeStringAfterString',
+    spellcheckerdocumenttag: 'spellCheckerDocumentTag',
+    startspeaking: 'startSpeaking',
+    stopspeaking: 'stopSpeaking',
+    stronglyreferencestextstorage: 'stronglyReferencesTextStorage',
+    superclass: 'superclass',
+    swapwithmark: 'swapWithMark',
+    textcontainer: 'textContainer',
+    textcontainerinset: 'textContainerInset',
+    textcontainerorigin: 'textContainerOrigin',
+    textcontentstorage: 'textContentStorage',
+    textlayoutmanager: 'textLayoutManager',
+    textstorage: 'textStorage',
+    textviewusingtextlayoutmanager: 'textViewUsingTextLayoutManager',
+    tightenkerning: 'tightenKerning',
+    toggleautomaticdashsubstitution: 'toggleAutomaticDashSubstitution',
+    toggleautomaticdatadetection: 'toggleAutomaticDataDetection',
+    toggleautomaticlinkdetection: 'toggleAutomaticLinkDetection',
+    toggleautomaticquotesubstitution: 'toggleAutomaticQuoteSubstitution',
+    toggleautomaticspellingcorrection: 'toggleAutomaticSpellingCorrection',
+    toggleautomatictextcompletion: 'toggleAutomaticTextCompletion',
+    toggleautomatictextreplacement: 'toggleAutomaticTextReplacement',
+    togglebasewritingdirection: 'toggleBaseWritingDirection',
+    togglecontinuousspellchecking: 'toggleContinuousSpellChecking',
+    togglegrammarchecking: 'toggleGrammarChecking',
+    togglequicklookpreviewpanel: 'toggleQuickLookPreviewPanel',
+    togglesmartinsertdelete: 'toggleSmartInsertDelete',
+    toggletraditionalcharactershape: 'toggleTraditionalCharacterShape',
+    transpose: 'transpose',
+    transposewords: 'transposeWords',
+    turnoffkerning: 'turnOffKerning',
+    turnoffligatures: 'turnOffLigatures',
+    typingattributes: 'typingAttributes',
+    unionrectinvisibleselectedrange: 'unionRectInVisibleSelectedRange',
+    unmarktext: 'unmarkText',
+    updatecandidates: 'updateCandidates',
+    updatedragtyperegistration: 'updateDragTypeRegistration',
+    updatefontpanel: 'updateFontPanel',
+    updateinsertionpointstateandrestarttimer: 'updateInsertionPointStateAndRestartTimer',
+    updatequicklookpreviewpanel: 'updateQuickLookPreviewPanel',
+    updateruler: 'updateRuler',
+    updatetexttouchbaritems: 'updateTextTouchBarItems',
+    updatetouchbaritemidentifiers: 'updateTouchBarItemIdentifiers',
+    uppercaseword: 'uppercaseWord',
+    useallligatures: 'useAllLigatures',
+    usesadaptivecolormappingfordarkappearance: 'usesAdaptiveColorMappingForDarkAppearance',
+    usesfindbar: 'usesFindBar',
+    usesfindpanel: 'usesFindPanel',
+    usesfontpanel: 'usesFontPanel',
+    usesinspectorbar: 'usesInspectorBar',
+    usesrolloverbuttonforselection: 'usesRolloverButtonForSelection',
+    usesruler: 'usesRuler',
+    usestandardkerning: 'useStandardKerning',
+    usestandardligatures: 'useStandardLigatures',
+    validatemenuitem: 'validateMenuItem',
+    validateuserinterfaceitem: 'validateUserInterfaceItem',
+    validattributesformarkedtext: 'validAttributesForMarkedText',
+    validrequestorforsendtypereturntype: 'validRequestorForSendTypeReturnType',
+    windowlevel: 'windowLevel',
+    writablepasteboardtypes: 'writablePasteboardTypes',
+    writeselectiontopasteboardtype: 'writeSelectionToPasteboardType',
+    writeselectiontopasteboardtypes: 'writeSelectionToPasteboardTypes',
+    yank: 'yank',
+    zone: 'zone',
+  }
 
+  // readonly acceptableDragTypes: NSArray;
+  // acceptsGlyphInfo: boolean;
+  // accessibilityFrame: CGRect;
+  // accessibilityParent: interop.Object;
+  // accessibilityVisibleCharacterRange: _NSRange;
+  // allowsCharacterPickerTouchBarItem: boolean;
+  // allowsDocumentBackgroundColorChange: boolean;
+  // allowsImageEditing: boolean;
+  // allowsUndo: boolean;
+  // backgroundColor: NSColor;
+  // readonly candidateListTouchBarItem: NSCandidateListTouchBarItem;
+  // readonly debugDescription: NSString;
+  // defaultParagraphStyle: NSParagraphStyle;
+  // readonly description: NSString;
+  // displaysLinkToolTips: boolean;
+  // readonly documentVisibleRect: CGRect;
+  // drawsBackground: boolean;
+  // enabledTextCheckingTypes: number;
+  // readonly hash: number;
+  // importsGraphics: boolean;
+  // inlinePredictionType: interop.Enum<typeof NSTextInputTraitType>;
+  // insertionPointColor: NSColor;
+  // isAccessibilityFocused: boolean;
+  // isAutomaticDashSubstitutionEnabled: boolean;
+  // isAutomaticDataDetectionEnabled: boolean;
+  // isAutomaticLinkDetectionEnabled: boolean;
+  // isAutomaticQuoteSubstitutionEnabled: boolean;
+  // isAutomaticSpellingCorrectionEnabled: boolean;
+  // isAutomaticTextCompletionEnabled: boolean;
+  // isAutomaticTextReplacementEnabled: boolean;
+  // readonly isCoalescingUndo: boolean;
+  // isContinuousSpellCheckingEnabled: boolean;
+  // isEditable: boolean;
+  // isFieldEditor: boolean;
+  // isGrammarCheckingEnabled: boolean;
+  // isIncrementalSearchingEnabled: boolean;
+  // readonly isProxy: boolean;
+  // isRichText: boolean;
+  // isRulerVisible: boolean;
+  // isSelectable: boolean;
+  // readonly layoutManager: NSLayoutManager;
+  // readonly layoutOrientation: interop.Enum<typeof NSTextLayoutOrientation>;
+  // readonly rangeForUserCharacterAttributeChange: _NSRange;
+  // readonly rangeForUserCompletion: _NSRange;
+  // readonly rangeForUserParagraphAttributeChange: _NSRange;
+  // readonly rangeForUserTextChange: _NSRange;
+  // readonly rangesForUserCharacterAttributeChange: NSArray;
+  // readonly rangesForUserParagraphAttributeChange: NSArray;
+  // readonly rangesForUserTextChange: NSArray;
+  // readonly readablePasteboardTypes: NSArray;
+  // selectedRange: _NSRange;
+  // readonly selectionAffinity: interop.Enum<typeof NSSelectionAffinity>;
+  // selectionGranularity: interop.Enum<typeof NSSelectionGranularity>;
+  // readonly shouldDrawInsertionPoint: boolean;
+  // smartInsertDeleteEnabled: boolean;
+  // readonly spellCheckerDocumentTag: number;
+  // stronglyReferencesTextStorage: boolean;
+  // readonly superclass: interop.Object;
   // textContainer: NSTextContainer;
   // textContainerInset: CGSize;
   // readonly textContainerOrigin: CGPoint;
-  // readonly layoutManager: NSLayoutManager;
-  // readonly textStorage: NSTextStorage;
-  // readonly textLayoutManager: NSTextLayoutManager;
   // readonly textContentStorage: NSTextContentStorage;
-  // readonly shouldDrawInsertionPoint: boolean;
-  // stronglyReferencesTextStorage: boolean;
-  // usesAdaptiveColorMappingForDarkAppearance: boolean;
-  // readonly rangeForUserCompletion: _NSRange;
-  // readonly writablePasteboardTypes: NSArray;
-  // readonly readablePasteboardTypes: NSArray;
-  // readonly acceptableDragTypes: NSArray;
-  // readonly selectionAffinity: interop.Enum<typeof NSSelectionAffinity>;
-  // selectionGranularity: interop.Enum<typeof NSSelectionGranularity>;
-  // insertionPointColor: NSColor;
-  // displaysLinkToolTips: boolean;
-  // acceptsGlyphInfo: boolean;
-  // usesRuler: boolean;
-  // usesInspectorBar: boolean;
-  // isContinuousSpellCheckingEnabled: boolean;
-  // readonly spellCheckerDocumentTag: number;
-  // isGrammarCheckingEnabled: boolean;
-  // readonly rangesForUserTextChange: NSArray;
-  // readonly rangesForUserCharacterAttributeChange: NSArray;
-  // readonly rangesForUserParagraphAttributeChange: NSArray;
-  // readonly rangeForUserTextChange: _NSRange;
-  // readonly rangeForUserCharacterAttributeChange: _NSRange;
-  // readonly rangeForUserParagraphAttributeChange: _NSRange;
-  // allowsDocumentBackgroundColorChange: boolean;
-  // defaultParagraphStyle: NSParagraphStyle;
-  // allowsUndo: boolean;
-  // readonly isCoalescingUndo: boolean;
-  // allowsImageEditing: boolean;
-  // usesRolloverButtonForSelection: boolean;
-  // isEditable: boolean;
-  // isSelectable: boolean;
-  // isRichText: boolean;
-  // importsGraphics: boolean;
-  // drawsBackground: boolean;
-  // backgroundColor: NSColor;
-  // isFieldEditor: boolean;
-  // usesFontPanel: boolean;
-  // isRulerVisible: boolean;
-  // smartInsertDeleteEnabled: boolean;
-  // isAutomaticQuoteSubstitutionEnabled: boolean;
-  // isAutomaticLinkDetectionEnabled: boolean;
-  // isAutomaticDataDetectionEnabled: boolean;
-  // isAutomaticDashSubstitutionEnabled: boolean;
-  // isAutomaticTextReplacementEnabled: boolean;
-  // isAutomaticSpellingCorrectionEnabled: boolean;
-  // enabledTextCheckingTypes: number;
-  // usesFindPanel: boolean;
-  // usesFindBar: boolean;
-  // isIncrementalSearchingEnabled: boolean;
-  // inlinePredictionType: interop.Enum<typeof NSTextInputTraitType>;
-  // isAutomaticTextCompletionEnabled: boolean;
-  // allowsCharacterPickerTouchBarItem: boolean;
-  // readonly candidateListTouchBarItem: NSCandidateListTouchBarItem;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
-  // selectedRange: _NSRange;
+  // readonly textLayoutManager: NSTextLayoutManager;
+  // readonly textStorage: NSTextStorage;
   // readonly unionRectInVisibleSelectedRange: CGRect;
-  // readonly documentVisibleRect: CGRect;
-  // readonly layoutOrientation: interop.Enum<typeof NSTextLayoutOrientation>;
-  // accessibilityVisibleCharacterRange: _NSRange;
-  // accessibilityFrame: CGRect;
-  // accessibilityParent: interop.Object;
-  // isAccessibilityFocused: boolean;
+  // usesAdaptiveColorMappingForDarkAppearance: boolean;
+  // usesFindBar: boolean;
+  // usesFindPanel: boolean;
+  // usesFontPanel: boolean;
+  // usesInspectorBar: boolean;
+  // usesRolloverButtonForSelection: boolean;
+  // usesRuler: boolean;
+  // readonly writablePasteboardTypes: NSArray;
+  // readonly zone: interop.Pointer;
 
   set textviewclickedonlinkatindex(value: (textView: NSTextView, link: interop.Object, charIndex: number) => boolean) {
     this.delegate.textViewClickedOnLinkAtIndex = value;
@@ -5849,44 +15139,120 @@ export class HTMLNSTextViewElement extends HTMLNSTextElement {
 
 export class HTMLNSColorWellElement extends HTMLNSControlElement {
   readonly nativeObject = NSColorWell.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    activate: 'activate',
+    color: 'color',
+    colorwellstyle: 'colorWellStyle',
+    colorwellwithstyle: 'colorWellWithStyle',
+    deactivate: 'deactivate',
+    drawwellinside: 'drawWellInside',
+    image: 'image',
+    isactive: 'isActive',
+    isbordered: 'isBordered',
+    pulldownaction: 'pulldownAction',
+    pulldowntarget: 'pulldownTarget',
+    supportsalpha: 'supportsAlpha',
+    takecolorfrom: 'takeColorFrom',
+  }
 
-  // readonly isActive: boolean;
-  // isBordered: boolean;
   // color: NSColor;
   // colorWellStyle: interop.Enum<typeof NSColorWellStyle>;
   // image: NSImage;
-  // pulldownTarget: interop.Object;
+  // readonly isActive: boolean;
+  // isBordered: boolean;
   // pulldownAction: string;
+  // pulldownTarget: interop.Object;
   // supportsAlpha: boolean;
 }
 
 export class HTMLNSLayoutXAxisAnchorElement extends HTMLNSLayoutAnchorElement {
   readonly nativeObject = NSLayoutXAxisAnchor.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    anchorwithoffsettoanchor: 'anchorWithOffsetToAnchor',
+    constraintequaltosystemspacingafteranchormultiplier: 'constraintEqualToSystemSpacingAfterAnchorMultiplier',
+    constraintgreaterthanorequaltosystemspacingafteranchormultiplier: 'constraintGreaterThanOrEqualToSystemSpacingAfterAnchorMultiplier',
+    constraintlessthanorequaltosystemspacingafteranchormultiplier: 'constraintLessThanOrEqualToSystemSpacingAfterAnchorMultiplier',
+  }
 
 }
 
 export class HTMLNSTabViewControllerElement extends HTMLNSViewControllerElement {
   readonly nativeObject = NSTabViewController.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    addtabviewitem: 'addTabViewItem',
+    autorelease: 'autorelease',
+    canpropagateselectedchildviewcontrollertitle: 'canPropagateSelectedChildViewControllerTitle',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    hash: 'hash',
+    inserttabviewitematindex: 'insertTabViewItemAtIndex',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    release: 'release',
+    removetabviewitem: 'removeTabViewItem',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    selectedtabviewitemindex: 'selectedTabViewItemIndex',
+    self: 'self',
+    superclass: 'superclass',
+    tabstyle: 'tabStyle',
+    tabview: 'tabView',
+    tabviewdidchangenumberoftabviewitems: 'tabViewDidChangeNumberOfTabViewItems',
+    tabviewdidselecttabviewitem: 'tabViewDidSelectTabViewItem',
+    tabviewitemforviewcontroller: 'tabViewItemForViewController',
+    tabviewitems: 'tabViewItems',
+    tabviewshouldselecttabviewitem: 'tabViewShouldSelectTabViewItem',
+    tabviewwillselecttabviewitem: 'tabViewWillSelectTabViewItem',
+    toolbaralloweditemidentifiers: 'toolbarAllowedItemIdentifiers',
+    toolbardefaultitemidentifiers: 'toolbarDefaultItemIdentifiers',
+    toolbardidremoveitem: 'toolbarDidRemoveItem',
+    toolbarimmovableitemidentifiers: 'toolbarImmovableItemIdentifiers',
+    toolbaritemforitemidentifierwillbeinsertedintotoolbar: 'toolbarItemForItemIdentifierWillBeInsertedIntoToolbar',
+    toolbaritemidentifiercanbeinsertedatindex: 'toolbarItemIdentifierCanBeInsertedAtIndex',
+    toolbarselectableitemidentifiers: 'toolbarSelectableItemIdentifiers',
+    toolbarwilladditem: 'toolbarWillAddItem',
+    transitionoptions: 'transitionOptions',
+    viewdidload: 'viewDidLoad',
+    zone: 'zone',
+  }
 
+  // canPropagateSelectedChildViewControllerTitle: boolean;
+  // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly hash: number;
+  // readonly isProxy: boolean;
+  // selectedTabViewItemIndex: number;
+  // readonly superclass: interop.Object;
   // tabStyle: interop.Enum<typeof NSTabViewControllerTabStyle>;
   // tabView: NSTabView;
   // transitionOptions: interop.Enum<typeof NSViewControllerTransitionOptions>;
-  // canPropagateSelectedChildViewControllerTitle: boolean;
-  // selectedTabViewItemIndex: number;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
   // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
 }
 
 export class HTMLNSSharingServicePickerTouchBarItemElement extends HTMLNSTouchBarItemElement {
   readonly nativeObject = NSSharingServicePickerTouchBarItem.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    buttonimage: 'buttonImage',
+    buttontitle: 'buttonTitle',
+    delegate: 'delegate',
+    isenabled: 'isEnabled',
+  }
 
+  // buttonImage: NSImage;
   // delegate: NSSharingServicePickerTouchBarItemDelegate | null;
   // isEnabled: boolean;
-  // buttonImage: NSImage;
 }
 
 export class HTMLNSTextContentStorageElement extends HTMLNSTextContentManagerElement {
@@ -5895,15 +15261,48 @@ export class HTMLNSTextContentStorageElement extends HTMLNSTextContentManagerEle
   get delegate(): NSTextContentStorageDelegateImpl {
     return (this.nativeObject.delegate ??= NSTextContentStorageDelegateImpl.new()) as NSTextContentStorageDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    adjustedrangefromrangeforeditingtextselection: 'adjustedRangeFromRangeForEditingTextSelection',
+    attributedstring: 'attributedString',
+    attributedstringfortextelement: 'attributedStringForTextElement',
+    autorelease: 'autorelease',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    delegate: 'delegate',
+    description: 'description',
+    hash: 'hash',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    locationfromlocationwithoffset: 'locationFromLocationWithOffset',
+    offsetfromlocationtolocation: 'offsetFromLocationToLocation',
+    performeditingtransactionfortextstorageusingblock: 'performEditingTransactionForTextStorageUsingBlock',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    processeditingfortextstorageeditedrangechangeinlengthinvalidatedrange: 'processEditingForTextStorageEditedRangeChangeInLengthInvalidatedRange',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    superclass: 'superclass',
+    textelementforattributedstring: 'textElementForAttributedString',
+    textstorage: 'textStorage',
+    zone: 'zone',
+  }
 
   // attributedString: NSAttributedString;
-  // textStorage: NSTextStorage;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly hash: number;
+  // readonly isProxy: boolean;
+  // readonly superclass: interop.Object;
+  // textStorage: NSTextStorage;
+  // readonly zone: interop.Pointer;
 
   set textcontentstoragetextparagraphwithrange(value: (textContentStorage: NSTextContentStorage, range: _NSRange) => NSTextParagraph) {
     this.delegate.textContentStorageTextParagraphWithRange = value;
@@ -5913,34 +15312,91 @@ export class HTMLNSTextContentStorageElement extends HTMLNSTextContentManagerEle
 export class HTMLNSSwitchElement extends HTMLNSControlElement {
   // @ts-ignore
   readonly nativeObject = NSSwitch.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessibilityframe: 'accessibilityFrame',
+    accessibilityidentifier: 'accessibilityIdentifier',
+    accessibilitylabel: 'accessibilityLabel',
+    accessibilityparent: 'accessibilityParent',
+    accessibilityperformdecrement: 'accessibilityPerformDecrement',
+    accessibilityperformincrement: 'accessibilityPerformIncrement',
+    accessibilityperformpress: 'accessibilityPerformPress',
+    accessibilityvalue: 'accessibilityValue',
+    autorelease: 'autorelease',
+    class: 'class',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    hash: 'hash',
+    isaccessibilityfocused: 'isAccessibilityFocused',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    state: 'state',
+    superclass: 'superclass',
+    zone: 'zone',
+  }
 
-  // state: number;
   // accessibilityFrame: CGRect;
   // accessibilityParent: interop.Object;
-  // isAccessibilityFocused: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly hash: number;
+  // isAccessibilityFocused: boolean;
+  // readonly isProxy: boolean;
+  // state: number;
+  // readonly superclass: interop.Object;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSOpenPanelElement extends HTMLNSSavePanelElement {
   readonly nativeObject = NSOpenPanel.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    allowsmultipleselection: 'allowsMultipleSelection',
+    beginfordirectoryfiletypesmodelessdelegatedidendselectorcontextinfo: 'beginForDirectoryFileTypesModelessDelegateDidEndSelectorContextInfo',
+    beginsheetfordirectoryfiletypesmodalforwindowmodaldelegatedidendselectorcontextinfo: 'beginSheetForDirectoryFileTypesModalForWindowModalDelegateDidEndSelectorContextInfo',
+    canchoosedirectories: 'canChooseDirectories',
+    canchoosefiles: 'canChooseFiles',
+    candownloadubiquitouscontents: 'canDownloadUbiquitousContents',
+    canresolveubiquitousconflicts: 'canResolveUbiquitousConflicts',
+    filenames: 'filenames',
+    isaccessoryviewdisclosed: 'isAccessoryViewDisclosed',
+    openpanel: 'openPanel',
+    resolvesaliases: 'resolvesAliases',
+    runmodalfordirectoryfiletypes: 'runModalForDirectoryFileTypes',
+    runmodalfortypes: 'runModalForTypes',
+    urls: 'URLs',
+  }
 
-  // readonly URLs: NSArray;
-  // resolvesAliases: boolean;
-  // canChooseDirectories: boolean;
   // allowsMultipleSelection: boolean;
+  // canChooseDirectories: boolean;
   // canChooseFiles: boolean;
-  // canResolveUbiquitousConflicts: boolean;
   // canDownloadUbiquitousContents: boolean;
+  // canResolveUbiquitousConflicts: boolean;
   // isAccessoryViewDisclosed: boolean;
+  // resolvesAliases: boolean;
+  // readonly URLs: NSArray;
 }
 
 export class HTMLNSTextParagraphElement extends HTMLNSTextElementElement {
   readonly nativeObject = NSTextParagraph.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    attributedstring: 'attributedString',
+    initwithattributedstring: 'initWithAttributedString',
+    paragraphcontentrange: 'paragraphContentRange',
+    paragraphseparatorrange: 'paragraphSeparatorRange',
+  }
 
   // readonly attributedString: NSAttributedString;
   // readonly paragraphContentRange: NSTextRange;
@@ -5949,11 +15405,20 @@ export class HTMLNSTextParagraphElement extends HTMLNSTextElementElement {
 
 export class HTMLNSPDFImageRepElement extends HTMLNSImageRepElement {
   readonly nativeObject = NSPDFImageRep.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    bounds: 'bounds',
+    currentpage: 'currentPage',
+    imagerepwithdata: 'imageRepWithData',
+    initwithdata: 'initWithData',
+    pagecount: 'pageCount',
+    pdfrepresentation: 'PDFRepresentation',
+  }
 
-  // readonly PDFRepresentation: NSData;
   // readonly bounds: CGRect;
   // currentPage: number;
   // readonly pageCount: number;
+  // readonly PDFRepresentation: NSData;
 }
 
 export class HTMLNSPageControllerElement extends HTMLNSViewControllerElement {
@@ -5961,10 +15426,29 @@ export class HTMLNSPageControllerElement extends HTMLNSViewControllerElement {
   get delegate(): NSPageControllerDelegateImpl {
     return (this.nativeObject.delegate ??= NSPageControllerDelegateImpl.new()) as NSPageControllerDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    animationforkey: 'animationForKey',
+    animations: 'animations',
+    animator: 'animator',
+    arrangedobjects: 'arrangedObjects',
+    completetransition: 'completeTransition',
+    defaultanimationforkey: 'defaultAnimationForKey',
+    delegate: 'delegate',
+    encodewithcoder: 'encodeWithCoder',
+    initwithcoder: 'initWithCoder',
+    navigateback: 'navigateBack',
+    navigateforward: 'navigateForward',
+    navigateforwardtoobject: 'navigateForwardToObject',
+    selectedindex: 'selectedIndex',
+    selectedviewcontroller: 'selectedViewController',
+    takeselectedindexfrom: 'takeSelectedIndexFrom',
+    transitionstyle: 'transitionStyle',
+  }
 
+  // selectedIndex: number;
   // readonly selectedViewController: NSViewController;
   // transitionStyle: interop.Enum<typeof NSPageControllerTransitionStyle>;
-  // selectedIndex: number;
 
   set pagecontrolleridentifierforobject(value: (pageController: NSPageController, object: interop.Object) => NSString) {
     this.delegate.pageControllerIdentifierForObject = value;
@@ -5995,19 +15479,50 @@ export class HTMLNSComboBoxElement extends HTMLNSTextFieldElement {
   get delegate(): NSComboBoxDelegateImpl {
     return (this.nativeObject.delegate ??= NSComboBoxDelegateImpl.new()) as NSComboBoxDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    additemswithobjectvalues: 'addItemsWithObjectValues',
+    additemwithobjectvalue: 'addItemWithObjectValue',
+    completes: 'completes',
+    datasource: 'dataSource',
+    delegate: 'delegate',
+    deselectitematindex: 'deselectItemAtIndex',
+    hasverticalscroller: 'hasVerticalScroller',
+    indexofitemwithobjectvalue: 'indexOfItemWithObjectValue',
+    indexofselecteditem: 'indexOfSelectedItem',
+    insertitemwithobjectvalueatindex: 'insertItemWithObjectValueAtIndex',
+    intercellspacing: 'intercellSpacing',
+    isbuttonbordered: 'isButtonBordered',
+    itemheight: 'itemHeight',
+    itemobjectvalueatindex: 'itemObjectValueAtIndex',
+    notenumberofitemschanged: 'noteNumberOfItemsChanged',
+    numberofitems: 'numberOfItems',
+    numberofvisibleitems: 'numberOfVisibleItems',
+    objectvalueofselecteditem: 'objectValueOfSelectedItem',
+    objectvalues: 'objectValues',
+    reloaddata: 'reloadData',
+    removeallitems: 'removeAllItems',
+    removeitematindex: 'removeItemAtIndex',
+    removeitemwithobjectvalue: 'removeItemWithObjectValue',
+    scrollitematindextotop: 'scrollItemAtIndexToTop',
+    scrollitematindextovisible: 'scrollItemAtIndexToVisible',
+    selectitematindex: 'selectItemAtIndex',
+    selectitemwithobjectvalue: 'selectItemWithObjectValue',
+    usesdatasource: 'usesDataSource',
+  }
 
-  // hasVerticalScroller: boolean;
-  // intercellSpacing: CGSize;
-  // itemHeight: number;
-  // numberOfVisibleItems: number;
-  // isButtonBordered: boolean;
-  // usesDataSource: boolean;
-  // readonly indexOfSelectedItem: number;
-  // readonly numberOfItems: number;
   // completes: boolean;
   // dataSource: NSComboBoxDataSource;
+  // hasVerticalScroller: boolean;
+  // readonly indexOfSelectedItem: number;
+  // intercellSpacing: CGSize;
+  // isButtonBordered: boolean;
+  // itemHeight: number;
+  // readonly numberOfItems: number;
+  // numberOfVisibleItems: number;
   // readonly objectValueOfSelectedItem: interop.Object;
   // readonly objectValues: NSArray;
+  // usesDataSource: boolean;
 
   set comboboxwillpopup(value: (notification: NSNotification) => void) {
     this.delegate.comboBoxWillPopUp = value;
@@ -6025,27 +15540,85 @@ export class HTMLNSComboBoxElement extends HTMLNSTextFieldElement {
 
 export class HTMLNSSliderElement extends HTMLNSControlElement {
   readonly nativeObject = NSSlider.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    acceptsfirstmouse: 'acceptsFirstMouse',
+    accessibilityframe: 'accessibilityFrame',
+    accessibilityidentifier: 'accessibilityIdentifier',
+    accessibilitylabel: 'accessibilityLabel',
+    accessibilityparent: 'accessibilityParent',
+    accessibilityperformdecrement: 'accessibilityPerformDecrement',
+    accessibilityperformincrement: 'accessibilityPerformIncrement',
+    accessibilityvalue: 'accessibilityValue',
+    allowstickmarkvaluesonly: 'allowsTickMarkValuesOnly',
+    altincrementvalue: 'altIncrementValue',
+    autorelease: 'autorelease',
+    class: 'class',
+    closesttickmarkvaluetovalue: 'closestTickMarkValueToValue',
+    conformstoprotocol: 'conformsToProtocol',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    hash: 'hash',
+    image: 'image',
+    indexoftickmarkatpoint: 'indexOfTickMarkAtPoint',
+    isaccessibilityfocused: 'isAccessibilityFocused',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    isvertical: 'isVertical',
+    knobthickness: 'knobThickness',
+    maxvalue: 'maxValue',
+    minvalue: 'minValue',
+    numberoftickmarks: 'numberOfTickMarks',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    rectoftickmarkatindex: 'rectOfTickMarkAtIndex',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    setimage: 'setImage',
+    settitle: 'setTitle',
+    settitlecell: 'setTitleCell',
+    settitlecolor: 'setTitleColor',
+    settitlefont: 'setTitleFont',
+    slidertype: 'sliderType',
+    sliderwithtargetaction: 'sliderWithTargetAction',
+    sliderwithvalueminvaluemaxvaluetargetaction: 'sliderWithValueMinValueMaxValueTargetAction',
+    superclass: 'superclass',
+    tickmarkposition: 'tickMarkPosition',
+    tickmarkvalueatindex: 'tickMarkValueAtIndex',
+    title: 'title',
+    titlecell: 'titleCell',
+    titlecolor: 'titleColor',
+    titlefont: 'titleFont',
+    trackfillcolor: 'trackFillColor',
+    zone: 'zone',
+  }
 
-  // sliderType: interop.Enum<typeof NSSliderType>;
-  // minValue: number;
-  // maxValue: number;
-  // altIncrementValue: number;
-  // readonly knobThickness: number;
-  // isVertical: boolean;
-  // trackFillColor: NSColor;
-  // numberOfTickMarks: number;
-  // tickMarkPosition: interop.Enum<typeof NSTickMarkPosition>;
-  // allowsTickMarkValuesOnly: boolean;
-  // accessibilityValue: interop.Object;
   // accessibilityFrame: CGRect;
   // accessibilityParent: interop.Object;
-  // isAccessibilityFocused: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
+  // accessibilityValue: interop.Object;
+  // allowsTickMarkValuesOnly: boolean;
+  // altIncrementValue: number;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly hash: number;
+  // isAccessibilityFocused: boolean;
+  // readonly isProxy: boolean;
+  // isVertical: boolean;
+  // readonly knobThickness: number;
+  // maxValue: number;
+  // minValue: number;
+  // numberOfTickMarks: number;
+  // sliderType: interop.Enum<typeof NSSliderType>;
+  // readonly superclass: interop.Object;
+  // tickMarkPosition: interop.Enum<typeof NSTickMarkPosition>;
+  // trackFillColor: NSColor;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSSearchFieldElement extends HTMLNSTextFieldElement {
@@ -6054,15 +15627,32 @@ export class HTMLNSSearchFieldElement extends HTMLNSTextFieldElement {
   get delegate(): NSSearchFieldDelegateImpl {
     return (this.nativeObject.delegate ??= NSSearchFieldDelegateImpl.new()) as NSSearchFieldDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    cancelbuttonbounds: 'cancelButtonBounds',
+    centersplaceholder: 'centersPlaceholder',
+    delegate: 'delegate',
+    maximumrecents: 'maximumRecents',
+    recentsautosavename: 'recentsAutosaveName',
+    recentsearches: 'recentSearches',
+    rectforcancelbuttonwhencentered: 'rectForCancelButtonWhenCentered',
+    rectforsearchbuttonwhencentered: 'rectForSearchButtonWhenCentered',
+    rectforsearchtextwhencentered: 'rectForSearchTextWhenCentered',
+    searchbuttonbounds: 'searchButtonBounds',
+    searchmenutemplate: 'searchMenuTemplate',
+    searchtextbounds: 'searchTextBounds',
+    sendssearchstringimmediately: 'sendsSearchStringImmediately',
+    sendswholesearchstring: 'sendsWholeSearchString',
+  }
 
-  // readonly searchTextBounds: CGRect;
-  // readonly searchButtonBounds: CGRect;
   // readonly cancelButtonBounds: CGRect;
-  // searchMenuTemplate: NSMenu;
-  // sendsWholeSearchString: boolean;
-  // maximumRecents: number;
-  // sendsSearchStringImmediately: boolean;
   // centersPlaceholder: boolean;
+  // maximumRecents: number;
+  // readonly searchButtonBounds: CGRect;
+  // searchMenuTemplate: NSMenu;
+  // readonly searchTextBounds: CGRect;
+  // sendsSearchStringImmediately: boolean;
+  // sendsWholeSearchString: boolean;
 
   set searchfielddidstartsearching(value: (sender: NSSearchField) => void) {
     this.delegate.searchFieldDidStartSearching = value;
@@ -6078,12 +15668,21 @@ export class HTMLNSTokenFieldElement extends HTMLNSTextFieldElement {
   get delegate(): NSTokenFieldDelegateImpl {
     return (this.nativeObject.delegate ??= NSTokenFieldDelegateImpl.new()) as NSTokenFieldDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    completiondelay: 'completionDelay',
+    defaultcompletiondelay: 'defaultCompletionDelay',
+    defaulttokenizingcharacterset: 'defaultTokenizingCharacterSet',
+    delegate: 'delegate',
+    tokenizingcharacterset: 'tokenizingCharacterSet',
+    tokenstyle: 'tokenStyle',
+  }
 
-  // tokenStyle: interop.Enum<typeof NSTokenStyle>;
   // completionDelay: number;
   // defaultCompletionDelay: number;
-  // tokenizingCharacterSet: NSCharacterSet;
   // defaultTokenizingCharacterSet: NSCharacterSet;
+  // tokenizingCharacterSet: NSCharacterSet;
+  // tokenStyle: interop.Enum<typeof NSTokenStyle>;
 
   set tokenfieldcompletionsforsubstringindexoftokenindexofselecteditem(value: (tokenField: NSTokenField, substring: NSString | string, tokenIndex: number, selectedIndex: interop.PointerConvertible) => NSArray) {
     this.delegate.tokenFieldCompletionsForSubstringIndexOfTokenIndexOfSelectedItem = value;
@@ -6123,62 +15722,265 @@ export class HTMLNSTableViewElement extends HTMLNSControlElement {
   get delegate(): NSTableViewDelegateImpl {
     return (this.nativeObject.delegate ??= NSTableViewDelegateImpl.new()) as NSTableViewDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessibilitycolumnheaderuielements: 'accessibilityColumnHeaderUIElements',
+    accessibilitycolumns: 'accessibilityColumns',
+    accessibilityframe: 'accessibilityFrame',
+    accessibilityheadergroup: 'accessibilityHeaderGroup',
+    accessibilityidentifier: 'accessibilityIdentifier',
+    accessibilitylabel: 'accessibilityLabel',
+    accessibilityparent: 'accessibilityParent',
+    accessibilityrowheaderuielements: 'accessibilityRowHeaderUIElements',
+    accessibilityrows: 'accessibilityRows',
+    accessibilityselectedcells: 'accessibilitySelectedCells',
+    accessibilityselectedcolumns: 'accessibilitySelectedColumns',
+    accessibilityselectedrows: 'accessibilitySelectedRows',
+    accessibilityvisiblecells: 'accessibilityVisibleCells',
+    accessibilityvisiblecolumns: 'accessibilityVisibleColumns',
+    accessibilityvisiblerows: 'accessibilityVisibleRows',
+    addtablecolumn: 'addTableColumn',
+    allowscolumnreordering: 'allowsColumnReordering',
+    allowscolumnresizing: 'allowsColumnResizing',
+    allowscolumnselection: 'allowsColumnSelection',
+    allowsemptyselection: 'allowsEmptySelection',
+    allowsmultipleselection: 'allowsMultipleSelection',
+    allowstypeselect: 'allowsTypeSelect',
+    autorelease: 'autorelease',
+    autoresizesallcolumnstofit: 'autoresizesAllColumnsToFit',
+    autosavename: 'autosaveName',
+    autosavetablecolumns: 'autosaveTableColumns',
+    backgroundcolor: 'backgroundColor',
+    beginupdates: 'beginUpdates',
+    candragrowswithindexesatpoint: 'canDragRowsWithIndexesAtPoint',
+    class: 'class',
+    clickedcolumn: 'clickedColumn',
+    clickedrow: 'clickedRow',
+    columnatpoint: 'columnAtPoint',
+    columnautoresizingstyle: 'columnAutoresizingStyle',
+    columnforview: 'columnForView',
+    columnindexesinrect: 'columnIndexesInRect',
+    columnsinrect: 'columnsInRect',
+    columnwithidentifier: 'columnWithIdentifier',
+    conformstoprotocol: 'conformsToProtocol',
+    cornerview: 'cornerView',
+    datasource: 'dataSource',
+    debugdescription: 'debugDescription',
+    delegate: 'delegate',
+    description: 'description',
+    deselectall: 'deselectAll',
+    deselectcolumn: 'deselectColumn',
+    deselectrow: 'deselectRow',
+    didaddrowviewforrow: 'didAddRowViewForRow',
+    didremoverowviewforrow: 'didRemoveRowViewForRow',
+    doubleaction: 'doubleAction',
+    draggingdestinationfeedbackstyle: 'draggingDestinationFeedbackStyle',
+    draggingsessionendedatpointoperation: 'draggingSessionEndedAtPointOperation',
+    draggingsessionmovedtopoint: 'draggingSessionMovedToPoint',
+    draggingsessionsourceoperationmaskfordraggingcontext: 'draggingSessionSourceOperationMaskForDraggingContext',
+    draggingsessionwillbeginatpoint: 'draggingSessionWillBeginAtPoint',
+    dragimageforrowseventdragimageoffset: 'dragImageForRowsEventDragImageOffset',
+    dragimageforrowswithindexestablecolumnseventoffset: 'dragImageForRowsWithIndexesTableColumnsEventOffset',
+    drawbackgroundincliprect: 'drawBackgroundInClipRect',
+    drawgridincliprect: 'drawGridInClipRect',
+    drawrowcliprect: 'drawRowClipRect',
+    drawsgrid: 'drawsGrid',
+    editcolumnrowwitheventselect: 'editColumnRowWithEventSelect',
+    editedcolumn: 'editedColumn',
+    editedrow: 'editedRow',
+    effectiverowsizestyle: 'effectiveRowSizeStyle',
+    effectivestyle: 'effectiveStyle',
+    endupdates: 'endUpdates',
+    enumerateavailablerowviewsusingblock: 'enumerateAvailableRowViewsUsingBlock',
+    floatsgrouprows: 'floatsGroupRows',
+    focusedcolumn: 'focusedColumn',
+    frameofcellatcolumnrow: 'frameOfCellAtColumnRow',
+    gridcolor: 'gridColor',
+    gridstylemask: 'gridStyleMask',
+    hash: 'hash',
+    headerview: 'headerView',
+    hiddenrowindexes: 'hiddenRowIndexes',
+    hiderowsatindexeswithanimation: 'hideRowsAtIndexesWithAnimation',
+    highlightedtablecolumn: 'highlightedTableColumn',
+    highlightselectionincliprect: 'highlightSelectionInClipRect',
+    ignoremodifierkeysfordraggingsession: 'ignoreModifierKeysForDraggingSession',
+    indicatorimageintablecolumn: 'indicatorImageInTableColumn',
+    initwithcoder: 'initWithCoder',
+    initwithframe: 'initWithFrame',
+    insertrowsatindexeswithanimation: 'insertRowsAtIndexesWithAnimation',
+    intercellspacing: 'intercellSpacing',
+    isaccessibilityfocused: 'isAccessibilityFocused',
+    iscolumnselected: 'isColumnSelected',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    isrowselected: 'isRowSelected',
+    makeviewwithidentifierowner: 'makeViewWithIdentifierOwner',
+    movecolumntocolumn: 'moveColumnToColumn',
+    moverowatindextoindex: 'moveRowAtIndexToIndex',
+    noteheightofrowswithindexeschanged: 'noteHeightOfRowsWithIndexesChanged',
+    notenumberofrowschanged: 'noteNumberOfRowsChanged',
+    numberofcolumns: 'numberOfColumns',
+    numberofrows: 'numberOfRows',
+    numberofselectedcolumns: 'numberOfSelectedColumns',
+    numberofselectedrows: 'numberOfSelectedRows',
+    performclickoncellatcolumnrow: 'performClickOnCellAtColumnRow',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    preparedcellatcolumnrow: 'preparedCellAtColumnRow',
+    rectofcolumn: 'rectOfColumn',
+    rectofrow: 'rectOfRow',
+    registerednibsbyidentifier: 'registeredNibsByIdentifier',
+    registernibforidentifier: 'registerNibForIdentifier',
+    release: 'release',
+    reloaddata: 'reloadData',
+    reloaddataforrowindexescolumnindexes: 'reloadDataForRowIndexesColumnIndexes',
+    removerowsatindexeswithanimation: 'removeRowsAtIndexesWithAnimation',
+    removetablecolumn: 'removeTableColumn',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    rowactionsvisible: 'rowActionsVisible',
+    rowatpoint: 'rowAtPoint',
+    rowforview: 'rowForView',
+    rowheight: 'rowHeight',
+    rowsinrect: 'rowsInRect',
+    rowsizestyle: 'rowSizeStyle',
+    rowviewatrowmakeifnecessary: 'rowViewAtRowMakeIfNecessary',
+    scrollcolumntovisible: 'scrollColumnToVisible',
+    scrollrowtovisible: 'scrollRowToVisible',
+    selectall: 'selectAll',
+    selectcolumnbyextendingselection: 'selectColumnByExtendingSelection',
+    selectcolumnindexesbyextendingselection: 'selectColumnIndexesByExtendingSelection',
+    selectedcolumn: 'selectedColumn',
+    selectedcolumnenumerator: 'selectedColumnEnumerator',
+    selectedcolumnindexes: 'selectedColumnIndexes',
+    selectedrow: 'selectedRow',
+    selectedrowenumerator: 'selectedRowEnumerator',
+    selectedrowindexes: 'selectedRowIndexes',
+    selectionhighlightstyle: 'selectionHighlightStyle',
+    selectrowbyextendingselection: 'selectRowByExtendingSelection',
+    selectrowindexesbyextendingselection: 'selectRowIndexesByExtendingSelection',
+    self: 'self',
+    setaccessibilityselectedrows: 'setAccessibilitySelectedRows',
+    setautoresizesallcolumnstofit: 'setAutoresizesAllColumnsToFit',
+    setdraggingsourceoperationmaskforlocal: 'setDraggingSourceOperationMaskForLocal',
+    setdrawsgrid: 'setDrawsGrid',
+    setdroprowdropoperation: 'setDropRowDropOperation',
+    setfocusedcolumn: 'setFocusedColumn',
+    setindicatorimageintablecolumn: 'setIndicatorImageInTableColumn',
+    shouldfocuscellatcolumnrow: 'shouldFocusCellAtColumnRow',
+    sizelastcolumntofit: 'sizeLastColumnToFit',
+    sizetofit: 'sizeToFit',
+    sortdescriptors: 'sortDescriptors',
+    style: 'style',
+    superclass: 'superclass',
+    tablecolumns: 'tableColumns',
+    tablecolumnwithidentifier: 'tableColumnWithIdentifier',
+    textdidbeginediting: 'textDidBeginEditing',
+    textdidchange: 'textDidChange',
+    textdidendediting: 'textDidEndEditing',
+    textshouldbeginediting: 'textShouldBeginEditing',
+    textshouldendediting: 'textShouldEndEditing',
+    textviewcandidatesforselectedrange: 'textViewCandidatesForSelectedRange',
+    textviewclickedoncellinrect: 'textViewClickedOnCellInRect',
+    textviewclickedoncellinrectatindex: 'textViewClickedOnCellInRectAtIndex',
+    textviewclickedonlink: 'textViewClickedOnLink',
+    textviewclickedonlinkatindex: 'textViewClickedOnLinkAtIndex',
+    textviewcompletionsforpartialwordrangeindexofselecteditem: 'textViewCompletionsForPartialWordRangeIndexOfSelectedItem',
+    textviewdidchangeselection: 'textViewDidChangeSelection',
+    textviewdidchangetypingattributes: 'textViewDidChangeTypingAttributes',
+    textviewdidchecktextinrangetypesoptionsresultsorthographywordcount: 'textViewDidCheckTextInRangeTypesOptionsResultsOrthographyWordCount',
+    textviewdocommandbyselector: 'textViewDoCommandBySelector',
+    textviewdoubleclickedoncellinrect: 'textViewDoubleClickedOnCellInRect',
+    textviewdoubleclickedoncellinrectatindex: 'textViewDoubleClickedOnCellInRectAtIndex',
+    textviewdraggedcellinrectevent: 'textViewDraggedCellInRectEvent',
+    textviewdraggedcellinrecteventatindex: 'textViewDraggedCellInRectEventAtIndex',
+    textviewmenuforeventatindex: 'textViewMenuForEventAtIndex',
+    textviewshouldchangetextinrangereplacementstring: 'textViewShouldChangeTextInRangeReplacementString',
+    textviewshouldchangetextinrangesreplacementstrings: 'textViewShouldChangeTextInRangesReplacementStrings',
+    textviewshouldchangetypingattributestoattributes: 'textViewShouldChangeTypingAttributesToAttributes',
+    textviewshouldselectcandidateatindex: 'textViewShouldSelectCandidateAtIndex',
+    textviewshouldsetspellingstaterange: 'textViewShouldSetSpellingStateRange',
+    textviewshouldupdatetouchbaritemidentifiers: 'textViewShouldUpdateTouchBarItemIdentifiers',
+    textviewurlforcontentsoftextattachmentatindex: 'textViewURLForContentsOfTextAttachmentAtIndex',
+    textviewwillchangeselectionfromcharacterrangestocharacterranges: 'textViewWillChangeSelectionFromCharacterRangesToCharacterRanges',
+    textviewwillchangeselectionfromcharacterrangetocharacterrange: 'textViewWillChangeSelectionFromCharacterRangeToCharacterRange',
+    textviewwillchecktextinrangeoptionstypes: 'textViewWillCheckTextInRangeOptionsTypes',
+    textviewwilldisplaytooltipforcharacteratindex: 'textViewWillDisplayToolTipForCharacterAtIndex',
+    textviewwillshowsharingservicepickerforitems: 'textViewWillShowSharingServicePickerForItems',
+    textviewwritablepasteboardtypesforcellatindex: 'textViewWritablePasteboardTypesForCellAtIndex',
+    textviewwritecellatindextopasteboardtype: 'textViewWriteCellAtIndexToPasteboardType',
+    tile: 'tile',
+    undomanagerfortextview: 'undoManagerForTextView',
+    unhiderowsatindexeswithanimation: 'unhideRowsAtIndexesWithAnimation',
+    userinterfacelayoutdirection: 'userInterfaceLayoutDirection',
+    usesalternatingrowbackgroundcolors: 'usesAlternatingRowBackgroundColors',
+    usesautomaticrowheights: 'usesAutomaticRowHeights',
+    usesstaticcontents: 'usesStaticContents',
+    validateuserinterfaceitem: 'validateUserInterfaceItem',
+    verticalmotioncanbegindrag: 'verticalMotionCanBeginDrag',
+    viewatcolumnrowmakeifnecessary: 'viewAtColumnRowMakeIfNecessary',
+    zone: 'zone',
+  }
 
-  // dataSource: NSTableViewDataSource;
-  // headerView: NSTableHeaderView;
-  // cornerView: NSView;
-  // allowsColumnReordering: boolean;
-  // allowsColumnResizing: boolean;
-  // columnAutoresizingStyle: interop.Enum<typeof NSTableViewColumnAutoresizingStyle>;
-  // gridStyleMask: interop.Enum<typeof NSTableViewGridLineStyle>;
-  // intercellSpacing: CGSize;
-  // usesAlternatingRowBackgroundColors: boolean;
-  // backgroundColor: NSColor;
-  // gridColor: NSColor;
-  // rowSizeStyle: interop.Enum<typeof NSTableViewRowSizeStyle>;
-  // readonly effectiveRowSizeStyle: interop.Enum<typeof NSTableViewRowSizeStyle>;
-  // rowHeight: number;
-  // readonly tableColumns: NSArray;
-  // readonly numberOfColumns: number;
-  // readonly numberOfRows: number;
-  // readonly editedColumn: number;
-  // readonly editedRow: number;
-  // readonly clickedColumn: number;
-  // readonly clickedRow: number;
-  // doubleAction: string;
-  // highlightedTableColumn: NSTableColumn;
-  // verticalMotionCanBeginDrag: boolean;
-  // allowsMultipleSelection: boolean;
-  // allowsEmptySelection: boolean;
-  // allowsColumnSelection: boolean;
-  // readonly selectedColumnIndexes: NSIndexSet;
-  // readonly selectedRowIndexes: NSIndexSet;
-  // readonly selectedColumn: number;
-  // readonly selectedRow: number;
-  // readonly numberOfSelectedColumns: number;
-  // readonly numberOfSelectedRows: number;
-  // allowsTypeSelect: boolean;
-  // style: interop.Enum<typeof NSTableViewStyle>;
-  // readonly effectiveStyle: interop.Enum<typeof NSTableViewStyle>;
-  // selectionHighlightStyle: interop.Enum<typeof NSTableViewSelectionHighlightStyle>;
-  // draggingDestinationFeedbackStyle: interop.Enum<typeof NSTableViewDraggingDestinationFeedbackStyle>;
-  // autosaveTableColumns: boolean;
-  // floatsGroupRows: boolean;
-  // rowActionsVisible: boolean;
-  // readonly hiddenRowIndexes: NSIndexSet;
-  // readonly registeredNibsByIdentifier: NSDictionary;
-  // usesStaticContents: boolean;
-  // userInterfaceLayoutDirection: interop.Enum<typeof NSUserInterfaceLayoutDirection>;
-  // usesAutomaticRowHeights: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
-  // readonly debugDescription: NSString;
   // accessibilityFrame: CGRect;
   // accessibilityParent: interop.Object;
+  // allowsColumnReordering: boolean;
+  // allowsColumnResizing: boolean;
+  // allowsColumnSelection: boolean;
+  // allowsEmptySelection: boolean;
+  // allowsMultipleSelection: boolean;
+  // allowsTypeSelect: boolean;
+  // autosaveTableColumns: boolean;
+  // backgroundColor: NSColor;
+  // readonly clickedColumn: number;
+  // readonly clickedRow: number;
+  // columnAutoresizingStyle: interop.Enum<typeof NSTableViewColumnAutoresizingStyle>;
+  // cornerView: NSView;
+  // dataSource: NSTableViewDataSource;
+  // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // doubleAction: string;
+  // draggingDestinationFeedbackStyle: interop.Enum<typeof NSTableViewDraggingDestinationFeedbackStyle>;
+  // readonly editedColumn: number;
+  // readonly editedRow: number;
+  // readonly effectiveRowSizeStyle: interop.Enum<typeof NSTableViewRowSizeStyle>;
+  // readonly effectiveStyle: interop.Enum<typeof NSTableViewStyle>;
+  // floatsGroupRows: boolean;
+  // gridColor: NSColor;
+  // gridStyleMask: interop.Enum<typeof NSTableViewGridLineStyle>;
+  // readonly hash: number;
+  // headerView: NSTableHeaderView;
+  // readonly hiddenRowIndexes: NSIndexSet;
+  // highlightedTableColumn: NSTableColumn;
+  // intercellSpacing: CGSize;
   // isAccessibilityFocused: boolean;
+  // readonly isProxy: boolean;
+  // readonly numberOfColumns: number;
+  // readonly numberOfRows: number;
+  // readonly numberOfSelectedColumns: number;
+  // readonly numberOfSelectedRows: number;
+  // readonly registeredNibsByIdentifier: NSDictionary;
+  // rowActionsVisible: boolean;
+  // rowHeight: number;
+  // rowSizeStyle: interop.Enum<typeof NSTableViewRowSizeStyle>;
+  // readonly selectedColumn: number;
+  // readonly selectedColumnIndexes: NSIndexSet;
+  // readonly selectedRow: number;
+  // readonly selectedRowIndexes: NSIndexSet;
+  // selectionHighlightStyle: interop.Enum<typeof NSTableViewSelectionHighlightStyle>;
+  // style: interop.Enum<typeof NSTableViewStyle>;
+  // readonly superclass: interop.Object;
+  // readonly tableColumns: NSArray;
+  // userInterfaceLayoutDirection: interop.Enum<typeof NSUserInterfaceLayoutDirection>;
+  // usesAlternatingRowBackgroundColors: boolean;
+  // usesAutomaticRowHeights: boolean;
+  // usesStaticContents: boolean;
+  // verticalMotionCanBeginDrag: boolean;
+  // readonly zone: interop.Pointer;
 
   set tableviewviewfortablecolumnrow(value: (tableView: NSTableView, tableColumn: NSTableColumn | null, row: number) => NSView) {
     this.delegate.tableViewViewForTableColumnRow = value;
@@ -6277,6 +16079,11 @@ export class HTMLNSTableViewElement extends HTMLNSControlElement {
 
 export class HTMLNSScrubberTextItemViewElement extends HTMLNSScrubberItemViewElement {
   readonly nativeObject = NSScrubberTextItemView.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    textfield: 'textField',
+    title: 'title',
+  }
 
   // readonly textField: NSTextField;
 }
@@ -6284,119 +16091,332 @@ export class HTMLNSScrubberTextItemViewElement extends HTMLNSScrubberItemViewEle
 export class HTMLNSButtonElement extends HTMLNSControlElement {
   // @ts-ignore
   readonly nativeObject = NSButton.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessibilityframe: 'accessibilityFrame',
+    accessibilityidentifier: 'accessibilityIdentifier',
+    accessibilitylabel: 'accessibilityLabel',
+    accessibilityparent: 'accessibilityParent',
+    accessibilityperformpress: 'accessibilityPerformPress',
+    activecompressionoptions: 'activeCompressionOptions',
+    allowsmixedstate: 'allowsMixedState',
+    alternateimage: 'alternateImage',
+    alternatetitle: 'alternateTitle',
+    attributedalternatetitle: 'attributedAlternateTitle',
+    attributedtitle: 'attributedTitle',
+    autorelease: 'autorelease',
+    bezelcolor: 'bezelColor',
+    bezelstyle: 'bezelStyle',
+    buttonwithimagetargetaction: 'buttonWithImageTargetAction',
+    buttonwithtitleimagetargetaction: 'buttonWithTitleImageTargetAction',
+    buttonwithtitletargetaction: 'buttonWithTitleTargetAction',
+    checkboxwithtitletargetaction: 'checkboxWithTitleTargetAction',
+    class: 'class',
+    compresswithprioritizedcompressionoptions: 'compressWithPrioritizedCompressionOptions',
+    conformstoprotocol: 'conformsToProtocol',
+    contenttintcolor: 'contentTintColor',
+    debugdescription: 'debugDescription',
+    description: 'description',
+    getperiodicdelayinterval: 'getPeriodicDelayInterval',
+    hasdestructiveaction: 'hasDestructiveAction',
+    hash: 'hash',
+    highlight: 'highlight',
+    image: 'image',
+    imagehugstitle: 'imageHugsTitle',
+    imageposition: 'imagePosition',
+    imagescaling: 'imageScaling',
+    isaccessibilityfocused: 'isAccessibilityFocused',
+    isbordered: 'isBordered',
+    isequal: 'isEqual',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    isspringloaded: 'isSpringLoaded',
+    istransparent: 'isTransparent',
+    keyequivalent: 'keyEquivalent',
+    keyequivalentmodifiermask: 'keyEquivalentModifierMask',
+    maxacceleratorlevel: 'maxAcceleratorLevel',
+    minimumsizewithprioritizedcompressionoptions: 'minimumSizeWithPrioritizedCompressionOptions',
+    performkeyequivalent: 'performKeyEquivalent',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    radiobuttonwithtitletargetaction: 'radioButtonWithTitleTargetAction',
+    release: 'release',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    self: 'self',
+    setbuttontype: 'setButtonType',
+    setnextstate: 'setNextState',
+    setperiodicdelayinterval: 'setPeriodicDelayInterval',
+    settitlewithmnemonic: 'setTitleWithMnemonic',
+    showsborderonlywhilemouseinside: 'showsBorderOnlyWhileMouseInside',
+    sound: 'sound',
+    state: 'state',
+    superclass: 'superclass',
+    symbolconfiguration: 'symbolConfiguration',
+    title: 'title',
+    validateuserinterfaceitem: 'validateUserInterfaceItem',
+    zone: 'zone',
+  }
 
-  // attributedTitle: NSAttributedString;
-  // attributedAlternateTitle: NSAttributedString;
-  // hasDestructiveAction: boolean;
-  // sound: NSSound;
-  // isSpringLoaded: boolean;
-  // maxAcceleratorLevel: number;
-  // bezelStyle: interop.Enum<typeof NSBezelStyle>;
-  // isBordered: boolean;
-  // isTransparent: boolean;
-  // showsBorderOnlyWhileMouseInside: boolean;
-  // bezelColor: NSColor;
-  // contentTintColor: NSColor;
-  // image: NSImage;
-  // alternateImage: NSImage;
-  // imagePosition: interop.Enum<typeof NSCellImagePosition>;
-  // imageScaling: interop.Enum<typeof NSImageScaling>;
-  // imageHugsTitle: boolean;
-  // symbolConfiguration: NSImageSymbolConfiguration;
-  // state: number;
-  // allowsMixedState: boolean;
-  // keyEquivalentModifierMask: interop.Enum<typeof NSEventModifierFlags>;
-  // readonly activeCompressionOptions: NSUserInterfaceCompressionOptions;
   // accessibilityFrame: CGRect;
   // accessibilityParent: interop.Object;
-  // isAccessibilityFocused: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
+  // readonly activeCompressionOptions: NSUserInterfaceCompressionOptions;
+  // allowsMixedState: boolean;
+  // alternateImage: NSImage;
+  // attributedAlternateTitle: NSAttributedString;
+  // attributedTitle: NSAttributedString;
+  // bezelColor: NSColor;
+  // bezelStyle: interop.Enum<typeof NSBezelStyle>;
+  // contentTintColor: NSColor;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // hasDestructiveAction: boolean;
+  // readonly hash: number;
+  // image: NSImage;
+  // imageHugsTitle: boolean;
+  // imagePosition: interop.Enum<typeof NSCellImagePosition>;
+  // imageScaling: interop.Enum<typeof NSImageScaling>;
+  // isAccessibilityFocused: boolean;
+  // isBordered: boolean;
+  // readonly isProxy: boolean;
+  // isSpringLoaded: boolean;
+  // isTransparent: boolean;
+  // keyEquivalentModifierMask: interop.Enum<typeof NSEventModifierFlags>;
+  // maxAcceleratorLevel: number;
+  // showsBorderOnlyWhileMouseInside: boolean;
+  // sound: NSSound;
+  // state: number;
+  // readonly superclass: interop.Object;
+  // symbolConfiguration: NSImageSymbolConfiguration;
+  // readonly zone: interop.Pointer;
 }
 
 export class HTMLNSScrubberSelectionViewElement extends HTMLNSScrubberArrangedViewElement {
   readonly nativeObject = NSScrubberSelectionView.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+  }
 
 }
 
 export class HTMLNSSearchFieldCellElement extends HTMLNSTextFieldCellElement {
   readonly nativeObject = NSSearchFieldCell.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    cancelbuttoncell: 'cancelButtonCell',
+    cancelbuttonrectforbounds: 'cancelButtonRectForBounds',
+    inittextcell: 'initTextCell',
+    initwithcoder: 'initWithCoder',
+    maximumrecents: 'maximumRecents',
+    recentsautosavename: 'recentsAutosaveName',
+    recentsearches: 'recentSearches',
+    resetcancelbuttoncell: 'resetCancelButtonCell',
+    resetsearchbuttoncell: 'resetSearchButtonCell',
+    searchbuttoncell: 'searchButtonCell',
+    searchbuttonrectforbounds: 'searchButtonRectForBounds',
+    searchmenutemplate: 'searchMenuTemplate',
+    searchtextrectforbounds: 'searchTextRectForBounds',
+    sendssearchstringimmediately: 'sendsSearchStringImmediately',
+    sendswholesearchstring: 'sendsWholeSearchString',
+  }
 
-  // searchButtonCell: NSButtonCell;
   // cancelButtonCell: NSButtonCell;
-  // searchMenuTemplate: NSMenu;
-  // sendsWholeSearchString: boolean;
   // maximumRecents: number;
+  // searchButtonCell: NSButtonCell;
+  // searchMenuTemplate: NSMenu;
   // sendsSearchStringImmediately: boolean;
+  // sendsWholeSearchString: boolean;
 }
 
 export class HTMLNSRunningApplicationElement extends HTMLNSObjectElement {
   readonly nativeObject = NSRunningApplication.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    activatefromapplicationoptions: 'activateFromApplicationOptions',
+    activatewithoptions: 'activateWithOptions',
+    activationpolicy: 'activationPolicy',
+    bundleidentifier: 'bundleIdentifier',
+    bundleurl: 'bundleURL',
+    currentapplication: 'currentApplication',
+    executablearchitecture: 'executableArchitecture',
+    executableurl: 'executableURL',
+    forceterminate: 'forceTerminate',
+    hide: 'hide',
+    icon: 'icon',
+    isactive: 'isActive',
+    isfinishedlaunching: 'isFinishedLaunching',
+    ishidden: 'isHidden',
+    isterminated: 'isTerminated',
+    launchdate: 'launchDate',
+    localizedname: 'localizedName',
+    ownsmenubar: 'ownsMenuBar',
+    processidentifier: 'processIdentifier',
+    runningapplicationswithbundleidentifier: 'runningApplicationsWithBundleIdentifier',
+    runningapplicationwithprocessidentifier: 'runningApplicationWithProcessIdentifier',
+    terminate: 'terminate',
+    terminateautomaticallyterminableapplications: 'terminateAutomaticallyTerminableApplications',
+    unhide: 'unhide',
+  }
 
-  // readonly isTerminated: boolean;
-  // readonly isFinishedLaunching: boolean;
-  // readonly isHidden: boolean;
-  // readonly isActive: boolean;
-  // readonly ownsMenuBar: boolean;
   // readonly activationPolicy: interop.Enum<typeof NSApplicationActivationPolicy>;
-  // readonly localizedName: NSString;
   // readonly bundleIdentifier: NSString;
   // readonly bundleURL: NSURL;
-  // readonly executableURL: NSURL;
-  // readonly processIdentifier: number;
-  // readonly launchDate: NSDate;
-  // readonly icon: NSImage;
-  // readonly executableArchitecture: number;
   // currentApplication: NSRunningApplication;
+  // readonly executableArchitecture: number;
+  // readonly executableURL: NSURL;
+  // readonly icon: NSImage;
+  // readonly isActive: boolean;
+  // readonly isFinishedLaunching: boolean;
+  // readonly isHidden: boolean;
+  // readonly isTerminated: boolean;
+  // readonly launchDate: NSDate;
+  // readonly localizedName: NSString;
+  // readonly ownsMenuBar: boolean;
+  // readonly processIdentifier: number;
 }
 
 export class HTMLNSSpellCheckerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSSpellChecker.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessoryview: 'accessoryView',
+    automaticallyidentifieslanguages: 'automaticallyIdentifiesLanguages',
+    availablelanguages: 'availableLanguages',
+    checkgrammarofstringstartingatlanguagewrapinspelldocumentwithtagdetails: 'checkGrammarOfStringStartingAtLanguageWrapInSpellDocumentWithTagDetails',
+    checkspellingofstringstartingat: 'checkSpellingOfStringStartingAt',
+    checkspellingofstringstartingatlanguagewrapinspelldocumentwithtagwordcount: 'checkSpellingOfStringStartingAtLanguageWrapInSpellDocumentWithTagWordCount',
+    checkstringrangetypesoptionsinspelldocumentwithtagorthographywordcount: 'checkStringRangeTypesOptionsInSpellDocumentWithTagOrthographyWordCount',
+    closespelldocumentwithtag: 'closeSpellDocumentWithTag',
+    completionsforpartialwordrangeinstringlanguageinspelldocumentwithtag: 'completionsForPartialWordRangeInStringLanguageInSpellDocumentWithTag',
+    correctionforwordrangeinstringlanguageinspelldocumentwithtag: 'correctionForWordRangeInStringLanguageInSpellDocumentWithTag',
+    countwordsinstringlanguage: 'countWordsInStringLanguage',
+    deletesautospacebetweenstringandstringlanguage: 'deletesAutospaceBetweenStringAndStringLanguage',
+    dismisscorrectionindicatorforview: 'dismissCorrectionIndicatorForView',
+    forgetword: 'forgetWord',
+    guessesforword: 'guessesForWord',
+    guessesforwordrangeinstringlanguageinspelldocumentwithtag: 'guessesForWordRangeInStringLanguageInSpellDocumentWithTag',
+    haslearnedword: 'hasLearnedWord',
+    ignoredwordsinspelldocumentwithtag: 'ignoredWordsInSpellDocumentWithTag',
+    ignorewordinspelldocumentwithtag: 'ignoreWordInSpellDocumentWithTag',
+    isautomaticcapitalizationenabled: 'isAutomaticCapitalizationEnabled',
+    isautomaticdashsubstitutionenabled: 'isAutomaticDashSubstitutionEnabled',
+    isautomaticinlinepredictionenabled: 'isAutomaticInlinePredictionEnabled',
+    isautomaticperiodsubstitutionenabled: 'isAutomaticPeriodSubstitutionEnabled',
+    isautomaticquotesubstitutionenabled: 'isAutomaticQuoteSubstitutionEnabled',
+    isautomaticspellingcorrectionenabled: 'isAutomaticSpellingCorrectionEnabled',
+    isautomatictextcompletionenabled: 'isAutomaticTextCompletionEnabled',
+    isautomatictextreplacementenabled: 'isAutomaticTextReplacementEnabled',
+    language: 'language',
+    languageforwordrangeinstringorthography: 'languageForWordRangeInStringOrthography',
+    learnword: 'learnWord',
+    menuforresultstringoptionsatlocationinview: 'menuForResultStringOptionsAtLocationInView',
+    preventsautocorrectionbeforestringlanguage: 'preventsAutocorrectionBeforeStringLanguage',
+    recordresponsetocorrectionforwordlanguageinspelldocumentwithtag: 'recordResponseToCorrectionForWordLanguageInSpellDocumentWithTag',
+    requestcandidatesforselectedrangeinstringtypesoptionsinspelldocumentwithtagcompletionhandler: 'requestCandidatesForSelectedRangeInStringTypesOptionsInSpellDocumentWithTagCompletionHandler',
+    requestcheckingofstringrangetypesoptionsinspelldocumentwithtagcompletionhandler: 'requestCheckingOfStringRangeTypesOptionsInSpellDocumentWithTagCompletionHandler',
+    setignoredwordsinspelldocumentwithtag: 'setIgnoredWordsInSpellDocumentWithTag',
+    setlanguage: 'setLanguage',
+    setwordfieldstringvalue: 'setWordFieldStringValue',
+    sharedspellchecker: 'sharedSpellChecker',
+    sharedspellcheckerexists: 'sharedSpellCheckerExists',
+    showcorrectionindicatoroftypeprimarystringalternativestringsforstringinrectviewcompletionhandler: 'showCorrectionIndicatorOfTypePrimaryStringAlternativeStringsForStringInRectViewCompletionHandler',
+    showinlinepredictionforcandidatesclient: 'showInlinePredictionForCandidatesClient',
+    spellingpanel: 'spellingPanel',
+    substitutionspanel: 'substitutionsPanel',
+    substitutionspanelaccessoryviewcontroller: 'substitutionsPanelAccessoryViewController',
+    uniquespelldocumenttag: 'uniqueSpellDocumentTag',
+    unlearnword: 'unlearnWord',
+    updatepanels: 'updatePanels',
+    updatespellingpanelwithgrammarstringdetail: 'updateSpellingPanelWithGrammarStringDetail',
+    updatespellingpanelwithmisspelledword: 'updateSpellingPanelWithMisspelledWord',
+    userpreferredlanguages: 'userPreferredLanguages',
+    userquotesarrayforlanguage: 'userQuotesArrayForLanguage',
+    userreplacementsdictionary: 'userReplacementsDictionary',
+  }
 
+  // accessoryView: NSView;
+  // automaticallyIdentifiesLanguages: boolean;
+  // readonly availableLanguages: NSArray;
+  // isAutomaticCapitalizationEnabled: boolean;
+  // isAutomaticDashSubstitutionEnabled: boolean;
+  // isAutomaticInlinePredictionEnabled: boolean;
+  // isAutomaticPeriodSubstitutionEnabled: boolean;
+  // isAutomaticQuoteSubstitutionEnabled: boolean;
+  // isAutomaticSpellingCorrectionEnabled: boolean;
+  // isAutomaticTextCompletionEnabled: boolean;
+  // isAutomaticTextReplacementEnabled: boolean;
   // sharedSpellChecker: NSSpellChecker;
   // sharedSpellCheckerExists: boolean;
-  // readonly userReplacementsDictionary: NSDictionary;
   // readonly spellingPanel: NSPanel;
-  // accessoryView: NSView;
   // readonly substitutionsPanel: NSPanel;
   // substitutionsPanelAccessoryViewController: NSViewController;
-  // readonly availableLanguages: NSArray;
   // readonly userPreferredLanguages: NSArray;
-  // automaticallyIdentifiesLanguages: boolean;
-  // isAutomaticTextReplacementEnabled: boolean;
-  // isAutomaticSpellingCorrectionEnabled: boolean;
-  // isAutomaticQuoteSubstitutionEnabled: boolean;
-  // isAutomaticDashSubstitutionEnabled: boolean;
-  // isAutomaticCapitalizationEnabled: boolean;
-  // isAutomaticPeriodSubstitutionEnabled: boolean;
-  // isAutomaticTextCompletionEnabled: boolean;
-  // isAutomaticInlinePredictionEnabled: boolean;
+  // readonly userReplacementsDictionary: NSDictionary;
 }
 
 export class HTMLNSPopUpButtonElement extends HTMLNSButtonElement {
   // @ts-ignore
   readonly nativeObject = NSPopUpButton.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    additemswithtitles: 'addItemsWithTitles',
+    additemwithtitle: 'addItemWithTitle',
+    autoenablesitems: 'autoenablesItems',
+    indexofitem: 'indexOfItem',
+    indexofitemwithrepresentedobject: 'indexOfItemWithRepresentedObject',
+    indexofitemwithtag: 'indexOfItemWithTag',
+    indexofitemwithtargetandaction: 'indexOfItemWithTargetAndAction',
+    indexofitemwithtitle: 'indexOfItemWithTitle',
+    indexofselecteditem: 'indexOfSelectedItem',
+    initwithframepullsdown: 'initWithFramePullsDown',
+    insertitemwithtitleatindex: 'insertItemWithTitleAtIndex',
+    itemarray: 'itemArray',
+    itematindex: 'itemAtIndex',
+    itemtitleatindex: 'itemTitleAtIndex',
+    itemtitles: 'itemTitles',
+    itemwithtitle: 'itemWithTitle',
+    lastitem: 'lastItem',
+    menu: 'menu',
+    numberofitems: 'numberOfItems',
+    preferrededge: 'preferredEdge',
+    pullsdown: 'pullsDown',
+    removeallitems: 'removeAllItems',
+    removeitematindex: 'removeItemAtIndex',
+    removeitemwithtitle: 'removeItemWithTitle',
+    selecteditem: 'selectedItem',
+    selectedtag: 'selectedTag',
+    selectitem: 'selectItem',
+    selectitematindex: 'selectItemAtIndex',
+    selectitemwithtag: 'selectItemWithTag',
+    selectitemwithtitle: 'selectItemWithTitle',
+    settitle: 'setTitle',
+    synchronizetitleandselecteditem: 'synchronizeTitleAndSelectedItem',
+    titleofselecteditem: 'titleOfSelectedItem',
+  }
 
-  // menu: NSMenu;
-  // pullsDown: boolean;
   // autoenablesItems: boolean;
-  // preferredEdge: interop.Enum<typeof NSRectEdge>;
-  // readonly itemArray: NSArray;
-  // readonly numberOfItems: number;
-  // readonly lastItem: NSMenuItem;
-  // readonly selectedItem: NSMenuItem;
   // readonly indexOfSelectedItem: number;
-  // readonly selectedTag: number;
+  // readonly itemArray: NSArray;
   // readonly itemTitles: NSArray;
+  // readonly lastItem: NSMenuItem;
+  // menu: NSMenu;
+  // readonly numberOfItems: number;
+  // preferredEdge: interop.Enum<typeof NSRectEdge>;
+  // pullsDown: boolean;
+  // readonly selectedItem: NSMenuItem;
+  // readonly selectedTag: number;
   // readonly titleOfSelectedItem: NSString;
 }
 
 export class HTMLNSStatusBarButtonElement extends HTMLNSButtonElement {
   readonly nativeObject = NSStatusBarButton.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    appearsdisabled: 'appearsDisabled',
+  }
 
   // appearsDisabled: boolean;
 }
@@ -6404,31 +16424,65 @@ export class HTMLNSStatusBarButtonElement extends HTMLNSButtonElement {
 export class HTMLNSTextListElementElement extends HTMLNSTextParagraphElement {
   // @ts-ignore
   readonly nativeObject = NSTextListElement.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    attributedstring: 'attributedString',
+    childelements: 'childElements',
+    contents: 'contents',
+    initwithparentelementtextlistcontentsmarkerattributeschildelements: 'initWithParentElementTextListContentsMarkerAttributesChildElements',
+    markerattributes: 'markerAttributes',
+    parentelement: 'parentElement',
+    textlist: 'textList',
+    textlistelementwithchildelementstextlistnestinglevel: 'textListElementWithChildElementsTextListNestingLevel',
+    textlistelementwithcontentsmarkerattributestextlistchildelements: 'textListElementWithContentsMarkerAttributesTextListChildElements',
+  }
 
-  // readonly textList: NSTextList;
-  // readonly contents: NSAttributedString;
-  // readonly markerAttributes: NSDictionary;
   // readonly attributedString: NSAttributedString;
   // readonly childElements: NSArray;
+  // readonly contents: NSAttributedString;
+  // readonly markerAttributes: NSDictionary;
   // readonly parentElement: NSTextListElement;
+  // readonly textList: NSTextList;
 }
 
 export class HTMLNSPredicateEditorElement extends HTMLNSRuleEditorElement {
   readonly nativeObject = NSPredicateEditor.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    rowtemplates: 'rowTemplates',
+  }
 
 }
 
 export class HTMLNSColorPanelElement extends HTMLNSPanelElement {
   readonly nativeObject = NSColorPanel.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessoryview: 'accessoryView',
+    alpha: 'alpha',
+    attachcolorlist: 'attachColorList',
+    color: 'color',
+    detachcolorlist: 'detachColorList',
+    dragcolorwitheventfromview: 'dragColorWithEventFromView',
+    iscontinuous: 'isContinuous',
+    mode: 'mode',
+    setaction: 'setAction',
+    setpickermask: 'setPickerMask',
+    setpickermode: 'setPickerMode',
+    settarget: 'setTarget',
+    sharedcolorpanel: 'sharedColorPanel',
+    sharedcolorpanelexists: 'sharedColorPanelExists',
+    showsalpha: 'showsAlpha',
+  }
 
+  // accessoryView: NSView;
+  // readonly alpha: number;
+  // color: NSColor;
+  // isContinuous: boolean;
+  // mode: interop.Enum<typeof NSColorPanelMode>;
   // sharedColorPanel: NSColorPanel;
   // sharedColorPanelExists: boolean;
-  // accessoryView: NSView;
-  // isContinuous: boolean;
   // showsAlpha: boolean;
-  // mode: interop.Enum<typeof NSColorPanelMode>;
-  // color: NSColor;
-  // readonly alpha: number;
 }
 
 export class HTMLNSPathControlElement extends HTMLNSControlElement {
@@ -6436,15 +16490,34 @@ export class HTMLNSPathControlElement extends HTMLNSControlElement {
   get delegate(): NSPathControlDelegateImpl {
     return (this.nativeObject.delegate ??= NSPathControlDelegateImpl.new()) as NSPathControlDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    allowedtypes: 'allowedTypes',
+    backgroundcolor: 'backgroundColor',
+    clickedpathcomponentcell: 'clickedPathComponentCell',
+    clickedpathitem: 'clickedPathItem',
+    delegate: 'delegate',
+    doubleaction: 'doubleAction',
+    iseditable: 'isEditable',
+    menu: 'menu',
+    pathcomponentcells: 'pathComponentCells',
+    pathitems: 'pathItems',
+    pathstyle: 'pathStyle',
+    placeholderattributedstring: 'placeholderAttributedString',
+    placeholderstring: 'placeholderString',
+    setdraggingsourceoperationmaskforlocal: 'setDraggingSourceOperationMaskForLocal',
+    setpathcomponentcells: 'setPathComponentCells',
+    url: 'URL',
+  }
 
+  // backgroundColor: NSColor;
+  // readonly clickedPathItem: NSPathControlItem;
+  // doubleAction: string;
   // isEditable: boolean;
+  // menu: NSMenu;
+  // pathStyle: interop.Enum<typeof NSPathStyle>;
   // placeholderAttributedString: NSAttributedString;
   // URL: NSURL;
-  // doubleAction: string;
-  // pathStyle: interop.Enum<typeof NSPathStyle>;
-  // readonly clickedPathItem: NSPathControlItem;
-  // backgroundColor: NSColor;
-  // menu: NSMenu;
 
   set pathcontrolshoulddragitemwithpasteboard(value: (pathControl: NSPathControl, pathItem: NSPathControlItem, pasteboard: NSPasteboard) => boolean) {
     this.delegate.pathControlShouldDragItemWithPasteboard = value;
@@ -6471,14 +16544,39 @@ export class HTMLNSAnimationElement extends HTMLNSObjectElement {
   get delegate(): NSAnimationDelegateImpl {
     return (this.nativeObject.delegate ??= NSAnimationDelegateImpl.new()) as NSAnimationDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    addprogressmark: 'addProgressMark',
+    animationblockingmode: 'animationBlockingMode',
+    animationcurve: 'animationCurve',
+    clearstartanimation: 'clearStartAnimation',
+    clearstopanimation: 'clearStopAnimation',
+    copywithzone: 'copyWithZone',
+    currentprogress: 'currentProgress',
+    currentvalue: 'currentValue',
+    delegate: 'delegate',
+    duration: 'duration',
+    encodewithcoder: 'encodeWithCoder',
+    framerate: 'frameRate',
+    initwithcoder: 'initWithCoder',
+    initwithdurationanimationcurve: 'initWithDurationAnimationCurve',
+    isanimating: 'isAnimating',
+    progressmarks: 'progressMarks',
+    removeprogressmark: 'removeProgressMark',
+    runloopmodesforanimating: 'runLoopModesForAnimating',
+    startanimation: 'startAnimation',
+    startwhenanimationreachesprogress: 'startWhenAnimationReachesProgress',
+    stopanimation: 'stopAnimation',
+    stopwhenanimationreachesprogress: 'stopWhenAnimationReachesProgress',
+  }
 
-  // readonly isAnimating: boolean;
-  // currentProgress: number;
-  // duration: number;
   // animationBlockingMode: interop.Enum<typeof NSAnimationBlockingMode>;
-  // frameRate: number;
   // animationCurve: interop.Enum<typeof NSAnimationCurve>;
+  // currentProgress: number;
   // readonly currentValue: number;
+  // duration: number;
+  // frameRate: number;
+  // readonly isAnimating: boolean;
   // readonly runLoopModesForAnimating: NSArray;
 
   set animationshouldstart(value: (animation: NSAnimation) => boolean) {
@@ -6500,26 +16598,69 @@ export class HTMLNSAnimationElement extends HTMLNSObjectElement {
 
 export class HTMLNSViewAnimationElement extends HTMLNSAnimationElement {
   readonly nativeObject = NSViewAnimation.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    initwithviewanimations: 'initWithViewAnimations',
+    viewanimations: 'viewAnimations',
+  }
 
 }
 
 export class HTMLNSScrollerElement extends HTMLNSControlElement {
   readonly nativeObject = NSScroller.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    arrowsposition: 'arrowsPosition',
+    checkspaceforparts: 'checkSpaceForParts',
+    controlsize: 'controlSize',
+    controltint: 'controlTint',
+    drawarrowhighlight: 'drawArrowHighlight',
+    drawknob: 'drawKnob',
+    drawknobslotinrecthighlight: 'drawKnobSlotInRectHighlight',
+    drawparts: 'drawParts',
+    highlight: 'highlight',
+    hitpart: 'hitPart',
+    iscompatiblewithoverlayscrollers: 'isCompatibleWithOverlayScrollers',
+    knobproportion: 'knobProportion',
+    knobstyle: 'knobStyle',
+    preferredscrollerstyle: 'preferredScrollerStyle',
+    rectforpart: 'rectForPart',
+    scrollerstyle: 'scrollerStyle',
+    scrollerwidth: 'scrollerWidth',
+    scrollerwidthforcontrolsize: 'scrollerWidthForControlSize',
+    scrollerwidthforcontrolsizescrollerstyle: 'scrollerWidthForControlSizeScrollerStyle',
+    setfloatvalueknobproportion: 'setFloatValueKnobProportion',
+    testpart: 'testPart',
+    trackknob: 'trackKnob',
+    trackscrollbuttons: 'trackScrollButtons',
+    usableparts: 'usableParts',
+  }
 
+  // arrowsPosition: interop.Enum<typeof NSScrollArrowPosition>;
+  // controlSize: interop.Enum<typeof NSControlSize>;
+  // controlTint: interop.Enum<typeof NSControlTint>;
+  // readonly hitPart: interop.Enum<typeof NSScrollerPart>;
   // isCompatibleWithOverlayScrollers: boolean;
+  // knobProportion: number;
+  // knobStyle: interop.Enum<typeof NSScrollerKnobStyle>;
   // preferredScrollerStyle: interop.Enum<typeof NSScrollerStyle>;
   // scrollerStyle: interop.Enum<typeof NSScrollerStyle>;
-  // knobStyle: interop.Enum<typeof NSScrollerKnobStyle>;
   // readonly usableParts: interop.Enum<typeof NSUsableScrollerParts>;
-  // controlSize: interop.Enum<typeof NSControlSize>;
-  // readonly hitPart: interop.Enum<typeof NSScrollerPart>;
-  // knobProportion: number;
-  // arrowsPosition: interop.Enum<typeof NSScrollArrowPosition>;
-  // controlTint: interop.Enum<typeof NSControlTint>;
 }
 
 export class HTMLNSComboButtonElement extends HTMLNSControlElement {
   readonly nativeObject = NSComboButton.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    combobuttonwithimagemenutargetaction: 'comboButtonWithImageMenuTargetAction',
+    combobuttonwithtitleimagemenutargetaction: 'comboButtonWithTitleImageMenuTargetAction',
+    combobuttonwithtitlemenutargetaction: 'comboButtonWithTitleMenuTargetAction',
+    image: 'image',
+    imagescaling: 'imageScaling',
+    menu: 'menu',
+    style: 'style',
+    title: 'title',
+  }
 
   // image: NSImage;
   // imageScaling: interop.Enum<typeof NSImageScaling>;
@@ -6533,24 +16674,95 @@ export class HTMLNSOutlineViewElement extends HTMLNSTableViewElement {
   get delegate(): NSOutlineViewDelegateImpl {
     return (this.nativeObject.delegate ??= NSOutlineViewDelegateImpl.new()) as NSOutlineViewDelegateImpl;
   }
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    accessibilitycolumnheaderuielements: 'accessibilityColumnHeaderUIElements',
+    accessibilitycolumns: 'accessibilityColumns',
+    accessibilityframe: 'accessibilityFrame',
+    accessibilityheadergroup: 'accessibilityHeaderGroup',
+    accessibilityidentifier: 'accessibilityIdentifier',
+    accessibilitylabel: 'accessibilityLabel',
+    accessibilityparent: 'accessibilityParent',
+    accessibilityrowheaderuielements: 'accessibilityRowHeaderUIElements',
+    accessibilityrows: 'accessibilityRows',
+    accessibilityselectedcells: 'accessibilitySelectedCells',
+    accessibilityselectedcolumns: 'accessibilitySelectedColumns',
+    accessibilityselectedrows: 'accessibilitySelectedRows',
+    accessibilityvisiblecells: 'accessibilityVisibleCells',
+    accessibilityvisiblecolumns: 'accessibilityVisibleColumns',
+    accessibilityvisiblerows: 'accessibilityVisibleRows',
+    autorelease: 'autorelease',
+    autoresizesoutlinecolumn: 'autoresizesOutlineColumn',
+    autosaveexpandeditems: 'autosaveExpandedItems',
+    childindexforitem: 'childIndexForItem',
+    childofitem: 'childOfItem',
+    class: 'class',
+    collapseitem: 'collapseItem',
+    collapseitemcollapsechildren: 'collapseItemCollapseChildren',
+    conformstoprotocol: 'conformsToProtocol',
+    datasource: 'dataSource',
+    debugdescription: 'debugDescription',
+    delegate: 'delegate',
+    description: 'description',
+    expanditem: 'expandItem',
+    expanditemexpandchildren: 'expandItemExpandChildren',
+    frameofoutlinecellatrow: 'frameOfOutlineCellAtRow',
+    hash: 'hash',
+    indentationmarkerfollowscell: 'indentationMarkerFollowsCell',
+    indentationperlevel: 'indentationPerLevel',
+    insertitemsatindexesinparentwithanimation: 'insertItemsAtIndexesInParentWithAnimation',
+    isaccessibilityfocused: 'isAccessibilityFocused',
+    isequal: 'isEqual',
+    isexpandable: 'isExpandable',
+    isitemexpanded: 'isItemExpanded',
+    iskindofclass: 'isKindOfClass',
+    ismemberofclass: 'isMemberOfClass',
+    isproxy: 'isProxy',
+    itematrow: 'itemAtRow',
+    levelforitem: 'levelForItem',
+    levelforrow: 'levelForRow',
+    moveitematindexinparenttoindexinparent: 'moveItemAtIndexInParentToIndexInParent',
+    numberofchildrenofitem: 'numberOfChildrenOfItem',
+    outlinetablecolumn: 'outlineTableColumn',
+    parentforitem: 'parentForItem',
+    performselector: 'performSelector',
+    performselectorwithobject: 'performSelectorWithObject',
+    performselectorwithobjectwithobject: 'performSelectorWithObjectWithObject',
+    release: 'release',
+    reloaditem: 'reloadItem',
+    reloaditemreloadchildren: 'reloadItemReloadChildren',
+    removeitemsatindexesinparentwithanimation: 'removeItemsAtIndexesInParentWithAnimation',
+    respondstoselector: 'respondsToSelector',
+    retain: 'retain',
+    retaincount: 'retainCount',
+    rowforitem: 'rowForItem',
+    self: 'self',
+    setaccessibilityselectedrows: 'setAccessibilitySelectedRows',
+    setdropitemdropchildindex: 'setDropItemDropChildIndex',
+    shouldcollapseautoexpandeditemsfordeposited: 'shouldCollapseAutoExpandedItemsForDeposited',
+    stronglyreferencesitems: 'stronglyReferencesItems',
+    superclass: 'superclass',
+    userinterfacelayoutdirection: 'userInterfaceLayoutDirection',
+    zone: 'zone',
+  }
 
-  // dataSource: NSOutlineViewDataSource;
-  // outlineTableColumn: NSTableColumn;
-  // indentationPerLevel: number;
-  // indentationMarkerFollowsCell: boolean;
-  // autoresizesOutlineColumn: boolean;
-  // autosaveExpandedItems: boolean;
-  // userInterfaceLayoutDirection: interop.Enum<typeof NSUserInterfaceLayoutDirection>;
-  // stronglyReferencesItems: boolean;
   // accessibilityFrame: CGRect;
   // accessibilityParent: interop.Object;
-  // isAccessibilityFocused: boolean;
-  // readonly hash: number;
-  // readonly superclass: interop.Object;
-  // readonly isProxy: boolean;
-  // readonly zone: interop.Pointer;
-  // readonly description: NSString;
+  // autoresizesOutlineColumn: boolean;
+  // autosaveExpandedItems: boolean;
+  // dataSource: NSOutlineViewDataSource;
   // readonly debugDescription: NSString;
+  // readonly description: NSString;
+  // readonly hash: number;
+  // indentationMarkerFollowsCell: boolean;
+  // indentationPerLevel: number;
+  // isAccessibilityFocused: boolean;
+  // readonly isProxy: boolean;
+  // outlineTableColumn: NSTableColumn;
+  // stronglyReferencesItems: boolean;
+  // readonly superclass: interop.Object;
+  // userInterfaceLayoutDirection: interop.Enum<typeof NSUserInterfaceLayoutDirection>;
+  // readonly zone: interop.Pointer;
 
   set outlineviewviewfortablecolumnitem(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object) => NSView) {
     this.delegate.outlineViewViewForTableColumnItem = value;
@@ -6673,6 +16885,14 @@ export class HTMLNSOutlineViewElement extends HTMLNSTableViewElement {
 
 export class HTMLNSDraggingImageComponentElement extends HTMLNSObjectElement {
   readonly nativeObject = NSDraggingImageComponent.new();
+  protected static readonly attributesMap = {
+    ...super.attributesMap,
+    contents: 'contents',
+    draggingimagecomponentwithkey: 'draggingImageComponentWithKey',
+    frame: 'frame',
+    initwithkey: 'initWithKey',
+    key: 'key',
+  }
 
   // contents: interop.Object;
   // frame: CGRect;

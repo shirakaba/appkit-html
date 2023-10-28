@@ -158,6 +158,8 @@ function parseDeclaration(lines) {
     }
   }
 
+  // protected static readonly attributesMap: Record<string, string> = {};
+
   const processedClasses = [...sortClasses(classes, heredity)].map(
     ({ header, className, contents, footer, fields }) => {
       /** @type {{ [propName: string]: string; }} */
@@ -199,11 +201,31 @@ function parseDeclaration(lines) {
         }
       );
 
+      const fieldsSoFar = new Map();
+      const attributesMap =
+        fields
+          .sort((a, b) => {
+            const lowerA = a.name.toLowerCase();
+            const lowerB = b.name.toLowerCase();
+
+            return lowerB === lowerA ? 0 : lowerB < lowerA ? 1 : -1;
+          })
+          .reduce((acc, { name }) => {
+            if (fieldsSoFar.has(name)) {
+              return acc;
+            }
+            fieldsSoFar.set(name);
+
+            return `${acc}    ${name.toLowerCase()}: '${name}',\n`;
+          }, '  protected static readonly attributesMap = {\n    ...super.attributesMap,\n') +
+        '  }';
+
       return [
         header,
         [
           ...contents,
           ...delegateLazyInits,
+          attributesMap,
           '',
           ...fields
             .map((field) => {
@@ -278,6 +300,8 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    * The native object from the Obj-C runtime that this HTML Element wraps.
    */
   abstract readonly nativeObject: NativeObject;
+
+  protected static readonly attributesMap: Record<string, string> = {};
 }
 `.trim();
 
