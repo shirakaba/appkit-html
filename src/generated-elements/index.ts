@@ -2699,7 +2699,6 @@ export class HTMLNSTouchBarItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCandidateListTouchBarItemElement extends HTMLNSTouchBarItemElement {
-
   // @ts-ignore
   readonly nativeObject = NSCandidateListTouchBarItem.new();
   get delegate(): NSCandidateListTouchBarItemDelegateImpl {
@@ -2760,7 +2759,6 @@ export class HTMLNSTextFieldCellElement extends HTMLNSActionCellElement {
 }
 
 export class HTMLNSSliderCellElement extends HTMLNSActionCellElement {
-
   // @ts-ignore
   readonly nativeObject = NSSliderCell.new();
 
@@ -2829,7 +2827,6 @@ export class HTMLNSSharingServicePickerToolbarItemElement extends HTMLNSToolbarI
 }
 
 export class HTMLNSButtonTouchBarItemElement extends HTMLNSTouchBarItemElement {
-
   // @ts-ignore
   readonly nativeObject = NSButtonTouchBarItem.new();
 
@@ -2891,7 +2888,6 @@ export class HTMLNSStepperCellElement extends HTMLNSActionCellElement {
 }
 
 export class HTMLNSPopoverTouchBarItemElement extends HTMLNSTouchBarItemElement {
-
   // @ts-ignore
   readonly nativeObject = NSPopoverTouchBarItem.new();
 
@@ -2903,7 +2899,6 @@ export class HTMLNSPopoverTouchBarItemElement extends HTMLNSTouchBarItemElement 
 }
 
 export class HTMLNSPersistentDocumentElement extends HTMLNSDocumentElement {
-
   // @ts-ignore
   readonly nativeObject = NSPersistentDocument.new();
 
@@ -2912,7 +2907,6 @@ export class HTMLNSPersistentDocumentElement extends HTMLNSDocumentElement {
 }
 
 export class HTMLNSColorPickerTouchBarItemElement extends HTMLNSTouchBarItemElement {
-
   // @ts-ignore
   readonly nativeObject = NSColorPickerTouchBarItem.new();
 
@@ -2955,7 +2949,6 @@ export class HTMLNSBitmapImageRepElement extends HTMLNSImageRepElement {
 }
 
 export class HTMLNSMutableFontCollectionElement extends HTMLNSFontCollectionElement {
-
   // @ts-ignore
   readonly nativeObject = NSMutableFontCollection.new();
 
@@ -3082,7 +3075,6 @@ export class HTMLNSCollectionViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSButtonCellElement extends HTMLNSActionCellElement {
-
   // @ts-ignore
   readonly nativeObject = NSButtonCell.new();
 
@@ -3125,7 +3117,6 @@ export class HTMLNSBoxElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSScrollViewElement extends HTMLNSViewElement {
-
   // @ts-ignore
   readonly nativeObject = NSScrollView.new();
 
@@ -3433,7 +3424,6 @@ export class HTMLNSInputServerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSFormCellElement extends HTMLNSActionCellElement {
-
   // @ts-ignore
   readonly nativeObject = NSFormCell.new();
 
@@ -3526,7 +3516,6 @@ export class HTMLNSUserInterfaceCompressionOptionsElement extends HTMLNSObjectEl
 }
 
 export class HTMLNSTextAttachmentCellElement extends HTMLNSCellElement {
-
   // @ts-ignore
   readonly nativeObject = NSTextAttachmentCell.new();
 
@@ -3820,7 +3809,6 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
 }
 
 export class HTMLNSCustomTouchBarItemElement extends HTMLNSTouchBarItemElement {
-
   // @ts-ignore
   readonly nativeObject = NSCustomTouchBarItem.new();
 
@@ -3933,7 +3921,6 @@ export class HTMLNSDocumentControllerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSStepperTouchBarItemElement extends HTMLNSTouchBarItemElement {
-
   // @ts-ignore
   readonly nativeObject = NSStepperTouchBarItem.new();
 
@@ -4064,7 +4051,6 @@ export class HTMLNSPathControlItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSSliderTouchBarItemElement extends HTMLNSTouchBarItemElement {
-
   // @ts-ignore
   readonly nativeObject = NSSliderTouchBarItem.new();
 
@@ -4086,7 +4072,6 @@ export class HTMLNSTableHeaderCellElement extends HTMLNSTextFieldCellElement {
 }
 
 export class HTMLNSMenuItemCellElement extends HTMLNSButtonCellElement {
-
   // @ts-ignore
   readonly nativeObject = NSMenuItemCell.new();
 
@@ -4143,7 +4128,6 @@ export class HTMLNSSearchToolbarItemElement extends HTMLNSToolbarItemElement {
 }
 
 export class HTMLNSPickerTouchBarItemElement extends HTMLNSTouchBarItemElement {
-
   // @ts-ignore
   readonly nativeObject = NSPickerTouchBarItem.new();
 
@@ -4333,7 +4317,6 @@ export class HTMLNSPopUpButtonCellElement extends HTMLNSMenuItemCellElement {
 }
 
 export class HTMLNSTextElement extends HTMLNSViewElement {
-
   // @ts-ignore
   readonly nativeObject = NSText.new();
   get delegate(): NSTextDelegateImpl {
@@ -4441,7 +4424,6 @@ export class HTMLNSOpenGLContextElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSProgressIndicatorElement extends HTMLNSViewElement {
-
   // @ts-ignore
   readonly nativeObject = NSProgressIndicator.new();
 
@@ -4524,7 +4506,6 @@ export class HTMLNSSpeechSynthesizerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSMutableParagraphStyleElement extends HTMLNSParagraphStyleElement {
-
   // @ts-ignore
   readonly nativeObject = NSMutableParagraphStyle.new();
 
@@ -4575,7 +4556,6 @@ export class HTMLNSCollectionLayoutSectionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSGroupTouchBarItemElement extends HTMLNSTouchBarItemElement {
-
   // @ts-ignore
   readonly nativeObject = NSGroupTouchBarItem.new();
 
@@ -4742,7 +4722,6 @@ export class HTMLNSTextContainerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPanelElement extends HTMLNSWindowElement {
-
   // @ts-ignore
   readonly nativeObject = NSPanel.new();
 
@@ -4824,7 +4803,6 @@ export class HTMLNSCollectionViewItemElement extends HTMLNSViewControllerElement
 }
 
 export class HTMLNSDictionaryControllerElement extends HTMLNSArrayControllerElement {
-
   // @ts-ignore
   readonly nativeObject = NSDictionaryController.new();
 
@@ -4832,7 +4810,6 @@ export class HTMLNSDictionaryControllerElement extends HTMLNSArrayControllerElem
 }
 
 export class HTMLNSSavePanelElement extends HTMLNSPanelElement {
-
   // @ts-ignore
   readonly nativeObject = NSSavePanel.new();
   get delegate(): NSOpenSavePanelDelegateImpl {
@@ -4892,7 +4869,6 @@ export class HTMLNSSplitViewControllerElement extends HTMLNSViewControllerElemen
 }
 
 export class HTMLNSFontPanelElement extends HTMLNSPanelElement {
-
   // @ts-ignore
   readonly nativeObject = NSFontPanel.new();
 
@@ -4982,7 +4958,6 @@ export class HTMLNSScrubberElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSControlElement extends HTMLNSViewElement {
-
   // @ts-ignore
   readonly nativeObject = NSControl.new();
 
@@ -5248,7 +5223,6 @@ export class HTMLNSGraphicsContextElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionLayoutGroupElement extends HTMLNSCollectionLayoutItemElement {
-
   // @ts-ignore
   readonly nativeObject = NSCollectionLayoutGroup.new();
 
@@ -5455,7 +5429,6 @@ export class HTMLNSStepperElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSBrowserElement extends HTMLNSControlElement {
-
   // @ts-ignore
   readonly nativeObject = NSBrowser.new();
   get delegate(): NSBrowserDelegateImpl {
@@ -5600,7 +5573,6 @@ export class HTMLNSBrowserElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSTextFieldElement extends HTMLNSControlElement {
-
   // @ts-ignore
   readonly nativeObject = NSTextField.new();
   get delegate(): NSTextFieldDelegateImpl {
@@ -5702,7 +5674,6 @@ export class HTMLNSSecureTextFieldElement extends HTMLNSTextFieldElement {
 }
 
 export class HTMLNSTextViewElement extends HTMLNSTextElement {
-
   // @ts-ignore
   readonly nativeObject = NSTextView.new();
   get delegate(): NSTextViewDelegateImpl {
@@ -5919,7 +5890,6 @@ export class HTMLNSSharingServicePickerTouchBarItemElement extends HTMLNSTouchBa
 }
 
 export class HTMLNSTextContentStorageElement extends HTMLNSTextContentManagerElement {
-
   // @ts-ignore
   readonly nativeObject = NSTextContentStorage.new();
   get delegate(): NSTextContentStorageDelegateImpl {
@@ -5941,7 +5911,6 @@ export class HTMLNSTextContentStorageElement extends HTMLNSTextContentManagerEle
 }
 
 export class HTMLNSSwitchElement extends HTMLNSControlElement {
-
   // @ts-ignore
   readonly nativeObject = NSSwitch.new();
 
@@ -6021,7 +5990,6 @@ export class HTMLNSPageControllerElement extends HTMLNSViewControllerElement {
 }
 
 export class HTMLNSComboBoxElement extends HTMLNSTextFieldElement {
-
   // @ts-ignore
   readonly nativeObject = NSComboBox.new();
   get delegate(): NSComboBoxDelegateImpl {
@@ -6081,7 +6049,6 @@ export class HTMLNSSliderElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSSearchFieldElement extends HTMLNSTextFieldElement {
-
   // @ts-ignore
   readonly nativeObject = NSSearchField.new();
   get delegate(): NSSearchFieldDelegateImpl {
@@ -6106,7 +6073,6 @@ export class HTMLNSSearchFieldElement extends HTMLNSTextFieldElement {
 }
 
 export class HTMLNSTokenFieldElement extends HTMLNSTextFieldElement {
-
   // @ts-ignore
   readonly nativeObject = NSTokenField.new();
   get delegate(): NSTokenFieldDelegateImpl {
@@ -6152,7 +6118,6 @@ export class HTMLNSTokenFieldElement extends HTMLNSTextFieldElement {
 }
 
 export class HTMLNSTableViewElement extends HTMLNSControlElement {
-
   // @ts-ignore
   readonly nativeObject = NSTableView.new();
   get delegate(): NSTableViewDelegateImpl {
@@ -6317,7 +6282,6 @@ export class HTMLNSScrubberTextItemViewElement extends HTMLNSScrubberItemViewEle
 }
 
 export class HTMLNSButtonElement extends HTMLNSControlElement {
-
   // @ts-ignore
   readonly nativeObject = NSButton.new();
 
@@ -6414,7 +6378,6 @@ export class HTMLNSSpellCheckerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPopUpButtonElement extends HTMLNSButtonElement {
-
   // @ts-ignore
   readonly nativeObject = NSPopUpButton.new();
 
@@ -6439,7 +6402,6 @@ export class HTMLNSStatusBarButtonElement extends HTMLNSButtonElement {
 }
 
 export class HTMLNSTextListElementElement extends HTMLNSTextParagraphElement {
-
   // @ts-ignore
   readonly nativeObject = NSTextListElement.new();
 
@@ -6566,7 +6528,6 @@ export class HTMLNSComboButtonElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSOutlineViewElement extends HTMLNSTableViewElement {
-
   // @ts-ignore
   readonly nativeObject = NSOutlineView.new();
   get delegate(): NSOutlineViewDelegateImpl {

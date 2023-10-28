@@ -367,7 +367,7 @@ function parseViewClassHeader(line, tsIgnoring) {
      * methods with an incompatible signature), so we have to resort to ts-ignore
      * sometimes when TS insists that a class is incompatible with its superclass.
      */
-    ...(tsIgnoring ? ['\n  // @ts-ignore'] : []),
+    ...(tsIgnoring ? ['  // @ts-ignore'] : []),
     `  readonly nativeObject = ${nativeObject};`,
   ];
   const footer = '}';
