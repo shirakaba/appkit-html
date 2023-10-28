@@ -274,23 +274,32 @@ function parseDeclaration(lines) {
 
   const HTMLNSObjectElement = `
 export abstract class HTMLNativeObjectElement extends HTMLElement {
-  protected static getAttributesRecord(){
+  /**
+   * Build a record of lowercased native attributes to their original camelcase.
+   */
+  protected static getOwnNativeAttributes(){
     return Object.getOwnPropertyNames(this.prototype)
     .reduce<Record<string, string>>((acc, prop) => {
       acc[prop.toLowerCase()] = prop;
       return acc;
     }, {});
   }
-  protected static readonly attributes = this.getAttributesRecord();
+  /**
+   * A record of lowercased native attributes to their original camelcase.
+   */
+  protected static readonly nativeAttributes = this.getOwnNativeAttributes();
+  /**
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#responding_to_attribute_changes
+   */
+  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
 
   attributeChangedCallback(name: string, oldValue: any, newValue: any): void {
     // TODO: should this parse string values to rich values?
-    // TODO: should attributes like backgroundColor be relegated to CSS
+    // TODO: should attributes like backgroundColor be relegated to CSS?
 
-    const attributes = (
-      Object.getPrototypeOf(this).constructor as typeof HTMLNativeObjectElement
-    ).attributes;
-    const nativeProp = attributes[name.toLowerCase()];
+    const callerClass = Object.getPrototypeOf(this).constructor as typeof HTMLNativeObjectElement;
+    const nativeAttributes = callerClass.nativeAttributes;
+    const nativeProp = nativeAttributes[name.toLowerCase()];
     if(nativeProp){
       // FIXME: marshal string to rich values where possible
       (this as any)[nativeProp] = newValue;
@@ -391,7 +400,8 @@ function parseViewClassHeader(line, tsIgnoring) {
 
   const header = `export class HTML${className}Element extends HTML${superclass}Element {`;
   const contents = [
-    '  static readonly attributes = { ...super.attributes, ...this.getAttributesRecord() };',
+    '  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };',
+    '  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);',
     /**
      * Obj-C can express some relationships that TS can't (e.g. override some
      * methods with an incompatible signature), so we have to resort to ts-ignore
