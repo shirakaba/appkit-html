@@ -118,7 +118,7 @@ function parseDeclaration(lines) {
           continue;
         }
 
-        if (isDelegateField(field)) {
+        if (field.type === 'property' && isDelegateField(field)) {
           const record = delegatesByClass[current.className] ?? {};
           record[field.name] = field.value;
           delegatesByClass[current.className] = record;
@@ -187,7 +187,7 @@ function parseDeclaration(lines) {
               if (field.type === 'method') {
                 return [
                   // prettier-ignore
-                  `  set ${field.name.toLowerCase()}(value: (${field.args}) => ${field.returnType}) {`,
+                  `  set ${field.name}(value: (${field.args}) => ${field.returnType}) {`,
                   `    this.${propName}.${field.name} = value;`,
                   '  }',
                 ].join('\n');
@@ -199,6 +199,20 @@ function parseDeclaration(lines) {
         }
       );
 
+      /**
+       * Attribute names that are reserved (generally because they clash with
+       * HTML ones).
+       */
+      const reservedAttributes = new Set([
+        'attributes',
+        'className',
+        'childNodes',
+        'parentNode',
+        'parentElement',
+        'style',
+        'title',
+      ]);
+
       return [
         header,
         [
@@ -207,17 +221,45 @@ function parseDeclaration(lines) {
           '',
           ...fields
             .map((field) => {
-              // We'll not expose this as an attribute as we're managing it
-              // ourselves.
-              if (isDelegateField(field)) {
+              if (reservedAttributes.has(field.name)) {
                 return null;
               }
 
+              // We'll not expose this as an attribute as we're managing it
+              // ourselves.
               if (field.type === 'property') {
-                return `  // ${field.readonly ? 'readonly ' : ''}${
-                  field.name
-                }: ${field.value};`;
+                if (isDelegateField(field)) {
+                  return null;
+                }
+
+                // Better for users to inspect any static properties by directly
+                // accessing the native class itself.
+                if (field.isStatic) {
+                  return null;
+                }
+
+                if (field.isReadonly) {
+                  return `  get ${field.name}(): ${field.value} { return this.nativeObject.${field.name}; }`;
+                }
+
+                return [
+                  `  get ${field.name}(): ${field.value} { return this.nativeObject.${field.name}; }`,
+                  `  set ${field.name}(value: ${field.value}) { this.nativeObject.${field.name} = value; }`,
+                ].join('\n');
               }
+
+              if (field.type === 'getter') {
+                return `  get ${field.name}(): ${field.returnType} { return this.nativeObject.${field.name}; }`;
+              }
+
+              if (field.type === 'setter') {
+                // fields.args always uses the name 'value' in practice.
+                return `  set ${field.name}(${field.args}) { this.nativeObject.${field.name} = value; }`;
+              }
+
+              // TODO: Should we expose methods? Given the size of the generated
+              // file, holding back for now.
+
               return null;
             })
             .filter(Boolean),
@@ -459,12 +501,14 @@ function parseField(line) {
     case ': ':
     case ': (': {
       const name = prelude.split(' ').slice(-1)[0];
-      const readonly = prelude.startsWith('readonly ');
+      const isStatic = prelude.startsWith('static');
+      const isReadonly = prelude.match(/^(static )?readonly /);
+
       const value = line
         .slice(fullMatch.length - (discriminator === ': (' ? '('.length : 0))
         .slice(0, -';'.length);
 
-      return { type: 'property', readonly, name, value };
+      return { type: 'property', isStatic, isReadonly, name, value };
     }
     // Methods
     case '?(':
@@ -541,18 +585,13 @@ function parseField(line) {
 }
 
 /**
- * @param {Field} field
- * @returns {field is PropertyField}
+ * @param {PropertyField} field
  */
 function isDelegateField(field) {
-  return (
-    field.type === 'property' &&
-    /[dD]elegate$/.test(field.name) &&
-    /[dD]elegate$/.test(field.value)
-  );
+  return /[dD]elegate$/.test(field.name) && /[dD]elegate$/.test(field.value);
 }
 
-/** @typedef {{ type: 'property'; name: string; readonly: boolean; value: string; }} PropertyField */
+/** @typedef {{ type: 'property'; name: string; isStatic: boolean; isReadonly: boolean; value: string; }} PropertyField */
 /** @typedef {{ type: 'getter'; name: string; args: string; returnType: string; }} GetterField */
 /** @typedef {{ type: 'setter'; name: string; args: string; }} SetterField */
 /** @typedef {{ type: 'method'; name: string; args: string; optional: boolean; returnType: string; }} MethodField */
