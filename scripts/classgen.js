@@ -202,6 +202,14 @@ function parseDeclaration(lines) {
       );
 
       const fieldsSoFar = new Map();
+      let superclassName = heredity.get(className);
+      while (superclassName) {
+        for (const { name } of classesRecord[superclassName]?.fields ?? []) {
+          fieldsSoFar.set(name);
+        }
+        superclassName = heredity.get(superclassName);
+      }
+
       const attributesMap =
         fields
           .sort((a, b) => {
