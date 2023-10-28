@@ -6818,8 +6818,6 @@ export class NSStackViewDelegateImpl extends NSObject implements NSStackViewDele
 
 export class NSViewLayerContentScaleDelegateImpl extends NSObject implements NSViewLayerContentScaleDelegate {
   static ObjCProtocols = [NSViewLayerContentScaleDelegate];
-
-  layerShouldInheritContentsScaleFromWindow?(layer: CALayer, newScale: number, window: NSWindow): boolean;
 }
 
 export class NSTextContentStorageDelegateImpl extends NSObject implements NSTextContentStorageDelegate {
@@ -6947,9 +6945,6 @@ export class NSTextStorageDelegateImpl extends NSObject implements NSTextStorage
 export class NSControlTextEditingDelegateImpl extends NSObject implements NSControlTextEditingDelegate {
   static ObjCProtocols = [NSControlTextEditingDelegate];
 
-  controlTextDidBeginEditing?(obj: NSNotification): void;
-  controlTextDidEndEditing?(obj: NSNotification): void;
-  controlTextDidChange?(obj: NSNotification): void;
   controlTextShouldBeginEditing?(control: NSControl, fieldEditor: NSText): boolean;
   controlTextShouldEndEditing?(control: NSControl, fieldEditor: NSText): boolean;
   controlDidFailToFormatStringErrorDescription?(control: NSControl, string: NSString | string, error: NSString | string | null): boolean;
@@ -7282,7 +7277,6 @@ export class NSApplicationDelegateImpl extends NSObject implements NSApplication
   applicationDidFailToContinueUserActivityWithTypeError?(application: NSApplication, userActivityType: NSString | string, error: NSError): void;
   applicationDidUpdateUserActivity?(application: NSApplication, userActivity: NSUserActivity): void;
   applicationUserDidAcceptCloudKitShareWithMetadata?(application: NSApplication, metadata: CKShareMetadata): void;
-  applicationDelegateHandlesKey?(sender: NSApplication, key: NSString | string): boolean;
   applicationShouldAutomaticallyLocalizeKeyEquivalents?(application: NSApplication): boolean;
   applicationWillFinishLaunching?(notification: NSNotification): void;
   applicationDidFinishLaunching?(notification: NSNotification): void;

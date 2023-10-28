@@ -59,6 +59,8 @@ function parseDeclaration(lines) {
   const delegates = [];
   /** @type {{ [delegateName: string]: DelegateMeta & { fields: Array<Field>> } }} */
   const delegatesRecord = {};
+  /** @type {{ [className: string]: ClassMeta & { fields: Array<Field>> } }} */
+  const classesRecord = {};
   /**
    * key: class name
    * value: a map of delegate prop names to their corresponding classes.
@@ -140,7 +142,9 @@ function parseDeclaration(lines) {
       inside = 'class';
       const { className, superclass } = viewClass;
       heredity.set(className, superclass);
-      classes.push({ ...viewClass, fields: [] });
+      const value = { ...viewClass, fields: [] };
+      classesRecord[viewClass.className] = value;
+      classes.push(value);
       continue;
     }
 
@@ -224,22 +228,28 @@ function parseDeclaration(lines) {
     }
   );
 
+  const nsObjectImplementedMethods = new Set(
+    classesRecord.NSObject.fields
+      .filter(({ type, optional }) => type === 'method' && !optional)
+      .map(({ name }) => name)
+  );
+
   const processedDelegates = delegates.map(
     ({ implHeader, implContents, implFooter, fields, delegateName }) => {
       const processedFields = fields
         .map((field) => {
           if (field.type === 'method') {
+            // Has already been implemented in our ancestor, so no need to mark
+            // as optional or even mention it.
+            if (nsObjectImplementedMethods.has(field.name)) {
+              return null;
+            }
+
             // Implied by `implements WhateverDelegate`.
             if (field.optional) {
               return `  ${field.name}?(${field.args}): ${field.returnType};`;
             }
 
-            // Indicate that field will be assigned just-in-time.
-            // return [
-            //   `  ${field.name}!: (${field.args}) => ${field.returnType} = {`,
-            //   `    throw new Error("Please provide implementation for ${delegateName}.prototype.${field.name}.");`,
-            //   '  }',
-            // ].join('\n');
             return [
               `  ${field.name}(${field.args}): ${field.returnType} {`,
               `    throw new Error("Please provide implementation for: ${delegateName} > ${field.name}");`,
