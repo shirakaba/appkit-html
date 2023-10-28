@@ -152,30 +152,18 @@ function parseDeclaration(lines) {
       /** @type {{ [propName: string]: string; }} */
       const delegatesByClassValue = delegatesByClass[className] ?? {};
 
-      // TODO: See NSRuleEditorDelegate for a delegate with mandatory members
-      const delegates = Object.keys(delegatesByClassValue).map((propName) =>
-        [
-          `    this.${propName} = ${delegatesByClassValue[propName]}Impl.new();`,
-          `    this.nativeObject.${propName} = this.${propName};`,
-        ].join('\n')
+      const delegateLazyInits = Object.keys(delegatesByClassValue).map(
+        (propName) => {
+          const impl = `${delegatesByClassValue[propName]}Impl`;
+          return [
+            `  get ${propName}(): ${impl} {`,
+            `    return (this.nativeObject.${propName} ??= ${impl}.new()) as ${impl};`,
+            '  }',
+          ].join('\n');
+        }
       );
 
-      const ctor = delegates.length
-        ? [
-            ...Object.keys(delegatesByClassValue).map(
-              (propName) =>
-                `  ${propName}?: ${delegatesByClassValue[propName]}Impl;`
-            ),
-            '',
-            '  constructor(){',
-            '    super();',
-            '',
-            ...delegates,
-            '  }',
-          ]
-        : [];
-
-      const dom0EventHandlers = Object.keys(delegatesByClassValue).flatMap(
+      const delegateMethods = Object.keys(delegatesByClassValue).flatMap(
         (propName) => {
           const delegateName = delegatesByClassValue[propName];
           const delegateMeta = delegatesRecord[delegateName];
@@ -186,9 +174,12 @@ function parseDeclaration(lines) {
           return delegateMeta.fields
             .map((field) => {
               if (field.type === 'method') {
-                return `  declare on${field.name.toLowerCase()}: (evt: CustomEvent<[${
-                  field.args
-                }]>) => void | null;`;
+                return [
+                  // prettier-ignore
+                  `  set ${field.name.toLowerCase()}(value: (${field.args}) => ${field.returnType}) {`,
+                  `    this.${propName}.${field.name} = value;`,
+                  '  }',
+                ].join('\n');
               }
 
               return '';
@@ -201,7 +192,7 @@ function parseDeclaration(lines) {
         header,
         [
           ...contents,
-          ...ctor,
+          ...delegateLazyInits,
           '',
           ...fields
             .map((field) => {
@@ -220,7 +211,7 @@ function parseDeclaration(lines) {
             })
             .filter(Boolean),
         ].join('\n'),
-        ...(dom0EventHandlers.length ? ['', ...dom0EventHandlers] : []),
+        ...(delegateMethods.length ? ['', ...delegateMethods] : []),
         footer,
       ].join('\n');
     }
@@ -233,7 +224,7 @@ function parseDeclaration(lines) {
           if (field.type === 'method') {
             // Implied by `implements WhateverDelegate`.
             if (field.optional) {
-              return null;
+              return `  ${field.name}?(${field.args}): ${field.returnType};`;
             }
 
             // Indicate that field will be assigned just-in-time.
@@ -598,6 +589,7 @@ function parseDelegateHeader(line) {
   const impl = `${delegateName}Impl`;
 
   const implHeader = `export class ${impl} extends NSObject implements ${delegateName} {`;
+  // TODO: lazy-init protocol conformance (once supported)
   const implContents = [`  static ObjCProtocols = [${delegateName}];`];
   const implFooter = '}';
 

@@ -433,19 +433,16 @@ export class HTMLNSStatusItemElement extends HTMLNSObjectElement {
 
 export class HTMLNSSpeechRecognizerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSSpeechRecognizer.new();
-  delegate?: NSSpeechRecognizerDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSSpeechRecognizerDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSSpeechRecognizerDelegateImpl {
+    return (this.nativeObject.delegate ??= NSSpeechRecognizerDelegateImpl.new()) as NSSpeechRecognizerDelegateImpl;
   }
 
   // listensInForegroundOnly: boolean;
   // blocksOtherRecognizers: boolean;
 
-  declare onspeechrecognizerdidrecognizecommand: (evt: CustomEvent<[sender: NSSpeechRecognizer, command: NSString | string]>) => void | null;
+  set speechrecognizerdidrecognizecommand(value: (sender: NSSpeechRecognizer, command: NSString | string) => void) {
+    this.delegate.speechRecognizerDidRecognizeCommand = value;
+  }
 }
 
 export class HTMLNSCollectionLayoutGroupCustomItemElement extends HTMLNSObjectElement {
@@ -692,20 +689,21 @@ export class HTMLNSCollectionLayoutSizeElement extends HTMLNSObjectElement {
 
 export class HTMLNSSharingServicePickerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSSharingServicePicker.new();
-  delegate?: NSSharingServicePickerDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSSharingServicePickerDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSSharingServicePickerDelegateImpl {
+    return (this.nativeObject.delegate ??= NSSharingServicePickerDelegateImpl.new()) as NSSharingServicePickerDelegateImpl;
   }
 
   // readonly standardShareMenuItem: NSMenuItem;
 
-  declare onsharingservicepickersharingservicesforitemsproposedsharingservices: (evt: CustomEvent<[sharingServicePicker: NSSharingServicePicker, items: NSArray | unknown[], proposedServices: NSArray | unknown[]]>) => void | null;
-  declare onsharingservicepickerdelegateforsharingservice: (evt: CustomEvent<[sharingServicePicker: NSSharingServicePicker, sharingService: NSSharingService]>) => void | null;
-  declare onsharingservicepickerdidchoosesharingservice: (evt: CustomEvent<[sharingServicePicker: NSSharingServicePicker, service: NSSharingService | null]>) => void | null;
+  set sharingservicepickersharingservicesforitemsproposedsharingservices(value: (sharingServicePicker: NSSharingServicePicker, items: NSArray | unknown[], proposedServices: NSArray | unknown[]) => NSArray) {
+    this.delegate.sharingServicePickerSharingServicesForItemsProposedSharingServices = value;
+  }
+  set sharingservicepickerdelegateforsharingservice(value: (sharingServicePicker: NSSharingServicePicker, sharingService: NSSharingService) => NSSharingServiceDelegate) {
+    this.delegate.sharingServicePickerDelegateForSharingService = value;
+  }
+  set sharingservicepickerdidchoosesharingservice(value: (sharingServicePicker: NSSharingServicePicker, service: NSSharingService | null) => void) {
+    this.delegate.sharingServicePickerDidChooseSharingService = value;
+  }
 }
 
 export class HTMLNSCollectionViewCompositionalLayoutConfigurationElement extends HTMLNSObjectElement {
@@ -737,13 +735,8 @@ export class HTMLNSStoryboardSegueElement extends HTMLNSObjectElement {
 
 export class HTMLNSTouchBarElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTouchBar.new();
-  delegate?: NSTouchBarDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSTouchBarDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSTouchBarDelegateImpl {
+    return (this.nativeObject.delegate ??= NSTouchBarDelegateImpl.new()) as NSTouchBarDelegateImpl;
   }
 
   // readonly itemIdentifiers: NSArray;
@@ -751,7 +744,9 @@ export class HTMLNSTouchBarElement extends HTMLNSObjectElement {
   // readonly isVisible: boolean;
   // isAutomaticCustomizeTouchBarMenuItemEnabled: boolean;
 
-  declare ontouchbarmakeitemforidentifier: (evt: CustomEvent<[touchBar: NSTouchBar, identifier: NSString | string]>) => void | null;
+  set touchbarmakeitemforidentifier(value: (touchBar: NSTouchBar, identifier: NSString | string) => NSTouchBarItem) {
+    this.delegate.touchBarMakeItemForIdentifier = value;
+  }
 }
 
 export class HTMLNSActionCellElement extends HTMLNSCellElement {
@@ -1110,13 +1105,8 @@ export class HTMLNSPasteboardElement extends HTMLNSObjectElement {
 
 export class HTMLNSWindowElement extends HTMLNSResponderElement {
   readonly nativeObject = NSWindow.new();
-  delegate?: NSWindowDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSWindowDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSWindowDelegateImpl {
+    return (this.nativeObject.delegate ??= NSWindowDelegateImpl.new()) as NSWindowDelegateImpl;
   }
 
   // defaultDepthLimit: interop.Enum<typeof NSWindowDepth>;
@@ -1318,58 +1308,162 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
   // accessibilityMinimizeButton: interop.Object;
   // isAccessibilityMinimized: boolean;
 
-  declare onwindowshouldclose: (evt: CustomEvent<[sender: NSWindow]>) => void | null;
-  declare onwindowwillreturnfieldeditortoobject: (evt: CustomEvent<[sender: NSWindow, client: interop.Object | null]>) => void | null;
-  declare onwindowwillresizetosize: (evt: CustomEvent<[sender: NSWindow, frameSize: CGSize]>) => void | null;
-  declare onwindowwillusestandardframedefaultframe: (evt: CustomEvent<[window: NSWindow, newFrame: CGRect]>) => void | null;
-  declare onwindowshouldzoomtoframe: (evt: CustomEvent<[window: NSWindow, newFrame: CGRect]>) => void | null;
-  declare onwindowwillreturnundomanager: (evt: CustomEvent<[window: NSWindow]>) => void | null;
-  declare onwindowwillpositionsheetusingrect: (evt: CustomEvent<[window: NSWindow, sheet: NSWindow, rect: CGRect]>) => void | null;
-  declare onwindowshouldpopupdocumentpathmenu: (evt: CustomEvent<[window: NSWindow, menu: NSMenu]>) => void | null;
-  declare onwindowshoulddragdocumentwitheventfromwithpasteboard: (evt: CustomEvent<[window: NSWindow, event: NSEvent, dragImageLocation: CGPoint, pasteboard: NSPasteboard]>) => void | null;
-  declare onwindowwillusefullscreencontentsize: (evt: CustomEvent<[window: NSWindow, proposedSize: CGSize]>) => void | null;
-  declare onwindowwillusefullscreenpresentationoptions: (evt: CustomEvent<[window: NSWindow, proposedOptions: interop.Enum<typeof NSApplicationPresentationOptions>]>) => void | null;
-  declare oncustomwindowstoenterfullscreenforwindow: (evt: CustomEvent<[window: NSWindow]>) => void | null;
-  declare onwindowstartcustomanimationtoenterfullscreenwithduration: (evt: CustomEvent<[window: NSWindow, duration: number]>) => void | null;
-  declare onwindowdidfailtoenterfullscreen: (evt: CustomEvent<[window: NSWindow]>) => void | null;
-  declare oncustomwindowstoexitfullscreenforwindow: (evt: CustomEvent<[window: NSWindow]>) => void | null;
-  declare onwindowstartcustomanimationtoexitfullscreenwithduration: (evt: CustomEvent<[window: NSWindow, duration: number]>) => void | null;
-  declare oncustomwindowstoenterfullscreenforwindowonscreen: (evt: CustomEvent<[window: NSWindow, screen: NSScreen]>) => void | null;
-  declare onwindowstartcustomanimationtoenterfullscreenonscreenwithduration: (evt: CustomEvent<[window: NSWindow, screen: NSScreen, duration: number]>) => void | null;
-  declare onwindowdidfailtoexitfullscreen: (evt: CustomEvent<[window: NSWindow]>) => void | null;
-  declare onwindowwillresizeforversionbrowserwithmaxpreferredsizemaxallowedsize: (evt: CustomEvent<[window: NSWindow, maxPreferredFrameSize: CGSize, maxAllowedFrameSize: CGSize]>) => void | null;
-  declare onwindowwillencoderestorablestate: (evt: CustomEvent<[window: NSWindow, state: NSCoder]>) => void | null;
-  declare onwindowdiddecoderestorablestate: (evt: CustomEvent<[window: NSWindow, state: NSCoder]>) => void | null;
-  declare onpreviewrepresentableactivityitemsforwindow: (evt: CustomEvent<[window: NSWindow]>) => void | null;
-  declare onwindowdidresize: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowdidexpose: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowwillmove: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowdidmove: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowdidbecomekey: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowdidresignkey: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowdidbecomemain: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowdidresignmain: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowwillclose: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowwillminiaturize: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowdidminiaturize: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowdiddeminiaturize: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowdidupdate: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowdidchangescreen: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowdidchangescreenprofile: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowdidchangebackingproperties: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowwillbeginsheet: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowdidendsheet: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowwillstartliveresize: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowdidendliveresize: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowwillenterfullscreen: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowdidenterfullscreen: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowwillexitfullscreen: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowdidexitfullscreen: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowwillenterversionbrowser: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowdidenterversionbrowser: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowwillexitversionbrowser: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowdidexitversionbrowser: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onwindowdidchangeocclusionstate: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  set windowshouldclose(value: (sender: NSWindow) => boolean) {
+    this.delegate.windowShouldClose = value;
+  }
+  set windowwillreturnfieldeditortoobject(value: (sender: NSWindow, client: interop.Object | null) => interop.Object) {
+    this.delegate.windowWillReturnFieldEditorToObject = value;
+  }
+  set windowwillresizetosize(value: (sender: NSWindow, frameSize: CGSize) => CGSize) {
+    this.delegate.windowWillResizeToSize = value;
+  }
+  set windowwillusestandardframedefaultframe(value: (window: NSWindow, newFrame: CGRect) => CGRect) {
+    this.delegate.windowWillUseStandardFrameDefaultFrame = value;
+  }
+  set windowshouldzoomtoframe(value: (window: NSWindow, newFrame: CGRect) => boolean) {
+    this.delegate.windowShouldZoomToFrame = value;
+  }
+  set windowwillreturnundomanager(value: (window: NSWindow) => NSUndoManager) {
+    this.delegate.windowWillReturnUndoManager = value;
+  }
+  set windowwillpositionsheetusingrect(value: (window: NSWindow, sheet: NSWindow, rect: CGRect) => CGRect) {
+    this.delegate.windowWillPositionSheetUsingRect = value;
+  }
+  set windowshouldpopupdocumentpathmenu(value: (window: NSWindow, menu: NSMenu) => boolean) {
+    this.delegate.windowShouldPopUpDocumentPathMenu = value;
+  }
+  set windowshoulddragdocumentwitheventfromwithpasteboard(value: (window: NSWindow, event: NSEvent, dragImageLocation: CGPoint, pasteboard: NSPasteboard) => boolean) {
+    this.delegate.windowShouldDragDocumentWithEventFromWithPasteboard = value;
+  }
+  set windowwillusefullscreencontentsize(value: (window: NSWindow, proposedSize: CGSize) => CGSize) {
+    this.delegate.windowWillUseFullScreenContentSize = value;
+  }
+  set windowwillusefullscreenpresentationoptions(value: (window: NSWindow, proposedOptions: interop.Enum<typeof NSApplicationPresentationOptions>) => interop.Enum<typeof NSApplicationPresentationOptions>) {
+    this.delegate.windowWillUseFullScreenPresentationOptions = value;
+  }
+  set customwindowstoenterfullscreenforwindow(value: (window: NSWindow) => NSArray) {
+    this.delegate.customWindowsToEnterFullScreenForWindow = value;
+  }
+  set windowstartcustomanimationtoenterfullscreenwithduration(value: (window: NSWindow, duration: number) => void) {
+    this.delegate.windowStartCustomAnimationToEnterFullScreenWithDuration = value;
+  }
+  set windowdidfailtoenterfullscreen(value: (window: NSWindow) => void) {
+    this.delegate.windowDidFailToEnterFullScreen = value;
+  }
+  set customwindowstoexitfullscreenforwindow(value: (window: NSWindow) => NSArray) {
+    this.delegate.customWindowsToExitFullScreenForWindow = value;
+  }
+  set windowstartcustomanimationtoexitfullscreenwithduration(value: (window: NSWindow, duration: number) => void) {
+    this.delegate.windowStartCustomAnimationToExitFullScreenWithDuration = value;
+  }
+  set customwindowstoenterfullscreenforwindowonscreen(value: (window: NSWindow, screen: NSScreen) => NSArray) {
+    this.delegate.customWindowsToEnterFullScreenForWindowOnScreen = value;
+  }
+  set windowstartcustomanimationtoenterfullscreenonscreenwithduration(value: (window: NSWindow, screen: NSScreen, duration: number) => void) {
+    this.delegate.windowStartCustomAnimationToEnterFullScreenOnScreenWithDuration = value;
+  }
+  set windowdidfailtoexitfullscreen(value: (window: NSWindow) => void) {
+    this.delegate.windowDidFailToExitFullScreen = value;
+  }
+  set windowwillresizeforversionbrowserwithmaxpreferredsizemaxallowedsize(value: (window: NSWindow, maxPreferredFrameSize: CGSize, maxAllowedFrameSize: CGSize) => CGSize) {
+    this.delegate.windowWillResizeForVersionBrowserWithMaxPreferredSizeMaxAllowedSize = value;
+  }
+  set windowwillencoderestorablestate(value: (window: NSWindow, state: NSCoder) => void) {
+    this.delegate.windowWillEncodeRestorableState = value;
+  }
+  set windowdiddecoderestorablestate(value: (window: NSWindow, state: NSCoder) => void) {
+    this.delegate.windowDidDecodeRestorableState = value;
+  }
+  set previewrepresentableactivityitemsforwindow(value: (window: NSWindow) => NSArray | null) {
+    this.delegate.previewRepresentableActivityItemsForWindow = value;
+  }
+  set windowdidresize(value: (notification: NSNotification) => void) {
+    this.delegate.windowDidResize = value;
+  }
+  set windowdidexpose(value: (notification: NSNotification) => void) {
+    this.delegate.windowDidExpose = value;
+  }
+  set windowwillmove(value: (notification: NSNotification) => void) {
+    this.delegate.windowWillMove = value;
+  }
+  set windowdidmove(value: (notification: NSNotification) => void) {
+    this.delegate.windowDidMove = value;
+  }
+  set windowdidbecomekey(value: (notification: NSNotification) => void) {
+    this.delegate.windowDidBecomeKey = value;
+  }
+  set windowdidresignkey(value: (notification: NSNotification) => void) {
+    this.delegate.windowDidResignKey = value;
+  }
+  set windowdidbecomemain(value: (notification: NSNotification) => void) {
+    this.delegate.windowDidBecomeMain = value;
+  }
+  set windowdidresignmain(value: (notification: NSNotification) => void) {
+    this.delegate.windowDidResignMain = value;
+  }
+  set windowwillclose(value: (notification: NSNotification) => void) {
+    this.delegate.windowWillClose = value;
+  }
+  set windowwillminiaturize(value: (notification: NSNotification) => void) {
+    this.delegate.windowWillMiniaturize = value;
+  }
+  set windowdidminiaturize(value: (notification: NSNotification) => void) {
+    this.delegate.windowDidMiniaturize = value;
+  }
+  set windowdiddeminiaturize(value: (notification: NSNotification) => void) {
+    this.delegate.windowDidDeminiaturize = value;
+  }
+  set windowdidupdate(value: (notification: NSNotification) => void) {
+    this.delegate.windowDidUpdate = value;
+  }
+  set windowdidchangescreen(value: (notification: NSNotification) => void) {
+    this.delegate.windowDidChangeScreen = value;
+  }
+  set windowdidchangescreenprofile(value: (notification: NSNotification) => void) {
+    this.delegate.windowDidChangeScreenProfile = value;
+  }
+  set windowdidchangebackingproperties(value: (notification: NSNotification) => void) {
+    this.delegate.windowDidChangeBackingProperties = value;
+  }
+  set windowwillbeginsheet(value: (notification: NSNotification) => void) {
+    this.delegate.windowWillBeginSheet = value;
+  }
+  set windowdidendsheet(value: (notification: NSNotification) => void) {
+    this.delegate.windowDidEndSheet = value;
+  }
+  set windowwillstartliveresize(value: (notification: NSNotification) => void) {
+    this.delegate.windowWillStartLiveResize = value;
+  }
+  set windowdidendliveresize(value: (notification: NSNotification) => void) {
+    this.delegate.windowDidEndLiveResize = value;
+  }
+  set windowwillenterfullscreen(value: (notification: NSNotification) => void) {
+    this.delegate.windowWillEnterFullScreen = value;
+  }
+  set windowdidenterfullscreen(value: (notification: NSNotification) => void) {
+    this.delegate.windowDidEnterFullScreen = value;
+  }
+  set windowwillexitfullscreen(value: (notification: NSNotification) => void) {
+    this.delegate.windowWillExitFullScreen = value;
+  }
+  set windowdidexitfullscreen(value: (notification: NSNotification) => void) {
+    this.delegate.windowDidExitFullScreen = value;
+  }
+  set windowwillenterversionbrowser(value: (notification: NSNotification) => void) {
+    this.delegate.windowWillEnterVersionBrowser = value;
+  }
+  set windowdidenterversionbrowser(value: (notification: NSNotification) => void) {
+    this.delegate.windowDidEnterVersionBrowser = value;
+  }
+  set windowwillexitversionbrowser(value: (notification: NSNotification) => void) {
+    this.delegate.windowWillExitVersionBrowser = value;
+  }
+  set windowdidexitversionbrowser(value: (notification: NSNotification) => void) {
+    this.delegate.windowDidExitVersionBrowser = value;
+  }
+  set windowdidchangeocclusionstate(value: (notification: NSNotification) => void) {
+    this.delegate.windowDidChangeOcclusionState = value;
+  }
 }
 
 export class HTMLNSScrubberLayoutAttributesElement extends HTMLNSObjectElement {
@@ -1464,13 +1558,8 @@ export class HTMLNSGridColumnElement extends HTMLNSObjectElement {
 
 export class HTMLNSPathCellElement extends HTMLNSActionCellElement {
   readonly nativeObject = NSPathCell.new();
-  delegate?: NSPathCellDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSPathCellDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSPathCellDelegateImpl {
+    return (this.nativeObject.delegate ??= NSPathCellDelegateImpl.new()) as NSPathCellDelegateImpl;
   }
 
   // pathStyle: interop.Enum<typeof NSPathStyle>;
@@ -1487,8 +1576,12 @@ export class HTMLNSPathCellElement extends HTMLNSActionCellElement {
   // readonly description: NSString;
   // readonly debugDescription: NSString;
 
-  declare onpathcellwilldisplayopenpanel: (evt: CustomEvent<[pathCell: NSPathCell, openPanel: NSOpenPanel]>) => void | null;
-  declare onpathcellwillpopupmenu: (evt: CustomEvent<[pathCell: NSPathCell, menu: NSMenu]>) => void | null;
+  set pathcellwilldisplayopenpanel(value: (pathCell: NSPathCell, openPanel: NSOpenPanel) => void) {
+    this.delegate.pathCellWillDisplayOpenPanel = value;
+  }
+  set pathcellwillpopupmenu(value: (pathCell: NSPathCell, menu: NSMenu) => void) {
+    this.delegate.pathCellWillPopUpMenu = value;
+  }
 }
 
 export class HTMLNSWorkspaceAuthorizationElement extends HTMLNSObjectElement {
@@ -1498,13 +1591,8 @@ export class HTMLNSWorkspaceAuthorizationElement extends HTMLNSObjectElement {
 
 export class HTMLNSTextLayoutManagerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextLayoutManager.new();
-  delegate?: NSTextLayoutManagerDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSTextLayoutManagerDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSTextLayoutManagerDelegateImpl {
+    return (this.nativeObject.delegate ??= NSTextLayoutManagerDelegateImpl.new()) as NSTextLayoutManagerDelegateImpl;
   }
 
   // usesFontLeading: boolean;
@@ -1527,9 +1615,15 @@ export class HTMLNSTextLayoutManagerElement extends HTMLNSObjectElement {
   // readonly description: NSString;
   // readonly debugDescription: NSString;
 
-  declare ontextlayoutmanagertextlayoutfragmentforlocationintextelement: (evt: CustomEvent<[textLayoutManager: NSTextLayoutManager, location: NSTextLocation, textElement: NSTextElement]>) => void | null;
-  declare ontextlayoutmanagershouldbreaklinebeforelocationhyphenating: (evt: CustomEvent<[textLayoutManager: NSTextLayoutManager, location: NSTextLocation, hyphenating: boolean]>) => void | null;
-  declare ontextlayoutmanagerrenderingattributesforlinkatlocationdefaultattributes: (evt: CustomEvent<[textLayoutManager: NSTextLayoutManager, link: interop.Object, location: NSTextLocation, renderingAttributes: NSDictionary | Record<string, unknown>]>) => void | null;
+  set textlayoutmanagertextlayoutfragmentforlocationintextelement(value: (textLayoutManager: NSTextLayoutManager, location: NSTextLocation, textElement: NSTextElement) => NSTextLayoutFragment) {
+    this.delegate.textLayoutManagerTextLayoutFragmentForLocationInTextElement = value;
+  }
+  set textlayoutmanagershouldbreaklinebeforelocationhyphenating(value: (textLayoutManager: NSTextLayoutManager, location: NSTextLocation, hyphenating: boolean) => boolean) {
+    this.delegate.textLayoutManagerShouldBreakLineBeforeLocationHyphenating = value;
+  }
+  set textlayoutmanagerrenderingattributesforlinkatlocationdefaultattributes(value: (textLayoutManager: NSTextLayoutManager, link: interop.Object, location: NSTextLocation, renderingAttributes: NSDictionary | Record<string, unknown>) => NSDictionary) {
+    this.delegate.textLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes = value;
+  }
 }
 
 export class HTMLNSWindowTabElement extends HTMLNSObjectElement {
@@ -1541,13 +1635,8 @@ export class HTMLNSWindowTabElement extends HTMLNSObjectElement {
 
 export class HTMLNSDrawerElement extends HTMLNSResponderElement {
   readonly nativeObject = NSDrawer.new();
-  delegate?: NSDrawerDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSDrawerDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSDrawerDelegateImpl {
+    return (this.nativeObject.delegate ??= NSDrawerDelegateImpl.new()) as NSDrawerDelegateImpl;
   }
 
   // parentWindow: NSWindow;
@@ -1641,24 +1730,33 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
   // accessibilityMinimizeButton: interop.Object;
   // isAccessibilityMinimized: boolean;
 
-  declare ondrawershouldopen: (evt: CustomEvent<[sender: NSDrawer]>) => void | null;
-  declare ondrawershouldclose: (evt: CustomEvent<[sender: NSDrawer]>) => void | null;
-  declare ondrawerwillresizecontentstosize: (evt: CustomEvent<[sender: NSDrawer, contentSize: CGSize]>) => void | null;
-  declare ondrawerwillopen: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare ondrawerdidopen: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare ondrawerwillclose: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare ondrawerdidclose: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  set drawershouldopen(value: (sender: NSDrawer) => boolean) {
+    this.delegate.drawerShouldOpen = value;
+  }
+  set drawershouldclose(value: (sender: NSDrawer) => boolean) {
+    this.delegate.drawerShouldClose = value;
+  }
+  set drawerwillresizecontentstosize(value: (sender: NSDrawer, contentSize: CGSize) => CGSize) {
+    this.delegate.drawerWillResizeContentsToSize = value;
+  }
+  set drawerwillopen(value: (notification: NSNotification) => void) {
+    this.delegate.drawerWillOpen = value;
+  }
+  set drawerdidopen(value: (notification: NSNotification) => void) {
+    this.delegate.drawerDidOpen = value;
+  }
+  set drawerwillclose(value: (notification: NSNotification) => void) {
+    this.delegate.drawerWillClose = value;
+  }
+  set drawerdidclose(value: (notification: NSNotification) => void) {
+    this.delegate.drawerDidClose = value;
+  }
 }
 
 export class HTMLNSLayoutManagerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSLayoutManager.new();
-  delegate?: NSLayoutManagerDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSLayoutManagerDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSLayoutManagerDelegateImpl {
+    return (this.nativeObject.delegate ??= NSLayoutManagerDelegateImpl.new()) as NSLayoutManagerDelegateImpl;
   }
 
   // textStorage: NSTextStorage;
@@ -1685,30 +1783,51 @@ export class HTMLNSLayoutManagerElement extends HTMLNSObjectElement {
   // glyphGenerator: NSGlyphGenerator;
   // supportsSecureCoding: boolean;
 
-  declare onlayoutmanagershouldgenerateglyphspropertiescharacterindexesfontforglyphrange: (evt: CustomEvent<[layoutManager: NSLayoutManager, glyphs: interop.PointerConvertible, props: interop.PointerConvertible, charIndexes: interop.PointerConvertible, aFont: NSFont, glyphRange: _NSRange]>) => void | null;
-  declare onlayoutmanagerlinespacingafterglyphatindexwithproposedlinefragmentrect: (evt: CustomEvent<[layoutManager: NSLayoutManager, glyphIndex: number, rect: CGRect]>) => void | null;
-  declare onlayoutmanagerparagraphspacingbeforeglyphatindexwithproposedlinefragmentrect: (evt: CustomEvent<[layoutManager: NSLayoutManager, glyphIndex: number, rect: CGRect]>) => void | null;
-  declare onlayoutmanagerparagraphspacingafterglyphatindexwithproposedlinefragmentrect: (evt: CustomEvent<[layoutManager: NSLayoutManager, glyphIndex: number, rect: CGRect]>) => void | null;
-  declare onlayoutmanagershoulduseactionforcontrolcharacteratindex: (evt: CustomEvent<[layoutManager: NSLayoutManager, action: interop.Enum<typeof NSControlCharacterAction>, charIndex: number]>) => void | null;
-  declare onlayoutmanagershouldbreaklinebywordbeforecharacteratindex: (evt: CustomEvent<[layoutManager: NSLayoutManager, charIndex: number]>) => void | null;
-  declare onlayoutmanagershouldbreaklinebyhyphenatingbeforecharacteratindex: (evt: CustomEvent<[layoutManager: NSLayoutManager, charIndex: number]>) => void | null;
-  declare onlayoutmanagerboundingboxforcontrolglyphatindexfortextcontainerproposedlinefragmentglyphpositioncharacterindex: (evt: CustomEvent<[layoutManager: NSLayoutManager, glyphIndex: number, textContainer: NSTextContainer, proposedRect: CGRect, glyphPosition: CGPoint, charIndex: number]>) => void | null;
-  declare onlayoutmanagershouldsetlinefragmentrectlinefragmentusedrectbaselineoffsetintextcontainerforglyphrange: (evt: CustomEvent<[layoutManager: NSLayoutManager, lineFragmentRect: interop.PointerConvertible, lineFragmentUsedRect: interop.PointerConvertible, baselineOffset: interop.PointerConvertible, textContainer: NSTextContainer, glyphRange: _NSRange]>) => void | null;
-  declare onlayoutmanagerdidinvalidatelayout: (evt: CustomEvent<[sender: NSLayoutManager]>) => void | null;
-  declare onlayoutmanagerdidcompletelayoutfortextcontaineratend: (evt: CustomEvent<[layoutManager: NSLayoutManager, textContainer: NSTextContainer | null, layoutFinishedFlag: boolean]>) => void | null;
-  declare onlayoutmanagertextcontainerdidchangegeometryfromsize: (evt: CustomEvent<[layoutManager: NSLayoutManager, textContainer: NSTextContainer, oldSize: CGSize]>) => void | null;
-  declare onlayoutmanagershouldusetemporaryattributesfordrawingtoscreenatcharacterindexeffectiverange: (evt: CustomEvent<[layoutManager: NSLayoutManager, attrs: NSDictionary | Record<string, unknown>, toScreen: boolean, charIndex: number, effectiveCharRange: interop.PointerConvertible]>) => void | null;
+  set layoutmanagershouldgenerateglyphspropertiescharacterindexesfontforglyphrange(value: (layoutManager: NSLayoutManager, glyphs: interop.PointerConvertible, props: interop.PointerConvertible, charIndexes: interop.PointerConvertible, aFont: NSFont, glyphRange: _NSRange) => number) {
+    this.delegate.layoutManagerShouldGenerateGlyphsPropertiesCharacterIndexesFontForGlyphRange = value;
+  }
+  set layoutmanagerlinespacingafterglyphatindexwithproposedlinefragmentrect(value: (layoutManager: NSLayoutManager, glyphIndex: number, rect: CGRect) => number) {
+    this.delegate.layoutManagerLineSpacingAfterGlyphAtIndexWithProposedLineFragmentRect = value;
+  }
+  set layoutmanagerparagraphspacingbeforeglyphatindexwithproposedlinefragmentrect(value: (layoutManager: NSLayoutManager, glyphIndex: number, rect: CGRect) => number) {
+    this.delegate.layoutManagerParagraphSpacingBeforeGlyphAtIndexWithProposedLineFragmentRect = value;
+  }
+  set layoutmanagerparagraphspacingafterglyphatindexwithproposedlinefragmentrect(value: (layoutManager: NSLayoutManager, glyphIndex: number, rect: CGRect) => number) {
+    this.delegate.layoutManagerParagraphSpacingAfterGlyphAtIndexWithProposedLineFragmentRect = value;
+  }
+  set layoutmanagershoulduseactionforcontrolcharacteratindex(value: (layoutManager: NSLayoutManager, action: interop.Enum<typeof NSControlCharacterAction>, charIndex: number) => interop.Enum<typeof NSControlCharacterAction>) {
+    this.delegate.layoutManagerShouldUseActionForControlCharacterAtIndex = value;
+  }
+  set layoutmanagershouldbreaklinebywordbeforecharacteratindex(value: (layoutManager: NSLayoutManager, charIndex: number) => boolean) {
+    this.delegate.layoutManagerShouldBreakLineByWordBeforeCharacterAtIndex = value;
+  }
+  set layoutmanagershouldbreaklinebyhyphenatingbeforecharacteratindex(value: (layoutManager: NSLayoutManager, charIndex: number) => boolean) {
+    this.delegate.layoutManagerShouldBreakLineByHyphenatingBeforeCharacterAtIndex = value;
+  }
+  set layoutmanagerboundingboxforcontrolglyphatindexfortextcontainerproposedlinefragmentglyphpositioncharacterindex(value: (layoutManager: NSLayoutManager, glyphIndex: number, textContainer: NSTextContainer, proposedRect: CGRect, glyphPosition: CGPoint, charIndex: number) => CGRect) {
+    this.delegate.layoutManagerBoundingBoxForControlGlyphAtIndexForTextContainerProposedLineFragmentGlyphPositionCharacterIndex = value;
+  }
+  set layoutmanagershouldsetlinefragmentrectlinefragmentusedrectbaselineoffsetintextcontainerforglyphrange(value: (layoutManager: NSLayoutManager, lineFragmentRect: interop.PointerConvertible, lineFragmentUsedRect: interop.PointerConvertible, baselineOffset: interop.PointerConvertible, textContainer: NSTextContainer, glyphRange: _NSRange) => boolean) {
+    this.delegate.layoutManagerShouldSetLineFragmentRectLineFragmentUsedRectBaselineOffsetInTextContainerForGlyphRange = value;
+  }
+  set layoutmanagerdidinvalidatelayout(value: (sender: NSLayoutManager) => void) {
+    this.delegate.layoutManagerDidInvalidateLayout = value;
+  }
+  set layoutmanagerdidcompletelayoutfortextcontaineratend(value: (layoutManager: NSLayoutManager, textContainer: NSTextContainer | null, layoutFinishedFlag: boolean) => void) {
+    this.delegate.layoutManagerDidCompleteLayoutForTextContainerAtEnd = value;
+  }
+  set layoutmanagertextcontainerdidchangegeometryfromsize(value: (layoutManager: NSLayoutManager, textContainer: NSTextContainer, oldSize: CGSize) => void) {
+    this.delegate.layoutManagerTextContainerDidChangeGeometryFromSize = value;
+  }
+  set layoutmanagershouldusetemporaryattributesfordrawingtoscreenatcharacterindexeffectiverange(value: (layoutManager: NSLayoutManager, attrs: NSDictionary | Record<string, unknown>, toScreen: boolean, charIndex: number, effectiveCharRange: interop.PointerConvertible) => NSDictionary) {
+    this.delegate.layoutManagerShouldUseTemporaryAttributesForDrawingToScreenAtCharacterIndexEffectiveRange = value;
+  }
 }
 
 export class HTMLNSSharingServiceElement extends HTMLNSObjectElement {
   readonly nativeObject = NSSharingService.new();
-  delegate?: NSSharingServiceDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSSharingServiceDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSSharingServiceDelegateImpl {
+    return (this.nativeObject.delegate ??= NSSharingServiceDelegateImpl.new()) as NSSharingServiceDelegateImpl;
   }
 
   // readonly title: NSString;
@@ -1719,13 +1838,27 @@ export class HTMLNSSharingServiceElement extends HTMLNSObjectElement {
   // readonly accountName: NSString;
   // readonly attachmentFileURLs: NSArray;
 
-  declare onsharingservicewillshareitems: (evt: CustomEvent<[sharingService: NSSharingService, items: NSArray | unknown[]]>) => void | null;
-  declare onsharingservicedidfailtoshareitemserror: (evt: CustomEvent<[sharingService: NSSharingService, items: NSArray | unknown[], error: NSError]>) => void | null;
-  declare onsharingservicedidshareitems: (evt: CustomEvent<[sharingService: NSSharingService, items: NSArray | unknown[]]>) => void | null;
-  declare onsharingservicesourceframeonscreenforshareitem: (evt: CustomEvent<[sharingService: NSSharingService, item: interop.Object]>) => void | null;
-  declare onsharingservicetransitionimageforshareitemcontentrect: (evt: CustomEvent<[sharingService: NSSharingService, item: interop.Object, contentRect: interop.PointerConvertible]>) => void | null;
-  declare onsharingservicesourcewindowforshareitemssharingcontentscope: (evt: CustomEvent<[sharingService: NSSharingService, items: NSArray | unknown[], sharingContentScope: interop.PointerConvertible]>) => void | null;
-  declare onanchoringviewforsharingserviceshowrelativetorectpreferrededge: (evt: CustomEvent<[sharingService: NSSharingService, positioningRect: interop.PointerConvertible, preferredEdge: interop.PointerConvertible]>) => void | null;
+  set sharingservicewillshareitems(value: (sharingService: NSSharingService, items: NSArray | unknown[]) => void) {
+    this.delegate.sharingServiceWillShareItems = value;
+  }
+  set sharingservicedidfailtoshareitemserror(value: (sharingService: NSSharingService, items: NSArray | unknown[], error: NSError) => void) {
+    this.delegate.sharingServiceDidFailToShareItemsError = value;
+  }
+  set sharingservicedidshareitems(value: (sharingService: NSSharingService, items: NSArray | unknown[]) => void) {
+    this.delegate.sharingServiceDidShareItems = value;
+  }
+  set sharingservicesourceframeonscreenforshareitem(value: (sharingService: NSSharingService, item: interop.Object) => CGRect) {
+    this.delegate.sharingServiceSourceFrameOnScreenForShareItem = value;
+  }
+  set sharingservicetransitionimageforshareitemcontentrect(value: (sharingService: NSSharingService, item: interop.Object, contentRect: interop.PointerConvertible) => NSImage) {
+    this.delegate.sharingServiceTransitionImageForShareItemContentRect = value;
+  }
+  set sharingservicesourcewindowforshareitemssharingcontentscope(value: (sharingService: NSSharingService, items: NSArray | unknown[], sharingContentScope: interop.PointerConvertible) => NSWindow) {
+    this.delegate.sharingServiceSourceWindowForShareItemsSharingContentScope = value;
+  }
+  set anchoringviewforsharingserviceshowrelativetorectpreferrededge(value: (sharingService: NSSharingService, positioningRect: interop.PointerConvertible, preferredEdge: interop.PointerConvertible) => NSView) {
+    this.delegate.anchoringViewForSharingServiceShowRelativeToRectPreferredEdge = value;
+  }
 }
 
 export class HTMLNSTreeControllerElement extends HTMLNSObjectControllerElement {
@@ -1815,13 +1948,8 @@ export class HTMLNSCollectionViewDiffableDataSourceElement extends HTMLNSObjectE
 
 export class HTMLNSTextContentManagerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextContentManager.new();
-  delegate?: NSTextContentManagerDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSTextContentManagerDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSTextContentManagerDelegateImpl {
+    return (this.nativeObject.delegate ??= NSTextContentManagerDelegateImpl.new()) as NSTextContentManagerDelegateImpl;
   }
 
   // readonly textLayoutManagers: NSArray;
@@ -1838,8 +1966,12 @@ export class HTMLNSTextContentManagerElement extends HTMLNSObjectElement {
   // readonly debugDescription: NSString;
   // supportsSecureCoding: boolean;
 
-  declare ontextcontentmanagertextelementatlocation: (evt: CustomEvent<[textContentManager: NSTextContentManager, location: NSTextLocation]>) => void | null;
-  declare ontextcontentmanagershouldenumeratetextelementoptions: (evt: CustomEvent<[textContentManager: NSTextContentManager, textElement: NSTextElement, options: interop.Enum<typeof NSTextContentManagerEnumerationOptions>]>) => void | null;
+  set textcontentmanagertextelementatlocation(value: (textContentManager: NSTextContentManager, location: NSTextLocation) => NSTextElement) {
+    this.delegate.textContentManagerTextElementAtLocation = value;
+  }
+  set textcontentmanagershouldenumeratetextelementoptions(value: (textContentManager: NSTextContentManager, textElement: NSTextElement, options: interop.Enum<typeof NSTextContentManagerEnumerationOptions>) => boolean) {
+    this.delegate.textContentManagerShouldEnumerateTextElementOptions = value;
+  }
 }
 
 export class HTMLNSPrinterElement extends HTMLNSObjectElement {
@@ -2156,13 +2288,8 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
 
 export class HTMLNSImageElement extends HTMLNSObjectElement {
   readonly nativeObject = NSImage.new();
-  delegate?: NSImageDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSImageDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSImageDelegateImpl {
+    return (this.nativeObject.delegate ??= NSImageDelegateImpl.new()) as NSImageDelegateImpl;
   }
 
   // size: CGSize;
@@ -2184,22 +2311,27 @@ export class HTMLNSImageElement extends HTMLNSObjectElement {
   // readonly symbolConfiguration: NSImageSymbolConfiguration;
   // readonly locale: NSLocale;
 
-  declare onimagedidnotdrawinrect: (evt: CustomEvent<[sender: NSImage, rect: CGRect]>) => void | null;
-  declare onimagewillloadrepresentation: (evt: CustomEvent<[image: NSImage, rep: NSImageRep]>) => void | null;
-  declare onimagedidloadrepresentationheader: (evt: CustomEvent<[image: NSImage, rep: NSImageRep]>) => void | null;
-  declare onimagedidloadpartofrepresentationwithvalidrows: (evt: CustomEvent<[image: NSImage, rep: NSImageRep, rows: number]>) => void | null;
-  declare onimagedidloadrepresentationwithstatus: (evt: CustomEvent<[image: NSImage, rep: NSImageRep, status: interop.Enum<typeof NSImageLoadStatus>]>) => void | null;
+  set imagedidnotdrawinrect(value: (sender: NSImage, rect: CGRect) => NSImage) {
+    this.delegate.imageDidNotDrawInRect = value;
+  }
+  set imagewillloadrepresentation(value: (image: NSImage, rep: NSImageRep) => void) {
+    this.delegate.imageWillLoadRepresentation = value;
+  }
+  set imagedidloadrepresentationheader(value: (image: NSImage, rep: NSImageRep) => void) {
+    this.delegate.imageDidLoadRepresentationHeader = value;
+  }
+  set imagedidloadpartofrepresentationwithvalidrows(value: (image: NSImage, rep: NSImageRep, rows: number) => void) {
+    this.delegate.imageDidLoadPartOfRepresentationWithValidRows = value;
+  }
+  set imagedidloadrepresentationwithstatus(value: (image: NSImage, rep: NSImageRep, status: interop.Enum<typeof NSImageLoadStatus>) => void) {
+    this.delegate.imageDidLoadRepresentationWithStatus = value;
+  }
 }
 
 export class HTMLNSToolbarElement extends HTMLNSObjectElement {
   readonly nativeObject = NSToolbar.new();
-  delegate?: NSToolbarDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSToolbarDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSToolbarDelegateImpl {
+    return (this.nativeObject.delegate ??= NSToolbarDelegateImpl.new()) as NSToolbarDelegateImpl;
   }
 
   // isVisible: boolean;
@@ -2219,25 +2351,36 @@ export class HTMLNSToolbarElement extends HTMLNSObjectElement {
   // fullScreenAccessoryViewMinHeight: number;
   // fullScreenAccessoryViewMaxHeight: number;
 
-  declare ontoolbaritemforitemidentifierwillbeinsertedintotoolbar: (evt: CustomEvent<[toolbar: NSToolbar, itemIdentifier: NSString | string, flag: boolean]>) => void | null;
-  declare ontoolbardefaultitemidentifiers: (evt: CustomEvent<[toolbar: NSToolbar]>) => void | null;
-  declare ontoolbaralloweditemidentifiers: (evt: CustomEvent<[toolbar: NSToolbar]>) => void | null;
-  declare ontoolbarselectableitemidentifiers: (evt: CustomEvent<[toolbar: NSToolbar]>) => void | null;
-  declare ontoolbarimmovableitemidentifiers: (evt: CustomEvent<[toolbar: NSToolbar]>) => void | null;
-  declare ontoolbaritemidentifiercanbeinsertedatindex: (evt: CustomEvent<[toolbar: NSToolbar, itemIdentifier: NSString | string, index: number]>) => void | null;
-  declare ontoolbarwilladditem: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare ontoolbardidremoveitem: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  set toolbaritemforitemidentifierwillbeinsertedintotoolbar(value: (toolbar: NSToolbar, itemIdentifier: NSString | string, flag: boolean) => NSToolbarItem) {
+    this.delegate.toolbarItemForItemIdentifierWillBeInsertedIntoToolbar = value;
+  }
+  set toolbardefaultitemidentifiers(value: (toolbar: NSToolbar) => NSArray) {
+    this.delegate.toolbarDefaultItemIdentifiers = value;
+  }
+  set toolbaralloweditemidentifiers(value: (toolbar: NSToolbar) => NSArray) {
+    this.delegate.toolbarAllowedItemIdentifiers = value;
+  }
+  set toolbarselectableitemidentifiers(value: (toolbar: NSToolbar) => NSArray) {
+    this.delegate.toolbarSelectableItemIdentifiers = value;
+  }
+  set toolbarimmovableitemidentifiers(value: (toolbar: NSToolbar) => NSSet) {
+    this.delegate.toolbarImmovableItemIdentifiers = value;
+  }
+  set toolbaritemidentifiercanbeinsertedatindex(value: (toolbar: NSToolbar, itemIdentifier: NSString | string, index: number) => boolean) {
+    this.delegate.toolbarItemIdentifierCanBeInsertedAtIndex = value;
+  }
+  set toolbarwilladditem(value: (notification: NSNotification) => void) {
+    this.delegate.toolbarWillAddItem = value;
+  }
+  set toolbardidremoveitem(value: (notification: NSNotification) => void) {
+    this.delegate.toolbarDidRemoveItem = value;
+  }
 }
 
 export class HTMLNSTabViewElement extends HTMLNSViewElement {
   readonly nativeObject = NSTabView.new();
-  delegate?: NSTabViewDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSTabViewDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSTabViewDelegateImpl {
+    return (this.nativeObject.delegate ??= NSTabViewDelegateImpl.new()) as NSTabViewDelegateImpl;
   }
 
   // readonly selectedTabViewItem: NSTabViewItem;
@@ -2253,21 +2396,24 @@ export class HTMLNSTabViewElement extends HTMLNSViewElement {
   // readonly numberOfTabViewItems: number;
   // controlTint: interop.Enum<typeof NSControlTint>;
 
-  declare ontabviewshouldselecttabviewitem: (evt: CustomEvent<[tabView: NSTabView, tabViewItem: NSTabViewItem | null]>) => void | null;
-  declare ontabviewwillselecttabviewitem: (evt: CustomEvent<[tabView: NSTabView, tabViewItem: NSTabViewItem | null]>) => void | null;
-  declare ontabviewdidselecttabviewitem: (evt: CustomEvent<[tabView: NSTabView, tabViewItem: NSTabViewItem | null]>) => void | null;
-  declare ontabviewdidchangenumberoftabviewitems: (evt: CustomEvent<[tabView: NSTabView]>) => void | null;
+  set tabviewshouldselecttabviewitem(value: (tabView: NSTabView, tabViewItem: NSTabViewItem | null) => boolean) {
+    this.delegate.tabViewShouldSelectTabViewItem = value;
+  }
+  set tabviewwillselecttabviewitem(value: (tabView: NSTabView, tabViewItem: NSTabViewItem | null) => void) {
+    this.delegate.tabViewWillSelectTabViewItem = value;
+  }
+  set tabviewdidselecttabviewitem(value: (tabView: NSTabView, tabViewItem: NSTabViewItem | null) => void) {
+    this.delegate.tabViewDidSelectTabViewItem = value;
+  }
+  set tabviewdidchangenumberoftabviewitems(value: (tabView: NSTabView) => void) {
+    this.delegate.tabViewDidChangeNumberOfTabViewItems = value;
+  }
 }
 
 export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   readonly nativeObject = NSApplication.sharedApplication;
-  delegate?: NSApplicationDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSApplicationDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSApplicationDelegateImpl {
+    return (this.nativeObject.delegate ??= NSApplicationDelegateImpl.new()) as NSApplicationDelegateImpl;
   }
 
   // sharedApplication: NSApplication;
@@ -2381,51 +2527,141 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   // accessibilityMinimizeButton: interop.Object;
   // isAccessibilityMinimized: boolean;
 
-  declare onapplicationshouldterminate: (evt: CustomEvent<[sender: NSApplication]>) => void | null;
-  declare onapplicationopenurls: (evt: CustomEvent<[application: NSApplication, urls: NSArray | unknown[]]>) => void | null;
-  declare onapplicationopenfile: (evt: CustomEvent<[sender: NSApplication, filename: NSString | string]>) => void | null;
-  declare onapplicationopenfiles: (evt: CustomEvent<[sender: NSApplication, filenames: NSArray | unknown[]]>) => void | null;
-  declare onapplicationopentempfile: (evt: CustomEvent<[sender: NSApplication, filename: NSString | string]>) => void | null;
-  declare onapplicationshouldopenuntitledfile: (evt: CustomEvent<[sender: NSApplication]>) => void | null;
-  declare onapplicationopenuntitledfile: (evt: CustomEvent<[sender: NSApplication]>) => void | null;
-  declare onapplicationopenfilewithoutui: (evt: CustomEvent<[sender: interop.Object, filename: NSString | string]>) => void | null;
-  declare onapplicationprintfile: (evt: CustomEvent<[sender: NSApplication, filename: NSString | string]>) => void | null;
-  declare onapplicationprintfileswithsettingsshowprintpanels: (evt: CustomEvent<[application: NSApplication, fileNames: NSArray | unknown[], printSettings: NSDictionary | Record<string, unknown>, showPrintPanels: boolean]>) => void | null;
-  declare onapplicationshouldterminateafterlastwindowclosed: (evt: CustomEvent<[sender: NSApplication]>) => void | null;
-  declare onapplicationshouldhandlereopenhasvisiblewindows: (evt: CustomEvent<[sender: NSApplication, flag: boolean]>) => void | null;
-  declare onapplicationdockmenu: (evt: CustomEvent<[sender: NSApplication]>) => void | null;
-  declare onapplicationwillpresenterror: (evt: CustomEvent<[application: NSApplication, error: NSError]>) => void | null;
-  declare onapplicationdidregisterforremotenotificationswithdevicetoken: (evt: CustomEvent<[application: NSApplication, deviceToken: NSData]>) => void | null;
-  declare onapplicationdidfailtoregisterforremotenotificationswitherror: (evt: CustomEvent<[application: NSApplication, error: NSError]>) => void | null;
-  declare onapplicationdidreceiveremotenotification: (evt: CustomEvent<[application: NSApplication, userInfo: NSDictionary | Record<string, unknown>]>) => void | null;
-  declare onapplicationsupportssecurerestorablestate: (evt: CustomEvent<[app: NSApplication]>) => void | null;
-  declare onapplicationhandlerforintent: (evt: CustomEvent<[application: NSApplication, intent: INIntent]>) => void | null;
-  declare onapplicationwillencoderestorablestate: (evt: CustomEvent<[app: NSApplication, coder: NSCoder]>) => void | null;
-  declare onapplicationdiddecoderestorablestate: (evt: CustomEvent<[app: NSApplication, coder: NSCoder]>) => void | null;
-  declare onapplicationwillcontinueuseractivitywithtype: (evt: CustomEvent<[application: NSApplication, userActivityType: NSString | string]>) => void | null;
-  declare onapplicationcontinueuseractivityrestorationhandler: (evt: CustomEvent<[application: NSApplication, userActivity: NSUserActivity, restorationHandler: (p1: NSArray | unknown[]) => void]>) => void | null;
-  declare onapplicationdidfailtocontinueuseractivitywithtypeerror: (evt: CustomEvent<[application: NSApplication, userActivityType: NSString | string, error: NSError]>) => void | null;
-  declare onapplicationdidupdateuseractivity: (evt: CustomEvent<[application: NSApplication, userActivity: NSUserActivity]>) => void | null;
-  declare onapplicationuserdidacceptcloudkitsharewithmetadata: (evt: CustomEvent<[application: NSApplication, metadata: CKShareMetadata]>) => void | null;
-  declare onapplicationdelegatehandleskey: (evt: CustomEvent<[sender: NSApplication, key: NSString | string]>) => void | null;
-  declare onapplicationshouldautomaticallylocalizekeyequivalents: (evt: CustomEvent<[application: NSApplication]>) => void | null;
-  declare onapplicationwillfinishlaunching: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onapplicationdidfinishlaunching: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onapplicationwillhide: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onapplicationdidhide: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onapplicationwillunhide: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onapplicationdidunhide: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onapplicationwillbecomeactive: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onapplicationdidbecomeactive: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onapplicationwillresignactive: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onapplicationdidresignactive: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onapplicationwillupdate: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onapplicationdidupdate: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onapplicationwillterminate: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onapplicationdidchangescreenparameters: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onapplicationdidchangeocclusionstate: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onapplicationprotecteddatawillbecomeunavailable: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onapplicationprotecteddatadidbecomeavailable: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  set applicationshouldterminate(value: (sender: NSApplication) => interop.Enum<typeof NSApplicationTerminateReply>) {
+    this.delegate.applicationShouldTerminate = value;
+  }
+  set applicationopenurls(value: (application: NSApplication, urls: NSArray | unknown[]) => void) {
+    this.delegate.applicationOpenURLs = value;
+  }
+  set applicationopenfile(value: (sender: NSApplication, filename: NSString | string) => boolean) {
+    this.delegate.applicationOpenFile = value;
+  }
+  set applicationopenfiles(value: (sender: NSApplication, filenames: NSArray | unknown[]) => void) {
+    this.delegate.applicationOpenFiles = value;
+  }
+  set applicationopentempfile(value: (sender: NSApplication, filename: NSString | string) => boolean) {
+    this.delegate.applicationOpenTempFile = value;
+  }
+  set applicationshouldopenuntitledfile(value: (sender: NSApplication) => boolean) {
+    this.delegate.applicationShouldOpenUntitledFile = value;
+  }
+  set applicationopenuntitledfile(value: (sender: NSApplication) => boolean) {
+    this.delegate.applicationOpenUntitledFile = value;
+  }
+  set applicationopenfilewithoutui(value: (sender: interop.Object, filename: NSString | string) => boolean) {
+    this.delegate.applicationOpenFileWithoutUI = value;
+  }
+  set applicationprintfile(value: (sender: NSApplication, filename: NSString | string) => boolean) {
+    this.delegate.applicationPrintFile = value;
+  }
+  set applicationprintfileswithsettingsshowprintpanels(value: (application: NSApplication, fileNames: NSArray | unknown[], printSettings: NSDictionary | Record<string, unknown>, showPrintPanels: boolean) => interop.Enum<typeof NSApplicationPrintReply>) {
+    this.delegate.applicationPrintFilesWithSettingsShowPrintPanels = value;
+  }
+  set applicationshouldterminateafterlastwindowclosed(value: (sender: NSApplication) => boolean) {
+    this.delegate.applicationShouldTerminateAfterLastWindowClosed = value;
+  }
+  set applicationshouldhandlereopenhasvisiblewindows(value: (sender: NSApplication, flag: boolean) => boolean) {
+    this.delegate.applicationShouldHandleReopenHasVisibleWindows = value;
+  }
+  set applicationdockmenu(value: (sender: NSApplication) => NSMenu) {
+    this.delegate.applicationDockMenu = value;
+  }
+  set applicationwillpresenterror(value: (application: NSApplication, error: NSError) => NSError) {
+    this.delegate.applicationWillPresentError = value;
+  }
+  set applicationdidregisterforremotenotificationswithdevicetoken(value: (application: NSApplication, deviceToken: NSData) => void) {
+    this.delegate.applicationDidRegisterForRemoteNotificationsWithDeviceToken = value;
+  }
+  set applicationdidfailtoregisterforremotenotificationswitherror(value: (application: NSApplication, error: NSError) => void) {
+    this.delegate.applicationDidFailToRegisterForRemoteNotificationsWithError = value;
+  }
+  set applicationdidreceiveremotenotification(value: (application: NSApplication, userInfo: NSDictionary | Record<string, unknown>) => void) {
+    this.delegate.applicationDidReceiveRemoteNotification = value;
+  }
+  set applicationsupportssecurerestorablestate(value: (app: NSApplication) => boolean) {
+    this.delegate.applicationSupportsSecureRestorableState = value;
+  }
+  set applicationhandlerforintent(value: (application: NSApplication, intent: INIntent) => interop.Object) {
+    this.delegate.applicationHandlerForIntent = value;
+  }
+  set applicationwillencoderestorablestate(value: (app: NSApplication, coder: NSCoder) => void) {
+    this.delegate.applicationWillEncodeRestorableState = value;
+  }
+  set applicationdiddecoderestorablestate(value: (app: NSApplication, coder: NSCoder) => void) {
+    this.delegate.applicationDidDecodeRestorableState = value;
+  }
+  set applicationwillcontinueuseractivitywithtype(value: (application: NSApplication, userActivityType: NSString | string) => boolean) {
+    this.delegate.applicationWillContinueUserActivityWithType = value;
+  }
+  set applicationcontinueuseractivityrestorationhandler(value: (application: NSApplication, userActivity: NSUserActivity, restorationHandler: (p1: NSArray | unknown[]) => void) => boolean) {
+    this.delegate.applicationContinueUserActivityRestorationHandler = value;
+  }
+  set applicationdidfailtocontinueuseractivitywithtypeerror(value: (application: NSApplication, userActivityType: NSString | string, error: NSError) => void) {
+    this.delegate.applicationDidFailToContinueUserActivityWithTypeError = value;
+  }
+  set applicationdidupdateuseractivity(value: (application: NSApplication, userActivity: NSUserActivity) => void) {
+    this.delegate.applicationDidUpdateUserActivity = value;
+  }
+  set applicationuserdidacceptcloudkitsharewithmetadata(value: (application: NSApplication, metadata: CKShareMetadata) => void) {
+    this.delegate.applicationUserDidAcceptCloudKitShareWithMetadata = value;
+  }
+  set applicationdelegatehandleskey(value: (sender: NSApplication, key: NSString | string) => boolean) {
+    this.delegate.applicationDelegateHandlesKey = value;
+  }
+  set applicationshouldautomaticallylocalizekeyequivalents(value: (application: NSApplication) => boolean) {
+    this.delegate.applicationShouldAutomaticallyLocalizeKeyEquivalents = value;
+  }
+  set applicationwillfinishlaunching(value: (notification: NSNotification) => void) {
+    this.delegate.applicationWillFinishLaunching = value;
+  }
+  set applicationdidfinishlaunching(value: (notification: NSNotification) => void) {
+    this.delegate.applicationDidFinishLaunching = value;
+  }
+  set applicationwillhide(value: (notification: NSNotification) => void) {
+    this.delegate.applicationWillHide = value;
+  }
+  set applicationdidhide(value: (notification: NSNotification) => void) {
+    this.delegate.applicationDidHide = value;
+  }
+  set applicationwillunhide(value: (notification: NSNotification) => void) {
+    this.delegate.applicationWillUnhide = value;
+  }
+  set applicationdidunhide(value: (notification: NSNotification) => void) {
+    this.delegate.applicationDidUnhide = value;
+  }
+  set applicationwillbecomeactive(value: (notification: NSNotification) => void) {
+    this.delegate.applicationWillBecomeActive = value;
+  }
+  set applicationdidbecomeactive(value: (notification: NSNotification) => void) {
+    this.delegate.applicationDidBecomeActive = value;
+  }
+  set applicationwillresignactive(value: (notification: NSNotification) => void) {
+    this.delegate.applicationWillResignActive = value;
+  }
+  set applicationdidresignactive(value: (notification: NSNotification) => void) {
+    this.delegate.applicationDidResignActive = value;
+  }
+  set applicationwillupdate(value: (notification: NSNotification) => void) {
+    this.delegate.applicationWillUpdate = value;
+  }
+  set applicationdidupdate(value: (notification: NSNotification) => void) {
+    this.delegate.applicationDidUpdate = value;
+  }
+  set applicationwillterminate(value: (notification: NSNotification) => void) {
+    this.delegate.applicationWillTerminate = value;
+  }
+  set applicationdidchangescreenparameters(value: (notification: NSNotification) => void) {
+    this.delegate.applicationDidChangeScreenParameters = value;
+  }
+  set applicationdidchangeocclusionstate(value: (notification: NSNotification) => void) {
+    this.delegate.applicationDidChangeOcclusionState = value;
+  }
+  set applicationprotecteddatawillbecomeunavailable(value: (notification: NSNotification) => void) {
+    this.delegate.applicationProtectedDataWillBecomeUnavailable = value;
+  }
+  set applicationprotecteddatadidbecomeavailable(value: (notification: NSNotification) => void) {
+    this.delegate.applicationProtectedDataDidBecomeAvailable = value;
+  }
 }
 
 export class HTMLNSTouchBarItemElement extends HTMLNSObjectElement {
@@ -2511,13 +2747,8 @@ export class HTMLNSSliderCellElement extends HTMLNSActionCellElement {
 
 export class HTMLNSTokenFieldCellElement extends HTMLNSTextFieldCellElement {
   readonly nativeObject = NSTokenFieldCell.new();
-  delegate?: NSTokenFieldCellDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSTokenFieldCellDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSTokenFieldCellDelegateImpl {
+    return (this.nativeObject.delegate ??= NSTokenFieldCellDelegateImpl.new()) as NSTokenFieldCellDelegateImpl;
   }
 
   // tokenStyle: interop.Enum<typeof NSTokenStyle>;
@@ -2526,16 +2757,36 @@ export class HTMLNSTokenFieldCellElement extends HTMLNSTextFieldCellElement {
   // tokenizingCharacterSet: NSCharacterSet;
   // defaultTokenizingCharacterSet: NSCharacterSet;
 
-  declare ontokenfieldcellcompletionsforsubstringindexoftokenindexofselecteditem: (evt: CustomEvent<[tokenFieldCell: NSTokenFieldCell, substring: NSString | string, tokenIndex: number, selectedIndex: interop.PointerConvertible]>) => void | null;
-  declare ontokenfieldcellshouldaddobjectsatindex: (evt: CustomEvent<[tokenFieldCell: NSTokenFieldCell, tokens: NSArray | unknown[], index: number]>) => void | null;
-  declare ontokenfieldcelldisplaystringforrepresentedobject: (evt: CustomEvent<[tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object]>) => void | null;
-  declare ontokenfieldcelleditingstringforrepresentedobject: (evt: CustomEvent<[tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object]>) => void | null;
-  declare ontokenfieldcellrepresentedobjectforeditingstring: (evt: CustomEvent<[tokenFieldCell: NSTokenFieldCell, editingString: NSString | string]>) => void | null;
-  declare ontokenfieldcellwriterepresentedobjectstopasteboard: (evt: CustomEvent<[tokenFieldCell: NSTokenFieldCell, objects: NSArray | unknown[], pboard: NSPasteboard]>) => void | null;
-  declare ontokenfieldcellreadfrompasteboard: (evt: CustomEvent<[tokenFieldCell: NSTokenFieldCell, pboard: NSPasteboard]>) => void | null;
-  declare ontokenfieldcellmenuforrepresentedobject: (evt: CustomEvent<[tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object]>) => void | null;
-  declare ontokenfieldcellhasmenuforrepresentedobject: (evt: CustomEvent<[tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object]>) => void | null;
-  declare ontokenfieldcellstyleforrepresentedobject: (evt: CustomEvent<[tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object]>) => void | null;
+  set tokenfieldcellcompletionsforsubstringindexoftokenindexofselecteditem(value: (tokenFieldCell: NSTokenFieldCell, substring: NSString | string, tokenIndex: number, selectedIndex: interop.PointerConvertible) => NSArray) {
+    this.delegate.tokenFieldCellCompletionsForSubstringIndexOfTokenIndexOfSelectedItem = value;
+  }
+  set tokenfieldcellshouldaddobjectsatindex(value: (tokenFieldCell: NSTokenFieldCell, tokens: NSArray | unknown[], index: number) => NSArray) {
+    this.delegate.tokenFieldCellShouldAddObjectsAtIndex = value;
+  }
+  set tokenfieldcelldisplaystringforrepresentedobject(value: (tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object) => NSString) {
+    this.delegate.tokenFieldCellDisplayStringForRepresentedObject = value;
+  }
+  set tokenfieldcelleditingstringforrepresentedobject(value: (tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object) => NSString) {
+    this.delegate.tokenFieldCellEditingStringForRepresentedObject = value;
+  }
+  set tokenfieldcellrepresentedobjectforeditingstring(value: (tokenFieldCell: NSTokenFieldCell, editingString: NSString | string) => interop.Object) {
+    this.delegate.tokenFieldCellRepresentedObjectForEditingString = value;
+  }
+  set tokenfieldcellwriterepresentedobjectstopasteboard(value: (tokenFieldCell: NSTokenFieldCell, objects: NSArray | unknown[], pboard: NSPasteboard) => boolean) {
+    this.delegate.tokenFieldCellWriteRepresentedObjectsToPasteboard = value;
+  }
+  set tokenfieldcellreadfrompasteboard(value: (tokenFieldCell: NSTokenFieldCell, pboard: NSPasteboard) => NSArray) {
+    this.delegate.tokenFieldCellReadFromPasteboard = value;
+  }
+  set tokenfieldcellmenuforrepresentedobject(value: (tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object) => NSMenu) {
+    this.delegate.tokenFieldCellMenuForRepresentedObject = value;
+  }
+  set tokenfieldcellhasmenuforrepresentedobject(value: (tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object) => boolean) {
+    this.delegate.tokenFieldCellHasMenuForRepresentedObject = value;
+  }
+  set tokenfieldcellstyleforrepresentedobject(value: (tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object) => interop.Enum<typeof NSTokenStyle>) {
+    this.delegate.tokenFieldCellStyleForRepresentedObject = value;
+  }
 }
 
 export class HTMLNSSharingServicePickerToolbarItemElement extends HTMLNSToolbarItemElement {
@@ -2680,13 +2931,8 @@ export class HTMLNSMutableFontCollectionElement extends HTMLNSFontCollectionElem
 
 export class HTMLNSCollectionViewElement extends HTMLNSViewElement {
   readonly nativeObject = NSCollectionView.new();
-  delegate?: NSCollectionViewDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSCollectionViewDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSCollectionViewDelegateImpl {
+    return (this.nativeObject.delegate ??= NSCollectionViewDelegateImpl.new()) as NSCollectionViewDelegateImpl;
   }
 
   // dataSource: NSCollectionViewDataSource;
@@ -2713,35 +2959,93 @@ export class HTMLNSCollectionViewElement extends HTMLNSViewElement {
   // readonly description: NSString;
   // readonly debugDescription: NSString;
 
-  declare oncollectionviewcandragitemsatindexpathswithevent: (evt: CustomEvent<[collectionView: NSCollectionView, indexPaths: NSSet, event: NSEvent]>) => void | null;
-  declare oncollectionviewcandragitemsatindexeswithevent: (evt: CustomEvent<[collectionView: NSCollectionView, indexes: NSIndexSet, event: NSEvent]>) => void | null;
-  declare oncollectionviewwriteitemsatindexpathstopasteboard: (evt: CustomEvent<[collectionView: NSCollectionView, indexPaths: NSSet, pasteboard: NSPasteboard]>) => void | null;
-  declare oncollectionviewwriteitemsatindexestopasteboard: (evt: CustomEvent<[collectionView: NSCollectionView, indexes: NSIndexSet, pasteboard: NSPasteboard]>) => void | null;
-  declare oncollectionviewnamesofpromisedfilesdroppedatdestinationfordraggeditemsatindexpaths: (evt: CustomEvent<[collectionView: NSCollectionView, dropURL: NSURL, indexPaths: NSSet]>) => void | null;
-  declare oncollectionviewnamesofpromisedfilesdroppedatdestinationfordraggeditemsatindexes: (evt: CustomEvent<[collectionView: NSCollectionView, dropURL: NSURL, indexes: NSIndexSet]>) => void | null;
-  declare oncollectionviewdraggingimageforitemsatindexpathswitheventoffset: (evt: CustomEvent<[collectionView: NSCollectionView, indexPaths: NSSet, event: NSEvent, dragImageOffset: interop.PointerConvertible]>) => void | null;
-  declare oncollectionviewdraggingimageforitemsatindexeswitheventoffset: (evt: CustomEvent<[collectionView: NSCollectionView, indexes: NSIndexSet, event: NSEvent, dragImageOffset: interop.PointerConvertible]>) => void | null;
-  declare oncollectionviewvalidatedropproposedindexpathdropoperation: (evt: CustomEvent<[collectionView: NSCollectionView, draggingInfo: NSDraggingInfo, proposedDropIndexPath: interop.PointerConvertible, proposedDropOperation: interop.PointerConvertible]>) => void | null;
-  declare oncollectionviewvalidatedropproposedindexdropoperation: (evt: CustomEvent<[collectionView: NSCollectionView, draggingInfo: NSDraggingInfo, proposedDropIndex: interop.PointerConvertible, proposedDropOperation: interop.PointerConvertible]>) => void | null;
-  declare oncollectionviewacceptdropindexpathdropoperation: (evt: CustomEvent<[collectionView: NSCollectionView, draggingInfo: NSDraggingInfo, indexPath: NSIndexPath, dropOperation: interop.Enum<typeof NSCollectionViewDropOperation>]>) => void | null;
-  declare oncollectionviewacceptdropindexdropoperation: (evt: CustomEvent<[collectionView: NSCollectionView, draggingInfo: NSDraggingInfo, index: number, dropOperation: interop.Enum<typeof NSCollectionViewDropOperation>]>) => void | null;
-  declare oncollectionviewpasteboardwriterforitematindexpath: (evt: CustomEvent<[collectionView: NSCollectionView, indexPath: NSIndexPath]>) => void | null;
-  declare oncollectionviewpasteboardwriterforitematindex: (evt: CustomEvent<[collectionView: NSCollectionView, index: number]>) => void | null;
-  declare oncollectionviewdraggingsessionwillbeginatpointforitemsatindexpaths: (evt: CustomEvent<[collectionView: NSCollectionView, session: NSDraggingSession, screenPoint: CGPoint, indexPaths: NSSet]>) => void | null;
-  declare oncollectionviewdraggingsessionwillbeginatpointforitemsatindexes: (evt: CustomEvent<[collectionView: NSCollectionView, session: NSDraggingSession, screenPoint: CGPoint, indexes: NSIndexSet]>) => void | null;
-  declare oncollectionviewdraggingsessionendedatpointdragoperation: (evt: CustomEvent<[collectionView: NSCollectionView, session: NSDraggingSession, screenPoint: CGPoint, operation: interop.Enum<typeof NSDragOperation>]>) => void | null;
-  declare oncollectionviewupdatedraggingitemsfordrag: (evt: CustomEvent<[collectionView: NSCollectionView, draggingInfo: NSDraggingInfo]>) => void | null;
-  declare oncollectionviewshouldchangeitemsatindexpathstohighlightstate: (evt: CustomEvent<[collectionView: NSCollectionView, indexPaths: NSSet, highlightState: interop.Enum<typeof NSCollectionViewItemHighlightState>]>) => void | null;
-  declare oncollectionviewdidchangeitemsatindexpathstohighlightstate: (evt: CustomEvent<[collectionView: NSCollectionView, indexPaths: NSSet, highlightState: interop.Enum<typeof NSCollectionViewItemHighlightState>]>) => void | null;
-  declare oncollectionviewshouldselectitemsatindexpaths: (evt: CustomEvent<[collectionView: NSCollectionView, indexPaths: NSSet]>) => void | null;
-  declare oncollectionviewshoulddeselectitemsatindexpaths: (evt: CustomEvent<[collectionView: NSCollectionView, indexPaths: NSSet]>) => void | null;
-  declare oncollectionviewdidselectitemsatindexpaths: (evt: CustomEvent<[collectionView: NSCollectionView, indexPaths: NSSet]>) => void | null;
-  declare oncollectionviewdiddeselectitemsatindexpaths: (evt: CustomEvent<[collectionView: NSCollectionView, indexPaths: NSSet]>) => void | null;
-  declare oncollectionviewwilldisplayitemforrepresentedobjectatindexpath: (evt: CustomEvent<[collectionView: NSCollectionView, item: NSCollectionViewItem, indexPath: NSIndexPath]>) => void | null;
-  declare oncollectionviewwilldisplaysupplementaryviewforelementkindatindexpath: (evt: CustomEvent<[collectionView: NSCollectionView, view: NSView, elementKind: NSString | string, indexPath: NSIndexPath]>) => void | null;
-  declare oncollectionviewdidenddisplayingitemforrepresentedobjectatindexpath: (evt: CustomEvent<[collectionView: NSCollectionView, item: NSCollectionViewItem, indexPath: NSIndexPath]>) => void | null;
-  declare oncollectionviewdidenddisplayingsupplementaryviewforelementofkindatindexpath: (evt: CustomEvent<[collectionView: NSCollectionView, view: NSView, elementKind: NSString | string, indexPath: NSIndexPath]>) => void | null;
-  declare oncollectionviewtransitionlayoutforoldlayoutnewlayout: (evt: CustomEvent<[collectionView: NSCollectionView, fromLayout: NSCollectionViewLayout, toLayout: NSCollectionViewLayout]>) => void | null;
+  set collectionviewcandragitemsatindexpathswithevent(value: (collectionView: NSCollectionView, indexPaths: NSSet, event: NSEvent) => boolean) {
+    this.delegate.collectionViewCanDragItemsAtIndexPathsWithEvent = value;
+  }
+  set collectionviewcandragitemsatindexeswithevent(value: (collectionView: NSCollectionView, indexes: NSIndexSet, event: NSEvent) => boolean) {
+    this.delegate.collectionViewCanDragItemsAtIndexesWithEvent = value;
+  }
+  set collectionviewwriteitemsatindexpathstopasteboard(value: (collectionView: NSCollectionView, indexPaths: NSSet, pasteboard: NSPasteboard) => boolean) {
+    this.delegate.collectionViewWriteItemsAtIndexPathsToPasteboard = value;
+  }
+  set collectionviewwriteitemsatindexestopasteboard(value: (collectionView: NSCollectionView, indexes: NSIndexSet, pasteboard: NSPasteboard) => boolean) {
+    this.delegate.collectionViewWriteItemsAtIndexesToPasteboard = value;
+  }
+  set collectionviewnamesofpromisedfilesdroppedatdestinationfordraggeditemsatindexpaths(value: (collectionView: NSCollectionView, dropURL: NSURL, indexPaths: NSSet) => NSArray) {
+    this.delegate.collectionViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItemsAtIndexPaths = value;
+  }
+  set collectionviewnamesofpromisedfilesdroppedatdestinationfordraggeditemsatindexes(value: (collectionView: NSCollectionView, dropURL: NSURL, indexes: NSIndexSet) => NSArray) {
+    this.delegate.collectionViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItemsAtIndexes = value;
+  }
+  set collectionviewdraggingimageforitemsatindexpathswitheventoffset(value: (collectionView: NSCollectionView, indexPaths: NSSet, event: NSEvent, dragImageOffset: interop.PointerConvertible) => NSImage) {
+    this.delegate.collectionViewDraggingImageForItemsAtIndexPathsWithEventOffset = value;
+  }
+  set collectionviewdraggingimageforitemsatindexeswitheventoffset(value: (collectionView: NSCollectionView, indexes: NSIndexSet, event: NSEvent, dragImageOffset: interop.PointerConvertible) => NSImage) {
+    this.delegate.collectionViewDraggingImageForItemsAtIndexesWithEventOffset = value;
+  }
+  set collectionviewvalidatedropproposedindexpathdropoperation(value: (collectionView: NSCollectionView, draggingInfo: NSDraggingInfo, proposedDropIndexPath: interop.PointerConvertible, proposedDropOperation: interop.PointerConvertible) => interop.Enum<typeof NSDragOperation>) {
+    this.delegate.collectionViewValidateDropProposedIndexPathDropOperation = value;
+  }
+  set collectionviewvalidatedropproposedindexdropoperation(value: (collectionView: NSCollectionView, draggingInfo: NSDraggingInfo, proposedDropIndex: interop.PointerConvertible, proposedDropOperation: interop.PointerConvertible) => interop.Enum<typeof NSDragOperation>) {
+    this.delegate.collectionViewValidateDropProposedIndexDropOperation = value;
+  }
+  set collectionviewacceptdropindexpathdropoperation(value: (collectionView: NSCollectionView, draggingInfo: NSDraggingInfo, indexPath: NSIndexPath, dropOperation: interop.Enum<typeof NSCollectionViewDropOperation>) => boolean) {
+    this.delegate.collectionViewAcceptDropIndexPathDropOperation = value;
+  }
+  set collectionviewacceptdropindexdropoperation(value: (collectionView: NSCollectionView, draggingInfo: NSDraggingInfo, index: number, dropOperation: interop.Enum<typeof NSCollectionViewDropOperation>) => boolean) {
+    this.delegate.collectionViewAcceptDropIndexDropOperation = value;
+  }
+  set collectionviewpasteboardwriterforitematindexpath(value: (collectionView: NSCollectionView, indexPath: NSIndexPath) => NSPasteboardWriting) {
+    this.delegate.collectionViewPasteboardWriterForItemAtIndexPath = value;
+  }
+  set collectionviewpasteboardwriterforitematindex(value: (collectionView: NSCollectionView, index: number) => NSPasteboardWriting) {
+    this.delegate.collectionViewPasteboardWriterForItemAtIndex = value;
+  }
+  set collectionviewdraggingsessionwillbeginatpointforitemsatindexpaths(value: (collectionView: NSCollectionView, session: NSDraggingSession, screenPoint: CGPoint, indexPaths: NSSet) => void) {
+    this.delegate.collectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths = value;
+  }
+  set collectionviewdraggingsessionwillbeginatpointforitemsatindexes(value: (collectionView: NSCollectionView, session: NSDraggingSession, screenPoint: CGPoint, indexes: NSIndexSet) => void) {
+    this.delegate.collectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes = value;
+  }
+  set collectionviewdraggingsessionendedatpointdragoperation(value: (collectionView: NSCollectionView, session: NSDraggingSession, screenPoint: CGPoint, operation: interop.Enum<typeof NSDragOperation>) => void) {
+    this.delegate.collectionViewDraggingSessionEndedAtPointDragOperation = value;
+  }
+  set collectionviewupdatedraggingitemsfordrag(value: (collectionView: NSCollectionView, draggingInfo: NSDraggingInfo) => void) {
+    this.delegate.collectionViewUpdateDraggingItemsForDrag = value;
+  }
+  set collectionviewshouldchangeitemsatindexpathstohighlightstate(value: (collectionView: NSCollectionView, indexPaths: NSSet, highlightState: interop.Enum<typeof NSCollectionViewItemHighlightState>) => NSSet) {
+    this.delegate.collectionViewShouldChangeItemsAtIndexPathsToHighlightState = value;
+  }
+  set collectionviewdidchangeitemsatindexpathstohighlightstate(value: (collectionView: NSCollectionView, indexPaths: NSSet, highlightState: interop.Enum<typeof NSCollectionViewItemHighlightState>) => void) {
+    this.delegate.collectionViewDidChangeItemsAtIndexPathsToHighlightState = value;
+  }
+  set collectionviewshouldselectitemsatindexpaths(value: (collectionView: NSCollectionView, indexPaths: NSSet) => NSSet) {
+    this.delegate.collectionViewShouldSelectItemsAtIndexPaths = value;
+  }
+  set collectionviewshoulddeselectitemsatindexpaths(value: (collectionView: NSCollectionView, indexPaths: NSSet) => NSSet) {
+    this.delegate.collectionViewShouldDeselectItemsAtIndexPaths = value;
+  }
+  set collectionviewdidselectitemsatindexpaths(value: (collectionView: NSCollectionView, indexPaths: NSSet) => void) {
+    this.delegate.collectionViewDidSelectItemsAtIndexPaths = value;
+  }
+  set collectionviewdiddeselectitemsatindexpaths(value: (collectionView: NSCollectionView, indexPaths: NSSet) => void) {
+    this.delegate.collectionViewDidDeselectItemsAtIndexPaths = value;
+  }
+  set collectionviewwilldisplayitemforrepresentedobjectatindexpath(value: (collectionView: NSCollectionView, item: NSCollectionViewItem, indexPath: NSIndexPath) => void) {
+    this.delegate.collectionViewWillDisplayItemForRepresentedObjectAtIndexPath = value;
+  }
+  set collectionviewwilldisplaysupplementaryviewforelementkindatindexpath(value: (collectionView: NSCollectionView, view: NSView, elementKind: NSString | string, indexPath: NSIndexPath) => void) {
+    this.delegate.collectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath = value;
+  }
+  set collectionviewdidenddisplayingitemforrepresentedobjectatindexpath(value: (collectionView: NSCollectionView, item: NSCollectionViewItem, indexPath: NSIndexPath) => void) {
+    this.delegate.collectionViewDidEndDisplayingItemForRepresentedObjectAtIndexPath = value;
+  }
+  set collectionviewdidenddisplayingsupplementaryviewforelementofkindatindexpath(value: (collectionView: NSCollectionView, view: NSView, elementKind: NSString | string, indexPath: NSIndexPath) => void) {
+    this.delegate.collectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath = value;
+  }
+  set collectionviewtransitionlayoutforoldlayoutnewlayout(value: (collectionView: NSCollectionView, fromLayout: NSCollectionViewLayout, toLayout: NSCollectionViewLayout) => NSCollectionViewTransitionLayout) {
+    this.delegate.collectionViewTransitionLayoutForOldLayoutNewLayout = value;
+  }
 }
 
 export class HTMLNSButtonCellElement extends HTMLNSActionCellElement {
@@ -2932,13 +3236,8 @@ export class HTMLNSDockTileElement extends HTMLNSObjectElement {
 
 export class HTMLNSAlertElement extends HTMLNSObjectElement {
   readonly nativeObject = NSAlert.new();
-  delegate?: NSAlertDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSAlertDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSAlertDelegateImpl {
+    return (this.nativeObject.delegate ??= NSAlertDelegateImpl.new()) as NSAlertDelegateImpl;
   }
 
   // icon: NSImage;
@@ -2950,7 +3249,9 @@ export class HTMLNSAlertElement extends HTMLNSObjectElement {
   // readonly suppressionButton: NSButton;
   // readonly window: NSWindow;
 
-  declare onalertshowhelp: (evt: CustomEvent<[alert: NSAlert]>) => void | null;
+  set alertshowhelp(value: (alert: NSAlert) => boolean) {
+    this.delegate.alertShowHelp = value;
+  }
 }
 
 export class HTMLNSTextLineFragmentElement extends HTMLNSObjectElement {
@@ -3352,13 +3653,8 @@ export class HTMLNSClipViewElement extends HTMLNSViewElement {
 
 export class HTMLNSPopoverElement extends HTMLNSResponderElement {
   readonly nativeObject = NSPopover.new();
-  delegate?: NSPopoverDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSPopoverDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSPopoverDelegateImpl {
+    return (this.nativeObject.delegate ??= NSPopoverDelegateImpl.new()) as NSPopoverDelegateImpl;
   }
 
   // appearance: NSAppearance;
@@ -3452,14 +3748,30 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
   // accessibilityMinimizeButton: interop.Object;
   // isAccessibilityMinimized: boolean;
 
-  declare onpopovershouldclose: (evt: CustomEvent<[popover: NSPopover]>) => void | null;
-  declare onpopovershoulddetach: (evt: CustomEvent<[popover: NSPopover]>) => void | null;
-  declare onpopoverdiddetach: (evt: CustomEvent<[popover: NSPopover]>) => void | null;
-  declare ondetachablewindowforpopover: (evt: CustomEvent<[popover: NSPopover]>) => void | null;
-  declare onpopoverwillshow: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onpopoverdidshow: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onpopoverwillclose: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onpopoverdidclose: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  set popovershouldclose(value: (popover: NSPopover) => boolean) {
+    this.delegate.popoverShouldClose = value;
+  }
+  set popovershoulddetach(value: (popover: NSPopover) => boolean) {
+    this.delegate.popoverShouldDetach = value;
+  }
+  set popoverdiddetach(value: (popover: NSPopover) => void) {
+    this.delegate.popoverDidDetach = value;
+  }
+  set detachablewindowforpopover(value: (popover: NSPopover) => NSWindow) {
+    this.delegate.detachableWindowForPopover = value;
+  }
+  set popoverwillshow(value: (notification: NSNotification) => void) {
+    this.delegate.popoverWillShow = value;
+  }
+  set popoverdidshow(value: (notification: NSNotification) => void) {
+    this.delegate.popoverDidShow = value;
+  }
+  set popoverwillclose(value: (notification: NSNotification) => void) {
+    this.delegate.popoverWillClose = value;
+  }
+  set popoverdidclose(value: (notification: NSNotification) => void) {
+    this.delegate.popoverDidClose = value;
+  }
 }
 
 export class HTMLNSCustomTouchBarItemElement extends HTMLNSTouchBarItemElement {
@@ -3473,13 +3785,8 @@ export class HTMLNSCustomTouchBarItemElement extends HTMLNSTouchBarItemElement {
 
 export class HTMLNSGestureRecognizerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSGestureRecognizer.new();
-  delegate?: NSGestureRecognizerDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSGestureRecognizerDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSGestureRecognizerDelegateImpl {
+    return (this.nativeObject.delegate ??= NSGestureRecognizerDelegateImpl.new()) as NSGestureRecognizerDelegateImpl;
   }
 
   // target: interop.Object;
@@ -3496,12 +3803,24 @@ export class HTMLNSGestureRecognizerElement extends HTMLNSObjectElement {
   // delaysRotationEvents: boolean;
   // allowedTouchTypes: interop.Enum<typeof NSTouchTypeMask>;
 
-  declare ongesturerecognizershouldattempttorecognizewithevent: (evt: CustomEvent<[gestureRecognizer: NSGestureRecognizer, event: NSEvent]>) => void | null;
-  declare ongesturerecognizershouldbegin: (evt: CustomEvent<[gestureRecognizer: NSGestureRecognizer]>) => void | null;
-  declare ongesturerecognizershouldrecognizesimultaneouslywithgesturerecognizer: (evt: CustomEvent<[gestureRecognizer: NSGestureRecognizer, otherGestureRecognizer: NSGestureRecognizer]>) => void | null;
-  declare ongesturerecognizershouldrequirefailureofgesturerecognizer: (evt: CustomEvent<[gestureRecognizer: NSGestureRecognizer, otherGestureRecognizer: NSGestureRecognizer]>) => void | null;
-  declare ongesturerecognizershouldberequiredtofailbygesturerecognizer: (evt: CustomEvent<[gestureRecognizer: NSGestureRecognizer, otherGestureRecognizer: NSGestureRecognizer]>) => void | null;
-  declare ongesturerecognizershouldreceivetouch: (evt: CustomEvent<[gestureRecognizer: NSGestureRecognizer, touch: NSTouch]>) => void | null;
+  set gesturerecognizershouldattempttorecognizewithevent(value: (gestureRecognizer: NSGestureRecognizer, event: NSEvent) => boolean) {
+    this.delegate.gestureRecognizerShouldAttemptToRecognizeWithEvent = value;
+  }
+  set gesturerecognizershouldbegin(value: (gestureRecognizer: NSGestureRecognizer) => boolean) {
+    this.delegate.gestureRecognizerShouldBegin = value;
+  }
+  set gesturerecognizershouldrecognizesimultaneouslywithgesturerecognizer(value: (gestureRecognizer: NSGestureRecognizer, otherGestureRecognizer: NSGestureRecognizer) => boolean) {
+    this.delegate.gestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer = value;
+  }
+  set gesturerecognizershouldrequirefailureofgesturerecognizer(value: (gestureRecognizer: NSGestureRecognizer, otherGestureRecognizer: NSGestureRecognizer) => boolean) {
+    this.delegate.gestureRecognizerShouldRequireFailureOfGestureRecognizer = value;
+  }
+  set gesturerecognizershouldberequiredtofailbygesturerecognizer(value: (gestureRecognizer: NSGestureRecognizer, otherGestureRecognizer: NSGestureRecognizer) => boolean) {
+    this.delegate.gestureRecognizerShouldBeRequiredToFailByGestureRecognizer = value;
+  }
+  set gesturerecognizershouldreceivetouch(value: (gestureRecognizer: NSGestureRecognizer, touch: NSTouch) => boolean) {
+    this.delegate.gestureRecognizerShouldReceiveTouch = value;
+  }
 }
 
 export class HTMLNSStatusBarElement extends HTMLNSObjectElement {
@@ -3766,13 +4085,8 @@ export class HTMLNSCandidateListTouchBarItemElement extends HTMLNSTouchBarItemEl
 
   // @ts-ignore
   readonly nativeObject = NSCandidateListTouchBarItem.new();
-  delegate?: NSCandidateListTouchBarItemDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSCandidateListTouchBarItemDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSCandidateListTouchBarItemDelegateImpl {
+    return (this.nativeObject.delegate ??= NSCandidateListTouchBarItemDelegateImpl.new()) as NSCandidateListTouchBarItemDelegateImpl;
   }
 
   // client: NSView;
@@ -3783,10 +4097,18 @@ export class HTMLNSCandidateListTouchBarItemElement extends HTMLNSTouchBarItemEl
   // attributedStringForCandidate: (p1: interop.Object, p2: number) => NSAttributedString;
   // readonly candidates: NSArray;
 
-  declare oncandidatelisttouchbaritembeginselectingcandidateatindex: (evt: CustomEvent<[anItem: NSCandidateListTouchBarItem, index: number]>) => void | null;
-  declare oncandidatelisttouchbaritemchangeselectionfromcandidateatindextoindex: (evt: CustomEvent<[anItem: NSCandidateListTouchBarItem, previousIndex: number, index: number]>) => void | null;
-  declare oncandidatelisttouchbaritemendselectingcandidateatindex: (evt: CustomEvent<[anItem: NSCandidateListTouchBarItem, index: number]>) => void | null;
-  declare oncandidatelisttouchbaritemchangedcandidatelistvisibility: (evt: CustomEvent<[anItem: NSCandidateListTouchBarItem, isVisible: boolean]>) => void | null;
+  set candidatelisttouchbaritembeginselectingcandidateatindex(value: (anItem: NSCandidateListTouchBarItem, index: number) => void) {
+    this.delegate.candidateListTouchBarItemBeginSelectingCandidateAtIndex = value;
+  }
+  set candidatelisttouchbaritemchangeselectionfromcandidateatindextoindex(value: (anItem: NSCandidateListTouchBarItem, previousIndex: number, index: number) => void) {
+    this.delegate.candidateListTouchBarItemChangeSelectionFromCandidateAtIndexToIndex = value;
+  }
+  set candidatelisttouchbaritemendselectingcandidateatindex(value: (anItem: NSCandidateListTouchBarItem, index: number) => void) {
+    this.delegate.candidateListTouchBarItemEndSelectingCandidateAtIndex = value;
+  }
+  set candidatelisttouchbaritemchangedcandidatelistvisibility(value: (anItem: NSCandidateListTouchBarItem, isVisible: boolean) => void) {
+    this.delegate.candidateListTouchBarItemChangedCandidateListVisibility = value;
+  }
 }
 
 export class HTMLNSCollectionViewFlowLayoutElement extends HTMLNSCollectionViewLayoutElement {
@@ -3862,13 +4184,8 @@ export class HTMLNSGridViewElement extends HTMLNSViewElement {
 
 export class HTMLNSSplitViewElement extends HTMLNSViewElement {
   readonly nativeObject = NSSplitView.new();
-  delegate?: NSSplitViewDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSSplitViewDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSSplitViewDelegateImpl {
+    return (this.nativeObject.delegate ??= NSSplitViewDelegateImpl.new()) as NSSplitViewDelegateImpl;
   }
 
   // isVertical: boolean;
@@ -3878,18 +4195,42 @@ export class HTMLNSSplitViewElement extends HTMLNSViewElement {
   // arrangesAllSubviews: boolean;
   // readonly arrangedSubviews: NSArray;
 
-  declare onsplitviewcancollapsesubview: (evt: CustomEvent<[splitView: NSSplitView, subview: NSView]>) => void | null;
-  declare onsplitviewshouldcollapsesubviewfordoubleclickondivideratindex: (evt: CustomEvent<[splitView: NSSplitView, subview: NSView, dividerIndex: number]>) => void | null;
-  declare onsplitviewconstrainmincoordinateofsubviewat: (evt: CustomEvent<[splitView: NSSplitView, proposedMinimumPosition: number, dividerIndex: number]>) => void | null;
-  declare onsplitviewconstrainmaxcoordinateofsubviewat: (evt: CustomEvent<[splitView: NSSplitView, proposedMaximumPosition: number, dividerIndex: number]>) => void | null;
-  declare onsplitviewconstrainsplitpositionofsubviewat: (evt: CustomEvent<[splitView: NSSplitView, proposedPosition: number, dividerIndex: number]>) => void | null;
-  declare onsplitviewresizesubviewswitholdsize: (evt: CustomEvent<[splitView: NSSplitView, oldSize: CGSize]>) => void | null;
-  declare onsplitviewshouldadjustsizeofsubview: (evt: CustomEvent<[splitView: NSSplitView, view: NSView]>) => void | null;
-  declare onsplitviewshouldhidedivideratindex: (evt: CustomEvent<[splitView: NSSplitView, dividerIndex: number]>) => void | null;
-  declare onsplitvieweffectiverectfordrawnrectofdivideratindex: (evt: CustomEvent<[splitView: NSSplitView, proposedEffectiveRect: CGRect, drawnRect: CGRect, dividerIndex: number]>) => void | null;
-  declare onsplitviewadditionaleffectiverectofdivideratindex: (evt: CustomEvent<[splitView: NSSplitView, dividerIndex: number]>) => void | null;
-  declare onsplitviewwillresizesubviews: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onsplitviewdidresizesubviews: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  set splitviewcancollapsesubview(value: (splitView: NSSplitView, subview: NSView) => boolean) {
+    this.delegate.splitViewCanCollapseSubview = value;
+  }
+  set splitviewshouldcollapsesubviewfordoubleclickondivideratindex(value: (splitView: NSSplitView, subview: NSView, dividerIndex: number) => boolean) {
+    this.delegate.splitViewShouldCollapseSubviewForDoubleClickOnDividerAtIndex = value;
+  }
+  set splitviewconstrainmincoordinateofsubviewat(value: (splitView: NSSplitView, proposedMinimumPosition: number, dividerIndex: number) => number) {
+    this.delegate.splitViewConstrainMinCoordinateOfSubviewAt = value;
+  }
+  set splitviewconstrainmaxcoordinateofsubviewat(value: (splitView: NSSplitView, proposedMaximumPosition: number, dividerIndex: number) => number) {
+    this.delegate.splitViewConstrainMaxCoordinateOfSubviewAt = value;
+  }
+  set splitviewconstrainsplitpositionofsubviewat(value: (splitView: NSSplitView, proposedPosition: number, dividerIndex: number) => number) {
+    this.delegate.splitViewConstrainSplitPositionOfSubviewAt = value;
+  }
+  set splitviewresizesubviewswitholdsize(value: (splitView: NSSplitView, oldSize: CGSize) => void) {
+    this.delegate.splitViewResizeSubviewsWithOldSize = value;
+  }
+  set splitviewshouldadjustsizeofsubview(value: (splitView: NSSplitView, view: NSView) => boolean) {
+    this.delegate.splitViewShouldAdjustSizeOfSubview = value;
+  }
+  set splitviewshouldhidedivideratindex(value: (splitView: NSSplitView, dividerIndex: number) => boolean) {
+    this.delegate.splitViewShouldHideDividerAtIndex = value;
+  }
+  set splitvieweffectiverectfordrawnrectofdivideratindex(value: (splitView: NSSplitView, proposedEffectiveRect: CGRect, drawnRect: CGRect, dividerIndex: number) => CGRect) {
+    this.delegate.splitViewEffectiveRectForDrawnRectOfDividerAtIndex = value;
+  }
+  set splitviewadditionaleffectiverectofdivideratindex(value: (splitView: NSSplitView, dividerIndex: number) => CGRect) {
+    this.delegate.splitViewAdditionalEffectiveRectOfDividerAtIndex = value;
+  }
+  set splitviewwillresizesubviews(value: (notification: NSNotification) => void) {
+    this.delegate.splitViewWillResizeSubviews = value;
+  }
+  set splitviewdidresizesubviews(value: (notification: NSNotification) => void) {
+    this.delegate.splitViewDidResizeSubviews = value;
+  }
 }
 
 export class HTMLNSLayoutDimensionElement extends HTMLNSLayoutAnchorElement {
@@ -3899,13 +4240,8 @@ export class HTMLNSLayoutDimensionElement extends HTMLNSLayoutAnchorElement {
 
 export class HTMLNSDatePickerCellElement extends HTMLNSActionCellElement {
   readonly nativeObject = NSDatePickerCell.new();
-  delegate?: NSDatePickerCellDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSDatePickerCellDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSDatePickerCellDelegateImpl {
+    return (this.nativeObject.delegate ??= NSDatePickerCellDelegateImpl.new()) as NSDatePickerCellDelegateImpl;
   }
 
   // datePickerStyle: interop.Enum<typeof NSDatePickerStyle>;
@@ -3922,7 +4258,9 @@ export class HTMLNSDatePickerCellElement extends HTMLNSActionCellElement {
   // minDate: NSDate;
   // maxDate: NSDate;
 
-  declare ondatepickercellvalidateproposeddatevaluetimeinterval: (evt: CustomEvent<[datePickerCell: NSDatePickerCell, proposedDateValue: interop.PointerConvertible, proposedTimeInterval: interop.PointerConvertible]>) => void | null;
+  set datepickercellvalidateproposeddatevaluetimeinterval(value: (datePickerCell: NSDatePickerCell, proposedDateValue: interop.PointerConvertible, proposedTimeInterval: interop.PointerConvertible) => void) {
+    this.delegate.datePickerCellValidateProposedDateValueTimeInterval = value;
+  }
 }
 
 export class HTMLNSViewControllerElement extends HTMLNSResponderElement {
@@ -3990,13 +4328,8 @@ export class HTMLNSTextElement extends HTMLNSViewElement {
 
   // @ts-ignore
   readonly nativeObject = NSText.new();
-  delegate?: NSTextDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSTextDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSTextDelegateImpl {
+    return (this.nativeObject.delegate ??= NSTextDelegateImpl.new()) as NSTextDelegateImpl;
   }
 
   // isEditable: boolean;
@@ -4018,11 +4351,21 @@ export class HTMLNSTextElement extends HTMLNSViewElement {
   // isHorizontallyResizable: boolean;
   // isVerticallyResizable: boolean;
 
-  declare ontextshouldbeginediting: (evt: CustomEvent<[textObject: NSText]>) => void | null;
-  declare ontextshouldendediting: (evt: CustomEvent<[textObject: NSText]>) => void | null;
-  declare ontextdidbeginediting: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare ontextdidendediting: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare ontextdidchange: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  set textshouldbeginediting(value: (textObject: NSText) => boolean) {
+    this.delegate.textShouldBeginEditing = value;
+  }
+  set textshouldendediting(value: (textObject: NSText) => boolean) {
+    this.delegate.textShouldEndEditing = value;
+  }
+  set textdidbeginediting(value: (notification: NSNotification) => void) {
+    this.delegate.textDidBeginEditing = value;
+  }
+  set textdidendediting(value: (notification: NSNotification) => void) {
+    this.delegate.textDidEndEditing = value;
+  }
+  set textdidchange(value: (notification: NSNotification) => void) {
+    this.delegate.textDidChange = value;
+  }
 }
 
 export class HTMLNSRulerViewElement extends HTMLNSViewElement {
@@ -4043,23 +4386,26 @@ export class HTMLNSRulerViewElement extends HTMLNSViewElement {
 
 export class HTMLNSTextViewportLayoutControllerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSTextViewportLayoutController.new();
-  delegate?: NSTextViewportLayoutControllerDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSTextViewportLayoutControllerDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSTextViewportLayoutControllerDelegateImpl {
+    return (this.nativeObject.delegate ??= NSTextViewportLayoutControllerDelegateImpl.new()) as NSTextViewportLayoutControllerDelegateImpl;
   }
 
   // readonly textLayoutManager: NSTextLayoutManager | null;
   // readonly viewportBounds: CGRect;
   // readonly viewportRange: NSTextRange;
 
-  declare onviewportboundsfortextviewportlayoutcontroller: (evt: CustomEvent<[textViewportLayoutController: NSTextViewportLayoutController]>) => void | null;
-  declare ontextviewportlayoutcontrollerconfigurerenderingsurfacefortextlayoutfragment: (evt: CustomEvent<[textViewportLayoutController: NSTextViewportLayoutController, textLayoutFragment: NSTextLayoutFragment]>) => void | null;
-  declare ontextviewportlayoutcontrollerwilllayout: (evt: CustomEvent<[textViewportLayoutController: NSTextViewportLayoutController]>) => void | null;
-  declare ontextviewportlayoutcontrollerdidlayout: (evt: CustomEvent<[textViewportLayoutController: NSTextViewportLayoutController]>) => void | null;
+  set viewportboundsfortextviewportlayoutcontroller(value: (textViewportLayoutController: NSTextViewportLayoutController) => CGRect) {
+    this.delegate.viewportBoundsForTextViewportLayoutController = value;
+  }
+  set textviewportlayoutcontrollerconfigurerenderingsurfacefortextlayoutfragment(value: (textViewportLayoutController: NSTextViewportLayoutController, textLayoutFragment: NSTextLayoutFragment) => void) {
+    this.delegate.textViewportLayoutControllerConfigureRenderingSurfaceForTextLayoutFragment = value;
+  }
+  set textviewportlayoutcontrollerwilllayout(value: (textViewportLayoutController: NSTextViewportLayoutController) => void) {
+    this.delegate.textViewportLayoutControllerWillLayout = value;
+  }
+  set textviewportlayoutcontrollerdidlayout(value: (textViewportLayoutController: NSTextViewportLayoutController) => void) {
+    this.delegate.textViewportLayoutControllerDidLayout = value;
+  }
 }
 
 export class HTMLNSTintConfigurationElement extends HTMLNSObjectElement {
@@ -4147,13 +4493,8 @@ export class HTMLNSLayoutConstraintElement extends HTMLNSObjectElement {
 
 export class HTMLNSSpeechSynthesizerElement extends HTMLNSObjectElement {
   readonly nativeObject = NSSpeechSynthesizer.new();
-  delegate?: NSSpeechSynthesizerDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSSpeechSynthesizerDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSSpeechSynthesizerDelegateImpl {
+    return (this.nativeObject.delegate ??= NSSpeechSynthesizerDelegateImpl.new()) as NSSpeechSynthesizerDelegateImpl;
   }
 
   // readonly isSpeaking: boolean;
@@ -4164,11 +4505,21 @@ export class HTMLNSSpeechSynthesizerElement extends HTMLNSObjectElement {
   // defaultVoice: NSString;
   // availableVoices: NSArray;
 
-  declare onspeechsynthesizerdidfinishspeaking: (evt: CustomEvent<[sender: NSSpeechSynthesizer, finishedSpeaking: boolean]>) => void | null;
-  declare onspeechsynthesizerwillspeakwordofstring: (evt: CustomEvent<[sender: NSSpeechSynthesizer, characterRange: _NSRange, string: NSString | string]>) => void | null;
-  declare onspeechsynthesizerwillspeakphoneme: (evt: CustomEvent<[sender: NSSpeechSynthesizer, phonemeOpcode: number]>) => void | null;
-  declare onspeechsynthesizerdidencountererroratindexofstringmessage: (evt: CustomEvent<[sender: NSSpeechSynthesizer, characterIndex: number, string: NSString | string, message: NSString | string]>) => void | null;
-  declare onspeechsynthesizerdidencountersyncmessage: (evt: CustomEvent<[sender: NSSpeechSynthesizer, message: NSString | string]>) => void | null;
+  set speechsynthesizerdidfinishspeaking(value: (sender: NSSpeechSynthesizer, finishedSpeaking: boolean) => void) {
+    this.delegate.speechSynthesizerDidFinishSpeaking = value;
+  }
+  set speechsynthesizerwillspeakwordofstring(value: (sender: NSSpeechSynthesizer, characterRange: _NSRange, string: NSString | string) => void) {
+    this.delegate.speechSynthesizerWillSpeakWordOfString = value;
+  }
+  set speechsynthesizerwillspeakphoneme(value: (sender: NSSpeechSynthesizer, phonemeOpcode: number) => void) {
+    this.delegate.speechSynthesizerWillSpeakPhoneme = value;
+  }
+  set speechsynthesizerdidencountererroratindexofstringmessage(value: (sender: NSSpeechSynthesizer, characterIndex: number, string: NSString | string, message: NSString | string) => void) {
+    this.delegate.speechSynthesizerDidEncounterErrorAtIndexOfStringMessage = value;
+  }
+  set speechsynthesizerdidencountersyncmessage(value: (sender: NSSpeechSynthesizer, message: NSString | string) => void) {
+    this.delegate.speechSynthesizerDidEncounterSyncMessage = value;
+  }
 }
 
 export class HTMLNSMutableParagraphStyleElement extends HTMLNSParagraphStyleElement {
@@ -4236,13 +4587,8 @@ export class HTMLNSGroupTouchBarItemElement extends HTMLNSTouchBarItemElement {
 
 export class HTMLNSMenuElement extends HTMLNSObjectElement {
   readonly nativeObject = NSMenu.new();
-  delegate?: NSMenuDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSMenuDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSMenuDelegateImpl {
+    return (this.nativeObject.delegate ??= NSMenuDelegateImpl.new()) as NSMenuDelegateImpl;
   }
 
   // supermenu: NSMenu;
@@ -4344,14 +4690,30 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
   // accessibilityMinimizeButton: interop.Object;
   // isAccessibilityMinimized: boolean;
 
-  declare onmenuneedsupdate: (evt: CustomEvent<[menu: NSMenu]>) => void | null;
-  declare onnumberofitemsinmenu: (evt: CustomEvent<[menu: NSMenu]>) => void | null;
-  declare onmenuupdateitematindexshouldcancel: (evt: CustomEvent<[menu: NSMenu, item: NSMenuItem, index: number, shouldCancel: boolean]>) => void | null;
-  declare onmenuhaskeyequivalentforeventtargetaction: (evt: CustomEvent<[menu: NSMenu, event: NSEvent, target: interop.PointerConvertible, action: interop.PointerConvertible]>) => void | null;
-  declare onmenuwillopen: (evt: CustomEvent<[menu: NSMenu]>) => void | null;
-  declare onmenudidclose: (evt: CustomEvent<[menu: NSMenu]>) => void | null;
-  declare onmenuwillhighlightitem: (evt: CustomEvent<[menu: NSMenu, item: NSMenuItem | null]>) => void | null;
-  declare onconfinementrectformenuonscreen: (evt: CustomEvent<[menu: NSMenu, screen: NSScreen | null]>) => void | null;
+  set menuneedsupdate(value: (menu: NSMenu) => void) {
+    this.delegate.menuNeedsUpdate = value;
+  }
+  set numberofitemsinmenu(value: (menu: NSMenu) => number) {
+    this.delegate.numberOfItemsInMenu = value;
+  }
+  set menuupdateitematindexshouldcancel(value: (menu: NSMenu, item: NSMenuItem, index: number, shouldCancel: boolean) => boolean) {
+    this.delegate.menuUpdateItemAtIndexShouldCancel = value;
+  }
+  set menuhaskeyequivalentforeventtargetaction(value: (menu: NSMenu, event: NSEvent, target: interop.PointerConvertible, action: interop.PointerConvertible) => boolean) {
+    this.delegate.menuHasKeyEquivalentForEventTargetAction = value;
+  }
+  set menuwillopen(value: (menu: NSMenu) => void) {
+    this.delegate.menuWillOpen = value;
+  }
+  set menudidclose(value: (menu: NSMenu) => void) {
+    this.delegate.menuDidClose = value;
+  }
+  set menuwillhighlightitem(value: (menu: NSMenu, item: NSMenuItem | null) => void) {
+    this.delegate.menuWillHighlightItem = value;
+  }
+  set confinementrectformenuonscreen(value: (menu: NSMenu, screen: NSScreen | null) => CGRect) {
+    this.delegate.confinementRectForMenuOnScreen = value;
+  }
 }
 
 export class HTMLNSScrubberProportionalLayoutElement extends HTMLNSScrubberLayoutElement {
@@ -4472,13 +4834,8 @@ export class HTMLNSSavePanelElement extends HTMLNSPanelElement {
 
   // @ts-ignore
   readonly nativeObject = NSSavePanel.new();
-  delegate?: NSOpenSavePanelDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSOpenSavePanelDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSOpenSavePanelDelegateImpl {
+    return (this.nativeObject.delegate ??= NSOpenSavePanelDelegateImpl.new()) as NSOpenSavePanelDelegateImpl;
   }
 
   // readonly URL: NSURL;
@@ -4493,12 +4850,24 @@ export class HTMLNSSavePanelElement extends HTMLNSPanelElement {
   // showsHiddenFiles: boolean;
   // showsTagField: boolean;
 
-  declare onpanelshouldenableurl: (evt: CustomEvent<[sender: interop.Object, url: NSURL]>) => void | null;
-  declare onpanelvalidateurlerror: (evt: CustomEvent<[sender: interop.Object, url: NSURL, outError: interop.PointerConvertible]>) => void | null;
-  declare onpaneldidchangetodirectoryurl: (evt: CustomEvent<[sender: interop.Object, url: NSURL | null]>) => void | null;
-  declare onpaneluserenteredfilenameconfirmed: (evt: CustomEvent<[sender: interop.Object, filename: NSString | string, okFlag: boolean]>) => void | null;
-  declare onpanelwillexpand: (evt: CustomEvent<[sender: interop.Object, expanding: boolean]>) => void | null;
-  declare onpanelselectiondidchange: (evt: CustomEvent<[sender: interop.Object | null]>) => void | null;
+  set panelshouldenableurl(value: (sender: interop.Object, url: NSURL) => boolean) {
+    this.delegate.panelShouldEnableURL = value;
+  }
+  set panelvalidateurlerror(value: (sender: interop.Object, url: NSURL, outError: interop.PointerConvertible) => boolean) {
+    this.delegate.panelValidateURLError = value;
+  }
+  set paneldidchangetodirectoryurl(value: (sender: interop.Object, url: NSURL | null) => void) {
+    this.delegate.panelDidChangeToDirectoryURL = value;
+  }
+  set paneluserenteredfilenameconfirmed(value: (sender: interop.Object, filename: NSString | string, okFlag: boolean) => NSString) {
+    this.delegate.panelUserEnteredFilenameConfirmed = value;
+  }
+  set panelwillexpand(value: (sender: interop.Object, expanding: boolean) => void) {
+    this.delegate.panelWillExpand = value;
+  }
+  set panelselectiondidchange(value: (sender: interop.Object | null) => void) {
+    this.delegate.panelSelectionDidChange = value;
+  }
 }
 
 export class HTMLNSCollectionLayoutDecorationItemElement extends HTMLNSCollectionLayoutItemElement {
@@ -4556,13 +4925,8 @@ export class HTMLNSPathComponentCellElement extends HTMLNSTextFieldCellElement {
 
 export class HTMLNSScrubberElement extends HTMLNSViewElement {
   readonly nativeObject = NSScrubber.new();
-  delegate?: NSScrubberDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSScrubberDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSScrubberDelegateImpl {
+    return (this.nativeObject.delegate ??= NSScrubberDelegateImpl.new()) as NSScrubberDelegateImpl;
   }
 
   // dataSource: NSScrubberDataSource;
@@ -4581,12 +4945,24 @@ export class HTMLNSScrubberElement extends HTMLNSViewElement {
   // backgroundColor: NSColor;
   // backgroundView: NSView;
 
-  declare onscrubberdidselectitematindex: (evt: CustomEvent<[scrubber: NSScrubber, selectedIndex: number]>) => void | null;
-  declare onscrubberdidhighlightitematindex: (evt: CustomEvent<[scrubber: NSScrubber, highlightedIndex: number]>) => void | null;
-  declare onscrubberdidchangevisiblerange: (evt: CustomEvent<[scrubber: NSScrubber, visibleRange: _NSRange]>) => void | null;
-  declare ondidbegininteractingwithscrubber: (evt: CustomEvent<[scrubber: NSScrubber]>) => void | null;
-  declare ondidfinishinteractingwithscrubber: (evt: CustomEvent<[scrubber: NSScrubber]>) => void | null;
-  declare ondidcancelinteractingwithscrubber: (evt: CustomEvent<[scrubber: NSScrubber]>) => void | null;
+  set scrubberdidselectitematindex(value: (scrubber: NSScrubber, selectedIndex: number) => void) {
+    this.delegate.scrubberDidSelectItemAtIndex = value;
+  }
+  set scrubberdidhighlightitematindex(value: (scrubber: NSScrubber, highlightedIndex: number) => void) {
+    this.delegate.scrubberDidHighlightItemAtIndex = value;
+  }
+  set scrubberdidchangevisiblerange(value: (scrubber: NSScrubber, visibleRange: _NSRange) => void) {
+    this.delegate.scrubberDidChangeVisibleRange = value;
+  }
+  set didbegininteractingwithscrubber(value: (scrubber: NSScrubber) => void) {
+    this.delegate.didBeginInteractingWithScrubber = value;
+  }
+  set didfinishinteractingwithscrubber(value: (scrubber: NSScrubber) => void) {
+    this.delegate.didFinishInteractingWithScrubber = value;
+  }
+  set didcancelinteractingwithscrubber(value: (scrubber: NSScrubber) => void) {
+    this.delegate.didCancelInteractingWithScrubber = value;
+  }
 }
 
 export class HTMLNSControlElement extends HTMLNSViewElement {
@@ -4624,13 +5000,8 @@ export class HTMLNSControlElement extends HTMLNSViewElement {
 
 export class HTMLNSStackViewElement extends HTMLNSViewElement {
   readonly nativeObject = NSStackView.new();
-  delegate?: NSStackViewDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSStackViewDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSStackViewDelegateImpl {
+    return (this.nativeObject.delegate ??= NSStackViewDelegateImpl.new()) as NSStackViewDelegateImpl;
   }
 
   // orientation: interop.Enum<typeof NSUserInterfaceLayoutOrientation>;
@@ -4644,8 +5015,12 @@ export class HTMLNSStackViewElement extends HTMLNSViewElement {
   // readonly views: NSArray;
   // hasEqualSpacing: boolean;
 
-  declare onstackviewwilldetachviews: (evt: CustomEvent<[stackView: NSStackView, views: NSArray | unknown[]]>) => void | null;
-  declare onstackviewdidreattachviews: (evt: CustomEvent<[stackView: NSStackView, views: NSArray | unknown[]]>) => void | null;
+  set stackviewwilldetachviews(value: (stackView: NSStackView, views: NSArray | unknown[]) => void) {
+    this.delegate.stackViewWillDetachViews = value;
+  }
+  set stackviewdidreattachviews(value: (stackView: NSStackView, views: NSArray | unknown[]) => void) {
+    this.delegate.stackViewDidReattachViews = value;
+  }
 }
 
 export class HTMLNSColorWellElement extends HTMLNSControlElement {
@@ -4671,13 +5046,8 @@ export class HTMLNSTextAlternativesElement extends HTMLNSObjectElement {
 
 export class HTMLNSSoundElement extends HTMLNSObjectElement {
   readonly nativeObject = NSSound.new();
-  delegate?: NSSoundDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSSoundDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSSoundDelegateImpl {
+    return (this.nativeObject.delegate ??= NSSoundDelegateImpl.new()) as NSSoundDelegateImpl;
   }
 
   // readonly name: NSString;
@@ -4695,7 +5065,9 @@ export class HTMLNSSoundElement extends HTMLNSObjectElement {
   // readonly description: NSString;
   // readonly debugDescription: NSString;
 
-  declare onsounddidfinishplaying: (evt: CustomEvent<[sound: NSSound, flag: boolean]>) => void | null;
+  set sounddidfinishplaying(value: (sound: NSSound, flag: boolean) => void) {
+    this.delegate.soundDidFinishPlaying = value;
+  }
 }
 
 export class HTMLNSGridRowElement extends HTMLNSObjectElement {
@@ -4885,13 +5257,8 @@ export class HTMLNSLayoutGuideElement extends HTMLNSObjectElement {
 
 export class HTMLNSFilePromiseProviderElement extends HTMLNSObjectElement {
   readonly nativeObject = NSFilePromiseProvider.new();
-  delegate?: NSFilePromiseProviderDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSFilePromiseProviderDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSFilePromiseProviderDelegateImpl {
+    return (this.nativeObject.delegate ??= NSFilePromiseProviderDelegateImpl.new()) as NSFilePromiseProviderDelegateImpl;
   }
 
   // userInfo: interop.Object;
@@ -4902,9 +5269,15 @@ export class HTMLNSFilePromiseProviderElement extends HTMLNSObjectElement {
   // readonly description: NSString;
   // readonly debugDescription: NSString;
 
-  declare onfilepromiseproviderfilenamefortype: (evt: CustomEvent<[filePromiseProvider: NSFilePromiseProvider, fileType: NSString | string]>) => void | null;
-  declare onfilepromiseproviderwritepromisetourlcompletionhandler: (evt: CustomEvent<[filePromiseProvider: NSFilePromiseProvider, url: NSURL, completionHandler: (p1: NSError) => void | null]>) => void | null;
-  declare onoperationqueueforfilepromiseprovider: (evt: CustomEvent<[filePromiseProvider: NSFilePromiseProvider]>) => void | null;
+  set filepromiseproviderfilenamefortype(value: (filePromiseProvider: NSFilePromiseProvider, fileType: NSString | string) => NSString) {
+    this.delegate.filePromiseProviderFileNameForType = value;
+  }
+  set filepromiseproviderwritepromisetourlcompletionhandler(value: (filePromiseProvider: NSFilePromiseProvider, url: NSURL, completionHandler: (p1: NSError) => void | null) => void) {
+    this.delegate.filePromiseProviderWritePromiseToURLCompletionHandler = value;
+  }
+  set operationqueueforfilepromiseprovider(value: (filePromiseProvider: NSFilePromiseProvider) => NSOperationQueue) {
+    this.delegate.operationQueueForFilePromiseProvider = value;
+  }
 }
 
 export class HTMLNSLevelIndicatorCellElement extends HTMLNSActionCellElement {
@@ -4922,13 +5295,8 @@ export class HTMLNSLevelIndicatorCellElement extends HTMLNSActionCellElement {
 
 export class HTMLNSDatePickerElement extends HTMLNSControlElement {
   readonly nativeObject = NSDatePicker.new();
-  delegate?: NSDatePickerCellDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSDatePickerCellDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSDatePickerCellDelegateImpl {
+    return (this.nativeObject.delegate ??= NSDatePickerCellDelegateImpl.new()) as NSDatePickerCellDelegateImpl;
   }
 
   // datePickerStyle: interop.Enum<typeof NSDatePickerStyle>;
@@ -4948,7 +5316,9 @@ export class HTMLNSDatePickerElement extends HTMLNSControlElement {
   // maxDate: NSDate;
   // presentsCalendarOverlay: boolean;
 
-  declare ondatepickercellvalidateproposeddatevaluetimeinterval: (evt: CustomEvent<[datePickerCell: NSDatePickerCell, proposedDateValue: interop.PointerConvertible, proposedTimeInterval: interop.PointerConvertible]>) => void | null;
+  set datepickercellvalidateproposeddatevaluetimeinterval(value: (datePickerCell: NSDatePickerCell, proposedDateValue: interop.PointerConvertible, proposedTimeInterval: interop.PointerConvertible) => void) {
+    this.delegate.datePickerCellValidateProposedDateValueTimeInterval = value;
+  }
 }
 
 export class HTMLNSScrubberImageItemViewElement extends HTMLNSScrubberItemViewElement {
@@ -4961,13 +5331,8 @@ export class HTMLNSScrubberImageItemViewElement extends HTMLNSScrubberItemViewEl
 
 export class HTMLNSMatrixElement extends HTMLNSControlElement {
   readonly nativeObject = NSMatrix.new();
-  delegate?: NSMatrixDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSMatrixDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSMatrixDelegateImpl {
+    return (this.nativeObject.delegate ??= NSMatrixDelegateImpl.new()) as NSMatrixDelegateImpl;
   }
 
   // cellClass: interop.Object;
@@ -5005,13 +5370,8 @@ export class HTMLNSMatrixElement extends HTMLNSControlElement {
 
 export class HTMLNSRuleEditorElement extends HTMLNSControlElement {
   readonly nativeObject = NSRuleEditor.new();
-  delegate?: NSRuleEditorDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSRuleEditorDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSRuleEditorDelegateImpl {
+    return (this.nativeObject.delegate ??= NSRuleEditorDelegateImpl.new()) as NSRuleEditorDelegateImpl;
   }
 
   // nestingMode: interop.Enum<typeof NSRuleEditorNestingMode>;
@@ -5023,11 +5383,21 @@ export class HTMLNSRuleEditorElement extends HTMLNSControlElement {
   // readonly selectedRowIndexes: NSIndexSet;
   // rowClass: interop.Object;
 
-  declare onruleeditornumberofchildrenforcriterionwithrowtype: (evt: CustomEvent<[editor: NSRuleEditor, criterion: interop.Object | null, rowType: interop.Enum<typeof NSRuleEditorRowType>]>) => void | null;
-  declare onruleeditorchildforcriterionwithrowtype: (evt: CustomEvent<[editor: NSRuleEditor, index: number, criterion: interop.Object | null, rowType: interop.Enum<typeof NSRuleEditorRowType>]>) => void | null;
-  declare onruleeditordisplayvalueforcriterioninrow: (evt: CustomEvent<[editor: NSRuleEditor, criterion: interop.Object, row: number]>) => void | null;
-  declare onruleeditorpredicatepartsforcriterionwithdisplayvalueinrow: (evt: CustomEvent<[editor: NSRuleEditor, criterion: interop.Object, value: interop.Object, row: number]>) => void | null;
-  declare onruleeditorrowsdidchange: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  set ruleeditornumberofchildrenforcriterionwithrowtype(value: (editor: NSRuleEditor, criterion: interop.Object | null, rowType: interop.Enum<typeof NSRuleEditorRowType>) => number) {
+    this.delegate.ruleEditorNumberOfChildrenForCriterionWithRowType = value;
+  }
+  set ruleeditorchildforcriterionwithrowtype(value: (editor: NSRuleEditor, index: number, criterion: interop.Object | null, rowType: interop.Enum<typeof NSRuleEditorRowType>) => interop.Object) {
+    this.delegate.ruleEditorChildForCriterionWithRowType = value;
+  }
+  set ruleeditordisplayvalueforcriterioninrow(value: (editor: NSRuleEditor, criterion: interop.Object, row: number) => interop.Object) {
+    this.delegate.ruleEditorDisplayValueForCriterionInRow = value;
+  }
+  set ruleeditorpredicatepartsforcriterionwithdisplayvalueinrow(value: (editor: NSRuleEditor, criterion: interop.Object, value: interop.Object, row: number) => NSDictionary) {
+    this.delegate.ruleEditorPredicatePartsForCriterionWithDisplayValueInRow = value;
+  }
+  set ruleeditorrowsdidchange(value: (notification: NSNotification) => void) {
+    this.delegate.ruleEditorRowsDidChange = value;
+  }
 }
 
 export class HTMLNSSegmentedControlElement extends HTMLNSControlElement {
@@ -5047,13 +5417,8 @@ export class HTMLNSSegmentedControlElement extends HTMLNSControlElement {
 
 export class HTMLNSPathControlElement extends HTMLNSControlElement {
   readonly nativeObject = NSPathControl.new();
-  delegate?: NSPathControlDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSPathControlDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSPathControlDelegateImpl {
+    return (this.nativeObject.delegate ??= NSPathControlDelegateImpl.new()) as NSPathControlDelegateImpl;
   }
 
   // isEditable: boolean;
@@ -5065,25 +5430,32 @@ export class HTMLNSPathControlElement extends HTMLNSControlElement {
   // backgroundColor: NSColor;
   // menu: NSMenu;
 
-  declare onpathcontrolshoulddragitemwithpasteboard: (evt: CustomEvent<[pathControl: NSPathControl, pathItem: NSPathControlItem, pasteboard: NSPasteboard]>) => void | null;
-  declare onpathcontrolshoulddragpathcomponentcellwithpasteboard: (evt: CustomEvent<[pathControl: NSPathControl, pathComponentCell: NSPathComponentCell, pasteboard: NSPasteboard]>) => void | null;
-  declare onpathcontrolvalidatedrop: (evt: CustomEvent<[pathControl: NSPathControl, info: NSDraggingInfo]>) => void | null;
-  declare onpathcontrolacceptdrop: (evt: CustomEvent<[pathControl: NSPathControl, info: NSDraggingInfo]>) => void | null;
-  declare onpathcontrolwilldisplayopenpanel: (evt: CustomEvent<[pathControl: NSPathControl, openPanel: NSOpenPanel]>) => void | null;
-  declare onpathcontrolwillpopupmenu: (evt: CustomEvent<[pathControl: NSPathControl, menu: NSMenu]>) => void | null;
+  set pathcontrolshoulddragitemwithpasteboard(value: (pathControl: NSPathControl, pathItem: NSPathControlItem, pasteboard: NSPasteboard) => boolean) {
+    this.delegate.pathControlShouldDragItemWithPasteboard = value;
+  }
+  set pathcontrolshoulddragpathcomponentcellwithpasteboard(value: (pathControl: NSPathControl, pathComponentCell: NSPathComponentCell, pasteboard: NSPasteboard) => boolean) {
+    this.delegate.pathControlShouldDragPathComponentCellWithPasteboard = value;
+  }
+  set pathcontrolvalidatedrop(value: (pathControl: NSPathControl, info: NSDraggingInfo) => interop.Enum<typeof NSDragOperation>) {
+    this.delegate.pathControlValidateDrop = value;
+  }
+  set pathcontrolacceptdrop(value: (pathControl: NSPathControl, info: NSDraggingInfo) => boolean) {
+    this.delegate.pathControlAcceptDrop = value;
+  }
+  set pathcontrolwilldisplayopenpanel(value: (pathControl: NSPathControl, openPanel: NSOpenPanel) => void) {
+    this.delegate.pathControlWillDisplayOpenPanel = value;
+  }
+  set pathcontrolwillpopupmenu(value: (pathControl: NSPathControl, menu: NSMenu) => void) {
+    this.delegate.pathControlWillPopUpMenu = value;
+  }
 }
 
 export class HTMLNSBrowserElement extends HTMLNSControlElement {
 
   // @ts-ignore
   readonly nativeObject = NSBrowser.new();
-  delegate?: NSBrowserDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSBrowserDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSBrowserDelegateImpl {
+    return (this.nativeObject.delegate ??= NSBrowserDelegateImpl.new()) as NSBrowserDelegateImpl;
   }
 
   // cellClass: interop.Object;
@@ -5119,40 +5491,108 @@ export class HTMLNSBrowserElement extends HTMLNSControlElement {
   // allowsTypeSelect: boolean;
   // backgroundColor: NSColor;
 
-  declare onbrowsernumberofrowsincolumn: (evt: CustomEvent<[sender: NSBrowser, column: number]>) => void | null;
-  declare onbrowsercreaterowsforcolumninmatrix: (evt: CustomEvent<[sender: NSBrowser, column: number, matrix: NSMatrix]>) => void | null;
-  declare onbrowsernumberofchildrenofitem: (evt: CustomEvent<[browser: NSBrowser, item: interop.Object | null]>) => void | null;
-  declare onbrowserchildofitem: (evt: CustomEvent<[browser: NSBrowser, index: number, item: interop.Object | null]>) => void | null;
-  declare onbrowserisleafitem: (evt: CustomEvent<[browser: NSBrowser, item: interop.Object | null]>) => void | null;
-  declare onbrowserobjectvalueforitem: (evt: CustomEvent<[browser: NSBrowser, item: interop.Object | null]>) => void | null;
-  declare onbrowserheightofrowincolumn: (evt: CustomEvent<[browser: NSBrowser, row: number, columnIndex: number]>) => void | null;
-  declare onrootitemforbrowser: (evt: CustomEvent<[browser: NSBrowser]>) => void | null;
-  declare onbrowsersetobjectvalueforitem: (evt: CustomEvent<[browser: NSBrowser, object: interop.Object | null, item: interop.Object | null]>) => void | null;
-  declare onbrowsershouldedititem: (evt: CustomEvent<[browser: NSBrowser, item: interop.Object | null]>) => void | null;
-  declare onbrowserwilldisplaycellatrowcolumn: (evt: CustomEvent<[sender: NSBrowser, cell: interop.Object, row: number, column: number]>) => void | null;
-  declare onbrowsertitleofcolumn: (evt: CustomEvent<[sender: NSBrowser, column: number]>) => void | null;
-  declare onbrowserselectcellwithstringincolumn: (evt: CustomEvent<[sender: NSBrowser, title: NSString | string, column: number]>) => void | null;
-  declare onbrowserselectrowincolumn: (evt: CustomEvent<[sender: NSBrowser, row: number, column: number]>) => void | null;
-  declare onbrowseriscolumnvalid: (evt: CustomEvent<[sender: NSBrowser, column: number]>) => void | null;
-  declare onbrowserwillscroll: (evt: CustomEvent<[sender: NSBrowser]>) => void | null;
-  declare onbrowserdidscroll: (evt: CustomEvent<[sender: NSBrowser]>) => void | null;
-  declare onbrowsershouldsizecolumnforuserresizetowidth: (evt: CustomEvent<[browser: NSBrowser, columnIndex: number, forUserResize: boolean, suggestedWidth: number]>) => void | null;
-  declare onbrowsersizetofitwidthofcolumn: (evt: CustomEvent<[browser: NSBrowser, columnIndex: number]>) => void | null;
-  declare onbrowsercolumnconfigurationdidchange: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onbrowsershouldshowcellexpansionforrowcolumn: (evt: CustomEvent<[browser: NSBrowser, row: number, column: number]>) => void | null;
-  declare onbrowserwriterowswithindexesincolumntopasteboard: (evt: CustomEvent<[browser: NSBrowser, rowIndexes: NSIndexSet, column: number, pasteboard: NSPasteboard]>) => void | null;
-  declare onbrowsernamesofpromisedfilesdroppedatdestinationfordraggedrowswithindexesincolumn: (evt: CustomEvent<[browser: NSBrowser, dropDestination: NSURL, rowIndexes: NSIndexSet, column: number]>) => void | null;
-  declare onbrowsercandragrowswithindexesincolumnwithevent: (evt: CustomEvent<[browser: NSBrowser, rowIndexes: NSIndexSet, column: number, event: NSEvent]>) => void | null;
-  declare onbrowserdraggingimageforrowswithindexesincolumnwitheventoffset: (evt: CustomEvent<[browser: NSBrowser, rowIndexes: NSIndexSet, column: number, event: NSEvent, dragImageOffset: interop.PointerConvertible]>) => void | null;
-  declare onbrowservalidatedropproposedrowcolumndropoperation: (evt: CustomEvent<[browser: NSBrowser, info: NSDraggingInfo, row: interop.PointerConvertible, column: interop.PointerConvertible, dropOperation: interop.PointerConvertible]>) => void | null;
-  declare onbrowseracceptdropatrowcolumndropoperation: (evt: CustomEvent<[browser: NSBrowser, info: NSDraggingInfo, row: number, column: number, dropOperation: interop.Enum<typeof NSBrowserDropOperation>]>) => void | null;
-  declare onbrowsertypeselectstringforrowincolumn: (evt: CustomEvent<[browser: NSBrowser, row: number, column: number]>) => void | null;
-  declare onbrowsershouldtypeselectforeventwithcurrentsearchstring: (evt: CustomEvent<[browser: NSBrowser, event: NSEvent, searchString: NSString | string | null]>) => void | null;
-  declare onbrowsernexttypeselectmatchfromrowtorowincolumnforstring: (evt: CustomEvent<[browser: NSBrowser, startRow: number, endRow: number, column: number, searchString: NSString | string | null]>) => void | null;
-  declare onbrowserpreviewviewcontrollerforleafitem: (evt: CustomEvent<[browser: NSBrowser, item: interop.Object]>) => void | null;
-  declare onbrowserheaderviewcontrollerforitem: (evt: CustomEvent<[browser: NSBrowser, item: interop.Object | null]>) => void | null;
-  declare onbrowserdidchangelastcolumntocolumn: (evt: CustomEvent<[browser: NSBrowser, oldLastColumn: number, column: number]>) => void | null;
-  declare onbrowserselectionindexesforproposedselectionincolumn: (evt: CustomEvent<[browser: NSBrowser, proposedSelectionIndexes: NSIndexSet, column: number]>) => void | null;
+  set browsernumberofrowsincolumn(value: (sender: NSBrowser, column: number) => number) {
+    this.delegate.browserNumberOfRowsInColumn = value;
+  }
+  set browsercreaterowsforcolumninmatrix(value: (sender: NSBrowser, column: number, matrix: NSMatrix) => void) {
+    this.delegate.browserCreateRowsForColumnInMatrix = value;
+  }
+  set browsernumberofchildrenofitem(value: (browser: NSBrowser, item: interop.Object | null) => number) {
+    this.delegate.browserNumberOfChildrenOfItem = value;
+  }
+  set browserchildofitem(value: (browser: NSBrowser, index: number, item: interop.Object | null) => interop.Object) {
+    this.delegate.browserChildOfItem = value;
+  }
+  set browserisleafitem(value: (browser: NSBrowser, item: interop.Object | null) => boolean) {
+    this.delegate.browserIsLeafItem = value;
+  }
+  set browserobjectvalueforitem(value: (browser: NSBrowser, item: interop.Object | null) => interop.Object) {
+    this.delegate.browserObjectValueForItem = value;
+  }
+  set browserheightofrowincolumn(value: (browser: NSBrowser, row: number, columnIndex: number) => number) {
+    this.delegate.browserHeightOfRowInColumn = value;
+  }
+  set rootitemforbrowser(value: (browser: NSBrowser) => interop.Object) {
+    this.delegate.rootItemForBrowser = value;
+  }
+  set browsersetobjectvalueforitem(value: (browser: NSBrowser, object: interop.Object | null, item: interop.Object | null) => void) {
+    this.delegate.browserSetObjectValueForItem = value;
+  }
+  set browsershouldedititem(value: (browser: NSBrowser, item: interop.Object | null) => boolean) {
+    this.delegate.browserShouldEditItem = value;
+  }
+  set browserwilldisplaycellatrowcolumn(value: (sender: NSBrowser, cell: interop.Object, row: number, column: number) => void) {
+    this.delegate.browserWillDisplayCellAtRowColumn = value;
+  }
+  set browsertitleofcolumn(value: (sender: NSBrowser, column: number) => NSString) {
+    this.delegate.browserTitleOfColumn = value;
+  }
+  set browserselectcellwithstringincolumn(value: (sender: NSBrowser, title: NSString | string, column: number) => boolean) {
+    this.delegate.browserSelectCellWithStringInColumn = value;
+  }
+  set browserselectrowincolumn(value: (sender: NSBrowser, row: number, column: number) => boolean) {
+    this.delegate.browserSelectRowInColumn = value;
+  }
+  set browseriscolumnvalid(value: (sender: NSBrowser, column: number) => boolean) {
+    this.delegate.browserIsColumnValid = value;
+  }
+  set browserwillscroll(value: (sender: NSBrowser) => void) {
+    this.delegate.browserWillScroll = value;
+  }
+  set browserdidscroll(value: (sender: NSBrowser) => void) {
+    this.delegate.browserDidScroll = value;
+  }
+  set browsershouldsizecolumnforuserresizetowidth(value: (browser: NSBrowser, columnIndex: number, forUserResize: boolean, suggestedWidth: number) => number) {
+    this.delegate.browserShouldSizeColumnForUserResizeToWidth = value;
+  }
+  set browsersizetofitwidthofcolumn(value: (browser: NSBrowser, columnIndex: number) => number) {
+    this.delegate.browserSizeToFitWidthOfColumn = value;
+  }
+  set browsercolumnconfigurationdidchange(value: (notification: NSNotification) => void) {
+    this.delegate.browserColumnConfigurationDidChange = value;
+  }
+  set browsershouldshowcellexpansionforrowcolumn(value: (browser: NSBrowser, row: number, column: number) => boolean) {
+    this.delegate.browserShouldShowCellExpansionForRowColumn = value;
+  }
+  set browserwriterowswithindexesincolumntopasteboard(value: (browser: NSBrowser, rowIndexes: NSIndexSet, column: number, pasteboard: NSPasteboard) => boolean) {
+    this.delegate.browserWriteRowsWithIndexesInColumnToPasteboard = value;
+  }
+  set browsernamesofpromisedfilesdroppedatdestinationfordraggedrowswithindexesincolumn(value: (browser: NSBrowser, dropDestination: NSURL, rowIndexes: NSIndexSet, column: number) => NSArray) {
+    this.delegate.browserNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexesInColumn = value;
+  }
+  set browsercandragrowswithindexesincolumnwithevent(value: (browser: NSBrowser, rowIndexes: NSIndexSet, column: number, event: NSEvent) => boolean) {
+    this.delegate.browserCanDragRowsWithIndexesInColumnWithEvent = value;
+  }
+  set browserdraggingimageforrowswithindexesincolumnwitheventoffset(value: (browser: NSBrowser, rowIndexes: NSIndexSet, column: number, event: NSEvent, dragImageOffset: interop.PointerConvertible) => NSImage) {
+    this.delegate.browserDraggingImageForRowsWithIndexesInColumnWithEventOffset = value;
+  }
+  set browservalidatedropproposedrowcolumndropoperation(value: (browser: NSBrowser, info: NSDraggingInfo, row: interop.PointerConvertible, column: interop.PointerConvertible, dropOperation: interop.PointerConvertible) => interop.Enum<typeof NSDragOperation>) {
+    this.delegate.browserValidateDropProposedRowColumnDropOperation = value;
+  }
+  set browseracceptdropatrowcolumndropoperation(value: (browser: NSBrowser, info: NSDraggingInfo, row: number, column: number, dropOperation: interop.Enum<typeof NSBrowserDropOperation>) => boolean) {
+    this.delegate.browserAcceptDropAtRowColumnDropOperation = value;
+  }
+  set browsertypeselectstringforrowincolumn(value: (browser: NSBrowser, row: number, column: number) => NSString) {
+    this.delegate.browserTypeSelectStringForRowInColumn = value;
+  }
+  set browsershouldtypeselectforeventwithcurrentsearchstring(value: (browser: NSBrowser, event: NSEvent, searchString: NSString | string | null) => boolean) {
+    this.delegate.browserShouldTypeSelectForEventWithCurrentSearchString = value;
+  }
+  set browsernexttypeselectmatchfromrowtorowincolumnforstring(value: (browser: NSBrowser, startRow: number, endRow: number, column: number, searchString: NSString | string | null) => number) {
+    this.delegate.browserNextTypeSelectMatchFromRowToRowInColumnForString = value;
+  }
+  set browserpreviewviewcontrollerforleafitem(value: (browser: NSBrowser, item: interop.Object) => NSViewController) {
+    this.delegate.browserPreviewViewControllerForLeafItem = value;
+  }
+  set browserheaderviewcontrollerforitem(value: (browser: NSBrowser, item: interop.Object | null) => NSViewController) {
+    this.delegate.browserHeaderViewControllerForItem = value;
+  }
+  set browserdidchangelastcolumntocolumn(value: (browser: NSBrowser, oldLastColumn: number, column: number) => void) {
+    this.delegate.browserDidChangeLastColumnToColumn = value;
+  }
+  set browserselectionindexesforproposedselectionincolumn(value: (browser: NSBrowser, proposedSelectionIndexes: NSIndexSet, column: number) => NSIndexSet) {
+    this.delegate.browserSelectionIndexesForProposedSelectionInColumn = value;
+  }
 }
 
 export class HTMLNSLevelIndicatorElement extends HTMLNSControlElement {
@@ -5233,13 +5673,8 @@ export class HTMLNSTableViewElement extends HTMLNSControlElement {
 
   // @ts-ignore
   readonly nativeObject = NSTableView.new();
-  delegate?: NSTableViewDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSTableViewDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSTableViewDelegateImpl {
+    return (this.nativeObject.delegate ??= NSTableViewDelegateImpl.new()) as NSTableViewDelegateImpl;
   }
 
   // dataSource: NSTableViewDataSource;
@@ -5298,37 +5733,99 @@ export class HTMLNSTableViewElement extends HTMLNSControlElement {
   // accessibilityParent: interop.Object;
   // isAccessibilityFocused: boolean;
 
-  declare ontableviewviewfortablecolumnrow: (evt: CustomEvent<[tableView: NSTableView, tableColumn: NSTableColumn | null, row: number]>) => void | null;
-  declare ontableviewrowviewforrow: (evt: CustomEvent<[tableView: NSTableView, row: number]>) => void | null;
-  declare ontableviewdidaddrowviewforrow: (evt: CustomEvent<[tableView: NSTableView, rowView: NSTableRowView, row: number]>) => void | null;
-  declare ontableviewdidremoverowviewforrow: (evt: CustomEvent<[tableView: NSTableView, rowView: NSTableRowView, row: number]>) => void | null;
-  declare ontableviewwilldisplaycellfortablecolumnrow: (evt: CustomEvent<[tableView: NSTableView, cell: interop.Object, tableColumn: NSTableColumn | null, row: number]>) => void | null;
-  declare ontableviewshouldedittablecolumnrow: (evt: CustomEvent<[tableView: NSTableView, tableColumn: NSTableColumn | null, row: number]>) => void | null;
-  declare ontableviewtooltipforcellrecttablecolumnrowmouselocation: (evt: CustomEvent<[tableView: NSTableView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, row: number, mouseLocation: CGPoint]>) => void | null;
-  declare ontableviewshouldshowcellexpansionfortablecolumnrow: (evt: CustomEvent<[tableView: NSTableView, tableColumn: NSTableColumn | null, row: number]>) => void | null;
-  declare ontableviewshouldtrackcellfortablecolumnrow: (evt: CustomEvent<[tableView: NSTableView, cell: NSCell, tableColumn: NSTableColumn | null, row: number]>) => void | null;
-  declare ontableviewdatacellfortablecolumnrow: (evt: CustomEvent<[tableView: NSTableView, tableColumn: NSTableColumn | null, row: number]>) => void | null;
-  declare onselectionshouldchangeintableview: (evt: CustomEvent<[tableView: NSTableView]>) => void | null;
-  declare ontableviewshouldselectrow: (evt: CustomEvent<[tableView: NSTableView, row: number]>) => void | null;
-  declare ontableviewselectionindexesforproposedselection: (evt: CustomEvent<[tableView: NSTableView, proposedSelectionIndexes: NSIndexSet]>) => void | null;
-  declare ontableviewshouldselecttablecolumn: (evt: CustomEvent<[tableView: NSTableView, tableColumn: NSTableColumn | null]>) => void | null;
-  declare ontableviewmousedowninheaderoftablecolumn: (evt: CustomEvent<[tableView: NSTableView, tableColumn: NSTableColumn]>) => void | null;
-  declare ontableviewdidclicktablecolumn: (evt: CustomEvent<[tableView: NSTableView, tableColumn: NSTableColumn]>) => void | null;
-  declare ontableviewdiddragtablecolumn: (evt: CustomEvent<[tableView: NSTableView, tableColumn: NSTableColumn]>) => void | null;
-  declare ontableviewheightofrow: (evt: CustomEvent<[tableView: NSTableView, row: number]>) => void | null;
-  declare ontableviewtypeselectstringfortablecolumnrow: (evt: CustomEvent<[tableView: NSTableView, tableColumn: NSTableColumn | null, row: number]>) => void | null;
-  declare ontableviewnexttypeselectmatchfromrowtorowforstring: (evt: CustomEvent<[tableView: NSTableView, startRow: number, endRow: number, searchString: NSString | string]>) => void | null;
-  declare ontableviewshouldtypeselectforeventwithcurrentsearchstring: (evt: CustomEvent<[tableView: NSTableView, event: NSEvent, searchString: NSString | string | null]>) => void | null;
-  declare ontableviewisgrouprow: (evt: CustomEvent<[tableView: NSTableView, row: number]>) => void | null;
-  declare ontableviewsizetofitwidthofcolumn: (evt: CustomEvent<[tableView: NSTableView, column: number]>) => void | null;
-  declare ontableviewshouldreordercolumntocolumn: (evt: CustomEvent<[tableView: NSTableView, columnIndex: number, newColumnIndex: number]>) => void | null;
-  declare ontableviewrowactionsforrowedge: (evt: CustomEvent<[tableView: NSTableView, row: number, edge: interop.Enum<typeof NSTableRowActionEdge>]>) => void | null;
-  declare ontableviewusercanchangevisibilityoftablecolumn: (evt: CustomEvent<[tableView: NSTableView, column: NSTableColumn]>) => void | null;
-  declare ontableviewuserdidchangevisibilityoftablecolumns: (evt: CustomEvent<[tableView: NSTableView, columns: NSArray | unknown[]]>) => void | null;
-  declare ontableviewselectiondidchange: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare ontableviewcolumndidmove: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare ontableviewcolumndidresize: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare ontableviewselectionischanging: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  set tableviewviewfortablecolumnrow(value: (tableView: NSTableView, tableColumn: NSTableColumn | null, row: number) => NSView) {
+    this.delegate.tableViewViewForTableColumnRow = value;
+  }
+  set tableviewrowviewforrow(value: (tableView: NSTableView, row: number) => NSTableRowView) {
+    this.delegate.tableViewRowViewForRow = value;
+  }
+  set tableviewdidaddrowviewforrow(value: (tableView: NSTableView, rowView: NSTableRowView, row: number) => void) {
+    this.delegate.tableViewDidAddRowViewForRow = value;
+  }
+  set tableviewdidremoverowviewforrow(value: (tableView: NSTableView, rowView: NSTableRowView, row: number) => void) {
+    this.delegate.tableViewDidRemoveRowViewForRow = value;
+  }
+  set tableviewwilldisplaycellfortablecolumnrow(value: (tableView: NSTableView, cell: interop.Object, tableColumn: NSTableColumn | null, row: number) => void) {
+    this.delegate.tableViewWillDisplayCellForTableColumnRow = value;
+  }
+  set tableviewshouldedittablecolumnrow(value: (tableView: NSTableView, tableColumn: NSTableColumn | null, row: number) => boolean) {
+    this.delegate.tableViewShouldEditTableColumnRow = value;
+  }
+  set tableviewtooltipforcellrecttablecolumnrowmouselocation(value: (tableView: NSTableView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, row: number, mouseLocation: CGPoint) => NSString) {
+    this.delegate.tableViewToolTipForCellRectTableColumnRowMouseLocation = value;
+  }
+  set tableviewshouldshowcellexpansionfortablecolumnrow(value: (tableView: NSTableView, tableColumn: NSTableColumn | null, row: number) => boolean) {
+    this.delegate.tableViewShouldShowCellExpansionForTableColumnRow = value;
+  }
+  set tableviewshouldtrackcellfortablecolumnrow(value: (tableView: NSTableView, cell: NSCell, tableColumn: NSTableColumn | null, row: number) => boolean) {
+    this.delegate.tableViewShouldTrackCellForTableColumnRow = value;
+  }
+  set tableviewdatacellfortablecolumnrow(value: (tableView: NSTableView, tableColumn: NSTableColumn | null, row: number) => NSCell) {
+    this.delegate.tableViewDataCellForTableColumnRow = value;
+  }
+  set selectionshouldchangeintableview(value: (tableView: NSTableView) => boolean) {
+    this.delegate.selectionShouldChangeInTableView = value;
+  }
+  set tableviewshouldselectrow(value: (tableView: NSTableView, row: number) => boolean) {
+    this.delegate.tableViewShouldSelectRow = value;
+  }
+  set tableviewselectionindexesforproposedselection(value: (tableView: NSTableView, proposedSelectionIndexes: NSIndexSet) => NSIndexSet) {
+    this.delegate.tableViewSelectionIndexesForProposedSelection = value;
+  }
+  set tableviewshouldselecttablecolumn(value: (tableView: NSTableView, tableColumn: NSTableColumn | null) => boolean) {
+    this.delegate.tableViewShouldSelectTableColumn = value;
+  }
+  set tableviewmousedowninheaderoftablecolumn(value: (tableView: NSTableView, tableColumn: NSTableColumn) => void) {
+    this.delegate.tableViewMouseDownInHeaderOfTableColumn = value;
+  }
+  set tableviewdidclicktablecolumn(value: (tableView: NSTableView, tableColumn: NSTableColumn) => void) {
+    this.delegate.tableViewDidClickTableColumn = value;
+  }
+  set tableviewdiddragtablecolumn(value: (tableView: NSTableView, tableColumn: NSTableColumn) => void) {
+    this.delegate.tableViewDidDragTableColumn = value;
+  }
+  set tableviewheightofrow(value: (tableView: NSTableView, row: number) => number) {
+    this.delegate.tableViewHeightOfRow = value;
+  }
+  set tableviewtypeselectstringfortablecolumnrow(value: (tableView: NSTableView, tableColumn: NSTableColumn | null, row: number) => NSString) {
+    this.delegate.tableViewTypeSelectStringForTableColumnRow = value;
+  }
+  set tableviewnexttypeselectmatchfromrowtorowforstring(value: (tableView: NSTableView, startRow: number, endRow: number, searchString: NSString | string) => number) {
+    this.delegate.tableViewNextTypeSelectMatchFromRowToRowForString = value;
+  }
+  set tableviewshouldtypeselectforeventwithcurrentsearchstring(value: (tableView: NSTableView, event: NSEvent, searchString: NSString | string | null) => boolean) {
+    this.delegate.tableViewShouldTypeSelectForEventWithCurrentSearchString = value;
+  }
+  set tableviewisgrouprow(value: (tableView: NSTableView, row: number) => boolean) {
+    this.delegate.tableViewIsGroupRow = value;
+  }
+  set tableviewsizetofitwidthofcolumn(value: (tableView: NSTableView, column: number) => number) {
+    this.delegate.tableViewSizeToFitWidthOfColumn = value;
+  }
+  set tableviewshouldreordercolumntocolumn(value: (tableView: NSTableView, columnIndex: number, newColumnIndex: number) => boolean) {
+    this.delegate.tableViewShouldReorderColumnToColumn = value;
+  }
+  set tableviewrowactionsforrowedge(value: (tableView: NSTableView, row: number, edge: interop.Enum<typeof NSTableRowActionEdge>) => NSArray) {
+    this.delegate.tableViewRowActionsForRowEdge = value;
+  }
+  set tableviewusercanchangevisibilityoftablecolumn(value: (tableView: NSTableView, column: NSTableColumn) => boolean) {
+    this.delegate.tableViewUserCanChangeVisibilityOfTableColumn = value;
+  }
+  set tableviewuserdidchangevisibilityoftablecolumns(value: (tableView: NSTableView, columns: NSArray | unknown[]) => void) {
+    this.delegate.tableViewUserDidChangeVisibilityOfTableColumns = value;
+  }
+  set tableviewselectiondidchange(value: (notification: NSNotification) => void) {
+    this.delegate.tableViewSelectionDidChange = value;
+  }
+  set tableviewcolumndidmove(value: (notification: NSNotification) => void) {
+    this.delegate.tableViewColumnDidMove = value;
+  }
+  set tableviewcolumndidresize(value: (notification: NSNotification) => void) {
+    this.delegate.tableViewColumnDidResize = value;
+  }
+  set tableviewselectionischanging(value: (notification: NSNotification) => void) {
+    this.delegate.tableViewSelectionIsChanging = value;
+  }
 }
 
 export class HTMLNSLayoutXAxisAnchorElement extends HTMLNSLayoutAnchorElement {
@@ -5390,13 +5887,8 @@ export class HTMLNSRunningApplicationElement extends HTMLNSObjectElement {
 
 export class HTMLNSAnimationElement extends HTMLNSObjectElement {
   readonly nativeObject = NSAnimation.new();
-  delegate?: NSAnimationDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSAnimationDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSAnimationDelegateImpl {
+    return (this.nativeObject.delegate ??= NSAnimationDelegateImpl.new()) as NSAnimationDelegateImpl;
   }
 
   // readonly isAnimating: boolean;
@@ -5408,11 +5900,21 @@ export class HTMLNSAnimationElement extends HTMLNSObjectElement {
   // readonly currentValue: number;
   // readonly runLoopModesForAnimating: NSArray;
 
-  declare onanimationshouldstart: (evt: CustomEvent<[animation: NSAnimation]>) => void | null;
-  declare onanimationdidstop: (evt: CustomEvent<[animation: NSAnimation]>) => void | null;
-  declare onanimationdidend: (evt: CustomEvent<[animation: NSAnimation]>) => void | null;
-  declare onanimationvalueforprogress: (evt: CustomEvent<[animation: NSAnimation, progress: number]>) => void | null;
-  declare onanimationdidreachprogressmark: (evt: CustomEvent<[animation: NSAnimation, progress: number]>) => void | null;
+  set animationshouldstart(value: (animation: NSAnimation) => boolean) {
+    this.delegate.animationShouldStart = value;
+  }
+  set animationdidstop(value: (animation: NSAnimation) => void) {
+    this.delegate.animationDidStop = value;
+  }
+  set animationdidend(value: (animation: NSAnimation) => void) {
+    this.delegate.animationDidEnd = value;
+  }
+  set animationvalueforprogress(value: (animation: NSAnimation, progress: number) => number) {
+    this.delegate.animationValueForProgress = value;
+  }
+  set animationdidreachprogressmark(value: (animation: NSAnimation, progress: number) => void) {
+    this.delegate.animationDidReachProgressMark = value;
+  }
 }
 
 export class HTMLNSSpellCheckerElement extends HTMLNSObjectElement {
@@ -5442,13 +5944,8 @@ export class HTMLNSOutlineViewElement extends HTMLNSTableViewElement {
 
   // @ts-ignore
   readonly nativeObject = NSOutlineView.new();
-  delegate?: NSOutlineViewDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSOutlineViewDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSOutlineViewDelegateImpl {
+    return (this.nativeObject.delegate ??= NSOutlineViewDelegateImpl.new()) as NSOutlineViewDelegateImpl;
   }
 
   // dataSource: NSOutlineViewDataSource;
@@ -5469,45 +5966,123 @@ export class HTMLNSOutlineViewElement extends HTMLNSTableViewElement {
   // readonly description: NSString;
   // readonly debugDescription: NSString;
 
-  declare onoutlineviewviewfortablecolumnitem: (evt: CustomEvent<[outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object]>) => void | null;
-  declare onoutlineviewrowviewforitem: (evt: CustomEvent<[outlineView: NSOutlineView, item: interop.Object]>) => void | null;
-  declare onoutlineviewdidaddrowviewforrow: (evt: CustomEvent<[outlineView: NSOutlineView, rowView: NSTableRowView, row: number]>) => void | null;
-  declare onoutlineviewdidremoverowviewforrow: (evt: CustomEvent<[outlineView: NSOutlineView, rowView: NSTableRowView, row: number]>) => void | null;
-  declare onoutlineviewwilldisplaycellfortablecolumnitem: (evt: CustomEvent<[outlineView: NSOutlineView, cell: interop.Object, tableColumn: NSTableColumn | null, item: interop.Object]>) => void | null;
-  declare onoutlineviewshouldedittablecolumnitem: (evt: CustomEvent<[outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object]>) => void | null;
-  declare onselectionshouldchangeinoutlineview: (evt: CustomEvent<[outlineView: NSOutlineView]>) => void | null;
-  declare onoutlineviewshouldselectitem: (evt: CustomEvent<[outlineView: NSOutlineView, item: interop.Object]>) => void | null;
-  declare onoutlineviewselectionindexesforproposedselection: (evt: CustomEvent<[outlineView: NSOutlineView, proposedSelectionIndexes: NSIndexSet]>) => void | null;
-  declare onoutlineviewshouldselecttablecolumn: (evt: CustomEvent<[outlineView: NSOutlineView, tableColumn: NSTableColumn | null]>) => void | null;
-  declare onoutlineviewmousedowninheaderoftablecolumn: (evt: CustomEvent<[outlineView: NSOutlineView, tableColumn: NSTableColumn]>) => void | null;
-  declare onoutlineviewdidclicktablecolumn: (evt: CustomEvent<[outlineView: NSOutlineView, tableColumn: NSTableColumn]>) => void | null;
-  declare onoutlineviewdiddragtablecolumn: (evt: CustomEvent<[outlineView: NSOutlineView, tableColumn: NSTableColumn]>) => void | null;
-  declare onoutlineviewtooltipforcellrecttablecolumnitemmouselocation: (evt: CustomEvent<[outlineView: NSOutlineView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, item: interop.Object, mouseLocation: CGPoint]>) => void | null;
-  declare onoutlineviewheightofrowbyitem: (evt: CustomEvent<[outlineView: NSOutlineView, item: interop.Object]>) => void | null;
-  declare onoutlineviewtintconfigurationforitem: (evt: CustomEvent<[outlineView: NSOutlineView, item: interop.Object]>) => void | null;
-  declare onoutlineviewtypeselectstringfortablecolumnitem: (evt: CustomEvent<[outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object]>) => void | null;
-  declare onoutlineviewnexttypeselectmatchfromitemtoitemforstring: (evt: CustomEvent<[outlineView: NSOutlineView, startItem: interop.Object, endItem: interop.Object, searchString: NSString | string]>) => void | null;
-  declare onoutlineviewshouldtypeselectforeventwithcurrentsearchstring: (evt: CustomEvent<[outlineView: NSOutlineView, event: NSEvent, searchString: NSString | string | null]>) => void | null;
-  declare onoutlineviewshouldshowcellexpansionfortablecolumnitem: (evt: CustomEvent<[outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object]>) => void | null;
-  declare onoutlineviewshouldtrackcellfortablecolumnitem: (evt: CustomEvent<[outlineView: NSOutlineView, cell: NSCell, tableColumn: NSTableColumn | null, item: interop.Object]>) => void | null;
-  declare onoutlineviewdatacellfortablecolumnitem: (evt: CustomEvent<[outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object]>) => void | null;
-  declare onoutlineviewisgroupitem: (evt: CustomEvent<[outlineView: NSOutlineView, item: interop.Object]>) => void | null;
-  declare onoutlineviewshouldexpanditem: (evt: CustomEvent<[outlineView: NSOutlineView, item: interop.Object]>) => void | null;
-  declare onoutlineviewshouldcollapseitem: (evt: CustomEvent<[outlineView: NSOutlineView, item: interop.Object]>) => void | null;
-  declare onoutlineviewwilldisplayoutlinecellfortablecolumnitem: (evt: CustomEvent<[outlineView: NSOutlineView, cell: interop.Object, tableColumn: NSTableColumn | null, item: interop.Object]>) => void | null;
-  declare onoutlineviewsizetofitwidthofcolumn: (evt: CustomEvent<[outlineView: NSOutlineView, column: number]>) => void | null;
-  declare onoutlineviewshouldreordercolumntocolumn: (evt: CustomEvent<[outlineView: NSOutlineView, columnIndex: number, newColumnIndex: number]>) => void | null;
-  declare onoutlineviewshouldshowoutlinecellforitem: (evt: CustomEvent<[outlineView: NSOutlineView, item: interop.Object]>) => void | null;
-  declare onoutlineviewusercanchangevisibilityoftablecolumn: (evt: CustomEvent<[outlineView: NSOutlineView, column: NSTableColumn]>) => void | null;
-  declare onoutlineviewuserdidchangevisibilityoftablecolumns: (evt: CustomEvent<[outlineView: NSOutlineView, columns: NSArray | unknown[]]>) => void | null;
-  declare onoutlineviewselectiondidchange: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onoutlineviewcolumndidmove: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onoutlineviewcolumndidresize: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onoutlineviewselectionischanging: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onoutlineviewitemwillexpand: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onoutlineviewitemdidexpand: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onoutlineviewitemwillcollapse: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare onoutlineviewitemdidcollapse: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  set outlineviewviewfortablecolumnitem(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object) => NSView) {
+    this.delegate.outlineViewViewForTableColumnItem = value;
+  }
+  set outlineviewrowviewforitem(value: (outlineView: NSOutlineView, item: interop.Object) => NSTableRowView) {
+    this.delegate.outlineViewRowViewForItem = value;
+  }
+  set outlineviewdidaddrowviewforrow(value: (outlineView: NSOutlineView, rowView: NSTableRowView, row: number) => void) {
+    this.delegate.outlineViewDidAddRowViewForRow = value;
+  }
+  set outlineviewdidremoverowviewforrow(value: (outlineView: NSOutlineView, rowView: NSTableRowView, row: number) => void) {
+    this.delegate.outlineViewDidRemoveRowViewForRow = value;
+  }
+  set outlineviewwilldisplaycellfortablecolumnitem(value: (outlineView: NSOutlineView, cell: interop.Object, tableColumn: NSTableColumn | null, item: interop.Object) => void) {
+    this.delegate.outlineViewWillDisplayCellForTableColumnItem = value;
+  }
+  set outlineviewshouldedittablecolumnitem(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object) => boolean) {
+    this.delegate.outlineViewShouldEditTableColumnItem = value;
+  }
+  set selectionshouldchangeinoutlineview(value: (outlineView: NSOutlineView) => boolean) {
+    this.delegate.selectionShouldChangeInOutlineView = value;
+  }
+  set outlineviewshouldselectitem(value: (outlineView: NSOutlineView, item: interop.Object) => boolean) {
+    this.delegate.outlineViewShouldSelectItem = value;
+  }
+  set outlineviewselectionindexesforproposedselection(value: (outlineView: NSOutlineView, proposedSelectionIndexes: NSIndexSet) => NSIndexSet) {
+    this.delegate.outlineViewSelectionIndexesForProposedSelection = value;
+  }
+  set outlineviewshouldselecttablecolumn(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null) => boolean) {
+    this.delegate.outlineViewShouldSelectTableColumn = value;
+  }
+  set outlineviewmousedowninheaderoftablecolumn(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn) => void) {
+    this.delegate.outlineViewMouseDownInHeaderOfTableColumn = value;
+  }
+  set outlineviewdidclicktablecolumn(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn) => void) {
+    this.delegate.outlineViewDidClickTableColumn = value;
+  }
+  set outlineviewdiddragtablecolumn(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn) => void) {
+    this.delegate.outlineViewDidDragTableColumn = value;
+  }
+  set outlineviewtooltipforcellrecttablecolumnitemmouselocation(value: (outlineView: NSOutlineView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, item: interop.Object, mouseLocation: CGPoint) => NSString) {
+    this.delegate.outlineViewToolTipForCellRectTableColumnItemMouseLocation = value;
+  }
+  set outlineviewheightofrowbyitem(value: (outlineView: NSOutlineView, item: interop.Object) => number) {
+    this.delegate.outlineViewHeightOfRowByItem = value;
+  }
+  set outlineviewtintconfigurationforitem(value: (outlineView: NSOutlineView, item: interop.Object) => NSTintConfiguration) {
+    this.delegate.outlineViewTintConfigurationForItem = value;
+  }
+  set outlineviewtypeselectstringfortablecolumnitem(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object) => NSString) {
+    this.delegate.outlineViewTypeSelectStringForTableColumnItem = value;
+  }
+  set outlineviewnexttypeselectmatchfromitemtoitemforstring(value: (outlineView: NSOutlineView, startItem: interop.Object, endItem: interop.Object, searchString: NSString | string) => interop.Object) {
+    this.delegate.outlineViewNextTypeSelectMatchFromItemToItemForString = value;
+  }
+  set outlineviewshouldtypeselectforeventwithcurrentsearchstring(value: (outlineView: NSOutlineView, event: NSEvent, searchString: NSString | string | null) => boolean) {
+    this.delegate.outlineViewShouldTypeSelectForEventWithCurrentSearchString = value;
+  }
+  set outlineviewshouldshowcellexpansionfortablecolumnitem(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object) => boolean) {
+    this.delegate.outlineViewShouldShowCellExpansionForTableColumnItem = value;
+  }
+  set outlineviewshouldtrackcellfortablecolumnitem(value: (outlineView: NSOutlineView, cell: NSCell, tableColumn: NSTableColumn | null, item: interop.Object) => boolean) {
+    this.delegate.outlineViewShouldTrackCellForTableColumnItem = value;
+  }
+  set outlineviewdatacellfortablecolumnitem(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object) => NSCell) {
+    this.delegate.outlineViewDataCellForTableColumnItem = value;
+  }
+  set outlineviewisgroupitem(value: (outlineView: NSOutlineView, item: interop.Object) => boolean) {
+    this.delegate.outlineViewIsGroupItem = value;
+  }
+  set outlineviewshouldexpanditem(value: (outlineView: NSOutlineView, item: interop.Object) => boolean) {
+    this.delegate.outlineViewShouldExpandItem = value;
+  }
+  set outlineviewshouldcollapseitem(value: (outlineView: NSOutlineView, item: interop.Object) => boolean) {
+    this.delegate.outlineViewShouldCollapseItem = value;
+  }
+  set outlineviewwilldisplayoutlinecellfortablecolumnitem(value: (outlineView: NSOutlineView, cell: interop.Object, tableColumn: NSTableColumn | null, item: interop.Object) => void) {
+    this.delegate.outlineViewWillDisplayOutlineCellForTableColumnItem = value;
+  }
+  set outlineviewsizetofitwidthofcolumn(value: (outlineView: NSOutlineView, column: number) => number) {
+    this.delegate.outlineViewSizeToFitWidthOfColumn = value;
+  }
+  set outlineviewshouldreordercolumntocolumn(value: (outlineView: NSOutlineView, columnIndex: number, newColumnIndex: number) => boolean) {
+    this.delegate.outlineViewShouldReorderColumnToColumn = value;
+  }
+  set outlineviewshouldshowoutlinecellforitem(value: (outlineView: NSOutlineView, item: interop.Object) => boolean) {
+    this.delegate.outlineViewShouldShowOutlineCellForItem = value;
+  }
+  set outlineviewusercanchangevisibilityoftablecolumn(value: (outlineView: NSOutlineView, column: NSTableColumn) => boolean) {
+    this.delegate.outlineViewUserCanChangeVisibilityOfTableColumn = value;
+  }
+  set outlineviewuserdidchangevisibilityoftablecolumns(value: (outlineView: NSOutlineView, columns: NSArray | unknown[]) => void) {
+    this.delegate.outlineViewUserDidChangeVisibilityOfTableColumns = value;
+  }
+  set outlineviewselectiondidchange(value: (notification: NSNotification) => void) {
+    this.delegate.outlineViewSelectionDidChange = value;
+  }
+  set outlineviewcolumndidmove(value: (notification: NSNotification) => void) {
+    this.delegate.outlineViewColumnDidMove = value;
+  }
+  set outlineviewcolumndidresize(value: (notification: NSNotification) => void) {
+    this.delegate.outlineViewColumnDidResize = value;
+  }
+  set outlineviewselectionischanging(value: (notification: NSNotification) => void) {
+    this.delegate.outlineViewSelectionIsChanging = value;
+  }
+  set outlineviewitemwillexpand(value: (notification: NSNotification) => void) {
+    this.delegate.outlineViewItemWillExpand = value;
+  }
+  set outlineviewitemdidexpand(value: (notification: NSNotification) => void) {
+    this.delegate.outlineViewItemDidExpand = value;
+  }
+  set outlineviewitemwillcollapse(value: (notification: NSNotification) => void) {
+    this.delegate.outlineViewItemWillCollapse = value;
+  }
+  set outlineviewitemdidcollapse(value: (notification: NSNotification) => void) {
+    this.delegate.outlineViewItemDidCollapse = value;
+  }
 }
 
 export class HTMLNSSliderElement extends HTMLNSControlElement {
@@ -5544,13 +6119,8 @@ export class HTMLNSTextFieldElement extends HTMLNSControlElement {
 
   // @ts-ignore
   readonly nativeObject = NSTextField.new();
-  delegate?: NSTextFieldDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSTextFieldDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSTextFieldDelegateImpl {
+    return (this.nativeObject.delegate ??= NSTextFieldDelegateImpl.new()) as NSTextFieldDelegateImpl;
   }
 
   // placeholderAttributedString: NSAttributedString;
@@ -5582,8 +6152,12 @@ export class HTMLNSTextFieldElement extends HTMLNSControlElement {
   // readonly description: NSString;
   // readonly debugDescription: NSString;
 
-  declare ontextfieldtextviewcandidatesforselectedrange: (evt: CustomEvent<[textField: NSTextField, textView: NSTextView, selectedRange: _NSRange]>) => void | null;
-  declare ontextfieldtextviewshouldselectcandidateatindex: (evt: CustomEvent<[textField: NSTextField, textView: NSTextView, index: number]>) => void | null;
+  set textfieldtextviewcandidatesforselectedrange(value: (textField: NSTextField, textView: NSTextView, selectedRange: _NSRange) => NSArray) {
+    this.delegate.textFieldTextViewCandidatesForSelectedRange = value;
+  }
+  set textfieldtextviewshouldselectcandidateatindex(value: (textField: NSTextField, textView: NSTextView, index: number) => boolean) {
+    this.delegate.textFieldTextViewShouldSelectCandidateAtIndex = value;
+  }
 }
 
 export class HTMLNSScrubberTextItemViewElement extends HTMLNSScrubberItemViewElement {
@@ -5665,26 +6239,35 @@ export class HTMLNSTextParagraphElement extends HTMLNSTextElementElement {
 
 export class HTMLNSPageControllerElement extends HTMLNSViewControllerElement {
   readonly nativeObject = NSPageController.new();
-  delegate?: NSPageControllerDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSPageControllerDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSPageControllerDelegateImpl {
+    return (this.nativeObject.delegate ??= NSPageControllerDelegateImpl.new()) as NSPageControllerDelegateImpl;
   }
 
   // readonly selectedViewController: NSViewController;
   // transitionStyle: interop.Enum<typeof NSPageControllerTransitionStyle>;
   // selectedIndex: number;
 
-  declare onpagecontrolleridentifierforobject: (evt: CustomEvent<[pageController: NSPageController, object: interop.Object]>) => void | null;
-  declare onpagecontrollerviewcontrollerforidentifier: (evt: CustomEvent<[pageController: NSPageController, identifier: NSString | string]>) => void | null;
-  declare onpagecontrollerframeforobject: (evt: CustomEvent<[pageController: NSPageController, object: interop.Object | null]>) => void | null;
-  declare onpagecontrollerprepareviewcontrollerwithobject: (evt: CustomEvent<[pageController: NSPageController, viewController: NSViewController, object: interop.Object | null]>) => void | null;
-  declare onpagecontrollerdidtransitiontoobject: (evt: CustomEvent<[pageController: NSPageController, object: interop.Object]>) => void | null;
-  declare onpagecontrollerwillstartlivetransition: (evt: CustomEvent<[pageController: NSPageController]>) => void | null;
-  declare onpagecontrollerdidendlivetransition: (evt: CustomEvent<[pageController: NSPageController]>) => void | null;
+  set pagecontrolleridentifierforobject(value: (pageController: NSPageController, object: interop.Object) => NSString) {
+    this.delegate.pageControllerIdentifierForObject = value;
+  }
+  set pagecontrollerviewcontrollerforidentifier(value: (pageController: NSPageController, identifier: NSString | string) => NSViewController) {
+    this.delegate.pageControllerViewControllerForIdentifier = value;
+  }
+  set pagecontrollerframeforobject(value: (pageController: NSPageController, object: interop.Object | null) => CGRect) {
+    this.delegate.pageControllerFrameForObject = value;
+  }
+  set pagecontrollerprepareviewcontrollerwithobject(value: (pageController: NSPageController, viewController: NSViewController, object: interop.Object | null) => void) {
+    this.delegate.pageControllerPrepareViewControllerWithObject = value;
+  }
+  set pagecontrollerdidtransitiontoobject(value: (pageController: NSPageController, object: interop.Object) => void) {
+    this.delegate.pageControllerDidTransitionToObject = value;
+  }
+  set pagecontrollerwillstartlivetransition(value: (pageController: NSPageController) => void) {
+    this.delegate.pageControllerWillStartLiveTransition = value;
+  }
+  set pagecontrollerdidendlivetransition(value: (pageController: NSPageController) => void) {
+    this.delegate.pageControllerDidEndLiveTransition = value;
+  }
 }
 
 export class HTMLNSTextListElementElement extends HTMLNSTextParagraphElement {
@@ -5704,13 +6287,8 @@ export class HTMLNSComboBoxElement extends HTMLNSTextFieldElement {
 
   // @ts-ignore
   readonly nativeObject = NSComboBox.new();
-  delegate?: NSComboBoxDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSComboBoxDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSComboBoxDelegateImpl {
+    return (this.nativeObject.delegate ??= NSComboBoxDelegateImpl.new()) as NSComboBoxDelegateImpl;
   }
 
   // hasVerticalScroller: boolean;
@@ -5726,10 +6304,18 @@ export class HTMLNSComboBoxElement extends HTMLNSTextFieldElement {
   // readonly objectValueOfSelectedItem: interop.Object;
   // readonly objectValues: NSArray;
 
-  declare oncomboboxwillpopup: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare oncomboboxwilldismiss: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare oncomboboxselectiondidchange: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare oncomboboxselectionischanging: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
+  set comboboxwillpopup(value: (notification: NSNotification) => void) {
+    this.delegate.comboBoxWillPopUp = value;
+  }
+  set comboboxwilldismiss(value: (notification: NSNotification) => void) {
+    this.delegate.comboBoxWillDismiss = value;
+  }
+  set comboboxselectiondidchange(value: (notification: NSNotification) => void) {
+    this.delegate.comboBoxSelectionDidChange = value;
+  }
+  set comboboxselectionischanging(value: (notification: NSNotification) => void) {
+    this.delegate.comboBoxSelectionIsChanging = value;
+  }
 }
 
 export class HTMLNSSecureTextFieldElement extends HTMLNSTextFieldElement {
@@ -5809,13 +6395,8 @@ export class HTMLNSTokenFieldElement extends HTMLNSTextFieldElement {
 
   // @ts-ignore
   readonly nativeObject = NSTokenField.new();
-  delegate?: NSTokenFieldDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSTokenFieldDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSTokenFieldDelegateImpl {
+    return (this.nativeObject.delegate ??= NSTokenFieldDelegateImpl.new()) as NSTokenFieldDelegateImpl;
   }
 
   // tokenStyle: interop.Enum<typeof NSTokenStyle>;
@@ -5824,29 +6405,44 @@ export class HTMLNSTokenFieldElement extends HTMLNSTextFieldElement {
   // tokenizingCharacterSet: NSCharacterSet;
   // defaultTokenizingCharacterSet: NSCharacterSet;
 
-  declare ontokenfieldcompletionsforsubstringindexoftokenindexofselecteditem: (evt: CustomEvent<[tokenField: NSTokenField, substring: NSString | string, tokenIndex: number, selectedIndex: interop.PointerConvertible]>) => void | null;
-  declare ontokenfieldshouldaddobjectsatindex: (evt: CustomEvent<[tokenField: NSTokenField, tokens: NSArray | unknown[], index: number]>) => void | null;
-  declare ontokenfielddisplaystringforrepresentedobject: (evt: CustomEvent<[tokenField: NSTokenField, representedObject: interop.Object]>) => void | null;
-  declare ontokenfieldeditingstringforrepresentedobject: (evt: CustomEvent<[tokenField: NSTokenField, representedObject: interop.Object]>) => void | null;
-  declare ontokenfieldrepresentedobjectforeditingstring: (evt: CustomEvent<[tokenField: NSTokenField, editingString: NSString | string]>) => void | null;
-  declare ontokenfieldwriterepresentedobjectstopasteboard: (evt: CustomEvent<[tokenField: NSTokenField, objects: NSArray | unknown[], pboard: NSPasteboard]>) => void | null;
-  declare ontokenfieldreadfrompasteboard: (evt: CustomEvent<[tokenField: NSTokenField, pboard: NSPasteboard]>) => void | null;
-  declare ontokenfieldmenuforrepresentedobject: (evt: CustomEvent<[tokenField: NSTokenField, representedObject: interop.Object]>) => void | null;
-  declare ontokenfieldhasmenuforrepresentedobject: (evt: CustomEvent<[tokenField: NSTokenField, representedObject: interop.Object]>) => void | null;
-  declare ontokenfieldstyleforrepresentedobject: (evt: CustomEvent<[tokenField: NSTokenField, representedObject: interop.Object]>) => void | null;
+  set tokenfieldcompletionsforsubstringindexoftokenindexofselecteditem(value: (tokenField: NSTokenField, substring: NSString | string, tokenIndex: number, selectedIndex: interop.PointerConvertible) => NSArray) {
+    this.delegate.tokenFieldCompletionsForSubstringIndexOfTokenIndexOfSelectedItem = value;
+  }
+  set tokenfieldshouldaddobjectsatindex(value: (tokenField: NSTokenField, tokens: NSArray | unknown[], index: number) => NSArray) {
+    this.delegate.tokenFieldShouldAddObjectsAtIndex = value;
+  }
+  set tokenfielddisplaystringforrepresentedobject(value: (tokenField: NSTokenField, representedObject: interop.Object) => NSString) {
+    this.delegate.tokenFieldDisplayStringForRepresentedObject = value;
+  }
+  set tokenfieldeditingstringforrepresentedobject(value: (tokenField: NSTokenField, representedObject: interop.Object) => NSString) {
+    this.delegate.tokenFieldEditingStringForRepresentedObject = value;
+  }
+  set tokenfieldrepresentedobjectforeditingstring(value: (tokenField: NSTokenField, editingString: NSString | string) => interop.Object) {
+    this.delegate.tokenFieldRepresentedObjectForEditingString = value;
+  }
+  set tokenfieldwriterepresentedobjectstopasteboard(value: (tokenField: NSTokenField, objects: NSArray | unknown[], pboard: NSPasteboard) => boolean) {
+    this.delegate.tokenFieldWriteRepresentedObjectsToPasteboard = value;
+  }
+  set tokenfieldreadfrompasteboard(value: (tokenField: NSTokenField, pboard: NSPasteboard) => NSArray) {
+    this.delegate.tokenFieldReadFromPasteboard = value;
+  }
+  set tokenfieldmenuforrepresentedobject(value: (tokenField: NSTokenField, representedObject: interop.Object) => NSMenu) {
+    this.delegate.tokenFieldMenuForRepresentedObject = value;
+  }
+  set tokenfieldhasmenuforrepresentedobject(value: (tokenField: NSTokenField, representedObject: interop.Object) => boolean) {
+    this.delegate.tokenFieldHasMenuForRepresentedObject = value;
+  }
+  set tokenfieldstyleforrepresentedobject(value: (tokenField: NSTokenField, representedObject: interop.Object) => interop.Enum<typeof NSTokenStyle>) {
+    this.delegate.tokenFieldStyleForRepresentedObject = value;
+  }
 }
 
 export class HTMLNSSearchFieldElement extends HTMLNSTextFieldElement {
 
   // @ts-ignore
   readonly nativeObject = NSSearchField.new();
-  delegate?: NSSearchFieldDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSSearchFieldDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSSearchFieldDelegateImpl {
+    return (this.nativeObject.delegate ??= NSSearchFieldDelegateImpl.new()) as NSSearchFieldDelegateImpl;
   }
 
   // readonly searchTextBounds: CGRect;
@@ -5858,8 +6454,12 @@ export class HTMLNSSearchFieldElement extends HTMLNSTextFieldElement {
   // sendsSearchStringImmediately: boolean;
   // centersPlaceholder: boolean;
 
-  declare onsearchfielddidstartsearching: (evt: CustomEvent<[sender: NSSearchField]>) => void | null;
-  declare onsearchfielddidendsearching: (evt: CustomEvent<[sender: NSSearchField]>) => void | null;
+  set searchfielddidstartsearching(value: (sender: NSSearchField) => void) {
+    this.delegate.searchFieldDidStartSearching = value;
+  }
+  set searchfielddidendsearching(value: (sender: NSSearchField) => void) {
+    this.delegate.searchFieldDidEndSearching = value;
+  }
 }
 
 export class HTMLNSStepperElement extends HTMLNSControlElement {
@@ -5886,13 +6486,8 @@ export class HTMLNSTextContentStorageElement extends HTMLNSTextContentManagerEle
 
   // @ts-ignore
   readonly nativeObject = NSTextContentStorage.new();
-  delegate?: NSTextContentStorageDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSTextContentStorageDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSTextContentStorageDelegateImpl {
+    return (this.nativeObject.delegate ??= NSTextContentStorageDelegateImpl.new()) as NSTextContentStorageDelegateImpl;
   }
 
   // attributedString: NSAttributedString;
@@ -5904,7 +6499,9 @@ export class HTMLNSTextContentStorageElement extends HTMLNSTextContentManagerEle
   // readonly description: NSString;
   // readonly debugDescription: NSString;
 
-  declare ontextcontentstoragetextparagraphwithrange: (evt: CustomEvent<[textContentStorage: NSTextContentStorage, range: _NSRange]>) => void | null;
+  set textcontentstoragetextparagraphwithrange(value: (textContentStorage: NSTextContentStorage, range: _NSRange) => NSTextParagraph) {
+    this.delegate.textContentStorageTextParagraphWithRange = value;
+  }
 }
 
 export class HTMLNSStatusBarButtonElement extends HTMLNSButtonElement {
@@ -5926,13 +6523,8 @@ export class HTMLNSTextViewElement extends HTMLNSTextElement {
 
   // @ts-ignore
   readonly nativeObject = NSTextView.new();
-  delegate?: NSTextViewDelegateImpl;
-
-  constructor(){
-    super();
-
-    this.delegate = NSTextViewDelegateImpl.new();
-    this.nativeObject.delegate = this.delegate;
+  get delegate(): NSTextViewDelegateImpl {
+    return (this.nativeObject.delegate ??= NSTextViewDelegateImpl.new()) as NSTextViewDelegateImpl;
   }
 
   // textContainer: NSTextContainer;
@@ -6010,46 +6602,145 @@ export class HTMLNSTextViewElement extends HTMLNSTextElement {
   // accessibilityParent: interop.Object;
   // isAccessibilityFocused: boolean;
 
-  declare ontextviewclickedonlinkatindex: (evt: CustomEvent<[textView: NSTextView, link: interop.Object, charIndex: number]>) => void | null;
-  declare ontextviewclickedoncellinrectatindex: (evt: CustomEvent<[textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect, charIndex: number]>) => void | null;
-  declare ontextviewdoubleclickedoncellinrectatindex: (evt: CustomEvent<[textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect, charIndex: number]>) => void | null;
-  declare ontextviewdraggedcellinrecteventatindex: (evt: CustomEvent<[view: NSTextView, cell: NSTextAttachmentCell, rect: CGRect, event: NSEvent, charIndex: number]>) => void | null;
-  declare ontextviewwritablepasteboardtypesforcellatindex: (evt: CustomEvent<[view: NSTextView, cell: NSTextAttachmentCell, charIndex: number]>) => void | null;
-  declare ontextviewwritecellatindextopasteboardtype: (evt: CustomEvent<[view: NSTextView, cell: NSTextAttachmentCell, charIndex: number, pboard: NSPasteboard, type: NSString | string]>) => void | null;
-  declare ontextviewwillchangeselectionfromcharacterrangetocharacterrange: (evt: CustomEvent<[textView: NSTextView, oldSelectedCharRange: _NSRange, newSelectedCharRange: _NSRange]>) => void | null;
-  declare ontextviewwillchangeselectionfromcharacterrangestocharacterranges: (evt: CustomEvent<[textView: NSTextView, oldSelectedCharRanges: NSArray | unknown[], newSelectedCharRanges: NSArray | unknown[]]>) => void | null;
-  declare ontextviewshouldchangetextinrangesreplacementstrings: (evt: CustomEvent<[textView: NSTextView, affectedRanges: NSArray | unknown[], replacementStrings: NSArray | unknown[] | null]>) => void | null;
-  declare ontextviewshouldchangetypingattributestoattributes: (evt: CustomEvent<[textView: NSTextView, oldTypingAttributes: NSDictionary | Record<string, unknown>, newTypingAttributes: NSDictionary | Record<string, unknown>]>) => void | null;
-  declare ontextviewdidchangeselection: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare ontextviewdidchangetypingattributes: (evt: CustomEvent<[notification: NSNotification]>) => void | null;
-  declare ontextviewwilldisplaytooltipforcharacteratindex: (evt: CustomEvent<[textView: NSTextView, tooltip: NSString | string, characterIndex: number]>) => void | null;
-  declare ontextviewcompletionsforpartialwordrangeindexofselecteditem: (evt: CustomEvent<[textView: NSTextView, words: NSArray | unknown[], charRange: _NSRange, index: interop.PointerConvertible]>) => void | null;
-  declare ontextviewshouldchangetextinrangereplacementstring: (evt: CustomEvent<[textView: NSTextView, affectedCharRange: _NSRange, replacementString: NSString | string | null]>) => void | null;
-  declare ontextviewdocommandbyselector: (evt: CustomEvent<[textView: NSTextView, commandSelector: string]>) => void | null;
-  declare ontextviewshouldsetspellingstaterange: (evt: CustomEvent<[textView: NSTextView, value: number, affectedCharRange: _NSRange]>) => void | null;
-  declare ontextviewmenuforeventatindex: (evt: CustomEvent<[view: NSTextView, menu: NSMenu, event: NSEvent, charIndex: number]>) => void | null;
-  declare ontextviewwillchecktextinrangeoptionstypes: (evt: CustomEvent<[view: NSTextView, range: _NSRange, options: NSDictionary | Record<string, unknown>, checkingTypes: interop.PointerConvertible]>) => void | null;
-  declare ontextviewdidchecktextinrangetypesoptionsresultsorthographywordcount: (evt: CustomEvent<[view: NSTextView, range: _NSRange, checkingTypes: number, options: NSDictionary | Record<string, unknown>, results: NSArray | unknown[], orthography: NSOrthography, wordCount: number]>) => void | null;
-  declare ontextviewurlforcontentsoftextattachmentatindex: (evt: CustomEvent<[textView: NSTextView, textAttachment: NSTextAttachment, charIndex: number]>) => void | null;
-  declare ontextviewwillshowsharingservicepickerforitems: (evt: CustomEvent<[textView: NSTextView, servicePicker: NSSharingServicePicker, items: NSArray | unknown[]]>) => void | null;
-  declare onundomanagerfortextview: (evt: CustomEvent<[view: NSTextView]>) => void | null;
-  declare ontextviewshouldupdatetouchbaritemidentifiers: (evt: CustomEvent<[textView: NSTextView, identifiers: NSArray | unknown[]]>) => void | null;
-  declare ontextviewcandidatesforselectedrange: (evt: CustomEvent<[textView: NSTextView, selectedRange: _NSRange]>) => void | null;
-  declare ontextviewshouldselectcandidateatindex: (evt: CustomEvent<[textView: NSTextView, index: number]>) => void | null;
-  declare ontextviewclickedonlink: (evt: CustomEvent<[textView: NSTextView, link: interop.Object]>) => void | null;
-  declare ontextviewclickedoncellinrect: (evt: CustomEvent<[textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect]>) => void | null;
-  declare ontextviewdoubleclickedoncellinrect: (evt: CustomEvent<[textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect]>) => void | null;
-  declare ontextviewdraggedcellinrectevent: (evt: CustomEvent<[view: NSTextView, cell: NSTextAttachmentCell, rect: CGRect, event: NSEvent]>) => void | null;
+  set textviewclickedonlinkatindex(value: (textView: NSTextView, link: interop.Object, charIndex: number) => boolean) {
+    this.delegate.textViewClickedOnLinkAtIndex = value;
+  }
+  set textviewclickedoncellinrectatindex(value: (textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect, charIndex: number) => void) {
+    this.delegate.textViewClickedOnCellInRectAtIndex = value;
+  }
+  set textviewdoubleclickedoncellinrectatindex(value: (textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect, charIndex: number) => void) {
+    this.delegate.textViewDoubleClickedOnCellInRectAtIndex = value;
+  }
+  set textviewdraggedcellinrecteventatindex(value: (view: NSTextView, cell: NSTextAttachmentCell, rect: CGRect, event: NSEvent, charIndex: number) => void) {
+    this.delegate.textViewDraggedCellInRectEventAtIndex = value;
+  }
+  set textviewwritablepasteboardtypesforcellatindex(value: (view: NSTextView, cell: NSTextAttachmentCell, charIndex: number) => NSArray) {
+    this.delegate.textViewWritablePasteboardTypesForCellAtIndex = value;
+  }
+  set textviewwritecellatindextopasteboardtype(value: (view: NSTextView, cell: NSTextAttachmentCell, charIndex: number, pboard: NSPasteboard, type: NSString | string) => boolean) {
+    this.delegate.textViewWriteCellAtIndexToPasteboardType = value;
+  }
+  set textviewwillchangeselectionfromcharacterrangetocharacterrange(value: (textView: NSTextView, oldSelectedCharRange: _NSRange, newSelectedCharRange: _NSRange) => _NSRange) {
+    this.delegate.textViewWillChangeSelectionFromCharacterRangeToCharacterRange = value;
+  }
+  set textviewwillchangeselectionfromcharacterrangestocharacterranges(value: (textView: NSTextView, oldSelectedCharRanges: NSArray | unknown[], newSelectedCharRanges: NSArray | unknown[]) => NSArray) {
+    this.delegate.textViewWillChangeSelectionFromCharacterRangesToCharacterRanges = value;
+  }
+  set textviewshouldchangetextinrangesreplacementstrings(value: (textView: NSTextView, affectedRanges: NSArray | unknown[], replacementStrings: NSArray | unknown[] | null) => boolean) {
+    this.delegate.textViewShouldChangeTextInRangesReplacementStrings = value;
+  }
+  set textviewshouldchangetypingattributestoattributes(value: (textView: NSTextView, oldTypingAttributes: NSDictionary | Record<string, unknown>, newTypingAttributes: NSDictionary | Record<string, unknown>) => NSDictionary) {
+    this.delegate.textViewShouldChangeTypingAttributesToAttributes = value;
+  }
+  set textviewdidchangeselection(value: (notification: NSNotification) => void) {
+    this.delegate.textViewDidChangeSelection = value;
+  }
+  set textviewdidchangetypingattributes(value: (notification: NSNotification) => void) {
+    this.delegate.textViewDidChangeTypingAttributes = value;
+  }
+  set textviewwilldisplaytooltipforcharacteratindex(value: (textView: NSTextView, tooltip: NSString | string, characterIndex: number) => NSString) {
+    this.delegate.textViewWillDisplayToolTipForCharacterAtIndex = value;
+  }
+  set textviewcompletionsforpartialwordrangeindexofselecteditem(value: (textView: NSTextView, words: NSArray | unknown[], charRange: _NSRange, index: interop.PointerConvertible) => NSArray) {
+    this.delegate.textViewCompletionsForPartialWordRangeIndexOfSelectedItem = value;
+  }
+  set textviewshouldchangetextinrangereplacementstring(value: (textView: NSTextView, affectedCharRange: _NSRange, replacementString: NSString | string | null) => boolean) {
+    this.delegate.textViewShouldChangeTextInRangeReplacementString = value;
+  }
+  set textviewdocommandbyselector(value: (textView: NSTextView, commandSelector: string) => boolean) {
+    this.delegate.textViewDoCommandBySelector = value;
+  }
+  set textviewshouldsetspellingstaterange(value: (textView: NSTextView, value: number, affectedCharRange: _NSRange) => number) {
+    this.delegate.textViewShouldSetSpellingStateRange = value;
+  }
+  set textviewmenuforeventatindex(value: (view: NSTextView, menu: NSMenu, event: NSEvent, charIndex: number) => NSMenu) {
+    this.delegate.textViewMenuForEventAtIndex = value;
+  }
+  set textviewwillchecktextinrangeoptionstypes(value: (view: NSTextView, range: _NSRange, options: NSDictionary | Record<string, unknown>, checkingTypes: interop.PointerConvertible) => NSDictionary) {
+    this.delegate.textViewWillCheckTextInRangeOptionsTypes = value;
+  }
+  set textviewdidchecktextinrangetypesoptionsresultsorthographywordcount(value: (view: NSTextView, range: _NSRange, checkingTypes: number, options: NSDictionary | Record<string, unknown>, results: NSArray | unknown[], orthography: NSOrthography, wordCount: number) => NSArray) {
+    this.delegate.textViewDidCheckTextInRangeTypesOptionsResultsOrthographyWordCount = value;
+  }
+  set textviewurlforcontentsoftextattachmentatindex(value: (textView: NSTextView, textAttachment: NSTextAttachment, charIndex: number) => NSURL) {
+    this.delegate.textViewURLForContentsOfTextAttachmentAtIndex = value;
+  }
+  set textviewwillshowsharingservicepickerforitems(value: (textView: NSTextView, servicePicker: NSSharingServicePicker, items: NSArray | unknown[]) => NSSharingServicePicker) {
+    this.delegate.textViewWillShowSharingServicePickerForItems = value;
+  }
+  set undomanagerfortextview(value: (view: NSTextView) => NSUndoManager) {
+    this.delegate.undoManagerForTextView = value;
+  }
+  set textviewshouldupdatetouchbaritemidentifiers(value: (textView: NSTextView, identifiers: NSArray | unknown[]) => NSArray) {
+    this.delegate.textViewShouldUpdateTouchBarItemIdentifiers = value;
+  }
+  set textviewcandidatesforselectedrange(value: (textView: NSTextView, selectedRange: _NSRange) => NSArray) {
+    this.delegate.textViewCandidatesForSelectedRange = value;
+  }
+  set textviewshouldselectcandidateatindex(value: (textView: NSTextView, index: number) => boolean) {
+    this.delegate.textViewShouldSelectCandidateAtIndex = value;
+  }
+  set textviewclickedonlink(value: (textView: NSTextView, link: interop.Object) => boolean) {
+    this.delegate.textViewClickedOnLink = value;
+  }
+  set textviewclickedoncellinrect(value: (textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect) => void) {
+    this.delegate.textViewClickedOnCellInRect = value;
+  }
+  set textviewdoubleclickedoncellinrect(value: (textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect) => void) {
+    this.delegate.textViewDoubleClickedOnCellInRect = value;
+  }
+  set textviewdraggedcellinrectevent(value: (view: NSTextView, cell: NSTextAttachmentCell, rect: CGRect, event: NSEvent) => void) {
+    this.delegate.textViewDraggedCellInRectEvent = value;
+  }
 }
 
 // Delegates
 
 export class NSScrubberDelegateImpl extends NSObject implements NSScrubberDelegate {
   static ObjCProtocols = [NSScrubberDelegate];
+
+  scrubberDidSelectItemAtIndex?(scrubber: NSScrubber, selectedIndex: number): void;
+  scrubberDidHighlightItemAtIndex?(scrubber: NSScrubber, highlightedIndex: number): void;
+  scrubberDidChangeVisibleRange?(scrubber: NSScrubber, visibleRange: _NSRange): void;
+  didBeginInteractingWithScrubber?(scrubber: NSScrubber): void;
+  didFinishInteractingWithScrubber?(scrubber: NSScrubber): void;
+  didCancelInteractingWithScrubber?(scrubber: NSScrubber): void;
 }
 
 export class NSTableViewDelegateImpl extends NSObject implements NSTableViewDelegate {
   static ObjCProtocols = [NSTableViewDelegate];
+
+  tableViewViewForTableColumnRow?(tableView: NSTableView, tableColumn: NSTableColumn | null, row: number): NSView;
+  tableViewRowViewForRow?(tableView: NSTableView, row: number): NSTableRowView;
+  tableViewDidAddRowViewForRow?(tableView: NSTableView, rowView: NSTableRowView, row: number): void;
+  tableViewDidRemoveRowViewForRow?(tableView: NSTableView, rowView: NSTableRowView, row: number): void;
+  tableViewWillDisplayCellForTableColumnRow?(tableView: NSTableView, cell: interop.Object, tableColumn: NSTableColumn | null, row: number): void;
+  tableViewShouldEditTableColumnRow?(tableView: NSTableView, tableColumn: NSTableColumn | null, row: number): boolean;
+  tableViewToolTipForCellRectTableColumnRowMouseLocation?(tableView: NSTableView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, row: number, mouseLocation: CGPoint): NSString;
+  tableViewShouldShowCellExpansionForTableColumnRow?(tableView: NSTableView, tableColumn: NSTableColumn | null, row: number): boolean;
+  tableViewShouldTrackCellForTableColumnRow?(tableView: NSTableView, cell: NSCell, tableColumn: NSTableColumn | null, row: number): boolean;
+  tableViewDataCellForTableColumnRow?(tableView: NSTableView, tableColumn: NSTableColumn | null, row: number): NSCell;
+  selectionShouldChangeInTableView?(tableView: NSTableView): boolean;
+  tableViewShouldSelectRow?(tableView: NSTableView, row: number): boolean;
+  tableViewSelectionIndexesForProposedSelection?(tableView: NSTableView, proposedSelectionIndexes: NSIndexSet): NSIndexSet;
+  tableViewShouldSelectTableColumn?(tableView: NSTableView, tableColumn: NSTableColumn | null): boolean;
+  tableViewMouseDownInHeaderOfTableColumn?(tableView: NSTableView, tableColumn: NSTableColumn): void;
+  tableViewDidClickTableColumn?(tableView: NSTableView, tableColumn: NSTableColumn): void;
+  tableViewDidDragTableColumn?(tableView: NSTableView, tableColumn: NSTableColumn): void;
+  tableViewHeightOfRow?(tableView: NSTableView, row: number): number;
+  tableViewTypeSelectStringForTableColumnRow?(tableView: NSTableView, tableColumn: NSTableColumn | null, row: number): NSString;
+  tableViewNextTypeSelectMatchFromRowToRowForString?(tableView: NSTableView, startRow: number, endRow: number, searchString: NSString | string): number;
+  tableViewShouldTypeSelectForEventWithCurrentSearchString?(tableView: NSTableView, event: NSEvent, searchString: NSString | string | null): boolean;
+  tableViewIsGroupRow?(tableView: NSTableView, row: number): boolean;
+  tableViewSizeToFitWidthOfColumn?(tableView: NSTableView, column: number): number;
+  tableViewShouldReorderColumnToColumn?(tableView: NSTableView, columnIndex: number, newColumnIndex: number): boolean;
+  tableViewRowActionsForRowEdge?(tableView: NSTableView, row: number, edge: interop.Enum<typeof NSTableRowActionEdge>): NSArray;
+  tableViewUserCanChangeVisibilityOfTableColumn?(tableView: NSTableView, column: NSTableColumn): boolean;
+  tableViewUserDidChangeVisibilityOfTableColumns?(tableView: NSTableView, columns: NSArray | unknown[]): void;
+  tableViewSelectionDidChange?(notification: NSNotification): void;
+  tableViewColumnDidMove?(notification: NSNotification): void;
+  tableViewColumnDidResize?(notification: NSNotification): void;
+  tableViewSelectionIsChanging?(notification: NSNotification): void;
 }
 
 export class NSSharingServicePickerTouchBarItemDelegateImpl extends NSObject implements NSSharingServicePickerTouchBarItemDelegate {
@@ -6062,26 +6753,56 @@ export class NSSharingServicePickerTouchBarItemDelegateImpl extends NSObject imp
 
 export class NSDrawerDelegateImpl extends NSObject implements NSDrawerDelegate {
   static ObjCProtocols = [NSDrawerDelegate];
+
+  drawerShouldOpen?(sender: NSDrawer): boolean;
+  drawerShouldClose?(sender: NSDrawer): boolean;
+  drawerWillResizeContentsToSize?(sender: NSDrawer, contentSize: CGSize): CGSize;
+  drawerWillOpen?(notification: NSNotification): void;
+  drawerDidOpen?(notification: NSNotification): void;
+  drawerWillClose?(notification: NSNotification): void;
+  drawerDidClose?(notification: NSNotification): void;
 }
 
 export class NSImageDelegateImpl extends NSObject implements NSImageDelegate {
   static ObjCProtocols = [NSImageDelegate];
+
+  imageDidNotDrawInRect?(sender: NSImage, rect: CGRect): NSImage;
+  imageWillLoadRepresentation?(image: NSImage, rep: NSImageRep): void;
+  imageDidLoadRepresentationHeader?(image: NSImage, rep: NSImageRep): void;
+  imageDidLoadPartOfRepresentationWithValidRows?(image: NSImage, rep: NSImageRep, rows: number): void;
+  imageDidLoadRepresentationWithStatus?(image: NSImage, rep: NSImageRep, status: interop.Enum<typeof NSImageLoadStatus>): void;
 }
 
 export class NSMenuDelegateImpl extends NSObject implements NSMenuDelegate {
   static ObjCProtocols = [NSMenuDelegate];
+
+  menuNeedsUpdate?(menu: NSMenu): void;
+  numberOfItemsInMenu?(menu: NSMenu): number;
+  menuUpdateItemAtIndexShouldCancel?(menu: NSMenu, item: NSMenuItem, index: number, shouldCancel: boolean): boolean;
+  menuHasKeyEquivalentForEventTargetAction?(menu: NSMenu, event: NSEvent, target: interop.PointerConvertible, action: interop.PointerConvertible): boolean;
+  menuWillOpen?(menu: NSMenu): void;
+  menuDidClose?(menu: NSMenu): void;
+  menuWillHighlightItem?(menu: NSMenu, item: NSMenuItem | null): void;
+  confinementRectForMenuOnScreen?(menu: NSMenu, screen: NSScreen | null): CGRect;
 }
 
 export class NSStackViewDelegateImpl extends NSObject implements NSStackViewDelegate {
   static ObjCProtocols = [NSStackViewDelegate];
+
+  stackViewWillDetachViews?(stackView: NSStackView, views: NSArray | unknown[]): void;
+  stackViewDidReattachViews?(stackView: NSStackView, views: NSArray | unknown[]): void;
 }
 
 export class NSViewLayerContentScaleDelegateImpl extends NSObject implements NSViewLayerContentScaleDelegate {
   static ObjCProtocols = [NSViewLayerContentScaleDelegate];
+
+  layerShouldInheritContentsScaleFromWindow?(layer: CALayer, newScale: number, window: NSWindow): boolean;
 }
 
 export class NSTextContentStorageDelegateImpl extends NSObject implements NSTextContentStorageDelegate {
   static ObjCProtocols = [NSTextContentStorageDelegate];
+
+  textContentStorageTextParagraphWithRange?(textContentStorage: NSTextContentStorage, range: _NSRange): NSTextParagraph;
 }
 
 export class NSTextViewportLayoutControllerDelegateImpl extends NSObject implements NSTextViewportLayoutControllerDelegate {
@@ -6093,6 +6814,8 @@ export class NSTextViewportLayoutControllerDelegateImpl extends NSObject impleme
   textViewportLayoutControllerConfigureRenderingSurfaceForTextLayoutFragment(textViewportLayoutController: NSTextViewportLayoutController, textLayoutFragment: NSTextLayoutFragment): void {
     throw new Error("Please provide implementation for: NSTextViewportLayoutControllerDelegate > textViewportLayoutControllerConfigureRenderingSurfaceForTextLayoutFragment");
   }
+  textViewportLayoutControllerWillLayout?(textViewportLayoutController: NSTextViewportLayoutController): void;
+  textViewportLayoutControllerDidLayout?(textViewportLayoutController: NSTextViewportLayoutController): void;
 }
 
 export class NSRuleEditorDelegateImpl extends NSObject implements NSRuleEditorDelegate {
@@ -6107,106 +6830,358 @@ export class NSRuleEditorDelegateImpl extends NSObject implements NSRuleEditorDe
   ruleEditorDisplayValueForCriterionInRow(editor: NSRuleEditor, criterion: interop.Object, row: number): interop.Object {
     throw new Error("Please provide implementation for: NSRuleEditorDelegate > ruleEditorDisplayValueForCriterionInRow");
   }
+  ruleEditorPredicatePartsForCriterionWithDisplayValueInRow?(editor: NSRuleEditor, criterion: interop.Object, value: interop.Object, row: number): NSDictionary;
+  ruleEditorRowsDidChange?(notification: NSNotification): void;
 }
 
 export class NSPageControllerDelegateImpl extends NSObject implements NSPageControllerDelegate {
   static ObjCProtocols = [NSPageControllerDelegate];
+
+  pageControllerIdentifierForObject?(pageController: NSPageController, object: interop.Object): NSString;
+  pageControllerViewControllerForIdentifier?(pageController: NSPageController, identifier: NSString | string): NSViewController;
+  pageControllerFrameForObject?(pageController: NSPageController, object: interop.Object | null): CGRect;
+  pageControllerPrepareViewControllerWithObject?(pageController: NSPageController, viewController: NSViewController, object: interop.Object | null): void;
+  pageControllerDidTransitionToObject?(pageController: NSPageController, object: interop.Object): void;
+  pageControllerWillStartLiveTransition?(pageController: NSPageController): void;
+  pageControllerDidEndLiveTransition?(pageController: NSPageController): void;
 }
 
 export class NSDatePickerCellDelegateImpl extends NSObject implements NSDatePickerCellDelegate {
   static ObjCProtocols = [NSDatePickerCellDelegate];
+
+  datePickerCellValidateProposedDateValueTimeInterval?(datePickerCell: NSDatePickerCell, proposedDateValue: interop.PointerConvertible, proposedTimeInterval: interop.PointerConvertible): void;
 }
 
 export class NSSoundDelegateImpl extends NSObject implements NSSoundDelegate {
   static ObjCProtocols = [NSSoundDelegate];
+
+  soundDidFinishPlaying?(sound: NSSound, flag: boolean): void;
 }
 
 export class NSTabViewDelegateImpl extends NSObject implements NSTabViewDelegate {
   static ObjCProtocols = [NSTabViewDelegate];
+
+  tabViewShouldSelectTabViewItem?(tabView: NSTabView, tabViewItem: NSTabViewItem | null): boolean;
+  tabViewWillSelectTabViewItem?(tabView: NSTabView, tabViewItem: NSTabViewItem | null): void;
+  tabViewDidSelectTabViewItem?(tabView: NSTabView, tabViewItem: NSTabViewItem | null): void;
+  tabViewDidChangeNumberOfTabViewItems?(tabView: NSTabView): void;
 }
 
 export class NSTextViewDelegateImpl extends NSObject implements NSTextViewDelegate {
   static ObjCProtocols = [NSTextViewDelegate];
+
+  textViewClickedOnLinkAtIndex?(textView: NSTextView, link: interop.Object, charIndex: number): boolean;
+  textViewClickedOnCellInRectAtIndex?(textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect, charIndex: number): void;
+  textViewDoubleClickedOnCellInRectAtIndex?(textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect, charIndex: number): void;
+  textViewDraggedCellInRectEventAtIndex?(view: NSTextView, cell: NSTextAttachmentCell, rect: CGRect, event: NSEvent, charIndex: number): void;
+  textViewWritablePasteboardTypesForCellAtIndex?(view: NSTextView, cell: NSTextAttachmentCell, charIndex: number): NSArray;
+  textViewWriteCellAtIndexToPasteboardType?(view: NSTextView, cell: NSTextAttachmentCell, charIndex: number, pboard: NSPasteboard, type: NSString | string): boolean;
+  textViewWillChangeSelectionFromCharacterRangeToCharacterRange?(textView: NSTextView, oldSelectedCharRange: _NSRange, newSelectedCharRange: _NSRange): _NSRange;
+  textViewWillChangeSelectionFromCharacterRangesToCharacterRanges?(textView: NSTextView, oldSelectedCharRanges: NSArray | unknown[], newSelectedCharRanges: NSArray | unknown[]): NSArray;
+  textViewShouldChangeTextInRangesReplacementStrings?(textView: NSTextView, affectedRanges: NSArray | unknown[], replacementStrings: NSArray | unknown[] | null): boolean;
+  textViewShouldChangeTypingAttributesToAttributes?(textView: NSTextView, oldTypingAttributes: NSDictionary | Record<string, unknown>, newTypingAttributes: NSDictionary | Record<string, unknown>): NSDictionary;
+  textViewDidChangeSelection?(notification: NSNotification): void;
+  textViewDidChangeTypingAttributes?(notification: NSNotification): void;
+  textViewWillDisplayToolTipForCharacterAtIndex?(textView: NSTextView, tooltip: NSString | string, characterIndex: number): NSString;
+  textViewCompletionsForPartialWordRangeIndexOfSelectedItem?(textView: NSTextView, words: NSArray | unknown[], charRange: _NSRange, index: interop.PointerConvertible): NSArray;
+  textViewShouldChangeTextInRangeReplacementString?(textView: NSTextView, affectedCharRange: _NSRange, replacementString: NSString | string | null): boolean;
+  textViewDoCommandBySelector?(textView: NSTextView, commandSelector: string): boolean;
+  textViewShouldSetSpellingStateRange?(textView: NSTextView, value: number, affectedCharRange: _NSRange): number;
+  textViewMenuForEventAtIndex?(view: NSTextView, menu: NSMenu, event: NSEvent, charIndex: number): NSMenu;
+  textViewWillCheckTextInRangeOptionsTypes?(view: NSTextView, range: _NSRange, options: NSDictionary | Record<string, unknown>, checkingTypes: interop.PointerConvertible): NSDictionary;
+  textViewDidCheckTextInRangeTypesOptionsResultsOrthographyWordCount?(view: NSTextView, range: _NSRange, checkingTypes: number, options: NSDictionary | Record<string, unknown>, results: NSArray | unknown[], orthography: NSOrthography, wordCount: number): NSArray;
+  textViewURLForContentsOfTextAttachmentAtIndex?(textView: NSTextView, textAttachment: NSTextAttachment, charIndex: number): NSURL;
+  textViewWillShowSharingServicePickerForItems?(textView: NSTextView, servicePicker: NSSharingServicePicker, items: NSArray | unknown[]): NSSharingServicePicker;
+  undoManagerForTextView?(view: NSTextView): NSUndoManager;
+  textViewShouldUpdateTouchBarItemIdentifiers?(textView: NSTextView, identifiers: NSArray | unknown[]): NSArray;
+  textViewCandidatesForSelectedRange?(textView: NSTextView, selectedRange: _NSRange): NSArray;
+  textViewShouldSelectCandidateAtIndex?(textView: NSTextView, index: number): boolean;
+  textViewClickedOnLink?(textView: NSTextView, link: interop.Object): boolean;
+  textViewClickedOnCellInRect?(textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect): void;
+  textViewDoubleClickedOnCellInRect?(textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect): void;
+  textViewDraggedCellInRectEvent?(view: NSTextView, cell: NSTextAttachmentCell, rect: CGRect, event: NSEvent): void;
 }
 
 export class NSSharingServiceDelegateImpl extends NSObject implements NSSharingServiceDelegate {
   static ObjCProtocols = [NSSharingServiceDelegate];
+
+  sharingServiceWillShareItems?(sharingService: NSSharingService, items: NSArray | unknown[]): void;
+  sharingServiceDidFailToShareItemsError?(sharingService: NSSharingService, items: NSArray | unknown[], error: NSError): void;
+  sharingServiceDidShareItems?(sharingService: NSSharingService, items: NSArray | unknown[]): void;
+  sharingServiceSourceFrameOnScreenForShareItem?(sharingService: NSSharingService, item: interop.Object): CGRect;
+  sharingServiceTransitionImageForShareItemContentRect?(sharingService: NSSharingService, item: interop.Object, contentRect: interop.PointerConvertible): NSImage;
+  sharingServiceSourceWindowForShareItemsSharingContentScope?(sharingService: NSSharingService, items: NSArray | unknown[], sharingContentScope: interop.PointerConvertible): NSWindow;
+  anchoringViewForSharingServiceShowRelativeToRectPreferredEdge?(sharingService: NSSharingService, positioningRect: interop.PointerConvertible, preferredEdge: interop.PointerConvertible): NSView;
 }
 
 export class NSTextStorageDelegateImpl extends NSObject implements NSTextStorageDelegate {
   static ObjCProtocols = [NSTextStorageDelegate];
+
+  textStorageWillProcessEditingRangeChangeInLength?(textStorage: NSTextStorage, editedMask: interop.Enum<typeof NSTextStorageEditActions>, editedRange: _NSRange, delta: number): void;
+  textStorageDidProcessEditingRangeChangeInLength?(textStorage: NSTextStorage, editedMask: interop.Enum<typeof NSTextStorageEditActions>, editedRange: _NSRange, delta: number): void;
 }
 
 export class NSControlTextEditingDelegateImpl extends NSObject implements NSControlTextEditingDelegate {
   static ObjCProtocols = [NSControlTextEditingDelegate];
+
+  controlTextDidBeginEditing?(obj: NSNotification): void;
+  controlTextDidEndEditing?(obj: NSNotification): void;
+  controlTextDidChange?(obj: NSNotification): void;
+  controlTextShouldBeginEditing?(control: NSControl, fieldEditor: NSText): boolean;
+  controlTextShouldEndEditing?(control: NSControl, fieldEditor: NSText): boolean;
+  controlDidFailToFormatStringErrorDescription?(control: NSControl, string: NSString | string, error: NSString | string | null): boolean;
+  controlDidFailToValidatePartialStringErrorDescription?(control: NSControl, string: NSString | string, error: NSString | string | null): void;
+  controlIsValidObject?(control: NSControl, obj: interop.Object | null): boolean;
+  controlTextViewDoCommandBySelector?(control: NSControl, textView: NSTextView, commandSelector: string): boolean;
+  controlTextViewCompletionsForPartialWordRangeIndexOfSelectedItem?(control: NSControl, textView: NSTextView, words: NSArray | unknown[], charRange: _NSRange, index: interop.PointerConvertible): NSArray;
 }
 
 export class NSTextFieldDelegateImpl extends NSObject implements NSTextFieldDelegate {
   static ObjCProtocols = [NSTextFieldDelegate];
+
+  textFieldTextViewCandidatesForSelectedRange?(textField: NSTextField, textView: NSTextView, selectedRange: _NSRange): NSArray;
+  textFieldTextViewShouldSelectCandidateAtIndex?(textField: NSTextField, textView: NSTextView, index: number): boolean;
 }
 
 export class NSOpenSavePanelDelegateImpl extends NSObject implements NSOpenSavePanelDelegate {
   static ObjCProtocols = [NSOpenSavePanelDelegate];
+
+  panelShouldEnableURL?(sender: interop.Object, url: NSURL): boolean;
+  panelValidateURLError?(sender: interop.Object, url: NSURL, outError: interop.PointerConvertible): boolean;
+  panelDidChangeToDirectoryURL?(sender: interop.Object, url: NSURL | null): void;
+  panelUserEnteredFilenameConfirmed?(sender: interop.Object, filename: NSString | string, okFlag: boolean): NSString;
+  panelWillExpand?(sender: interop.Object, expanding: boolean): void;
+  panelSelectionDidChange?(sender: interop.Object | null): void;
 }
 
 export class NSSpeechRecognizerDelegateImpl extends NSObject implements NSSpeechRecognizerDelegate {
   static ObjCProtocols = [NSSpeechRecognizerDelegate];
+
+  speechRecognizerDidRecognizeCommand?(sender: NSSpeechRecognizer, command: NSString | string): void;
 }
 
 export class NSCloudSharingServiceDelegateImpl extends NSObject implements NSCloudSharingServiceDelegate {
   static ObjCProtocols = [NSCloudSharingServiceDelegate];
+
+  sharingServiceDidCompleteForItemsError?(sharingService: NSSharingService, items: NSArray | unknown[], error: NSError | null): void;
+  optionsForSharingServiceShareProvider?(cloudKitSharingService: NSSharingService, provider: NSItemProvider): interop.Enum<typeof NSCloudKitSharingServiceOptions>;
+  sharingServiceDidSaveShare?(sharingService: NSSharingService, share: CKShare): void;
+  sharingServiceDidStopSharing?(sharingService: NSSharingService, share: CKShare): void;
 }
 
 export class NSScrubberFlowLayoutDelegateImpl extends NSObject implements NSScrubberFlowLayoutDelegate {
   static ObjCProtocols = [NSScrubberFlowLayoutDelegate];
+
+  scrubberLayoutSizeForItemAtIndex?(scrubber: NSScrubber, layout: NSScrubberFlowLayout, itemIndex: number): CGSize;
 }
 
 export class NSSpeechSynthesizerDelegateImpl extends NSObject implements NSSpeechSynthesizerDelegate {
   static ObjCProtocols = [NSSpeechSynthesizerDelegate];
+
+  speechSynthesizerDidFinishSpeaking?(sender: NSSpeechSynthesizer, finishedSpeaking: boolean): void;
+  speechSynthesizerWillSpeakWordOfString?(sender: NSSpeechSynthesizer, characterRange: _NSRange, string: NSString | string): void;
+  speechSynthesizerWillSpeakPhoneme?(sender: NSSpeechSynthesizer, phonemeOpcode: number): void;
+  speechSynthesizerDidEncounterErrorAtIndexOfStringMessage?(sender: NSSpeechSynthesizer, characterIndex: number, string: NSString | string, message: NSString | string): void;
+  speechSynthesizerDidEncounterSyncMessage?(sender: NSSpeechSynthesizer, message: NSString | string): void;
 }
 
 export class NSCandidateListTouchBarItemDelegateImpl extends NSObject implements NSCandidateListTouchBarItemDelegate {
   static ObjCProtocols = [NSCandidateListTouchBarItemDelegate];
+
+  candidateListTouchBarItemBeginSelectingCandidateAtIndex?(anItem: NSCandidateListTouchBarItem, index: number): void;
+  candidateListTouchBarItemChangeSelectionFromCandidateAtIndexToIndex?(anItem: NSCandidateListTouchBarItem, previousIndex: number, index: number): void;
+  candidateListTouchBarItemEndSelectingCandidateAtIndex?(anItem: NSCandidateListTouchBarItem, index: number): void;
+  candidateListTouchBarItemChangedCandidateListVisibility?(anItem: NSCandidateListTouchBarItem, isVisible: boolean): void;
 }
 
 export class NSBrowserDelegateImpl extends NSObject implements NSBrowserDelegate {
   static ObjCProtocols = [NSBrowserDelegate];
+
+  browserNumberOfRowsInColumn?(sender: NSBrowser, column: number): number;
+  browserCreateRowsForColumnInMatrix?(sender: NSBrowser, column: number, matrix: NSMatrix): void;
+  browserNumberOfChildrenOfItem?(browser: NSBrowser, item: interop.Object | null): number;
+  browserChildOfItem?(browser: NSBrowser, index: number, item: interop.Object | null): interop.Object;
+  browserIsLeafItem?(browser: NSBrowser, item: interop.Object | null): boolean;
+  browserObjectValueForItem?(browser: NSBrowser, item: interop.Object | null): interop.Object;
+  browserHeightOfRowInColumn?(browser: NSBrowser, row: number, columnIndex: number): number;
+  rootItemForBrowser?(browser: NSBrowser): interop.Object;
+  browserSetObjectValueForItem?(browser: NSBrowser, object: interop.Object | null, item: interop.Object | null): void;
+  browserShouldEditItem?(browser: NSBrowser, item: interop.Object | null): boolean;
+  browserWillDisplayCellAtRowColumn?(sender: NSBrowser, cell: interop.Object, row: number, column: number): void;
+  browserTitleOfColumn?(sender: NSBrowser, column: number): NSString;
+  browserSelectCellWithStringInColumn?(sender: NSBrowser, title: NSString | string, column: number): boolean;
+  browserSelectRowInColumn?(sender: NSBrowser, row: number, column: number): boolean;
+  browserIsColumnValid?(sender: NSBrowser, column: number): boolean;
+  browserWillScroll?(sender: NSBrowser): void;
+  browserDidScroll?(sender: NSBrowser): void;
+  browserShouldSizeColumnForUserResizeToWidth?(browser: NSBrowser, columnIndex: number, forUserResize: boolean, suggestedWidth: number): number;
+  browserSizeToFitWidthOfColumn?(browser: NSBrowser, columnIndex: number): number;
+  browserColumnConfigurationDidChange?(notification: NSNotification): void;
+  browserShouldShowCellExpansionForRowColumn?(browser: NSBrowser, row: number, column: number): boolean;
+  browserWriteRowsWithIndexesInColumnToPasteboard?(browser: NSBrowser, rowIndexes: NSIndexSet, column: number, pasteboard: NSPasteboard): boolean;
+  browserNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexesInColumn?(browser: NSBrowser, dropDestination: NSURL, rowIndexes: NSIndexSet, column: number): NSArray;
+  browserCanDragRowsWithIndexesInColumnWithEvent?(browser: NSBrowser, rowIndexes: NSIndexSet, column: number, event: NSEvent): boolean;
+  browserDraggingImageForRowsWithIndexesInColumnWithEventOffset?(browser: NSBrowser, rowIndexes: NSIndexSet, column: number, event: NSEvent, dragImageOffset: interop.PointerConvertible): NSImage;
+  browserValidateDropProposedRowColumnDropOperation?(browser: NSBrowser, info: NSDraggingInfo, row: interop.PointerConvertible, column: interop.PointerConvertible, dropOperation: interop.PointerConvertible): interop.Enum<typeof NSDragOperation>;
+  browserAcceptDropAtRowColumnDropOperation?(browser: NSBrowser, info: NSDraggingInfo, row: number, column: number, dropOperation: interop.Enum<typeof NSBrowserDropOperation>): boolean;
+  browserTypeSelectStringForRowInColumn?(browser: NSBrowser, row: number, column: number): NSString;
+  browserShouldTypeSelectForEventWithCurrentSearchString?(browser: NSBrowser, event: NSEvent, searchString: NSString | string | null): boolean;
+  browserNextTypeSelectMatchFromRowToRowInColumnForString?(browser: NSBrowser, startRow: number, endRow: number, column: number, searchString: NSString | string | null): number;
+  browserPreviewViewControllerForLeafItem?(browser: NSBrowser, item: interop.Object): NSViewController;
+  browserHeaderViewControllerForItem?(browser: NSBrowser, item: interop.Object | null): NSViewController;
+  browserDidChangeLastColumnToColumn?(browser: NSBrowser, oldLastColumn: number, column: number): void;
+  browserSelectionIndexesForProposedSelectionInColumn?(browser: NSBrowser, proposedSelectionIndexes: NSIndexSet, column: number): NSIndexSet;
 }
 
 export class NSWindowDelegateImpl extends NSObject implements NSWindowDelegate {
   static ObjCProtocols = [NSWindowDelegate];
+
+  windowShouldClose?(sender: NSWindow): boolean;
+  windowWillReturnFieldEditorToObject?(sender: NSWindow, client: interop.Object | null): interop.Object;
+  windowWillResizeToSize?(sender: NSWindow, frameSize: CGSize): CGSize;
+  windowWillUseStandardFrameDefaultFrame?(window: NSWindow, newFrame: CGRect): CGRect;
+  windowShouldZoomToFrame?(window: NSWindow, newFrame: CGRect): boolean;
+  windowWillReturnUndoManager?(window: NSWindow): NSUndoManager;
+  windowWillPositionSheetUsingRect?(window: NSWindow, sheet: NSWindow, rect: CGRect): CGRect;
+  windowShouldPopUpDocumentPathMenu?(window: NSWindow, menu: NSMenu): boolean;
+  windowShouldDragDocumentWithEventFromWithPasteboard?(window: NSWindow, event: NSEvent, dragImageLocation: CGPoint, pasteboard: NSPasteboard): boolean;
+  windowWillUseFullScreenContentSize?(window: NSWindow, proposedSize: CGSize): CGSize;
+  windowWillUseFullScreenPresentationOptions?(window: NSWindow, proposedOptions: interop.Enum<typeof NSApplicationPresentationOptions>): interop.Enum<typeof NSApplicationPresentationOptions>;
+  customWindowsToEnterFullScreenForWindow?(window: NSWindow): NSArray;
+  windowStartCustomAnimationToEnterFullScreenWithDuration?(window: NSWindow, duration: number): void;
+  windowDidFailToEnterFullScreen?(window: NSWindow): void;
+  customWindowsToExitFullScreenForWindow?(window: NSWindow): NSArray;
+  windowStartCustomAnimationToExitFullScreenWithDuration?(window: NSWindow, duration: number): void;
+  customWindowsToEnterFullScreenForWindowOnScreen?(window: NSWindow, screen: NSScreen): NSArray;
+  windowStartCustomAnimationToEnterFullScreenOnScreenWithDuration?(window: NSWindow, screen: NSScreen, duration: number): void;
+  windowDidFailToExitFullScreen?(window: NSWindow): void;
+  windowWillResizeForVersionBrowserWithMaxPreferredSizeMaxAllowedSize?(window: NSWindow, maxPreferredFrameSize: CGSize, maxAllowedFrameSize: CGSize): CGSize;
+  windowWillEncodeRestorableState?(window: NSWindow, state: NSCoder): void;
+  windowDidDecodeRestorableState?(window: NSWindow, state: NSCoder): void;
+  previewRepresentableActivityItemsForWindow?(window: NSWindow): NSArray | null;
+  windowDidResize?(notification: NSNotification): void;
+  windowDidExpose?(notification: NSNotification): void;
+  windowWillMove?(notification: NSNotification): void;
+  windowDidMove?(notification: NSNotification): void;
+  windowDidBecomeKey?(notification: NSNotification): void;
+  windowDidResignKey?(notification: NSNotification): void;
+  windowDidBecomeMain?(notification: NSNotification): void;
+  windowDidResignMain?(notification: NSNotification): void;
+  windowWillClose?(notification: NSNotification): void;
+  windowWillMiniaturize?(notification: NSNotification): void;
+  windowDidMiniaturize?(notification: NSNotification): void;
+  windowDidDeminiaturize?(notification: NSNotification): void;
+  windowDidUpdate?(notification: NSNotification): void;
+  windowDidChangeScreen?(notification: NSNotification): void;
+  windowDidChangeScreenProfile?(notification: NSNotification): void;
+  windowDidChangeBackingProperties?(notification: NSNotification): void;
+  windowWillBeginSheet?(notification: NSNotification): void;
+  windowDidEndSheet?(notification: NSNotification): void;
+  windowWillStartLiveResize?(notification: NSNotification): void;
+  windowDidEndLiveResize?(notification: NSNotification): void;
+  windowWillEnterFullScreen?(notification: NSNotification): void;
+  windowDidEnterFullScreen?(notification: NSNotification): void;
+  windowWillExitFullScreen?(notification: NSNotification): void;
+  windowDidExitFullScreen?(notification: NSNotification): void;
+  windowWillEnterVersionBrowser?(notification: NSNotification): void;
+  windowDidEnterVersionBrowser?(notification: NSNotification): void;
+  windowWillExitVersionBrowser?(notification: NSNotification): void;
+  windowDidExitVersionBrowser?(notification: NSNotification): void;
+  windowDidChangeOcclusionState?(notification: NSNotification): void;
 }
 
 export class NSCollectionViewDelegateImpl extends NSObject implements NSCollectionViewDelegate {
   static ObjCProtocols = [NSCollectionViewDelegate];
+
+  collectionViewCanDragItemsAtIndexPathsWithEvent?(collectionView: NSCollectionView, indexPaths: NSSet, event: NSEvent): boolean;
+  collectionViewCanDragItemsAtIndexesWithEvent?(collectionView: NSCollectionView, indexes: NSIndexSet, event: NSEvent): boolean;
+  collectionViewWriteItemsAtIndexPathsToPasteboard?(collectionView: NSCollectionView, indexPaths: NSSet, pasteboard: NSPasteboard): boolean;
+  collectionViewWriteItemsAtIndexesToPasteboard?(collectionView: NSCollectionView, indexes: NSIndexSet, pasteboard: NSPasteboard): boolean;
+  collectionViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItemsAtIndexPaths?(collectionView: NSCollectionView, dropURL: NSURL, indexPaths: NSSet): NSArray;
+  collectionViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItemsAtIndexes?(collectionView: NSCollectionView, dropURL: NSURL, indexes: NSIndexSet): NSArray;
+  collectionViewDraggingImageForItemsAtIndexPathsWithEventOffset?(collectionView: NSCollectionView, indexPaths: NSSet, event: NSEvent, dragImageOffset: interop.PointerConvertible): NSImage;
+  collectionViewDraggingImageForItemsAtIndexesWithEventOffset?(collectionView: NSCollectionView, indexes: NSIndexSet, event: NSEvent, dragImageOffset: interop.PointerConvertible): NSImage;
+  collectionViewValidateDropProposedIndexPathDropOperation?(collectionView: NSCollectionView, draggingInfo: NSDraggingInfo, proposedDropIndexPath: interop.PointerConvertible, proposedDropOperation: interop.PointerConvertible): interop.Enum<typeof NSDragOperation>;
+  collectionViewValidateDropProposedIndexDropOperation?(collectionView: NSCollectionView, draggingInfo: NSDraggingInfo, proposedDropIndex: interop.PointerConvertible, proposedDropOperation: interop.PointerConvertible): interop.Enum<typeof NSDragOperation>;
+  collectionViewAcceptDropIndexPathDropOperation?(collectionView: NSCollectionView, draggingInfo: NSDraggingInfo, indexPath: NSIndexPath, dropOperation: interop.Enum<typeof NSCollectionViewDropOperation>): boolean;
+  collectionViewAcceptDropIndexDropOperation?(collectionView: NSCollectionView, draggingInfo: NSDraggingInfo, index: number, dropOperation: interop.Enum<typeof NSCollectionViewDropOperation>): boolean;
+  collectionViewPasteboardWriterForItemAtIndexPath?(collectionView: NSCollectionView, indexPath: NSIndexPath): NSPasteboardWriting;
+  collectionViewPasteboardWriterForItemAtIndex?(collectionView: NSCollectionView, index: number): NSPasteboardWriting;
+  collectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths?(collectionView: NSCollectionView, session: NSDraggingSession, screenPoint: CGPoint, indexPaths: NSSet): void;
+  collectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes?(collectionView: NSCollectionView, session: NSDraggingSession, screenPoint: CGPoint, indexes: NSIndexSet): void;
+  collectionViewDraggingSessionEndedAtPointDragOperation?(collectionView: NSCollectionView, session: NSDraggingSession, screenPoint: CGPoint, operation: interop.Enum<typeof NSDragOperation>): void;
+  collectionViewUpdateDraggingItemsForDrag?(collectionView: NSCollectionView, draggingInfo: NSDraggingInfo): void;
+  collectionViewShouldChangeItemsAtIndexPathsToHighlightState?(collectionView: NSCollectionView, indexPaths: NSSet, highlightState: interop.Enum<typeof NSCollectionViewItemHighlightState>): NSSet;
+  collectionViewDidChangeItemsAtIndexPathsToHighlightState?(collectionView: NSCollectionView, indexPaths: NSSet, highlightState: interop.Enum<typeof NSCollectionViewItemHighlightState>): void;
+  collectionViewShouldSelectItemsAtIndexPaths?(collectionView: NSCollectionView, indexPaths: NSSet): NSSet;
+  collectionViewShouldDeselectItemsAtIndexPaths?(collectionView: NSCollectionView, indexPaths: NSSet): NSSet;
+  collectionViewDidSelectItemsAtIndexPaths?(collectionView: NSCollectionView, indexPaths: NSSet): void;
+  collectionViewDidDeselectItemsAtIndexPaths?(collectionView: NSCollectionView, indexPaths: NSSet): void;
+  collectionViewWillDisplayItemForRepresentedObjectAtIndexPath?(collectionView: NSCollectionView, item: NSCollectionViewItem, indexPath: NSIndexPath): void;
+  collectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath?(collectionView: NSCollectionView, view: NSView, elementKind: NSString | string, indexPath: NSIndexPath): void;
+  collectionViewDidEndDisplayingItemForRepresentedObjectAtIndexPath?(collectionView: NSCollectionView, item: NSCollectionViewItem, indexPath: NSIndexPath): void;
+  collectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath?(collectionView: NSCollectionView, view: NSView, elementKind: NSString | string, indexPath: NSIndexPath): void;
+  collectionViewTransitionLayoutForOldLayoutNewLayout?(collectionView: NSCollectionView, fromLayout: NSCollectionViewLayout, toLayout: NSCollectionViewLayout): NSCollectionViewTransitionLayout;
 }
 
 export class NSAlertDelegateImpl extends NSObject implements NSAlertDelegate {
   static ObjCProtocols = [NSAlertDelegate];
+
+  alertShowHelp?(alert: NSAlert): boolean;
 }
 
 export class NSTextDelegateImpl extends NSObject implements NSTextDelegate {
   static ObjCProtocols = [NSTextDelegate];
+
+  textShouldBeginEditing?(textObject: NSText): boolean;
+  textShouldEndEditing?(textObject: NSText): boolean;
+  textDidBeginEditing?(notification: NSNotification): void;
+  textDidEndEditing?(notification: NSNotification): void;
+  textDidChange?(notification: NSNotification): void;
 }
 
 export class NSGestureRecognizerDelegateImpl extends NSObject implements NSGestureRecognizerDelegate {
   static ObjCProtocols = [NSGestureRecognizerDelegate];
+
+  gestureRecognizerShouldAttemptToRecognizeWithEvent?(gestureRecognizer: NSGestureRecognizer, event: NSEvent): boolean;
+  gestureRecognizerShouldBegin?(gestureRecognizer: NSGestureRecognizer): boolean;
+  gestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer?(gestureRecognizer: NSGestureRecognizer, otherGestureRecognizer: NSGestureRecognizer): boolean;
+  gestureRecognizerShouldRequireFailureOfGestureRecognizer?(gestureRecognizer: NSGestureRecognizer, otherGestureRecognizer: NSGestureRecognizer): boolean;
+  gestureRecognizerShouldBeRequiredToFailByGestureRecognizer?(gestureRecognizer: NSGestureRecognizer, otherGestureRecognizer: NSGestureRecognizer): boolean;
+  gestureRecognizerShouldReceiveTouch?(gestureRecognizer: NSGestureRecognizer, touch: NSTouch): boolean;
 }
 
 export class NSTextContentManagerDelegateImpl extends NSObject implements NSTextContentManagerDelegate {
   static ObjCProtocols = [NSTextContentManagerDelegate];
+
+  textContentManagerTextElementAtLocation?(textContentManager: NSTextContentManager, location: NSTextLocation): NSTextElement;
+  textContentManagerShouldEnumerateTextElementOptions?(textContentManager: NSTextContentManager, textElement: NSTextElement, options: interop.Enum<typeof NSTextContentManagerEnumerationOptions>): boolean;
 }
 
 export class NSTouchBarDelegateImpl extends NSObject implements NSTouchBarDelegate {
   static ObjCProtocols = [NSTouchBarDelegate];
+
+  touchBarMakeItemForIdentifier?(touchBar: NSTouchBar, identifier: NSString | string): NSTouchBarItem;
 }
 
 export class NSPopoverDelegateImpl extends NSObject implements NSPopoverDelegate {
   static ObjCProtocols = [NSPopoverDelegate];
+
+  popoverShouldClose?(popover: NSPopover): boolean;
+  popoverShouldDetach?(popover: NSPopover): boolean;
+  popoverDidDetach?(popover: NSPopover): void;
+  detachableWindowForPopover?(popover: NSPopover): NSWindow;
+  popoverWillShow?(notification: NSNotification): void;
+  popoverDidShow?(notification: NSNotification): void;
+  popoverWillClose?(notification: NSNotification): void;
+  popoverDidClose?(notification: NSNotification): void;
 }
 
 export class NSPathCellDelegateImpl extends NSObject implements NSPathCellDelegate {
   static ObjCProtocols = [NSPathCellDelegate];
+
+  pathCellWillDisplayOpenPanel?(pathCell: NSPathCell, openPanel: NSOpenPanel): void;
+  pathCellWillPopUpMenu?(pathCell: NSPathCell, menu: NSMenu): void;
 }
 
 export class NSAccessibilityCustomRotorItemSearchDelegateImpl extends NSObject implements NSAccessibilityCustomRotorItemSearchDelegate {
@@ -6219,10 +7194,28 @@ export class NSAccessibilityCustomRotorItemSearchDelegateImpl extends NSObject i
 
 export class NSTokenFieldCellDelegateImpl extends NSObject implements NSTokenFieldCellDelegate {
   static ObjCProtocols = [NSTokenFieldCellDelegate];
+
+  tokenFieldCellCompletionsForSubstringIndexOfTokenIndexOfSelectedItem?(tokenFieldCell: NSTokenFieldCell, substring: NSString | string, tokenIndex: number, selectedIndex: interop.PointerConvertible): NSArray;
+  tokenFieldCellShouldAddObjectsAtIndex?(tokenFieldCell: NSTokenFieldCell, tokens: NSArray | unknown[], index: number): NSArray;
+  tokenFieldCellDisplayStringForRepresentedObject?(tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object): NSString;
+  tokenFieldCellEditingStringForRepresentedObject?(tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object): NSString;
+  tokenFieldCellRepresentedObjectForEditingString?(tokenFieldCell: NSTokenFieldCell, editingString: NSString | string): interop.Object;
+  tokenFieldCellWriteRepresentedObjectsToPasteboard?(tokenFieldCell: NSTokenFieldCell, objects: NSArray | unknown[], pboard: NSPasteboard): boolean;
+  tokenFieldCellReadFromPasteboard?(tokenFieldCell: NSTokenFieldCell, pboard: NSPasteboard): NSArray;
+  tokenFieldCellMenuForRepresentedObject?(tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object): NSMenu;
+  tokenFieldCellHasMenuForRepresentedObject?(tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object): boolean;
+  tokenFieldCellStyleForRepresentedObject?(tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object): interop.Enum<typeof NSTokenStyle>;
 }
 
 export class NSPathControlDelegateImpl extends NSObject implements NSPathControlDelegate {
   static ObjCProtocols = [NSPathControlDelegate];
+
+  pathControlShouldDragItemWithPasteboard?(pathControl: NSPathControl, pathItem: NSPathControlItem, pasteboard: NSPasteboard): boolean;
+  pathControlShouldDragPathComponentCellWithPasteboard?(pathControl: NSPathControl, pathComponentCell: NSPathComponentCell, pasteboard: NSPasteboard): boolean;
+  pathControlValidateDrop?(pathControl: NSPathControl, info: NSDraggingInfo): interop.Enum<typeof NSDragOperation>;
+  pathControlAcceptDrop?(pathControl: NSPathControl, info: NSDraggingInfo): boolean;
+  pathControlWillDisplayOpenPanel?(pathControl: NSPathControl, openPanel: NSOpenPanel): void;
+  pathControlWillPopUpMenu?(pathControl: NSPathControl, menu: NSMenu): void;
 }
 
 export class NSFilePromiseProviderDelegateImpl extends NSObject implements NSFilePromiseProviderDelegate {
@@ -6234,14 +7227,67 @@ export class NSFilePromiseProviderDelegateImpl extends NSObject implements NSFil
   filePromiseProviderWritePromiseToURLCompletionHandler(filePromiseProvider: NSFilePromiseProvider, url: NSURL, completionHandler: (p1: NSError) => void | null): void {
     throw new Error("Please provide implementation for: NSFilePromiseProviderDelegate > filePromiseProviderWritePromiseToURLCompletionHandler");
   }
+  operationQueueForFilePromiseProvider?(filePromiseProvider: NSFilePromiseProvider): NSOperationQueue;
 }
 
 export class NSApplicationDelegateImpl extends NSObject implements NSApplicationDelegate {
   static ObjCProtocols = [NSApplicationDelegate];
+
+  applicationShouldTerminate?(sender: NSApplication): interop.Enum<typeof NSApplicationTerminateReply>;
+  applicationOpenURLs?(application: NSApplication, urls: NSArray | unknown[]): void;
+  applicationOpenFile?(sender: NSApplication, filename: NSString | string): boolean;
+  applicationOpenFiles?(sender: NSApplication, filenames: NSArray | unknown[]): void;
+  applicationOpenTempFile?(sender: NSApplication, filename: NSString | string): boolean;
+  applicationShouldOpenUntitledFile?(sender: NSApplication): boolean;
+  applicationOpenUntitledFile?(sender: NSApplication): boolean;
+  applicationOpenFileWithoutUI?(sender: interop.Object, filename: NSString | string): boolean;
+  applicationPrintFile?(sender: NSApplication, filename: NSString | string): boolean;
+  applicationPrintFilesWithSettingsShowPrintPanels?(application: NSApplication, fileNames: NSArray | unknown[], printSettings: NSDictionary | Record<string, unknown>, showPrintPanels: boolean): interop.Enum<typeof NSApplicationPrintReply>;
+  applicationShouldTerminateAfterLastWindowClosed?(sender: NSApplication): boolean;
+  applicationShouldHandleReopenHasVisibleWindows?(sender: NSApplication, flag: boolean): boolean;
+  applicationDockMenu?(sender: NSApplication): NSMenu;
+  applicationWillPresentError?(application: NSApplication, error: NSError): NSError;
+  applicationDidRegisterForRemoteNotificationsWithDeviceToken?(application: NSApplication, deviceToken: NSData): void;
+  applicationDidFailToRegisterForRemoteNotificationsWithError?(application: NSApplication, error: NSError): void;
+  applicationDidReceiveRemoteNotification?(application: NSApplication, userInfo: NSDictionary | Record<string, unknown>): void;
+  applicationSupportsSecureRestorableState?(app: NSApplication): boolean;
+  applicationHandlerForIntent?(application: NSApplication, intent: INIntent): interop.Object;
+  applicationWillEncodeRestorableState?(app: NSApplication, coder: NSCoder): void;
+  applicationDidDecodeRestorableState?(app: NSApplication, coder: NSCoder): void;
+  applicationWillContinueUserActivityWithType?(application: NSApplication, userActivityType: NSString | string): boolean;
+  applicationContinueUserActivityRestorationHandler?(application: NSApplication, userActivity: NSUserActivity, restorationHandler: (p1: NSArray | unknown[]) => void): boolean;
+  applicationDidFailToContinueUserActivityWithTypeError?(application: NSApplication, userActivityType: NSString | string, error: NSError): void;
+  applicationDidUpdateUserActivity?(application: NSApplication, userActivity: NSUserActivity): void;
+  applicationUserDidAcceptCloudKitShareWithMetadata?(application: NSApplication, metadata: CKShareMetadata): void;
+  applicationDelegateHandlesKey?(sender: NSApplication, key: NSString | string): boolean;
+  applicationShouldAutomaticallyLocalizeKeyEquivalents?(application: NSApplication): boolean;
+  applicationWillFinishLaunching?(notification: NSNotification): void;
+  applicationDidFinishLaunching?(notification: NSNotification): void;
+  applicationWillHide?(notification: NSNotification): void;
+  applicationDidHide?(notification: NSNotification): void;
+  applicationWillUnhide?(notification: NSNotification): void;
+  applicationDidUnhide?(notification: NSNotification): void;
+  applicationWillBecomeActive?(notification: NSNotification): void;
+  applicationDidBecomeActive?(notification: NSNotification): void;
+  applicationWillResignActive?(notification: NSNotification): void;
+  applicationDidResignActive?(notification: NSNotification): void;
+  applicationWillUpdate?(notification: NSNotification): void;
+  applicationDidUpdate?(notification: NSNotification): void;
+  applicationWillTerminate?(notification: NSNotification): void;
+  applicationDidChangeScreenParameters?(notification: NSNotification): void;
+  applicationDidChangeOcclusionState?(notification: NSNotification): void;
+  applicationProtectedDataWillBecomeUnavailable?(notification: NSNotification): void;
+  applicationProtectedDataDidBecomeAvailable?(notification: NSNotification): void;
 }
 
 export class NSAnimationDelegateImpl extends NSObject implements NSAnimationDelegate {
   static ObjCProtocols = [NSAnimationDelegate];
+
+  animationShouldStart?(animation: NSAnimation): boolean;
+  animationDidStop?(animation: NSAnimation): void;
+  animationDidEnd?(animation: NSAnimation): void;
+  animationValueForProgress?(animation: NSAnimation, progress: number): number;
+  animationDidReachProgressMark?(animation: NSAnimation, progress: number): void;
 }
 
 export class NSSharingServicePickerToolbarItemDelegateImpl extends NSObject implements NSSharingServicePickerToolbarItemDelegate {
@@ -6254,6 +7300,46 @@ export class NSSharingServicePickerToolbarItemDelegateImpl extends NSObject impl
 
 export class NSOutlineViewDelegateImpl extends NSObject implements NSOutlineViewDelegate {
   static ObjCProtocols = [NSOutlineViewDelegate];
+
+  outlineViewViewForTableColumnItem?(outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object): NSView;
+  outlineViewRowViewForItem?(outlineView: NSOutlineView, item: interop.Object): NSTableRowView;
+  outlineViewDidAddRowViewForRow?(outlineView: NSOutlineView, rowView: NSTableRowView, row: number): void;
+  outlineViewDidRemoveRowViewForRow?(outlineView: NSOutlineView, rowView: NSTableRowView, row: number): void;
+  outlineViewWillDisplayCellForTableColumnItem?(outlineView: NSOutlineView, cell: interop.Object, tableColumn: NSTableColumn | null, item: interop.Object): void;
+  outlineViewShouldEditTableColumnItem?(outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object): boolean;
+  selectionShouldChangeInOutlineView?(outlineView: NSOutlineView): boolean;
+  outlineViewShouldSelectItem?(outlineView: NSOutlineView, item: interop.Object): boolean;
+  outlineViewSelectionIndexesForProposedSelection?(outlineView: NSOutlineView, proposedSelectionIndexes: NSIndexSet): NSIndexSet;
+  outlineViewShouldSelectTableColumn?(outlineView: NSOutlineView, tableColumn: NSTableColumn | null): boolean;
+  outlineViewMouseDownInHeaderOfTableColumn?(outlineView: NSOutlineView, tableColumn: NSTableColumn): void;
+  outlineViewDidClickTableColumn?(outlineView: NSOutlineView, tableColumn: NSTableColumn): void;
+  outlineViewDidDragTableColumn?(outlineView: NSOutlineView, tableColumn: NSTableColumn): void;
+  outlineViewToolTipForCellRectTableColumnItemMouseLocation?(outlineView: NSOutlineView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, item: interop.Object, mouseLocation: CGPoint): NSString;
+  outlineViewHeightOfRowByItem?(outlineView: NSOutlineView, item: interop.Object): number;
+  outlineViewTintConfigurationForItem?(outlineView: NSOutlineView, item: interop.Object): NSTintConfiguration;
+  outlineViewTypeSelectStringForTableColumnItem?(outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object): NSString;
+  outlineViewNextTypeSelectMatchFromItemToItemForString?(outlineView: NSOutlineView, startItem: interop.Object, endItem: interop.Object, searchString: NSString | string): interop.Object;
+  outlineViewShouldTypeSelectForEventWithCurrentSearchString?(outlineView: NSOutlineView, event: NSEvent, searchString: NSString | string | null): boolean;
+  outlineViewShouldShowCellExpansionForTableColumnItem?(outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object): boolean;
+  outlineViewShouldTrackCellForTableColumnItem?(outlineView: NSOutlineView, cell: NSCell, tableColumn: NSTableColumn | null, item: interop.Object): boolean;
+  outlineViewDataCellForTableColumnItem?(outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object): NSCell;
+  outlineViewIsGroupItem?(outlineView: NSOutlineView, item: interop.Object): boolean;
+  outlineViewShouldExpandItem?(outlineView: NSOutlineView, item: interop.Object): boolean;
+  outlineViewShouldCollapseItem?(outlineView: NSOutlineView, item: interop.Object): boolean;
+  outlineViewWillDisplayOutlineCellForTableColumnItem?(outlineView: NSOutlineView, cell: interop.Object, tableColumn: NSTableColumn | null, item: interop.Object): void;
+  outlineViewSizeToFitWidthOfColumn?(outlineView: NSOutlineView, column: number): number;
+  outlineViewShouldReorderColumnToColumn?(outlineView: NSOutlineView, columnIndex: number, newColumnIndex: number): boolean;
+  outlineViewShouldShowOutlineCellForItem?(outlineView: NSOutlineView, item: interop.Object): boolean;
+  outlineViewUserCanChangeVisibilityOfTableColumn?(outlineView: NSOutlineView, column: NSTableColumn): boolean;
+  outlineViewUserDidChangeVisibilityOfTableColumns?(outlineView: NSOutlineView, columns: NSArray | unknown[]): void;
+  outlineViewSelectionDidChange?(notification: NSNotification): void;
+  outlineViewColumnDidMove?(notification: NSNotification): void;
+  outlineViewColumnDidResize?(notification: NSNotification): void;
+  outlineViewSelectionIsChanging?(notification: NSNotification): void;
+  outlineViewItemWillExpand?(notification: NSNotification): void;
+  outlineViewItemDidExpand?(notification: NSNotification): void;
+  outlineViewItemWillCollapse?(notification: NSNotification): void;
+  outlineViewItemDidCollapse?(notification: NSNotification): void;
 }
 
 export class NSMatrixDelegateImpl extends NSObject implements NSMatrixDelegate {
@@ -6262,32 +7348,95 @@ export class NSMatrixDelegateImpl extends NSObject implements NSMatrixDelegate {
 
 export class NSSharingServicePickerDelegateImpl extends NSObject implements NSSharingServicePickerDelegate {
   static ObjCProtocols = [NSSharingServicePickerDelegate];
+
+  sharingServicePickerSharingServicesForItemsProposedSharingServices?(sharingServicePicker: NSSharingServicePicker, items: NSArray | unknown[], proposedServices: NSArray | unknown[]): NSArray;
+  sharingServicePickerDelegateForSharingService?(sharingServicePicker: NSSharingServicePicker, sharingService: NSSharingService): NSSharingServiceDelegate;
+  sharingServicePickerDidChooseSharingService?(sharingServicePicker: NSSharingServicePicker, service: NSSharingService | null): void;
 }
 
 export class NSSplitViewDelegateImpl extends NSObject implements NSSplitViewDelegate {
   static ObjCProtocols = [NSSplitViewDelegate];
+
+  splitViewCanCollapseSubview?(splitView: NSSplitView, subview: NSView): boolean;
+  splitViewShouldCollapseSubviewForDoubleClickOnDividerAtIndex?(splitView: NSSplitView, subview: NSView, dividerIndex: number): boolean;
+  splitViewConstrainMinCoordinateOfSubviewAt?(splitView: NSSplitView, proposedMinimumPosition: number, dividerIndex: number): number;
+  splitViewConstrainMaxCoordinateOfSubviewAt?(splitView: NSSplitView, proposedMaximumPosition: number, dividerIndex: number): number;
+  splitViewConstrainSplitPositionOfSubviewAt?(splitView: NSSplitView, proposedPosition: number, dividerIndex: number): number;
+  splitViewResizeSubviewsWithOldSize?(splitView: NSSplitView, oldSize: CGSize): void;
+  splitViewShouldAdjustSizeOfSubview?(splitView: NSSplitView, view: NSView): boolean;
+  splitViewShouldHideDividerAtIndex?(splitView: NSSplitView, dividerIndex: number): boolean;
+  splitViewEffectiveRectForDrawnRectOfDividerAtIndex?(splitView: NSSplitView, proposedEffectiveRect: CGRect, drawnRect: CGRect, dividerIndex: number): CGRect;
+  splitViewAdditionalEffectiveRectOfDividerAtIndex?(splitView: NSSplitView, dividerIndex: number): CGRect;
+  splitViewWillResizeSubviews?(notification: NSNotification): void;
+  splitViewDidResizeSubviews?(notification: NSNotification): void;
 }
 
 export class NSComboBoxDelegateImpl extends NSObject implements NSComboBoxDelegate {
   static ObjCProtocols = [NSComboBoxDelegate];
+
+  comboBoxWillPopUp?(notification: NSNotification): void;
+  comboBoxWillDismiss?(notification: NSNotification): void;
+  comboBoxSelectionDidChange?(notification: NSNotification): void;
+  comboBoxSelectionIsChanging?(notification: NSNotification): void;
 }
 
 export class NSToolbarDelegateImpl extends NSObject implements NSToolbarDelegate {
   static ObjCProtocols = [NSToolbarDelegate];
+
+  toolbarItemForItemIdentifierWillBeInsertedIntoToolbar?(toolbar: NSToolbar, itemIdentifier: NSString | string, flag: boolean): NSToolbarItem;
+  toolbarDefaultItemIdentifiers?(toolbar: NSToolbar): NSArray;
+  toolbarAllowedItemIdentifiers?(toolbar: NSToolbar): NSArray;
+  toolbarSelectableItemIdentifiers?(toolbar: NSToolbar): NSArray;
+  toolbarImmovableItemIdentifiers?(toolbar: NSToolbar): NSSet;
+  toolbarItemIdentifierCanBeInsertedAtIndex?(toolbar: NSToolbar, itemIdentifier: NSString | string, index: number): boolean;
+  toolbarWillAddItem?(notification: NSNotification): void;
+  toolbarDidRemoveItem?(notification: NSNotification): void;
 }
 
 export class NSTokenFieldDelegateImpl extends NSObject implements NSTokenFieldDelegate {
   static ObjCProtocols = [NSTokenFieldDelegate];
+
+  tokenFieldCompletionsForSubstringIndexOfTokenIndexOfSelectedItem?(tokenField: NSTokenField, substring: NSString | string, tokenIndex: number, selectedIndex: interop.PointerConvertible): NSArray;
+  tokenFieldShouldAddObjectsAtIndex?(tokenField: NSTokenField, tokens: NSArray | unknown[], index: number): NSArray;
+  tokenFieldDisplayStringForRepresentedObject?(tokenField: NSTokenField, representedObject: interop.Object): NSString;
+  tokenFieldEditingStringForRepresentedObject?(tokenField: NSTokenField, representedObject: interop.Object): NSString;
+  tokenFieldRepresentedObjectForEditingString?(tokenField: NSTokenField, editingString: NSString | string): interop.Object;
+  tokenFieldWriteRepresentedObjectsToPasteboard?(tokenField: NSTokenField, objects: NSArray | unknown[], pboard: NSPasteboard): boolean;
+  tokenFieldReadFromPasteboard?(tokenField: NSTokenField, pboard: NSPasteboard): NSArray;
+  tokenFieldMenuForRepresentedObject?(tokenField: NSTokenField, representedObject: interop.Object): NSMenu;
+  tokenFieldHasMenuForRepresentedObject?(tokenField: NSTokenField, representedObject: interop.Object): boolean;
+  tokenFieldStyleForRepresentedObject?(tokenField: NSTokenField, representedObject: interop.Object): interop.Enum<typeof NSTokenStyle>;
 }
 
 export class NSTextLayoutManagerDelegateImpl extends NSObject implements NSTextLayoutManagerDelegate {
   static ObjCProtocols = [NSTextLayoutManagerDelegate];
+
+  textLayoutManagerTextLayoutFragmentForLocationInTextElement?(textLayoutManager: NSTextLayoutManager, location: NSTextLocation, textElement: NSTextElement): NSTextLayoutFragment;
+  textLayoutManagerShouldBreakLineBeforeLocationHyphenating?(textLayoutManager: NSTextLayoutManager, location: NSTextLocation, hyphenating: boolean): boolean;
+  textLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes?(textLayoutManager: NSTextLayoutManager, link: interop.Object, location: NSTextLocation, renderingAttributes: NSDictionary | Record<string, unknown>): NSDictionary;
 }
 
 export class NSLayoutManagerDelegateImpl extends NSObject implements NSLayoutManagerDelegate {
   static ObjCProtocols = [NSLayoutManagerDelegate];
+
+  layoutManagerShouldGenerateGlyphsPropertiesCharacterIndexesFontForGlyphRange?(layoutManager: NSLayoutManager, glyphs: interop.PointerConvertible, props: interop.PointerConvertible, charIndexes: interop.PointerConvertible, aFont: NSFont, glyphRange: _NSRange): number;
+  layoutManagerLineSpacingAfterGlyphAtIndexWithProposedLineFragmentRect?(layoutManager: NSLayoutManager, glyphIndex: number, rect: CGRect): number;
+  layoutManagerParagraphSpacingBeforeGlyphAtIndexWithProposedLineFragmentRect?(layoutManager: NSLayoutManager, glyphIndex: number, rect: CGRect): number;
+  layoutManagerParagraphSpacingAfterGlyphAtIndexWithProposedLineFragmentRect?(layoutManager: NSLayoutManager, glyphIndex: number, rect: CGRect): number;
+  layoutManagerShouldUseActionForControlCharacterAtIndex?(layoutManager: NSLayoutManager, action: interop.Enum<typeof NSControlCharacterAction>, charIndex: number): interop.Enum<typeof NSControlCharacterAction>;
+  layoutManagerShouldBreakLineByWordBeforeCharacterAtIndex?(layoutManager: NSLayoutManager, charIndex: number): boolean;
+  layoutManagerShouldBreakLineByHyphenatingBeforeCharacterAtIndex?(layoutManager: NSLayoutManager, charIndex: number): boolean;
+  layoutManagerBoundingBoxForControlGlyphAtIndexForTextContainerProposedLineFragmentGlyphPositionCharacterIndex?(layoutManager: NSLayoutManager, glyphIndex: number, textContainer: NSTextContainer, proposedRect: CGRect, glyphPosition: CGPoint, charIndex: number): CGRect;
+  layoutManagerShouldSetLineFragmentRectLineFragmentUsedRectBaselineOffsetInTextContainerForGlyphRange?(layoutManager: NSLayoutManager, lineFragmentRect: interop.PointerConvertible, lineFragmentUsedRect: interop.PointerConvertible, baselineOffset: interop.PointerConvertible, textContainer: NSTextContainer, glyphRange: _NSRange): boolean;
+  layoutManagerDidInvalidateLayout?(sender: NSLayoutManager): void;
+  layoutManagerDidCompleteLayoutForTextContainerAtEnd?(layoutManager: NSLayoutManager, textContainer: NSTextContainer | null, layoutFinishedFlag: boolean): void;
+  layoutManagerTextContainerDidChangeGeometryFromSize?(layoutManager: NSLayoutManager, textContainer: NSTextContainer, oldSize: CGSize): void;
+  layoutManagerShouldUseTemporaryAttributesForDrawingToScreenAtCharacterIndexEffectiveRange?(layoutManager: NSLayoutManager, attrs: NSDictionary | Record<string, unknown>, toScreen: boolean, charIndex: number, effectiveCharRange: interop.PointerConvertible): NSDictionary;
 }
 
 export class NSSearchFieldDelegateImpl extends NSObject implements NSSearchFieldDelegate {
   static ObjCProtocols = [NSSearchFieldDelegate];
+
+  searchFieldDidStartSearching?(sender: NSSearchField): void;
+  searchFieldDidEndSearching?(sender: NSSearchField): void;
 }
