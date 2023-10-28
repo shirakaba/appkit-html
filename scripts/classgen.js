@@ -283,32 +283,24 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
   }
   protected static readonly attributes = this.getAttributesRecord();
 
-  // Warning: experimental
-  getAttributeNS(namespace: string | null, localName: string): string | null {
+  attributeChangedCallback(name: string, oldValue: any, newValue: any): void {
+    // TODO: should this parse string values to rich values?
+    // TODO: should attributes like backgroundColor be relegated to CSS
+
     const attributes = (
       Object.getPrototypeOf(this).constructor as typeof HTMLNativeObjectElement
     ).attributes;
-    const nativeProp = attributes[localName.toLowerCase()];
-    if(nativeProp){
-      // FIXME: marshal rich values to string where possible
-      return (this as any)[nativeProp].toString() ?? null;
-    }
-
-    return super.getAttributeNS(namespace, localName);
-  }
-
-  // Warning: experimental
-  setAttributeNS(namespace: string | null, qualifiedName: string, value: string): void {
-    const attributes = (
-      Object.getPrototypeOf(this).constructor as typeof HTMLNativeObjectElement
-    ).attributes;
-    const nativeProp = attributes[qualifiedName.toLowerCase()];
+    const nativeProp = attributes[name.toLowerCase()];
     if(nativeProp){
       // FIXME: marshal string to rich values where possible
-      (this as any)[nativeProp] = value;
+      (this as any)[nativeProp] = newValue;
     }
 
-    super.setAttributeNS(namespace, qualifiedName, value);
+    // With reference to setting attributes on HTMLVideoElement:
+    // - For boolean properties like \`autoplay\`, we should set !!newValue.
+    // - For string properties like \`preload\`, we should preserve the string.
+    // - For rich properties like \`srcObject\`, we should preserve the value.
+    // ... that said, rich properties aren't attributes in the first place.
   }
 
   /**
