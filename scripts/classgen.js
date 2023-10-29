@@ -347,7 +347,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    * A record of lowercased native attributes to their original camelcase.
    */
   protected static readonly nativeAttributes = this.getOwnNativeAttributes();
-  
+
   /**
    * @see https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#responding_to_attribute_changes
    */
@@ -376,6 +376,420 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    * The native object from the Obj-C runtime that this HTML Element wraps.
    */
   abstract readonly nativeObject: NativeObject;
+
+  /**
+   * Set this to inform the parent what property to use to add this as a child.
+   * @example
+   * <ns-stackview>
+   *   <ns-view nativeSubviewsProp="arrangedSubviews"></ns-view>
+   * </ns-stackview>
+   */
+  nativeSubviewsProp?: string;
+  /**
+   * Gets the subviews of the nativeObject by the property name.
+   * @returns the value of the property, if an NSArray; otherwise, null.
+   * @example
+   * stackviewElement.getNativeSubviews("arrangedSubviews");
+   * // Returns: stackviewElement.nativeObject.arrangedSubviews
+   */
+  protected getNativeSubviews(propName: string | undefined): NSArray | null {
+    if(!propName){
+      return null;
+    }
+
+    const subviews = (this.nativeObject as any)[propName];
+    return subviews instanceof NSArray ? subviews : null;
+  }
+
+  /**
+   * Set this to inform the parent what method to use to add this as a child.
+   * @example
+   * <ns-stackview>
+   *   <ns-view nativeAddSubviewProp="arrangedSubviews"></ns-view>
+   * </ns-stackview>
+   */
+  protected nativeAddSubviewProp?: string;
+  /**
+   * Adds a subview to the nativeObject by the property name.
+   * @returns true if the method was able to be called; otherwise, false.
+   * @example
+   * stackviewElement.addNativeSubview("addArrangedSubview", subview);
+   * // Evaluates: stackviewElement.nativeObject.addArrangedSubview(subview);
+   */
+  protected addNativeSubview(propName: string | undefined, subview: NativeObject): boolean {
+    if(!propName){
+      return false;
+    }
+
+    if(propName in this.nativeObject){
+      (this.nativeObject as any)[propName](subview);
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * Set this to inform the parent what method to use to remove this child.
+   * @example
+   * <ns-stackview>
+   *   <ns-view nativeRemoveSubviewProp="arrangedSubviews"></ns-view>
+   * </ns-stackview>
+   */
+  protected nativeRemoveSubviewProp?: string;
+  /**
+   * Removes a subview from the nativeObject by the property name.
+   * @returns true if the method was able to be called; otherwise, false.
+   * @example
+   * stackviewElement.removeNativeSubview("removeArrangedSubview", subview);
+   * // Evaluates: stackviewElement.nativeObject.removeArrangedSubview(subview);
+   */
+  protected removeNativeSubview(propName: string | undefined, subview: NativeObject): boolean {
+    if(!propName){
+      return false;
+    }
+
+    if(propName in this.nativeObject){
+      (this.nativeObject as any)[propName](subview);
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * Set this to inform the parent what method to use to remove this child.
+   * @example
+   * <ns-menu>
+   *   <ns-menuitem nativeRemoveSubviewAtIndexProp="removeItemAtIndex"></ns-menuitem>
+   * </ns-menu>
+   */
+  protected nativeRemoveSubviewAtIndexProp?: string;
+  /**
+   * Removes the native subview at the given index by the property name.
+   * @returns true if the method was able to be called; otherwise, false.
+   * @example
+   * menuElement.removeNativeSubviewAtIndex("removeItemAtIndex", 0);
+   * // Evaluates: menuElement.nativeObject.removeItemAtIndex(0);
+   */
+  protected removeNativeSubviewAtIndex(propName: string | undefined, index: number): boolean {
+    if(!propName){
+      return false;
+    }
+
+    if(propName in this.nativeObject){
+      (this.nativeObject as any)[propName](index);
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * Set this to inform the child what method to use to remove itself from its
+   * parent.
+   * @example
+   * <ns-view>
+   *   <ns-view nativeRemoveSubviewBySelfProp="removeFromSuperview"></ns-view>
+   * </ns-view>
+   */
+  protected nativeRemoveSubviewBySelfProp?: string;
+  /**
+   * Removes a native view from its parent by the property name.
+   * @returns true if the method was able to be called; otherwise, false.
+   * @example
+   * viewElement.removeNativeSubviewBySelf("removeFromSuperview");
+   * // Evaluates: viewElement.nativeObject.removeFromSuperview();
+   */
+  protected removeNativeSubviewBySelf(propName: string | undefined): boolean {
+    if(!propName){
+      return false;
+    }
+
+    if(propName in this.nativeObject){
+      (this.nativeObject as any)[propName]();
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * Set this to inform the parent what method to use to insert this as a child.
+   * @example
+   * <ns-stackview>
+   *   <ns-view nativeInsertSubviewProp="insertArrangedSubviewAtIndex"></ns-view>
+   * </ns-stackview>
+   */
+  protected nativeInsertSubviewProp?: string;
+  /**
+   * Adds a subview to the nativeObject by the property name.
+   * @returns true if the method was able to be called; otherwise, false.
+   * @example
+   * stackviewElement.insertNativeSubview("insertArrangedSubviewAtIndex", subview, 1);
+   * // Evaluates: stackviewElement.nativeObject.insertArrangedSubviewAtIndex(subview, 1);
+   */
+  protected insertNativeSubview(propName: string | undefined, subview: NSObject, index: number): boolean {
+    if(!propName){
+      return false;
+    }
+
+    if(propName in this.nativeObject){
+      (this.nativeObject as any)[propName](subview, index);
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * Inserts the nativeObject for the given node into the nativeSubviews array
+   * at the specified index.
+   * @param index a positive integer. Can be null, meaning the end of the array.
+   */
+  protected nativeInsertAtIndex<T extends HTMLNativeObjectElement>(node: T, index: number | null): void {
+    const nativeSubviews = this.getNativeSubviews(node.nativeSubviewsProp);
+
+    if(index !== null && index < 0){
+      throw new Error("Index must be a positive integer, or null.");
+    }
+
+    if((index === nativeSubviews?.count || index === null) && this.nativeAddSubviewProp){
+      (this.nativeObject as any)[this.nativeAddSubviewProp](node.nativeObject);
+      return;
+    }
+
+    if(this.nativeInsertSubviewProp){
+      (this.nativeObject as any)[this.nativeInsertSubviewProp](node.nativeObject, index);
+      return;
+    }
+
+    throw new Error("Unable to perform nativeInsertAtIndex as both nativeAddSubviewProp and nativeInsertSubviewProp are missing.")
+  }
+
+  appendChild<T extends Node>(node: T): T {
+    const result = super.appendChild(node);
+    this.nativeAppendChild(node);
+    return result;
+  }
+  nativeAppendChild<T extends Node>(node: T): void {
+    // TODO: handle Text nodes, maybe with a class called NativeText.
+    if(!(node instanceof HTMLNativeObjectElement)){
+      return;
+    }
+
+    this.nativeInsertAtIndex(node, null);
+  }
+
+  removeChild<T extends Node>(child: T): T {
+    const result = super.appendChild(child);
+    this.nativeRemoveChild(child);
+    return result;
+  }
+  nativeRemoveChild<T extends Node>(child: T): void {
+    // TODO: handle Text nodes, maybe with a class called NativeText.
+    if(!(child instanceof HTMLNativeObjectElement)){
+      return;
+    }
+
+    if(child.nativeRemoveSubviewProp){
+      this.removeNativeSubview(child.nativeRemoveSubviewProp, child.nativeObject);
+      return;
+    }
+
+    if(child.nativeRemoveSubviewBySelfProp){
+      child.removeNativeSubviewBySelf(child.nativeRemoveSubviewBySelfProp);
+      return;
+    }
+
+    if(child.nativeRemoveSubviewAtIndexProp && child.nativeSubviewsProp){
+      const subviews = this.getNativeSubviews(child.nativeSubviewsProp);
+      const index = subviews?.indexOfObject(child.nativeObject) ?? -1;
+      this.removeNativeSubviewAtIndex(child.nativeRemoveSubviewAtIndexProp, index);
+    }
+
+    throw new Error("Unable to remove child due to lack of removal methods.");
+  }
+
+  remove(): void {
+    super.remove();
+  }
+  nativeRemove(): void {
+    // TODO: handle Text nodes, maybe with a class called NativeText.
+    if(!(this.parentNode instanceof HTMLNativeObjectElement)){
+      return;
+    }
+
+    this.parentNode.nativeRemoveChild(this);
+  }
+
+  append(...nodes: (string | Node)[]): void {
+    const processedNodes = nodes.map(
+      node => typeof node === 'string' ?
+        this.ownerDocument.createTextNode(node) :
+        node
+    );
+
+    super.append(...processedNodes);
+    this.nativeAppend(...processedNodes);
+  }
+  nativeAppend(...nodes: Node[]): void {
+    for(const node of nodes){
+      this.nativeAppendChild(node);
+    }
+  }
+
+  nativePrepend(...nodes: Node[]): void {
+    for(const node of nodes){
+      this.nativeInsertBefore(node, this.firstChild);
+    }
+  }
+  prepend(...nodes: (string | Node)[]): void {
+    const processedNodes = nodes.map(
+      node => typeof node === 'string' ?
+        this.ownerDocument.createTextNode(node) :
+        node
+    );
+
+    super.prepend(...processedNodes);
+    this.nativePrepend(...processedNodes);
+  }
+
+  insertBefore<T extends Node>(node: T, child: Node | null): T {
+    const result = super.appendChild(node);
+    this.nativeInsertBefore(node, child);
+    return result;
+  }
+  nativeInsertBefore<T extends Node>(newNode: T, referenceNode: Node | null): void {
+    // TODO: handle Text nodes, maybe with a class called NativeText.
+    if(!(newNode instanceof HTMLNativeObjectElement)){
+      return;
+    }
+
+    if(referenceNode === null){
+      this.nativeAppendChild(newNode);
+      return;
+    }
+
+    if(referenceNode.parentNode !== this){
+      throw new Error("Reference node is not a child of this element.");
+    }
+
+    const nativeSubviews = this.getNativeSubviews(newNode.nativeSubviewsProp);
+    let referenceNodeIndex = referenceNode instanceof HTMLNativeObjectElement ?
+      nativeSubviews?.indexOfObject(referenceNode.nativeObject) ?? -1 :
+      -1;
+
+    // If the referenceNode's nativeObject is not in the nativeSubviews array
+    // (e.g. because it's a Comment node), look through each nextSibling just in
+    // case.
+    let nextSibling = referenceNode.nextSibling;
+    while(nextSibling && referenceNodeIndex === -1){
+      referenceNodeIndex = nextSibling instanceof HTMLNativeObjectElement ?
+        nativeSubviews?.indexOfObject(nextSibling.nativeObject) ?? -1 :
+        -1;
+      nextSibling = nextSibling.nextSibling;
+    }
+
+    // Add it to the end, I guess?
+    if(referenceNodeIndex === -1){
+      this.nativeAppendChild(referenceNode);
+      return;
+    }
+
+    this.nativeInsertAtIndex(newNode, referenceNodeIndex);
+  }
+
+  insertAdjacentElement(where: InsertPosition, element: Element): Element | null {
+    const result = super.insertAdjacentElement(where, element);
+    this.nativeInsertAdjacentElement(where, element);
+    return result;
+  }
+  nativeInsertAdjacentElement(where: InsertPosition, element: Element): void {
+    // TODO: handle Text nodes, maybe with a class called NativeText.
+    if((element instanceof HTMLNativeObjectElement)){
+      return;
+    }
+
+    throw new Error("Not implemented");
+  }
+
+  insertAdjacentHTML(position: InsertPosition, text: string): void {
+    super.insertAdjacentHTML(position, text);
+    this.nativeInsertAdjacentHTML(position, text);
+  }
+  nativeInsertAdjacentHTML(position: InsertPosition, text: string): void {
+    throw new Error("Not implemented");
+  }
+
+  insertAdjacentText(where: InsertPosition, data: string): void {
+    super.insertAdjacentText(where, data);
+    this.nativeInsertAdjacentText(where, data);
+  }
+  nativeInsertAdjacentText(where: InsertPosition, data: string): void {
+    throw new Error("Not implemented");
+  }
+
+  replaceChild<T extends Node>(node: Node, child: T): T {
+    const result = super.replaceChild(node, child);
+    this.nativeReplaceChild(node, child);
+    return result;
+  }
+  nativeReplaceChild<T extends Node>(newChild: Node, oldChild: T): void {
+    // TODO: handle Text nodes, maybe with a class called NativeText.
+    if(!(newChild instanceof HTMLNativeObjectElement)){
+      return;
+    }
+
+    this.nativeInsertBefore(newChild, oldChild);
+
+    if(!(oldChild instanceof HTMLNativeObjectElement)){
+      return;
+    }
+
+    this.nativeRemoveChild(oldChild);
+  }
+
+  replaceWith(...nodes: (string | Node)[]): void {
+    const processedNodes = nodes.map(
+      node => typeof node === 'string' ?
+        this.ownerDocument.createTextNode(node) :
+        node
+    );
+
+    super.replaceWith(...processedNodes);
+    this.nativeReplaceWith(...processedNodes);
+  }
+  nativeReplaceWith(...nodes: Node[]): void {
+    for(const node of nodes){
+      // TODO: handle Text nodes, maybe with a class called NativeText.
+      if(!(node instanceof HTMLNativeObjectElement)){
+        continue;
+      }
+
+      // TODO
+    }
+  }
+
+  replaceChildren(...nodes: (string | Node)[]): void {
+    const processedNodes = nodes.map(
+      node => typeof node === 'string' ?
+        this.ownerDocument.createTextNode(node) :
+        node
+    );
+    super.replaceChildren(...processedNodes);
+    this.nativeReplaceChildren(...processedNodes);
+  }
+  nativeReplaceChildren(...nodes: Node[]): void {
+    for(const node of nodes){
+      // TODO: handle Text nodes, maybe with a class called NativeText.
+      if(!(node instanceof HTMLNativeObjectElement)){
+        continue;
+      }
+
+      // TODO
+    }
+  }
 }
 `.trim();
 
