@@ -322,13 +322,6 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
   static defineCustomElement(){
     const callerClass = this as unknown as typeof HTMLElement;
 
-    // Smart, but falls apart on things like NSATSTypesetter.
-    // const elementNameMatch = callerClass.name.match(/^([A-Z]+)([A-Z].*)/);
-    // if(!elementNameMatch){
-    //   throw new Error('Unable to define Custom Element as namespace was unable to be parsed.');
-    // }
-    // const [,namespace, classPortion] = elementNameMatch;
-
     const namespace = 'NS';
     const nativeClassName = callerClass.name.replace(/^HTML/, "").replace(/Element$/, "");
     if(!nativeClassName.startsWith(namespace)){
@@ -349,10 +342,12 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       return acc;
     }, {});
   }
+
   /**
    * A record of lowercased native attributes to their original camelcase.
    */
   protected static readonly nativeAttributes = this.getOwnNativeAttributes();
+  
   /**
    * @see https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#responding_to_attribute_changes
    */
