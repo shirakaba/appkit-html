@@ -17,7 +17,7 @@ const options = {
     short: 'i',
     default: resolve(
       import.meta.resolve(`${objcLib}/package.json`).replace(/^file:\/\//, ''),
-      '../types'
+      '../types/macos'
     ),
   },
   output: {
@@ -842,7 +842,12 @@ ${tagNameMap}
 `.trim();
 
   return `
-${[...new Set(imports)].join('\n')}
+${[
+  ...new Set([
+    ...imports,
+    '/// <reference types="objc/types/macos/AppKit.d.ts" />',
+  ]),
+].join('\n')}
 
 ${globalDeclarations}
 
@@ -867,7 +872,7 @@ function parseImportDirective(line) {
   }
 
   const [, path] = match;
-  const typesPath = join(`${objcLib}/types`, path);
+  const typesPath = join(`${objcLib}/types/macos`, path);
   return `/// <reference types="${typesPath}" />`;
 }
 
