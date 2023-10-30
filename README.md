@@ -19,9 +19,29 @@ TODO
 This project's example app depends upon NativeScript AppKit, so you'll need to have that set up. NativeScript AppKit lives at https://github.com/DjDeveloperr/objc_bridge/tree/main but has not been published to npm yet, so you'll need to link it as a local package.
 
 ```sh
-# Inside objc_bridge (after having followed its build instructions)
-npm link
+# Inside objc_bridge:
 
-# Inside appkit-html
-npm link objc
+# Build the runtime (and metadata generator)
+deno task build
+
+# Optional: generate the metadata (or just use the ready-committed metadata)
+deno task metagen macos
+
+# Link the package (the package.json name is 'objc' so it'll link as 'objc'):
+yarn link
+
+# The rest of the steps take place inside appkit-html:
+
+# Install deps
+yarn install
+yarn link objc
+
+# Generate the TS for our HTML Custom Elements
+node scripts/classgen.js
+
+# Transpile our library (including those HTML Custom Elements) to JS
+npm run build
+
+# Run the demo
+node example/html.js
 ```
