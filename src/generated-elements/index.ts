@@ -808,7 +808,7 @@ export class HTMLNSObjectElement extends HTMLNativeObjectElement {
   get toOneRelationshipKeys(): NSArray { return this.nativeObject.toOneRelationshipKeys; }
   get toManyRelationshipKeys(): NSArray { return this.nativeObject.toManyRelationshipKeys; }
   get scriptingProperties(): NSDictionary { return this.nativeObject.scriptingProperties; }
-  set scriptingProperties(value: NSDictionary | Record<string, unknown>) { this.nativeObject.scriptingProperties = value; }
+  set scriptingProperties(value: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>) { this.nativeObject.scriptingProperties = value; }
   get classCode(): number { return this.nativeObject.classCode; }
   get objectSpecifier(): NSScriptObjectSpecifier { return this.nativeObject.objectSpecifier; }
   get accessibilityFocusedUIElement(): interop.Object { return this.nativeObject.accessibilityFocusedUIElement; }
@@ -821,8 +821,8 @@ export class HTMLNSObjectElement extends HTMLNativeObjectElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSWindowTabGroupElement extends HTMLNSObjectElement {
@@ -830,7 +830,7 @@ export class HTMLNSWindowTabGroupElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSWindowTabGroup.new();
 
-  get identifier(): NSString { return this.nativeObject.identifier; }
+  get identifier(): string { return this.nativeObject.identifier; }
   get windows(): NSArray { return this.nativeObject.windows; }
   get isOverviewVisible(): boolean { return this.nativeObject.isOverviewVisible; }
   set isOverviewVisible(value: boolean) { this.nativeObject.isOverviewVisible = value; }
@@ -848,8 +848,8 @@ export class HTMLNSAccessibilityCustomRotorSearchParametersElement extends HTMLN
   set currentItem(value: NSAccessibilityCustomRotorItemResult) { this.nativeObject.currentItem = value; }
   get searchDirection(): interop.Enum<typeof NSAccessibilityCustomRotorSearchDirection> { return this.nativeObject.searchDirection; }
   set searchDirection(value: interop.Enum<typeof NSAccessibilityCustomRotorSearchDirection>) { this.nativeObject.searchDirection = value; }
-  get filterString(): NSString { return this.nativeObject.filterString; }
-  set filterString(value: NSString | string) { this.nativeObject.filterString = value; }
+  get filterString(): string { return this.nativeObject.filterString; }
+  set filterString(value: string) { this.nativeObject.filterString = value; }
 }
 
 export class HTMLNSFontManagerElement extends HTMLNSObjectElement {
@@ -875,8 +875,8 @@ export class HTMLNSFontManagerElement extends HTMLNSObjectElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSScrubberLayoutElement extends HTMLNSObjectElement {
@@ -912,8 +912,8 @@ export class HTMLNSControllerElement extends HTMLNSObjectElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSHelpManagerElement extends HTMLNSObjectElement {
@@ -939,8 +939,8 @@ export class HTMLNSTextAttachmentElement extends HTMLNSObjectElement {
 
   get contents(): NSData { return this.nativeObject.contents; }
   set contents(value: NSData) { this.nativeObject.contents = value; }
-  get fileType(): NSString { return this.nativeObject.fileType; }
-  set fileType(value: NSString | string) { this.nativeObject.fileType = value; }
+  get fileType(): string { return this.nativeObject.fileType; }
+  set fileType(value: string) { this.nativeObject.fileType = value; }
   get image(): NSImage { return this.nativeObject.image; }
   set image(value: NSImage) { this.nativeObject.image = value; }
   get bounds(): CGRect { return this.nativeObject.bounds; }
@@ -958,8 +958,8 @@ export class HTMLNSTextAttachmentElement extends HTMLNSObjectElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSCollectionViewLayoutElement extends HTMLNSObjectElement {
@@ -981,8 +981,8 @@ export class HTMLNSPasteboardItemElement extends HTMLNSObjectElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSScrubberFlowLayoutElement extends HTMLNSScrubberLayoutElement {
@@ -1064,7 +1064,7 @@ export class HTMLNSTextListElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextList.new();
 
-  get markerFormat(): NSString { return this.nativeObject.markerFormat; }
+  get markerFormat(): string { return this.nativeObject.markerFormat; }
   get listOptions(): interop.Enum<typeof NSTextListOptions> { return this.nativeObject.listOptions; }
   get startingItemNumber(): number { return this.nativeObject.startingItemNumber; }
   set startingItemNumber(value: number) { this.nativeObject.startingItemNumber = value; }
@@ -1101,8 +1101,8 @@ export class HTMLNSObjectControllerElement extends HTMLNSControllerElement {
   get canRemove(): boolean { return this.nativeObject.canRemove; }
   get managedObjectContext(): NSManagedObjectContext { return this.nativeObject.managedObjectContext; }
   set managedObjectContext(value: NSManagedObjectContext) { this.nativeObject.managedObjectContext = value; }
-  get entityName(): NSString { return this.nativeObject.entityName; }
-  set entityName(value: NSString | string) { this.nativeObject.entityName = value; }
+  get entityName(): string { return this.nativeObject.entityName; }
+  set entityName(value: string) { this.nativeObject.entityName = value; }
   get fetchPredicate(): NSPredicate { return this.nativeObject.fetchPredicate; }
   set fetchPredicate(value: NSPredicate) { this.nativeObject.fetchPredicate = value; }
   get usesLazyFetching(): boolean { return this.nativeObject.usesLazyFetching; }
@@ -1115,8 +1115,8 @@ export class HTMLNSGlyphInfoElement extends HTMLNSObjectElement {
   readonly nativeObject = NSGlyphInfo.new();
 
   get glyphID(): number { return this.nativeObject.glyphID; }
-  get baseString(): NSString { return this.nativeObject.baseString; }
-  get glyphName(): NSString { return this.nativeObject.glyphName; }
+  get baseString(): string { return this.nativeObject.baseString; }
+  get glyphName(): string { return this.nativeObject.glyphName; }
   get characterIdentifier(): number { return this.nativeObject.characterIdentifier; }
   get characterCollection(): interop.Enum<typeof NSCharacterCollection> { return this.nativeObject.characterCollection; }
 }
@@ -1136,8 +1136,8 @@ export class HTMLNSTableViewDiffableDataSourceElement extends HTMLNSObjectElemen
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSOpenGLPixelBufferElement extends HTMLNSObjectElement {
@@ -1193,14 +1193,14 @@ export class HTMLNSCellElement extends HTMLNSObjectElement {
   set wraps(value: boolean) { this.nativeObject.wraps = value; }
   get font(): NSFont { return this.nativeObject.font; }
   set font(value: NSFont) { this.nativeObject.font = value; }
-  get keyEquivalent(): NSString { return this.nativeObject.keyEquivalent; }
+  get keyEquivalent(): string { return this.nativeObject.keyEquivalent; }
   get formatter(): NSFormatter { return this.nativeObject.formatter; }
   set formatter(value: NSFormatter) { this.nativeObject.formatter = value; }
   get objectValue(): interop.Object { return this.nativeObject.objectValue; }
   set objectValue(value: interop.Object) { this.nativeObject.objectValue = value; }
   get hasValidObjectValue(): boolean { return this.nativeObject.hasValidObjectValue; }
-  get stringValue(): NSString { return this.nativeObject.stringValue; }
-  set stringValue(value: NSString | string) { this.nativeObject.stringValue = value; }
+  get stringValue(): string { return this.nativeObject.stringValue; }
+  set stringValue(value: string) { this.nativeObject.stringValue = value; }
   get intValue(): number { return this.nativeObject.intValue; }
   set intValue(value: number) { this.nativeObject.intValue = value; }
   get floatValue(): number { return this.nativeObject.floatValue; }
@@ -1255,14 +1255,14 @@ export class HTMLNSCellElement extends HTMLNSObjectElement {
   get interiorBackgroundStyle(): interop.Enum<typeof NSBackgroundStyle> { return this.nativeObject.interiorBackgroundStyle; }
   get controlTint(): interop.Enum<typeof NSControlTint> { return this.nativeObject.controlTint; }
   set controlTint(value: interop.Enum<typeof NSControlTint>) { this.nativeObject.controlTint = value; }
-  get identifier(): NSString { return this.nativeObject.identifier; }
-  set identifier(value: NSString | string) { this.nativeObject.identifier = value; }
+  get identifier(): string { return this.nativeObject.identifier; }
+  set identifier(value: string) { this.nativeObject.identifier = value; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
   get isAccessibilityElement(): boolean { return this.nativeObject.isAccessibilityElement; }
   set isAccessibilityElement(value: boolean) { this.nativeObject.isAccessibilityElement = value; }
   get accessibilityFrame(): CGRect { return this.nativeObject.accessibilityFrame; }
@@ -1277,32 +1277,32 @@ export class HTMLNSCellElement extends HTMLNSObjectElement {
   set accessibilityURL(value: NSURL) { this.nativeObject.accessibilityURL = value; }
   get accessibilityValue(): interop.Object { return this.nativeObject.accessibilityValue; }
   set accessibilityValue(value: interop.Object) { this.nativeObject.accessibilityValue = value; }
-  get accessibilityValueDescription(): NSString { return this.nativeObject.accessibilityValueDescription; }
-  set accessibilityValueDescription(value: NSString | string) { this.nativeObject.accessibilityValueDescription = value; }
+  get accessibilityValueDescription(): string { return this.nativeObject.accessibilityValueDescription; }
+  set accessibilityValueDescription(value: string) { this.nativeObject.accessibilityValueDescription = value; }
   get accessibilityVisibleChildren(): NSArray { return this.nativeObject.accessibilityVisibleChildren; }
-  set accessibilityVisibleChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleChildren = value; }
-  get accessibilitySubrole(): NSString { return this.nativeObject.accessibilitySubrole; }
-  set accessibilitySubrole(value: NSString | string) { this.nativeObject.accessibilitySubrole = value; }
-  get accessibilityTitle(): NSString { return this.nativeObject.accessibilityTitle; }
-  set accessibilityTitle(value: NSString | string) { this.nativeObject.accessibilityTitle = value; }
+  set accessibilityVisibleChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleChildren = value; }
+  get accessibilitySubrole(): string { return this.nativeObject.accessibilitySubrole; }
+  set accessibilitySubrole(value: string) { this.nativeObject.accessibilitySubrole = value; }
+  get accessibilityTitle(): string { return this.nativeObject.accessibilityTitle; }
+  set accessibilityTitle(value: string) { this.nativeObject.accessibilityTitle = value; }
   get accessibilityTitleUIElement(): interop.Object { return this.nativeObject.accessibilityTitleUIElement; }
   set accessibilityTitleUIElement(value: interop.Object) { this.nativeObject.accessibilityTitleUIElement = value; }
   get accessibilityNextContents(): NSArray { return this.nativeObject.accessibilityNextContents; }
-  set accessibilityNextContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityNextContents = value; }
+  set accessibilityNextContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityNextContents = value; }
   get accessibilityOrientation(): interop.Enum<typeof NSAccessibilityOrientation> { return this.nativeObject.accessibilityOrientation; }
   set accessibilityOrientation(value: interop.Enum<typeof NSAccessibilityOrientation>) { this.nativeObject.accessibilityOrientation = value; }
   get accessibilityOverflowButton(): interop.Object { return this.nativeObject.accessibilityOverflowButton; }
   set accessibilityOverflowButton(value: interop.Object) { this.nativeObject.accessibilityOverflowButton = value; }
   get accessibilityParent(): interop.Object { return this.nativeObject.accessibilityParent; }
   set accessibilityParent(value: interop.Object) { this.nativeObject.accessibilityParent = value; }
-  get accessibilityPlaceholderValue(): NSString { return this.nativeObject.accessibilityPlaceholderValue; }
-  set accessibilityPlaceholderValue(value: NSString | string) { this.nativeObject.accessibilityPlaceholderValue = value; }
+  get accessibilityPlaceholderValue(): string { return this.nativeObject.accessibilityPlaceholderValue; }
+  set accessibilityPlaceholderValue(value: string) { this.nativeObject.accessibilityPlaceholderValue = value; }
   get accessibilityPreviousContents(): NSArray { return this.nativeObject.accessibilityPreviousContents; }
-  set accessibilityPreviousContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityPreviousContents = value; }
-  get accessibilityRole(): NSString { return this.nativeObject.accessibilityRole; }
-  set accessibilityRole(value: NSString | string) { this.nativeObject.accessibilityRole = value; }
-  get accessibilityRoleDescription(): NSString { return this.nativeObject.accessibilityRoleDescription; }
-  set accessibilityRoleDescription(value: NSString | string) { this.nativeObject.accessibilityRoleDescription = value; }
+  set accessibilityPreviousContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityPreviousContents = value; }
+  get accessibilityRole(): string { return this.nativeObject.accessibilityRole; }
+  set accessibilityRole(value: string) { this.nativeObject.accessibilityRole = value; }
+  get accessibilityRoleDescription(): string { return this.nativeObject.accessibilityRoleDescription; }
+  set accessibilityRoleDescription(value: string) { this.nativeObject.accessibilityRoleDescription = value; }
   get accessibilitySearchButton(): interop.Object { return this.nativeObject.accessibilitySearchButton; }
   set accessibilitySearchButton(value: interop.Object) { this.nativeObject.accessibilitySearchButton = value; }
   get accessibilitySearchMenu(): interop.Object { return this.nativeObject.accessibilitySearchMenu; }
@@ -1310,9 +1310,9 @@ export class HTMLNSCellElement extends HTMLNSObjectElement {
   get isAccessibilitySelected(): boolean { return this.nativeObject.isAccessibilitySelected; }
   set isAccessibilitySelected(value: boolean) { this.nativeObject.isAccessibilitySelected = value; }
   get accessibilitySelectedChildren(): NSArray { return this.nativeObject.accessibilitySelectedChildren; }
-  set accessibilitySelectedChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedChildren = value; }
+  set accessibilitySelectedChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedChildren = value; }
   get accessibilityServesAsTitleForUIElements(): NSArray { return this.nativeObject.accessibilityServesAsTitleForUIElements; }
-  set accessibilityServesAsTitleForUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityServesAsTitleForUIElements = value; }
+  set accessibilityServesAsTitleForUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityServesAsTitleForUIElements = value; }
   get accessibilityShownMenu(): interop.Object { return this.nativeObject.accessibilityShownMenu; }
   set accessibilityShownMenu(value: interop.Object) { this.nativeObject.accessibilityShownMenu = value; }
   get accessibilityMinValue(): interop.Object { return this.nativeObject.accessibilityMinValue; }
@@ -1320,15 +1320,15 @@ export class HTMLNSCellElement extends HTMLNSObjectElement {
   get accessibilityMaxValue(): interop.Object { return this.nativeObject.accessibilityMaxValue; }
   set accessibilityMaxValue(value: interop.Object) { this.nativeObject.accessibilityMaxValue = value; }
   get accessibilityLinkedUIElements(): NSArray { return this.nativeObject.accessibilityLinkedUIElements; }
-  set accessibilityLinkedUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityLinkedUIElements = value; }
+  set accessibilityLinkedUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityLinkedUIElements = value; }
   get accessibilityWindow(): interop.Object { return this.nativeObject.accessibilityWindow; }
   set accessibilityWindow(value: interop.Object) { this.nativeObject.accessibilityWindow = value; }
-  get accessibilityIdentifier(): NSString { return this.nativeObject.accessibilityIdentifier; }
-  set accessibilityIdentifier(value: NSString | string) { this.nativeObject.accessibilityIdentifier = value; }
-  get accessibilityHelp(): NSString { return this.nativeObject.accessibilityHelp; }
-  set accessibilityHelp(value: NSString | string) { this.nativeObject.accessibilityHelp = value; }
-  get accessibilityFilename(): NSString { return this.nativeObject.accessibilityFilename; }
-  set accessibilityFilename(value: NSString | string) { this.nativeObject.accessibilityFilename = value; }
+  get accessibilityIdentifier(): string { return this.nativeObject.accessibilityIdentifier; }
+  set accessibilityIdentifier(value: string) { this.nativeObject.accessibilityIdentifier = value; }
+  get accessibilityHelp(): string { return this.nativeObject.accessibilityHelp; }
+  set accessibilityHelp(value: string) { this.nativeObject.accessibilityHelp = value; }
+  get accessibilityFilename(): string { return this.nativeObject.accessibilityFilename; }
+  set accessibilityFilename(value: string) { this.nativeObject.accessibilityFilename = value; }
   get isAccessibilityExpanded(): boolean { return this.nativeObject.isAccessibilityExpanded; }
   set isAccessibilityExpanded(value: boolean) { this.nativeObject.isAccessibilityExpanded = value; }
   get isAccessibilityEdited(): boolean { return this.nativeObject.isAccessibilityEdited; }
@@ -1336,9 +1336,9 @@ export class HTMLNSCellElement extends HTMLNSObjectElement {
   get isAccessibilityEnabled(): boolean { return this.nativeObject.isAccessibilityEnabled; }
   set isAccessibilityEnabled(value: boolean) { this.nativeObject.isAccessibilityEnabled = value; }
   get accessibilityChildren(): NSArray { return this.nativeObject.accessibilityChildren; }
-  set accessibilityChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilityChildren = value; }
+  set accessibilityChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityChildren = value; }
   get accessibilityChildrenInNavigationOrder(): NSArray { return this.nativeObject.accessibilityChildrenInNavigationOrder; }
-  set accessibilityChildrenInNavigationOrder(value: NSArray | unknown[]) { this.nativeObject.accessibilityChildrenInNavigationOrder = value; }
+  set accessibilityChildrenInNavigationOrder(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityChildrenInNavigationOrder = value; }
   get accessibilityClearButton(): interop.Object { return this.nativeObject.accessibilityClearButton; }
   set accessibilityClearButton(value: interop.Object) { this.nativeObject.accessibilityClearButton = value; }
   get accessibilityCancelButton(): interop.Object { return this.nativeObject.accessibilityCancelButton; }
@@ -1346,21 +1346,21 @@ export class HTMLNSCellElement extends HTMLNSObjectElement {
   get isAccessibilityProtectedContent(): boolean { return this.nativeObject.isAccessibilityProtectedContent; }
   set isAccessibilityProtectedContent(value: boolean) { this.nativeObject.isAccessibilityProtectedContent = value; }
   get accessibilityContents(): NSArray { return this.nativeObject.accessibilityContents; }
-  set accessibilityContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityContents = value; }
-  get accessibilityLabel(): NSString { return this.nativeObject.accessibilityLabel; }
-  set accessibilityLabel(value: NSString | string) { this.nativeObject.accessibilityLabel = value; }
+  set accessibilityContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityContents = value; }
+  get accessibilityLabel(): string { return this.nativeObject.accessibilityLabel; }
+  set accessibilityLabel(value: string) { this.nativeObject.accessibilityLabel = value; }
   get isAccessibilityAlternateUIVisible(): boolean { return this.nativeObject.isAccessibilityAlternateUIVisible; }
   set isAccessibilityAlternateUIVisible(value: boolean) { this.nativeObject.isAccessibilityAlternateUIVisible = value; }
   get accessibilitySharedFocusElements(): NSArray { return this.nativeObject.accessibilitySharedFocusElements; }
-  set accessibilitySharedFocusElements(value: NSArray | unknown[]) { this.nativeObject.accessibilitySharedFocusElements = value; }
+  set accessibilitySharedFocusElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySharedFocusElements = value; }
   get isAccessibilityRequired(): boolean { return this.nativeObject.isAccessibilityRequired; }
   set isAccessibilityRequired(value: boolean) { this.nativeObject.isAccessibilityRequired = value; }
   get accessibilityCustomRotors(): NSArray { return this.nativeObject.accessibilityCustomRotors; }
-  set accessibilityCustomRotors(value: NSArray | unknown[]) { this.nativeObject.accessibilityCustomRotors = value; }
+  set accessibilityCustomRotors(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityCustomRotors = value; }
   get accessibilityUserInputLabels(): NSArray { return this.nativeObject.accessibilityUserInputLabels; }
-  set accessibilityUserInputLabels(value: NSArray | unknown[]) { this.nativeObject.accessibilityUserInputLabels = value; }
+  set accessibilityUserInputLabels(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityUserInputLabels = value; }
   get accessibilityAttributedUserInputLabels(): NSArray { return this.nativeObject.accessibilityAttributedUserInputLabels; }
-  set accessibilityAttributedUserInputLabels(value: NSArray | unknown[]) { this.nativeObject.accessibilityAttributedUserInputLabels = value; }
+  set accessibilityAttributedUserInputLabels(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityAttributedUserInputLabels = value; }
   get accessibilityApplicationFocusedUIElement(): interop.Object { return this.nativeObject.accessibilityApplicationFocusedUIElement; }
   set accessibilityApplicationFocusedUIElement(value: interop.Object) { this.nativeObject.accessibilityApplicationFocusedUIElement = value; }
   get accessibilityMainWindow(): interop.Object { return this.nativeObject.accessibilityMainWindow; }
@@ -1372,25 +1372,25 @@ export class HTMLNSCellElement extends HTMLNSObjectElement {
   get accessibilityFocusedWindow(): interop.Object { return this.nativeObject.accessibilityFocusedWindow; }
   set accessibilityFocusedWindow(value: interop.Object) { this.nativeObject.accessibilityFocusedWindow = value; }
   get accessibilityWindows(): NSArray { return this.nativeObject.accessibilityWindows; }
-  set accessibilityWindows(value: NSArray | unknown[]) { this.nativeObject.accessibilityWindows = value; }
+  set accessibilityWindows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityWindows = value; }
   get accessibilityExtrasMenuBar(): interop.Object { return this.nativeObject.accessibilityExtrasMenuBar; }
   set accessibilityExtrasMenuBar(value: interop.Object) { this.nativeObject.accessibilityExtrasMenuBar = value; }
   get accessibilityMenuBar(): interop.Object { return this.nativeObject.accessibilityMenuBar; }
   set accessibilityMenuBar(value: interop.Object) { this.nativeObject.accessibilityMenuBar = value; }
   get accessibilityColumnTitles(): NSArray { return this.nativeObject.accessibilityColumnTitles; }
-  set accessibilityColumnTitles(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumnTitles = value; }
+  set accessibilityColumnTitles(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumnTitles = value; }
   get isAccessibilityOrderedByRow(): boolean { return this.nativeObject.isAccessibilityOrderedByRow; }
   set isAccessibilityOrderedByRow(value: boolean) { this.nativeObject.isAccessibilityOrderedByRow = value; }
   get accessibilityHorizontalUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityHorizontalUnits; }
   set accessibilityHorizontalUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityHorizontalUnits = value; }
   get accessibilityVerticalUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityVerticalUnits; }
   set accessibilityVerticalUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityVerticalUnits = value; }
-  get accessibilityHorizontalUnitDescription(): NSString { return this.nativeObject.accessibilityHorizontalUnitDescription; }
-  set accessibilityHorizontalUnitDescription(value: NSString | string) { this.nativeObject.accessibilityHorizontalUnitDescription = value; }
-  get accessibilityVerticalUnitDescription(): NSString { return this.nativeObject.accessibilityVerticalUnitDescription; }
-  set accessibilityVerticalUnitDescription(value: NSString | string) { this.nativeObject.accessibilityVerticalUnitDescription = value; }
+  get accessibilityHorizontalUnitDescription(): string { return this.nativeObject.accessibilityHorizontalUnitDescription; }
+  set accessibilityHorizontalUnitDescription(value: string) { this.nativeObject.accessibilityHorizontalUnitDescription = value; }
+  get accessibilityVerticalUnitDescription(): string { return this.nativeObject.accessibilityVerticalUnitDescription; }
+  set accessibilityVerticalUnitDescription(value: string) { this.nativeObject.accessibilityVerticalUnitDescription = value; }
   get accessibilityHandles(): NSArray { return this.nativeObject.accessibilityHandles; }
-  set accessibilityHandles(value: NSArray | unknown[]) { this.nativeObject.accessibilityHandles = value; }
+  set accessibilityHandles(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityHandles = value; }
   get accessibilityWarningValue(): interop.Object { return this.nativeObject.accessibilityWarningValue; }
   set accessibilityWarningValue(value: interop.Object) { this.nativeObject.accessibilityWarningValue = value; }
   get accessibilityCriticalValue(): interop.Object { return this.nativeObject.accessibilityCriticalValue; }
@@ -1404,37 +1404,37 @@ export class HTMLNSCellElement extends HTMLNSObjectElement {
   get accessibilityDisclosureLevel(): number { return this.nativeObject.accessibilityDisclosureLevel; }
   set accessibilityDisclosureLevel(value: number) { this.nativeObject.accessibilityDisclosureLevel = value; }
   get accessibilityMarkerUIElements(): NSArray { return this.nativeObject.accessibilityMarkerUIElements; }
-  set accessibilityMarkerUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityMarkerUIElements = value; }
+  set accessibilityMarkerUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityMarkerUIElements = value; }
   get accessibilityMarkerValues(): interop.Object { return this.nativeObject.accessibilityMarkerValues; }
   set accessibilityMarkerValues(value: interop.Object) { this.nativeObject.accessibilityMarkerValues = value; }
   get accessibilityMarkerGroupUIElement(): interop.Object { return this.nativeObject.accessibilityMarkerGroupUIElement; }
   set accessibilityMarkerGroupUIElement(value: interop.Object) { this.nativeObject.accessibilityMarkerGroupUIElement = value; }
   get accessibilityUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityUnits; }
   set accessibilityUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityUnits = value; }
-  get accessibilityUnitDescription(): NSString { return this.nativeObject.accessibilityUnitDescription; }
-  set accessibilityUnitDescription(value: NSString | string) { this.nativeObject.accessibilityUnitDescription = value; }
+  get accessibilityUnitDescription(): string { return this.nativeObject.accessibilityUnitDescription; }
+  set accessibilityUnitDescription(value: string) { this.nativeObject.accessibilityUnitDescription = value; }
   get accessibilityRulerMarkerType(): interop.Enum<typeof NSAccessibilityRulerMarkerType> { return this.nativeObject.accessibilityRulerMarkerType; }
   set accessibilityRulerMarkerType(value: interop.Enum<typeof NSAccessibilityRulerMarkerType>) { this.nativeObject.accessibilityRulerMarkerType = value; }
-  get accessibilityMarkerTypeDescription(): NSString { return this.nativeObject.accessibilityMarkerTypeDescription; }
-  set accessibilityMarkerTypeDescription(value: NSString | string) { this.nativeObject.accessibilityMarkerTypeDescription = value; }
+  get accessibilityMarkerTypeDescription(): string { return this.nativeObject.accessibilityMarkerTypeDescription; }
+  set accessibilityMarkerTypeDescription(value: string) { this.nativeObject.accessibilityMarkerTypeDescription = value; }
   get accessibilityHorizontalScrollBar(): interop.Object { return this.nativeObject.accessibilityHorizontalScrollBar; }
   set accessibilityHorizontalScrollBar(value: interop.Object) { this.nativeObject.accessibilityHorizontalScrollBar = value; }
   get accessibilityVerticalScrollBar(): interop.Object { return this.nativeObject.accessibilityVerticalScrollBar; }
   set accessibilityVerticalScrollBar(value: interop.Object) { this.nativeObject.accessibilityVerticalScrollBar = value; }
   get accessibilityAllowedValues(): NSArray { return this.nativeObject.accessibilityAllowedValues; }
-  set accessibilityAllowedValues(value: NSArray | unknown[]) { this.nativeObject.accessibilityAllowedValues = value; }
+  set accessibilityAllowedValues(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityAllowedValues = value; }
   get accessibilityLabelUIElements(): NSArray { return this.nativeObject.accessibilityLabelUIElements; }
-  set accessibilityLabelUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityLabelUIElements = value; }
+  set accessibilityLabelUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityLabelUIElements = value; }
   get accessibilityLabelValue(): number { return this.nativeObject.accessibilityLabelValue; }
   set accessibilityLabelValue(value: number) { this.nativeObject.accessibilityLabelValue = value; }
   get accessibilitySplitters(): NSArray { return this.nativeObject.accessibilitySplitters; }
-  set accessibilitySplitters(value: NSArray | unknown[]) { this.nativeObject.accessibilitySplitters = value; }
+  set accessibilitySplitters(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySplitters = value; }
   get accessibilityDecrementButton(): interop.Object { return this.nativeObject.accessibilityDecrementButton; }
   set accessibilityDecrementButton(value: interop.Object) { this.nativeObject.accessibilityDecrementButton = value; }
   get accessibilityIncrementButton(): interop.Object { return this.nativeObject.accessibilityIncrementButton; }
   set accessibilityIncrementButton(value: interop.Object) { this.nativeObject.accessibilityIncrementButton = value; }
   get accessibilityTabs(): NSArray { return this.nativeObject.accessibilityTabs; }
-  set accessibilityTabs(value: NSArray | unknown[]) { this.nativeObject.accessibilityTabs = value; }
+  set accessibilityTabs(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityTabs = value; }
   get accessibilityHeader(): interop.Object { return this.nativeObject.accessibilityHeader; }
   set accessibilityHeader(value: interop.Object) { this.nativeObject.accessibilityHeader = value; }
   get accessibilityColumnCount(): number { return this.nativeObject.accessibilityColumnCount; }
@@ -1444,27 +1444,27 @@ export class HTMLNSCellElement extends HTMLNSObjectElement {
   get accessibilityIndex(): number { return this.nativeObject.accessibilityIndex; }
   set accessibilityIndex(value: number) { this.nativeObject.accessibilityIndex = value; }
   get accessibilityColumns(): NSArray { return this.nativeObject.accessibilityColumns; }
-  set accessibilityColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumns = value; }
+  set accessibilityColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumns = value; }
   get accessibilityRows(): NSArray { return this.nativeObject.accessibilityRows; }
-  set accessibilityRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityRows = value; }
+  set accessibilityRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRows = value; }
   get accessibilityVisibleRows(): NSArray { return this.nativeObject.accessibilityVisibleRows; }
-  set accessibilityVisibleRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleRows = value; }
+  set accessibilityVisibleRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleRows = value; }
   get accessibilitySelectedRows(): NSArray { return this.nativeObject.accessibilitySelectedRows; }
-  set accessibilitySelectedRows(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedRows = value; }
+  set accessibilitySelectedRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedRows = value; }
   get accessibilityVisibleColumns(): NSArray { return this.nativeObject.accessibilityVisibleColumns; }
-  set accessibilityVisibleColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleColumns = value; }
+  set accessibilityVisibleColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleColumns = value; }
   get accessibilitySelectedColumns(): NSArray { return this.nativeObject.accessibilitySelectedColumns; }
-  set accessibilitySelectedColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedColumns = value; }
+  set accessibilitySelectedColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedColumns = value; }
   get accessibilitySortDirection(): interop.Enum<typeof NSAccessibilitySortDirection> { return this.nativeObject.accessibilitySortDirection; }
   set accessibilitySortDirection(value: interop.Enum<typeof NSAccessibilitySortDirection>) { this.nativeObject.accessibilitySortDirection = value; }
   get accessibilityRowHeaderUIElements(): NSArray { return this.nativeObject.accessibilityRowHeaderUIElements; }
-  set accessibilityRowHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
+  set accessibilityRowHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
   get accessibilitySelectedCells(): NSArray { return this.nativeObject.accessibilitySelectedCells; }
-  set accessibilitySelectedCells(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedCells = value; }
+  set accessibilitySelectedCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedCells = value; }
   get accessibilityVisibleCells(): NSArray { return this.nativeObject.accessibilityVisibleCells; }
-  set accessibilityVisibleCells(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleCells = value; }
+  set accessibilityVisibleCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleCells = value; }
   get accessibilityColumnHeaderUIElements(): NSArray { return this.nativeObject.accessibilityColumnHeaderUIElements; }
-  set accessibilityColumnHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
+  set accessibilityColumnHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
   get accessibilityRowIndexRange(): _NSRange { return this.nativeObject.accessibilityRowIndexRange; }
   set accessibilityRowIndexRange(value: _NSRange) { this.nativeObject.accessibilityRowIndexRange = value; }
   get accessibilityColumnIndexRange(): _NSRange { return this.nativeObject.accessibilityColumnIndexRange; }
@@ -1474,17 +1474,17 @@ export class HTMLNSCellElement extends HTMLNSObjectElement {
   get accessibilitySharedCharacterRange(): _NSRange { return this.nativeObject.accessibilitySharedCharacterRange; }
   set accessibilitySharedCharacterRange(value: _NSRange) { this.nativeObject.accessibilitySharedCharacterRange = value; }
   get accessibilitySharedTextUIElements(): NSArray { return this.nativeObject.accessibilitySharedTextUIElements; }
-  set accessibilitySharedTextUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilitySharedTextUIElements = value; }
+  set accessibilitySharedTextUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySharedTextUIElements = value; }
   get accessibilityVisibleCharacterRange(): _NSRange { return this.nativeObject.accessibilityVisibleCharacterRange; }
   set accessibilityVisibleCharacterRange(value: _NSRange) { this.nativeObject.accessibilityVisibleCharacterRange = value; }
   get accessibilityNumberOfCharacters(): number { return this.nativeObject.accessibilityNumberOfCharacters; }
   set accessibilityNumberOfCharacters(value: number) { this.nativeObject.accessibilityNumberOfCharacters = value; }
-  get accessibilitySelectedText(): NSString { return this.nativeObject.accessibilitySelectedText; }
-  set accessibilitySelectedText(value: NSString | string) { this.nativeObject.accessibilitySelectedText = value; }
+  get accessibilitySelectedText(): string { return this.nativeObject.accessibilitySelectedText; }
+  set accessibilitySelectedText(value: string) { this.nativeObject.accessibilitySelectedText = value; }
   get accessibilitySelectedTextRange(): _NSRange { return this.nativeObject.accessibilitySelectedTextRange; }
   set accessibilitySelectedTextRange(value: _NSRange) { this.nativeObject.accessibilitySelectedTextRange = value; }
   get accessibilitySelectedTextRanges(): NSArray { return this.nativeObject.accessibilitySelectedTextRanges; }
-  set accessibilitySelectedTextRanges(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedTextRanges = value; }
+  set accessibilitySelectedTextRanges(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedTextRanges = value; }
   get accessibilityToolbarButton(): interop.Object { return this.nativeObject.accessibilityToolbarButton; }
   set accessibilityToolbarButton(value: interop.Object) { this.nativeObject.accessibilityToolbarButton = value; }
   get isAccessibilityModal(): boolean { return this.nativeObject.isAccessibilityModal; }
@@ -1497,8 +1497,8 @@ export class HTMLNSCellElement extends HTMLNSObjectElement {
   set accessibilityFullScreenButton(value: interop.Object) { this.nativeObject.accessibilityFullScreenButton = value; }
   get accessibilityGrowArea(): interop.Object { return this.nativeObject.accessibilityGrowArea; }
   set accessibilityGrowArea(value: interop.Object) { this.nativeObject.accessibilityGrowArea = value; }
-  get accessibilityDocument(): NSString { return this.nativeObject.accessibilityDocument; }
-  set accessibilityDocument(value: NSString | string) { this.nativeObject.accessibilityDocument = value; }
+  get accessibilityDocument(): string { return this.nativeObject.accessibilityDocument; }
+  set accessibilityDocument(value: string) { this.nativeObject.accessibilityDocument = value; }
   get accessibilityDefaultButton(): interop.Object { return this.nativeObject.accessibilityDefaultButton; }
   set accessibilityDefaultButton(value: interop.Object) { this.nativeObject.accessibilityDefaultButton = value; }
   get accessibilityCloseButton(): interop.Object { return this.nativeObject.accessibilityCloseButton; }
@@ -1510,7 +1510,7 @@ export class HTMLNSCellElement extends HTMLNSObjectElement {
   get isAccessibilityMinimized(): boolean { return this.nativeObject.isAccessibilityMinimized; }
   set isAccessibilityMinimized(value: boolean) { this.nativeObject.isAccessibilityMinimized = value; }
   get accessibilityCustomActions(): NSArray { return this.nativeObject.accessibilityCustomActions; }
-  set accessibilityCustomActions(value: NSArray | unknown[]) { this.nativeObject.accessibilityCustomActions = value; }
+  set accessibilityCustomActions(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityCustomActions = value; }
 }
 
 export class HTMLNSStatusItemElement extends HTMLNSObjectElement {
@@ -1528,8 +1528,8 @@ export class HTMLNSStatusItemElement extends HTMLNSObjectElement {
   set behavior(value: interop.Enum<typeof NSStatusItemBehavior>) { this.nativeObject.behavior = value; }
   get isVisible(): boolean { return this.nativeObject.isVisible; }
   set isVisible(value: boolean) { this.nativeObject.isVisible = value; }
-  get autosaveName(): NSString { return this.nativeObject.autosaveName; }
-  set autosaveName(value: NSString | string) { this.nativeObject.autosaveName = value; }
+  get autosaveName(): string { return this.nativeObject.autosaveName; }
+  set autosaveName(value: string) { this.nativeObject.autosaveName = value; }
   get action(): string { return this.nativeObject.action; }
   set action(value: string) { this.nativeObject.action = value; }
   get doubleAction(): string { return this.nativeObject.doubleAction; }
@@ -1546,8 +1546,8 @@ export class HTMLNSStatusItemElement extends HTMLNSObjectElement {
   set isEnabled(value: boolean) { this.nativeObject.isEnabled = value; }
   get highlightMode(): boolean { return this.nativeObject.highlightMode; }
   set highlightMode(value: boolean) { this.nativeObject.highlightMode = value; }
-  get toolTip(): NSString { return this.nativeObject.toolTip; }
-  set toolTip(value: NSString | string) { this.nativeObject.toolTip = value; }
+  get toolTip(): string { return this.nativeObject.toolTip; }
+  set toolTip(value: string) { this.nativeObject.toolTip = value; }
   get view(): NSView { return this.nativeObject.view; }
   set view(value: NSView) { this.nativeObject.view = value; }
 }
@@ -1561,15 +1561,15 @@ export class HTMLNSSpeechRecognizerElement extends HTMLNSObjectElement {
   }
 
   get commands(): NSArray { return this.nativeObject.commands; }
-  set commands(value: NSArray | unknown[]) { this.nativeObject.commands = value; }
-  get displayedCommandsTitle(): NSString { return this.nativeObject.displayedCommandsTitle; }
-  set displayedCommandsTitle(value: NSString | string) { this.nativeObject.displayedCommandsTitle = value; }
+  set commands(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.commands = value; }
+  get displayedCommandsTitle(): string { return this.nativeObject.displayedCommandsTitle; }
+  set displayedCommandsTitle(value: string) { this.nativeObject.displayedCommandsTitle = value; }
   get listensInForegroundOnly(): boolean { return this.nativeObject.listensInForegroundOnly; }
   set listensInForegroundOnly(value: boolean) { this.nativeObject.listensInForegroundOnly = value; }
   get blocksOtherRecognizers(): boolean { return this.nativeObject.blocksOtherRecognizers; }
   set blocksOtherRecognizers(value: boolean) { this.nativeObject.blocksOtherRecognizers = value; }
 
-  set speechRecognizerDidRecognizeCommand(value: (sender: NSSpeechRecognizer, command: NSString | string) => void) {
+  set speechRecognizerDidRecognizeCommand(value: (sender: NSSpeechRecognizer, command: string) => void) {
     this.delegate.speechRecognizerDidRecognizeCommand = value;
   }
 }
@@ -1613,16 +1613,16 @@ export class HTMLNSToolbarItemElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSToolbarItem.new();
 
-  get itemIdentifier(): NSString { return this.nativeObject.itemIdentifier; }
+  get itemIdentifier(): string { return this.nativeObject.itemIdentifier; }
   get toolbar(): NSToolbar { return this.nativeObject.toolbar; }
-  get label(): NSString { return this.nativeObject.label; }
-  set label(value: NSString | string) { this.nativeObject.label = value; }
-  get paletteLabel(): NSString { return this.nativeObject.paletteLabel; }
-  set paletteLabel(value: NSString | string) { this.nativeObject.paletteLabel = value; }
+  get label(): string { return this.nativeObject.label; }
+  set label(value: string) { this.nativeObject.label = value; }
+  get paletteLabel(): string { return this.nativeObject.paletteLabel; }
+  set paletteLabel(value: string) { this.nativeObject.paletteLabel = value; }
   get possibleLabels(): NSSet { return this.nativeObject.possibleLabels; }
   set possibleLabels(value: NSSet) { this.nativeObject.possibleLabels = value; }
-  get toolTip(): NSString { return this.nativeObject.toolTip; }
-  set toolTip(value: NSString | string) { this.nativeObject.toolTip = value; }
+  get toolTip(): string { return this.nativeObject.toolTip; }
+  set toolTip(value: string) { this.nativeObject.toolTip = value; }
   get menuFormRepresentation(): NSMenuItem { return this.nativeObject.menuFormRepresentation; }
   set menuFormRepresentation(value: NSMenuItem) { this.nativeObject.menuFormRepresentation = value; }
   get tag(): number { return this.nativeObject.tag; }
@@ -1676,7 +1676,7 @@ export class HTMLNSGridCellElement extends HTMLNSObjectElement {
   get rowAlignment(): interop.Enum<typeof NSGridRowAlignment> { return this.nativeObject.rowAlignment; }
   set rowAlignment(value: interop.Enum<typeof NSGridRowAlignment>) { this.nativeObject.rowAlignment = value; }
   get customPlacementConstraints(): NSArray { return this.nativeObject.customPlacementConstraints; }
-  set customPlacementConstraints(value: NSArray | unknown[]) { this.nativeObject.customPlacementConstraints = value; }
+  set customPlacementConstraints(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.customPlacementConstraints = value; }
 }
 
 export class HTMLNSColorSamplerElement extends HTMLNSObjectElement {
@@ -1695,8 +1695,8 @@ export class HTMLNSPDFPanelElement extends HTMLNSObjectElement {
   set accessoryController(value: NSViewController) { this.nativeObject.accessoryController = value; }
   get options(): interop.Enum<typeof NSPDFPanelOptions> { return this.nativeObject.options; }
   set options(value: interop.Enum<typeof NSPDFPanelOptions>) { this.nativeObject.options = value; }
-  get defaultFileName(): NSString { return this.nativeObject.defaultFileName; }
-  set defaultFileName(value: NSString | string) { this.nativeObject.defaultFileName = value; }
+  get defaultFileName(): string { return this.nativeObject.defaultFileName; }
+  set defaultFileName(value: string) { this.nativeObject.defaultFileName = value; }
 }
 
 export class HTMLNSPageLayoutElement extends HTMLNSObjectElement {
@@ -1720,7 +1720,7 @@ export class HTMLNSScreenElement extends HTMLNSObjectElement {
   get colorSpace(): NSColorSpace { return this.nativeObject.colorSpace; }
   get supportedWindowDepths(): interop.Pointer { return this.nativeObject.supportedWindowDepths; }
   get backingScaleFactor(): number { return this.nativeObject.backingScaleFactor; }
-  get localizedName(): NSString { return this.nativeObject.localizedName; }
+  get localizedName(): string { return this.nativeObject.localizedName; }
   get safeAreaInsets(): NSEdgeInsets { return this.nativeObject.safeAreaInsets; }
   get auxiliaryTopLeftArea(): CGRect { return this.nativeObject.auxiliaryTopLeftArea; }
   get auxiliaryTopRightArea(): CGRect { return this.nativeObject.auxiliaryTopRightArea; }
@@ -1775,8 +1775,8 @@ export class HTMLNSFilePromiseReceiverElement extends HTMLNSObjectElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSColorPickerElement extends HTMLNSObjectElement {
@@ -1786,7 +1786,7 @@ export class HTMLNSColorPickerElement extends HTMLNSObjectElement {
 
   get colorPanel(): NSColorPanel { return this.nativeObject.colorPanel; }
   get provideNewButtonImage(): NSImage { return this.nativeObject.provideNewButtonImage; }
-  get buttonToolTip(): NSString { return this.nativeObject.buttonToolTip; }
+  get buttonToolTip(): string { return this.nativeObject.buttonToolTip; }
   get minContentSize(): CGSize { return this.nativeObject.minContentSize; }
 }
 
@@ -1816,8 +1816,8 @@ export class HTMLNSImageRepElement extends HTMLNSObjectElement {
   set hasAlpha(value: boolean) { this.nativeObject.hasAlpha = value; }
   get isOpaque(): boolean { return this.nativeObject.isOpaque; }
   set isOpaque(value: boolean) { this.nativeObject.isOpaque = value; }
-  get colorSpaceName(): NSString { return this.nativeObject.colorSpaceName; }
-  set colorSpaceName(value: NSString | string) { this.nativeObject.colorSpaceName = value; }
+  get colorSpaceName(): string { return this.nativeObject.colorSpaceName; }
+  set colorSpaceName(value: string) { this.nativeObject.colorSpaceName = value; }
   get bitsPerSample(): number { return this.nativeObject.bitsPerSample; }
   set bitsPerSample(value: number) { this.nativeObject.bitsPerSample = value; }
   get pixelsWide(): number { return this.nativeObject.pixelsWide; }
@@ -1849,8 +1849,8 @@ export class HTMLNSFontAssetRequestElement extends HTMLNSObjectElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSFontDescriptorElement extends HTMLNSObjectElement {
@@ -1858,7 +1858,7 @@ export class HTMLNSFontDescriptorElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSFontDescriptor.new();
 
-  get postscriptName(): NSString { return this.nativeObject.postscriptName; }
+  get postscriptName(): string { return this.nativeObject.postscriptName; }
   get pointSize(): number { return this.nativeObject.pointSize; }
   get matrix(): NSAffineTransform { return this.nativeObject.matrix; }
   get symbolicTraits(): interop.Enum<typeof NSFontDescriptorSymbolicTraits> { return this.nativeObject.symbolicTraits; }
@@ -1905,7 +1905,7 @@ export class HTMLNSSharingServicePickerElement extends HTMLNSObjectElement {
 
   get standardShareMenuItem(): NSMenuItem { return this.nativeObject.standardShareMenuItem; }
 
-  set sharingServicePickerSharingServicesForItemsProposedSharingServices(value: (sharingServicePicker: NSSharingServicePicker, items: NSArray | unknown[], proposedServices: NSArray | unknown[]) => NSArray) {
+  set sharingServicePickerSharingServicesForItemsProposedSharingServices(value: (sharingServicePicker: NSSharingServicePicker, items: NSArray<interop.Object> | Array<interop.Object>, proposedServices: NSArray<interop.Object> | Array<interop.Object>) => NSArray) {
     this.delegate.sharingServicePickerSharingServicesForItemsProposedSharingServices = value;
   }
   set sharingServicePickerDelegateForSharingService(value: (sharingServicePicker: NSSharingServicePicker, sharingService: NSSharingService) => NSSharingServiceDelegate) {
@@ -1926,7 +1926,7 @@ export class HTMLNSCollectionViewCompositionalLayoutConfigurationElement extends
   get interSectionSpacing(): number { return this.nativeObject.interSectionSpacing; }
   set interSectionSpacing(value: number) { this.nativeObject.interSectionSpacing = value; }
   get boundarySupplementaryItems(): NSArray { return this.nativeObject.boundarySupplementaryItems; }
-  set boundarySupplementaryItems(value: NSArray | unknown[]) { this.nativeObject.boundarySupplementaryItems = value; }
+  set boundarySupplementaryItems(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.boundarySupplementaryItems = value; }
 }
 
 export class HTMLNSCollectionViewLayoutInvalidationContextElement extends HTMLNSObjectElement {
@@ -1950,7 +1950,7 @@ export class HTMLNSStoryboardSegueElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSStoryboardSegue.new();
 
-  get identifier(): NSString { return this.nativeObject.identifier; }
+  get identifier(): string { return this.nativeObject.identifier; }
   get sourceController(): interop.Object { return this.nativeObject.sourceController; }
   get destinationController(): interop.Object { return this.nativeObject.destinationController; }
 }
@@ -1963,24 +1963,24 @@ export class HTMLNSTouchBarElement extends HTMLNSObjectElement {
     return (this.nativeObject.delegate ??= NSTouchBarDelegateImpl.new()) as NSTouchBarDelegateImpl;
   }
 
-  get customizationIdentifier(): NSString { return this.nativeObject.customizationIdentifier; }
-  set customizationIdentifier(value: NSString | string) { this.nativeObject.customizationIdentifier = value; }
+  get customizationIdentifier(): string { return this.nativeObject.customizationIdentifier; }
+  set customizationIdentifier(value: string) { this.nativeObject.customizationIdentifier = value; }
   get customizationAllowedItemIdentifiers(): NSArray { return this.nativeObject.customizationAllowedItemIdentifiers; }
-  set customizationAllowedItemIdentifiers(value: NSArray | unknown[]) { this.nativeObject.customizationAllowedItemIdentifiers = value; }
+  set customizationAllowedItemIdentifiers(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.customizationAllowedItemIdentifiers = value; }
   get customizationRequiredItemIdentifiers(): NSArray { return this.nativeObject.customizationRequiredItemIdentifiers; }
-  set customizationRequiredItemIdentifiers(value: NSArray | unknown[]) { this.nativeObject.customizationRequiredItemIdentifiers = value; }
+  set customizationRequiredItemIdentifiers(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.customizationRequiredItemIdentifiers = value; }
   get defaultItemIdentifiers(): NSArray { return this.nativeObject.defaultItemIdentifiers; }
-  set defaultItemIdentifiers(value: NSArray | unknown[]) { this.nativeObject.defaultItemIdentifiers = value; }
+  set defaultItemIdentifiers(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.defaultItemIdentifiers = value; }
   get itemIdentifiers(): NSArray { return this.nativeObject.itemIdentifiers; }
-  get principalItemIdentifier(): NSString { return this.nativeObject.principalItemIdentifier; }
-  set principalItemIdentifier(value: NSString | string) { this.nativeObject.principalItemIdentifier = value; }
-  get escapeKeyReplacementItemIdentifier(): NSString { return this.nativeObject.escapeKeyReplacementItemIdentifier; }
-  set escapeKeyReplacementItemIdentifier(value: NSString | string) { this.nativeObject.escapeKeyReplacementItemIdentifier = value; }
+  get principalItemIdentifier(): string { return this.nativeObject.principalItemIdentifier; }
+  set principalItemIdentifier(value: string) { this.nativeObject.principalItemIdentifier = value; }
+  get escapeKeyReplacementItemIdentifier(): string { return this.nativeObject.escapeKeyReplacementItemIdentifier; }
+  set escapeKeyReplacementItemIdentifier(value: string) { this.nativeObject.escapeKeyReplacementItemIdentifier = value; }
   get templateItems(): NSSet { return this.nativeObject.templateItems; }
   set templateItems(value: NSSet) { this.nativeObject.templateItems = value; }
   get isVisible(): boolean { return this.nativeObject.isVisible; }
 
-  set touchBarMakeItemForIdentifier(value: (touchBar: NSTouchBar, identifier: NSString | string) => NSTouchBarItem) {
+  set touchBarMakeItemForIdentifier(value: (touchBar: NSTouchBar, identifier: string) => NSTouchBarItem) {
     this.delegate.touchBarMakeItemForIdentifier = value;
   }
 }
@@ -2003,7 +2003,7 @@ export class HTMLNSColorListElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSColorList.new();
 
-  get name(): NSString { return this.nativeObject.name; }
+  get name(): string { return this.nativeObject.name; }
   get allKeys(): NSArray { return this.nativeObject.allKeys; }
   get isEditable(): boolean { return this.nativeObject.isEditable; }
 }
@@ -2013,8 +2013,8 @@ export class HTMLNSDocumentElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDocument.new();
 
-  get fileType(): NSString { return this.nativeObject.fileType; }
-  set fileType(value: NSString | string) { this.nativeObject.fileType = value; }
+  get fileType(): string { return this.nativeObject.fileType; }
+  set fileType(value: string) { this.nativeObject.fileType = value; }
   get fileURL(): NSURL { return this.nativeObject.fileURL; }
   set fileURL(value: NSURL) { this.nativeObject.fileURL = value; }
   get fileModificationDate(): NSDate { return this.nativeObject.fileModificationDate; }
@@ -2027,10 +2027,10 @@ export class HTMLNSDocumentElement extends HTMLNSObjectElement {
   get backupFileURL(): NSURL { return this.nativeObject.backupFileURL; }
   get shouldRunSavePanelWithAccessoryView(): boolean { return this.nativeObject.shouldRunSavePanelWithAccessoryView; }
   get fileNameExtensionWasHiddenInLastRunSavePanel(): boolean { return this.nativeObject.fileNameExtensionWasHiddenInLastRunSavePanel; }
-  get fileTypeFromLastRunSavePanel(): NSString { return this.nativeObject.fileTypeFromLastRunSavePanel; }
+  get fileTypeFromLastRunSavePanel(): string { return this.nativeObject.fileTypeFromLastRunSavePanel; }
   get hasUnautosavedChanges(): boolean { return this.nativeObject.hasUnautosavedChanges; }
   get isBrowsingVersions(): boolean { return this.nativeObject.isBrowsingVersions; }
-  get autosavingFileType(): NSString { return this.nativeObject.autosavingFileType; }
+  get autosavingFileType(): string { return this.nativeObject.autosavingFileType; }
   get autosavedContentsFileURL(): NSURL { return this.nativeObject.autosavedContentsFileURL; }
   set autosavedContentsFileURL(value: NSURL) { this.nativeObject.autosavedContentsFileURL = value; }
   get isLocked(): boolean { return this.nativeObject.isLocked; }
@@ -2039,31 +2039,31 @@ export class HTMLNSDocumentElement extends HTMLNSObjectElement {
   get PDFPrintOperation(): NSPrintOperation { return this.nativeObject.PDFPrintOperation; }
   get allowsDocumentSharing(): boolean { return this.nativeObject.allowsDocumentSharing; }
   get previewRepresentableActivityItems(): NSArray { return this.nativeObject.previewRepresentableActivityItems; }
-  set previewRepresentableActivityItems(value: NSArray | unknown[]) { this.nativeObject.previewRepresentableActivityItems = value; }
+  set previewRepresentableActivityItems(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.previewRepresentableActivityItems = value; }
   get isDocumentEdited(): boolean { return this.nativeObject.isDocumentEdited; }
   get isInViewingMode(): boolean { return this.nativeObject.isInViewingMode; }
   get undoManager(): NSUndoManager { return this.nativeObject.undoManager; }
   set undoManager(value: NSUndoManager) { this.nativeObject.undoManager = value; }
   get hasUndoManager(): boolean { return this.nativeObject.hasUndoManager; }
   set hasUndoManager(value: boolean) { this.nativeObject.hasUndoManager = value; }
-  get windowNibName(): NSString { return this.nativeObject.windowNibName; }
+  get windowNibName(): string { return this.nativeObject.windowNibName; }
   get windowControllers(): NSArray { return this.nativeObject.windowControllers; }
-  get displayName(): NSString { return this.nativeObject.displayName; }
-  set displayName(value: NSString | string) { this.nativeObject.displayName = value; }
+  get displayName(): string { return this.nativeObject.displayName; }
+  set displayName(value: string) { this.nativeObject.displayName = value; }
   get windowForSheet(): NSWindow { return this.nativeObject.windowForSheet; }
   get presentedItemURL(): NSURL { return this.nativeObject.presentedItemURL; }
   get observedPresentedItemUbiquityAttributes(): NSSet { return this.nativeObject.observedPresentedItemUbiquityAttributes; }
   get userActivity(): NSUserActivity { return this.nativeObject.userActivity; }
   set userActivity(value: NSUserActivity) { this.nativeObject.userActivity = value; }
-  get lastComponentOfFileName(): NSString { return this.nativeObject.lastComponentOfFileName; }
-  set lastComponentOfFileName(value: NSString | string) { this.nativeObject.lastComponentOfFileName = value; }
+  get lastComponentOfFileName(): string { return this.nativeObject.lastComponentOfFileName; }
+  set lastComponentOfFileName(value: string) { this.nativeObject.lastComponentOfFileName = value; }
   get objectSpecifier(): NSScriptObjectSpecifier { return this.nativeObject.objectSpecifier; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
   get presentedItemOperationQueue(): NSOperationQueue { return this.nativeObject.presentedItemOperationQueue; }
   get primaryPresentedItemURL(): NSURL { return this.nativeObject.primaryPresentedItemURL; }
 }
@@ -2158,32 +2158,32 @@ export class HTMLNSAccessibilityElementElement extends HTMLNSObjectElement {
   set accessibilityURL(value: NSURL) { this.nativeObject.accessibilityURL = value; }
   get accessibilityValue(): interop.Object { return this.nativeObject.accessibilityValue; }
   set accessibilityValue(value: interop.Object) { this.nativeObject.accessibilityValue = value; }
-  get accessibilityValueDescription(): NSString { return this.nativeObject.accessibilityValueDescription; }
-  set accessibilityValueDescription(value: NSString | string) { this.nativeObject.accessibilityValueDescription = value; }
+  get accessibilityValueDescription(): string { return this.nativeObject.accessibilityValueDescription; }
+  set accessibilityValueDescription(value: string) { this.nativeObject.accessibilityValueDescription = value; }
   get accessibilityVisibleChildren(): NSArray { return this.nativeObject.accessibilityVisibleChildren; }
-  set accessibilityVisibleChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleChildren = value; }
-  get accessibilitySubrole(): NSString { return this.nativeObject.accessibilitySubrole; }
-  set accessibilitySubrole(value: NSString | string) { this.nativeObject.accessibilitySubrole = value; }
-  get accessibilityTitle(): NSString { return this.nativeObject.accessibilityTitle; }
-  set accessibilityTitle(value: NSString | string) { this.nativeObject.accessibilityTitle = value; }
+  set accessibilityVisibleChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleChildren = value; }
+  get accessibilitySubrole(): string { return this.nativeObject.accessibilitySubrole; }
+  set accessibilitySubrole(value: string) { this.nativeObject.accessibilitySubrole = value; }
+  get accessibilityTitle(): string { return this.nativeObject.accessibilityTitle; }
+  set accessibilityTitle(value: string) { this.nativeObject.accessibilityTitle = value; }
   get accessibilityTitleUIElement(): interop.Object { return this.nativeObject.accessibilityTitleUIElement; }
   set accessibilityTitleUIElement(value: interop.Object) { this.nativeObject.accessibilityTitleUIElement = value; }
   get accessibilityNextContents(): NSArray { return this.nativeObject.accessibilityNextContents; }
-  set accessibilityNextContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityNextContents = value; }
+  set accessibilityNextContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityNextContents = value; }
   get accessibilityOrientation(): interop.Enum<typeof NSAccessibilityOrientation> { return this.nativeObject.accessibilityOrientation; }
   set accessibilityOrientation(value: interop.Enum<typeof NSAccessibilityOrientation>) { this.nativeObject.accessibilityOrientation = value; }
   get accessibilityOverflowButton(): interop.Object { return this.nativeObject.accessibilityOverflowButton; }
   set accessibilityOverflowButton(value: interop.Object) { this.nativeObject.accessibilityOverflowButton = value; }
   get accessibilityParent(): interop.Object { return this.nativeObject.accessibilityParent; }
   set accessibilityParent(value: interop.Object) { this.nativeObject.accessibilityParent = value; }
-  get accessibilityPlaceholderValue(): NSString { return this.nativeObject.accessibilityPlaceholderValue; }
-  set accessibilityPlaceholderValue(value: NSString | string) { this.nativeObject.accessibilityPlaceholderValue = value; }
+  get accessibilityPlaceholderValue(): string { return this.nativeObject.accessibilityPlaceholderValue; }
+  set accessibilityPlaceholderValue(value: string) { this.nativeObject.accessibilityPlaceholderValue = value; }
   get accessibilityPreviousContents(): NSArray { return this.nativeObject.accessibilityPreviousContents; }
-  set accessibilityPreviousContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityPreviousContents = value; }
-  get accessibilityRole(): NSString { return this.nativeObject.accessibilityRole; }
-  set accessibilityRole(value: NSString | string) { this.nativeObject.accessibilityRole = value; }
-  get accessibilityRoleDescription(): NSString { return this.nativeObject.accessibilityRoleDescription; }
-  set accessibilityRoleDescription(value: NSString | string) { this.nativeObject.accessibilityRoleDescription = value; }
+  set accessibilityPreviousContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityPreviousContents = value; }
+  get accessibilityRole(): string { return this.nativeObject.accessibilityRole; }
+  set accessibilityRole(value: string) { this.nativeObject.accessibilityRole = value; }
+  get accessibilityRoleDescription(): string { return this.nativeObject.accessibilityRoleDescription; }
+  set accessibilityRoleDescription(value: string) { this.nativeObject.accessibilityRoleDescription = value; }
   get accessibilitySearchButton(): interop.Object { return this.nativeObject.accessibilitySearchButton; }
   set accessibilitySearchButton(value: interop.Object) { this.nativeObject.accessibilitySearchButton = value; }
   get accessibilitySearchMenu(): interop.Object { return this.nativeObject.accessibilitySearchMenu; }
@@ -2191,9 +2191,9 @@ export class HTMLNSAccessibilityElementElement extends HTMLNSObjectElement {
   get isAccessibilitySelected(): boolean { return this.nativeObject.isAccessibilitySelected; }
   set isAccessibilitySelected(value: boolean) { this.nativeObject.isAccessibilitySelected = value; }
   get accessibilitySelectedChildren(): NSArray { return this.nativeObject.accessibilitySelectedChildren; }
-  set accessibilitySelectedChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedChildren = value; }
+  set accessibilitySelectedChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedChildren = value; }
   get accessibilityServesAsTitleForUIElements(): NSArray { return this.nativeObject.accessibilityServesAsTitleForUIElements; }
-  set accessibilityServesAsTitleForUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityServesAsTitleForUIElements = value; }
+  set accessibilityServesAsTitleForUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityServesAsTitleForUIElements = value; }
   get accessibilityShownMenu(): interop.Object { return this.nativeObject.accessibilityShownMenu; }
   set accessibilityShownMenu(value: interop.Object) { this.nativeObject.accessibilityShownMenu = value; }
   get accessibilityMinValue(): interop.Object { return this.nativeObject.accessibilityMinValue; }
@@ -2201,15 +2201,15 @@ export class HTMLNSAccessibilityElementElement extends HTMLNSObjectElement {
   get accessibilityMaxValue(): interop.Object { return this.nativeObject.accessibilityMaxValue; }
   set accessibilityMaxValue(value: interop.Object) { this.nativeObject.accessibilityMaxValue = value; }
   get accessibilityLinkedUIElements(): NSArray { return this.nativeObject.accessibilityLinkedUIElements; }
-  set accessibilityLinkedUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityLinkedUIElements = value; }
+  set accessibilityLinkedUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityLinkedUIElements = value; }
   get accessibilityWindow(): interop.Object { return this.nativeObject.accessibilityWindow; }
   set accessibilityWindow(value: interop.Object) { this.nativeObject.accessibilityWindow = value; }
-  get accessibilityIdentifier(): NSString { return this.nativeObject.accessibilityIdentifier; }
-  set accessibilityIdentifier(value: NSString | string) { this.nativeObject.accessibilityIdentifier = value; }
-  get accessibilityHelp(): NSString { return this.nativeObject.accessibilityHelp; }
-  set accessibilityHelp(value: NSString | string) { this.nativeObject.accessibilityHelp = value; }
-  get accessibilityFilename(): NSString { return this.nativeObject.accessibilityFilename; }
-  set accessibilityFilename(value: NSString | string) { this.nativeObject.accessibilityFilename = value; }
+  get accessibilityIdentifier(): string { return this.nativeObject.accessibilityIdentifier; }
+  set accessibilityIdentifier(value: string) { this.nativeObject.accessibilityIdentifier = value; }
+  get accessibilityHelp(): string { return this.nativeObject.accessibilityHelp; }
+  set accessibilityHelp(value: string) { this.nativeObject.accessibilityHelp = value; }
+  get accessibilityFilename(): string { return this.nativeObject.accessibilityFilename; }
+  set accessibilityFilename(value: string) { this.nativeObject.accessibilityFilename = value; }
   get isAccessibilityExpanded(): boolean { return this.nativeObject.isAccessibilityExpanded; }
   set isAccessibilityExpanded(value: boolean) { this.nativeObject.isAccessibilityExpanded = value; }
   get isAccessibilityEdited(): boolean { return this.nativeObject.isAccessibilityEdited; }
@@ -2217,9 +2217,9 @@ export class HTMLNSAccessibilityElementElement extends HTMLNSObjectElement {
   get isAccessibilityEnabled(): boolean { return this.nativeObject.isAccessibilityEnabled; }
   set isAccessibilityEnabled(value: boolean) { this.nativeObject.isAccessibilityEnabled = value; }
   get accessibilityChildren(): NSArray { return this.nativeObject.accessibilityChildren; }
-  set accessibilityChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilityChildren = value; }
+  set accessibilityChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityChildren = value; }
   get accessibilityChildrenInNavigationOrder(): NSArray { return this.nativeObject.accessibilityChildrenInNavigationOrder; }
-  set accessibilityChildrenInNavigationOrder(value: NSArray | unknown[]) { this.nativeObject.accessibilityChildrenInNavigationOrder = value; }
+  set accessibilityChildrenInNavigationOrder(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityChildrenInNavigationOrder = value; }
   get accessibilityClearButton(): interop.Object { return this.nativeObject.accessibilityClearButton; }
   set accessibilityClearButton(value: interop.Object) { this.nativeObject.accessibilityClearButton = value; }
   get accessibilityCancelButton(): interop.Object { return this.nativeObject.accessibilityCancelButton; }
@@ -2227,21 +2227,21 @@ export class HTMLNSAccessibilityElementElement extends HTMLNSObjectElement {
   get isAccessibilityProtectedContent(): boolean { return this.nativeObject.isAccessibilityProtectedContent; }
   set isAccessibilityProtectedContent(value: boolean) { this.nativeObject.isAccessibilityProtectedContent = value; }
   get accessibilityContents(): NSArray { return this.nativeObject.accessibilityContents; }
-  set accessibilityContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityContents = value; }
-  get accessibilityLabel(): NSString { return this.nativeObject.accessibilityLabel; }
-  set accessibilityLabel(value: NSString | string) { this.nativeObject.accessibilityLabel = value; }
+  set accessibilityContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityContents = value; }
+  get accessibilityLabel(): string { return this.nativeObject.accessibilityLabel; }
+  set accessibilityLabel(value: string) { this.nativeObject.accessibilityLabel = value; }
   get isAccessibilityAlternateUIVisible(): boolean { return this.nativeObject.isAccessibilityAlternateUIVisible; }
   set isAccessibilityAlternateUIVisible(value: boolean) { this.nativeObject.isAccessibilityAlternateUIVisible = value; }
   get accessibilitySharedFocusElements(): NSArray { return this.nativeObject.accessibilitySharedFocusElements; }
-  set accessibilitySharedFocusElements(value: NSArray | unknown[]) { this.nativeObject.accessibilitySharedFocusElements = value; }
+  set accessibilitySharedFocusElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySharedFocusElements = value; }
   get isAccessibilityRequired(): boolean { return this.nativeObject.isAccessibilityRequired; }
   set isAccessibilityRequired(value: boolean) { this.nativeObject.isAccessibilityRequired = value; }
   get accessibilityCustomRotors(): NSArray { return this.nativeObject.accessibilityCustomRotors; }
-  set accessibilityCustomRotors(value: NSArray | unknown[]) { this.nativeObject.accessibilityCustomRotors = value; }
+  set accessibilityCustomRotors(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityCustomRotors = value; }
   get accessibilityUserInputLabels(): NSArray { return this.nativeObject.accessibilityUserInputLabels; }
-  set accessibilityUserInputLabels(value: NSArray | unknown[]) { this.nativeObject.accessibilityUserInputLabels = value; }
+  set accessibilityUserInputLabels(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityUserInputLabels = value; }
   get accessibilityAttributedUserInputLabels(): NSArray { return this.nativeObject.accessibilityAttributedUserInputLabels; }
-  set accessibilityAttributedUserInputLabels(value: NSArray | unknown[]) { this.nativeObject.accessibilityAttributedUserInputLabels = value; }
+  set accessibilityAttributedUserInputLabels(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityAttributedUserInputLabels = value; }
   get accessibilityApplicationFocusedUIElement(): interop.Object { return this.nativeObject.accessibilityApplicationFocusedUIElement; }
   set accessibilityApplicationFocusedUIElement(value: interop.Object) { this.nativeObject.accessibilityApplicationFocusedUIElement = value; }
   get accessibilityMainWindow(): interop.Object { return this.nativeObject.accessibilityMainWindow; }
@@ -2253,25 +2253,25 @@ export class HTMLNSAccessibilityElementElement extends HTMLNSObjectElement {
   get accessibilityFocusedWindow(): interop.Object { return this.nativeObject.accessibilityFocusedWindow; }
   set accessibilityFocusedWindow(value: interop.Object) { this.nativeObject.accessibilityFocusedWindow = value; }
   get accessibilityWindows(): NSArray { return this.nativeObject.accessibilityWindows; }
-  set accessibilityWindows(value: NSArray | unknown[]) { this.nativeObject.accessibilityWindows = value; }
+  set accessibilityWindows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityWindows = value; }
   get accessibilityExtrasMenuBar(): interop.Object { return this.nativeObject.accessibilityExtrasMenuBar; }
   set accessibilityExtrasMenuBar(value: interop.Object) { this.nativeObject.accessibilityExtrasMenuBar = value; }
   get accessibilityMenuBar(): interop.Object { return this.nativeObject.accessibilityMenuBar; }
   set accessibilityMenuBar(value: interop.Object) { this.nativeObject.accessibilityMenuBar = value; }
   get accessibilityColumnTitles(): NSArray { return this.nativeObject.accessibilityColumnTitles; }
-  set accessibilityColumnTitles(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumnTitles = value; }
+  set accessibilityColumnTitles(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumnTitles = value; }
   get isAccessibilityOrderedByRow(): boolean { return this.nativeObject.isAccessibilityOrderedByRow; }
   set isAccessibilityOrderedByRow(value: boolean) { this.nativeObject.isAccessibilityOrderedByRow = value; }
   get accessibilityHorizontalUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityHorizontalUnits; }
   set accessibilityHorizontalUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityHorizontalUnits = value; }
   get accessibilityVerticalUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityVerticalUnits; }
   set accessibilityVerticalUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityVerticalUnits = value; }
-  get accessibilityHorizontalUnitDescription(): NSString { return this.nativeObject.accessibilityHorizontalUnitDescription; }
-  set accessibilityHorizontalUnitDescription(value: NSString | string) { this.nativeObject.accessibilityHorizontalUnitDescription = value; }
-  get accessibilityVerticalUnitDescription(): NSString { return this.nativeObject.accessibilityVerticalUnitDescription; }
-  set accessibilityVerticalUnitDescription(value: NSString | string) { this.nativeObject.accessibilityVerticalUnitDescription = value; }
+  get accessibilityHorizontalUnitDescription(): string { return this.nativeObject.accessibilityHorizontalUnitDescription; }
+  set accessibilityHorizontalUnitDescription(value: string) { this.nativeObject.accessibilityHorizontalUnitDescription = value; }
+  get accessibilityVerticalUnitDescription(): string { return this.nativeObject.accessibilityVerticalUnitDescription; }
+  set accessibilityVerticalUnitDescription(value: string) { this.nativeObject.accessibilityVerticalUnitDescription = value; }
   get accessibilityHandles(): NSArray { return this.nativeObject.accessibilityHandles; }
-  set accessibilityHandles(value: NSArray | unknown[]) { this.nativeObject.accessibilityHandles = value; }
+  set accessibilityHandles(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityHandles = value; }
   get accessibilityWarningValue(): interop.Object { return this.nativeObject.accessibilityWarningValue; }
   set accessibilityWarningValue(value: interop.Object) { this.nativeObject.accessibilityWarningValue = value; }
   get accessibilityCriticalValue(): interop.Object { return this.nativeObject.accessibilityCriticalValue; }
@@ -2285,37 +2285,37 @@ export class HTMLNSAccessibilityElementElement extends HTMLNSObjectElement {
   get accessibilityDisclosureLevel(): number { return this.nativeObject.accessibilityDisclosureLevel; }
   set accessibilityDisclosureLevel(value: number) { this.nativeObject.accessibilityDisclosureLevel = value; }
   get accessibilityMarkerUIElements(): NSArray { return this.nativeObject.accessibilityMarkerUIElements; }
-  set accessibilityMarkerUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityMarkerUIElements = value; }
+  set accessibilityMarkerUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityMarkerUIElements = value; }
   get accessibilityMarkerValues(): interop.Object { return this.nativeObject.accessibilityMarkerValues; }
   set accessibilityMarkerValues(value: interop.Object) { this.nativeObject.accessibilityMarkerValues = value; }
   get accessibilityMarkerGroupUIElement(): interop.Object { return this.nativeObject.accessibilityMarkerGroupUIElement; }
   set accessibilityMarkerGroupUIElement(value: interop.Object) { this.nativeObject.accessibilityMarkerGroupUIElement = value; }
   get accessibilityUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityUnits; }
   set accessibilityUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityUnits = value; }
-  get accessibilityUnitDescription(): NSString { return this.nativeObject.accessibilityUnitDescription; }
-  set accessibilityUnitDescription(value: NSString | string) { this.nativeObject.accessibilityUnitDescription = value; }
+  get accessibilityUnitDescription(): string { return this.nativeObject.accessibilityUnitDescription; }
+  set accessibilityUnitDescription(value: string) { this.nativeObject.accessibilityUnitDescription = value; }
   get accessibilityRulerMarkerType(): interop.Enum<typeof NSAccessibilityRulerMarkerType> { return this.nativeObject.accessibilityRulerMarkerType; }
   set accessibilityRulerMarkerType(value: interop.Enum<typeof NSAccessibilityRulerMarkerType>) { this.nativeObject.accessibilityRulerMarkerType = value; }
-  get accessibilityMarkerTypeDescription(): NSString { return this.nativeObject.accessibilityMarkerTypeDescription; }
-  set accessibilityMarkerTypeDescription(value: NSString | string) { this.nativeObject.accessibilityMarkerTypeDescription = value; }
+  get accessibilityMarkerTypeDescription(): string { return this.nativeObject.accessibilityMarkerTypeDescription; }
+  set accessibilityMarkerTypeDescription(value: string) { this.nativeObject.accessibilityMarkerTypeDescription = value; }
   get accessibilityHorizontalScrollBar(): interop.Object { return this.nativeObject.accessibilityHorizontalScrollBar; }
   set accessibilityHorizontalScrollBar(value: interop.Object) { this.nativeObject.accessibilityHorizontalScrollBar = value; }
   get accessibilityVerticalScrollBar(): interop.Object { return this.nativeObject.accessibilityVerticalScrollBar; }
   set accessibilityVerticalScrollBar(value: interop.Object) { this.nativeObject.accessibilityVerticalScrollBar = value; }
   get accessibilityAllowedValues(): NSArray { return this.nativeObject.accessibilityAllowedValues; }
-  set accessibilityAllowedValues(value: NSArray | unknown[]) { this.nativeObject.accessibilityAllowedValues = value; }
+  set accessibilityAllowedValues(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityAllowedValues = value; }
   get accessibilityLabelUIElements(): NSArray { return this.nativeObject.accessibilityLabelUIElements; }
-  set accessibilityLabelUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityLabelUIElements = value; }
+  set accessibilityLabelUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityLabelUIElements = value; }
   get accessibilityLabelValue(): number { return this.nativeObject.accessibilityLabelValue; }
   set accessibilityLabelValue(value: number) { this.nativeObject.accessibilityLabelValue = value; }
   get accessibilitySplitters(): NSArray { return this.nativeObject.accessibilitySplitters; }
-  set accessibilitySplitters(value: NSArray | unknown[]) { this.nativeObject.accessibilitySplitters = value; }
+  set accessibilitySplitters(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySplitters = value; }
   get accessibilityDecrementButton(): interop.Object { return this.nativeObject.accessibilityDecrementButton; }
   set accessibilityDecrementButton(value: interop.Object) { this.nativeObject.accessibilityDecrementButton = value; }
   get accessibilityIncrementButton(): interop.Object { return this.nativeObject.accessibilityIncrementButton; }
   set accessibilityIncrementButton(value: interop.Object) { this.nativeObject.accessibilityIncrementButton = value; }
   get accessibilityTabs(): NSArray { return this.nativeObject.accessibilityTabs; }
-  set accessibilityTabs(value: NSArray | unknown[]) { this.nativeObject.accessibilityTabs = value; }
+  set accessibilityTabs(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityTabs = value; }
   get accessibilityHeader(): interop.Object { return this.nativeObject.accessibilityHeader; }
   set accessibilityHeader(value: interop.Object) { this.nativeObject.accessibilityHeader = value; }
   get accessibilityColumnCount(): number { return this.nativeObject.accessibilityColumnCount; }
@@ -2325,27 +2325,27 @@ export class HTMLNSAccessibilityElementElement extends HTMLNSObjectElement {
   get accessibilityIndex(): number { return this.nativeObject.accessibilityIndex; }
   set accessibilityIndex(value: number) { this.nativeObject.accessibilityIndex = value; }
   get accessibilityColumns(): NSArray { return this.nativeObject.accessibilityColumns; }
-  set accessibilityColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumns = value; }
+  set accessibilityColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumns = value; }
   get accessibilityRows(): NSArray { return this.nativeObject.accessibilityRows; }
-  set accessibilityRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityRows = value; }
+  set accessibilityRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRows = value; }
   get accessibilityVisibleRows(): NSArray { return this.nativeObject.accessibilityVisibleRows; }
-  set accessibilityVisibleRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleRows = value; }
+  set accessibilityVisibleRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleRows = value; }
   get accessibilitySelectedRows(): NSArray { return this.nativeObject.accessibilitySelectedRows; }
-  set accessibilitySelectedRows(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedRows = value; }
+  set accessibilitySelectedRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedRows = value; }
   get accessibilityVisibleColumns(): NSArray { return this.nativeObject.accessibilityVisibleColumns; }
-  set accessibilityVisibleColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleColumns = value; }
+  set accessibilityVisibleColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleColumns = value; }
   get accessibilitySelectedColumns(): NSArray { return this.nativeObject.accessibilitySelectedColumns; }
-  set accessibilitySelectedColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedColumns = value; }
+  set accessibilitySelectedColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedColumns = value; }
   get accessibilitySortDirection(): interop.Enum<typeof NSAccessibilitySortDirection> { return this.nativeObject.accessibilitySortDirection; }
   set accessibilitySortDirection(value: interop.Enum<typeof NSAccessibilitySortDirection>) { this.nativeObject.accessibilitySortDirection = value; }
   get accessibilityRowHeaderUIElements(): NSArray { return this.nativeObject.accessibilityRowHeaderUIElements; }
-  set accessibilityRowHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
+  set accessibilityRowHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
   get accessibilitySelectedCells(): NSArray { return this.nativeObject.accessibilitySelectedCells; }
-  set accessibilitySelectedCells(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedCells = value; }
+  set accessibilitySelectedCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedCells = value; }
   get accessibilityVisibleCells(): NSArray { return this.nativeObject.accessibilityVisibleCells; }
-  set accessibilityVisibleCells(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleCells = value; }
+  set accessibilityVisibleCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleCells = value; }
   get accessibilityColumnHeaderUIElements(): NSArray { return this.nativeObject.accessibilityColumnHeaderUIElements; }
-  set accessibilityColumnHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
+  set accessibilityColumnHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
   get accessibilityRowIndexRange(): _NSRange { return this.nativeObject.accessibilityRowIndexRange; }
   set accessibilityRowIndexRange(value: _NSRange) { this.nativeObject.accessibilityRowIndexRange = value; }
   get accessibilityColumnIndexRange(): _NSRange { return this.nativeObject.accessibilityColumnIndexRange; }
@@ -2355,17 +2355,17 @@ export class HTMLNSAccessibilityElementElement extends HTMLNSObjectElement {
   get accessibilitySharedCharacterRange(): _NSRange { return this.nativeObject.accessibilitySharedCharacterRange; }
   set accessibilitySharedCharacterRange(value: _NSRange) { this.nativeObject.accessibilitySharedCharacterRange = value; }
   get accessibilitySharedTextUIElements(): NSArray { return this.nativeObject.accessibilitySharedTextUIElements; }
-  set accessibilitySharedTextUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilitySharedTextUIElements = value; }
+  set accessibilitySharedTextUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySharedTextUIElements = value; }
   get accessibilityVisibleCharacterRange(): _NSRange { return this.nativeObject.accessibilityVisibleCharacterRange; }
   set accessibilityVisibleCharacterRange(value: _NSRange) { this.nativeObject.accessibilityVisibleCharacterRange = value; }
   get accessibilityNumberOfCharacters(): number { return this.nativeObject.accessibilityNumberOfCharacters; }
   set accessibilityNumberOfCharacters(value: number) { this.nativeObject.accessibilityNumberOfCharacters = value; }
-  get accessibilitySelectedText(): NSString { return this.nativeObject.accessibilitySelectedText; }
-  set accessibilitySelectedText(value: NSString | string) { this.nativeObject.accessibilitySelectedText = value; }
+  get accessibilitySelectedText(): string { return this.nativeObject.accessibilitySelectedText; }
+  set accessibilitySelectedText(value: string) { this.nativeObject.accessibilitySelectedText = value; }
   get accessibilitySelectedTextRange(): _NSRange { return this.nativeObject.accessibilitySelectedTextRange; }
   set accessibilitySelectedTextRange(value: _NSRange) { this.nativeObject.accessibilitySelectedTextRange = value; }
   get accessibilitySelectedTextRanges(): NSArray { return this.nativeObject.accessibilitySelectedTextRanges; }
-  set accessibilitySelectedTextRanges(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedTextRanges = value; }
+  set accessibilitySelectedTextRanges(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedTextRanges = value; }
   get accessibilityToolbarButton(): interop.Object { return this.nativeObject.accessibilityToolbarButton; }
   set accessibilityToolbarButton(value: interop.Object) { this.nativeObject.accessibilityToolbarButton = value; }
   get isAccessibilityModal(): boolean { return this.nativeObject.isAccessibilityModal; }
@@ -2378,8 +2378,8 @@ export class HTMLNSAccessibilityElementElement extends HTMLNSObjectElement {
   set accessibilityFullScreenButton(value: interop.Object) { this.nativeObject.accessibilityFullScreenButton = value; }
   get accessibilityGrowArea(): interop.Object { return this.nativeObject.accessibilityGrowArea; }
   set accessibilityGrowArea(value: interop.Object) { this.nativeObject.accessibilityGrowArea = value; }
-  get accessibilityDocument(): NSString { return this.nativeObject.accessibilityDocument; }
-  set accessibilityDocument(value: NSString | string) { this.nativeObject.accessibilityDocument = value; }
+  get accessibilityDocument(): string { return this.nativeObject.accessibilityDocument; }
+  set accessibilityDocument(value: string) { this.nativeObject.accessibilityDocument = value; }
   get accessibilityDefaultButton(): interop.Object { return this.nativeObject.accessibilityDefaultButton; }
   set accessibilityDefaultButton(value: interop.Object) { this.nativeObject.accessibilityDefaultButton = value; }
   get accessibilityCloseButton(): interop.Object { return this.nativeObject.accessibilityCloseButton; }
@@ -2391,13 +2391,13 @@ export class HTMLNSAccessibilityElementElement extends HTMLNSObjectElement {
   get isAccessibilityMinimized(): boolean { return this.nativeObject.isAccessibilityMinimized; }
   set isAccessibilityMinimized(value: boolean) { this.nativeObject.isAccessibilityMinimized = value; }
   get accessibilityCustomActions(): NSArray { return this.nativeObject.accessibilityCustomActions; }
-  set accessibilityCustomActions(value: NSArray | unknown[]) { this.nativeObject.accessibilityCustomActions = value; }
+  set accessibilityCustomActions(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityCustomActions = value; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSNibElement extends HTMLNSObjectElement {
@@ -2451,7 +2451,7 @@ export class HTMLNSSplitViewItemElement extends HTMLNSObjectElement {
   get titlebarSeparatorStyle(): interop.Enum<typeof NSTitlebarSeparatorStyle> { return this.nativeObject.titlebarSeparatorStyle; }
   set titlebarSeparatorStyle(value: interop.Enum<typeof NSTitlebarSeparatorStyle>) { this.nativeObject.titlebarSeparatorStyle = value; }
   get animations(): NSDictionary { return this.nativeObject.animations; }
-  set animations(value: NSDictionary | Record<string, unknown>) { this.nativeObject.animations = value; }
+  set animations(value: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>) { this.nativeObject.animations = value; }
 }
 
 export class HTMLNSShadowElement extends HTMLNSObjectElement {
@@ -2500,8 +2500,8 @@ export class HTMLNSEventElement extends HTMLNSObjectElement {
   get scrollingDeltaY(): number { return this.nativeObject.scrollingDeltaY; }
   get momentumPhase(): interop.Enum<typeof NSEventPhase> { return this.nativeObject.momentumPhase; }
   get isDirectionInvertedFromDevice(): boolean { return this.nativeObject.isDirectionInvertedFromDevice; }
-  get characters(): NSString { return this.nativeObject.characters; }
-  get charactersIgnoringModifiers(): NSString { return this.nativeObject.charactersIgnoringModifiers; }
+  get characters(): string { return this.nativeObject.characters; }
+  get charactersIgnoringModifiers(): string { return this.nativeObject.charactersIgnoringModifiers; }
   get isARepeat(): boolean { return this.nativeObject.isARepeat; }
   get keyCode(): number { return this.nativeObject.keyCode; }
   get trackingNumber(): number { return this.nativeObject.trackingNumber; }
@@ -2559,8 +2559,8 @@ export class HTMLNSAccessibilityCustomRotorItemResultElement extends HTMLNSObjec
   get itemLoadingToken(): NSObject { return this.nativeObject.itemLoadingToken; }
   get targetRange(): _NSRange { return this.nativeObject.targetRange; }
   set targetRange(value: _NSRange) { this.nativeObject.targetRange = value; }
-  get customLabel(): NSString { return this.nativeObject.customLabel; }
-  set customLabel(value: NSString | string) { this.nativeObject.customLabel = value; }
+  get customLabel(): string { return this.nativeObject.customLabel; }
+  set customLabel(value: string) { this.nativeObject.customLabel = value; }
 }
 
 export class HTMLNSPasteboardElement extends HTMLNSObjectElement {
@@ -2568,7 +2568,7 @@ export class HTMLNSPasteboardElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPasteboard.new();
 
-  get name(): NSString { return this.nativeObject.name; }
+  get name(): string { return this.nativeObject.name; }
   get changeCount(): number { return this.nativeObject.changeCount; }
   get pasteboardItems(): NSArray { return this.nativeObject.pasteboardItems; }
   get types(): NSArray { return this.nativeObject.types; }
@@ -2582,8 +2582,8 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
     return (this.nativeObject.delegate ??= NSWindowDelegateImpl.new()) as NSWindowDelegateImpl;
   }
 
-  get subtitle(): NSString { return this.nativeObject.subtitle; }
-  set subtitle(value: NSString | string) { this.nativeObject.subtitle = value; }
+  get subtitle(): string { return this.nativeObject.subtitle; }
+  set subtitle(value: string) { this.nativeObject.subtitle = value; }
   get titleVisibility(): interop.Enum<typeof NSWindowTitleVisibility> { return this.nativeObject.titleVisibility; }
   set titleVisibility(value: interop.Enum<typeof NSWindowTitleVisibility>) { this.nativeObject.titleVisibility = value; }
   get titlebarAppearsTransparent(): boolean { return this.nativeObject.titlebarAppearsTransparent; }
@@ -2593,11 +2593,11 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
   get contentLayoutRect(): CGRect { return this.nativeObject.contentLayoutRect; }
   get contentLayoutGuide(): interop.Object { return this.nativeObject.contentLayoutGuide; }
   get titlebarAccessoryViewControllers(): NSArray { return this.nativeObject.titlebarAccessoryViewControllers; }
-  set titlebarAccessoryViewControllers(value: NSArray | unknown[]) { this.nativeObject.titlebarAccessoryViewControllers = value; }
+  set titlebarAccessoryViewControllers(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.titlebarAccessoryViewControllers = value; }
   get representedURL(): NSURL { return this.nativeObject.representedURL; }
   set representedURL(value: NSURL) { this.nativeObject.representedURL = value; }
-  get representedFilename(): NSString { return this.nativeObject.representedFilename; }
-  set representedFilename(value: NSString | string) { this.nativeObject.representedFilename = value; }
+  get representedFilename(): string { return this.nativeObject.representedFilename; }
+  set representedFilename(value: string) { this.nativeObject.representedFilename = value; }
   get isExcludedFromWindowsMenu(): boolean { return this.nativeObject.isExcludedFromWindowsMenu; }
   set isExcludedFromWindowsMenu(value: boolean) { this.nativeObject.isExcludedFromWindowsMenu = value; }
   get contentView(): NSView { return this.nativeObject.contentView; }
@@ -2637,8 +2637,8 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
   set canHide(value: boolean) { this.nativeObject.canHide = value; }
   get miniwindowImage(): NSImage { return this.nativeObject.miniwindowImage; }
   set miniwindowImage(value: NSImage) { this.nativeObject.miniwindowImage = value; }
-  get miniwindowTitle(): NSString { return this.nativeObject.miniwindowTitle; }
-  set miniwindowTitle(value: NSString | string) { this.nativeObject.miniwindowTitle = value; }
+  get miniwindowTitle(): string { return this.nativeObject.miniwindowTitle; }
+  set miniwindowTitle(value: string) { this.nativeObject.miniwindowTitle = value; }
   get dockTile(): NSDockTile { return this.nativeObject.dockTile; }
   get isDocumentEdited(): boolean { return this.nativeObject.isDocumentEdited; }
   set isDocumentEdited(value: boolean) { this.nativeObject.isDocumentEdited = value; }
@@ -2681,8 +2681,8 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
   get animationBehavior(): interop.Enum<typeof NSWindowAnimationBehavior> { return this.nativeObject.animationBehavior; }
   set animationBehavior(value: interop.Enum<typeof NSWindowAnimationBehavior>) { this.nativeObject.animationBehavior = value; }
   get isOnActiveSpace(): boolean { return this.nativeObject.isOnActiveSpace; }
-  get stringWithSavedFrame(): NSString { return this.nativeObject.stringWithSavedFrame; }
-  get frameAutosaveName(): NSString { return this.nativeObject.frameAutosaveName; }
+  get stringWithSavedFrame(): string { return this.nativeObject.stringWithSavedFrame; }
+  get frameAutosaveName(): string { return this.nativeObject.frameAutosaveName; }
   get minSize(): CGSize { return this.nativeObject.minSize; }
   set minSize(value: CGSize) { this.nativeObject.minSize = value; }
   get maxSize(): CGSize { return this.nativeObject.maxSize; }
@@ -2727,8 +2727,8 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
   set showsToolbarButton(value: boolean) { this.nativeObject.showsToolbarButton = value; }
   get tabbingMode(): interop.Enum<typeof NSWindowTabbingMode> { return this.nativeObject.tabbingMode; }
   set tabbingMode(value: interop.Enum<typeof NSWindowTabbingMode>) { this.nativeObject.tabbingMode = value; }
-  get tabbingIdentifier(): NSString { return this.nativeObject.tabbingIdentifier; }
-  set tabbingIdentifier(value: NSString | string) { this.nativeObject.tabbingIdentifier = value; }
+  get tabbingIdentifier(): string { return this.nativeObject.tabbingIdentifier; }
+  set tabbingIdentifier(value: string) { this.nativeObject.tabbingIdentifier = value; }
   get tabbedWindows(): NSArray { return this.nativeObject.tabbedWindows; }
   get tab(): NSWindowTab { return this.nativeObject.tab; }
   get tabGroup(): NSWindowTabGroup { return this.nativeObject.tabGroup; }
@@ -2768,15 +2768,15 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
   get restorationClass(): NSWindowRestoration { return this.nativeObject.restorationClass; }
   set restorationClass(value: NSWindowRestoration) { this.nativeObject.restorationClass = value; }
   get animations(): NSDictionary { return this.nativeObject.animations; }
-  set animations(value: NSDictionary | Record<string, unknown>) { this.nativeObject.animations = value; }
+  set animations(value: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>) { this.nativeObject.animations = value; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
-  get identifier(): NSString { return this.nativeObject.identifier; }
-  set identifier(value: NSString | string) { this.nativeObject.identifier = value; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
+  get identifier(): string { return this.nativeObject.identifier; }
+  set identifier(value: string) { this.nativeObject.identifier = value; }
   get appearance(): NSAppearance { return this.nativeObject.appearance; }
   set appearance(value: NSAppearance) { this.nativeObject.appearance = value; }
   get effectiveAppearance(): NSAppearance { return this.nativeObject.effectiveAppearance; }
@@ -2794,32 +2794,32 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
   set accessibilityURL(value: NSURL) { this.nativeObject.accessibilityURL = value; }
   get accessibilityValue(): interop.Object { return this.nativeObject.accessibilityValue; }
   set accessibilityValue(value: interop.Object) { this.nativeObject.accessibilityValue = value; }
-  get accessibilityValueDescription(): NSString { return this.nativeObject.accessibilityValueDescription; }
-  set accessibilityValueDescription(value: NSString | string) { this.nativeObject.accessibilityValueDescription = value; }
+  get accessibilityValueDescription(): string { return this.nativeObject.accessibilityValueDescription; }
+  set accessibilityValueDescription(value: string) { this.nativeObject.accessibilityValueDescription = value; }
   get accessibilityVisibleChildren(): NSArray { return this.nativeObject.accessibilityVisibleChildren; }
-  set accessibilityVisibleChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleChildren = value; }
-  get accessibilitySubrole(): NSString { return this.nativeObject.accessibilitySubrole; }
-  set accessibilitySubrole(value: NSString | string) { this.nativeObject.accessibilitySubrole = value; }
-  get accessibilityTitle(): NSString { return this.nativeObject.accessibilityTitle; }
-  set accessibilityTitle(value: NSString | string) { this.nativeObject.accessibilityTitle = value; }
+  set accessibilityVisibleChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleChildren = value; }
+  get accessibilitySubrole(): string { return this.nativeObject.accessibilitySubrole; }
+  set accessibilitySubrole(value: string) { this.nativeObject.accessibilitySubrole = value; }
+  get accessibilityTitle(): string { return this.nativeObject.accessibilityTitle; }
+  set accessibilityTitle(value: string) { this.nativeObject.accessibilityTitle = value; }
   get accessibilityTitleUIElement(): interop.Object { return this.nativeObject.accessibilityTitleUIElement; }
   set accessibilityTitleUIElement(value: interop.Object) { this.nativeObject.accessibilityTitleUIElement = value; }
   get accessibilityNextContents(): NSArray { return this.nativeObject.accessibilityNextContents; }
-  set accessibilityNextContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityNextContents = value; }
+  set accessibilityNextContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityNextContents = value; }
   get accessibilityOrientation(): interop.Enum<typeof NSAccessibilityOrientation> { return this.nativeObject.accessibilityOrientation; }
   set accessibilityOrientation(value: interop.Enum<typeof NSAccessibilityOrientation>) { this.nativeObject.accessibilityOrientation = value; }
   get accessibilityOverflowButton(): interop.Object { return this.nativeObject.accessibilityOverflowButton; }
   set accessibilityOverflowButton(value: interop.Object) { this.nativeObject.accessibilityOverflowButton = value; }
   get accessibilityParent(): interop.Object { return this.nativeObject.accessibilityParent; }
   set accessibilityParent(value: interop.Object) { this.nativeObject.accessibilityParent = value; }
-  get accessibilityPlaceholderValue(): NSString { return this.nativeObject.accessibilityPlaceholderValue; }
-  set accessibilityPlaceholderValue(value: NSString | string) { this.nativeObject.accessibilityPlaceholderValue = value; }
+  get accessibilityPlaceholderValue(): string { return this.nativeObject.accessibilityPlaceholderValue; }
+  set accessibilityPlaceholderValue(value: string) { this.nativeObject.accessibilityPlaceholderValue = value; }
   get accessibilityPreviousContents(): NSArray { return this.nativeObject.accessibilityPreviousContents; }
-  set accessibilityPreviousContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityPreviousContents = value; }
-  get accessibilityRole(): NSString { return this.nativeObject.accessibilityRole; }
-  set accessibilityRole(value: NSString | string) { this.nativeObject.accessibilityRole = value; }
-  get accessibilityRoleDescription(): NSString { return this.nativeObject.accessibilityRoleDescription; }
-  set accessibilityRoleDescription(value: NSString | string) { this.nativeObject.accessibilityRoleDescription = value; }
+  set accessibilityPreviousContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityPreviousContents = value; }
+  get accessibilityRole(): string { return this.nativeObject.accessibilityRole; }
+  set accessibilityRole(value: string) { this.nativeObject.accessibilityRole = value; }
+  get accessibilityRoleDescription(): string { return this.nativeObject.accessibilityRoleDescription; }
+  set accessibilityRoleDescription(value: string) { this.nativeObject.accessibilityRoleDescription = value; }
   get accessibilitySearchButton(): interop.Object { return this.nativeObject.accessibilitySearchButton; }
   set accessibilitySearchButton(value: interop.Object) { this.nativeObject.accessibilitySearchButton = value; }
   get accessibilitySearchMenu(): interop.Object { return this.nativeObject.accessibilitySearchMenu; }
@@ -2827,9 +2827,9 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
   get isAccessibilitySelected(): boolean { return this.nativeObject.isAccessibilitySelected; }
   set isAccessibilitySelected(value: boolean) { this.nativeObject.isAccessibilitySelected = value; }
   get accessibilitySelectedChildren(): NSArray { return this.nativeObject.accessibilitySelectedChildren; }
-  set accessibilitySelectedChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedChildren = value; }
+  set accessibilitySelectedChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedChildren = value; }
   get accessibilityServesAsTitleForUIElements(): NSArray { return this.nativeObject.accessibilityServesAsTitleForUIElements; }
-  set accessibilityServesAsTitleForUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityServesAsTitleForUIElements = value; }
+  set accessibilityServesAsTitleForUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityServesAsTitleForUIElements = value; }
   get accessibilityShownMenu(): interop.Object { return this.nativeObject.accessibilityShownMenu; }
   set accessibilityShownMenu(value: interop.Object) { this.nativeObject.accessibilityShownMenu = value; }
   get accessibilityMinValue(): interop.Object { return this.nativeObject.accessibilityMinValue; }
@@ -2837,15 +2837,15 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
   get accessibilityMaxValue(): interop.Object { return this.nativeObject.accessibilityMaxValue; }
   set accessibilityMaxValue(value: interop.Object) { this.nativeObject.accessibilityMaxValue = value; }
   get accessibilityLinkedUIElements(): NSArray { return this.nativeObject.accessibilityLinkedUIElements; }
-  set accessibilityLinkedUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityLinkedUIElements = value; }
+  set accessibilityLinkedUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityLinkedUIElements = value; }
   get accessibilityWindow(): interop.Object { return this.nativeObject.accessibilityWindow; }
   set accessibilityWindow(value: interop.Object) { this.nativeObject.accessibilityWindow = value; }
-  get accessibilityIdentifier(): NSString { return this.nativeObject.accessibilityIdentifier; }
-  set accessibilityIdentifier(value: NSString | string) { this.nativeObject.accessibilityIdentifier = value; }
-  get accessibilityHelp(): NSString { return this.nativeObject.accessibilityHelp; }
-  set accessibilityHelp(value: NSString | string) { this.nativeObject.accessibilityHelp = value; }
-  get accessibilityFilename(): NSString { return this.nativeObject.accessibilityFilename; }
-  set accessibilityFilename(value: NSString | string) { this.nativeObject.accessibilityFilename = value; }
+  get accessibilityIdentifier(): string { return this.nativeObject.accessibilityIdentifier; }
+  set accessibilityIdentifier(value: string) { this.nativeObject.accessibilityIdentifier = value; }
+  get accessibilityHelp(): string { return this.nativeObject.accessibilityHelp; }
+  set accessibilityHelp(value: string) { this.nativeObject.accessibilityHelp = value; }
+  get accessibilityFilename(): string { return this.nativeObject.accessibilityFilename; }
+  set accessibilityFilename(value: string) { this.nativeObject.accessibilityFilename = value; }
   get isAccessibilityExpanded(): boolean { return this.nativeObject.isAccessibilityExpanded; }
   set isAccessibilityExpanded(value: boolean) { this.nativeObject.isAccessibilityExpanded = value; }
   get isAccessibilityEdited(): boolean { return this.nativeObject.isAccessibilityEdited; }
@@ -2853,9 +2853,9 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
   get isAccessibilityEnabled(): boolean { return this.nativeObject.isAccessibilityEnabled; }
   set isAccessibilityEnabled(value: boolean) { this.nativeObject.isAccessibilityEnabled = value; }
   get accessibilityChildren(): NSArray { return this.nativeObject.accessibilityChildren; }
-  set accessibilityChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilityChildren = value; }
+  set accessibilityChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityChildren = value; }
   get accessibilityChildrenInNavigationOrder(): NSArray { return this.nativeObject.accessibilityChildrenInNavigationOrder; }
-  set accessibilityChildrenInNavigationOrder(value: NSArray | unknown[]) { this.nativeObject.accessibilityChildrenInNavigationOrder = value; }
+  set accessibilityChildrenInNavigationOrder(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityChildrenInNavigationOrder = value; }
   get accessibilityClearButton(): interop.Object { return this.nativeObject.accessibilityClearButton; }
   set accessibilityClearButton(value: interop.Object) { this.nativeObject.accessibilityClearButton = value; }
   get accessibilityCancelButton(): interop.Object { return this.nativeObject.accessibilityCancelButton; }
@@ -2863,21 +2863,21 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
   get isAccessibilityProtectedContent(): boolean { return this.nativeObject.isAccessibilityProtectedContent; }
   set isAccessibilityProtectedContent(value: boolean) { this.nativeObject.isAccessibilityProtectedContent = value; }
   get accessibilityContents(): NSArray { return this.nativeObject.accessibilityContents; }
-  set accessibilityContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityContents = value; }
-  get accessibilityLabel(): NSString { return this.nativeObject.accessibilityLabel; }
-  set accessibilityLabel(value: NSString | string) { this.nativeObject.accessibilityLabel = value; }
+  set accessibilityContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityContents = value; }
+  get accessibilityLabel(): string { return this.nativeObject.accessibilityLabel; }
+  set accessibilityLabel(value: string) { this.nativeObject.accessibilityLabel = value; }
   get isAccessibilityAlternateUIVisible(): boolean { return this.nativeObject.isAccessibilityAlternateUIVisible; }
   set isAccessibilityAlternateUIVisible(value: boolean) { this.nativeObject.isAccessibilityAlternateUIVisible = value; }
   get accessibilitySharedFocusElements(): NSArray { return this.nativeObject.accessibilitySharedFocusElements; }
-  set accessibilitySharedFocusElements(value: NSArray | unknown[]) { this.nativeObject.accessibilitySharedFocusElements = value; }
+  set accessibilitySharedFocusElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySharedFocusElements = value; }
   get isAccessibilityRequired(): boolean { return this.nativeObject.isAccessibilityRequired; }
   set isAccessibilityRequired(value: boolean) { this.nativeObject.isAccessibilityRequired = value; }
   get accessibilityCustomRotors(): NSArray { return this.nativeObject.accessibilityCustomRotors; }
-  set accessibilityCustomRotors(value: NSArray | unknown[]) { this.nativeObject.accessibilityCustomRotors = value; }
+  set accessibilityCustomRotors(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityCustomRotors = value; }
   get accessibilityUserInputLabels(): NSArray { return this.nativeObject.accessibilityUserInputLabels; }
-  set accessibilityUserInputLabels(value: NSArray | unknown[]) { this.nativeObject.accessibilityUserInputLabels = value; }
+  set accessibilityUserInputLabels(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityUserInputLabels = value; }
   get accessibilityAttributedUserInputLabels(): NSArray { return this.nativeObject.accessibilityAttributedUserInputLabels; }
-  set accessibilityAttributedUserInputLabels(value: NSArray | unknown[]) { this.nativeObject.accessibilityAttributedUserInputLabels = value; }
+  set accessibilityAttributedUserInputLabels(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityAttributedUserInputLabels = value; }
   get accessibilityApplicationFocusedUIElement(): interop.Object { return this.nativeObject.accessibilityApplicationFocusedUIElement; }
   set accessibilityApplicationFocusedUIElement(value: interop.Object) { this.nativeObject.accessibilityApplicationFocusedUIElement = value; }
   get accessibilityMainWindow(): interop.Object { return this.nativeObject.accessibilityMainWindow; }
@@ -2889,25 +2889,25 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
   get accessibilityFocusedWindow(): interop.Object { return this.nativeObject.accessibilityFocusedWindow; }
   set accessibilityFocusedWindow(value: interop.Object) { this.nativeObject.accessibilityFocusedWindow = value; }
   get accessibilityWindows(): NSArray { return this.nativeObject.accessibilityWindows; }
-  set accessibilityWindows(value: NSArray | unknown[]) { this.nativeObject.accessibilityWindows = value; }
+  set accessibilityWindows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityWindows = value; }
   get accessibilityExtrasMenuBar(): interop.Object { return this.nativeObject.accessibilityExtrasMenuBar; }
   set accessibilityExtrasMenuBar(value: interop.Object) { this.nativeObject.accessibilityExtrasMenuBar = value; }
   get accessibilityMenuBar(): interop.Object { return this.nativeObject.accessibilityMenuBar; }
   set accessibilityMenuBar(value: interop.Object) { this.nativeObject.accessibilityMenuBar = value; }
   get accessibilityColumnTitles(): NSArray { return this.nativeObject.accessibilityColumnTitles; }
-  set accessibilityColumnTitles(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumnTitles = value; }
+  set accessibilityColumnTitles(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumnTitles = value; }
   get isAccessibilityOrderedByRow(): boolean { return this.nativeObject.isAccessibilityOrderedByRow; }
   set isAccessibilityOrderedByRow(value: boolean) { this.nativeObject.isAccessibilityOrderedByRow = value; }
   get accessibilityHorizontalUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityHorizontalUnits; }
   set accessibilityHorizontalUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityHorizontalUnits = value; }
   get accessibilityVerticalUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityVerticalUnits; }
   set accessibilityVerticalUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityVerticalUnits = value; }
-  get accessibilityHorizontalUnitDescription(): NSString { return this.nativeObject.accessibilityHorizontalUnitDescription; }
-  set accessibilityHorizontalUnitDescription(value: NSString | string) { this.nativeObject.accessibilityHorizontalUnitDescription = value; }
-  get accessibilityVerticalUnitDescription(): NSString { return this.nativeObject.accessibilityVerticalUnitDescription; }
-  set accessibilityVerticalUnitDescription(value: NSString | string) { this.nativeObject.accessibilityVerticalUnitDescription = value; }
+  get accessibilityHorizontalUnitDescription(): string { return this.nativeObject.accessibilityHorizontalUnitDescription; }
+  set accessibilityHorizontalUnitDescription(value: string) { this.nativeObject.accessibilityHorizontalUnitDescription = value; }
+  get accessibilityVerticalUnitDescription(): string { return this.nativeObject.accessibilityVerticalUnitDescription; }
+  set accessibilityVerticalUnitDescription(value: string) { this.nativeObject.accessibilityVerticalUnitDescription = value; }
   get accessibilityHandles(): NSArray { return this.nativeObject.accessibilityHandles; }
-  set accessibilityHandles(value: NSArray | unknown[]) { this.nativeObject.accessibilityHandles = value; }
+  set accessibilityHandles(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityHandles = value; }
   get accessibilityWarningValue(): interop.Object { return this.nativeObject.accessibilityWarningValue; }
   set accessibilityWarningValue(value: interop.Object) { this.nativeObject.accessibilityWarningValue = value; }
   get accessibilityCriticalValue(): interop.Object { return this.nativeObject.accessibilityCriticalValue; }
@@ -2921,37 +2921,37 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
   get accessibilityDisclosureLevel(): number { return this.nativeObject.accessibilityDisclosureLevel; }
   set accessibilityDisclosureLevel(value: number) { this.nativeObject.accessibilityDisclosureLevel = value; }
   get accessibilityMarkerUIElements(): NSArray { return this.nativeObject.accessibilityMarkerUIElements; }
-  set accessibilityMarkerUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityMarkerUIElements = value; }
+  set accessibilityMarkerUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityMarkerUIElements = value; }
   get accessibilityMarkerValues(): interop.Object { return this.nativeObject.accessibilityMarkerValues; }
   set accessibilityMarkerValues(value: interop.Object) { this.nativeObject.accessibilityMarkerValues = value; }
   get accessibilityMarkerGroupUIElement(): interop.Object { return this.nativeObject.accessibilityMarkerGroupUIElement; }
   set accessibilityMarkerGroupUIElement(value: interop.Object) { this.nativeObject.accessibilityMarkerGroupUIElement = value; }
   get accessibilityUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityUnits; }
   set accessibilityUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityUnits = value; }
-  get accessibilityUnitDescription(): NSString { return this.nativeObject.accessibilityUnitDescription; }
-  set accessibilityUnitDescription(value: NSString | string) { this.nativeObject.accessibilityUnitDescription = value; }
+  get accessibilityUnitDescription(): string { return this.nativeObject.accessibilityUnitDescription; }
+  set accessibilityUnitDescription(value: string) { this.nativeObject.accessibilityUnitDescription = value; }
   get accessibilityRulerMarkerType(): interop.Enum<typeof NSAccessibilityRulerMarkerType> { return this.nativeObject.accessibilityRulerMarkerType; }
   set accessibilityRulerMarkerType(value: interop.Enum<typeof NSAccessibilityRulerMarkerType>) { this.nativeObject.accessibilityRulerMarkerType = value; }
-  get accessibilityMarkerTypeDescription(): NSString { return this.nativeObject.accessibilityMarkerTypeDescription; }
-  set accessibilityMarkerTypeDescription(value: NSString | string) { this.nativeObject.accessibilityMarkerTypeDescription = value; }
+  get accessibilityMarkerTypeDescription(): string { return this.nativeObject.accessibilityMarkerTypeDescription; }
+  set accessibilityMarkerTypeDescription(value: string) { this.nativeObject.accessibilityMarkerTypeDescription = value; }
   get accessibilityHorizontalScrollBar(): interop.Object { return this.nativeObject.accessibilityHorizontalScrollBar; }
   set accessibilityHorizontalScrollBar(value: interop.Object) { this.nativeObject.accessibilityHorizontalScrollBar = value; }
   get accessibilityVerticalScrollBar(): interop.Object { return this.nativeObject.accessibilityVerticalScrollBar; }
   set accessibilityVerticalScrollBar(value: interop.Object) { this.nativeObject.accessibilityVerticalScrollBar = value; }
   get accessibilityAllowedValues(): NSArray { return this.nativeObject.accessibilityAllowedValues; }
-  set accessibilityAllowedValues(value: NSArray | unknown[]) { this.nativeObject.accessibilityAllowedValues = value; }
+  set accessibilityAllowedValues(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityAllowedValues = value; }
   get accessibilityLabelUIElements(): NSArray { return this.nativeObject.accessibilityLabelUIElements; }
-  set accessibilityLabelUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityLabelUIElements = value; }
+  set accessibilityLabelUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityLabelUIElements = value; }
   get accessibilityLabelValue(): number { return this.nativeObject.accessibilityLabelValue; }
   set accessibilityLabelValue(value: number) { this.nativeObject.accessibilityLabelValue = value; }
   get accessibilitySplitters(): NSArray { return this.nativeObject.accessibilitySplitters; }
-  set accessibilitySplitters(value: NSArray | unknown[]) { this.nativeObject.accessibilitySplitters = value; }
+  set accessibilitySplitters(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySplitters = value; }
   get accessibilityDecrementButton(): interop.Object { return this.nativeObject.accessibilityDecrementButton; }
   set accessibilityDecrementButton(value: interop.Object) { this.nativeObject.accessibilityDecrementButton = value; }
   get accessibilityIncrementButton(): interop.Object { return this.nativeObject.accessibilityIncrementButton; }
   set accessibilityIncrementButton(value: interop.Object) { this.nativeObject.accessibilityIncrementButton = value; }
   get accessibilityTabs(): NSArray { return this.nativeObject.accessibilityTabs; }
-  set accessibilityTabs(value: NSArray | unknown[]) { this.nativeObject.accessibilityTabs = value; }
+  set accessibilityTabs(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityTabs = value; }
   get accessibilityHeader(): interop.Object { return this.nativeObject.accessibilityHeader; }
   set accessibilityHeader(value: interop.Object) { this.nativeObject.accessibilityHeader = value; }
   get accessibilityColumnCount(): number { return this.nativeObject.accessibilityColumnCount; }
@@ -2961,27 +2961,27 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
   get accessibilityIndex(): number { return this.nativeObject.accessibilityIndex; }
   set accessibilityIndex(value: number) { this.nativeObject.accessibilityIndex = value; }
   get accessibilityColumns(): NSArray { return this.nativeObject.accessibilityColumns; }
-  set accessibilityColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumns = value; }
+  set accessibilityColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumns = value; }
   get accessibilityRows(): NSArray { return this.nativeObject.accessibilityRows; }
-  set accessibilityRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityRows = value; }
+  set accessibilityRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRows = value; }
   get accessibilityVisibleRows(): NSArray { return this.nativeObject.accessibilityVisibleRows; }
-  set accessibilityVisibleRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleRows = value; }
+  set accessibilityVisibleRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleRows = value; }
   get accessibilitySelectedRows(): NSArray { return this.nativeObject.accessibilitySelectedRows; }
-  set accessibilitySelectedRows(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedRows = value; }
+  set accessibilitySelectedRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedRows = value; }
   get accessibilityVisibleColumns(): NSArray { return this.nativeObject.accessibilityVisibleColumns; }
-  set accessibilityVisibleColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleColumns = value; }
+  set accessibilityVisibleColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleColumns = value; }
   get accessibilitySelectedColumns(): NSArray { return this.nativeObject.accessibilitySelectedColumns; }
-  set accessibilitySelectedColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedColumns = value; }
+  set accessibilitySelectedColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedColumns = value; }
   get accessibilitySortDirection(): interop.Enum<typeof NSAccessibilitySortDirection> { return this.nativeObject.accessibilitySortDirection; }
   set accessibilitySortDirection(value: interop.Enum<typeof NSAccessibilitySortDirection>) { this.nativeObject.accessibilitySortDirection = value; }
   get accessibilityRowHeaderUIElements(): NSArray { return this.nativeObject.accessibilityRowHeaderUIElements; }
-  set accessibilityRowHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
+  set accessibilityRowHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
   get accessibilitySelectedCells(): NSArray { return this.nativeObject.accessibilitySelectedCells; }
-  set accessibilitySelectedCells(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedCells = value; }
+  set accessibilitySelectedCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedCells = value; }
   get accessibilityVisibleCells(): NSArray { return this.nativeObject.accessibilityVisibleCells; }
-  set accessibilityVisibleCells(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleCells = value; }
+  set accessibilityVisibleCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleCells = value; }
   get accessibilityColumnHeaderUIElements(): NSArray { return this.nativeObject.accessibilityColumnHeaderUIElements; }
-  set accessibilityColumnHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
+  set accessibilityColumnHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
   get accessibilityRowIndexRange(): _NSRange { return this.nativeObject.accessibilityRowIndexRange; }
   set accessibilityRowIndexRange(value: _NSRange) { this.nativeObject.accessibilityRowIndexRange = value; }
   get accessibilityColumnIndexRange(): _NSRange { return this.nativeObject.accessibilityColumnIndexRange; }
@@ -2991,17 +2991,17 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
   get accessibilitySharedCharacterRange(): _NSRange { return this.nativeObject.accessibilitySharedCharacterRange; }
   set accessibilitySharedCharacterRange(value: _NSRange) { this.nativeObject.accessibilitySharedCharacterRange = value; }
   get accessibilitySharedTextUIElements(): NSArray { return this.nativeObject.accessibilitySharedTextUIElements; }
-  set accessibilitySharedTextUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilitySharedTextUIElements = value; }
+  set accessibilitySharedTextUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySharedTextUIElements = value; }
   get accessibilityVisibleCharacterRange(): _NSRange { return this.nativeObject.accessibilityVisibleCharacterRange; }
   set accessibilityVisibleCharacterRange(value: _NSRange) { this.nativeObject.accessibilityVisibleCharacterRange = value; }
   get accessibilityNumberOfCharacters(): number { return this.nativeObject.accessibilityNumberOfCharacters; }
   set accessibilityNumberOfCharacters(value: number) { this.nativeObject.accessibilityNumberOfCharacters = value; }
-  get accessibilitySelectedText(): NSString { return this.nativeObject.accessibilitySelectedText; }
-  set accessibilitySelectedText(value: NSString | string) { this.nativeObject.accessibilitySelectedText = value; }
+  get accessibilitySelectedText(): string { return this.nativeObject.accessibilitySelectedText; }
+  set accessibilitySelectedText(value: string) { this.nativeObject.accessibilitySelectedText = value; }
   get accessibilitySelectedTextRange(): _NSRange { return this.nativeObject.accessibilitySelectedTextRange; }
   set accessibilitySelectedTextRange(value: _NSRange) { this.nativeObject.accessibilitySelectedTextRange = value; }
   get accessibilitySelectedTextRanges(): NSArray { return this.nativeObject.accessibilitySelectedTextRanges; }
-  set accessibilitySelectedTextRanges(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedTextRanges = value; }
+  set accessibilitySelectedTextRanges(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedTextRanges = value; }
   get accessibilityToolbarButton(): interop.Object { return this.nativeObject.accessibilityToolbarButton; }
   set accessibilityToolbarButton(value: interop.Object) { this.nativeObject.accessibilityToolbarButton = value; }
   get isAccessibilityModal(): boolean { return this.nativeObject.isAccessibilityModal; }
@@ -3014,8 +3014,8 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
   set accessibilityFullScreenButton(value: interop.Object) { this.nativeObject.accessibilityFullScreenButton = value; }
   get accessibilityGrowArea(): interop.Object { return this.nativeObject.accessibilityGrowArea; }
   set accessibilityGrowArea(value: interop.Object) { this.nativeObject.accessibilityGrowArea = value; }
-  get accessibilityDocument(): NSString { return this.nativeObject.accessibilityDocument; }
-  set accessibilityDocument(value: NSString | string) { this.nativeObject.accessibilityDocument = value; }
+  get accessibilityDocument(): string { return this.nativeObject.accessibilityDocument; }
+  set accessibilityDocument(value: string) { this.nativeObject.accessibilityDocument = value; }
   get accessibilityDefaultButton(): interop.Object { return this.nativeObject.accessibilityDefaultButton; }
   set accessibilityDefaultButton(value: interop.Object) { this.nativeObject.accessibilityDefaultButton = value; }
   get accessibilityCloseButton(): interop.Object { return this.nativeObject.accessibilityCloseButton; }
@@ -3027,7 +3027,7 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
   get isAccessibilityMinimized(): boolean { return this.nativeObject.isAccessibilityMinimized; }
   set isAccessibilityMinimized(value: boolean) { this.nativeObject.isAccessibilityMinimized = value; }
   get accessibilityCustomActions(): NSArray { return this.nativeObject.accessibilityCustomActions; }
-  set accessibilityCustomActions(value: NSArray | unknown[]) { this.nativeObject.accessibilityCustomActions = value; }
+  set accessibilityCustomActions(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityCustomActions = value; }
 
   set windowShouldClose(value: (sender: NSWindow) => boolean) {
     this.delegate.windowShouldClose = value;
@@ -3241,8 +3241,8 @@ export class HTMLNSTabViewItemElement extends HTMLNSObjectElement {
   set identifier(value: interop.Object) { this.nativeObject.identifier = value; }
   get color(): NSColor { return this.nativeObject.color; }
   set color(value: NSColor) { this.nativeObject.color = value; }
-  get label(): NSString { return this.nativeObject.label; }
-  set label(value: NSString | string) { this.nativeObject.label = value; }
+  get label(): string { return this.nativeObject.label; }
+  set label(value: string) { this.nativeObject.label = value; }
   get image(): NSImage { return this.nativeObject.image; }
   set image(value: NSImage) { this.nativeObject.image = value; }
   get view(): NSView { return this.nativeObject.view; }
@@ -3253,8 +3253,8 @@ export class HTMLNSTabViewItemElement extends HTMLNSObjectElement {
   get tabView(): NSTabView { return this.nativeObject.tabView; }
   get initialFirstResponder(): NSView { return this.nativeObject.initialFirstResponder; }
   set initialFirstResponder(value: NSView) { this.nativeObject.initialFirstResponder = value; }
-  get toolTip(): NSString { return this.nativeObject.toolTip; }
-  set toolTip(value: NSString | string) { this.nativeObject.toolTip = value; }
+  get toolTip(): string { return this.nativeObject.toolTip; }
+  set toolTip(value: string) { this.nativeObject.toolTip = value; }
 }
 
 export class HTMLNSMenuItemBadgeElement extends HTMLNSObjectElement {
@@ -3264,7 +3264,7 @@ export class HTMLNSMenuItemBadgeElement extends HTMLNSObjectElement {
 
   get itemCount(): number { return this.nativeObject.itemCount; }
   get type(): interop.Enum<typeof NSMenuItemBadgeType> { return this.nativeObject.type; }
-  get stringValue(): NSString { return this.nativeObject.stringValue; }
+  get stringValue(): string { return this.nativeObject.stringValue; }
 }
 
 export class HTMLNSGridColumnElement extends HTMLNSObjectElement {
@@ -3299,24 +3299,24 @@ export class HTMLNSPathCellElement extends HTMLNSActionCellElement {
   get URL(): NSURL { return this.nativeObject.URL; }
   set URL(value: NSURL) { this.nativeObject.URL = value; }
   get allowedTypes(): NSArray { return this.nativeObject.allowedTypes; }
-  set allowedTypes(value: NSArray | unknown[]) { this.nativeObject.allowedTypes = value; }
+  set allowedTypes(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.allowedTypes = value; }
   get pathComponentCells(): NSArray { return this.nativeObject.pathComponentCells; }
-  set pathComponentCells(value: NSArray | unknown[]) { this.nativeObject.pathComponentCells = value; }
+  set pathComponentCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.pathComponentCells = value; }
   get clickedPathComponentCell(): NSPathComponentCell { return this.nativeObject.clickedPathComponentCell; }
   get doubleAction(): string { return this.nativeObject.doubleAction; }
   set doubleAction(value: string) { this.nativeObject.doubleAction = value; }
   get backgroundColor(): NSColor { return this.nativeObject.backgroundColor; }
   set backgroundColor(value: NSColor) { this.nativeObject.backgroundColor = value; }
-  get placeholderString(): NSString { return this.nativeObject.placeholderString; }
-  set placeholderString(value: NSString | string) { this.nativeObject.placeholderString = value; }
+  get placeholderString(): string { return this.nativeObject.placeholderString; }
+  set placeholderString(value: string) { this.nativeObject.placeholderString = value; }
   get placeholderAttributedString(): NSAttributedString { return this.nativeObject.placeholderAttributedString; }
   set placeholderAttributedString(value: NSAttributedString) { this.nativeObject.placeholderAttributedString = value; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 
   set pathCellWillDisplayOpenPanel(value: (pathCell: NSPathCell, openPanel: NSOpenPanel) => void) {
     this.delegate.pathCellWillDisplayOpenPanel = value;
@@ -3355,7 +3355,7 @@ export class HTMLNSTextLayoutManagerElement extends HTMLNSObjectElement {
   get layoutQueue(): NSOperationQueue { return this.nativeObject.layoutQueue; }
   set layoutQueue(value: NSOperationQueue) { this.nativeObject.layoutQueue = value; }
   get textSelections(): NSArray { return this.nativeObject.textSelections; }
-  set textSelections(value: NSArray | unknown[]) { this.nativeObject.textSelections = value; }
+  set textSelections(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.textSelections = value; }
   get textSelectionNavigation(): NSTextSelectionNavigation { return this.nativeObject.textSelectionNavigation; }
   set textSelectionNavigation(value: NSTextSelectionNavigation) { this.nativeObject.textSelectionNavigation = value; }
   get renderingAttributesValidator(): (p1: NSTextLayoutManager, p2: NSTextLayoutFragment) => void { return this.nativeObject.renderingAttributesValidator; }
@@ -3365,8 +3365,8 @@ export class HTMLNSTextLayoutManagerElement extends HTMLNSObjectElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 
   set textLayoutManagerTextLayoutFragmentForLocationInTextElement(value: (textLayoutManager: NSTextLayoutManager, location: NSTextLocation, textElement: NSTextElement) => NSTextLayoutFragment) {
     this.delegate.textLayoutManagerTextLayoutFragmentForLocationInTextElement = value;
@@ -3374,7 +3374,7 @@ export class HTMLNSTextLayoutManagerElement extends HTMLNSObjectElement {
   set textLayoutManagerShouldBreakLineBeforeLocationHyphenating(value: (textLayoutManager: NSTextLayoutManager, location: NSTextLocation, hyphenating: boolean) => boolean) {
     this.delegate.textLayoutManagerShouldBreakLineBeforeLocationHyphenating = value;
   }
-  set textLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes(value: (textLayoutManager: NSTextLayoutManager, link: interop.Object, location: NSTextLocation, renderingAttributes: NSDictionary | Record<string, unknown>) => NSDictionary) {
+  set textLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes(value: (textLayoutManager: NSTextLayoutManager, link: interop.Object, location: NSTextLocation, renderingAttributes: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>) => NSDictionary) {
     this.delegate.textLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes = value;
   }
 }
@@ -3386,8 +3386,8 @@ export class HTMLNSWindowTabElement extends HTMLNSObjectElement {
 
   get attributedTitle(): NSAttributedString { return this.nativeObject.attributedTitle; }
   set attributedTitle(value: NSAttributedString) { this.nativeObject.attributedTitle = value; }
-  get toolTip(): NSString { return this.nativeObject.toolTip; }
-  set toolTip(value: NSString | string) { this.nativeObject.toolTip = value; }
+  get toolTip(): string { return this.nativeObject.toolTip; }
+  set toolTip(value: string) { this.nativeObject.toolTip = value; }
   get accessoryView(): NSView { return this.nativeObject.accessoryView; }
   set accessoryView(value: NSView) { this.nativeObject.accessoryView = value; }
 }
@@ -3422,8 +3422,8 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
   get isAccessibilityElement(): boolean { return this.nativeObject.isAccessibilityElement; }
   set isAccessibilityElement(value: boolean) { this.nativeObject.isAccessibilityElement = value; }
   get accessibilityFrame(): CGRect { return this.nativeObject.accessibilityFrame; }
@@ -3438,32 +3438,32 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
   set accessibilityURL(value: NSURL) { this.nativeObject.accessibilityURL = value; }
   get accessibilityValue(): interop.Object { return this.nativeObject.accessibilityValue; }
   set accessibilityValue(value: interop.Object) { this.nativeObject.accessibilityValue = value; }
-  get accessibilityValueDescription(): NSString { return this.nativeObject.accessibilityValueDescription; }
-  set accessibilityValueDescription(value: NSString | string) { this.nativeObject.accessibilityValueDescription = value; }
+  get accessibilityValueDescription(): string { return this.nativeObject.accessibilityValueDescription; }
+  set accessibilityValueDescription(value: string) { this.nativeObject.accessibilityValueDescription = value; }
   get accessibilityVisibleChildren(): NSArray { return this.nativeObject.accessibilityVisibleChildren; }
-  set accessibilityVisibleChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleChildren = value; }
-  get accessibilitySubrole(): NSString { return this.nativeObject.accessibilitySubrole; }
-  set accessibilitySubrole(value: NSString | string) { this.nativeObject.accessibilitySubrole = value; }
-  get accessibilityTitle(): NSString { return this.nativeObject.accessibilityTitle; }
-  set accessibilityTitle(value: NSString | string) { this.nativeObject.accessibilityTitle = value; }
+  set accessibilityVisibleChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleChildren = value; }
+  get accessibilitySubrole(): string { return this.nativeObject.accessibilitySubrole; }
+  set accessibilitySubrole(value: string) { this.nativeObject.accessibilitySubrole = value; }
+  get accessibilityTitle(): string { return this.nativeObject.accessibilityTitle; }
+  set accessibilityTitle(value: string) { this.nativeObject.accessibilityTitle = value; }
   get accessibilityTitleUIElement(): interop.Object { return this.nativeObject.accessibilityTitleUIElement; }
   set accessibilityTitleUIElement(value: interop.Object) { this.nativeObject.accessibilityTitleUIElement = value; }
   get accessibilityNextContents(): NSArray { return this.nativeObject.accessibilityNextContents; }
-  set accessibilityNextContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityNextContents = value; }
+  set accessibilityNextContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityNextContents = value; }
   get accessibilityOrientation(): interop.Enum<typeof NSAccessibilityOrientation> { return this.nativeObject.accessibilityOrientation; }
   set accessibilityOrientation(value: interop.Enum<typeof NSAccessibilityOrientation>) { this.nativeObject.accessibilityOrientation = value; }
   get accessibilityOverflowButton(): interop.Object { return this.nativeObject.accessibilityOverflowButton; }
   set accessibilityOverflowButton(value: interop.Object) { this.nativeObject.accessibilityOverflowButton = value; }
   get accessibilityParent(): interop.Object { return this.nativeObject.accessibilityParent; }
   set accessibilityParent(value: interop.Object) { this.nativeObject.accessibilityParent = value; }
-  get accessibilityPlaceholderValue(): NSString { return this.nativeObject.accessibilityPlaceholderValue; }
-  set accessibilityPlaceholderValue(value: NSString | string) { this.nativeObject.accessibilityPlaceholderValue = value; }
+  get accessibilityPlaceholderValue(): string { return this.nativeObject.accessibilityPlaceholderValue; }
+  set accessibilityPlaceholderValue(value: string) { this.nativeObject.accessibilityPlaceholderValue = value; }
   get accessibilityPreviousContents(): NSArray { return this.nativeObject.accessibilityPreviousContents; }
-  set accessibilityPreviousContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityPreviousContents = value; }
-  get accessibilityRole(): NSString { return this.nativeObject.accessibilityRole; }
-  set accessibilityRole(value: NSString | string) { this.nativeObject.accessibilityRole = value; }
-  get accessibilityRoleDescription(): NSString { return this.nativeObject.accessibilityRoleDescription; }
-  set accessibilityRoleDescription(value: NSString | string) { this.nativeObject.accessibilityRoleDescription = value; }
+  set accessibilityPreviousContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityPreviousContents = value; }
+  get accessibilityRole(): string { return this.nativeObject.accessibilityRole; }
+  set accessibilityRole(value: string) { this.nativeObject.accessibilityRole = value; }
+  get accessibilityRoleDescription(): string { return this.nativeObject.accessibilityRoleDescription; }
+  set accessibilityRoleDescription(value: string) { this.nativeObject.accessibilityRoleDescription = value; }
   get accessibilitySearchButton(): interop.Object { return this.nativeObject.accessibilitySearchButton; }
   set accessibilitySearchButton(value: interop.Object) { this.nativeObject.accessibilitySearchButton = value; }
   get accessibilitySearchMenu(): interop.Object { return this.nativeObject.accessibilitySearchMenu; }
@@ -3471,9 +3471,9 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
   get isAccessibilitySelected(): boolean { return this.nativeObject.isAccessibilitySelected; }
   set isAccessibilitySelected(value: boolean) { this.nativeObject.isAccessibilitySelected = value; }
   get accessibilitySelectedChildren(): NSArray { return this.nativeObject.accessibilitySelectedChildren; }
-  set accessibilitySelectedChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedChildren = value; }
+  set accessibilitySelectedChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedChildren = value; }
   get accessibilityServesAsTitleForUIElements(): NSArray { return this.nativeObject.accessibilityServesAsTitleForUIElements; }
-  set accessibilityServesAsTitleForUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityServesAsTitleForUIElements = value; }
+  set accessibilityServesAsTitleForUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityServesAsTitleForUIElements = value; }
   get accessibilityShownMenu(): interop.Object { return this.nativeObject.accessibilityShownMenu; }
   set accessibilityShownMenu(value: interop.Object) { this.nativeObject.accessibilityShownMenu = value; }
   get accessibilityMinValue(): interop.Object { return this.nativeObject.accessibilityMinValue; }
@@ -3481,15 +3481,15 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
   get accessibilityMaxValue(): interop.Object { return this.nativeObject.accessibilityMaxValue; }
   set accessibilityMaxValue(value: interop.Object) { this.nativeObject.accessibilityMaxValue = value; }
   get accessibilityLinkedUIElements(): NSArray { return this.nativeObject.accessibilityLinkedUIElements; }
-  set accessibilityLinkedUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityLinkedUIElements = value; }
+  set accessibilityLinkedUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityLinkedUIElements = value; }
   get accessibilityWindow(): interop.Object { return this.nativeObject.accessibilityWindow; }
   set accessibilityWindow(value: interop.Object) { this.nativeObject.accessibilityWindow = value; }
-  get accessibilityIdentifier(): NSString { return this.nativeObject.accessibilityIdentifier; }
-  set accessibilityIdentifier(value: NSString | string) { this.nativeObject.accessibilityIdentifier = value; }
-  get accessibilityHelp(): NSString { return this.nativeObject.accessibilityHelp; }
-  set accessibilityHelp(value: NSString | string) { this.nativeObject.accessibilityHelp = value; }
-  get accessibilityFilename(): NSString { return this.nativeObject.accessibilityFilename; }
-  set accessibilityFilename(value: NSString | string) { this.nativeObject.accessibilityFilename = value; }
+  get accessibilityIdentifier(): string { return this.nativeObject.accessibilityIdentifier; }
+  set accessibilityIdentifier(value: string) { this.nativeObject.accessibilityIdentifier = value; }
+  get accessibilityHelp(): string { return this.nativeObject.accessibilityHelp; }
+  set accessibilityHelp(value: string) { this.nativeObject.accessibilityHelp = value; }
+  get accessibilityFilename(): string { return this.nativeObject.accessibilityFilename; }
+  set accessibilityFilename(value: string) { this.nativeObject.accessibilityFilename = value; }
   get isAccessibilityExpanded(): boolean { return this.nativeObject.isAccessibilityExpanded; }
   set isAccessibilityExpanded(value: boolean) { this.nativeObject.isAccessibilityExpanded = value; }
   get isAccessibilityEdited(): boolean { return this.nativeObject.isAccessibilityEdited; }
@@ -3497,9 +3497,9 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
   get isAccessibilityEnabled(): boolean { return this.nativeObject.isAccessibilityEnabled; }
   set isAccessibilityEnabled(value: boolean) { this.nativeObject.isAccessibilityEnabled = value; }
   get accessibilityChildren(): NSArray { return this.nativeObject.accessibilityChildren; }
-  set accessibilityChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilityChildren = value; }
+  set accessibilityChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityChildren = value; }
   get accessibilityChildrenInNavigationOrder(): NSArray { return this.nativeObject.accessibilityChildrenInNavigationOrder; }
-  set accessibilityChildrenInNavigationOrder(value: NSArray | unknown[]) { this.nativeObject.accessibilityChildrenInNavigationOrder = value; }
+  set accessibilityChildrenInNavigationOrder(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityChildrenInNavigationOrder = value; }
   get accessibilityClearButton(): interop.Object { return this.nativeObject.accessibilityClearButton; }
   set accessibilityClearButton(value: interop.Object) { this.nativeObject.accessibilityClearButton = value; }
   get accessibilityCancelButton(): interop.Object { return this.nativeObject.accessibilityCancelButton; }
@@ -3507,21 +3507,21 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
   get isAccessibilityProtectedContent(): boolean { return this.nativeObject.isAccessibilityProtectedContent; }
   set isAccessibilityProtectedContent(value: boolean) { this.nativeObject.isAccessibilityProtectedContent = value; }
   get accessibilityContents(): NSArray { return this.nativeObject.accessibilityContents; }
-  set accessibilityContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityContents = value; }
-  get accessibilityLabel(): NSString { return this.nativeObject.accessibilityLabel; }
-  set accessibilityLabel(value: NSString | string) { this.nativeObject.accessibilityLabel = value; }
+  set accessibilityContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityContents = value; }
+  get accessibilityLabel(): string { return this.nativeObject.accessibilityLabel; }
+  set accessibilityLabel(value: string) { this.nativeObject.accessibilityLabel = value; }
   get isAccessibilityAlternateUIVisible(): boolean { return this.nativeObject.isAccessibilityAlternateUIVisible; }
   set isAccessibilityAlternateUIVisible(value: boolean) { this.nativeObject.isAccessibilityAlternateUIVisible = value; }
   get accessibilitySharedFocusElements(): NSArray { return this.nativeObject.accessibilitySharedFocusElements; }
-  set accessibilitySharedFocusElements(value: NSArray | unknown[]) { this.nativeObject.accessibilitySharedFocusElements = value; }
+  set accessibilitySharedFocusElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySharedFocusElements = value; }
   get isAccessibilityRequired(): boolean { return this.nativeObject.isAccessibilityRequired; }
   set isAccessibilityRequired(value: boolean) { this.nativeObject.isAccessibilityRequired = value; }
   get accessibilityCustomRotors(): NSArray { return this.nativeObject.accessibilityCustomRotors; }
-  set accessibilityCustomRotors(value: NSArray | unknown[]) { this.nativeObject.accessibilityCustomRotors = value; }
+  set accessibilityCustomRotors(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityCustomRotors = value; }
   get accessibilityUserInputLabels(): NSArray { return this.nativeObject.accessibilityUserInputLabels; }
-  set accessibilityUserInputLabels(value: NSArray | unknown[]) { this.nativeObject.accessibilityUserInputLabels = value; }
+  set accessibilityUserInputLabels(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityUserInputLabels = value; }
   get accessibilityAttributedUserInputLabels(): NSArray { return this.nativeObject.accessibilityAttributedUserInputLabels; }
-  set accessibilityAttributedUserInputLabels(value: NSArray | unknown[]) { this.nativeObject.accessibilityAttributedUserInputLabels = value; }
+  set accessibilityAttributedUserInputLabels(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityAttributedUserInputLabels = value; }
   get accessibilityApplicationFocusedUIElement(): interop.Object { return this.nativeObject.accessibilityApplicationFocusedUIElement; }
   set accessibilityApplicationFocusedUIElement(value: interop.Object) { this.nativeObject.accessibilityApplicationFocusedUIElement = value; }
   get accessibilityMainWindow(): interop.Object { return this.nativeObject.accessibilityMainWindow; }
@@ -3533,25 +3533,25 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
   get accessibilityFocusedWindow(): interop.Object { return this.nativeObject.accessibilityFocusedWindow; }
   set accessibilityFocusedWindow(value: interop.Object) { this.nativeObject.accessibilityFocusedWindow = value; }
   get accessibilityWindows(): NSArray { return this.nativeObject.accessibilityWindows; }
-  set accessibilityWindows(value: NSArray | unknown[]) { this.nativeObject.accessibilityWindows = value; }
+  set accessibilityWindows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityWindows = value; }
   get accessibilityExtrasMenuBar(): interop.Object { return this.nativeObject.accessibilityExtrasMenuBar; }
   set accessibilityExtrasMenuBar(value: interop.Object) { this.nativeObject.accessibilityExtrasMenuBar = value; }
   get accessibilityMenuBar(): interop.Object { return this.nativeObject.accessibilityMenuBar; }
   set accessibilityMenuBar(value: interop.Object) { this.nativeObject.accessibilityMenuBar = value; }
   get accessibilityColumnTitles(): NSArray { return this.nativeObject.accessibilityColumnTitles; }
-  set accessibilityColumnTitles(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumnTitles = value; }
+  set accessibilityColumnTitles(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumnTitles = value; }
   get isAccessibilityOrderedByRow(): boolean { return this.nativeObject.isAccessibilityOrderedByRow; }
   set isAccessibilityOrderedByRow(value: boolean) { this.nativeObject.isAccessibilityOrderedByRow = value; }
   get accessibilityHorizontalUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityHorizontalUnits; }
   set accessibilityHorizontalUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityHorizontalUnits = value; }
   get accessibilityVerticalUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityVerticalUnits; }
   set accessibilityVerticalUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityVerticalUnits = value; }
-  get accessibilityHorizontalUnitDescription(): NSString { return this.nativeObject.accessibilityHorizontalUnitDescription; }
-  set accessibilityHorizontalUnitDescription(value: NSString | string) { this.nativeObject.accessibilityHorizontalUnitDescription = value; }
-  get accessibilityVerticalUnitDescription(): NSString { return this.nativeObject.accessibilityVerticalUnitDescription; }
-  set accessibilityVerticalUnitDescription(value: NSString | string) { this.nativeObject.accessibilityVerticalUnitDescription = value; }
+  get accessibilityHorizontalUnitDescription(): string { return this.nativeObject.accessibilityHorizontalUnitDescription; }
+  set accessibilityHorizontalUnitDescription(value: string) { this.nativeObject.accessibilityHorizontalUnitDescription = value; }
+  get accessibilityVerticalUnitDescription(): string { return this.nativeObject.accessibilityVerticalUnitDescription; }
+  set accessibilityVerticalUnitDescription(value: string) { this.nativeObject.accessibilityVerticalUnitDescription = value; }
   get accessibilityHandles(): NSArray { return this.nativeObject.accessibilityHandles; }
-  set accessibilityHandles(value: NSArray | unknown[]) { this.nativeObject.accessibilityHandles = value; }
+  set accessibilityHandles(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityHandles = value; }
   get accessibilityWarningValue(): interop.Object { return this.nativeObject.accessibilityWarningValue; }
   set accessibilityWarningValue(value: interop.Object) { this.nativeObject.accessibilityWarningValue = value; }
   get accessibilityCriticalValue(): interop.Object { return this.nativeObject.accessibilityCriticalValue; }
@@ -3565,37 +3565,37 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
   get accessibilityDisclosureLevel(): number { return this.nativeObject.accessibilityDisclosureLevel; }
   set accessibilityDisclosureLevel(value: number) { this.nativeObject.accessibilityDisclosureLevel = value; }
   get accessibilityMarkerUIElements(): NSArray { return this.nativeObject.accessibilityMarkerUIElements; }
-  set accessibilityMarkerUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityMarkerUIElements = value; }
+  set accessibilityMarkerUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityMarkerUIElements = value; }
   get accessibilityMarkerValues(): interop.Object { return this.nativeObject.accessibilityMarkerValues; }
   set accessibilityMarkerValues(value: interop.Object) { this.nativeObject.accessibilityMarkerValues = value; }
   get accessibilityMarkerGroupUIElement(): interop.Object { return this.nativeObject.accessibilityMarkerGroupUIElement; }
   set accessibilityMarkerGroupUIElement(value: interop.Object) { this.nativeObject.accessibilityMarkerGroupUIElement = value; }
   get accessibilityUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityUnits; }
   set accessibilityUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityUnits = value; }
-  get accessibilityUnitDescription(): NSString { return this.nativeObject.accessibilityUnitDescription; }
-  set accessibilityUnitDescription(value: NSString | string) { this.nativeObject.accessibilityUnitDescription = value; }
+  get accessibilityUnitDescription(): string { return this.nativeObject.accessibilityUnitDescription; }
+  set accessibilityUnitDescription(value: string) { this.nativeObject.accessibilityUnitDescription = value; }
   get accessibilityRulerMarkerType(): interop.Enum<typeof NSAccessibilityRulerMarkerType> { return this.nativeObject.accessibilityRulerMarkerType; }
   set accessibilityRulerMarkerType(value: interop.Enum<typeof NSAccessibilityRulerMarkerType>) { this.nativeObject.accessibilityRulerMarkerType = value; }
-  get accessibilityMarkerTypeDescription(): NSString { return this.nativeObject.accessibilityMarkerTypeDescription; }
-  set accessibilityMarkerTypeDescription(value: NSString | string) { this.nativeObject.accessibilityMarkerTypeDescription = value; }
+  get accessibilityMarkerTypeDescription(): string { return this.nativeObject.accessibilityMarkerTypeDescription; }
+  set accessibilityMarkerTypeDescription(value: string) { this.nativeObject.accessibilityMarkerTypeDescription = value; }
   get accessibilityHorizontalScrollBar(): interop.Object { return this.nativeObject.accessibilityHorizontalScrollBar; }
   set accessibilityHorizontalScrollBar(value: interop.Object) { this.nativeObject.accessibilityHorizontalScrollBar = value; }
   get accessibilityVerticalScrollBar(): interop.Object { return this.nativeObject.accessibilityVerticalScrollBar; }
   set accessibilityVerticalScrollBar(value: interop.Object) { this.nativeObject.accessibilityVerticalScrollBar = value; }
   get accessibilityAllowedValues(): NSArray { return this.nativeObject.accessibilityAllowedValues; }
-  set accessibilityAllowedValues(value: NSArray | unknown[]) { this.nativeObject.accessibilityAllowedValues = value; }
+  set accessibilityAllowedValues(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityAllowedValues = value; }
   get accessibilityLabelUIElements(): NSArray { return this.nativeObject.accessibilityLabelUIElements; }
-  set accessibilityLabelUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityLabelUIElements = value; }
+  set accessibilityLabelUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityLabelUIElements = value; }
   get accessibilityLabelValue(): number { return this.nativeObject.accessibilityLabelValue; }
   set accessibilityLabelValue(value: number) { this.nativeObject.accessibilityLabelValue = value; }
   get accessibilitySplitters(): NSArray { return this.nativeObject.accessibilitySplitters; }
-  set accessibilitySplitters(value: NSArray | unknown[]) { this.nativeObject.accessibilitySplitters = value; }
+  set accessibilitySplitters(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySplitters = value; }
   get accessibilityDecrementButton(): interop.Object { return this.nativeObject.accessibilityDecrementButton; }
   set accessibilityDecrementButton(value: interop.Object) { this.nativeObject.accessibilityDecrementButton = value; }
   get accessibilityIncrementButton(): interop.Object { return this.nativeObject.accessibilityIncrementButton; }
   set accessibilityIncrementButton(value: interop.Object) { this.nativeObject.accessibilityIncrementButton = value; }
   get accessibilityTabs(): NSArray { return this.nativeObject.accessibilityTabs; }
-  set accessibilityTabs(value: NSArray | unknown[]) { this.nativeObject.accessibilityTabs = value; }
+  set accessibilityTabs(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityTabs = value; }
   get accessibilityHeader(): interop.Object { return this.nativeObject.accessibilityHeader; }
   set accessibilityHeader(value: interop.Object) { this.nativeObject.accessibilityHeader = value; }
   get accessibilityColumnCount(): number { return this.nativeObject.accessibilityColumnCount; }
@@ -3605,27 +3605,27 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
   get accessibilityIndex(): number { return this.nativeObject.accessibilityIndex; }
   set accessibilityIndex(value: number) { this.nativeObject.accessibilityIndex = value; }
   get accessibilityColumns(): NSArray { return this.nativeObject.accessibilityColumns; }
-  set accessibilityColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumns = value; }
+  set accessibilityColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumns = value; }
   get accessibilityRows(): NSArray { return this.nativeObject.accessibilityRows; }
-  set accessibilityRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityRows = value; }
+  set accessibilityRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRows = value; }
   get accessibilityVisibleRows(): NSArray { return this.nativeObject.accessibilityVisibleRows; }
-  set accessibilityVisibleRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleRows = value; }
+  set accessibilityVisibleRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleRows = value; }
   get accessibilitySelectedRows(): NSArray { return this.nativeObject.accessibilitySelectedRows; }
-  set accessibilitySelectedRows(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedRows = value; }
+  set accessibilitySelectedRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedRows = value; }
   get accessibilityVisibleColumns(): NSArray { return this.nativeObject.accessibilityVisibleColumns; }
-  set accessibilityVisibleColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleColumns = value; }
+  set accessibilityVisibleColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleColumns = value; }
   get accessibilitySelectedColumns(): NSArray { return this.nativeObject.accessibilitySelectedColumns; }
-  set accessibilitySelectedColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedColumns = value; }
+  set accessibilitySelectedColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedColumns = value; }
   get accessibilitySortDirection(): interop.Enum<typeof NSAccessibilitySortDirection> { return this.nativeObject.accessibilitySortDirection; }
   set accessibilitySortDirection(value: interop.Enum<typeof NSAccessibilitySortDirection>) { this.nativeObject.accessibilitySortDirection = value; }
   get accessibilityRowHeaderUIElements(): NSArray { return this.nativeObject.accessibilityRowHeaderUIElements; }
-  set accessibilityRowHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
+  set accessibilityRowHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
   get accessibilitySelectedCells(): NSArray { return this.nativeObject.accessibilitySelectedCells; }
-  set accessibilitySelectedCells(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedCells = value; }
+  set accessibilitySelectedCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedCells = value; }
   get accessibilityVisibleCells(): NSArray { return this.nativeObject.accessibilityVisibleCells; }
-  set accessibilityVisibleCells(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleCells = value; }
+  set accessibilityVisibleCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleCells = value; }
   get accessibilityColumnHeaderUIElements(): NSArray { return this.nativeObject.accessibilityColumnHeaderUIElements; }
-  set accessibilityColumnHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
+  set accessibilityColumnHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
   get accessibilityRowIndexRange(): _NSRange { return this.nativeObject.accessibilityRowIndexRange; }
   set accessibilityRowIndexRange(value: _NSRange) { this.nativeObject.accessibilityRowIndexRange = value; }
   get accessibilityColumnIndexRange(): _NSRange { return this.nativeObject.accessibilityColumnIndexRange; }
@@ -3635,17 +3635,17 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
   get accessibilitySharedCharacterRange(): _NSRange { return this.nativeObject.accessibilitySharedCharacterRange; }
   set accessibilitySharedCharacterRange(value: _NSRange) { this.nativeObject.accessibilitySharedCharacterRange = value; }
   get accessibilitySharedTextUIElements(): NSArray { return this.nativeObject.accessibilitySharedTextUIElements; }
-  set accessibilitySharedTextUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilitySharedTextUIElements = value; }
+  set accessibilitySharedTextUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySharedTextUIElements = value; }
   get accessibilityVisibleCharacterRange(): _NSRange { return this.nativeObject.accessibilityVisibleCharacterRange; }
   set accessibilityVisibleCharacterRange(value: _NSRange) { this.nativeObject.accessibilityVisibleCharacterRange = value; }
   get accessibilityNumberOfCharacters(): number { return this.nativeObject.accessibilityNumberOfCharacters; }
   set accessibilityNumberOfCharacters(value: number) { this.nativeObject.accessibilityNumberOfCharacters = value; }
-  get accessibilitySelectedText(): NSString { return this.nativeObject.accessibilitySelectedText; }
-  set accessibilitySelectedText(value: NSString | string) { this.nativeObject.accessibilitySelectedText = value; }
+  get accessibilitySelectedText(): string { return this.nativeObject.accessibilitySelectedText; }
+  set accessibilitySelectedText(value: string) { this.nativeObject.accessibilitySelectedText = value; }
   get accessibilitySelectedTextRange(): _NSRange { return this.nativeObject.accessibilitySelectedTextRange; }
   set accessibilitySelectedTextRange(value: _NSRange) { this.nativeObject.accessibilitySelectedTextRange = value; }
   get accessibilitySelectedTextRanges(): NSArray { return this.nativeObject.accessibilitySelectedTextRanges; }
-  set accessibilitySelectedTextRanges(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedTextRanges = value; }
+  set accessibilitySelectedTextRanges(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedTextRanges = value; }
   get accessibilityToolbarButton(): interop.Object { return this.nativeObject.accessibilityToolbarButton; }
   set accessibilityToolbarButton(value: interop.Object) { this.nativeObject.accessibilityToolbarButton = value; }
   get isAccessibilityModal(): boolean { return this.nativeObject.isAccessibilityModal; }
@@ -3658,8 +3658,8 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
   set accessibilityFullScreenButton(value: interop.Object) { this.nativeObject.accessibilityFullScreenButton = value; }
   get accessibilityGrowArea(): interop.Object { return this.nativeObject.accessibilityGrowArea; }
   set accessibilityGrowArea(value: interop.Object) { this.nativeObject.accessibilityGrowArea = value; }
-  get accessibilityDocument(): NSString { return this.nativeObject.accessibilityDocument; }
-  set accessibilityDocument(value: NSString | string) { this.nativeObject.accessibilityDocument = value; }
+  get accessibilityDocument(): string { return this.nativeObject.accessibilityDocument; }
+  set accessibilityDocument(value: string) { this.nativeObject.accessibilityDocument = value; }
   get accessibilityDefaultButton(): interop.Object { return this.nativeObject.accessibilityDefaultButton; }
   set accessibilityDefaultButton(value: interop.Object) { this.nativeObject.accessibilityDefaultButton = value; }
   get accessibilityCloseButton(): interop.Object { return this.nativeObject.accessibilityCloseButton; }
@@ -3671,7 +3671,7 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
   get isAccessibilityMinimized(): boolean { return this.nativeObject.isAccessibilityMinimized; }
   set isAccessibilityMinimized(value: boolean) { this.nativeObject.isAccessibilityMinimized = value; }
   get accessibilityCustomActions(): NSArray { return this.nativeObject.accessibilityCustomActions; }
-  set accessibilityCustomActions(value: NSArray | unknown[]) { this.nativeObject.accessibilityCustomActions = value; }
+  set accessibilityCustomActions(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityCustomActions = value; }
 
   set drawerShouldOpen(value: (sender: NSDrawer) => boolean) {
     this.delegate.drawerShouldOpen = value;
@@ -3777,7 +3777,7 @@ export class HTMLNSLayoutManagerElement extends HTMLNSObjectElement {
   set layoutManagerTextContainerDidChangeGeometryFromSize(value: (layoutManager: NSLayoutManager, textContainer: NSTextContainer, oldSize: CGSize) => void) {
     this.delegate.layoutManagerTextContainerDidChangeGeometryFromSize = value;
   }
-  set layoutManagerShouldUseTemporaryAttributesForDrawingToScreenAtCharacterIndexEffectiveRange(value: (layoutManager: NSLayoutManager, attrs: NSDictionary | Record<string, unknown>, toScreen: boolean, charIndex: number, effectiveCharRange: interop.PointerConvertible) => NSDictionary) {
+  set layoutManagerShouldUseTemporaryAttributesForDrawingToScreenAtCharacterIndexEffectiveRange(value: (layoutManager: NSLayoutManager, attrs: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>, toScreen: boolean, charIndex: number, effectiveCharRange: interop.PointerConvertible) => NSDictionary) {
     this.delegate.layoutManagerShouldUseTemporaryAttributesForDrawingToScreenAtCharacterIndexEffectiveRange = value;
   }
 }
@@ -3792,24 +3792,24 @@ export class HTMLNSSharingServiceElement extends HTMLNSObjectElement {
 
   get image(): NSImage { return this.nativeObject.image; }
   get alternateImage(): NSImage { return this.nativeObject.alternateImage; }
-  get menuItemTitle(): NSString { return this.nativeObject.menuItemTitle; }
-  set menuItemTitle(value: NSString | string) { this.nativeObject.menuItemTitle = value; }
+  get menuItemTitle(): string { return this.nativeObject.menuItemTitle; }
+  set menuItemTitle(value: string) { this.nativeObject.menuItemTitle = value; }
   get recipients(): NSArray { return this.nativeObject.recipients; }
-  set recipients(value: NSArray | unknown[]) { this.nativeObject.recipients = value; }
-  get subject(): NSString { return this.nativeObject.subject; }
-  set subject(value: NSString | string) { this.nativeObject.subject = value; }
-  get messageBody(): NSString { return this.nativeObject.messageBody; }
+  set recipients(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.recipients = value; }
+  get subject(): string { return this.nativeObject.subject; }
+  set subject(value: string) { this.nativeObject.subject = value; }
+  get messageBody(): string { return this.nativeObject.messageBody; }
   get permanentLink(): NSURL { return this.nativeObject.permanentLink; }
-  get accountName(): NSString { return this.nativeObject.accountName; }
+  get accountName(): string { return this.nativeObject.accountName; }
   get attachmentFileURLs(): NSArray { return this.nativeObject.attachmentFileURLs; }
 
-  set sharingServiceWillShareItems(value: (sharingService: NSSharingService, items: NSArray | unknown[]) => void) {
+  set sharingServiceWillShareItems(value: (sharingService: NSSharingService, items: NSArray<interop.Object> | Array<interop.Object>) => void) {
     this.delegate.sharingServiceWillShareItems = value;
   }
-  set sharingServiceDidFailToShareItemsError(value: (sharingService: NSSharingService, items: NSArray | unknown[], error: NSError) => void) {
+  set sharingServiceDidFailToShareItemsError(value: (sharingService: NSSharingService, items: NSArray<interop.Object> | Array<interop.Object>, error: NSError) => void) {
     this.delegate.sharingServiceDidFailToShareItemsError = value;
   }
-  set sharingServiceDidShareItems(value: (sharingService: NSSharingService, items: NSArray | unknown[]) => void) {
+  set sharingServiceDidShareItems(value: (sharingService: NSSharingService, items: NSArray<interop.Object> | Array<interop.Object>) => void) {
     this.delegate.sharingServiceDidShareItems = value;
   }
   set sharingServiceSourceFrameOnScreenForShareItem(value: (sharingService: NSSharingService, item: interop.Object) => CGRect) {
@@ -3818,7 +3818,7 @@ export class HTMLNSSharingServiceElement extends HTMLNSObjectElement {
   set sharingServiceTransitionImageForShareItemContentRect(value: (sharingService: NSSharingService, item: interop.Object, contentRect: interop.PointerConvertible) => NSImage) {
     this.delegate.sharingServiceTransitionImageForShareItemContentRect = value;
   }
-  set sharingServiceSourceWindowForShareItemsSharingContentScope(value: (sharingService: NSSharingService, items: NSArray | unknown[], sharingContentScope: interop.PointerConvertible) => NSWindow) {
+  set sharingServiceSourceWindowForShareItemsSharingContentScope(value: (sharingService: NSSharingService, items: NSArray<interop.Object> | Array<interop.Object>, sharingContentScope: interop.PointerConvertible) => NSWindow) {
     this.delegate.sharingServiceSourceWindowForShareItemsSharingContentScope = value;
   }
   set anchoringViewForSharingServiceShowRelativeToRectPreferredEdge(value: (sharingService: NSSharingService, positioningRect: interop.PointerConvertible, preferredEdge: interop.PointerConvertible) => NSView) {
@@ -3832,14 +3832,14 @@ export class HTMLNSTreeControllerElement extends HTMLNSObjectControllerElement {
   readonly nativeObject = NSTreeController.new();
 
   get arrangedObjects(): NSTreeNode { return this.nativeObject.arrangedObjects; }
-  get childrenKeyPath(): NSString { return this.nativeObject.childrenKeyPath; }
-  set childrenKeyPath(value: NSString | string) { this.nativeObject.childrenKeyPath = value; }
-  get countKeyPath(): NSString { return this.nativeObject.countKeyPath; }
-  set countKeyPath(value: NSString | string) { this.nativeObject.countKeyPath = value; }
-  get leafKeyPath(): NSString { return this.nativeObject.leafKeyPath; }
-  set leafKeyPath(value: NSString | string) { this.nativeObject.leafKeyPath = value; }
+  get childrenKeyPath(): string { return this.nativeObject.childrenKeyPath; }
+  set childrenKeyPath(value: string) { this.nativeObject.childrenKeyPath = value; }
+  get countKeyPath(): string { return this.nativeObject.countKeyPath; }
+  set countKeyPath(value: string) { this.nativeObject.countKeyPath = value; }
+  get leafKeyPath(): string { return this.nativeObject.leafKeyPath; }
+  set leafKeyPath(value: string) { this.nativeObject.leafKeyPath = value; }
   get sortDescriptors(): NSArray { return this.nativeObject.sortDescriptors; }
-  set sortDescriptors(value: NSArray | unknown[]) { this.nativeObject.sortDescriptors = value; }
+  set sortDescriptors(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.sortDescriptors = value; }
   get content(): interop.Object { return this.nativeObject.content; }
   set content(value: interop.Object) { this.nativeObject.content = value; }
   get canInsert(): boolean { return this.nativeObject.canInsert; }
@@ -3906,8 +3906,8 @@ export class HTMLNSPreviewRepresentingActivityItemElement extends HTMLNSObjectEl
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSDraggingSessionElement extends HTMLNSObjectElement {
@@ -3931,14 +3931,14 @@ export class HTMLNSCollectionViewDiffableDataSourceElement extends HTMLNSObjectE
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionViewDiffableDataSource.new();
 
-  get supplementaryViewProvider(): (p1: NSCollectionView, p2: NSString | string, p3: NSIndexPath) => NSView { return this.nativeObject.supplementaryViewProvider; }
-  set supplementaryViewProvider(value: (p1: NSCollectionView, p2: NSString | string, p3: NSIndexPath) => NSView) { this.nativeObject.supplementaryViewProvider = value; }
+  get supplementaryViewProvider(): (p1: NSCollectionView, p2: string, p3: NSIndexPath) => NSView { return this.nativeObject.supplementaryViewProvider; }
+  set supplementaryViewProvider(value: (p1: NSCollectionView, p2: string, p3: NSIndexPath) => NSView) { this.nativeObject.supplementaryViewProvider = value; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSTextContentManagerElement extends HTMLNSObjectElement {
@@ -3962,8 +3962,8 @@ export class HTMLNSTextContentManagerElement extends HTMLNSObjectElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 
   set textContentManagerTextElementAtLocation(value: (textContentManager: NSTextContentManager, location: NSTextLocation) => NSTextElement) {
     this.delegate.textContentManagerTextElementAtLocation = value;
@@ -3978,8 +3978,8 @@ export class HTMLNSPrinterElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPrinter.new();
 
-  get name(): NSString { return this.nativeObject.name; }
-  get type(): NSString { return this.nativeObject.type; }
+  get name(): string { return this.nativeObject.name; }
+  get type(): string { return this.nativeObject.type; }
   get languageLevel(): number { return this.nativeObject.languageLevel; }
   get deviceDescription(): NSDictionary { return this.nativeObject.deviceDescription; }
 }
@@ -3989,7 +3989,7 @@ export class HTMLNSAppearanceElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSAppearance.new();
 
-  get name(): NSString { return this.nativeObject.name; }
+  get name(): string { return this.nativeObject.name; }
   get allowsVibrancy(): boolean { return this.nativeObject.allowsVibrancy; }
 }
 
@@ -4002,10 +4002,10 @@ export class HTMLNSTextInputContextElement extends HTMLNSObjectElement {
   get acceptsGlyphInfo(): boolean { return this.nativeObject.acceptsGlyphInfo; }
   set acceptsGlyphInfo(value: boolean) { this.nativeObject.acceptsGlyphInfo = value; }
   get allowedInputSourceLocales(): NSArray { return this.nativeObject.allowedInputSourceLocales; }
-  set allowedInputSourceLocales(value: NSArray | unknown[]) { this.nativeObject.allowedInputSourceLocales = value; }
+  set allowedInputSourceLocales(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.allowedInputSourceLocales = value; }
   get keyboardInputSources(): NSArray { return this.nativeObject.keyboardInputSources; }
-  get selectedKeyboardInputSource(): NSString { return this.nativeObject.selectedKeyboardInputSource; }
-  set selectedKeyboardInputSource(value: NSString | string) { this.nativeObject.selectedKeyboardInputSource = value; }
+  get selectedKeyboardInputSource(): string { return this.nativeObject.selectedKeyboardInputSource; }
+  set selectedKeyboardInputSource(value: string) { this.nativeObject.selectedKeyboardInputSource = value; }
 }
 
 export class HTMLNSCustomImageRepElement extends HTMLNSImageRepElement {
@@ -4038,7 +4038,7 @@ export class HTMLNSColorSpaceElement extends HTMLNSObjectElement {
   get CGColorSpace(): interop.Pointer { return this.nativeObject.CGColorSpace; }
   get numberOfColorComponents(): number { return this.nativeObject.numberOfColorComponents; }
   get colorSpaceModel(): interop.Enum<typeof NSColorSpaceModel> { return this.nativeObject.colorSpaceModel; }
-  get localizedName(): NSString { return this.nativeObject.localizedName; }
+  get localizedName(): string { return this.nativeObject.localizedName; }
 }
 
 export class HTMLNSAnimationContextElement extends HTMLNSObjectElement {
@@ -4100,8 +4100,8 @@ export class HTMLNSAccessibilityCustomActionElement extends HTMLNSObjectElement 
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSAccessibilityCustomAction.new();
 
-  get name(): NSString { return this.nativeObject.name; }
-  set name(value: NSString | string) { this.nativeObject.name = value; }
+  get name(): string { return this.nativeObject.name; }
+  set name(value: string) { this.nativeObject.name = value; }
   get handler(): () => boolean { return this.nativeObject.handler; }
   set handler(value: () => boolean) { this.nativeObject.handler = value; }
   get target(): NSObject { return this.nativeObject.target; }
@@ -4118,7 +4118,7 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
   get window(): NSWindow { return this.nativeObject.window; }
   get superview(): NSView { return this.nativeObject.superview; }
   get subviews(): NSArray { return this.nativeObject.subviews; }
-  set subviews(value: NSArray | unknown[]) { this.nativeObject.subviews = value; }
+  set subviews(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.subviews = value; }
   get opaqueAncestor(): NSView { return this.nativeObject.opaqueAncestor; }
   get isHidden(): boolean { return this.nativeObject.isHidden; }
   set isHidden(value: boolean) { this.nativeObject.isHidden = value; }
@@ -4175,11 +4175,11 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
   get layerUsesCoreImageFilters(): boolean { return this.nativeObject.layerUsesCoreImageFilters; }
   set layerUsesCoreImageFilters(value: boolean) { this.nativeObject.layerUsesCoreImageFilters = value; }
   get backgroundFilters(): NSArray { return this.nativeObject.backgroundFilters; }
-  set backgroundFilters(value: NSArray | unknown[]) { this.nativeObject.backgroundFilters = value; }
+  set backgroundFilters(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.backgroundFilters = value; }
   get compositingFilter(): CIFilter { return this.nativeObject.compositingFilter; }
   set compositingFilter(value: CIFilter) { this.nativeObject.compositingFilter = value; }
   get contentFilters(): NSArray { return this.nativeObject.contentFilters; }
-  set contentFilters(value: NSArray | unknown[]) { this.nativeObject.contentFilters = value; }
+  set contentFilters(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.contentFilters = value; }
   get shadow(): NSShadow { return this.nativeObject.shadow; }
   set shadow(value: NSShadow) { this.nativeObject.shadow = value; }
   get clipsToBounds(): boolean { return this.nativeObject.clipsToBounds; }
@@ -4187,8 +4187,8 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
   get postsBoundsChangedNotifications(): boolean { return this.nativeObject.postsBoundsChangedNotifications; }
   set postsBoundsChangedNotifications(value: boolean) { this.nativeObject.postsBoundsChangedNotifications = value; }
   get enclosingScrollView(): NSScrollView { return this.nativeObject.enclosingScrollView; }
-  get toolTip(): NSString { return this.nativeObject.toolTip; }
-  set toolTip(value: NSString | string) { this.nativeObject.toolTip = value; }
+  get toolTip(): string { return this.nativeObject.toolTip; }
+  set toolTip(value: string) { this.nativeObject.toolTip = value; }
   get inLiveResize(): boolean { return this.nativeObject.inLiveResize; }
   get preservesContentDuringLiveResize(): boolean { return this.nativeObject.preservesContentDuringLiveResize; }
   get rectPreservedDuringLiveResize(): CGRect { return this.nativeObject.rectPreservedDuringLiveResize; }
@@ -4211,12 +4211,12 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
   get widthAdjustLimit(): number { return this.nativeObject.widthAdjustLimit; }
   get pageHeader(): NSAttributedString { return this.nativeObject.pageHeader; }
   get pageFooter(): NSAttributedString { return this.nativeObject.pageFooter; }
-  get printJobTitle(): NSString { return this.nativeObject.printJobTitle; }
+  get printJobTitle(): string { return this.nativeObject.printJobTitle; }
   get registeredDraggedTypes(): NSArray { return this.nativeObject.registeredDraggedTypes; }
   get isInFullScreenMode(): boolean { return this.nativeObject.isInFullScreenMode; }
   get isDrawingFindIndicator(): boolean { return this.nativeObject.isDrawingFindIndicator; }
   get gestureRecognizers(): NSArray { return this.nativeObject.gestureRecognizers; }
-  set gestureRecognizers(value: NSArray | unknown[]) { this.nativeObject.gestureRecognizers = value; }
+  set gestureRecognizers(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.gestureRecognizers = value; }
   get allowedTouchTypes(): interop.Enum<typeof NSTouchTypeMask> { return this.nativeObject.allowedTouchTypes; }
   set allowedTouchTypes(value: interop.Enum<typeof NSTouchTypeMask>) { this.nativeObject.allowedTouchTypes = value; }
   get safeAreaInsets(): NSEdgeInsets { return this.nativeObject.safeAreaInsets; }
@@ -4264,15 +4264,15 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
   get pressureConfiguration(): NSPressureConfiguration { return this.nativeObject.pressureConfiguration; }
   set pressureConfiguration(value: NSPressureConfiguration) { this.nativeObject.pressureConfiguration = value; }
   get animations(): NSDictionary { return this.nativeObject.animations; }
-  set animations(value: NSDictionary | Record<string, unknown>) { this.nativeObject.animations = value; }
-  get identifier(): NSString { return this.nativeObject.identifier; }
-  set identifier(value: NSString | string) { this.nativeObject.identifier = value; }
+  set animations(value: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>) { this.nativeObject.animations = value; }
+  get identifier(): string { return this.nativeObject.identifier; }
+  set identifier(value: string) { this.nativeObject.identifier = value; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
   get appearance(): NSAppearance { return this.nativeObject.appearance; }
   set appearance(value: NSAppearance) { this.nativeObject.appearance = value; }
   get effectiveAppearance(): NSAppearance { return this.nativeObject.effectiveAppearance; }
@@ -4290,32 +4290,32 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
   set accessibilityURL(value: NSURL) { this.nativeObject.accessibilityURL = value; }
   get accessibilityValue(): interop.Object { return this.nativeObject.accessibilityValue; }
   set accessibilityValue(value: interop.Object) { this.nativeObject.accessibilityValue = value; }
-  get accessibilityValueDescription(): NSString { return this.nativeObject.accessibilityValueDescription; }
-  set accessibilityValueDescription(value: NSString | string) { this.nativeObject.accessibilityValueDescription = value; }
+  get accessibilityValueDescription(): string { return this.nativeObject.accessibilityValueDescription; }
+  set accessibilityValueDescription(value: string) { this.nativeObject.accessibilityValueDescription = value; }
   get accessibilityVisibleChildren(): NSArray { return this.nativeObject.accessibilityVisibleChildren; }
-  set accessibilityVisibleChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleChildren = value; }
-  get accessibilitySubrole(): NSString { return this.nativeObject.accessibilitySubrole; }
-  set accessibilitySubrole(value: NSString | string) { this.nativeObject.accessibilitySubrole = value; }
-  get accessibilityTitle(): NSString { return this.nativeObject.accessibilityTitle; }
-  set accessibilityTitle(value: NSString | string) { this.nativeObject.accessibilityTitle = value; }
+  set accessibilityVisibleChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleChildren = value; }
+  get accessibilitySubrole(): string { return this.nativeObject.accessibilitySubrole; }
+  set accessibilitySubrole(value: string) { this.nativeObject.accessibilitySubrole = value; }
+  get accessibilityTitle(): string { return this.nativeObject.accessibilityTitle; }
+  set accessibilityTitle(value: string) { this.nativeObject.accessibilityTitle = value; }
   get accessibilityTitleUIElement(): interop.Object { return this.nativeObject.accessibilityTitleUIElement; }
   set accessibilityTitleUIElement(value: interop.Object) { this.nativeObject.accessibilityTitleUIElement = value; }
   get accessibilityNextContents(): NSArray { return this.nativeObject.accessibilityNextContents; }
-  set accessibilityNextContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityNextContents = value; }
+  set accessibilityNextContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityNextContents = value; }
   get accessibilityOrientation(): interop.Enum<typeof NSAccessibilityOrientation> { return this.nativeObject.accessibilityOrientation; }
   set accessibilityOrientation(value: interop.Enum<typeof NSAccessibilityOrientation>) { this.nativeObject.accessibilityOrientation = value; }
   get accessibilityOverflowButton(): interop.Object { return this.nativeObject.accessibilityOverflowButton; }
   set accessibilityOverflowButton(value: interop.Object) { this.nativeObject.accessibilityOverflowButton = value; }
   get accessibilityParent(): interop.Object { return this.nativeObject.accessibilityParent; }
   set accessibilityParent(value: interop.Object) { this.nativeObject.accessibilityParent = value; }
-  get accessibilityPlaceholderValue(): NSString { return this.nativeObject.accessibilityPlaceholderValue; }
-  set accessibilityPlaceholderValue(value: NSString | string) { this.nativeObject.accessibilityPlaceholderValue = value; }
+  get accessibilityPlaceholderValue(): string { return this.nativeObject.accessibilityPlaceholderValue; }
+  set accessibilityPlaceholderValue(value: string) { this.nativeObject.accessibilityPlaceholderValue = value; }
   get accessibilityPreviousContents(): NSArray { return this.nativeObject.accessibilityPreviousContents; }
-  set accessibilityPreviousContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityPreviousContents = value; }
-  get accessibilityRole(): NSString { return this.nativeObject.accessibilityRole; }
-  set accessibilityRole(value: NSString | string) { this.nativeObject.accessibilityRole = value; }
-  get accessibilityRoleDescription(): NSString { return this.nativeObject.accessibilityRoleDescription; }
-  set accessibilityRoleDescription(value: NSString | string) { this.nativeObject.accessibilityRoleDescription = value; }
+  set accessibilityPreviousContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityPreviousContents = value; }
+  get accessibilityRole(): string { return this.nativeObject.accessibilityRole; }
+  set accessibilityRole(value: string) { this.nativeObject.accessibilityRole = value; }
+  get accessibilityRoleDescription(): string { return this.nativeObject.accessibilityRoleDescription; }
+  set accessibilityRoleDescription(value: string) { this.nativeObject.accessibilityRoleDescription = value; }
   get accessibilitySearchButton(): interop.Object { return this.nativeObject.accessibilitySearchButton; }
   set accessibilitySearchButton(value: interop.Object) { this.nativeObject.accessibilitySearchButton = value; }
   get accessibilitySearchMenu(): interop.Object { return this.nativeObject.accessibilitySearchMenu; }
@@ -4323,9 +4323,9 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
   get isAccessibilitySelected(): boolean { return this.nativeObject.isAccessibilitySelected; }
   set isAccessibilitySelected(value: boolean) { this.nativeObject.isAccessibilitySelected = value; }
   get accessibilitySelectedChildren(): NSArray { return this.nativeObject.accessibilitySelectedChildren; }
-  set accessibilitySelectedChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedChildren = value; }
+  set accessibilitySelectedChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedChildren = value; }
   get accessibilityServesAsTitleForUIElements(): NSArray { return this.nativeObject.accessibilityServesAsTitleForUIElements; }
-  set accessibilityServesAsTitleForUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityServesAsTitleForUIElements = value; }
+  set accessibilityServesAsTitleForUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityServesAsTitleForUIElements = value; }
   get accessibilityShownMenu(): interop.Object { return this.nativeObject.accessibilityShownMenu; }
   set accessibilityShownMenu(value: interop.Object) { this.nativeObject.accessibilityShownMenu = value; }
   get accessibilityMinValue(): interop.Object { return this.nativeObject.accessibilityMinValue; }
@@ -4333,15 +4333,15 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
   get accessibilityMaxValue(): interop.Object { return this.nativeObject.accessibilityMaxValue; }
   set accessibilityMaxValue(value: interop.Object) { this.nativeObject.accessibilityMaxValue = value; }
   get accessibilityLinkedUIElements(): NSArray { return this.nativeObject.accessibilityLinkedUIElements; }
-  set accessibilityLinkedUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityLinkedUIElements = value; }
+  set accessibilityLinkedUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityLinkedUIElements = value; }
   get accessibilityWindow(): interop.Object { return this.nativeObject.accessibilityWindow; }
   set accessibilityWindow(value: interop.Object) { this.nativeObject.accessibilityWindow = value; }
-  get accessibilityIdentifier(): NSString { return this.nativeObject.accessibilityIdentifier; }
-  set accessibilityIdentifier(value: NSString | string) { this.nativeObject.accessibilityIdentifier = value; }
-  get accessibilityHelp(): NSString { return this.nativeObject.accessibilityHelp; }
-  set accessibilityHelp(value: NSString | string) { this.nativeObject.accessibilityHelp = value; }
-  get accessibilityFilename(): NSString { return this.nativeObject.accessibilityFilename; }
-  set accessibilityFilename(value: NSString | string) { this.nativeObject.accessibilityFilename = value; }
+  get accessibilityIdentifier(): string { return this.nativeObject.accessibilityIdentifier; }
+  set accessibilityIdentifier(value: string) { this.nativeObject.accessibilityIdentifier = value; }
+  get accessibilityHelp(): string { return this.nativeObject.accessibilityHelp; }
+  set accessibilityHelp(value: string) { this.nativeObject.accessibilityHelp = value; }
+  get accessibilityFilename(): string { return this.nativeObject.accessibilityFilename; }
+  set accessibilityFilename(value: string) { this.nativeObject.accessibilityFilename = value; }
   get isAccessibilityExpanded(): boolean { return this.nativeObject.isAccessibilityExpanded; }
   set isAccessibilityExpanded(value: boolean) { this.nativeObject.isAccessibilityExpanded = value; }
   get isAccessibilityEdited(): boolean { return this.nativeObject.isAccessibilityEdited; }
@@ -4349,9 +4349,9 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
   get isAccessibilityEnabled(): boolean { return this.nativeObject.isAccessibilityEnabled; }
   set isAccessibilityEnabled(value: boolean) { this.nativeObject.isAccessibilityEnabled = value; }
   get accessibilityChildren(): NSArray { return this.nativeObject.accessibilityChildren; }
-  set accessibilityChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilityChildren = value; }
+  set accessibilityChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityChildren = value; }
   get accessibilityChildrenInNavigationOrder(): NSArray { return this.nativeObject.accessibilityChildrenInNavigationOrder; }
-  set accessibilityChildrenInNavigationOrder(value: NSArray | unknown[]) { this.nativeObject.accessibilityChildrenInNavigationOrder = value; }
+  set accessibilityChildrenInNavigationOrder(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityChildrenInNavigationOrder = value; }
   get accessibilityClearButton(): interop.Object { return this.nativeObject.accessibilityClearButton; }
   set accessibilityClearButton(value: interop.Object) { this.nativeObject.accessibilityClearButton = value; }
   get accessibilityCancelButton(): interop.Object { return this.nativeObject.accessibilityCancelButton; }
@@ -4359,21 +4359,21 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
   get isAccessibilityProtectedContent(): boolean { return this.nativeObject.isAccessibilityProtectedContent; }
   set isAccessibilityProtectedContent(value: boolean) { this.nativeObject.isAccessibilityProtectedContent = value; }
   get accessibilityContents(): NSArray { return this.nativeObject.accessibilityContents; }
-  set accessibilityContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityContents = value; }
-  get accessibilityLabel(): NSString { return this.nativeObject.accessibilityLabel; }
-  set accessibilityLabel(value: NSString | string) { this.nativeObject.accessibilityLabel = value; }
+  set accessibilityContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityContents = value; }
+  get accessibilityLabel(): string { return this.nativeObject.accessibilityLabel; }
+  set accessibilityLabel(value: string) { this.nativeObject.accessibilityLabel = value; }
   get isAccessibilityAlternateUIVisible(): boolean { return this.nativeObject.isAccessibilityAlternateUIVisible; }
   set isAccessibilityAlternateUIVisible(value: boolean) { this.nativeObject.isAccessibilityAlternateUIVisible = value; }
   get accessibilitySharedFocusElements(): NSArray { return this.nativeObject.accessibilitySharedFocusElements; }
-  set accessibilitySharedFocusElements(value: NSArray | unknown[]) { this.nativeObject.accessibilitySharedFocusElements = value; }
+  set accessibilitySharedFocusElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySharedFocusElements = value; }
   get isAccessibilityRequired(): boolean { return this.nativeObject.isAccessibilityRequired; }
   set isAccessibilityRequired(value: boolean) { this.nativeObject.isAccessibilityRequired = value; }
   get accessibilityCustomRotors(): NSArray { return this.nativeObject.accessibilityCustomRotors; }
-  set accessibilityCustomRotors(value: NSArray | unknown[]) { this.nativeObject.accessibilityCustomRotors = value; }
+  set accessibilityCustomRotors(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityCustomRotors = value; }
   get accessibilityUserInputLabels(): NSArray { return this.nativeObject.accessibilityUserInputLabels; }
-  set accessibilityUserInputLabels(value: NSArray | unknown[]) { this.nativeObject.accessibilityUserInputLabels = value; }
+  set accessibilityUserInputLabels(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityUserInputLabels = value; }
   get accessibilityAttributedUserInputLabels(): NSArray { return this.nativeObject.accessibilityAttributedUserInputLabels; }
-  set accessibilityAttributedUserInputLabels(value: NSArray | unknown[]) { this.nativeObject.accessibilityAttributedUserInputLabels = value; }
+  set accessibilityAttributedUserInputLabels(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityAttributedUserInputLabels = value; }
   get accessibilityApplicationFocusedUIElement(): interop.Object { return this.nativeObject.accessibilityApplicationFocusedUIElement; }
   set accessibilityApplicationFocusedUIElement(value: interop.Object) { this.nativeObject.accessibilityApplicationFocusedUIElement = value; }
   get accessibilityMainWindow(): interop.Object { return this.nativeObject.accessibilityMainWindow; }
@@ -4385,25 +4385,25 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
   get accessibilityFocusedWindow(): interop.Object { return this.nativeObject.accessibilityFocusedWindow; }
   set accessibilityFocusedWindow(value: interop.Object) { this.nativeObject.accessibilityFocusedWindow = value; }
   get accessibilityWindows(): NSArray { return this.nativeObject.accessibilityWindows; }
-  set accessibilityWindows(value: NSArray | unknown[]) { this.nativeObject.accessibilityWindows = value; }
+  set accessibilityWindows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityWindows = value; }
   get accessibilityExtrasMenuBar(): interop.Object { return this.nativeObject.accessibilityExtrasMenuBar; }
   set accessibilityExtrasMenuBar(value: interop.Object) { this.nativeObject.accessibilityExtrasMenuBar = value; }
   get accessibilityMenuBar(): interop.Object { return this.nativeObject.accessibilityMenuBar; }
   set accessibilityMenuBar(value: interop.Object) { this.nativeObject.accessibilityMenuBar = value; }
   get accessibilityColumnTitles(): NSArray { return this.nativeObject.accessibilityColumnTitles; }
-  set accessibilityColumnTitles(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumnTitles = value; }
+  set accessibilityColumnTitles(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumnTitles = value; }
   get isAccessibilityOrderedByRow(): boolean { return this.nativeObject.isAccessibilityOrderedByRow; }
   set isAccessibilityOrderedByRow(value: boolean) { this.nativeObject.isAccessibilityOrderedByRow = value; }
   get accessibilityHorizontalUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityHorizontalUnits; }
   set accessibilityHorizontalUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityHorizontalUnits = value; }
   get accessibilityVerticalUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityVerticalUnits; }
   set accessibilityVerticalUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityVerticalUnits = value; }
-  get accessibilityHorizontalUnitDescription(): NSString { return this.nativeObject.accessibilityHorizontalUnitDescription; }
-  set accessibilityHorizontalUnitDescription(value: NSString | string) { this.nativeObject.accessibilityHorizontalUnitDescription = value; }
-  get accessibilityVerticalUnitDescription(): NSString { return this.nativeObject.accessibilityVerticalUnitDescription; }
-  set accessibilityVerticalUnitDescription(value: NSString | string) { this.nativeObject.accessibilityVerticalUnitDescription = value; }
+  get accessibilityHorizontalUnitDescription(): string { return this.nativeObject.accessibilityHorizontalUnitDescription; }
+  set accessibilityHorizontalUnitDescription(value: string) { this.nativeObject.accessibilityHorizontalUnitDescription = value; }
+  get accessibilityVerticalUnitDescription(): string { return this.nativeObject.accessibilityVerticalUnitDescription; }
+  set accessibilityVerticalUnitDescription(value: string) { this.nativeObject.accessibilityVerticalUnitDescription = value; }
   get accessibilityHandles(): NSArray { return this.nativeObject.accessibilityHandles; }
-  set accessibilityHandles(value: NSArray | unknown[]) { this.nativeObject.accessibilityHandles = value; }
+  set accessibilityHandles(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityHandles = value; }
   get accessibilityWarningValue(): interop.Object { return this.nativeObject.accessibilityWarningValue; }
   set accessibilityWarningValue(value: interop.Object) { this.nativeObject.accessibilityWarningValue = value; }
   get accessibilityCriticalValue(): interop.Object { return this.nativeObject.accessibilityCriticalValue; }
@@ -4417,37 +4417,37 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
   get accessibilityDisclosureLevel(): number { return this.nativeObject.accessibilityDisclosureLevel; }
   set accessibilityDisclosureLevel(value: number) { this.nativeObject.accessibilityDisclosureLevel = value; }
   get accessibilityMarkerUIElements(): NSArray { return this.nativeObject.accessibilityMarkerUIElements; }
-  set accessibilityMarkerUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityMarkerUIElements = value; }
+  set accessibilityMarkerUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityMarkerUIElements = value; }
   get accessibilityMarkerValues(): interop.Object { return this.nativeObject.accessibilityMarkerValues; }
   set accessibilityMarkerValues(value: interop.Object) { this.nativeObject.accessibilityMarkerValues = value; }
   get accessibilityMarkerGroupUIElement(): interop.Object { return this.nativeObject.accessibilityMarkerGroupUIElement; }
   set accessibilityMarkerGroupUIElement(value: interop.Object) { this.nativeObject.accessibilityMarkerGroupUIElement = value; }
   get accessibilityUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityUnits; }
   set accessibilityUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityUnits = value; }
-  get accessibilityUnitDescription(): NSString { return this.nativeObject.accessibilityUnitDescription; }
-  set accessibilityUnitDescription(value: NSString | string) { this.nativeObject.accessibilityUnitDescription = value; }
+  get accessibilityUnitDescription(): string { return this.nativeObject.accessibilityUnitDescription; }
+  set accessibilityUnitDescription(value: string) { this.nativeObject.accessibilityUnitDescription = value; }
   get accessibilityRulerMarkerType(): interop.Enum<typeof NSAccessibilityRulerMarkerType> { return this.nativeObject.accessibilityRulerMarkerType; }
   set accessibilityRulerMarkerType(value: interop.Enum<typeof NSAccessibilityRulerMarkerType>) { this.nativeObject.accessibilityRulerMarkerType = value; }
-  get accessibilityMarkerTypeDescription(): NSString { return this.nativeObject.accessibilityMarkerTypeDescription; }
-  set accessibilityMarkerTypeDescription(value: NSString | string) { this.nativeObject.accessibilityMarkerTypeDescription = value; }
+  get accessibilityMarkerTypeDescription(): string { return this.nativeObject.accessibilityMarkerTypeDescription; }
+  set accessibilityMarkerTypeDescription(value: string) { this.nativeObject.accessibilityMarkerTypeDescription = value; }
   get accessibilityHorizontalScrollBar(): interop.Object { return this.nativeObject.accessibilityHorizontalScrollBar; }
   set accessibilityHorizontalScrollBar(value: interop.Object) { this.nativeObject.accessibilityHorizontalScrollBar = value; }
   get accessibilityVerticalScrollBar(): interop.Object { return this.nativeObject.accessibilityVerticalScrollBar; }
   set accessibilityVerticalScrollBar(value: interop.Object) { this.nativeObject.accessibilityVerticalScrollBar = value; }
   get accessibilityAllowedValues(): NSArray { return this.nativeObject.accessibilityAllowedValues; }
-  set accessibilityAllowedValues(value: NSArray | unknown[]) { this.nativeObject.accessibilityAllowedValues = value; }
+  set accessibilityAllowedValues(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityAllowedValues = value; }
   get accessibilityLabelUIElements(): NSArray { return this.nativeObject.accessibilityLabelUIElements; }
-  set accessibilityLabelUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityLabelUIElements = value; }
+  set accessibilityLabelUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityLabelUIElements = value; }
   get accessibilityLabelValue(): number { return this.nativeObject.accessibilityLabelValue; }
   set accessibilityLabelValue(value: number) { this.nativeObject.accessibilityLabelValue = value; }
   get accessibilitySplitters(): NSArray { return this.nativeObject.accessibilitySplitters; }
-  set accessibilitySplitters(value: NSArray | unknown[]) { this.nativeObject.accessibilitySplitters = value; }
+  set accessibilitySplitters(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySplitters = value; }
   get accessibilityDecrementButton(): interop.Object { return this.nativeObject.accessibilityDecrementButton; }
   set accessibilityDecrementButton(value: interop.Object) { this.nativeObject.accessibilityDecrementButton = value; }
   get accessibilityIncrementButton(): interop.Object { return this.nativeObject.accessibilityIncrementButton; }
   set accessibilityIncrementButton(value: interop.Object) { this.nativeObject.accessibilityIncrementButton = value; }
   get accessibilityTabs(): NSArray { return this.nativeObject.accessibilityTabs; }
-  set accessibilityTabs(value: NSArray | unknown[]) { this.nativeObject.accessibilityTabs = value; }
+  set accessibilityTabs(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityTabs = value; }
   get accessibilityHeader(): interop.Object { return this.nativeObject.accessibilityHeader; }
   set accessibilityHeader(value: interop.Object) { this.nativeObject.accessibilityHeader = value; }
   get accessibilityColumnCount(): number { return this.nativeObject.accessibilityColumnCount; }
@@ -4457,27 +4457,27 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
   get accessibilityIndex(): number { return this.nativeObject.accessibilityIndex; }
   set accessibilityIndex(value: number) { this.nativeObject.accessibilityIndex = value; }
   get accessibilityColumns(): NSArray { return this.nativeObject.accessibilityColumns; }
-  set accessibilityColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumns = value; }
+  set accessibilityColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumns = value; }
   get accessibilityRows(): NSArray { return this.nativeObject.accessibilityRows; }
-  set accessibilityRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityRows = value; }
+  set accessibilityRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRows = value; }
   get accessibilityVisibleRows(): NSArray { return this.nativeObject.accessibilityVisibleRows; }
-  set accessibilityVisibleRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleRows = value; }
+  set accessibilityVisibleRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleRows = value; }
   get accessibilitySelectedRows(): NSArray { return this.nativeObject.accessibilitySelectedRows; }
-  set accessibilitySelectedRows(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedRows = value; }
+  set accessibilitySelectedRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedRows = value; }
   get accessibilityVisibleColumns(): NSArray { return this.nativeObject.accessibilityVisibleColumns; }
-  set accessibilityVisibleColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleColumns = value; }
+  set accessibilityVisibleColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleColumns = value; }
   get accessibilitySelectedColumns(): NSArray { return this.nativeObject.accessibilitySelectedColumns; }
-  set accessibilitySelectedColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedColumns = value; }
+  set accessibilitySelectedColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedColumns = value; }
   get accessibilitySortDirection(): interop.Enum<typeof NSAccessibilitySortDirection> { return this.nativeObject.accessibilitySortDirection; }
   set accessibilitySortDirection(value: interop.Enum<typeof NSAccessibilitySortDirection>) { this.nativeObject.accessibilitySortDirection = value; }
   get accessibilityRowHeaderUIElements(): NSArray { return this.nativeObject.accessibilityRowHeaderUIElements; }
-  set accessibilityRowHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
+  set accessibilityRowHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
   get accessibilitySelectedCells(): NSArray { return this.nativeObject.accessibilitySelectedCells; }
-  set accessibilitySelectedCells(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedCells = value; }
+  set accessibilitySelectedCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedCells = value; }
   get accessibilityVisibleCells(): NSArray { return this.nativeObject.accessibilityVisibleCells; }
-  set accessibilityVisibleCells(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleCells = value; }
+  set accessibilityVisibleCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleCells = value; }
   get accessibilityColumnHeaderUIElements(): NSArray { return this.nativeObject.accessibilityColumnHeaderUIElements; }
-  set accessibilityColumnHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
+  set accessibilityColumnHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
   get accessibilityRowIndexRange(): _NSRange { return this.nativeObject.accessibilityRowIndexRange; }
   set accessibilityRowIndexRange(value: _NSRange) { this.nativeObject.accessibilityRowIndexRange = value; }
   get accessibilityColumnIndexRange(): _NSRange { return this.nativeObject.accessibilityColumnIndexRange; }
@@ -4487,17 +4487,17 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
   get accessibilitySharedCharacterRange(): _NSRange { return this.nativeObject.accessibilitySharedCharacterRange; }
   set accessibilitySharedCharacterRange(value: _NSRange) { this.nativeObject.accessibilitySharedCharacterRange = value; }
   get accessibilitySharedTextUIElements(): NSArray { return this.nativeObject.accessibilitySharedTextUIElements; }
-  set accessibilitySharedTextUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilitySharedTextUIElements = value; }
+  set accessibilitySharedTextUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySharedTextUIElements = value; }
   get accessibilityVisibleCharacterRange(): _NSRange { return this.nativeObject.accessibilityVisibleCharacterRange; }
   set accessibilityVisibleCharacterRange(value: _NSRange) { this.nativeObject.accessibilityVisibleCharacterRange = value; }
   get accessibilityNumberOfCharacters(): number { return this.nativeObject.accessibilityNumberOfCharacters; }
   set accessibilityNumberOfCharacters(value: number) { this.nativeObject.accessibilityNumberOfCharacters = value; }
-  get accessibilitySelectedText(): NSString { return this.nativeObject.accessibilitySelectedText; }
-  set accessibilitySelectedText(value: NSString | string) { this.nativeObject.accessibilitySelectedText = value; }
+  get accessibilitySelectedText(): string { return this.nativeObject.accessibilitySelectedText; }
+  set accessibilitySelectedText(value: string) { this.nativeObject.accessibilitySelectedText = value; }
   get accessibilitySelectedTextRange(): _NSRange { return this.nativeObject.accessibilitySelectedTextRange; }
   set accessibilitySelectedTextRange(value: _NSRange) { this.nativeObject.accessibilitySelectedTextRange = value; }
   get accessibilitySelectedTextRanges(): NSArray { return this.nativeObject.accessibilitySelectedTextRanges; }
-  set accessibilitySelectedTextRanges(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedTextRanges = value; }
+  set accessibilitySelectedTextRanges(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedTextRanges = value; }
   get accessibilityToolbarButton(): interop.Object { return this.nativeObject.accessibilityToolbarButton; }
   set accessibilityToolbarButton(value: interop.Object) { this.nativeObject.accessibilityToolbarButton = value; }
   get isAccessibilityModal(): boolean { return this.nativeObject.isAccessibilityModal; }
@@ -4510,8 +4510,8 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
   set accessibilityFullScreenButton(value: interop.Object) { this.nativeObject.accessibilityFullScreenButton = value; }
   get accessibilityGrowArea(): interop.Object { return this.nativeObject.accessibilityGrowArea; }
   set accessibilityGrowArea(value: interop.Object) { this.nativeObject.accessibilityGrowArea = value; }
-  get accessibilityDocument(): NSString { return this.nativeObject.accessibilityDocument; }
-  set accessibilityDocument(value: NSString | string) { this.nativeObject.accessibilityDocument = value; }
+  get accessibilityDocument(): string { return this.nativeObject.accessibilityDocument; }
+  set accessibilityDocument(value: string) { this.nativeObject.accessibilityDocument = value; }
   get accessibilityDefaultButton(): interop.Object { return this.nativeObject.accessibilityDefaultButton; }
   set accessibilityDefaultButton(value: interop.Object) { this.nativeObject.accessibilityDefaultButton = value; }
   get accessibilityCloseButton(): interop.Object { return this.nativeObject.accessibilityCloseButton; }
@@ -4523,7 +4523,7 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
   get isAccessibilityMinimized(): boolean { return this.nativeObject.isAccessibilityMinimized; }
   set isAccessibilityMinimized(value: boolean) { this.nativeObject.isAccessibilityMinimized = value; }
   get accessibilityCustomActions(): NSArray { return this.nativeObject.accessibilityCustomActions; }
-  set accessibilityCustomActions(value: NSArray | unknown[]) { this.nativeObject.accessibilityCustomActions = value; }
+  set accessibilityCustomActions(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityCustomActions = value; }
 }
 
 export class HTMLNSImageElement extends HTMLNSObjectElement {
@@ -4555,8 +4555,8 @@ export class HTMLNSImageElement extends HTMLNSObjectElement {
   set alignmentRect(value: CGRect) { this.nativeObject.alignmentRect = value; }
   get isTemplate(): boolean { return this.nativeObject.isTemplate; }
   set isTemplate(value: boolean) { this.nativeObject.isTemplate = value; }
-  get accessibilityDescription(): NSString { return this.nativeObject.accessibilityDescription; }
-  set accessibilityDescription(value: NSString | string) { this.nativeObject.accessibilityDescription = value; }
+  get accessibilityDescription(): string { return this.nativeObject.accessibilityDescription; }
+  set accessibilityDescription(value: string) { this.nativeObject.accessibilityDescription = value; }
   get capInsets(): NSEdgeInsets { return this.nativeObject.capInsets; }
   set capInsets(value: NSEdgeInsets) { this.nativeObject.capInsets = value; }
   get resizingMode(): interop.Enum<typeof NSImageResizingMode> { return this.nativeObject.resizingMode; }
@@ -4594,21 +4594,21 @@ export class HTMLNSToolbarElement extends HTMLNSObjectElement {
   get customizationPaletteIsRunning(): boolean { return this.nativeObject.customizationPaletteIsRunning; }
   get displayMode(): interop.Enum<typeof NSToolbarDisplayMode> { return this.nativeObject.displayMode; }
   set displayMode(value: interop.Enum<typeof NSToolbarDisplayMode>) { this.nativeObject.displayMode = value; }
-  get selectedItemIdentifier(): NSString { return this.nativeObject.selectedItemIdentifier; }
-  set selectedItemIdentifier(value: NSString | string) { this.nativeObject.selectedItemIdentifier = value; }
+  get selectedItemIdentifier(): string { return this.nativeObject.selectedItemIdentifier; }
+  set selectedItemIdentifier(value: string) { this.nativeObject.selectedItemIdentifier = value; }
   get sizeMode(): interop.Enum<typeof NSToolbarSizeMode> { return this.nativeObject.sizeMode; }
   set sizeMode(value: interop.Enum<typeof NSToolbarSizeMode>) { this.nativeObject.sizeMode = value; }
   get showsBaselineSeparator(): boolean { return this.nativeObject.showsBaselineSeparator; }
   set showsBaselineSeparator(value: boolean) { this.nativeObject.showsBaselineSeparator = value; }
   get allowsUserCustomization(): boolean { return this.nativeObject.allowsUserCustomization; }
   set allowsUserCustomization(value: boolean) { this.nativeObject.allowsUserCustomization = value; }
-  get identifier(): NSString { return this.nativeObject.identifier; }
+  get identifier(): string { return this.nativeObject.identifier; }
   get items(): NSArray { return this.nativeObject.items; }
   get visibleItems(): NSArray { return this.nativeObject.visibleItems; }
   get centeredItemIdentifiers(): NSSet { return this.nativeObject.centeredItemIdentifiers; }
   set centeredItemIdentifiers(value: NSSet) { this.nativeObject.centeredItemIdentifiers = value; }
-  get centeredItemIdentifier(): NSString { return this.nativeObject.centeredItemIdentifier; }
-  set centeredItemIdentifier(value: NSString | string) { this.nativeObject.centeredItemIdentifier = value; }
+  get centeredItemIdentifier(): string { return this.nativeObject.centeredItemIdentifier; }
+  set centeredItemIdentifier(value: string) { this.nativeObject.centeredItemIdentifier = value; }
   get autosavesConfiguration(): boolean { return this.nativeObject.autosavesConfiguration; }
   set autosavesConfiguration(value: boolean) { this.nativeObject.autosavesConfiguration = value; }
   get configurationDictionary(): NSDictionary { return this.nativeObject.configurationDictionary; }
@@ -4621,7 +4621,7 @@ export class HTMLNSToolbarElement extends HTMLNSObjectElement {
   get fullScreenAccessoryViewMaxHeight(): number { return this.nativeObject.fullScreenAccessoryViewMaxHeight; }
   set fullScreenAccessoryViewMaxHeight(value: number) { this.nativeObject.fullScreenAccessoryViewMaxHeight = value; }
 
-  set toolbarItemForItemIdentifierWillBeInsertedIntoToolbar(value: (toolbar: NSToolbar, itemIdentifier: NSString | string, flag: boolean) => NSToolbarItem) {
+  set toolbarItemForItemIdentifierWillBeInsertedIntoToolbar(value: (toolbar: NSToolbar, itemIdentifier: string, flag: boolean) => NSToolbarItem) {
     this.delegate.toolbarItemForItemIdentifierWillBeInsertedIntoToolbar = value;
   }
   set toolbarDefaultItemIdentifiers(value: (toolbar: NSToolbar) => NSArray) {
@@ -4636,7 +4636,7 @@ export class HTMLNSToolbarElement extends HTMLNSObjectElement {
   set toolbarImmovableItemIdentifiers(value: (toolbar: NSToolbar) => NSSet) {
     this.delegate.toolbarImmovableItemIdentifiers = value;
   }
-  set toolbarItemIdentifierCanBeInsertedAtIndex(value: (toolbar: NSToolbar, itemIdentifier: NSString | string, index: number) => boolean) {
+  set toolbarItemIdentifierCanBeInsertedAtIndex(value: (toolbar: NSToolbar, itemIdentifier: string, index: number) => boolean) {
     this.delegate.toolbarItemIdentifierCanBeInsertedAtIndex = value;
   }
   set toolbarWillAddItem(value: (notification: NSNotification) => void) {
@@ -4665,7 +4665,7 @@ export class HTMLNSTabViewElement extends HTMLNSViewElement {
   get tabViewBorderType(): interop.Enum<typeof NSTabViewBorderType> { return this.nativeObject.tabViewBorderType; }
   set tabViewBorderType(value: interop.Enum<typeof NSTabViewBorderType>) { this.nativeObject.tabViewBorderType = value; }
   get tabViewItems(): NSArray { return this.nativeObject.tabViewItems; }
-  set tabViewItems(value: NSArray | unknown[]) { this.nativeObject.tabViewItems = value; }
+  set tabViewItems(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.tabViewItems = value; }
   get allowsTruncatedLabels(): boolean { return this.nativeObject.allowsTruncatedLabels; }
   set allowsTruncatedLabels(value: boolean) { this.nativeObject.allowsTruncatedLabels = value; }
   get minimumSize(): CGSize { return this.nativeObject.minimumSize; }
@@ -4742,8 +4742,8 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
   get isAccessibilityElement(): boolean { return this.nativeObject.isAccessibilityElement; }
   set isAccessibilityElement(value: boolean) { this.nativeObject.isAccessibilityElement = value; }
   get accessibilityFrame(): CGRect { return this.nativeObject.accessibilityFrame; }
@@ -4758,32 +4758,32 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   set accessibilityURL(value: NSURL) { this.nativeObject.accessibilityURL = value; }
   get accessibilityValue(): interop.Object { return this.nativeObject.accessibilityValue; }
   set accessibilityValue(value: interop.Object) { this.nativeObject.accessibilityValue = value; }
-  get accessibilityValueDescription(): NSString { return this.nativeObject.accessibilityValueDescription; }
-  set accessibilityValueDescription(value: NSString | string) { this.nativeObject.accessibilityValueDescription = value; }
+  get accessibilityValueDescription(): string { return this.nativeObject.accessibilityValueDescription; }
+  set accessibilityValueDescription(value: string) { this.nativeObject.accessibilityValueDescription = value; }
   get accessibilityVisibleChildren(): NSArray { return this.nativeObject.accessibilityVisibleChildren; }
-  set accessibilityVisibleChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleChildren = value; }
-  get accessibilitySubrole(): NSString { return this.nativeObject.accessibilitySubrole; }
-  set accessibilitySubrole(value: NSString | string) { this.nativeObject.accessibilitySubrole = value; }
-  get accessibilityTitle(): NSString { return this.nativeObject.accessibilityTitle; }
-  set accessibilityTitle(value: NSString | string) { this.nativeObject.accessibilityTitle = value; }
+  set accessibilityVisibleChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleChildren = value; }
+  get accessibilitySubrole(): string { return this.nativeObject.accessibilitySubrole; }
+  set accessibilitySubrole(value: string) { this.nativeObject.accessibilitySubrole = value; }
+  get accessibilityTitle(): string { return this.nativeObject.accessibilityTitle; }
+  set accessibilityTitle(value: string) { this.nativeObject.accessibilityTitle = value; }
   get accessibilityTitleUIElement(): interop.Object { return this.nativeObject.accessibilityTitleUIElement; }
   set accessibilityTitleUIElement(value: interop.Object) { this.nativeObject.accessibilityTitleUIElement = value; }
   get accessibilityNextContents(): NSArray { return this.nativeObject.accessibilityNextContents; }
-  set accessibilityNextContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityNextContents = value; }
+  set accessibilityNextContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityNextContents = value; }
   get accessibilityOrientation(): interop.Enum<typeof NSAccessibilityOrientation> { return this.nativeObject.accessibilityOrientation; }
   set accessibilityOrientation(value: interop.Enum<typeof NSAccessibilityOrientation>) { this.nativeObject.accessibilityOrientation = value; }
   get accessibilityOverflowButton(): interop.Object { return this.nativeObject.accessibilityOverflowButton; }
   set accessibilityOverflowButton(value: interop.Object) { this.nativeObject.accessibilityOverflowButton = value; }
   get accessibilityParent(): interop.Object { return this.nativeObject.accessibilityParent; }
   set accessibilityParent(value: interop.Object) { this.nativeObject.accessibilityParent = value; }
-  get accessibilityPlaceholderValue(): NSString { return this.nativeObject.accessibilityPlaceholderValue; }
-  set accessibilityPlaceholderValue(value: NSString | string) { this.nativeObject.accessibilityPlaceholderValue = value; }
+  get accessibilityPlaceholderValue(): string { return this.nativeObject.accessibilityPlaceholderValue; }
+  set accessibilityPlaceholderValue(value: string) { this.nativeObject.accessibilityPlaceholderValue = value; }
   get accessibilityPreviousContents(): NSArray { return this.nativeObject.accessibilityPreviousContents; }
-  set accessibilityPreviousContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityPreviousContents = value; }
-  get accessibilityRole(): NSString { return this.nativeObject.accessibilityRole; }
-  set accessibilityRole(value: NSString | string) { this.nativeObject.accessibilityRole = value; }
-  get accessibilityRoleDescription(): NSString { return this.nativeObject.accessibilityRoleDescription; }
-  set accessibilityRoleDescription(value: NSString | string) { this.nativeObject.accessibilityRoleDescription = value; }
+  set accessibilityPreviousContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityPreviousContents = value; }
+  get accessibilityRole(): string { return this.nativeObject.accessibilityRole; }
+  set accessibilityRole(value: string) { this.nativeObject.accessibilityRole = value; }
+  get accessibilityRoleDescription(): string { return this.nativeObject.accessibilityRoleDescription; }
+  set accessibilityRoleDescription(value: string) { this.nativeObject.accessibilityRoleDescription = value; }
   get accessibilitySearchButton(): interop.Object { return this.nativeObject.accessibilitySearchButton; }
   set accessibilitySearchButton(value: interop.Object) { this.nativeObject.accessibilitySearchButton = value; }
   get accessibilitySearchMenu(): interop.Object { return this.nativeObject.accessibilitySearchMenu; }
@@ -4791,9 +4791,9 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   get isAccessibilitySelected(): boolean { return this.nativeObject.isAccessibilitySelected; }
   set isAccessibilitySelected(value: boolean) { this.nativeObject.isAccessibilitySelected = value; }
   get accessibilitySelectedChildren(): NSArray { return this.nativeObject.accessibilitySelectedChildren; }
-  set accessibilitySelectedChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedChildren = value; }
+  set accessibilitySelectedChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedChildren = value; }
   get accessibilityServesAsTitleForUIElements(): NSArray { return this.nativeObject.accessibilityServesAsTitleForUIElements; }
-  set accessibilityServesAsTitleForUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityServesAsTitleForUIElements = value; }
+  set accessibilityServesAsTitleForUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityServesAsTitleForUIElements = value; }
   get accessibilityShownMenu(): interop.Object { return this.nativeObject.accessibilityShownMenu; }
   set accessibilityShownMenu(value: interop.Object) { this.nativeObject.accessibilityShownMenu = value; }
   get accessibilityMinValue(): interop.Object { return this.nativeObject.accessibilityMinValue; }
@@ -4801,15 +4801,15 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   get accessibilityMaxValue(): interop.Object { return this.nativeObject.accessibilityMaxValue; }
   set accessibilityMaxValue(value: interop.Object) { this.nativeObject.accessibilityMaxValue = value; }
   get accessibilityLinkedUIElements(): NSArray { return this.nativeObject.accessibilityLinkedUIElements; }
-  set accessibilityLinkedUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityLinkedUIElements = value; }
+  set accessibilityLinkedUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityLinkedUIElements = value; }
   get accessibilityWindow(): interop.Object { return this.nativeObject.accessibilityWindow; }
   set accessibilityWindow(value: interop.Object) { this.nativeObject.accessibilityWindow = value; }
-  get accessibilityIdentifier(): NSString { return this.nativeObject.accessibilityIdentifier; }
-  set accessibilityIdentifier(value: NSString | string) { this.nativeObject.accessibilityIdentifier = value; }
-  get accessibilityHelp(): NSString { return this.nativeObject.accessibilityHelp; }
-  set accessibilityHelp(value: NSString | string) { this.nativeObject.accessibilityHelp = value; }
-  get accessibilityFilename(): NSString { return this.nativeObject.accessibilityFilename; }
-  set accessibilityFilename(value: NSString | string) { this.nativeObject.accessibilityFilename = value; }
+  get accessibilityIdentifier(): string { return this.nativeObject.accessibilityIdentifier; }
+  set accessibilityIdentifier(value: string) { this.nativeObject.accessibilityIdentifier = value; }
+  get accessibilityHelp(): string { return this.nativeObject.accessibilityHelp; }
+  set accessibilityHelp(value: string) { this.nativeObject.accessibilityHelp = value; }
+  get accessibilityFilename(): string { return this.nativeObject.accessibilityFilename; }
+  set accessibilityFilename(value: string) { this.nativeObject.accessibilityFilename = value; }
   get isAccessibilityExpanded(): boolean { return this.nativeObject.isAccessibilityExpanded; }
   set isAccessibilityExpanded(value: boolean) { this.nativeObject.isAccessibilityExpanded = value; }
   get isAccessibilityEdited(): boolean { return this.nativeObject.isAccessibilityEdited; }
@@ -4817,9 +4817,9 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   get isAccessibilityEnabled(): boolean { return this.nativeObject.isAccessibilityEnabled; }
   set isAccessibilityEnabled(value: boolean) { this.nativeObject.isAccessibilityEnabled = value; }
   get accessibilityChildren(): NSArray { return this.nativeObject.accessibilityChildren; }
-  set accessibilityChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilityChildren = value; }
+  set accessibilityChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityChildren = value; }
   get accessibilityChildrenInNavigationOrder(): NSArray { return this.nativeObject.accessibilityChildrenInNavigationOrder; }
-  set accessibilityChildrenInNavigationOrder(value: NSArray | unknown[]) { this.nativeObject.accessibilityChildrenInNavigationOrder = value; }
+  set accessibilityChildrenInNavigationOrder(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityChildrenInNavigationOrder = value; }
   get accessibilityClearButton(): interop.Object { return this.nativeObject.accessibilityClearButton; }
   set accessibilityClearButton(value: interop.Object) { this.nativeObject.accessibilityClearButton = value; }
   get accessibilityCancelButton(): interop.Object { return this.nativeObject.accessibilityCancelButton; }
@@ -4827,21 +4827,21 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   get isAccessibilityProtectedContent(): boolean { return this.nativeObject.isAccessibilityProtectedContent; }
   set isAccessibilityProtectedContent(value: boolean) { this.nativeObject.isAccessibilityProtectedContent = value; }
   get accessibilityContents(): NSArray { return this.nativeObject.accessibilityContents; }
-  set accessibilityContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityContents = value; }
-  get accessibilityLabel(): NSString { return this.nativeObject.accessibilityLabel; }
-  set accessibilityLabel(value: NSString | string) { this.nativeObject.accessibilityLabel = value; }
+  set accessibilityContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityContents = value; }
+  get accessibilityLabel(): string { return this.nativeObject.accessibilityLabel; }
+  set accessibilityLabel(value: string) { this.nativeObject.accessibilityLabel = value; }
   get isAccessibilityAlternateUIVisible(): boolean { return this.nativeObject.isAccessibilityAlternateUIVisible; }
   set isAccessibilityAlternateUIVisible(value: boolean) { this.nativeObject.isAccessibilityAlternateUIVisible = value; }
   get accessibilitySharedFocusElements(): NSArray { return this.nativeObject.accessibilitySharedFocusElements; }
-  set accessibilitySharedFocusElements(value: NSArray | unknown[]) { this.nativeObject.accessibilitySharedFocusElements = value; }
+  set accessibilitySharedFocusElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySharedFocusElements = value; }
   get isAccessibilityRequired(): boolean { return this.nativeObject.isAccessibilityRequired; }
   set isAccessibilityRequired(value: boolean) { this.nativeObject.isAccessibilityRequired = value; }
   get accessibilityCustomRotors(): NSArray { return this.nativeObject.accessibilityCustomRotors; }
-  set accessibilityCustomRotors(value: NSArray | unknown[]) { this.nativeObject.accessibilityCustomRotors = value; }
+  set accessibilityCustomRotors(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityCustomRotors = value; }
   get accessibilityUserInputLabels(): NSArray { return this.nativeObject.accessibilityUserInputLabels; }
-  set accessibilityUserInputLabels(value: NSArray | unknown[]) { this.nativeObject.accessibilityUserInputLabels = value; }
+  set accessibilityUserInputLabels(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityUserInputLabels = value; }
   get accessibilityAttributedUserInputLabels(): NSArray { return this.nativeObject.accessibilityAttributedUserInputLabels; }
-  set accessibilityAttributedUserInputLabels(value: NSArray | unknown[]) { this.nativeObject.accessibilityAttributedUserInputLabels = value; }
+  set accessibilityAttributedUserInputLabels(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityAttributedUserInputLabels = value; }
   get accessibilityApplicationFocusedUIElement(): interop.Object { return this.nativeObject.accessibilityApplicationFocusedUIElement; }
   set accessibilityApplicationFocusedUIElement(value: interop.Object) { this.nativeObject.accessibilityApplicationFocusedUIElement = value; }
   get accessibilityMainWindow(): interop.Object { return this.nativeObject.accessibilityMainWindow; }
@@ -4853,25 +4853,25 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   get accessibilityFocusedWindow(): interop.Object { return this.nativeObject.accessibilityFocusedWindow; }
   set accessibilityFocusedWindow(value: interop.Object) { this.nativeObject.accessibilityFocusedWindow = value; }
   get accessibilityWindows(): NSArray { return this.nativeObject.accessibilityWindows; }
-  set accessibilityWindows(value: NSArray | unknown[]) { this.nativeObject.accessibilityWindows = value; }
+  set accessibilityWindows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityWindows = value; }
   get accessibilityExtrasMenuBar(): interop.Object { return this.nativeObject.accessibilityExtrasMenuBar; }
   set accessibilityExtrasMenuBar(value: interop.Object) { this.nativeObject.accessibilityExtrasMenuBar = value; }
   get accessibilityMenuBar(): interop.Object { return this.nativeObject.accessibilityMenuBar; }
   set accessibilityMenuBar(value: interop.Object) { this.nativeObject.accessibilityMenuBar = value; }
   get accessibilityColumnTitles(): NSArray { return this.nativeObject.accessibilityColumnTitles; }
-  set accessibilityColumnTitles(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumnTitles = value; }
+  set accessibilityColumnTitles(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumnTitles = value; }
   get isAccessibilityOrderedByRow(): boolean { return this.nativeObject.isAccessibilityOrderedByRow; }
   set isAccessibilityOrderedByRow(value: boolean) { this.nativeObject.isAccessibilityOrderedByRow = value; }
   get accessibilityHorizontalUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityHorizontalUnits; }
   set accessibilityHorizontalUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityHorizontalUnits = value; }
   get accessibilityVerticalUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityVerticalUnits; }
   set accessibilityVerticalUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityVerticalUnits = value; }
-  get accessibilityHorizontalUnitDescription(): NSString { return this.nativeObject.accessibilityHorizontalUnitDescription; }
-  set accessibilityHorizontalUnitDescription(value: NSString | string) { this.nativeObject.accessibilityHorizontalUnitDescription = value; }
-  get accessibilityVerticalUnitDescription(): NSString { return this.nativeObject.accessibilityVerticalUnitDescription; }
-  set accessibilityVerticalUnitDescription(value: NSString | string) { this.nativeObject.accessibilityVerticalUnitDescription = value; }
+  get accessibilityHorizontalUnitDescription(): string { return this.nativeObject.accessibilityHorizontalUnitDescription; }
+  set accessibilityHorizontalUnitDescription(value: string) { this.nativeObject.accessibilityHorizontalUnitDescription = value; }
+  get accessibilityVerticalUnitDescription(): string { return this.nativeObject.accessibilityVerticalUnitDescription; }
+  set accessibilityVerticalUnitDescription(value: string) { this.nativeObject.accessibilityVerticalUnitDescription = value; }
   get accessibilityHandles(): NSArray { return this.nativeObject.accessibilityHandles; }
-  set accessibilityHandles(value: NSArray | unknown[]) { this.nativeObject.accessibilityHandles = value; }
+  set accessibilityHandles(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityHandles = value; }
   get accessibilityWarningValue(): interop.Object { return this.nativeObject.accessibilityWarningValue; }
   set accessibilityWarningValue(value: interop.Object) { this.nativeObject.accessibilityWarningValue = value; }
   get accessibilityCriticalValue(): interop.Object { return this.nativeObject.accessibilityCriticalValue; }
@@ -4885,37 +4885,37 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   get accessibilityDisclosureLevel(): number { return this.nativeObject.accessibilityDisclosureLevel; }
   set accessibilityDisclosureLevel(value: number) { this.nativeObject.accessibilityDisclosureLevel = value; }
   get accessibilityMarkerUIElements(): NSArray { return this.nativeObject.accessibilityMarkerUIElements; }
-  set accessibilityMarkerUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityMarkerUIElements = value; }
+  set accessibilityMarkerUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityMarkerUIElements = value; }
   get accessibilityMarkerValues(): interop.Object { return this.nativeObject.accessibilityMarkerValues; }
   set accessibilityMarkerValues(value: interop.Object) { this.nativeObject.accessibilityMarkerValues = value; }
   get accessibilityMarkerGroupUIElement(): interop.Object { return this.nativeObject.accessibilityMarkerGroupUIElement; }
   set accessibilityMarkerGroupUIElement(value: interop.Object) { this.nativeObject.accessibilityMarkerGroupUIElement = value; }
   get accessibilityUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityUnits; }
   set accessibilityUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityUnits = value; }
-  get accessibilityUnitDescription(): NSString { return this.nativeObject.accessibilityUnitDescription; }
-  set accessibilityUnitDescription(value: NSString | string) { this.nativeObject.accessibilityUnitDescription = value; }
+  get accessibilityUnitDescription(): string { return this.nativeObject.accessibilityUnitDescription; }
+  set accessibilityUnitDescription(value: string) { this.nativeObject.accessibilityUnitDescription = value; }
   get accessibilityRulerMarkerType(): interop.Enum<typeof NSAccessibilityRulerMarkerType> { return this.nativeObject.accessibilityRulerMarkerType; }
   set accessibilityRulerMarkerType(value: interop.Enum<typeof NSAccessibilityRulerMarkerType>) { this.nativeObject.accessibilityRulerMarkerType = value; }
-  get accessibilityMarkerTypeDescription(): NSString { return this.nativeObject.accessibilityMarkerTypeDescription; }
-  set accessibilityMarkerTypeDescription(value: NSString | string) { this.nativeObject.accessibilityMarkerTypeDescription = value; }
+  get accessibilityMarkerTypeDescription(): string { return this.nativeObject.accessibilityMarkerTypeDescription; }
+  set accessibilityMarkerTypeDescription(value: string) { this.nativeObject.accessibilityMarkerTypeDescription = value; }
   get accessibilityHorizontalScrollBar(): interop.Object { return this.nativeObject.accessibilityHorizontalScrollBar; }
   set accessibilityHorizontalScrollBar(value: interop.Object) { this.nativeObject.accessibilityHorizontalScrollBar = value; }
   get accessibilityVerticalScrollBar(): interop.Object { return this.nativeObject.accessibilityVerticalScrollBar; }
   set accessibilityVerticalScrollBar(value: interop.Object) { this.nativeObject.accessibilityVerticalScrollBar = value; }
   get accessibilityAllowedValues(): NSArray { return this.nativeObject.accessibilityAllowedValues; }
-  set accessibilityAllowedValues(value: NSArray | unknown[]) { this.nativeObject.accessibilityAllowedValues = value; }
+  set accessibilityAllowedValues(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityAllowedValues = value; }
   get accessibilityLabelUIElements(): NSArray { return this.nativeObject.accessibilityLabelUIElements; }
-  set accessibilityLabelUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityLabelUIElements = value; }
+  set accessibilityLabelUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityLabelUIElements = value; }
   get accessibilityLabelValue(): number { return this.nativeObject.accessibilityLabelValue; }
   set accessibilityLabelValue(value: number) { this.nativeObject.accessibilityLabelValue = value; }
   get accessibilitySplitters(): NSArray { return this.nativeObject.accessibilitySplitters; }
-  set accessibilitySplitters(value: NSArray | unknown[]) { this.nativeObject.accessibilitySplitters = value; }
+  set accessibilitySplitters(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySplitters = value; }
   get accessibilityDecrementButton(): interop.Object { return this.nativeObject.accessibilityDecrementButton; }
   set accessibilityDecrementButton(value: interop.Object) { this.nativeObject.accessibilityDecrementButton = value; }
   get accessibilityIncrementButton(): interop.Object { return this.nativeObject.accessibilityIncrementButton; }
   set accessibilityIncrementButton(value: interop.Object) { this.nativeObject.accessibilityIncrementButton = value; }
   get accessibilityTabs(): NSArray { return this.nativeObject.accessibilityTabs; }
-  set accessibilityTabs(value: NSArray | unknown[]) { this.nativeObject.accessibilityTabs = value; }
+  set accessibilityTabs(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityTabs = value; }
   get accessibilityHeader(): interop.Object { return this.nativeObject.accessibilityHeader; }
   set accessibilityHeader(value: interop.Object) { this.nativeObject.accessibilityHeader = value; }
   get accessibilityColumnCount(): number { return this.nativeObject.accessibilityColumnCount; }
@@ -4925,27 +4925,27 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   get accessibilityIndex(): number { return this.nativeObject.accessibilityIndex; }
   set accessibilityIndex(value: number) { this.nativeObject.accessibilityIndex = value; }
   get accessibilityColumns(): NSArray { return this.nativeObject.accessibilityColumns; }
-  set accessibilityColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumns = value; }
+  set accessibilityColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumns = value; }
   get accessibilityRows(): NSArray { return this.nativeObject.accessibilityRows; }
-  set accessibilityRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityRows = value; }
+  set accessibilityRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRows = value; }
   get accessibilityVisibleRows(): NSArray { return this.nativeObject.accessibilityVisibleRows; }
-  set accessibilityVisibleRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleRows = value; }
+  set accessibilityVisibleRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleRows = value; }
   get accessibilitySelectedRows(): NSArray { return this.nativeObject.accessibilitySelectedRows; }
-  set accessibilitySelectedRows(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedRows = value; }
+  set accessibilitySelectedRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedRows = value; }
   get accessibilityVisibleColumns(): NSArray { return this.nativeObject.accessibilityVisibleColumns; }
-  set accessibilityVisibleColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleColumns = value; }
+  set accessibilityVisibleColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleColumns = value; }
   get accessibilitySelectedColumns(): NSArray { return this.nativeObject.accessibilitySelectedColumns; }
-  set accessibilitySelectedColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedColumns = value; }
+  set accessibilitySelectedColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedColumns = value; }
   get accessibilitySortDirection(): interop.Enum<typeof NSAccessibilitySortDirection> { return this.nativeObject.accessibilitySortDirection; }
   set accessibilitySortDirection(value: interop.Enum<typeof NSAccessibilitySortDirection>) { this.nativeObject.accessibilitySortDirection = value; }
   get accessibilityRowHeaderUIElements(): NSArray { return this.nativeObject.accessibilityRowHeaderUIElements; }
-  set accessibilityRowHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
+  set accessibilityRowHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
   get accessibilitySelectedCells(): NSArray { return this.nativeObject.accessibilitySelectedCells; }
-  set accessibilitySelectedCells(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedCells = value; }
+  set accessibilitySelectedCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedCells = value; }
   get accessibilityVisibleCells(): NSArray { return this.nativeObject.accessibilityVisibleCells; }
-  set accessibilityVisibleCells(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleCells = value; }
+  set accessibilityVisibleCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleCells = value; }
   get accessibilityColumnHeaderUIElements(): NSArray { return this.nativeObject.accessibilityColumnHeaderUIElements; }
-  set accessibilityColumnHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
+  set accessibilityColumnHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
   get accessibilityRowIndexRange(): _NSRange { return this.nativeObject.accessibilityRowIndexRange; }
   set accessibilityRowIndexRange(value: _NSRange) { this.nativeObject.accessibilityRowIndexRange = value; }
   get accessibilityColumnIndexRange(): _NSRange { return this.nativeObject.accessibilityColumnIndexRange; }
@@ -4955,17 +4955,17 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   get accessibilitySharedCharacterRange(): _NSRange { return this.nativeObject.accessibilitySharedCharacterRange; }
   set accessibilitySharedCharacterRange(value: _NSRange) { this.nativeObject.accessibilitySharedCharacterRange = value; }
   get accessibilitySharedTextUIElements(): NSArray { return this.nativeObject.accessibilitySharedTextUIElements; }
-  set accessibilitySharedTextUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilitySharedTextUIElements = value; }
+  set accessibilitySharedTextUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySharedTextUIElements = value; }
   get accessibilityVisibleCharacterRange(): _NSRange { return this.nativeObject.accessibilityVisibleCharacterRange; }
   set accessibilityVisibleCharacterRange(value: _NSRange) { this.nativeObject.accessibilityVisibleCharacterRange = value; }
   get accessibilityNumberOfCharacters(): number { return this.nativeObject.accessibilityNumberOfCharacters; }
   set accessibilityNumberOfCharacters(value: number) { this.nativeObject.accessibilityNumberOfCharacters = value; }
-  get accessibilitySelectedText(): NSString { return this.nativeObject.accessibilitySelectedText; }
-  set accessibilitySelectedText(value: NSString | string) { this.nativeObject.accessibilitySelectedText = value; }
+  get accessibilitySelectedText(): string { return this.nativeObject.accessibilitySelectedText; }
+  set accessibilitySelectedText(value: string) { this.nativeObject.accessibilitySelectedText = value; }
   get accessibilitySelectedTextRange(): _NSRange { return this.nativeObject.accessibilitySelectedTextRange; }
   set accessibilitySelectedTextRange(value: _NSRange) { this.nativeObject.accessibilitySelectedTextRange = value; }
   get accessibilitySelectedTextRanges(): NSArray { return this.nativeObject.accessibilitySelectedTextRanges; }
-  set accessibilitySelectedTextRanges(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedTextRanges = value; }
+  set accessibilitySelectedTextRanges(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedTextRanges = value; }
   get accessibilityToolbarButton(): interop.Object { return this.nativeObject.accessibilityToolbarButton; }
   set accessibilityToolbarButton(value: interop.Object) { this.nativeObject.accessibilityToolbarButton = value; }
   get isAccessibilityModal(): boolean { return this.nativeObject.isAccessibilityModal; }
@@ -4978,8 +4978,8 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   set accessibilityFullScreenButton(value: interop.Object) { this.nativeObject.accessibilityFullScreenButton = value; }
   get accessibilityGrowArea(): interop.Object { return this.nativeObject.accessibilityGrowArea; }
   set accessibilityGrowArea(value: interop.Object) { this.nativeObject.accessibilityGrowArea = value; }
-  get accessibilityDocument(): NSString { return this.nativeObject.accessibilityDocument; }
-  set accessibilityDocument(value: NSString | string) { this.nativeObject.accessibilityDocument = value; }
+  get accessibilityDocument(): string { return this.nativeObject.accessibilityDocument; }
+  set accessibilityDocument(value: string) { this.nativeObject.accessibilityDocument = value; }
   get accessibilityDefaultButton(): interop.Object { return this.nativeObject.accessibilityDefaultButton; }
   set accessibilityDefaultButton(value: interop.Object) { this.nativeObject.accessibilityDefaultButton = value; }
   get accessibilityCloseButton(): interop.Object { return this.nativeObject.accessibilityCloseButton; }
@@ -4991,21 +4991,21 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   get isAccessibilityMinimized(): boolean { return this.nativeObject.isAccessibilityMinimized; }
   set isAccessibilityMinimized(value: boolean) { this.nativeObject.isAccessibilityMinimized = value; }
   get accessibilityCustomActions(): NSArray { return this.nativeObject.accessibilityCustomActions; }
-  set accessibilityCustomActions(value: NSArray | unknown[]) { this.nativeObject.accessibilityCustomActions = value; }
+  set accessibilityCustomActions(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityCustomActions = value; }
 
   set applicationShouldTerminate(value: (sender: NSApplication) => interop.Enum<typeof NSApplicationTerminateReply>) {
     this.delegate.applicationShouldTerminate = value;
   }
-  set applicationOpenURLs(value: (application: NSApplication, urls: NSArray | unknown[]) => void) {
+  set applicationOpenURLs(value: (application: NSApplication, urls: NSArray<interop.Object> | Array<interop.Object>) => void) {
     this.delegate.applicationOpenURLs = value;
   }
-  set applicationOpenFile(value: (sender: NSApplication, filename: NSString | string) => boolean) {
+  set applicationOpenFile(value: (sender: NSApplication, filename: string) => boolean) {
     this.delegate.applicationOpenFile = value;
   }
-  set applicationOpenFiles(value: (sender: NSApplication, filenames: NSArray | unknown[]) => void) {
+  set applicationOpenFiles(value: (sender: NSApplication, filenames: NSArray<interop.Object> | Array<interop.Object>) => void) {
     this.delegate.applicationOpenFiles = value;
   }
-  set applicationOpenTempFile(value: (sender: NSApplication, filename: NSString | string) => boolean) {
+  set applicationOpenTempFile(value: (sender: NSApplication, filename: string) => boolean) {
     this.delegate.applicationOpenTempFile = value;
   }
   set applicationShouldOpenUntitledFile(value: (sender: NSApplication) => boolean) {
@@ -5014,13 +5014,13 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   set applicationOpenUntitledFile(value: (sender: NSApplication) => boolean) {
     this.delegate.applicationOpenUntitledFile = value;
   }
-  set applicationOpenFileWithoutUI(value: (sender: interop.Object, filename: NSString | string) => boolean) {
+  set applicationOpenFileWithoutUI(value: (sender: interop.Object, filename: string) => boolean) {
     this.delegate.applicationOpenFileWithoutUI = value;
   }
-  set applicationPrintFile(value: (sender: NSApplication, filename: NSString | string) => boolean) {
+  set applicationPrintFile(value: (sender: NSApplication, filename: string) => boolean) {
     this.delegate.applicationPrintFile = value;
   }
-  set applicationPrintFilesWithSettingsShowPrintPanels(value: (application: NSApplication, fileNames: NSArray | unknown[], printSettings: NSDictionary | Record<string, unknown>, showPrintPanels: boolean) => interop.Enum<typeof NSApplicationPrintReply>) {
+  set applicationPrintFilesWithSettingsShowPrintPanels(value: (application: NSApplication, fileNames: NSArray<interop.Object> | Array<interop.Object>, printSettings: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>, showPrintPanels: boolean) => interop.Enum<typeof NSApplicationPrintReply>) {
     this.delegate.applicationPrintFilesWithSettingsShowPrintPanels = value;
   }
   set applicationShouldTerminateAfterLastWindowClosed(value: (sender: NSApplication) => boolean) {
@@ -5041,7 +5041,7 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   set applicationDidFailToRegisterForRemoteNotificationsWithError(value: (application: NSApplication, error: NSError) => void) {
     this.delegate.applicationDidFailToRegisterForRemoteNotificationsWithError = value;
   }
-  set applicationDidReceiveRemoteNotification(value: (application: NSApplication, userInfo: NSDictionary | Record<string, unknown>) => void) {
+  set applicationDidReceiveRemoteNotification(value: (application: NSApplication, userInfo: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>) => void) {
     this.delegate.applicationDidReceiveRemoteNotification = value;
   }
   set applicationSupportsSecureRestorableState(value: (app: NSApplication) => boolean) {
@@ -5056,13 +5056,13 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   set applicationDidDecodeRestorableState(value: (app: NSApplication, coder: NSCoder) => void) {
     this.delegate.applicationDidDecodeRestorableState = value;
   }
-  set applicationWillContinueUserActivityWithType(value: (application: NSApplication, userActivityType: NSString | string) => boolean) {
+  set applicationWillContinueUserActivityWithType(value: (application: NSApplication, userActivityType: string) => boolean) {
     this.delegate.applicationWillContinueUserActivityWithType = value;
   }
-  set applicationContinueUserActivityRestorationHandler(value: (application: NSApplication, userActivity: NSUserActivity, restorationHandler: (p1: NSArray | unknown[]) => void) => boolean) {
+  set applicationContinueUserActivityRestorationHandler(value: (application: NSApplication, userActivity: NSUserActivity, restorationHandler: (p1: NSArray<interop.Object> | Array<interop.Object>) => void) => boolean) {
     this.delegate.applicationContinueUserActivityRestorationHandler = value;
   }
-  set applicationDidFailToContinueUserActivityWithTypeError(value: (application: NSApplication, userActivityType: NSString | string, error: NSError) => void) {
+  set applicationDidFailToContinueUserActivityWithTypeError(value: (application: NSApplication, userActivityType: string, error: NSError) => void) {
     this.delegate.applicationDidFailToContinueUserActivityWithTypeError = value;
   }
   set applicationDidUpdateUserActivity(value: (application: NSApplication, userActivity: NSUserActivity) => void) {
@@ -5071,7 +5071,7 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   set applicationUserDidAcceptCloudKitShareWithMetadata(value: (application: NSApplication, metadata: CKShareMetadata) => void) {
     this.delegate.applicationUserDidAcceptCloudKitShareWithMetadata = value;
   }
-  set applicationDelegateHandlesKey(value: (sender: NSApplication, key: NSString | string) => boolean) {
+  set applicationDelegateHandlesKey(value: (sender: NSApplication, key: string) => boolean) {
     this.delegate.applicationDelegateHandlesKey = value;
   }
   set applicationShouldAutomaticallyLocalizeKeyEquivalents(value: (application: NSApplication) => boolean) {
@@ -5135,12 +5135,12 @@ export class HTMLNSTouchBarItemElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTouchBarItem.new();
 
-  get identifier(): NSString { return this.nativeObject.identifier; }
+  get identifier(): string { return this.nativeObject.identifier; }
   get visibilityPriority(): number { return this.nativeObject.visibilityPriority; }
   set visibilityPriority(value: number) { this.nativeObject.visibilityPriority = value; }
   get view(): NSView { return this.nativeObject.view; }
   get viewController(): NSViewController { return this.nativeObject.viewController; }
-  get customizationLabel(): NSString { return this.nativeObject.customizationLabel; }
+  get customizationLabel(): string { return this.nativeObject.customizationLabel; }
   get isVisible(): boolean { return this.nativeObject.isVisible; }
 }
 
@@ -5165,8 +5165,8 @@ export class HTMLNSCandidateListTouchBarItemElement extends HTMLNSTouchBarItemEl
   get attributedStringForCandidate(): (p1: interop.Object, p2: number) => NSAttributedString { return this.nativeObject.attributedStringForCandidate; }
   set attributedStringForCandidate(value: (p1: interop.Object, p2: number) => NSAttributedString) { this.nativeObject.attributedStringForCandidate = value; }
   get candidates(): NSArray { return this.nativeObject.candidates; }
-  get customizationLabel(): NSString { return this.nativeObject.customizationLabel; }
-  set customizationLabel(value: NSString | string) { this.nativeObject.customizationLabel = value; }
+  get customizationLabel(): string { return this.nativeObject.customizationLabel; }
+  set customizationLabel(value: string) { this.nativeObject.customizationLabel = value; }
 
   set candidateListTouchBarItemBeginSelectingCandidateAtIndex(value: (anItem: NSCandidateListTouchBarItem, index: number) => void) {
     this.delegate.candidateListTouchBarItemBeginSelectingCandidateAtIndex = value;
@@ -5187,15 +5187,15 @@ export class HTMLNSWindowControllerElement extends HTMLNSResponderElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSWindowController.new();
 
-  get windowNibName(): NSString { return this.nativeObject.windowNibName; }
-  get windowNibPath(): NSString { return this.nativeObject.windowNibPath; }
+  get windowNibName(): string { return this.nativeObject.windowNibName; }
+  get windowNibPath(): string { return this.nativeObject.windowNibPath; }
   get owner(): interop.Object | null { return this.nativeObject.owner; }
-  get windowFrameAutosaveName(): NSString { return this.nativeObject.windowFrameAutosaveName; }
-  set windowFrameAutosaveName(value: NSString | string) { this.nativeObject.windowFrameAutosaveName = value; }
+  get windowFrameAutosaveName(): string { return this.nativeObject.windowFrameAutosaveName; }
+  set windowFrameAutosaveName(value: string) { this.nativeObject.windowFrameAutosaveName = value; }
   get shouldCascadeWindows(): boolean { return this.nativeObject.shouldCascadeWindows; }
   set shouldCascadeWindows(value: boolean) { this.nativeObject.shouldCascadeWindows = value; }
   get previewRepresentableActivityItems(): NSArray { return this.nativeObject.previewRepresentableActivityItems; }
-  set previewRepresentableActivityItems(value: NSArray | unknown[]) { this.nativeObject.previewRepresentableActivityItems = value; }
+  set previewRepresentableActivityItems(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.previewRepresentableActivityItems = value; }
   get document(): interop.Object { return this.nativeObject.document; }
   set document(value: interop.Object) { this.nativeObject.document = value; }
   get shouldCloseDocument(): boolean { return this.nativeObject.shouldCloseDocument; }
@@ -5210,8 +5210,8 @@ export class HTMLNSWindowControllerElement extends HTMLNSResponderElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSTextFieldCellElement extends HTMLNSActionCellElement {
@@ -5227,12 +5227,12 @@ export class HTMLNSTextFieldCellElement extends HTMLNSActionCellElement {
   set textColor(value: NSColor) { this.nativeObject.textColor = value; }
   get bezelStyle(): interop.Enum<typeof NSTextFieldBezelStyle> { return this.nativeObject.bezelStyle; }
   set bezelStyle(value: interop.Enum<typeof NSTextFieldBezelStyle>) { this.nativeObject.bezelStyle = value; }
-  get placeholderString(): NSString { return this.nativeObject.placeholderString; }
-  set placeholderString(value: NSString | string) { this.nativeObject.placeholderString = value; }
+  get placeholderString(): string { return this.nativeObject.placeholderString; }
+  set placeholderString(value: string) { this.nativeObject.placeholderString = value; }
   get placeholderAttributedString(): NSAttributedString { return this.nativeObject.placeholderAttributedString; }
   set placeholderAttributedString(value: NSAttributedString) { this.nativeObject.placeholderAttributedString = value; }
   get allowedInputSourceLocales(): NSArray { return this.nativeObject.allowedInputSourceLocales; }
-  set allowedInputSourceLocales(value: NSArray | unknown[]) { this.nativeObject.allowedInputSourceLocales = value; }
+  set allowedInputSourceLocales(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.allowedInputSourceLocales = value; }
 }
 
 export class HTMLNSSliderCellElement extends HTMLNSActionCellElement {
@@ -5278,22 +5278,22 @@ export class HTMLNSTokenFieldCellElement extends HTMLNSTextFieldCellElement {
   get tokenizingCharacterSet(): NSCharacterSet { return this.nativeObject.tokenizingCharacterSet; }
   set tokenizingCharacterSet(value: NSCharacterSet) { this.nativeObject.tokenizingCharacterSet = value; }
 
-  set tokenFieldCellCompletionsForSubstringIndexOfTokenIndexOfSelectedItem(value: (tokenFieldCell: NSTokenFieldCell, substring: NSString | string, tokenIndex: number, selectedIndex: interop.PointerConvertible) => NSArray) {
+  set tokenFieldCellCompletionsForSubstringIndexOfTokenIndexOfSelectedItem(value: (tokenFieldCell: NSTokenFieldCell, substring: string, tokenIndex: number, selectedIndex: interop.PointerConvertible) => NSArray) {
     this.delegate.tokenFieldCellCompletionsForSubstringIndexOfTokenIndexOfSelectedItem = value;
   }
-  set tokenFieldCellShouldAddObjectsAtIndex(value: (tokenFieldCell: NSTokenFieldCell, tokens: NSArray | unknown[], index: number) => NSArray) {
+  set tokenFieldCellShouldAddObjectsAtIndex(value: (tokenFieldCell: NSTokenFieldCell, tokens: NSArray<interop.Object> | Array<interop.Object>, index: number) => NSArray) {
     this.delegate.tokenFieldCellShouldAddObjectsAtIndex = value;
   }
-  set tokenFieldCellDisplayStringForRepresentedObject(value: (tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object) => NSString) {
+  set tokenFieldCellDisplayStringForRepresentedObject(value: (tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object) => string) {
     this.delegate.tokenFieldCellDisplayStringForRepresentedObject = value;
   }
-  set tokenFieldCellEditingStringForRepresentedObject(value: (tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object) => NSString) {
+  set tokenFieldCellEditingStringForRepresentedObject(value: (tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object) => string) {
     this.delegate.tokenFieldCellEditingStringForRepresentedObject = value;
   }
-  set tokenFieldCellRepresentedObjectForEditingString(value: (tokenFieldCell: NSTokenFieldCell, editingString: NSString | string) => interop.Object) {
+  set tokenFieldCellRepresentedObjectForEditingString(value: (tokenFieldCell: NSTokenFieldCell, editingString: string) => interop.Object) {
     this.delegate.tokenFieldCellRepresentedObjectForEditingString = value;
   }
-  set tokenFieldCellWriteRepresentedObjectsToPasteboard(value: (tokenFieldCell: NSTokenFieldCell, objects: NSArray | unknown[], pboard: NSPasteboard) => boolean) {
+  set tokenFieldCellWriteRepresentedObjectsToPasteboard(value: (tokenFieldCell: NSTokenFieldCell, objects: NSArray<interop.Object> | Array<interop.Object>, pboard: NSPasteboard) => boolean) {
     this.delegate.tokenFieldCellWriteRepresentedObjectsToPasteboard = value;
   }
   set tokenFieldCellReadFromPasteboard(value: (tokenFieldCell: NSTokenFieldCell, pboard: NSPasteboard) => NSArray) {
@@ -5335,8 +5335,8 @@ export class HTMLNSButtonTouchBarItemElement extends HTMLNSTouchBarItemElement {
   set action(value: string) { this.nativeObject.action = value; }
   get isEnabled(): boolean { return this.nativeObject.isEnabled; }
   set isEnabled(value: boolean) { this.nativeObject.isEnabled = value; }
-  get customizationLabel(): NSString { return this.nativeObject.customizationLabel; }
-  set customizationLabel(value: NSString | string) { this.nativeObject.customizationLabel = value; }
+  get customizationLabel(): string { return this.nativeObject.customizationLabel; }
+  set customizationLabel(value: string) { this.nativeObject.customizationLabel = value; }
 }
 
 export class HTMLNSTextTableBlockElement extends HTMLNSTextBlockElement {
@@ -5423,14 +5423,14 @@ export class HTMLNSPopoverTouchBarItemElement extends HTMLNSTouchBarItemElement 
 
   get popoverTouchBar(): NSTouchBar { return this.nativeObject.popoverTouchBar; }
   set popoverTouchBar(value: NSTouchBar) { this.nativeObject.popoverTouchBar = value; }
-  get customizationLabel(): NSString { return this.nativeObject.customizationLabel; }
-  set customizationLabel(value: NSString | string) { this.nativeObject.customizationLabel = value; }
+  get customizationLabel(): string { return this.nativeObject.customizationLabel; }
+  set customizationLabel(value: string) { this.nativeObject.customizationLabel = value; }
   get collapsedRepresentation(): NSView { return this.nativeObject.collapsedRepresentation; }
   set collapsedRepresentation(value: NSView) { this.nativeObject.collapsedRepresentation = value; }
   get collapsedRepresentationImage(): NSImage { return this.nativeObject.collapsedRepresentationImage; }
   set collapsedRepresentationImage(value: NSImage) { this.nativeObject.collapsedRepresentationImage = value; }
-  get collapsedRepresentationLabel(): NSString { return this.nativeObject.collapsedRepresentationLabel; }
-  set collapsedRepresentationLabel(value: NSString | string) { this.nativeObject.collapsedRepresentationLabel = value; }
+  get collapsedRepresentationLabel(): string { return this.nativeObject.collapsedRepresentationLabel; }
+  set collapsedRepresentationLabel(value: string) { this.nativeObject.collapsedRepresentationLabel = value; }
   get pressAndHoldTouchBar(): NSTouchBar { return this.nativeObject.pressAndHoldTouchBar; }
   set pressAndHoldTouchBar(value: NSTouchBar) { this.nativeObject.pressAndHoldTouchBar = value; }
   get showsCloseButton(): boolean { return this.nativeObject.showsCloseButton; }
@@ -5459,11 +5459,11 @@ export class HTMLNSColorPickerTouchBarItemElement extends HTMLNSTouchBarItemElem
   get showsAlpha(): boolean { return this.nativeObject.showsAlpha; }
   set showsAlpha(value: boolean) { this.nativeObject.showsAlpha = value; }
   get allowedColorSpaces(): NSArray { return this.nativeObject.allowedColorSpaces; }
-  set allowedColorSpaces(value: NSArray | unknown[]) { this.nativeObject.allowedColorSpaces = value; }
+  set allowedColorSpaces(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.allowedColorSpaces = value; }
   get colorList(): NSColorList { return this.nativeObject.colorList; }
   set colorList(value: NSColorList) { this.nativeObject.colorList = value; }
-  get customizationLabel(): NSString { return this.nativeObject.customizationLabel; }
-  set customizationLabel(value: NSString | string) { this.nativeObject.customizationLabel = value; }
+  get customizationLabel(): string { return this.nativeObject.customizationLabel; }
+  set customizationLabel(value: string) { this.nativeObject.customizationLabel = value; }
   get target(): interop.Object { return this.nativeObject.target; }
   set target(value: interop.Object) { this.nativeObject.target = value; }
   get action(): string { return this.nativeObject.action; }
@@ -5514,9 +5514,9 @@ export class HTMLNSMutableFontCollectionElement extends HTMLNSFontCollectionElem
   readonly nativeObject = NSMutableFontCollection.new();
 
   get queryDescriptors(): NSArray { return this.nativeObject.queryDescriptors; }
-  set queryDescriptors(value: NSArray | unknown[]) { this.nativeObject.queryDescriptors = value; }
+  set queryDescriptors(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.queryDescriptors = value; }
   get exclusionDescriptors(): NSArray { return this.nativeObject.exclusionDescriptors; }
-  set exclusionDescriptors(value: NSArray | unknown[]) { this.nativeObject.exclusionDescriptors = value; }
+  set exclusionDescriptors(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.exclusionDescriptors = value; }
 }
 
 export class HTMLNSCollectionViewElement extends HTMLNSViewElement {
@@ -5532,7 +5532,7 @@ export class HTMLNSCollectionViewElement extends HTMLNSViewElement {
   get prefetchDataSource(): NSCollectionViewPrefetching { return this.nativeObject.prefetchDataSource; }
   set prefetchDataSource(value: NSCollectionViewPrefetching) { this.nativeObject.prefetchDataSource = value; }
   get content(): NSArray { return this.nativeObject.content; }
-  set content(value: NSArray | unknown[]) { this.nativeObject.content = value; }
+  set content(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.content = value; }
   get backgroundView(): NSView { return this.nativeObject.backgroundView; }
   set backgroundView(value: NSView) { this.nativeObject.backgroundView = value; }
   get backgroundViewScrollsWithContent(): boolean { return this.nativeObject.backgroundViewScrollsWithContent; }
@@ -5540,7 +5540,7 @@ export class HTMLNSCollectionViewElement extends HTMLNSViewElement {
   get collectionViewLayout(): NSCollectionViewLayout { return this.nativeObject.collectionViewLayout; }
   set collectionViewLayout(value: NSCollectionViewLayout) { this.nativeObject.collectionViewLayout = value; }
   get backgroundColors(): NSArray { return this.nativeObject.backgroundColors; }
-  set backgroundColors(value: NSArray | unknown[]) { this.nativeObject.backgroundColors = value; }
+  set backgroundColors(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.backgroundColors = value; }
   get numberOfSections(): number { return this.nativeObject.numberOfSections; }
   get isFirstResponder(): boolean { return this.nativeObject.isFirstResponder; }
   get isSelectable(): boolean { return this.nativeObject.isSelectable; }
@@ -5567,8 +5567,8 @@ export class HTMLNSCollectionViewElement extends HTMLNSViewElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 
   set collectionViewCanDragItemsAtIndexPathsWithEvent(value: (collectionView: NSCollectionView, indexPaths: NSSet, event: NSEvent) => boolean) {
     this.delegate.collectionViewCanDragItemsAtIndexPathsWithEvent = value;
@@ -5645,13 +5645,13 @@ export class HTMLNSCollectionViewElement extends HTMLNSViewElement {
   set collectionViewWillDisplayItemForRepresentedObjectAtIndexPath(value: (collectionView: NSCollectionView, item: NSCollectionViewItem, indexPath: NSIndexPath) => void) {
     this.delegate.collectionViewWillDisplayItemForRepresentedObjectAtIndexPath = value;
   }
-  set collectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath(value: (collectionView: NSCollectionView, view: NSView, elementKind: NSString | string, indexPath: NSIndexPath) => void) {
+  set collectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath(value: (collectionView: NSCollectionView, view: NSView, elementKind: string, indexPath: NSIndexPath) => void) {
     this.delegate.collectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath = value;
   }
   set collectionViewDidEndDisplayingItemForRepresentedObjectAtIndexPath(value: (collectionView: NSCollectionView, item: NSCollectionViewItem, indexPath: NSIndexPath) => void) {
     this.delegate.collectionViewDidEndDisplayingItemForRepresentedObjectAtIndexPath = value;
   }
-  set collectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath(value: (collectionView: NSCollectionView, view: NSView, elementKind: NSString | string, indexPath: NSIndexPath) => void) {
+  set collectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath(value: (collectionView: NSCollectionView, view: NSView, elementKind: string, indexPath: NSIndexPath) => void) {
     this.delegate.collectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath = value;
   }
   set collectionViewTransitionLayoutForOldLayoutNewLayout(value: (collectionView: NSCollectionView, fromLayout: NSCollectionViewLayout, toLayout: NSCollectionViewLayout) => NSCollectionViewTransitionLayout) {
@@ -5673,8 +5673,8 @@ export class HTMLNSButtonCellElement extends HTMLNSActionCellElement {
   set showsStateBy(value: interop.Enum<typeof NSCellStyleMask>) { this.nativeObject.showsStateBy = value; }
   get attributedTitle(): NSAttributedString { return this.nativeObject.attributedTitle; }
   set attributedTitle(value: NSAttributedString) { this.nativeObject.attributedTitle = value; }
-  get alternateTitle(): NSString { return this.nativeObject.alternateTitle; }
-  set alternateTitle(value: NSString | string) { this.nativeObject.alternateTitle = value; }
+  get alternateTitle(): string { return this.nativeObject.alternateTitle; }
+  set alternateTitle(value: string) { this.nativeObject.alternateTitle = value; }
   get attributedAlternateTitle(): NSAttributedString { return this.nativeObject.attributedAlternateTitle; }
   set attributedAlternateTitle(value: NSAttributedString) { this.nativeObject.attributedAlternateTitle = value; }
   get alternateImage(): NSImage { return this.nativeObject.alternateImage; }
@@ -5683,8 +5683,8 @@ export class HTMLNSButtonCellElement extends HTMLNSActionCellElement {
   set imagePosition(value: interop.Enum<typeof NSCellImagePosition>) { this.nativeObject.imagePosition = value; }
   get imageScaling(): interop.Enum<typeof NSImageScaling> { return this.nativeObject.imageScaling; }
   set imageScaling(value: interop.Enum<typeof NSImageScaling>) { this.nativeObject.imageScaling = value; }
-  get keyEquivalent(): NSString { return this.nativeObject.keyEquivalent; }
-  set keyEquivalent(value: NSString | string) { this.nativeObject.keyEquivalent = value; }
+  get keyEquivalent(): string { return this.nativeObject.keyEquivalent; }
+  set keyEquivalent(value: string) { this.nativeObject.keyEquivalent = value; }
   get keyEquivalentModifierMask(): interop.Enum<typeof NSEventModifierFlags> { return this.nativeObject.keyEquivalentModifierMask; }
   set keyEquivalentModifierMask(value: interop.Enum<typeof NSEventModifierFlags>) { this.nativeObject.keyEquivalentModifierMask = value; }
   get isTransparent(): boolean { return this.nativeObject.isTransparent; }
@@ -5824,8 +5824,8 @@ export class HTMLNSScrollViewElement extends HTMLNSViewElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSATSTypesetterElement extends HTMLNSTypesetterElement {
@@ -5926,14 +5926,14 @@ export class HTMLNSTableRowViewElement extends HTMLNSViewElement {
   set accessibilityParent(value: interop.Object) { this.nativeObject.accessibilityParent = value; }
   get isAccessibilityFocused(): boolean { return this.nativeObject.isAccessibilityFocused; }
   set isAccessibilityFocused(value: boolean) { this.nativeObject.isAccessibilityFocused = value; }
-  get accessibilityIdentifier(): NSString { return this.nativeObject.accessibilityIdentifier; }
-  set accessibilityIdentifier(value: NSString | string) { this.nativeObject.accessibilityIdentifier = value; }
+  get accessibilityIdentifier(): string { return this.nativeObject.accessibilityIdentifier; }
+  set accessibilityIdentifier(value: string) { this.nativeObject.accessibilityIdentifier = value; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSCollectionViewGridLayoutElement extends HTMLNSCollectionViewLayoutElement {
@@ -5956,7 +5956,7 @@ export class HTMLNSCollectionViewGridLayoutElement extends HTMLNSCollectionViewL
   get maximumItemSize(): CGSize { return this.nativeObject.maximumItemSize; }
   set maximumItemSize(value: CGSize) { this.nativeObject.maximumItemSize = value; }
   get backgroundColors(): NSArray { return this.nativeObject.backgroundColors; }
-  set backgroundColors(value: NSArray | unknown[]) { this.nativeObject.backgroundColors = value; }
+  set backgroundColors(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.backgroundColors = value; }
 }
 
 export class HTMLNSCollectionLayoutSpacingElement extends HTMLNSObjectElement {
@@ -5986,8 +5986,8 @@ export class HTMLNSDockTileElement extends HTMLNSObjectElement {
   set contentView(value: NSView) { this.nativeObject.contentView = value; }
   get showsApplicationBadge(): boolean { return this.nativeObject.showsApplicationBadge; }
   set showsApplicationBadge(value: boolean) { this.nativeObject.showsApplicationBadge = value; }
-  get badgeLabel(): NSString { return this.nativeObject.badgeLabel; }
-  set badgeLabel(value: NSString | string) { this.nativeObject.badgeLabel = value; }
+  get badgeLabel(): string { return this.nativeObject.badgeLabel; }
+  set badgeLabel(value: string) { this.nativeObject.badgeLabel = value; }
   get owner(): interop.Object | null { return this.nativeObject.owner; }
 }
 
@@ -5999,10 +5999,10 @@ export class HTMLNSAlertElement extends HTMLNSObjectElement {
     return (this.nativeObject.delegate ??= NSAlertDelegateImpl.new()) as NSAlertDelegateImpl;
   }
 
-  get messageText(): NSString { return this.nativeObject.messageText; }
-  set messageText(value: NSString | string) { this.nativeObject.messageText = value; }
-  get informativeText(): NSString { return this.nativeObject.informativeText; }
-  set informativeText(value: NSString | string) { this.nativeObject.informativeText = value; }
+  get messageText(): string { return this.nativeObject.messageText; }
+  set messageText(value: string) { this.nativeObject.messageText = value; }
+  get informativeText(): string { return this.nativeObject.informativeText; }
+  set informativeText(value: string) { this.nativeObject.informativeText = value; }
   get icon(): NSImage { return this.nativeObject.icon; }
   set icon(value: NSImage) { this.nativeObject.icon = value; }
   get buttons(): NSArray { return this.nativeObject.buttons; }
@@ -6010,8 +6010,8 @@ export class HTMLNSAlertElement extends HTMLNSObjectElement {
   set alertStyle(value: interop.Enum<typeof NSAlertStyle>) { this.nativeObject.alertStyle = value; }
   get showsHelp(): boolean { return this.nativeObject.showsHelp; }
   set showsHelp(value: boolean) { this.nativeObject.showsHelp = value; }
-  get helpAnchor(): NSString { return this.nativeObject.helpAnchor; }
-  set helpAnchor(value: NSString | string) { this.nativeObject.helpAnchor = value; }
+  get helpAnchor(): string { return this.nativeObject.helpAnchor; }
+  set helpAnchor(value: string) { this.nativeObject.helpAnchor = value; }
   get accessoryView(): NSView { return this.nativeObject.accessoryView; }
   set accessoryView(value: NSView) { this.nativeObject.accessoryView = value; }
   get showsSuppressionButton(): boolean { return this.nativeObject.showsSuppressionButton; }
@@ -6051,7 +6051,7 @@ export class HTMLNSTextSelectionElement extends HTMLNSObjectElement {
   get secondarySelectionLocation(): NSTextLocation { return this.nativeObject.secondarySelectionLocation; }
   set secondarySelectionLocation(value: NSTextLocation) { this.nativeObject.secondarySelectionLocation = value; }
   get typingAttributes(): NSDictionary { return this.nativeObject.typingAttributes; }
-  set typingAttributes(value: NSDictionary | Record<string, unknown>) { this.nativeObject.typingAttributes = value; }
+  set typingAttributes(value: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>) { this.nativeObject.typingAttributes = value; }
 }
 
 export class HTMLNSAlignmentFeedbackFilterElement extends HTMLNSObjectElement {
@@ -6095,12 +6095,12 @@ export class HTMLNSDictionaryControllerKeyValuePairElement extends HTMLNSObjectE
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDictionaryControllerKeyValuePair.new();
 
-  get key(): NSString { return this.nativeObject.key; }
-  set key(value: NSString | string) { this.nativeObject.key = value; }
+  get key(): string { return this.nativeObject.key; }
+  set key(value: string) { this.nativeObject.key = value; }
   get value(): interop.Object { return this.nativeObject.value; }
   set value(value: interop.Object) { this.nativeObject.value = value; }
-  get localizedKey(): NSString { return this.nativeObject.localizedKey; }
-  set localizedKey(value: NSString | string) { this.nativeObject.localizedKey = value; }
+  get localizedKey(): string { return this.nativeObject.localizedKey; }
+  set localizedKey(value: string) { this.nativeObject.localizedKey = value; }
   get isExplicitlyIncluded(): boolean { return this.nativeObject.isExplicitlyIncluded; }
 }
 
@@ -6131,9 +6131,9 @@ export class HTMLNSDataAssetElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDataAsset.new();
 
-  get name(): NSString { return this.nativeObject.name; }
+  get name(): string { return this.nativeObject.name; }
   get data(): NSData { return this.nativeObject.data; }
-  get typeIdentifier(): NSString { return this.nativeObject.typeIdentifier; }
+  get typeIdentifier(): string { return this.nativeObject.typeIdentifier; }
 }
 
 export class HTMLNSTableHeaderViewElement extends HTMLNSViewElement {
@@ -6150,8 +6150,8 @@ export class HTMLNSTableHeaderViewElement extends HTMLNSViewElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSTextInsertionIndicatorElement extends HTMLNSViewElement {
@@ -6209,8 +6209,8 @@ export class HTMLNSFormCellElement extends HTMLNSActionCellElement {
   get titleFont(): NSFont { return this.nativeObject.titleFont; }
   set titleFont(value: NSFont) { this.nativeObject.titleFont = value; }
   get isOpaque(): boolean { return this.nativeObject.isOpaque; }
-  get placeholderString(): NSString { return this.nativeObject.placeholderString; }
-  set placeholderString(value: NSString | string) { this.nativeObject.placeholderString = value; }
+  get placeholderString(): string { return this.nativeObject.placeholderString; }
+  set placeholderString(value: string) { this.nativeObject.placeholderString = value; }
   get placeholderAttributedString(): NSAttributedString { return this.nativeObject.placeholderAttributedString; }
   set placeholderAttributedString(value: NSAttributedString) { this.nativeObject.placeholderAttributedString = value; }
   get titleAlignment(): interop.Enum<typeof NSTextAlignment> { return this.nativeObject.titleAlignment; }
@@ -6228,11 +6228,11 @@ export class HTMLNSFontElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSFont.new();
 
-  get fontName(): NSString { return this.nativeObject.fontName; }
+  get fontName(): string { return this.nativeObject.fontName; }
   get pointSize(): number { return this.nativeObject.pointSize; }
   get matrix(): interop.Pointer { return this.nativeObject.matrix; }
-  get familyName(): NSString { return this.nativeObject.familyName; }
-  get displayName(): NSString { return this.nativeObject.displayName; }
+  get familyName(): string { return this.nativeObject.familyName; }
+  get displayName(): string { return this.nativeObject.displayName; }
   get fontDescriptor(): NSFontDescriptor { return this.nativeObject.fontDescriptor; }
   get textTransform(): NSAffineTransform { return this.nativeObject.textTransform; }
   get numberOfGlyphs(): number { return this.nativeObject.numberOfGlyphs; }
@@ -6261,7 +6261,7 @@ export class HTMLNSLayoutAnchorElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSLayoutAnchor.new();
 
-  get name(): NSString { return this.nativeObject.name; }
+  get name(): string { return this.nativeObject.name; }
   get item(): interop.Object { return this.nativeObject.item; }
   get hasAmbiguousLayout(): boolean { return this.nativeObject.hasAmbiguousLayout; }
   get constraintsAffectingLayout(): NSArray { return this.nativeObject.constraintsAffectingLayout; }
@@ -6297,7 +6297,7 @@ export class HTMLNSCollectionViewLayoutAttributesElement extends HTMLNSObjectEle
   get indexPath(): NSIndexPath { return this.nativeObject.indexPath; }
   set indexPath(value: NSIndexPath) { this.nativeObject.indexPath = value; }
   get representedElementCategory(): interop.Enum<typeof NSCollectionElementCategory> { return this.nativeObject.representedElementCategory; }
-  get representedElementKind(): NSString { return this.nativeObject.representedElementKind; }
+  get representedElementKind(): string { return this.nativeObject.representedElementKind; }
 }
 
 export class HTMLNSUserInterfaceCompressionOptionsElement extends HTMLNSObjectElement {
@@ -6321,8 +6321,8 @@ export class HTMLNSTextAttachmentCellElement extends HTMLNSCellElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSMenuItemElement extends HTMLNSObjectElement {
@@ -6340,11 +6340,11 @@ export class HTMLNSMenuItemElement extends HTMLNSObjectElement {
   set attributedTitle(value: NSAttributedString) { this.nativeObject.attributedTitle = value; }
   get isSeparatorItem(): boolean { return this.nativeObject.isSeparatorItem; }
   get isSectionHeader(): boolean { return this.nativeObject.isSectionHeader; }
-  get keyEquivalent(): NSString { return this.nativeObject.keyEquivalent; }
-  set keyEquivalent(value: NSString | string) { this.nativeObject.keyEquivalent = value; }
+  get keyEquivalent(): string { return this.nativeObject.keyEquivalent; }
+  set keyEquivalent(value: string) { this.nativeObject.keyEquivalent = value; }
   get keyEquivalentModifierMask(): interop.Enum<typeof NSEventModifierFlags> { return this.nativeObject.keyEquivalentModifierMask; }
   set keyEquivalentModifierMask(value: interop.Enum<typeof NSEventModifierFlags>) { this.nativeObject.keyEquivalentModifierMask = value; }
-  get userKeyEquivalent(): NSString { return this.nativeObject.userKeyEquivalent; }
+  get userKeyEquivalent(): string { return this.nativeObject.userKeyEquivalent; }
   get allowsKeyEquivalentWhenHidden(): boolean { return this.nativeObject.allowsKeyEquivalentWhenHidden; }
   set allowsKeyEquivalentWhenHidden(value: boolean) { this.nativeObject.allowsKeyEquivalentWhenHidden = value; }
   get allowsAutomaticKeyEquivalentLocalization(): boolean { return this.nativeObject.allowsAutomaticKeyEquivalentLocalization; }
@@ -6381,18 +6381,18 @@ export class HTMLNSMenuItemElement extends HTMLNSObjectElement {
   get isHidden(): boolean { return this.nativeObject.isHidden; }
   set isHidden(value: boolean) { this.nativeObject.isHidden = value; }
   get isHiddenOrHasHiddenAncestor(): boolean { return this.nativeObject.isHiddenOrHasHiddenAncestor; }
-  get toolTip(): NSString { return this.nativeObject.toolTip; }
-  set toolTip(value: NSString | string) { this.nativeObject.toolTip = value; }
+  get toolTip(): string { return this.nativeObject.toolTip; }
+  set toolTip(value: string) { this.nativeObject.toolTip = value; }
   get badge(): NSMenuItemBadge { return this.nativeObject.badge; }
   set badge(value: NSMenuItemBadge) { this.nativeObject.badge = value; }
-  get identifier(): NSString { return this.nativeObject.identifier; }
-  set identifier(value: NSString | string) { this.nativeObject.identifier = value; }
+  get identifier(): string { return this.nativeObject.identifier; }
+  set identifier(value: string) { this.nativeObject.identifier = value; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
   get isAccessibilityElement(): boolean { return this.nativeObject.isAccessibilityElement; }
   set isAccessibilityElement(value: boolean) { this.nativeObject.isAccessibilityElement = value; }
   get accessibilityFrame(): CGRect { return this.nativeObject.accessibilityFrame; }
@@ -6407,32 +6407,32 @@ export class HTMLNSMenuItemElement extends HTMLNSObjectElement {
   set accessibilityURL(value: NSURL) { this.nativeObject.accessibilityURL = value; }
   get accessibilityValue(): interop.Object { return this.nativeObject.accessibilityValue; }
   set accessibilityValue(value: interop.Object) { this.nativeObject.accessibilityValue = value; }
-  get accessibilityValueDescription(): NSString { return this.nativeObject.accessibilityValueDescription; }
-  set accessibilityValueDescription(value: NSString | string) { this.nativeObject.accessibilityValueDescription = value; }
+  get accessibilityValueDescription(): string { return this.nativeObject.accessibilityValueDescription; }
+  set accessibilityValueDescription(value: string) { this.nativeObject.accessibilityValueDescription = value; }
   get accessibilityVisibleChildren(): NSArray { return this.nativeObject.accessibilityVisibleChildren; }
-  set accessibilityVisibleChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleChildren = value; }
-  get accessibilitySubrole(): NSString { return this.nativeObject.accessibilitySubrole; }
-  set accessibilitySubrole(value: NSString | string) { this.nativeObject.accessibilitySubrole = value; }
-  get accessibilityTitle(): NSString { return this.nativeObject.accessibilityTitle; }
-  set accessibilityTitle(value: NSString | string) { this.nativeObject.accessibilityTitle = value; }
+  set accessibilityVisibleChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleChildren = value; }
+  get accessibilitySubrole(): string { return this.nativeObject.accessibilitySubrole; }
+  set accessibilitySubrole(value: string) { this.nativeObject.accessibilitySubrole = value; }
+  get accessibilityTitle(): string { return this.nativeObject.accessibilityTitle; }
+  set accessibilityTitle(value: string) { this.nativeObject.accessibilityTitle = value; }
   get accessibilityTitleUIElement(): interop.Object { return this.nativeObject.accessibilityTitleUIElement; }
   set accessibilityTitleUIElement(value: interop.Object) { this.nativeObject.accessibilityTitleUIElement = value; }
   get accessibilityNextContents(): NSArray { return this.nativeObject.accessibilityNextContents; }
-  set accessibilityNextContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityNextContents = value; }
+  set accessibilityNextContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityNextContents = value; }
   get accessibilityOrientation(): interop.Enum<typeof NSAccessibilityOrientation> { return this.nativeObject.accessibilityOrientation; }
   set accessibilityOrientation(value: interop.Enum<typeof NSAccessibilityOrientation>) { this.nativeObject.accessibilityOrientation = value; }
   get accessibilityOverflowButton(): interop.Object { return this.nativeObject.accessibilityOverflowButton; }
   set accessibilityOverflowButton(value: interop.Object) { this.nativeObject.accessibilityOverflowButton = value; }
   get accessibilityParent(): interop.Object { return this.nativeObject.accessibilityParent; }
   set accessibilityParent(value: interop.Object) { this.nativeObject.accessibilityParent = value; }
-  get accessibilityPlaceholderValue(): NSString { return this.nativeObject.accessibilityPlaceholderValue; }
-  set accessibilityPlaceholderValue(value: NSString | string) { this.nativeObject.accessibilityPlaceholderValue = value; }
+  get accessibilityPlaceholderValue(): string { return this.nativeObject.accessibilityPlaceholderValue; }
+  set accessibilityPlaceholderValue(value: string) { this.nativeObject.accessibilityPlaceholderValue = value; }
   get accessibilityPreviousContents(): NSArray { return this.nativeObject.accessibilityPreviousContents; }
-  set accessibilityPreviousContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityPreviousContents = value; }
-  get accessibilityRole(): NSString { return this.nativeObject.accessibilityRole; }
-  set accessibilityRole(value: NSString | string) { this.nativeObject.accessibilityRole = value; }
-  get accessibilityRoleDescription(): NSString { return this.nativeObject.accessibilityRoleDescription; }
-  set accessibilityRoleDescription(value: NSString | string) { this.nativeObject.accessibilityRoleDescription = value; }
+  set accessibilityPreviousContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityPreviousContents = value; }
+  get accessibilityRole(): string { return this.nativeObject.accessibilityRole; }
+  set accessibilityRole(value: string) { this.nativeObject.accessibilityRole = value; }
+  get accessibilityRoleDescription(): string { return this.nativeObject.accessibilityRoleDescription; }
+  set accessibilityRoleDescription(value: string) { this.nativeObject.accessibilityRoleDescription = value; }
   get accessibilitySearchButton(): interop.Object { return this.nativeObject.accessibilitySearchButton; }
   set accessibilitySearchButton(value: interop.Object) { this.nativeObject.accessibilitySearchButton = value; }
   get accessibilitySearchMenu(): interop.Object { return this.nativeObject.accessibilitySearchMenu; }
@@ -6440,9 +6440,9 @@ export class HTMLNSMenuItemElement extends HTMLNSObjectElement {
   get isAccessibilitySelected(): boolean { return this.nativeObject.isAccessibilitySelected; }
   set isAccessibilitySelected(value: boolean) { this.nativeObject.isAccessibilitySelected = value; }
   get accessibilitySelectedChildren(): NSArray { return this.nativeObject.accessibilitySelectedChildren; }
-  set accessibilitySelectedChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedChildren = value; }
+  set accessibilitySelectedChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedChildren = value; }
   get accessibilityServesAsTitleForUIElements(): NSArray { return this.nativeObject.accessibilityServesAsTitleForUIElements; }
-  set accessibilityServesAsTitleForUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityServesAsTitleForUIElements = value; }
+  set accessibilityServesAsTitleForUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityServesAsTitleForUIElements = value; }
   get accessibilityShownMenu(): interop.Object { return this.nativeObject.accessibilityShownMenu; }
   set accessibilityShownMenu(value: interop.Object) { this.nativeObject.accessibilityShownMenu = value; }
   get accessibilityMinValue(): interop.Object { return this.nativeObject.accessibilityMinValue; }
@@ -6450,15 +6450,15 @@ export class HTMLNSMenuItemElement extends HTMLNSObjectElement {
   get accessibilityMaxValue(): interop.Object { return this.nativeObject.accessibilityMaxValue; }
   set accessibilityMaxValue(value: interop.Object) { this.nativeObject.accessibilityMaxValue = value; }
   get accessibilityLinkedUIElements(): NSArray { return this.nativeObject.accessibilityLinkedUIElements; }
-  set accessibilityLinkedUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityLinkedUIElements = value; }
+  set accessibilityLinkedUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityLinkedUIElements = value; }
   get accessibilityWindow(): interop.Object { return this.nativeObject.accessibilityWindow; }
   set accessibilityWindow(value: interop.Object) { this.nativeObject.accessibilityWindow = value; }
-  get accessibilityIdentifier(): NSString { return this.nativeObject.accessibilityIdentifier; }
-  set accessibilityIdentifier(value: NSString | string) { this.nativeObject.accessibilityIdentifier = value; }
-  get accessibilityHelp(): NSString { return this.nativeObject.accessibilityHelp; }
-  set accessibilityHelp(value: NSString | string) { this.nativeObject.accessibilityHelp = value; }
-  get accessibilityFilename(): NSString { return this.nativeObject.accessibilityFilename; }
-  set accessibilityFilename(value: NSString | string) { this.nativeObject.accessibilityFilename = value; }
+  get accessibilityIdentifier(): string { return this.nativeObject.accessibilityIdentifier; }
+  set accessibilityIdentifier(value: string) { this.nativeObject.accessibilityIdentifier = value; }
+  get accessibilityHelp(): string { return this.nativeObject.accessibilityHelp; }
+  set accessibilityHelp(value: string) { this.nativeObject.accessibilityHelp = value; }
+  get accessibilityFilename(): string { return this.nativeObject.accessibilityFilename; }
+  set accessibilityFilename(value: string) { this.nativeObject.accessibilityFilename = value; }
   get isAccessibilityExpanded(): boolean { return this.nativeObject.isAccessibilityExpanded; }
   set isAccessibilityExpanded(value: boolean) { this.nativeObject.isAccessibilityExpanded = value; }
   get isAccessibilityEdited(): boolean { return this.nativeObject.isAccessibilityEdited; }
@@ -6466,9 +6466,9 @@ export class HTMLNSMenuItemElement extends HTMLNSObjectElement {
   get isAccessibilityEnabled(): boolean { return this.nativeObject.isAccessibilityEnabled; }
   set isAccessibilityEnabled(value: boolean) { this.nativeObject.isAccessibilityEnabled = value; }
   get accessibilityChildren(): NSArray { return this.nativeObject.accessibilityChildren; }
-  set accessibilityChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilityChildren = value; }
+  set accessibilityChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityChildren = value; }
   get accessibilityChildrenInNavigationOrder(): NSArray { return this.nativeObject.accessibilityChildrenInNavigationOrder; }
-  set accessibilityChildrenInNavigationOrder(value: NSArray | unknown[]) { this.nativeObject.accessibilityChildrenInNavigationOrder = value; }
+  set accessibilityChildrenInNavigationOrder(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityChildrenInNavigationOrder = value; }
   get accessibilityClearButton(): interop.Object { return this.nativeObject.accessibilityClearButton; }
   set accessibilityClearButton(value: interop.Object) { this.nativeObject.accessibilityClearButton = value; }
   get accessibilityCancelButton(): interop.Object { return this.nativeObject.accessibilityCancelButton; }
@@ -6476,21 +6476,21 @@ export class HTMLNSMenuItemElement extends HTMLNSObjectElement {
   get isAccessibilityProtectedContent(): boolean { return this.nativeObject.isAccessibilityProtectedContent; }
   set isAccessibilityProtectedContent(value: boolean) { this.nativeObject.isAccessibilityProtectedContent = value; }
   get accessibilityContents(): NSArray { return this.nativeObject.accessibilityContents; }
-  set accessibilityContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityContents = value; }
-  get accessibilityLabel(): NSString { return this.nativeObject.accessibilityLabel; }
-  set accessibilityLabel(value: NSString | string) { this.nativeObject.accessibilityLabel = value; }
+  set accessibilityContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityContents = value; }
+  get accessibilityLabel(): string { return this.nativeObject.accessibilityLabel; }
+  set accessibilityLabel(value: string) { this.nativeObject.accessibilityLabel = value; }
   get isAccessibilityAlternateUIVisible(): boolean { return this.nativeObject.isAccessibilityAlternateUIVisible; }
   set isAccessibilityAlternateUIVisible(value: boolean) { this.nativeObject.isAccessibilityAlternateUIVisible = value; }
   get accessibilitySharedFocusElements(): NSArray { return this.nativeObject.accessibilitySharedFocusElements; }
-  set accessibilitySharedFocusElements(value: NSArray | unknown[]) { this.nativeObject.accessibilitySharedFocusElements = value; }
+  set accessibilitySharedFocusElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySharedFocusElements = value; }
   get isAccessibilityRequired(): boolean { return this.nativeObject.isAccessibilityRequired; }
   set isAccessibilityRequired(value: boolean) { this.nativeObject.isAccessibilityRequired = value; }
   get accessibilityCustomRotors(): NSArray { return this.nativeObject.accessibilityCustomRotors; }
-  set accessibilityCustomRotors(value: NSArray | unknown[]) { this.nativeObject.accessibilityCustomRotors = value; }
+  set accessibilityCustomRotors(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityCustomRotors = value; }
   get accessibilityUserInputLabels(): NSArray { return this.nativeObject.accessibilityUserInputLabels; }
-  set accessibilityUserInputLabels(value: NSArray | unknown[]) { this.nativeObject.accessibilityUserInputLabels = value; }
+  set accessibilityUserInputLabels(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityUserInputLabels = value; }
   get accessibilityAttributedUserInputLabels(): NSArray { return this.nativeObject.accessibilityAttributedUserInputLabels; }
-  set accessibilityAttributedUserInputLabels(value: NSArray | unknown[]) { this.nativeObject.accessibilityAttributedUserInputLabels = value; }
+  set accessibilityAttributedUserInputLabels(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityAttributedUserInputLabels = value; }
   get accessibilityApplicationFocusedUIElement(): interop.Object { return this.nativeObject.accessibilityApplicationFocusedUIElement; }
   set accessibilityApplicationFocusedUIElement(value: interop.Object) { this.nativeObject.accessibilityApplicationFocusedUIElement = value; }
   get accessibilityMainWindow(): interop.Object { return this.nativeObject.accessibilityMainWindow; }
@@ -6502,25 +6502,25 @@ export class HTMLNSMenuItemElement extends HTMLNSObjectElement {
   get accessibilityFocusedWindow(): interop.Object { return this.nativeObject.accessibilityFocusedWindow; }
   set accessibilityFocusedWindow(value: interop.Object) { this.nativeObject.accessibilityFocusedWindow = value; }
   get accessibilityWindows(): NSArray { return this.nativeObject.accessibilityWindows; }
-  set accessibilityWindows(value: NSArray | unknown[]) { this.nativeObject.accessibilityWindows = value; }
+  set accessibilityWindows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityWindows = value; }
   get accessibilityExtrasMenuBar(): interop.Object { return this.nativeObject.accessibilityExtrasMenuBar; }
   set accessibilityExtrasMenuBar(value: interop.Object) { this.nativeObject.accessibilityExtrasMenuBar = value; }
   get accessibilityMenuBar(): interop.Object { return this.nativeObject.accessibilityMenuBar; }
   set accessibilityMenuBar(value: interop.Object) { this.nativeObject.accessibilityMenuBar = value; }
   get accessibilityColumnTitles(): NSArray { return this.nativeObject.accessibilityColumnTitles; }
-  set accessibilityColumnTitles(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumnTitles = value; }
+  set accessibilityColumnTitles(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumnTitles = value; }
   get isAccessibilityOrderedByRow(): boolean { return this.nativeObject.isAccessibilityOrderedByRow; }
   set isAccessibilityOrderedByRow(value: boolean) { this.nativeObject.isAccessibilityOrderedByRow = value; }
   get accessibilityHorizontalUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityHorizontalUnits; }
   set accessibilityHorizontalUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityHorizontalUnits = value; }
   get accessibilityVerticalUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityVerticalUnits; }
   set accessibilityVerticalUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityVerticalUnits = value; }
-  get accessibilityHorizontalUnitDescription(): NSString { return this.nativeObject.accessibilityHorizontalUnitDescription; }
-  set accessibilityHorizontalUnitDescription(value: NSString | string) { this.nativeObject.accessibilityHorizontalUnitDescription = value; }
-  get accessibilityVerticalUnitDescription(): NSString { return this.nativeObject.accessibilityVerticalUnitDescription; }
-  set accessibilityVerticalUnitDescription(value: NSString | string) { this.nativeObject.accessibilityVerticalUnitDescription = value; }
+  get accessibilityHorizontalUnitDescription(): string { return this.nativeObject.accessibilityHorizontalUnitDescription; }
+  set accessibilityHorizontalUnitDescription(value: string) { this.nativeObject.accessibilityHorizontalUnitDescription = value; }
+  get accessibilityVerticalUnitDescription(): string { return this.nativeObject.accessibilityVerticalUnitDescription; }
+  set accessibilityVerticalUnitDescription(value: string) { this.nativeObject.accessibilityVerticalUnitDescription = value; }
   get accessibilityHandles(): NSArray { return this.nativeObject.accessibilityHandles; }
-  set accessibilityHandles(value: NSArray | unknown[]) { this.nativeObject.accessibilityHandles = value; }
+  set accessibilityHandles(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityHandles = value; }
   get accessibilityWarningValue(): interop.Object { return this.nativeObject.accessibilityWarningValue; }
   set accessibilityWarningValue(value: interop.Object) { this.nativeObject.accessibilityWarningValue = value; }
   get accessibilityCriticalValue(): interop.Object { return this.nativeObject.accessibilityCriticalValue; }
@@ -6534,37 +6534,37 @@ export class HTMLNSMenuItemElement extends HTMLNSObjectElement {
   get accessibilityDisclosureLevel(): number { return this.nativeObject.accessibilityDisclosureLevel; }
   set accessibilityDisclosureLevel(value: number) { this.nativeObject.accessibilityDisclosureLevel = value; }
   get accessibilityMarkerUIElements(): NSArray { return this.nativeObject.accessibilityMarkerUIElements; }
-  set accessibilityMarkerUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityMarkerUIElements = value; }
+  set accessibilityMarkerUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityMarkerUIElements = value; }
   get accessibilityMarkerValues(): interop.Object { return this.nativeObject.accessibilityMarkerValues; }
   set accessibilityMarkerValues(value: interop.Object) { this.nativeObject.accessibilityMarkerValues = value; }
   get accessibilityMarkerGroupUIElement(): interop.Object { return this.nativeObject.accessibilityMarkerGroupUIElement; }
   set accessibilityMarkerGroupUIElement(value: interop.Object) { this.nativeObject.accessibilityMarkerGroupUIElement = value; }
   get accessibilityUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityUnits; }
   set accessibilityUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityUnits = value; }
-  get accessibilityUnitDescription(): NSString { return this.nativeObject.accessibilityUnitDescription; }
-  set accessibilityUnitDescription(value: NSString | string) { this.nativeObject.accessibilityUnitDescription = value; }
+  get accessibilityUnitDescription(): string { return this.nativeObject.accessibilityUnitDescription; }
+  set accessibilityUnitDescription(value: string) { this.nativeObject.accessibilityUnitDescription = value; }
   get accessibilityRulerMarkerType(): interop.Enum<typeof NSAccessibilityRulerMarkerType> { return this.nativeObject.accessibilityRulerMarkerType; }
   set accessibilityRulerMarkerType(value: interop.Enum<typeof NSAccessibilityRulerMarkerType>) { this.nativeObject.accessibilityRulerMarkerType = value; }
-  get accessibilityMarkerTypeDescription(): NSString { return this.nativeObject.accessibilityMarkerTypeDescription; }
-  set accessibilityMarkerTypeDescription(value: NSString | string) { this.nativeObject.accessibilityMarkerTypeDescription = value; }
+  get accessibilityMarkerTypeDescription(): string { return this.nativeObject.accessibilityMarkerTypeDescription; }
+  set accessibilityMarkerTypeDescription(value: string) { this.nativeObject.accessibilityMarkerTypeDescription = value; }
   get accessibilityHorizontalScrollBar(): interop.Object { return this.nativeObject.accessibilityHorizontalScrollBar; }
   set accessibilityHorizontalScrollBar(value: interop.Object) { this.nativeObject.accessibilityHorizontalScrollBar = value; }
   get accessibilityVerticalScrollBar(): interop.Object { return this.nativeObject.accessibilityVerticalScrollBar; }
   set accessibilityVerticalScrollBar(value: interop.Object) { this.nativeObject.accessibilityVerticalScrollBar = value; }
   get accessibilityAllowedValues(): NSArray { return this.nativeObject.accessibilityAllowedValues; }
-  set accessibilityAllowedValues(value: NSArray | unknown[]) { this.nativeObject.accessibilityAllowedValues = value; }
+  set accessibilityAllowedValues(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityAllowedValues = value; }
   get accessibilityLabelUIElements(): NSArray { return this.nativeObject.accessibilityLabelUIElements; }
-  set accessibilityLabelUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityLabelUIElements = value; }
+  set accessibilityLabelUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityLabelUIElements = value; }
   get accessibilityLabelValue(): number { return this.nativeObject.accessibilityLabelValue; }
   set accessibilityLabelValue(value: number) { this.nativeObject.accessibilityLabelValue = value; }
   get accessibilitySplitters(): NSArray { return this.nativeObject.accessibilitySplitters; }
-  set accessibilitySplitters(value: NSArray | unknown[]) { this.nativeObject.accessibilitySplitters = value; }
+  set accessibilitySplitters(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySplitters = value; }
   get accessibilityDecrementButton(): interop.Object { return this.nativeObject.accessibilityDecrementButton; }
   set accessibilityDecrementButton(value: interop.Object) { this.nativeObject.accessibilityDecrementButton = value; }
   get accessibilityIncrementButton(): interop.Object { return this.nativeObject.accessibilityIncrementButton; }
   set accessibilityIncrementButton(value: interop.Object) { this.nativeObject.accessibilityIncrementButton = value; }
   get accessibilityTabs(): NSArray { return this.nativeObject.accessibilityTabs; }
-  set accessibilityTabs(value: NSArray | unknown[]) { this.nativeObject.accessibilityTabs = value; }
+  set accessibilityTabs(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityTabs = value; }
   get accessibilityHeader(): interop.Object { return this.nativeObject.accessibilityHeader; }
   set accessibilityHeader(value: interop.Object) { this.nativeObject.accessibilityHeader = value; }
   get accessibilityColumnCount(): number { return this.nativeObject.accessibilityColumnCount; }
@@ -6574,27 +6574,27 @@ export class HTMLNSMenuItemElement extends HTMLNSObjectElement {
   get accessibilityIndex(): number { return this.nativeObject.accessibilityIndex; }
   set accessibilityIndex(value: number) { this.nativeObject.accessibilityIndex = value; }
   get accessibilityColumns(): NSArray { return this.nativeObject.accessibilityColumns; }
-  set accessibilityColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumns = value; }
+  set accessibilityColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumns = value; }
   get accessibilityRows(): NSArray { return this.nativeObject.accessibilityRows; }
-  set accessibilityRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityRows = value; }
+  set accessibilityRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRows = value; }
   get accessibilityVisibleRows(): NSArray { return this.nativeObject.accessibilityVisibleRows; }
-  set accessibilityVisibleRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleRows = value; }
+  set accessibilityVisibleRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleRows = value; }
   get accessibilitySelectedRows(): NSArray { return this.nativeObject.accessibilitySelectedRows; }
-  set accessibilitySelectedRows(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedRows = value; }
+  set accessibilitySelectedRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedRows = value; }
   get accessibilityVisibleColumns(): NSArray { return this.nativeObject.accessibilityVisibleColumns; }
-  set accessibilityVisibleColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleColumns = value; }
+  set accessibilityVisibleColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleColumns = value; }
   get accessibilitySelectedColumns(): NSArray { return this.nativeObject.accessibilitySelectedColumns; }
-  set accessibilitySelectedColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedColumns = value; }
+  set accessibilitySelectedColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedColumns = value; }
   get accessibilitySortDirection(): interop.Enum<typeof NSAccessibilitySortDirection> { return this.nativeObject.accessibilitySortDirection; }
   set accessibilitySortDirection(value: interop.Enum<typeof NSAccessibilitySortDirection>) { this.nativeObject.accessibilitySortDirection = value; }
   get accessibilityRowHeaderUIElements(): NSArray { return this.nativeObject.accessibilityRowHeaderUIElements; }
-  set accessibilityRowHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
+  set accessibilityRowHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
   get accessibilitySelectedCells(): NSArray { return this.nativeObject.accessibilitySelectedCells; }
-  set accessibilitySelectedCells(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedCells = value; }
+  set accessibilitySelectedCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedCells = value; }
   get accessibilityVisibleCells(): NSArray { return this.nativeObject.accessibilityVisibleCells; }
-  set accessibilityVisibleCells(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleCells = value; }
+  set accessibilityVisibleCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleCells = value; }
   get accessibilityColumnHeaderUIElements(): NSArray { return this.nativeObject.accessibilityColumnHeaderUIElements; }
-  set accessibilityColumnHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
+  set accessibilityColumnHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
   get accessibilityRowIndexRange(): _NSRange { return this.nativeObject.accessibilityRowIndexRange; }
   set accessibilityRowIndexRange(value: _NSRange) { this.nativeObject.accessibilityRowIndexRange = value; }
   get accessibilityColumnIndexRange(): _NSRange { return this.nativeObject.accessibilityColumnIndexRange; }
@@ -6604,17 +6604,17 @@ export class HTMLNSMenuItemElement extends HTMLNSObjectElement {
   get accessibilitySharedCharacterRange(): _NSRange { return this.nativeObject.accessibilitySharedCharacterRange; }
   set accessibilitySharedCharacterRange(value: _NSRange) { this.nativeObject.accessibilitySharedCharacterRange = value; }
   get accessibilitySharedTextUIElements(): NSArray { return this.nativeObject.accessibilitySharedTextUIElements; }
-  set accessibilitySharedTextUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilitySharedTextUIElements = value; }
+  set accessibilitySharedTextUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySharedTextUIElements = value; }
   get accessibilityVisibleCharacterRange(): _NSRange { return this.nativeObject.accessibilityVisibleCharacterRange; }
   set accessibilityVisibleCharacterRange(value: _NSRange) { this.nativeObject.accessibilityVisibleCharacterRange = value; }
   get accessibilityNumberOfCharacters(): number { return this.nativeObject.accessibilityNumberOfCharacters; }
   set accessibilityNumberOfCharacters(value: number) { this.nativeObject.accessibilityNumberOfCharacters = value; }
-  get accessibilitySelectedText(): NSString { return this.nativeObject.accessibilitySelectedText; }
-  set accessibilitySelectedText(value: NSString | string) { this.nativeObject.accessibilitySelectedText = value; }
+  get accessibilitySelectedText(): string { return this.nativeObject.accessibilitySelectedText; }
+  set accessibilitySelectedText(value: string) { this.nativeObject.accessibilitySelectedText = value; }
   get accessibilitySelectedTextRange(): _NSRange { return this.nativeObject.accessibilitySelectedTextRange; }
   set accessibilitySelectedTextRange(value: _NSRange) { this.nativeObject.accessibilitySelectedTextRange = value; }
   get accessibilitySelectedTextRanges(): NSArray { return this.nativeObject.accessibilitySelectedTextRanges; }
-  set accessibilitySelectedTextRanges(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedTextRanges = value; }
+  set accessibilitySelectedTextRanges(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedTextRanges = value; }
   get accessibilityToolbarButton(): interop.Object { return this.nativeObject.accessibilityToolbarButton; }
   set accessibilityToolbarButton(value: interop.Object) { this.nativeObject.accessibilityToolbarButton = value; }
   get isAccessibilityModal(): boolean { return this.nativeObject.isAccessibilityModal; }
@@ -6627,8 +6627,8 @@ export class HTMLNSMenuItemElement extends HTMLNSObjectElement {
   set accessibilityFullScreenButton(value: interop.Object) { this.nativeObject.accessibilityFullScreenButton = value; }
   get accessibilityGrowArea(): interop.Object { return this.nativeObject.accessibilityGrowArea; }
   set accessibilityGrowArea(value: interop.Object) { this.nativeObject.accessibilityGrowArea = value; }
-  get accessibilityDocument(): NSString { return this.nativeObject.accessibilityDocument; }
-  set accessibilityDocument(value: NSString | string) { this.nativeObject.accessibilityDocument = value; }
+  get accessibilityDocument(): string { return this.nativeObject.accessibilityDocument; }
+  set accessibilityDocument(value: string) { this.nativeObject.accessibilityDocument = value; }
   get accessibilityDefaultButton(): interop.Object { return this.nativeObject.accessibilityDefaultButton; }
   set accessibilityDefaultButton(value: interop.Object) { this.nativeObject.accessibilityDefaultButton = value; }
   get accessibilityCloseButton(): interop.Object { return this.nativeObject.accessibilityCloseButton; }
@@ -6640,7 +6640,7 @@ export class HTMLNSMenuItemElement extends HTMLNSObjectElement {
   get isAccessibilityMinimized(): boolean { return this.nativeObject.isAccessibilityMinimized; }
   set isAccessibilityMinimized(value: boolean) { this.nativeObject.isAccessibilityMinimized = value; }
   get accessibilityCustomActions(): NSArray { return this.nativeObject.accessibilityCustomActions; }
-  set accessibilityCustomActions(value: NSArray | unknown[]) { this.nativeObject.accessibilityCustomActions = value; }
+  set accessibilityCustomActions(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityCustomActions = value; }
 }
 
 export class HTMLNSPrintOperationElement extends HTMLNSObjectElement {
@@ -6650,8 +6650,8 @@ export class HTMLNSPrintOperationElement extends HTMLNSObjectElement {
 
   get isCopyingOperation(): boolean { return this.nativeObject.isCopyingOperation; }
   get preferredRenderingQuality(): interop.Enum<typeof NSPrintRenderingQuality> { return this.nativeObject.preferredRenderingQuality; }
-  get jobTitle(): NSString { return this.nativeObject.jobTitle; }
-  set jobTitle(value: NSString | string) { this.nativeObject.jobTitle = value; }
+  get jobTitle(): string { return this.nativeObject.jobTitle; }
+  set jobTitle(value: string) { this.nativeObject.jobTitle = value; }
   get showsPrintPanel(): boolean { return this.nativeObject.showsPrintPanel; }
   set showsPrintPanel(value: boolean) { this.nativeObject.showsPrintPanel = value; }
   get showsProgressPanel(): boolean { return this.nativeObject.showsProgressPanel; }
@@ -6679,8 +6679,8 @@ export class HTMLNSAccessibilityCustomRotorElement extends HTMLNSObjectElement {
 
   get type(): interop.Enum<typeof NSAccessibilityCustomRotorType> { return this.nativeObject.type; }
   set type(value: interop.Enum<typeof NSAccessibilityCustomRotorType>) { this.nativeObject.type = value; }
-  get label(): NSString { return this.nativeObject.label; }
-  set label(value: NSString | string) { this.nativeObject.label = value; }
+  get label(): string { return this.nativeObject.label; }
+  set label(value: string) { this.nativeObject.label = value; }
   get itemSearchDelegate(): NSAccessibilityCustomRotorItemSearchDelegate | null { return this.nativeObject.itemSearchDelegate; }
   set itemSearchDelegate(value: NSAccessibilityCustomRotorItemSearchDelegate | null) { this.nativeObject.itemSearchDelegate = value; }
   get itemLoadingDelegate(): NSAccessibilityElementLoading { return this.nativeObject.itemLoadingDelegate; }
@@ -6739,8 +6739,8 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
   get isAccessibilityElement(): boolean { return this.nativeObject.isAccessibilityElement; }
   set isAccessibilityElement(value: boolean) { this.nativeObject.isAccessibilityElement = value; }
   get accessibilityFrame(): CGRect { return this.nativeObject.accessibilityFrame; }
@@ -6755,32 +6755,32 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
   set accessibilityURL(value: NSURL) { this.nativeObject.accessibilityURL = value; }
   get accessibilityValue(): interop.Object { return this.nativeObject.accessibilityValue; }
   set accessibilityValue(value: interop.Object) { this.nativeObject.accessibilityValue = value; }
-  get accessibilityValueDescription(): NSString { return this.nativeObject.accessibilityValueDescription; }
-  set accessibilityValueDescription(value: NSString | string) { this.nativeObject.accessibilityValueDescription = value; }
+  get accessibilityValueDescription(): string { return this.nativeObject.accessibilityValueDescription; }
+  set accessibilityValueDescription(value: string) { this.nativeObject.accessibilityValueDescription = value; }
   get accessibilityVisibleChildren(): NSArray { return this.nativeObject.accessibilityVisibleChildren; }
-  set accessibilityVisibleChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleChildren = value; }
-  get accessibilitySubrole(): NSString { return this.nativeObject.accessibilitySubrole; }
-  set accessibilitySubrole(value: NSString | string) { this.nativeObject.accessibilitySubrole = value; }
-  get accessibilityTitle(): NSString { return this.nativeObject.accessibilityTitle; }
-  set accessibilityTitle(value: NSString | string) { this.nativeObject.accessibilityTitle = value; }
+  set accessibilityVisibleChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleChildren = value; }
+  get accessibilitySubrole(): string { return this.nativeObject.accessibilitySubrole; }
+  set accessibilitySubrole(value: string) { this.nativeObject.accessibilitySubrole = value; }
+  get accessibilityTitle(): string { return this.nativeObject.accessibilityTitle; }
+  set accessibilityTitle(value: string) { this.nativeObject.accessibilityTitle = value; }
   get accessibilityTitleUIElement(): interop.Object { return this.nativeObject.accessibilityTitleUIElement; }
   set accessibilityTitleUIElement(value: interop.Object) { this.nativeObject.accessibilityTitleUIElement = value; }
   get accessibilityNextContents(): NSArray { return this.nativeObject.accessibilityNextContents; }
-  set accessibilityNextContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityNextContents = value; }
+  set accessibilityNextContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityNextContents = value; }
   get accessibilityOrientation(): interop.Enum<typeof NSAccessibilityOrientation> { return this.nativeObject.accessibilityOrientation; }
   set accessibilityOrientation(value: interop.Enum<typeof NSAccessibilityOrientation>) { this.nativeObject.accessibilityOrientation = value; }
   get accessibilityOverflowButton(): interop.Object { return this.nativeObject.accessibilityOverflowButton; }
   set accessibilityOverflowButton(value: interop.Object) { this.nativeObject.accessibilityOverflowButton = value; }
   get accessibilityParent(): interop.Object { return this.nativeObject.accessibilityParent; }
   set accessibilityParent(value: interop.Object) { this.nativeObject.accessibilityParent = value; }
-  get accessibilityPlaceholderValue(): NSString { return this.nativeObject.accessibilityPlaceholderValue; }
-  set accessibilityPlaceholderValue(value: NSString | string) { this.nativeObject.accessibilityPlaceholderValue = value; }
+  get accessibilityPlaceholderValue(): string { return this.nativeObject.accessibilityPlaceholderValue; }
+  set accessibilityPlaceholderValue(value: string) { this.nativeObject.accessibilityPlaceholderValue = value; }
   get accessibilityPreviousContents(): NSArray { return this.nativeObject.accessibilityPreviousContents; }
-  set accessibilityPreviousContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityPreviousContents = value; }
-  get accessibilityRole(): NSString { return this.nativeObject.accessibilityRole; }
-  set accessibilityRole(value: NSString | string) { this.nativeObject.accessibilityRole = value; }
-  get accessibilityRoleDescription(): NSString { return this.nativeObject.accessibilityRoleDescription; }
-  set accessibilityRoleDescription(value: NSString | string) { this.nativeObject.accessibilityRoleDescription = value; }
+  set accessibilityPreviousContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityPreviousContents = value; }
+  get accessibilityRole(): string { return this.nativeObject.accessibilityRole; }
+  set accessibilityRole(value: string) { this.nativeObject.accessibilityRole = value; }
+  get accessibilityRoleDescription(): string { return this.nativeObject.accessibilityRoleDescription; }
+  set accessibilityRoleDescription(value: string) { this.nativeObject.accessibilityRoleDescription = value; }
   get accessibilitySearchButton(): interop.Object { return this.nativeObject.accessibilitySearchButton; }
   set accessibilitySearchButton(value: interop.Object) { this.nativeObject.accessibilitySearchButton = value; }
   get accessibilitySearchMenu(): interop.Object { return this.nativeObject.accessibilitySearchMenu; }
@@ -6788,9 +6788,9 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
   get isAccessibilitySelected(): boolean { return this.nativeObject.isAccessibilitySelected; }
   set isAccessibilitySelected(value: boolean) { this.nativeObject.isAccessibilitySelected = value; }
   get accessibilitySelectedChildren(): NSArray { return this.nativeObject.accessibilitySelectedChildren; }
-  set accessibilitySelectedChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedChildren = value; }
+  set accessibilitySelectedChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedChildren = value; }
   get accessibilityServesAsTitleForUIElements(): NSArray { return this.nativeObject.accessibilityServesAsTitleForUIElements; }
-  set accessibilityServesAsTitleForUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityServesAsTitleForUIElements = value; }
+  set accessibilityServesAsTitleForUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityServesAsTitleForUIElements = value; }
   get accessibilityShownMenu(): interop.Object { return this.nativeObject.accessibilityShownMenu; }
   set accessibilityShownMenu(value: interop.Object) { this.nativeObject.accessibilityShownMenu = value; }
   get accessibilityMinValue(): interop.Object { return this.nativeObject.accessibilityMinValue; }
@@ -6798,15 +6798,15 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
   get accessibilityMaxValue(): interop.Object { return this.nativeObject.accessibilityMaxValue; }
   set accessibilityMaxValue(value: interop.Object) { this.nativeObject.accessibilityMaxValue = value; }
   get accessibilityLinkedUIElements(): NSArray { return this.nativeObject.accessibilityLinkedUIElements; }
-  set accessibilityLinkedUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityLinkedUIElements = value; }
+  set accessibilityLinkedUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityLinkedUIElements = value; }
   get accessibilityWindow(): interop.Object { return this.nativeObject.accessibilityWindow; }
   set accessibilityWindow(value: interop.Object) { this.nativeObject.accessibilityWindow = value; }
-  get accessibilityIdentifier(): NSString { return this.nativeObject.accessibilityIdentifier; }
-  set accessibilityIdentifier(value: NSString | string) { this.nativeObject.accessibilityIdentifier = value; }
-  get accessibilityHelp(): NSString { return this.nativeObject.accessibilityHelp; }
-  set accessibilityHelp(value: NSString | string) { this.nativeObject.accessibilityHelp = value; }
-  get accessibilityFilename(): NSString { return this.nativeObject.accessibilityFilename; }
-  set accessibilityFilename(value: NSString | string) { this.nativeObject.accessibilityFilename = value; }
+  get accessibilityIdentifier(): string { return this.nativeObject.accessibilityIdentifier; }
+  set accessibilityIdentifier(value: string) { this.nativeObject.accessibilityIdentifier = value; }
+  get accessibilityHelp(): string { return this.nativeObject.accessibilityHelp; }
+  set accessibilityHelp(value: string) { this.nativeObject.accessibilityHelp = value; }
+  get accessibilityFilename(): string { return this.nativeObject.accessibilityFilename; }
+  set accessibilityFilename(value: string) { this.nativeObject.accessibilityFilename = value; }
   get isAccessibilityExpanded(): boolean { return this.nativeObject.isAccessibilityExpanded; }
   set isAccessibilityExpanded(value: boolean) { this.nativeObject.isAccessibilityExpanded = value; }
   get isAccessibilityEdited(): boolean { return this.nativeObject.isAccessibilityEdited; }
@@ -6814,9 +6814,9 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
   get isAccessibilityEnabled(): boolean { return this.nativeObject.isAccessibilityEnabled; }
   set isAccessibilityEnabled(value: boolean) { this.nativeObject.isAccessibilityEnabled = value; }
   get accessibilityChildren(): NSArray { return this.nativeObject.accessibilityChildren; }
-  set accessibilityChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilityChildren = value; }
+  set accessibilityChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityChildren = value; }
   get accessibilityChildrenInNavigationOrder(): NSArray { return this.nativeObject.accessibilityChildrenInNavigationOrder; }
-  set accessibilityChildrenInNavigationOrder(value: NSArray | unknown[]) { this.nativeObject.accessibilityChildrenInNavigationOrder = value; }
+  set accessibilityChildrenInNavigationOrder(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityChildrenInNavigationOrder = value; }
   get accessibilityClearButton(): interop.Object { return this.nativeObject.accessibilityClearButton; }
   set accessibilityClearButton(value: interop.Object) { this.nativeObject.accessibilityClearButton = value; }
   get accessibilityCancelButton(): interop.Object { return this.nativeObject.accessibilityCancelButton; }
@@ -6824,21 +6824,21 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
   get isAccessibilityProtectedContent(): boolean { return this.nativeObject.isAccessibilityProtectedContent; }
   set isAccessibilityProtectedContent(value: boolean) { this.nativeObject.isAccessibilityProtectedContent = value; }
   get accessibilityContents(): NSArray { return this.nativeObject.accessibilityContents; }
-  set accessibilityContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityContents = value; }
-  get accessibilityLabel(): NSString { return this.nativeObject.accessibilityLabel; }
-  set accessibilityLabel(value: NSString | string) { this.nativeObject.accessibilityLabel = value; }
+  set accessibilityContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityContents = value; }
+  get accessibilityLabel(): string { return this.nativeObject.accessibilityLabel; }
+  set accessibilityLabel(value: string) { this.nativeObject.accessibilityLabel = value; }
   get isAccessibilityAlternateUIVisible(): boolean { return this.nativeObject.isAccessibilityAlternateUIVisible; }
   set isAccessibilityAlternateUIVisible(value: boolean) { this.nativeObject.isAccessibilityAlternateUIVisible = value; }
   get accessibilitySharedFocusElements(): NSArray { return this.nativeObject.accessibilitySharedFocusElements; }
-  set accessibilitySharedFocusElements(value: NSArray | unknown[]) { this.nativeObject.accessibilitySharedFocusElements = value; }
+  set accessibilitySharedFocusElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySharedFocusElements = value; }
   get isAccessibilityRequired(): boolean { return this.nativeObject.isAccessibilityRequired; }
   set isAccessibilityRequired(value: boolean) { this.nativeObject.isAccessibilityRequired = value; }
   get accessibilityCustomRotors(): NSArray { return this.nativeObject.accessibilityCustomRotors; }
-  set accessibilityCustomRotors(value: NSArray | unknown[]) { this.nativeObject.accessibilityCustomRotors = value; }
+  set accessibilityCustomRotors(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityCustomRotors = value; }
   get accessibilityUserInputLabels(): NSArray { return this.nativeObject.accessibilityUserInputLabels; }
-  set accessibilityUserInputLabels(value: NSArray | unknown[]) { this.nativeObject.accessibilityUserInputLabels = value; }
+  set accessibilityUserInputLabels(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityUserInputLabels = value; }
   get accessibilityAttributedUserInputLabels(): NSArray { return this.nativeObject.accessibilityAttributedUserInputLabels; }
-  set accessibilityAttributedUserInputLabels(value: NSArray | unknown[]) { this.nativeObject.accessibilityAttributedUserInputLabels = value; }
+  set accessibilityAttributedUserInputLabels(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityAttributedUserInputLabels = value; }
   get accessibilityApplicationFocusedUIElement(): interop.Object { return this.nativeObject.accessibilityApplicationFocusedUIElement; }
   set accessibilityApplicationFocusedUIElement(value: interop.Object) { this.nativeObject.accessibilityApplicationFocusedUIElement = value; }
   get accessibilityMainWindow(): interop.Object { return this.nativeObject.accessibilityMainWindow; }
@@ -6850,25 +6850,25 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
   get accessibilityFocusedWindow(): interop.Object { return this.nativeObject.accessibilityFocusedWindow; }
   set accessibilityFocusedWindow(value: interop.Object) { this.nativeObject.accessibilityFocusedWindow = value; }
   get accessibilityWindows(): NSArray { return this.nativeObject.accessibilityWindows; }
-  set accessibilityWindows(value: NSArray | unknown[]) { this.nativeObject.accessibilityWindows = value; }
+  set accessibilityWindows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityWindows = value; }
   get accessibilityExtrasMenuBar(): interop.Object { return this.nativeObject.accessibilityExtrasMenuBar; }
   set accessibilityExtrasMenuBar(value: interop.Object) { this.nativeObject.accessibilityExtrasMenuBar = value; }
   get accessibilityMenuBar(): interop.Object { return this.nativeObject.accessibilityMenuBar; }
   set accessibilityMenuBar(value: interop.Object) { this.nativeObject.accessibilityMenuBar = value; }
   get accessibilityColumnTitles(): NSArray { return this.nativeObject.accessibilityColumnTitles; }
-  set accessibilityColumnTitles(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumnTitles = value; }
+  set accessibilityColumnTitles(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumnTitles = value; }
   get isAccessibilityOrderedByRow(): boolean { return this.nativeObject.isAccessibilityOrderedByRow; }
   set isAccessibilityOrderedByRow(value: boolean) { this.nativeObject.isAccessibilityOrderedByRow = value; }
   get accessibilityHorizontalUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityHorizontalUnits; }
   set accessibilityHorizontalUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityHorizontalUnits = value; }
   get accessibilityVerticalUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityVerticalUnits; }
   set accessibilityVerticalUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityVerticalUnits = value; }
-  get accessibilityHorizontalUnitDescription(): NSString { return this.nativeObject.accessibilityHorizontalUnitDescription; }
-  set accessibilityHorizontalUnitDescription(value: NSString | string) { this.nativeObject.accessibilityHorizontalUnitDescription = value; }
-  get accessibilityVerticalUnitDescription(): NSString { return this.nativeObject.accessibilityVerticalUnitDescription; }
-  set accessibilityVerticalUnitDescription(value: NSString | string) { this.nativeObject.accessibilityVerticalUnitDescription = value; }
+  get accessibilityHorizontalUnitDescription(): string { return this.nativeObject.accessibilityHorizontalUnitDescription; }
+  set accessibilityHorizontalUnitDescription(value: string) { this.nativeObject.accessibilityHorizontalUnitDescription = value; }
+  get accessibilityVerticalUnitDescription(): string { return this.nativeObject.accessibilityVerticalUnitDescription; }
+  set accessibilityVerticalUnitDescription(value: string) { this.nativeObject.accessibilityVerticalUnitDescription = value; }
   get accessibilityHandles(): NSArray { return this.nativeObject.accessibilityHandles; }
-  set accessibilityHandles(value: NSArray | unknown[]) { this.nativeObject.accessibilityHandles = value; }
+  set accessibilityHandles(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityHandles = value; }
   get accessibilityWarningValue(): interop.Object { return this.nativeObject.accessibilityWarningValue; }
   set accessibilityWarningValue(value: interop.Object) { this.nativeObject.accessibilityWarningValue = value; }
   get accessibilityCriticalValue(): interop.Object { return this.nativeObject.accessibilityCriticalValue; }
@@ -6882,37 +6882,37 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
   get accessibilityDisclosureLevel(): number { return this.nativeObject.accessibilityDisclosureLevel; }
   set accessibilityDisclosureLevel(value: number) { this.nativeObject.accessibilityDisclosureLevel = value; }
   get accessibilityMarkerUIElements(): NSArray { return this.nativeObject.accessibilityMarkerUIElements; }
-  set accessibilityMarkerUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityMarkerUIElements = value; }
+  set accessibilityMarkerUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityMarkerUIElements = value; }
   get accessibilityMarkerValues(): interop.Object { return this.nativeObject.accessibilityMarkerValues; }
   set accessibilityMarkerValues(value: interop.Object) { this.nativeObject.accessibilityMarkerValues = value; }
   get accessibilityMarkerGroupUIElement(): interop.Object { return this.nativeObject.accessibilityMarkerGroupUIElement; }
   set accessibilityMarkerGroupUIElement(value: interop.Object) { this.nativeObject.accessibilityMarkerGroupUIElement = value; }
   get accessibilityUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityUnits; }
   set accessibilityUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityUnits = value; }
-  get accessibilityUnitDescription(): NSString { return this.nativeObject.accessibilityUnitDescription; }
-  set accessibilityUnitDescription(value: NSString | string) { this.nativeObject.accessibilityUnitDescription = value; }
+  get accessibilityUnitDescription(): string { return this.nativeObject.accessibilityUnitDescription; }
+  set accessibilityUnitDescription(value: string) { this.nativeObject.accessibilityUnitDescription = value; }
   get accessibilityRulerMarkerType(): interop.Enum<typeof NSAccessibilityRulerMarkerType> { return this.nativeObject.accessibilityRulerMarkerType; }
   set accessibilityRulerMarkerType(value: interop.Enum<typeof NSAccessibilityRulerMarkerType>) { this.nativeObject.accessibilityRulerMarkerType = value; }
-  get accessibilityMarkerTypeDescription(): NSString { return this.nativeObject.accessibilityMarkerTypeDescription; }
-  set accessibilityMarkerTypeDescription(value: NSString | string) { this.nativeObject.accessibilityMarkerTypeDescription = value; }
+  get accessibilityMarkerTypeDescription(): string { return this.nativeObject.accessibilityMarkerTypeDescription; }
+  set accessibilityMarkerTypeDescription(value: string) { this.nativeObject.accessibilityMarkerTypeDescription = value; }
   get accessibilityHorizontalScrollBar(): interop.Object { return this.nativeObject.accessibilityHorizontalScrollBar; }
   set accessibilityHorizontalScrollBar(value: interop.Object) { this.nativeObject.accessibilityHorizontalScrollBar = value; }
   get accessibilityVerticalScrollBar(): interop.Object { return this.nativeObject.accessibilityVerticalScrollBar; }
   set accessibilityVerticalScrollBar(value: interop.Object) { this.nativeObject.accessibilityVerticalScrollBar = value; }
   get accessibilityAllowedValues(): NSArray { return this.nativeObject.accessibilityAllowedValues; }
-  set accessibilityAllowedValues(value: NSArray | unknown[]) { this.nativeObject.accessibilityAllowedValues = value; }
+  set accessibilityAllowedValues(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityAllowedValues = value; }
   get accessibilityLabelUIElements(): NSArray { return this.nativeObject.accessibilityLabelUIElements; }
-  set accessibilityLabelUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityLabelUIElements = value; }
+  set accessibilityLabelUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityLabelUIElements = value; }
   get accessibilityLabelValue(): number { return this.nativeObject.accessibilityLabelValue; }
   set accessibilityLabelValue(value: number) { this.nativeObject.accessibilityLabelValue = value; }
   get accessibilitySplitters(): NSArray { return this.nativeObject.accessibilitySplitters; }
-  set accessibilitySplitters(value: NSArray | unknown[]) { this.nativeObject.accessibilitySplitters = value; }
+  set accessibilitySplitters(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySplitters = value; }
   get accessibilityDecrementButton(): interop.Object { return this.nativeObject.accessibilityDecrementButton; }
   set accessibilityDecrementButton(value: interop.Object) { this.nativeObject.accessibilityDecrementButton = value; }
   get accessibilityIncrementButton(): interop.Object { return this.nativeObject.accessibilityIncrementButton; }
   set accessibilityIncrementButton(value: interop.Object) { this.nativeObject.accessibilityIncrementButton = value; }
   get accessibilityTabs(): NSArray { return this.nativeObject.accessibilityTabs; }
-  set accessibilityTabs(value: NSArray | unknown[]) { this.nativeObject.accessibilityTabs = value; }
+  set accessibilityTabs(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityTabs = value; }
   get accessibilityHeader(): interop.Object { return this.nativeObject.accessibilityHeader; }
   set accessibilityHeader(value: interop.Object) { this.nativeObject.accessibilityHeader = value; }
   get accessibilityColumnCount(): number { return this.nativeObject.accessibilityColumnCount; }
@@ -6922,27 +6922,27 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
   get accessibilityIndex(): number { return this.nativeObject.accessibilityIndex; }
   set accessibilityIndex(value: number) { this.nativeObject.accessibilityIndex = value; }
   get accessibilityColumns(): NSArray { return this.nativeObject.accessibilityColumns; }
-  set accessibilityColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumns = value; }
+  set accessibilityColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumns = value; }
   get accessibilityRows(): NSArray { return this.nativeObject.accessibilityRows; }
-  set accessibilityRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityRows = value; }
+  set accessibilityRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRows = value; }
   get accessibilityVisibleRows(): NSArray { return this.nativeObject.accessibilityVisibleRows; }
-  set accessibilityVisibleRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleRows = value; }
+  set accessibilityVisibleRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleRows = value; }
   get accessibilitySelectedRows(): NSArray { return this.nativeObject.accessibilitySelectedRows; }
-  set accessibilitySelectedRows(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedRows = value; }
+  set accessibilitySelectedRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedRows = value; }
   get accessibilityVisibleColumns(): NSArray { return this.nativeObject.accessibilityVisibleColumns; }
-  set accessibilityVisibleColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleColumns = value; }
+  set accessibilityVisibleColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleColumns = value; }
   get accessibilitySelectedColumns(): NSArray { return this.nativeObject.accessibilitySelectedColumns; }
-  set accessibilitySelectedColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedColumns = value; }
+  set accessibilitySelectedColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedColumns = value; }
   get accessibilitySortDirection(): interop.Enum<typeof NSAccessibilitySortDirection> { return this.nativeObject.accessibilitySortDirection; }
   set accessibilitySortDirection(value: interop.Enum<typeof NSAccessibilitySortDirection>) { this.nativeObject.accessibilitySortDirection = value; }
   get accessibilityRowHeaderUIElements(): NSArray { return this.nativeObject.accessibilityRowHeaderUIElements; }
-  set accessibilityRowHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
+  set accessibilityRowHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
   get accessibilitySelectedCells(): NSArray { return this.nativeObject.accessibilitySelectedCells; }
-  set accessibilitySelectedCells(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedCells = value; }
+  set accessibilitySelectedCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedCells = value; }
   get accessibilityVisibleCells(): NSArray { return this.nativeObject.accessibilityVisibleCells; }
-  set accessibilityVisibleCells(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleCells = value; }
+  set accessibilityVisibleCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleCells = value; }
   get accessibilityColumnHeaderUIElements(): NSArray { return this.nativeObject.accessibilityColumnHeaderUIElements; }
-  set accessibilityColumnHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
+  set accessibilityColumnHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
   get accessibilityRowIndexRange(): _NSRange { return this.nativeObject.accessibilityRowIndexRange; }
   set accessibilityRowIndexRange(value: _NSRange) { this.nativeObject.accessibilityRowIndexRange = value; }
   get accessibilityColumnIndexRange(): _NSRange { return this.nativeObject.accessibilityColumnIndexRange; }
@@ -6952,17 +6952,17 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
   get accessibilitySharedCharacterRange(): _NSRange { return this.nativeObject.accessibilitySharedCharacterRange; }
   set accessibilitySharedCharacterRange(value: _NSRange) { this.nativeObject.accessibilitySharedCharacterRange = value; }
   get accessibilitySharedTextUIElements(): NSArray { return this.nativeObject.accessibilitySharedTextUIElements; }
-  set accessibilitySharedTextUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilitySharedTextUIElements = value; }
+  set accessibilitySharedTextUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySharedTextUIElements = value; }
   get accessibilityVisibleCharacterRange(): _NSRange { return this.nativeObject.accessibilityVisibleCharacterRange; }
   set accessibilityVisibleCharacterRange(value: _NSRange) { this.nativeObject.accessibilityVisibleCharacterRange = value; }
   get accessibilityNumberOfCharacters(): number { return this.nativeObject.accessibilityNumberOfCharacters; }
   set accessibilityNumberOfCharacters(value: number) { this.nativeObject.accessibilityNumberOfCharacters = value; }
-  get accessibilitySelectedText(): NSString { return this.nativeObject.accessibilitySelectedText; }
-  set accessibilitySelectedText(value: NSString | string) { this.nativeObject.accessibilitySelectedText = value; }
+  get accessibilitySelectedText(): string { return this.nativeObject.accessibilitySelectedText; }
+  set accessibilitySelectedText(value: string) { this.nativeObject.accessibilitySelectedText = value; }
   get accessibilitySelectedTextRange(): _NSRange { return this.nativeObject.accessibilitySelectedTextRange; }
   set accessibilitySelectedTextRange(value: _NSRange) { this.nativeObject.accessibilitySelectedTextRange = value; }
   get accessibilitySelectedTextRanges(): NSArray { return this.nativeObject.accessibilitySelectedTextRanges; }
-  set accessibilitySelectedTextRanges(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedTextRanges = value; }
+  set accessibilitySelectedTextRanges(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedTextRanges = value; }
   get accessibilityToolbarButton(): interop.Object { return this.nativeObject.accessibilityToolbarButton; }
   set accessibilityToolbarButton(value: interop.Object) { this.nativeObject.accessibilityToolbarButton = value; }
   get isAccessibilityModal(): boolean { return this.nativeObject.isAccessibilityModal; }
@@ -6975,8 +6975,8 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
   set accessibilityFullScreenButton(value: interop.Object) { this.nativeObject.accessibilityFullScreenButton = value; }
   get accessibilityGrowArea(): interop.Object { return this.nativeObject.accessibilityGrowArea; }
   set accessibilityGrowArea(value: interop.Object) { this.nativeObject.accessibilityGrowArea = value; }
-  get accessibilityDocument(): NSString { return this.nativeObject.accessibilityDocument; }
-  set accessibilityDocument(value: NSString | string) { this.nativeObject.accessibilityDocument = value; }
+  get accessibilityDocument(): string { return this.nativeObject.accessibilityDocument; }
+  set accessibilityDocument(value: string) { this.nativeObject.accessibilityDocument = value; }
   get accessibilityDefaultButton(): interop.Object { return this.nativeObject.accessibilityDefaultButton; }
   set accessibilityDefaultButton(value: interop.Object) { this.nativeObject.accessibilityDefaultButton = value; }
   get accessibilityCloseButton(): interop.Object { return this.nativeObject.accessibilityCloseButton; }
@@ -6988,7 +6988,7 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
   get isAccessibilityMinimized(): boolean { return this.nativeObject.isAccessibilityMinimized; }
   set isAccessibilityMinimized(value: boolean) { this.nativeObject.isAccessibilityMinimized = value; }
   get accessibilityCustomActions(): NSArray { return this.nativeObject.accessibilityCustomActions; }
-  set accessibilityCustomActions(value: NSArray | unknown[]) { this.nativeObject.accessibilityCustomActions = value; }
+  set accessibilityCustomActions(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityCustomActions = value; }
 
   set popoverShouldClose(value: (popover: NSPopover) => boolean) {
     this.delegate.popoverShouldClose = value;
@@ -7026,8 +7026,8 @@ export class HTMLNSCustomTouchBarItemElement extends HTMLNSTouchBarItemElement {
   set view(value: NSView) { this.nativeObject.view = value; }
   get viewController(): NSViewController { return this.nativeObject.viewController; }
   set viewController(value: NSViewController) { this.nativeObject.viewController = value; }
-  get customizationLabel(): NSString { return this.nativeObject.customizationLabel; }
-  set customizationLabel(value: NSString | string) { this.nativeObject.customizationLabel = value; }
+  get customizationLabel(): string { return this.nativeObject.customizationLabel; }
+  set customizationLabel(value: string) { this.nativeObject.customizationLabel = value; }
 }
 
 export class HTMLNSGestureRecognizerElement extends HTMLNSObjectElement {
@@ -7102,7 +7102,7 @@ export class HTMLNSPDFInfoElement extends HTMLNSObjectElement {
   get isFileExtensionHidden(): boolean { return this.nativeObject.isFileExtensionHidden; }
   set isFileExtensionHidden(value: boolean) { this.nativeObject.isFileExtensionHidden = value; }
   get tagNames(): NSArray { return this.nativeObject.tagNames; }
-  set tagNames(value: NSArray | unknown[]) { this.nativeObject.tagNames = value; }
+  set tagNames(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.tagNames = value; }
   get orientation(): interop.Enum<typeof NSPaperOrientation> { return this.nativeObject.orientation; }
   set orientation(value: interop.Enum<typeof NSPaperOrientation>) { this.nativeObject.orientation = value; }
   get paperSize(): CGSize { return this.nativeObject.paperSize; }
@@ -7143,10 +7143,10 @@ export class HTMLNSPrintPanelElement extends HTMLNSObjectElement {
   get accessoryControllers(): NSArray { return this.nativeObject.accessoryControllers; }
   get options(): interop.Enum<typeof NSPrintPanelOptions> { return this.nativeObject.options; }
   set options(value: interop.Enum<typeof NSPrintPanelOptions>) { this.nativeObject.options = value; }
-  get helpAnchor(): NSString { return this.nativeObject.helpAnchor; }
-  set helpAnchor(value: NSString | string) { this.nativeObject.helpAnchor = value; }
-  get jobStyleHint(): NSString { return this.nativeObject.jobStyleHint; }
-  set jobStyleHint(value: NSString | string) { this.nativeObject.jobStyleHint = value; }
+  get helpAnchor(): string { return this.nativeObject.helpAnchor; }
+  set helpAnchor(value: string) { this.nativeObject.helpAnchor = value; }
+  get jobStyleHint(): string { return this.nativeObject.jobStyleHint; }
+  set jobStyleHint(value: string) { this.nativeObject.jobStyleHint = value; }
   get printInfo(): NSPrintInfo { return this.nativeObject.printInfo; }
 }
 
@@ -7157,21 +7157,21 @@ export class HTMLNSDocumentControllerElement extends HTMLNSObjectElement {
 
   get documents(): NSArray { return this.nativeObject.documents; }
   get currentDocument(): NSDocument { return this.nativeObject.currentDocument; }
-  get currentDirectory(): NSString { return this.nativeObject.currentDirectory; }
+  get currentDirectory(): string { return this.nativeObject.currentDirectory; }
   get autosavingDelay(): number { return this.nativeObject.autosavingDelay; }
   set autosavingDelay(value: number) { this.nativeObject.autosavingDelay = value; }
   get hasEditedDocuments(): boolean { return this.nativeObject.hasEditedDocuments; }
   get allowsAutomaticShareMenu(): boolean { return this.nativeObject.allowsAutomaticShareMenu; }
   get maximumRecentDocumentCount(): number { return this.nativeObject.maximumRecentDocumentCount; }
   get recentDocumentURLs(): NSArray { return this.nativeObject.recentDocumentURLs; }
-  get defaultType(): NSString { return this.nativeObject.defaultType; }
+  get defaultType(): string { return this.nativeObject.defaultType; }
   get documentClassNames(): NSArray { return this.nativeObject.documentClassNames; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSStepperTouchBarItemElement extends HTMLNSTouchBarItemElement {
@@ -7192,8 +7192,8 @@ export class HTMLNSStepperTouchBarItemElement extends HTMLNSTouchBarItemElement 
   set target(value: interop.Object) { this.nativeObject.target = value; }
   get action(): string { return this.nativeObject.action; }
   set action(value: string) { this.nativeObject.action = value; }
-  get customizationLabel(): NSString { return this.nativeObject.customizationLabel; }
-  set customizationLabel(value: NSString | string) { this.nativeObject.customizationLabel = value; }
+  get customizationLabel(): string { return this.nativeObject.customizationLabel; }
+  set customizationLabel(value: string) { this.nativeObject.customizationLabel = value; }
 }
 
 export class HTMLNSPrintInfoElement extends HTMLNSObjectElement {
@@ -7201,8 +7201,8 @@ export class HTMLNSPrintInfoElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPrintInfo.new();
 
-  get paperName(): NSString { return this.nativeObject.paperName; }
-  set paperName(value: NSString | string) { this.nativeObject.paperName = value; }
+  get paperName(): string { return this.nativeObject.paperName; }
+  set paperName(value: string) { this.nativeObject.paperName = value; }
   get paperSize(): CGSize { return this.nativeObject.paperSize; }
   set paperSize(value: CGSize) { this.nativeObject.paperSize = value; }
   get orientation(): interop.Enum<typeof NSPaperOrientation> { return this.nativeObject.orientation; }
@@ -7225,12 +7225,12 @@ export class HTMLNSPrintInfoElement extends HTMLNSObjectElement {
   set horizontalPagination(value: interop.Enum<typeof NSPrintingPaginationMode>) { this.nativeObject.horizontalPagination = value; }
   get verticalPagination(): interop.Enum<typeof NSPrintingPaginationMode> { return this.nativeObject.verticalPagination; }
   set verticalPagination(value: interop.Enum<typeof NSPrintingPaginationMode>) { this.nativeObject.verticalPagination = value; }
-  get jobDisposition(): NSString { return this.nativeObject.jobDisposition; }
-  set jobDisposition(value: NSString | string) { this.nativeObject.jobDisposition = value; }
+  get jobDisposition(): string { return this.nativeObject.jobDisposition; }
+  set jobDisposition(value: string) { this.nativeObject.jobDisposition = value; }
   get printer(): NSPrinter { return this.nativeObject.printer; }
   set printer(value: NSPrinter) { this.nativeObject.printer = value; }
   get imageablePageBounds(): CGRect { return this.nativeObject.imageablePageBounds; }
-  get localizedPaperName(): NSString { return this.nativeObject.localizedPaperName; }
+  get localizedPaperName(): string { return this.nativeObject.localizedPaperName; }
   get printSettings(): NSMutableDictionary { return this.nativeObject.printSettings; }
   get isSelectionOnly(): boolean { return this.nativeObject.isSelectionOnly; }
   set isSelectionOnly(value: boolean) { this.nativeObject.isSelectionOnly = value; }
@@ -7271,7 +7271,7 @@ export class HTMLNSToolbarItemGroupElement extends HTMLNSToolbarItemElement {
   readonly nativeObject = NSToolbarItemGroup.new();
 
   get subitems(): NSArray { return this.nativeObject.subitems; }
-  set subitems(value: NSArray | unknown[]) { this.nativeObject.subitems = value; }
+  set subitems(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.subitems = value; }
   get controlRepresentation(): interop.Enum<typeof NSToolbarItemGroupControlRepresentation> { return this.nativeObject.controlRepresentation; }
   set controlRepresentation(value: interop.Enum<typeof NSToolbarItemGroupControlRepresentation>) { this.nativeObject.controlRepresentation = value; }
   get selectionMode(): interop.Enum<typeof NSToolbarItemGroupSelectionMode> { return this.nativeObject.selectionMode; }
@@ -7285,8 +7285,8 @@ export class HTMLNSTableColumnElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTableColumn.new();
 
-  get identifier(): NSString { return this.nativeObject.identifier; }
-  set identifier(value: NSString | string) { this.nativeObject.identifier = value; }
+  get identifier(): string { return this.nativeObject.identifier; }
+  set identifier(value: string) { this.nativeObject.identifier = value; }
   get tableView(): NSTableView { return this.nativeObject.tableView; }
   set tableView(value: NSTableView) { this.nativeObject.tableView = value; }
   get width(): number { return this.nativeObject.width; }
@@ -7303,8 +7303,8 @@ export class HTMLNSTableColumnElement extends HTMLNSObjectElement {
   set sortDescriptorPrototype(value: NSSortDescriptor) { this.nativeObject.sortDescriptorPrototype = value; }
   get resizingMask(): interop.Enum<typeof NSTableColumnResizingOptions> { return this.nativeObject.resizingMask; }
   set resizingMask(value: interop.Enum<typeof NSTableColumnResizingOptions>) { this.nativeObject.resizingMask = value; }
-  get headerToolTip(): NSString { return this.nativeObject.headerToolTip; }
-  set headerToolTip(value: NSString | string) { this.nativeObject.headerToolTip = value; }
+  get headerToolTip(): string { return this.nativeObject.headerToolTip; }
+  set headerToolTip(value: string) { this.nativeObject.headerToolTip = value; }
   get isHidden(): boolean { return this.nativeObject.isHidden; }
   set isHidden(value: boolean) { this.nativeObject.isHidden = value; }
   get dataCell(): interop.Object { return this.nativeObject.dataCell; }
@@ -7342,9 +7342,9 @@ export class HTMLNSWorkspaceOpenConfigurationElement extends HTMLNSObjectElement
   get allowsRunningApplicationSubstitution(): boolean { return this.nativeObject.allowsRunningApplicationSubstitution; }
   set allowsRunningApplicationSubstitution(value: boolean) { this.nativeObject.allowsRunningApplicationSubstitution = value; }
   get arguments(): NSArray { return this.nativeObject.arguments; }
-  set arguments(value: NSArray | unknown[]) { this.nativeObject.arguments = value; }
+  set arguments(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.arguments = value; }
   get environment(): NSDictionary { return this.nativeObject.environment; }
-  set environment(value: NSDictionary | Record<string, unknown>) { this.nativeObject.environment = value; }
+  set environment(value: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>) { this.nativeObject.environment = value; }
   get appleEvent(): NSAppleEventDescriptor { return this.nativeObject.appleEvent; }
   set appleEvent(value: NSAppleEventDescriptor) { this.nativeObject.appleEvent = value; }
   get architecture(): number { return this.nativeObject.architecture; }
@@ -7408,8 +7408,8 @@ export class HTMLNSSliderTouchBarItemElement extends HTMLNSTouchBarItemElement {
   set minimumSliderWidth(value: number) { this.nativeObject.minimumSliderWidth = value; }
   get maximumSliderWidth(): number { return this.nativeObject.maximumSliderWidth; }
   set maximumSliderWidth(value: number) { this.nativeObject.maximumSliderWidth = value; }
-  get label(): NSString { return this.nativeObject.label; }
-  set label(value: NSString | string) { this.nativeObject.label = value; }
+  get label(): string { return this.nativeObject.label; }
+  set label(value: string) { this.nativeObject.label = value; }
   get minimumValueAccessory(): NSSliderAccessory { return this.nativeObject.minimumValueAccessory; }
   set minimumValueAccessory(value: NSSliderAccessory) { this.nativeObject.minimumValueAccessory = value; }
   get maximumValueAccessory(): NSSliderAccessory { return this.nativeObject.maximumValueAccessory; }
@@ -7420,8 +7420,8 @@ export class HTMLNSSliderTouchBarItemElement extends HTMLNSTouchBarItemElement {
   set target(value: interop.Object) { this.nativeObject.target = value; }
   get action(): string { return this.nativeObject.action; }
   set action(value: string) { this.nativeObject.action = value; }
-  get customizationLabel(): NSString { return this.nativeObject.customizationLabel; }
-  set customizationLabel(value: NSString | string) { this.nativeObject.customizationLabel = value; }
+  get customizationLabel(): string { return this.nativeObject.customizationLabel; }
+  set customizationLabel(value: string) { this.nativeObject.customizationLabel = value; }
 }
 
 export class HTMLNSTableHeaderCellElement extends HTMLNSTextFieldCellElement {
@@ -7525,8 +7525,8 @@ export class HTMLNSPickerTouchBarItemElement extends HTMLNSTouchBarItemElement {
 
   get controlRepresentation(): interop.Enum<typeof NSPickerTouchBarItemControlRepresentation> { return this.nativeObject.controlRepresentation; }
   set controlRepresentation(value: interop.Enum<typeof NSPickerTouchBarItemControlRepresentation>) { this.nativeObject.controlRepresentation = value; }
-  get collapsedRepresentationLabel(): NSString { return this.nativeObject.collapsedRepresentationLabel; }
-  set collapsedRepresentationLabel(value: NSString | string) { this.nativeObject.collapsedRepresentationLabel = value; }
+  get collapsedRepresentationLabel(): string { return this.nativeObject.collapsedRepresentationLabel; }
+  set collapsedRepresentationLabel(value: string) { this.nativeObject.collapsedRepresentationLabel = value; }
   get collapsedRepresentationImage(): NSImage { return this.nativeObject.collapsedRepresentationImage; }
   set collapsedRepresentationImage(value: NSImage) { this.nativeObject.collapsedRepresentationImage = value; }
   get selectedIndex(): number { return this.nativeObject.selectedIndex; }
@@ -7543,8 +7543,8 @@ export class HTMLNSPickerTouchBarItemElement extends HTMLNSTouchBarItemElement {
   set action(value: string) { this.nativeObject.action = value; }
   get isEnabled(): boolean { return this.nativeObject.isEnabled; }
   set isEnabled(value: boolean) { this.nativeObject.isEnabled = value; }
-  get customizationLabel(): NSString { return this.nativeObject.customizationLabel; }
-  set customizationLabel(value: NSString | string) { this.nativeObject.customizationLabel = value; }
+  get customizationLabel(): string { return this.nativeObject.customizationLabel; }
+  set customizationLabel(value: string) { this.nativeObject.customizationLabel = value; }
 }
 
 export class HTMLNSArrayControllerElement extends HTMLNSObjectControllerElement {
@@ -7556,7 +7556,7 @@ export class HTMLNSArrayControllerElement extends HTMLNSObjectControllerElement 
   set automaticallyRearrangesObjects(value: boolean) { this.nativeObject.automaticallyRearrangesObjects = value; }
   get automaticRearrangementKeyPaths(): NSArray { return this.nativeObject.automaticRearrangementKeyPaths; }
   get sortDescriptors(): NSArray { return this.nativeObject.sortDescriptors; }
-  set sortDescriptors(value: NSArray | unknown[]) { this.nativeObject.sortDescriptors = value; }
+  set sortDescriptors(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.sortDescriptors = value; }
   get filterPredicate(): NSPredicate { return this.nativeObject.filterPredicate; }
   set filterPredicate(value: NSPredicate) { this.nativeObject.filterPredicate = value; }
   get clearsFilterPredicateOnInsertion(): boolean { return this.nativeObject.clearsFilterPredicateOnInsertion; }
@@ -7609,8 +7609,8 @@ export class HTMLNSSplitViewElement extends HTMLNSViewElement {
   set isVertical(value: boolean) { this.nativeObject.isVertical = value; }
   get dividerStyle(): interop.Enum<typeof NSSplitViewDividerStyle> { return this.nativeObject.dividerStyle; }
   set dividerStyle(value: interop.Enum<typeof NSSplitViewDividerStyle>) { this.nativeObject.dividerStyle = value; }
-  get autosaveName(): NSString { return this.nativeObject.autosaveName; }
-  set autosaveName(value: NSString | string) { this.nativeObject.autosaveName = value; }
+  get autosaveName(): string { return this.nativeObject.autosaveName; }
+  set autosaveName(value: string) { this.nativeObject.autosaveName = value; }
   get dividerColor(): NSColor { return this.nativeObject.dividerColor; }
   get dividerThickness(): number { return this.nativeObject.dividerThickness; }
   get arrangesAllSubviews(): boolean { return this.nativeObject.arrangesAllSubviews; }
@@ -7707,7 +7707,7 @@ export class HTMLNSViewControllerElement extends HTMLNSResponderElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSViewController.new();
 
-  get nibName(): NSString { return this.nativeObject.nibName; }
+  get nibName(): string { return this.nativeObject.nibName; }
   get nibBundle(): NSBundle { return this.nativeObject.nibBundle; }
   get representedObject(): interop.Object { return this.nativeObject.representedObject; }
   set representedObject(value: interop.Object) { this.nativeObject.representedObject = value; }
@@ -7721,7 +7721,7 @@ export class HTMLNSViewControllerElement extends HTMLNSResponderElement {
   get presentingViewController(): NSViewController { return this.nativeObject.presentingViewController; }
   get parentViewController(): NSViewController { return this.nativeObject.parentViewController; }
   get childViewControllers(): NSArray { return this.nativeObject.childViewControllers; }
-  set childViewControllers(value: NSArray | unknown[]) { this.nativeObject.childViewControllers = value; }
+  set childViewControllers(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.childViewControllers = value; }
   get storyboard(): NSStoryboard { return this.nativeObject.storyboard; }
   get extensionContext(): NSExtensionContext { return this.nativeObject.extensionContext; }
   get sourceItemView(): NSView { return this.nativeObject.sourceItemView; }
@@ -7734,10 +7734,10 @@ export class HTMLNSViewControllerElement extends HTMLNSResponderElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
-  get identifier(): NSString { return this.nativeObject.identifier; }
-  set identifier(value: NSString | string) { this.nativeObject.identifier = value; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
+  get identifier(): string { return this.nativeObject.identifier; }
+  set identifier(value: string) { this.nativeObject.identifier = value; }
 }
 
 export class HTMLNSPressGestureRecognizerElement extends HTMLNSGestureRecognizerElement {
@@ -7778,15 +7778,15 @@ export class HTMLNSPopUpButtonCellElement extends HTMLNSMenuItemCellElement {
   get selectedItem(): NSMenuItem { return this.nativeObject.selectedItem; }
   get indexOfSelectedItem(): number { return this.nativeObject.indexOfSelectedItem; }
   get itemTitles(): NSArray { return this.nativeObject.itemTitles; }
-  get titleOfSelectedItem(): NSString { return this.nativeObject.titleOfSelectedItem; }
+  get titleOfSelectedItem(): string { return this.nativeObject.titleOfSelectedItem; }
   get arrowPosition(): interop.Enum<typeof NSPopUpArrowPosition> { return this.nativeObject.arrowPosition; }
   set arrowPosition(value: interop.Enum<typeof NSPopUpArrowPosition>) { this.nativeObject.arrowPosition = value; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSTextElement extends HTMLNSViewElement {
@@ -7798,8 +7798,8 @@ export class HTMLNSTextElement extends HTMLNSViewElement {
     return (this.nativeObject.delegate ??= NSTextDelegateImpl.new()) as NSTextDelegateImpl;
   }
 
-  get string(): NSString { return this.nativeObject.string; }
-  set string(value: NSString | string) { this.nativeObject.string = value; }
+  get string(): string { return this.nativeObject.string; }
+  set string(value: string) { this.nativeObject.string = value; }
   get isEditable(): boolean { return this.nativeObject.isEditable; }
   set isEditable(value: boolean) { this.nativeObject.isEditable = value; }
   get isSelectable(): boolean { return this.nativeObject.isSelectable; }
@@ -7907,7 +7907,7 @@ export class HTMLNSUserDefaultsControllerElement extends HTMLNSControllerElement
 
   get defaults(): NSUserDefaults { return this.nativeObject.defaults; }
   get initialValues(): NSDictionary { return this.nativeObject.initialValues; }
-  set initialValues(value: NSDictionary | Record<string, unknown>) { this.nativeObject.initialValues = value; }
+  set initialValues(value: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>) { this.nativeObject.initialValues = value; }
   get appliesImmediately(): boolean { return this.nativeObject.appliesImmediately; }
   set appliesImmediately(value: boolean) { this.nativeObject.appliesImmediately = value; }
   get hasUnappliedChanges(): boolean { return this.nativeObject.hasUnappliedChanges; }
@@ -7961,14 +7961,14 @@ export class HTMLNSProgressIndicatorElement extends HTMLNSViewElement {
   set accessibilityParent(value: interop.Object) { this.nativeObject.accessibilityParent = value; }
   get isAccessibilityFocused(): boolean { return this.nativeObject.isAccessibilityFocused; }
   set isAccessibilityFocused(value: boolean) { this.nativeObject.isAccessibilityFocused = value; }
-  get accessibilityIdentifier(): NSString { return this.nativeObject.accessibilityIdentifier; }
-  set accessibilityIdentifier(value: NSString | string) { this.nativeObject.accessibilityIdentifier = value; }
+  get accessibilityIdentifier(): string { return this.nativeObject.accessibilityIdentifier; }
+  set accessibilityIdentifier(value: string) { this.nativeObject.accessibilityIdentifier = value; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSScrubberArrangedViewElement extends HTMLNSViewElement {
@@ -8003,8 +8003,8 @@ export class HTMLNSLayoutConstraintElement extends HTMLNSObjectElement {
   set constant(value: number) { this.nativeObject.constant = value; }
   get isActive(): boolean { return this.nativeObject.isActive; }
   set isActive(value: boolean) { this.nativeObject.isActive = value; }
-  get identifier(): NSString { return this.nativeObject.identifier; }
-  set identifier(value: NSString | string) { this.nativeObject.identifier = value; }
+  get identifier(): string { return this.nativeObject.identifier; }
+  set identifier(value: string) { this.nativeObject.identifier = value; }
 }
 
 export class HTMLNSSpeechSynthesizerElement extends HTMLNSObjectElement {
@@ -8026,16 +8026,16 @@ export class HTMLNSSpeechSynthesizerElement extends HTMLNSObjectElement {
   set speechSynthesizerDidFinishSpeaking(value: (sender: NSSpeechSynthesizer, finishedSpeaking: boolean) => void) {
     this.delegate.speechSynthesizerDidFinishSpeaking = value;
   }
-  set speechSynthesizerWillSpeakWordOfString(value: (sender: NSSpeechSynthesizer, characterRange: _NSRange, string: NSString | string) => void) {
+  set speechSynthesizerWillSpeakWordOfString(value: (sender: NSSpeechSynthesizer, characterRange: _NSRange, string: string) => void) {
     this.delegate.speechSynthesizerWillSpeakWordOfString = value;
   }
   set speechSynthesizerWillSpeakPhoneme(value: (sender: NSSpeechSynthesizer, phonemeOpcode: number) => void) {
     this.delegate.speechSynthesizerWillSpeakPhoneme = value;
   }
-  set speechSynthesizerDidEncounterErrorAtIndexOfStringMessage(value: (sender: NSSpeechSynthesizer, characterIndex: number, string: NSString | string, message: NSString | string) => void) {
+  set speechSynthesizerDidEncounterErrorAtIndexOfStringMessage(value: (sender: NSSpeechSynthesizer, characterIndex: number, string: string, message: string) => void) {
     this.delegate.speechSynthesizerDidEncounterErrorAtIndexOfStringMessage = value;
   }
-  set speechSynthesizerDidEncounterSyncMessage(value: (sender: NSSpeechSynthesizer, message: NSString | string) => void) {
+  set speechSynthesizerDidEncounterSyncMessage(value: (sender: NSSpeechSynthesizer, message: string) => void) {
     this.delegate.speechSynthesizerDidEncounterSyncMessage = value;
   }
 }
@@ -8075,7 +8075,7 @@ export class HTMLNSMutableParagraphStyleElement extends HTMLNSParagraphStyleElem
   get usesDefaultHyphenation(): boolean { return this.nativeObject.usesDefaultHyphenation; }
   set usesDefaultHyphenation(value: boolean) { this.nativeObject.usesDefaultHyphenation = value; }
   get tabStops(): NSArray { return this.nativeObject.tabStops; }
-  set tabStops(value: NSArray | unknown[]) { this.nativeObject.tabStops = value; }
+  set tabStops(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.tabStops = value; }
   get defaultTabInterval(): number { return this.nativeObject.defaultTabInterval; }
   set defaultTabInterval(value: number) { this.nativeObject.defaultTabInterval = value; }
   get allowsDefaultTighteningForTruncation(): boolean { return this.nativeObject.allowsDefaultTighteningForTruncation; }
@@ -8083,9 +8083,9 @@ export class HTMLNSMutableParagraphStyleElement extends HTMLNSParagraphStyleElem
   get tighteningFactorForTruncation(): number { return this.nativeObject.tighteningFactorForTruncation; }
   set tighteningFactorForTruncation(value: number) { this.nativeObject.tighteningFactorForTruncation = value; }
   get textBlocks(): NSArray { return this.nativeObject.textBlocks; }
-  set textBlocks(value: NSArray | unknown[]) { this.nativeObject.textBlocks = value; }
+  set textBlocks(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.textBlocks = value; }
   get textLists(): NSArray { return this.nativeObject.textLists; }
-  set textLists(value: NSArray | unknown[]) { this.nativeObject.textLists = value; }
+  set textLists(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.textLists = value; }
   get headerLevel(): number { return this.nativeObject.headerLevel; }
   set headerLevel(value: number) { this.nativeObject.headerLevel = value; }
   get lineBreakStrategy(): interop.Enum<typeof NSLineBreakStrategy> { return this.nativeObject.lineBreakStrategy; }
@@ -8124,13 +8124,13 @@ export class HTMLNSCollectionLayoutSectionElement extends HTMLNSObjectElement {
   get orthogonalScrollingBehavior(): interop.Enum<typeof NSCollectionLayoutSectionOrthogonalScrollingBehavior> { return this.nativeObject.orthogonalScrollingBehavior; }
   set orthogonalScrollingBehavior(value: interop.Enum<typeof NSCollectionLayoutSectionOrthogonalScrollingBehavior>) { this.nativeObject.orthogonalScrollingBehavior = value; }
   get boundarySupplementaryItems(): NSArray { return this.nativeObject.boundarySupplementaryItems; }
-  set boundarySupplementaryItems(value: NSArray | unknown[]) { this.nativeObject.boundarySupplementaryItems = value; }
+  set boundarySupplementaryItems(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.boundarySupplementaryItems = value; }
   get supplementariesFollowContentInsets(): boolean { return this.nativeObject.supplementariesFollowContentInsets; }
   set supplementariesFollowContentInsets(value: boolean) { this.nativeObject.supplementariesFollowContentInsets = value; }
-  get visibleItemsInvalidationHandler(): (p1: NSArray | unknown[], p2: CGPoint, p3: NSCollectionLayoutEnvironment) => void { return this.nativeObject.visibleItemsInvalidationHandler; }
-  set visibleItemsInvalidationHandler(value: (p1: NSArray | unknown[], p2: CGPoint, p3: NSCollectionLayoutEnvironment) => void) { this.nativeObject.visibleItemsInvalidationHandler = value; }
+  get visibleItemsInvalidationHandler(): (p1: NSArray<interop.Object> | Array<interop.Object>, p2: CGPoint, p3: NSCollectionLayoutEnvironment) => void { return this.nativeObject.visibleItemsInvalidationHandler; }
+  set visibleItemsInvalidationHandler(value: (p1: NSArray<interop.Object> | Array<interop.Object>, p2: CGPoint, p3: NSCollectionLayoutEnvironment) => void) { this.nativeObject.visibleItemsInvalidationHandler = value; }
   get decorationItems(): NSArray { return this.nativeObject.decorationItems; }
-  set decorationItems(value: NSArray | unknown[]) { this.nativeObject.decorationItems = value; }
+  set decorationItems(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.decorationItems = value; }
 }
 
 export class HTMLNSGroupTouchBarItemElement extends HTMLNSTouchBarItemElement {
@@ -8141,8 +8141,8 @@ export class HTMLNSGroupTouchBarItemElement extends HTMLNSTouchBarItemElement {
 
   get groupTouchBar(): NSTouchBar { return this.nativeObject.groupTouchBar; }
   set groupTouchBar(value: NSTouchBar) { this.nativeObject.groupTouchBar = value; }
-  get customizationLabel(): NSString { return this.nativeObject.customizationLabel; }
-  set customizationLabel(value: NSString | string) { this.nativeObject.customizationLabel = value; }
+  get customizationLabel(): string { return this.nativeObject.customizationLabel; }
+  set customizationLabel(value: string) { this.nativeObject.customizationLabel = value; }
   get groupUserInterfaceLayoutDirection(): interop.Enum<typeof NSUserInterfaceLayoutDirection> { return this.nativeObject.groupUserInterfaceLayoutDirection; }
   set groupUserInterfaceLayoutDirection(value: interop.Enum<typeof NSUserInterfaceLayoutDirection>) { this.nativeObject.groupUserInterfaceLayoutDirection = value; }
   get prefersEqualWidths(): boolean { return this.nativeObject.prefersEqualWidths; }
@@ -8151,7 +8151,7 @@ export class HTMLNSGroupTouchBarItemElement extends HTMLNSTouchBarItemElement {
   set preferredItemWidth(value: number) { this.nativeObject.preferredItemWidth = value; }
   get effectiveCompressionOptions(): NSUserInterfaceCompressionOptions { return this.nativeObject.effectiveCompressionOptions; }
   get prioritizedCompressionOptions(): NSArray { return this.nativeObject.prioritizedCompressionOptions; }
-  set prioritizedCompressionOptions(value: NSArray | unknown[]) { this.nativeObject.prioritizedCompressionOptions = value; }
+  set prioritizedCompressionOptions(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.prioritizedCompressionOptions = value; }
 }
 
 export class HTMLNSMenuElement extends HTMLNSObjectElement {
@@ -8165,7 +8165,7 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
   get supermenu(): NSMenu { return this.nativeObject.supermenu; }
   set supermenu(value: NSMenu) { this.nativeObject.supermenu = value; }
   get itemArray(): NSArray { return this.nativeObject.itemArray; }
-  set itemArray(value: NSArray | unknown[]) { this.nativeObject.itemArray = value; }
+  set itemArray(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.itemArray = value; }
   get numberOfItems(): number { return this.nativeObject.numberOfItems; }
   get autoenablesItems(): boolean { return this.nativeObject.autoenablesItems; }
   set autoenablesItems(value: boolean) { this.nativeObject.autoenablesItems = value; }
@@ -8187,13 +8187,13 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
   get selectionMode(): interop.Enum<typeof NSMenuSelectionMode> { return this.nativeObject.selectionMode; }
   set selectionMode(value: interop.Enum<typeof NSMenuSelectionMode>) { this.nativeObject.selectionMode = value; }
   get selectedItems(): NSArray { return this.nativeObject.selectedItems; }
-  set selectedItems(value: NSArray | unknown[]) { this.nativeObject.selectedItems = value; }
+  set selectedItems(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.selectedItems = value; }
   get propertiesToUpdate(): interop.Enum<typeof NSMenuProperties> { return this.nativeObject.propertiesToUpdate; }
   get menuChangedMessagesEnabled(): boolean { return this.nativeObject.menuChangedMessagesEnabled; }
   set menuChangedMessagesEnabled(value: boolean) { this.nativeObject.menuChangedMessagesEnabled = value; }
   get isTornOff(): boolean { return this.nativeObject.isTornOff; }
-  get identifier(): NSString { return this.nativeObject.identifier; }
-  set identifier(value: NSString | string) { this.nativeObject.identifier = value; }
+  get identifier(): string { return this.nativeObject.identifier; }
+  set identifier(value: string) { this.nativeObject.identifier = value; }
   get appearance(): NSAppearance { return this.nativeObject.appearance; }
   set appearance(value: NSAppearance) { this.nativeObject.appearance = value; }
   get effectiveAppearance(): NSAppearance { return this.nativeObject.effectiveAppearance; }
@@ -8201,8 +8201,8 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
   get isAccessibilityElement(): boolean { return this.nativeObject.isAccessibilityElement; }
   set isAccessibilityElement(value: boolean) { this.nativeObject.isAccessibilityElement = value; }
   get accessibilityFrame(): CGRect { return this.nativeObject.accessibilityFrame; }
@@ -8217,32 +8217,32 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
   set accessibilityURL(value: NSURL) { this.nativeObject.accessibilityURL = value; }
   get accessibilityValue(): interop.Object { return this.nativeObject.accessibilityValue; }
   set accessibilityValue(value: interop.Object) { this.nativeObject.accessibilityValue = value; }
-  get accessibilityValueDescription(): NSString { return this.nativeObject.accessibilityValueDescription; }
-  set accessibilityValueDescription(value: NSString | string) { this.nativeObject.accessibilityValueDescription = value; }
+  get accessibilityValueDescription(): string { return this.nativeObject.accessibilityValueDescription; }
+  set accessibilityValueDescription(value: string) { this.nativeObject.accessibilityValueDescription = value; }
   get accessibilityVisibleChildren(): NSArray { return this.nativeObject.accessibilityVisibleChildren; }
-  set accessibilityVisibleChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleChildren = value; }
-  get accessibilitySubrole(): NSString { return this.nativeObject.accessibilitySubrole; }
-  set accessibilitySubrole(value: NSString | string) { this.nativeObject.accessibilitySubrole = value; }
-  get accessibilityTitle(): NSString { return this.nativeObject.accessibilityTitle; }
-  set accessibilityTitle(value: NSString | string) { this.nativeObject.accessibilityTitle = value; }
+  set accessibilityVisibleChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleChildren = value; }
+  get accessibilitySubrole(): string { return this.nativeObject.accessibilitySubrole; }
+  set accessibilitySubrole(value: string) { this.nativeObject.accessibilitySubrole = value; }
+  get accessibilityTitle(): string { return this.nativeObject.accessibilityTitle; }
+  set accessibilityTitle(value: string) { this.nativeObject.accessibilityTitle = value; }
   get accessibilityTitleUIElement(): interop.Object { return this.nativeObject.accessibilityTitleUIElement; }
   set accessibilityTitleUIElement(value: interop.Object) { this.nativeObject.accessibilityTitleUIElement = value; }
   get accessibilityNextContents(): NSArray { return this.nativeObject.accessibilityNextContents; }
-  set accessibilityNextContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityNextContents = value; }
+  set accessibilityNextContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityNextContents = value; }
   get accessibilityOrientation(): interop.Enum<typeof NSAccessibilityOrientation> { return this.nativeObject.accessibilityOrientation; }
   set accessibilityOrientation(value: interop.Enum<typeof NSAccessibilityOrientation>) { this.nativeObject.accessibilityOrientation = value; }
   get accessibilityOverflowButton(): interop.Object { return this.nativeObject.accessibilityOverflowButton; }
   set accessibilityOverflowButton(value: interop.Object) { this.nativeObject.accessibilityOverflowButton = value; }
   get accessibilityParent(): interop.Object { return this.nativeObject.accessibilityParent; }
   set accessibilityParent(value: interop.Object) { this.nativeObject.accessibilityParent = value; }
-  get accessibilityPlaceholderValue(): NSString { return this.nativeObject.accessibilityPlaceholderValue; }
-  set accessibilityPlaceholderValue(value: NSString | string) { this.nativeObject.accessibilityPlaceholderValue = value; }
+  get accessibilityPlaceholderValue(): string { return this.nativeObject.accessibilityPlaceholderValue; }
+  set accessibilityPlaceholderValue(value: string) { this.nativeObject.accessibilityPlaceholderValue = value; }
   get accessibilityPreviousContents(): NSArray { return this.nativeObject.accessibilityPreviousContents; }
-  set accessibilityPreviousContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityPreviousContents = value; }
-  get accessibilityRole(): NSString { return this.nativeObject.accessibilityRole; }
-  set accessibilityRole(value: NSString | string) { this.nativeObject.accessibilityRole = value; }
-  get accessibilityRoleDescription(): NSString { return this.nativeObject.accessibilityRoleDescription; }
-  set accessibilityRoleDescription(value: NSString | string) { this.nativeObject.accessibilityRoleDescription = value; }
+  set accessibilityPreviousContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityPreviousContents = value; }
+  get accessibilityRole(): string { return this.nativeObject.accessibilityRole; }
+  set accessibilityRole(value: string) { this.nativeObject.accessibilityRole = value; }
+  get accessibilityRoleDescription(): string { return this.nativeObject.accessibilityRoleDescription; }
+  set accessibilityRoleDescription(value: string) { this.nativeObject.accessibilityRoleDescription = value; }
   get accessibilitySearchButton(): interop.Object { return this.nativeObject.accessibilitySearchButton; }
   set accessibilitySearchButton(value: interop.Object) { this.nativeObject.accessibilitySearchButton = value; }
   get accessibilitySearchMenu(): interop.Object { return this.nativeObject.accessibilitySearchMenu; }
@@ -8250,9 +8250,9 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
   get isAccessibilitySelected(): boolean { return this.nativeObject.isAccessibilitySelected; }
   set isAccessibilitySelected(value: boolean) { this.nativeObject.isAccessibilitySelected = value; }
   get accessibilitySelectedChildren(): NSArray { return this.nativeObject.accessibilitySelectedChildren; }
-  set accessibilitySelectedChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedChildren = value; }
+  set accessibilitySelectedChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedChildren = value; }
   get accessibilityServesAsTitleForUIElements(): NSArray { return this.nativeObject.accessibilityServesAsTitleForUIElements; }
-  set accessibilityServesAsTitleForUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityServesAsTitleForUIElements = value; }
+  set accessibilityServesAsTitleForUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityServesAsTitleForUIElements = value; }
   get accessibilityShownMenu(): interop.Object { return this.nativeObject.accessibilityShownMenu; }
   set accessibilityShownMenu(value: interop.Object) { this.nativeObject.accessibilityShownMenu = value; }
   get accessibilityMinValue(): interop.Object { return this.nativeObject.accessibilityMinValue; }
@@ -8260,15 +8260,15 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
   get accessibilityMaxValue(): interop.Object { return this.nativeObject.accessibilityMaxValue; }
   set accessibilityMaxValue(value: interop.Object) { this.nativeObject.accessibilityMaxValue = value; }
   get accessibilityLinkedUIElements(): NSArray { return this.nativeObject.accessibilityLinkedUIElements; }
-  set accessibilityLinkedUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityLinkedUIElements = value; }
+  set accessibilityLinkedUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityLinkedUIElements = value; }
   get accessibilityWindow(): interop.Object { return this.nativeObject.accessibilityWindow; }
   set accessibilityWindow(value: interop.Object) { this.nativeObject.accessibilityWindow = value; }
-  get accessibilityIdentifier(): NSString { return this.nativeObject.accessibilityIdentifier; }
-  set accessibilityIdentifier(value: NSString | string) { this.nativeObject.accessibilityIdentifier = value; }
-  get accessibilityHelp(): NSString { return this.nativeObject.accessibilityHelp; }
-  set accessibilityHelp(value: NSString | string) { this.nativeObject.accessibilityHelp = value; }
-  get accessibilityFilename(): NSString { return this.nativeObject.accessibilityFilename; }
-  set accessibilityFilename(value: NSString | string) { this.nativeObject.accessibilityFilename = value; }
+  get accessibilityIdentifier(): string { return this.nativeObject.accessibilityIdentifier; }
+  set accessibilityIdentifier(value: string) { this.nativeObject.accessibilityIdentifier = value; }
+  get accessibilityHelp(): string { return this.nativeObject.accessibilityHelp; }
+  set accessibilityHelp(value: string) { this.nativeObject.accessibilityHelp = value; }
+  get accessibilityFilename(): string { return this.nativeObject.accessibilityFilename; }
+  set accessibilityFilename(value: string) { this.nativeObject.accessibilityFilename = value; }
   get isAccessibilityExpanded(): boolean { return this.nativeObject.isAccessibilityExpanded; }
   set isAccessibilityExpanded(value: boolean) { this.nativeObject.isAccessibilityExpanded = value; }
   get isAccessibilityEdited(): boolean { return this.nativeObject.isAccessibilityEdited; }
@@ -8276,9 +8276,9 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
   get isAccessibilityEnabled(): boolean { return this.nativeObject.isAccessibilityEnabled; }
   set isAccessibilityEnabled(value: boolean) { this.nativeObject.isAccessibilityEnabled = value; }
   get accessibilityChildren(): NSArray { return this.nativeObject.accessibilityChildren; }
-  set accessibilityChildren(value: NSArray | unknown[]) { this.nativeObject.accessibilityChildren = value; }
+  set accessibilityChildren(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityChildren = value; }
   get accessibilityChildrenInNavigationOrder(): NSArray { return this.nativeObject.accessibilityChildrenInNavigationOrder; }
-  set accessibilityChildrenInNavigationOrder(value: NSArray | unknown[]) { this.nativeObject.accessibilityChildrenInNavigationOrder = value; }
+  set accessibilityChildrenInNavigationOrder(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityChildrenInNavigationOrder = value; }
   get accessibilityClearButton(): interop.Object { return this.nativeObject.accessibilityClearButton; }
   set accessibilityClearButton(value: interop.Object) { this.nativeObject.accessibilityClearButton = value; }
   get accessibilityCancelButton(): interop.Object { return this.nativeObject.accessibilityCancelButton; }
@@ -8286,21 +8286,21 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
   get isAccessibilityProtectedContent(): boolean { return this.nativeObject.isAccessibilityProtectedContent; }
   set isAccessibilityProtectedContent(value: boolean) { this.nativeObject.isAccessibilityProtectedContent = value; }
   get accessibilityContents(): NSArray { return this.nativeObject.accessibilityContents; }
-  set accessibilityContents(value: NSArray | unknown[]) { this.nativeObject.accessibilityContents = value; }
-  get accessibilityLabel(): NSString { return this.nativeObject.accessibilityLabel; }
-  set accessibilityLabel(value: NSString | string) { this.nativeObject.accessibilityLabel = value; }
+  set accessibilityContents(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityContents = value; }
+  get accessibilityLabel(): string { return this.nativeObject.accessibilityLabel; }
+  set accessibilityLabel(value: string) { this.nativeObject.accessibilityLabel = value; }
   get isAccessibilityAlternateUIVisible(): boolean { return this.nativeObject.isAccessibilityAlternateUIVisible; }
   set isAccessibilityAlternateUIVisible(value: boolean) { this.nativeObject.isAccessibilityAlternateUIVisible = value; }
   get accessibilitySharedFocusElements(): NSArray { return this.nativeObject.accessibilitySharedFocusElements; }
-  set accessibilitySharedFocusElements(value: NSArray | unknown[]) { this.nativeObject.accessibilitySharedFocusElements = value; }
+  set accessibilitySharedFocusElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySharedFocusElements = value; }
   get isAccessibilityRequired(): boolean { return this.nativeObject.isAccessibilityRequired; }
   set isAccessibilityRequired(value: boolean) { this.nativeObject.isAccessibilityRequired = value; }
   get accessibilityCustomRotors(): NSArray { return this.nativeObject.accessibilityCustomRotors; }
-  set accessibilityCustomRotors(value: NSArray | unknown[]) { this.nativeObject.accessibilityCustomRotors = value; }
+  set accessibilityCustomRotors(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityCustomRotors = value; }
   get accessibilityUserInputLabels(): NSArray { return this.nativeObject.accessibilityUserInputLabels; }
-  set accessibilityUserInputLabels(value: NSArray | unknown[]) { this.nativeObject.accessibilityUserInputLabels = value; }
+  set accessibilityUserInputLabels(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityUserInputLabels = value; }
   get accessibilityAttributedUserInputLabels(): NSArray { return this.nativeObject.accessibilityAttributedUserInputLabels; }
-  set accessibilityAttributedUserInputLabels(value: NSArray | unknown[]) { this.nativeObject.accessibilityAttributedUserInputLabels = value; }
+  set accessibilityAttributedUserInputLabels(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityAttributedUserInputLabels = value; }
   get accessibilityApplicationFocusedUIElement(): interop.Object { return this.nativeObject.accessibilityApplicationFocusedUIElement; }
   set accessibilityApplicationFocusedUIElement(value: interop.Object) { this.nativeObject.accessibilityApplicationFocusedUIElement = value; }
   get accessibilityMainWindow(): interop.Object { return this.nativeObject.accessibilityMainWindow; }
@@ -8312,25 +8312,25 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
   get accessibilityFocusedWindow(): interop.Object { return this.nativeObject.accessibilityFocusedWindow; }
   set accessibilityFocusedWindow(value: interop.Object) { this.nativeObject.accessibilityFocusedWindow = value; }
   get accessibilityWindows(): NSArray { return this.nativeObject.accessibilityWindows; }
-  set accessibilityWindows(value: NSArray | unknown[]) { this.nativeObject.accessibilityWindows = value; }
+  set accessibilityWindows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityWindows = value; }
   get accessibilityExtrasMenuBar(): interop.Object { return this.nativeObject.accessibilityExtrasMenuBar; }
   set accessibilityExtrasMenuBar(value: interop.Object) { this.nativeObject.accessibilityExtrasMenuBar = value; }
   get accessibilityMenuBar(): interop.Object { return this.nativeObject.accessibilityMenuBar; }
   set accessibilityMenuBar(value: interop.Object) { this.nativeObject.accessibilityMenuBar = value; }
   get accessibilityColumnTitles(): NSArray { return this.nativeObject.accessibilityColumnTitles; }
-  set accessibilityColumnTitles(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumnTitles = value; }
+  set accessibilityColumnTitles(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumnTitles = value; }
   get isAccessibilityOrderedByRow(): boolean { return this.nativeObject.isAccessibilityOrderedByRow; }
   set isAccessibilityOrderedByRow(value: boolean) { this.nativeObject.isAccessibilityOrderedByRow = value; }
   get accessibilityHorizontalUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityHorizontalUnits; }
   set accessibilityHorizontalUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityHorizontalUnits = value; }
   get accessibilityVerticalUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityVerticalUnits; }
   set accessibilityVerticalUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityVerticalUnits = value; }
-  get accessibilityHorizontalUnitDescription(): NSString { return this.nativeObject.accessibilityHorizontalUnitDescription; }
-  set accessibilityHorizontalUnitDescription(value: NSString | string) { this.nativeObject.accessibilityHorizontalUnitDescription = value; }
-  get accessibilityVerticalUnitDescription(): NSString { return this.nativeObject.accessibilityVerticalUnitDescription; }
-  set accessibilityVerticalUnitDescription(value: NSString | string) { this.nativeObject.accessibilityVerticalUnitDescription = value; }
+  get accessibilityHorizontalUnitDescription(): string { return this.nativeObject.accessibilityHorizontalUnitDescription; }
+  set accessibilityHorizontalUnitDescription(value: string) { this.nativeObject.accessibilityHorizontalUnitDescription = value; }
+  get accessibilityVerticalUnitDescription(): string { return this.nativeObject.accessibilityVerticalUnitDescription; }
+  set accessibilityVerticalUnitDescription(value: string) { this.nativeObject.accessibilityVerticalUnitDescription = value; }
   get accessibilityHandles(): NSArray { return this.nativeObject.accessibilityHandles; }
-  set accessibilityHandles(value: NSArray | unknown[]) { this.nativeObject.accessibilityHandles = value; }
+  set accessibilityHandles(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityHandles = value; }
   get accessibilityWarningValue(): interop.Object { return this.nativeObject.accessibilityWarningValue; }
   set accessibilityWarningValue(value: interop.Object) { this.nativeObject.accessibilityWarningValue = value; }
   get accessibilityCriticalValue(): interop.Object { return this.nativeObject.accessibilityCriticalValue; }
@@ -8344,37 +8344,37 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
   get accessibilityDisclosureLevel(): number { return this.nativeObject.accessibilityDisclosureLevel; }
   set accessibilityDisclosureLevel(value: number) { this.nativeObject.accessibilityDisclosureLevel = value; }
   get accessibilityMarkerUIElements(): NSArray { return this.nativeObject.accessibilityMarkerUIElements; }
-  set accessibilityMarkerUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityMarkerUIElements = value; }
+  set accessibilityMarkerUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityMarkerUIElements = value; }
   get accessibilityMarkerValues(): interop.Object { return this.nativeObject.accessibilityMarkerValues; }
   set accessibilityMarkerValues(value: interop.Object) { this.nativeObject.accessibilityMarkerValues = value; }
   get accessibilityMarkerGroupUIElement(): interop.Object { return this.nativeObject.accessibilityMarkerGroupUIElement; }
   set accessibilityMarkerGroupUIElement(value: interop.Object) { this.nativeObject.accessibilityMarkerGroupUIElement = value; }
   get accessibilityUnits(): interop.Enum<typeof NSAccessibilityUnits> { return this.nativeObject.accessibilityUnits; }
   set accessibilityUnits(value: interop.Enum<typeof NSAccessibilityUnits>) { this.nativeObject.accessibilityUnits = value; }
-  get accessibilityUnitDescription(): NSString { return this.nativeObject.accessibilityUnitDescription; }
-  set accessibilityUnitDescription(value: NSString | string) { this.nativeObject.accessibilityUnitDescription = value; }
+  get accessibilityUnitDescription(): string { return this.nativeObject.accessibilityUnitDescription; }
+  set accessibilityUnitDescription(value: string) { this.nativeObject.accessibilityUnitDescription = value; }
   get accessibilityRulerMarkerType(): interop.Enum<typeof NSAccessibilityRulerMarkerType> { return this.nativeObject.accessibilityRulerMarkerType; }
   set accessibilityRulerMarkerType(value: interop.Enum<typeof NSAccessibilityRulerMarkerType>) { this.nativeObject.accessibilityRulerMarkerType = value; }
-  get accessibilityMarkerTypeDescription(): NSString { return this.nativeObject.accessibilityMarkerTypeDescription; }
-  set accessibilityMarkerTypeDescription(value: NSString | string) { this.nativeObject.accessibilityMarkerTypeDescription = value; }
+  get accessibilityMarkerTypeDescription(): string { return this.nativeObject.accessibilityMarkerTypeDescription; }
+  set accessibilityMarkerTypeDescription(value: string) { this.nativeObject.accessibilityMarkerTypeDescription = value; }
   get accessibilityHorizontalScrollBar(): interop.Object { return this.nativeObject.accessibilityHorizontalScrollBar; }
   set accessibilityHorizontalScrollBar(value: interop.Object) { this.nativeObject.accessibilityHorizontalScrollBar = value; }
   get accessibilityVerticalScrollBar(): interop.Object { return this.nativeObject.accessibilityVerticalScrollBar; }
   set accessibilityVerticalScrollBar(value: interop.Object) { this.nativeObject.accessibilityVerticalScrollBar = value; }
   get accessibilityAllowedValues(): NSArray { return this.nativeObject.accessibilityAllowedValues; }
-  set accessibilityAllowedValues(value: NSArray | unknown[]) { this.nativeObject.accessibilityAllowedValues = value; }
+  set accessibilityAllowedValues(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityAllowedValues = value; }
   get accessibilityLabelUIElements(): NSArray { return this.nativeObject.accessibilityLabelUIElements; }
-  set accessibilityLabelUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityLabelUIElements = value; }
+  set accessibilityLabelUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityLabelUIElements = value; }
   get accessibilityLabelValue(): number { return this.nativeObject.accessibilityLabelValue; }
   set accessibilityLabelValue(value: number) { this.nativeObject.accessibilityLabelValue = value; }
   get accessibilitySplitters(): NSArray { return this.nativeObject.accessibilitySplitters; }
-  set accessibilitySplitters(value: NSArray | unknown[]) { this.nativeObject.accessibilitySplitters = value; }
+  set accessibilitySplitters(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySplitters = value; }
   get accessibilityDecrementButton(): interop.Object { return this.nativeObject.accessibilityDecrementButton; }
   set accessibilityDecrementButton(value: interop.Object) { this.nativeObject.accessibilityDecrementButton = value; }
   get accessibilityIncrementButton(): interop.Object { return this.nativeObject.accessibilityIncrementButton; }
   set accessibilityIncrementButton(value: interop.Object) { this.nativeObject.accessibilityIncrementButton = value; }
   get accessibilityTabs(): NSArray { return this.nativeObject.accessibilityTabs; }
-  set accessibilityTabs(value: NSArray | unknown[]) { this.nativeObject.accessibilityTabs = value; }
+  set accessibilityTabs(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityTabs = value; }
   get accessibilityHeader(): interop.Object { return this.nativeObject.accessibilityHeader; }
   set accessibilityHeader(value: interop.Object) { this.nativeObject.accessibilityHeader = value; }
   get accessibilityColumnCount(): number { return this.nativeObject.accessibilityColumnCount; }
@@ -8384,27 +8384,27 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
   get accessibilityIndex(): number { return this.nativeObject.accessibilityIndex; }
   set accessibilityIndex(value: number) { this.nativeObject.accessibilityIndex = value; }
   get accessibilityColumns(): NSArray { return this.nativeObject.accessibilityColumns; }
-  set accessibilityColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumns = value; }
+  set accessibilityColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumns = value; }
   get accessibilityRows(): NSArray { return this.nativeObject.accessibilityRows; }
-  set accessibilityRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityRows = value; }
+  set accessibilityRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRows = value; }
   get accessibilityVisibleRows(): NSArray { return this.nativeObject.accessibilityVisibleRows; }
-  set accessibilityVisibleRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleRows = value; }
+  set accessibilityVisibleRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleRows = value; }
   get accessibilitySelectedRows(): NSArray { return this.nativeObject.accessibilitySelectedRows; }
-  set accessibilitySelectedRows(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedRows = value; }
+  set accessibilitySelectedRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedRows = value; }
   get accessibilityVisibleColumns(): NSArray { return this.nativeObject.accessibilityVisibleColumns; }
-  set accessibilityVisibleColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleColumns = value; }
+  set accessibilityVisibleColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleColumns = value; }
   get accessibilitySelectedColumns(): NSArray { return this.nativeObject.accessibilitySelectedColumns; }
-  set accessibilitySelectedColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedColumns = value; }
+  set accessibilitySelectedColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedColumns = value; }
   get accessibilitySortDirection(): interop.Enum<typeof NSAccessibilitySortDirection> { return this.nativeObject.accessibilitySortDirection; }
   set accessibilitySortDirection(value: interop.Enum<typeof NSAccessibilitySortDirection>) { this.nativeObject.accessibilitySortDirection = value; }
   get accessibilityRowHeaderUIElements(): NSArray { return this.nativeObject.accessibilityRowHeaderUIElements; }
-  set accessibilityRowHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
+  set accessibilityRowHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
   get accessibilitySelectedCells(): NSArray { return this.nativeObject.accessibilitySelectedCells; }
-  set accessibilitySelectedCells(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedCells = value; }
+  set accessibilitySelectedCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedCells = value; }
   get accessibilityVisibleCells(): NSArray { return this.nativeObject.accessibilityVisibleCells; }
-  set accessibilityVisibleCells(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleCells = value; }
+  set accessibilityVisibleCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleCells = value; }
   get accessibilityColumnHeaderUIElements(): NSArray { return this.nativeObject.accessibilityColumnHeaderUIElements; }
-  set accessibilityColumnHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
+  set accessibilityColumnHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
   get accessibilityRowIndexRange(): _NSRange { return this.nativeObject.accessibilityRowIndexRange; }
   set accessibilityRowIndexRange(value: _NSRange) { this.nativeObject.accessibilityRowIndexRange = value; }
   get accessibilityColumnIndexRange(): _NSRange { return this.nativeObject.accessibilityColumnIndexRange; }
@@ -8414,17 +8414,17 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
   get accessibilitySharedCharacterRange(): _NSRange { return this.nativeObject.accessibilitySharedCharacterRange; }
   set accessibilitySharedCharacterRange(value: _NSRange) { this.nativeObject.accessibilitySharedCharacterRange = value; }
   get accessibilitySharedTextUIElements(): NSArray { return this.nativeObject.accessibilitySharedTextUIElements; }
-  set accessibilitySharedTextUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilitySharedTextUIElements = value; }
+  set accessibilitySharedTextUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySharedTextUIElements = value; }
   get accessibilityVisibleCharacterRange(): _NSRange { return this.nativeObject.accessibilityVisibleCharacterRange; }
   set accessibilityVisibleCharacterRange(value: _NSRange) { this.nativeObject.accessibilityVisibleCharacterRange = value; }
   get accessibilityNumberOfCharacters(): number { return this.nativeObject.accessibilityNumberOfCharacters; }
   set accessibilityNumberOfCharacters(value: number) { this.nativeObject.accessibilityNumberOfCharacters = value; }
-  get accessibilitySelectedText(): NSString { return this.nativeObject.accessibilitySelectedText; }
-  set accessibilitySelectedText(value: NSString | string) { this.nativeObject.accessibilitySelectedText = value; }
+  get accessibilitySelectedText(): string { return this.nativeObject.accessibilitySelectedText; }
+  set accessibilitySelectedText(value: string) { this.nativeObject.accessibilitySelectedText = value; }
   get accessibilitySelectedTextRange(): _NSRange { return this.nativeObject.accessibilitySelectedTextRange; }
   set accessibilitySelectedTextRange(value: _NSRange) { this.nativeObject.accessibilitySelectedTextRange = value; }
   get accessibilitySelectedTextRanges(): NSArray { return this.nativeObject.accessibilitySelectedTextRanges; }
-  set accessibilitySelectedTextRanges(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedTextRanges = value; }
+  set accessibilitySelectedTextRanges(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedTextRanges = value; }
   get accessibilityToolbarButton(): interop.Object { return this.nativeObject.accessibilityToolbarButton; }
   set accessibilityToolbarButton(value: interop.Object) { this.nativeObject.accessibilityToolbarButton = value; }
   get isAccessibilityModal(): boolean { return this.nativeObject.isAccessibilityModal; }
@@ -8437,8 +8437,8 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
   set accessibilityFullScreenButton(value: interop.Object) { this.nativeObject.accessibilityFullScreenButton = value; }
   get accessibilityGrowArea(): interop.Object { return this.nativeObject.accessibilityGrowArea; }
   set accessibilityGrowArea(value: interop.Object) { this.nativeObject.accessibilityGrowArea = value; }
-  get accessibilityDocument(): NSString { return this.nativeObject.accessibilityDocument; }
-  set accessibilityDocument(value: NSString | string) { this.nativeObject.accessibilityDocument = value; }
+  get accessibilityDocument(): string { return this.nativeObject.accessibilityDocument; }
+  set accessibilityDocument(value: string) { this.nativeObject.accessibilityDocument = value; }
   get accessibilityDefaultButton(): interop.Object { return this.nativeObject.accessibilityDefaultButton; }
   set accessibilityDefaultButton(value: interop.Object) { this.nativeObject.accessibilityDefaultButton = value; }
   get accessibilityCloseButton(): interop.Object { return this.nativeObject.accessibilityCloseButton; }
@@ -8450,7 +8450,7 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
   get isAccessibilityMinimized(): boolean { return this.nativeObject.isAccessibilityMinimized; }
   set isAccessibilityMinimized(value: boolean) { this.nativeObject.isAccessibilityMinimized = value; }
   get accessibilityCustomActions(): NSArray { return this.nativeObject.accessibilityCustomActions; }
-  set accessibilityCustomActions(value: NSArray | unknown[]) { this.nativeObject.accessibilityCustomActions = value; }
+  set accessibilityCustomActions(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityCustomActions = value; }
 
   set menuNeedsUpdate(value: (menu: NSMenu) => void) {
     this.delegate.menuNeedsUpdate = value;
@@ -8498,7 +8498,7 @@ export class HTMLNSTextContainerElement extends HTMLNSObjectElement {
   get size(): CGSize { return this.nativeObject.size; }
   set size(value: CGSize) { this.nativeObject.size = value; }
   get exclusionPaths(): NSArray { return this.nativeObject.exclusionPaths; }
-  set exclusionPaths(value: NSArray | unknown[]) { this.nativeObject.exclusionPaths = value; }
+  set exclusionPaths(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.exclusionPaths = value; }
   get lineBreakMode(): interop.Enum<typeof NSLineBreakMode> { return this.nativeObject.lineBreakMode; }
   set lineBreakMode(value: interop.Enum<typeof NSLineBreakMode>) { this.nativeObject.lineBreakMode = value; }
   get lineFragmentPadding(): number { return this.nativeObject.lineFragmentPadding; }
@@ -8548,10 +8548,10 @@ export class HTMLNSTitlebarAccessoryViewControllerElement extends HTMLNSViewCont
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
   get animations(): NSDictionary { return this.nativeObject.animations; }
-  set animations(value: NSDictionary | Record<string, unknown>) { this.nativeObject.animations = value; }
+  set animations(value: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>) { this.nativeObject.animations = value; }
 }
 
 export class HTMLNSRotationGestureRecognizerElement extends HTMLNSGestureRecognizerElement {
@@ -8605,7 +8605,7 @@ export class HTMLNSCollectionLayoutSupplementaryItemElement extends HTMLNSCollec
 
   get zIndex(): number { return this.nativeObject.zIndex; }
   set zIndex(value: number) { this.nativeObject.zIndex = value; }
-  get elementKind(): NSString { return this.nativeObject.elementKind; }
+  get elementKind(): string { return this.nativeObject.elementKind; }
   get containerAnchor(): NSCollectionLayoutAnchor { return this.nativeObject.containerAnchor; }
   get itemAnchor(): NSCollectionLayoutAnchor { return this.nativeObject.itemAnchor; }
 }
@@ -8629,10 +8629,10 @@ export class HTMLNSCollectionViewItemElement extends HTMLNSViewControllerElement
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
-  get identifier(): NSString { return this.nativeObject.identifier; }
-  set identifier(value: NSString | string) { this.nativeObject.identifier = value; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
+  get identifier(): string { return this.nativeObject.identifier; }
+  set identifier(value: string) { this.nativeObject.identifier = value; }
 }
 
 export class HTMLNSDictionaryControllerElement extends HTMLNSArrayControllerElement {
@@ -8641,18 +8641,18 @@ export class HTMLNSDictionaryControllerElement extends HTMLNSArrayControllerElem
   // @ts-ignore
   readonly nativeObject = NSDictionaryController.new();
 
-  get initialKey(): NSString { return this.nativeObject.initialKey; }
-  set initialKey(value: NSString | string) { this.nativeObject.initialKey = value; }
+  get initialKey(): string { return this.nativeObject.initialKey; }
+  set initialKey(value: string) { this.nativeObject.initialKey = value; }
   get initialValue(): interop.Object { return this.nativeObject.initialValue; }
   set initialValue(value: interop.Object) { this.nativeObject.initialValue = value; }
   get includedKeys(): NSArray { return this.nativeObject.includedKeys; }
-  set includedKeys(value: NSArray | unknown[]) { this.nativeObject.includedKeys = value; }
+  set includedKeys(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.includedKeys = value; }
   get excludedKeys(): NSArray { return this.nativeObject.excludedKeys; }
-  set excludedKeys(value: NSArray | unknown[]) { this.nativeObject.excludedKeys = value; }
+  set excludedKeys(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.excludedKeys = value; }
   get localizedKeyDictionary(): NSDictionary { return this.nativeObject.localizedKeyDictionary; }
-  set localizedKeyDictionary(value: NSDictionary | Record<string, unknown>) { this.nativeObject.localizedKeyDictionary = value; }
-  get localizedKeyTable(): NSString { return this.nativeObject.localizedKeyTable; }
-  set localizedKeyTable(value: NSString | string) { this.nativeObject.localizedKeyTable = value; }
+  set localizedKeyDictionary(value: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>) { this.nativeObject.localizedKeyDictionary = value; }
+  get localizedKeyTable(): string { return this.nativeObject.localizedKeyTable; }
+  set localizedKeyTable(value: string) { this.nativeObject.localizedKeyTable = value; }
 }
 
 export class HTMLNSSavePanelElement extends HTMLNSPanelElement {
@@ -8665,12 +8665,12 @@ export class HTMLNSSavePanelElement extends HTMLNSPanelElement {
   }
 
   get URL(): NSURL { return this.nativeObject.URL; }
-  get identifier(): NSString { return this.nativeObject.identifier; }
-  set identifier(value: NSString | string) { this.nativeObject.identifier = value; }
+  get identifier(): string { return this.nativeObject.identifier; }
+  set identifier(value: string) { this.nativeObject.identifier = value; }
   get directoryURL(): NSURL { return this.nativeObject.directoryURL; }
   set directoryURL(value: NSURL) { this.nativeObject.directoryURL = value; }
   get allowedContentTypes(): NSArray { return this.nativeObject.allowedContentTypes; }
-  set allowedContentTypes(value: NSArray | unknown[]) { this.nativeObject.allowedContentTypes = value; }
+  set allowedContentTypes(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.allowedContentTypes = value; }
   get allowsOtherFileTypes(): boolean { return this.nativeObject.allowsOtherFileTypes; }
   set allowsOtherFileTypes(value: boolean) { this.nativeObject.allowsOtherFileTypes = value; }
   get accessoryView(): NSView { return this.nativeObject.accessoryView; }
@@ -8684,22 +8684,22 @@ export class HTMLNSSavePanelElement extends HTMLNSPanelElement {
   set isExtensionHidden(value: boolean) { this.nativeObject.isExtensionHidden = value; }
   get treatsFilePackagesAsDirectories(): boolean { return this.nativeObject.treatsFilePackagesAsDirectories; }
   set treatsFilePackagesAsDirectories(value: boolean) { this.nativeObject.treatsFilePackagesAsDirectories = value; }
-  get prompt(): NSString { return this.nativeObject.prompt; }
-  set prompt(value: NSString | string) { this.nativeObject.prompt = value; }
-  get nameFieldLabel(): NSString { return this.nativeObject.nameFieldLabel; }
-  set nameFieldLabel(value: NSString | string) { this.nativeObject.nameFieldLabel = value; }
-  get nameFieldStringValue(): NSString { return this.nativeObject.nameFieldStringValue; }
-  set nameFieldStringValue(value: NSString | string) { this.nativeObject.nameFieldStringValue = value; }
-  get message(): NSString { return this.nativeObject.message; }
-  set message(value: NSString | string) { this.nativeObject.message = value; }
+  get prompt(): string { return this.nativeObject.prompt; }
+  set prompt(value: string) { this.nativeObject.prompt = value; }
+  get nameFieldLabel(): string { return this.nativeObject.nameFieldLabel; }
+  set nameFieldLabel(value: string) { this.nativeObject.nameFieldLabel = value; }
+  get nameFieldStringValue(): string { return this.nativeObject.nameFieldStringValue; }
+  set nameFieldStringValue(value: string) { this.nativeObject.nameFieldStringValue = value; }
+  get message(): string { return this.nativeObject.message; }
+  set message(value: string) { this.nativeObject.message = value; }
   get showsHiddenFiles(): boolean { return this.nativeObject.showsHiddenFiles; }
   set showsHiddenFiles(value: boolean) { this.nativeObject.showsHiddenFiles = value; }
   get showsTagField(): boolean { return this.nativeObject.showsTagField; }
   set showsTagField(value: boolean) { this.nativeObject.showsTagField = value; }
   get tagNames(): NSArray { return this.nativeObject.tagNames; }
-  set tagNames(value: NSArray | unknown[]) { this.nativeObject.tagNames = value; }
+  set tagNames(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.tagNames = value; }
   get allowedFileTypes(): NSArray { return this.nativeObject.allowedFileTypes; }
-  set allowedFileTypes(value: NSArray | unknown[]) { this.nativeObject.allowedFileTypes = value; }
+  set allowedFileTypes(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.allowedFileTypes = value; }
 
   set panelShouldEnableURL(value: (sender: interop.Object, url: NSURL) => boolean) {
     this.delegate.panelShouldEnableURL = value;
@@ -8710,7 +8710,7 @@ export class HTMLNSSavePanelElement extends HTMLNSPanelElement {
   set panelDidChangeToDirectoryURL(value: (sender: interop.Object, url: NSURL | null) => void) {
     this.delegate.panelDidChangeToDirectoryURL = value;
   }
-  set panelUserEnteredFilenameConfirmed(value: (sender: interop.Object, filename: NSString | string, okFlag: boolean) => NSString) {
+  set panelUserEnteredFilenameConfirmed(value: (sender: interop.Object, filename: string, okFlag: boolean) => string) {
     this.delegate.panelUserEnteredFilenameConfirmed = value;
   }
   set panelWillExpand(value: (sender: interop.Object, expanding: boolean) => void) {
@@ -8728,7 +8728,7 @@ export class HTMLNSCollectionLayoutDecorationItemElement extends HTMLNSCollectio
 
   get zIndex(): number { return this.nativeObject.zIndex; }
   set zIndex(value: number) { this.nativeObject.zIndex = value; }
-  get elementKind(): NSString { return this.nativeObject.elementKind; }
+  get elementKind(): string { return this.nativeObject.elementKind; }
 }
 
 export class HTMLNSSplitViewControllerElement extends HTMLNSViewControllerElement {
@@ -8739,15 +8739,15 @@ export class HTMLNSSplitViewControllerElement extends HTMLNSViewControllerElemen
   get splitView(): NSSplitView { return this.nativeObject.splitView; }
   set splitView(value: NSSplitView) { this.nativeObject.splitView = value; }
   get splitViewItems(): NSArray { return this.nativeObject.splitViewItems; }
-  set splitViewItems(value: NSArray | unknown[]) { this.nativeObject.splitViewItems = value; }
+  set splitViewItems(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.splitViewItems = value; }
   get minimumThicknessForInlineSidebars(): number { return this.nativeObject.minimumThicknessForInlineSidebars; }
   set minimumThicknessForInlineSidebars(value: number) { this.nativeObject.minimumThicknessForInlineSidebars = value; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSFontPanelElement extends HTMLNSPanelElement {
@@ -8907,8 +8907,8 @@ export class HTMLNSControlElement extends HTMLNSViewElement {
   set formatter(value: NSFormatter) { this.nativeObject.formatter = value; }
   get objectValue(): interop.Object { return this.nativeObject.objectValue; }
   set objectValue(value: interop.Object) { this.nativeObject.objectValue = value; }
-  get stringValue(): NSString { return this.nativeObject.stringValue; }
-  set stringValue(value: NSString | string) { this.nativeObject.stringValue = value; }
+  get stringValue(): string { return this.nativeObject.stringValue; }
+  set stringValue(value: string) { this.nativeObject.stringValue = value; }
   get attributedStringValue(): NSAttributedString { return this.nativeObject.attributedStringValue; }
   set attributedStringValue(value: NSAttributedString) { this.nativeObject.attributedStringValue = value; }
   get intValue(): number { return this.nativeObject.intValue; }
@@ -8963,10 +8963,10 @@ export class HTMLNSStackViewElement extends HTMLNSViewElement {
   get hasEqualSpacing(): boolean { return this.nativeObject.hasEqualSpacing; }
   set hasEqualSpacing(value: boolean) { this.nativeObject.hasEqualSpacing = value; }
 
-  set stackViewWillDetachViews(value: (stackView: NSStackView, views: NSArray | unknown[]) => void) {
+  set stackViewWillDetachViews(value: (stackView: NSStackView, views: NSArray<interop.Object> | Array<interop.Object>) => void) {
     this.delegate.stackViewWillDetachViews = value;
   }
-  set stackViewDidReattachViews(value: (stackView: NSStackView, views: NSArray | unknown[]) => void) {
+  set stackViewDidReattachViews(value: (stackView: NSStackView, views: NSArray<interop.Object> | Array<interop.Object>) => void) {
     this.delegate.stackViewDidReattachViews = value;
   }
 }
@@ -8988,14 +8988,14 @@ export class HTMLNSRulerViewElement extends HTMLNSViewElement {
   set reservedThicknessForMarkers(value: number) { this.nativeObject.reservedThicknessForMarkers = value; }
   get reservedThicknessForAccessoryView(): number { return this.nativeObject.reservedThicknessForAccessoryView; }
   set reservedThicknessForAccessoryView(value: number) { this.nativeObject.reservedThicknessForAccessoryView = value; }
-  get measurementUnits(): NSString { return this.nativeObject.measurementUnits; }
-  set measurementUnits(value: NSString | string) { this.nativeObject.measurementUnits = value; }
+  get measurementUnits(): string { return this.nativeObject.measurementUnits; }
+  set measurementUnits(value: string) { this.nativeObject.measurementUnits = value; }
   get originOffset(): number { return this.nativeObject.originOffset; }
   set originOffset(value: number) { this.nativeObject.originOffset = value; }
   get clientView(): NSView { return this.nativeObject.clientView; }
   set clientView(value: NSView) { this.nativeObject.clientView = value; }
   get markers(): NSArray { return this.nativeObject.markers; }
-  set markers(value: NSArray | unknown[]) { this.nativeObject.markers = value; }
+  set markers(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.markers = value; }
   get accessoryView(): NSView { return this.nativeObject.accessoryView; }
   set accessoryView(value: NSView) { this.nativeObject.accessoryView = value; }
   get isFlipped(): boolean { return this.nativeObject.isFlipped; }
@@ -9006,7 +9006,7 @@ export class HTMLNSTextAlternativesElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextAlternatives.new();
 
-  get primaryString(): NSString { return this.nativeObject.primaryString; }
+  get primaryString(): string { return this.nativeObject.primaryString; }
   get alternativeStrings(): NSArray { return this.nativeObject.alternativeStrings; }
 }
 
@@ -9018,7 +9018,7 @@ export class HTMLNSSoundElement extends HTMLNSObjectElement {
     return (this.nativeObject.delegate ??= NSSoundDelegateImpl.new()) as NSSoundDelegateImpl;
   }
 
-  get name(): NSString { return this.nativeObject.name; }
+  get name(): string { return this.nativeObject.name; }
   get isPlaying(): boolean { return this.nativeObject.isPlaying; }
   get duration(): number { return this.nativeObject.duration; }
   get volume(): number { return this.nativeObject.volume; }
@@ -9027,14 +9027,14 @@ export class HTMLNSSoundElement extends HTMLNSObjectElement {
   set currentTime(value: number) { this.nativeObject.currentTime = value; }
   get loops(): boolean { return this.nativeObject.loops; }
   set loops(value: boolean) { this.nativeObject.loops = value; }
-  get playbackDeviceIdentifier(): NSString { return this.nativeObject.playbackDeviceIdentifier; }
-  set playbackDeviceIdentifier(value: NSString | string) { this.nativeObject.playbackDeviceIdentifier = value; }
+  get playbackDeviceIdentifier(): string { return this.nativeObject.playbackDeviceIdentifier; }
+  set playbackDeviceIdentifier(value: string) { this.nativeObject.playbackDeviceIdentifier = value; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 
   set soundDidFinishPlaying(value: (sound: NSSound, flag: boolean) => void) {
     this.delegate.soundDidFinishPlaying = value;
@@ -9079,10 +9079,10 @@ export class HTMLNSColorElement extends HTMLNSObjectElement {
   readonly nativeObject = NSColor.new();
 
   get type(): interop.Enum<typeof NSColorType> { return this.nativeObject.type; }
-  get catalogNameComponent(): NSString { return this.nativeObject.catalogNameComponent; }
-  get colorNameComponent(): NSString { return this.nativeObject.colorNameComponent; }
-  get localizedCatalogNameComponent(): NSString { return this.nativeObject.localizedCatalogNameComponent; }
-  get localizedColorNameComponent(): NSString { return this.nativeObject.localizedColorNameComponent; }
+  get catalogNameComponent(): string { return this.nativeObject.catalogNameComponent; }
+  get colorNameComponent(): string { return this.nativeObject.colorNameComponent; }
+  get localizedCatalogNameComponent(): string { return this.nativeObject.localizedCatalogNameComponent; }
+  get localizedColorNameComponent(): string { return this.nativeObject.localizedColorNameComponent; }
   get redComponent(): number { return this.nativeObject.redComponent; }
   get greenComponent(): number { return this.nativeObject.greenComponent; }
   get blueComponent(): number { return this.nativeObject.blueComponent; }
@@ -9099,13 +9099,13 @@ export class HTMLNSColorElement extends HTMLNSObjectElement {
   get patternImage(): NSImage { return this.nativeObject.patternImage; }
   get alphaComponent(): number { return this.nativeObject.alphaComponent; }
   get CGColor(): interop.Pointer { return this.nativeObject.CGColor; }
-  get colorSpaceName(): NSString { return this.nativeObject.colorSpaceName; }
+  get colorSpaceName(): string { return this.nativeObject.colorSpaceName; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSGraphicsContextElement extends HTMLNSObjectElement {
@@ -9137,7 +9137,7 @@ export class HTMLNSCollectionLayoutGroupElement extends HTMLNSCollectionLayoutIt
   readonly nativeObject = NSCollectionLayoutGroup.new();
 
   get supplementaryItems(): NSArray { return this.nativeObject.supplementaryItems; }
-  set supplementaryItems(value: NSArray | unknown[]) { this.nativeObject.supplementaryItems = value; }
+  set supplementaryItems(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.supplementaryItems = value; }
   get interItemSpacing(): NSCollectionLayoutSpacing { return this.nativeObject.interItemSpacing; }
   set interItemSpacing(value: NSCollectionLayoutSpacing) { this.nativeObject.interItemSpacing = value; }
   get subitems(): NSArray { return this.nativeObject.subitems; }
@@ -9151,8 +9151,8 @@ export class HTMLNSLayoutGuideElement extends HTMLNSObjectElement {
   get frame(): CGRect { return this.nativeObject.frame; }
   get owningView(): NSView { return this.nativeObject.owningView; }
   set owningView(value: NSView) { this.nativeObject.owningView = value; }
-  get identifier(): NSString { return this.nativeObject.identifier; }
-  set identifier(value: NSString | string) { this.nativeObject.identifier = value; }
+  get identifier(): string { return this.nativeObject.identifier; }
+  set identifier(value: string) { this.nativeObject.identifier = value; }
   get leadingAnchor(): NSLayoutXAxisAnchor { return this.nativeObject.leadingAnchor; }
   get trailingAnchor(): NSLayoutXAxisAnchor { return this.nativeObject.trailingAnchor; }
   get leftAnchor(): NSLayoutXAxisAnchor { return this.nativeObject.leftAnchor; }
@@ -9174,18 +9174,18 @@ export class HTMLNSFilePromiseProviderElement extends HTMLNSObjectElement {
     return (this.nativeObject.delegate ??= NSFilePromiseProviderDelegateImpl.new()) as NSFilePromiseProviderDelegateImpl;
   }
 
-  get fileType(): NSString { return this.nativeObject.fileType; }
-  set fileType(value: NSString | string) { this.nativeObject.fileType = value; }
+  get fileType(): string { return this.nativeObject.fileType; }
+  set fileType(value: string) { this.nativeObject.fileType = value; }
   get userInfo(): interop.Object { return this.nativeObject.userInfo; }
   set userInfo(value: interop.Object) { this.nativeObject.userInfo = value; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 
-  set filePromiseProviderFileNameForType(value: (filePromiseProvider: NSFilePromiseProvider, fileType: NSString | string) => NSString) {
+  set filePromiseProviderFileNameForType(value: (filePromiseProvider: NSFilePromiseProvider, fileType: string) => string) {
     this.delegate.filePromiseProviderFileNameForType = value;
   }
   set filePromiseProviderWritePromiseToURLCompletionHandler(value: (filePromiseProvider: NSFilePromiseProvider, url: NSURL, completionHandler: (p1: NSError) => void | null) => void) {
@@ -9331,8 +9331,8 @@ export class HTMLNSMatrixElement extends HTMLNSControlElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSRuleEditorElement extends HTMLNSControlElement {
@@ -9343,10 +9343,10 @@ export class HTMLNSRuleEditorElement extends HTMLNSControlElement {
     return (this.nativeObject.delegate ??= NSRuleEditorDelegateImpl.new()) as NSRuleEditorDelegateImpl;
   }
 
-  get formattingStringsFilename(): NSString { return this.nativeObject.formattingStringsFilename; }
-  set formattingStringsFilename(value: NSString | string) { this.nativeObject.formattingStringsFilename = value; }
+  get formattingStringsFilename(): string { return this.nativeObject.formattingStringsFilename; }
+  set formattingStringsFilename(value: string) { this.nativeObject.formattingStringsFilename = value; }
   get formattingDictionary(): NSDictionary { return this.nativeObject.formattingDictionary; }
-  set formattingDictionary(value: NSDictionary | Record<string, unknown>) { this.nativeObject.formattingDictionary = value; }
+  set formattingDictionary(value: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>) { this.nativeObject.formattingDictionary = value; }
   get nestingMode(): interop.Enum<typeof NSRuleEditorNestingMode> { return this.nativeObject.nestingMode; }
   set nestingMode(value: interop.Enum<typeof NSRuleEditorNestingMode>) { this.nativeObject.nestingMode = value; }
   get rowHeight(): number { return this.nativeObject.rowHeight; }
@@ -9360,14 +9360,14 @@ export class HTMLNSRuleEditorElement extends HTMLNSControlElement {
   get selectedRowIndexes(): NSIndexSet { return this.nativeObject.selectedRowIndexes; }
   get rowClass(): interop.Object { return this.nativeObject.rowClass; }
   set rowClass(value: interop.Object) { this.nativeObject.rowClass = value; }
-  get rowTypeKeyPath(): NSString { return this.nativeObject.rowTypeKeyPath; }
-  set rowTypeKeyPath(value: NSString | string) { this.nativeObject.rowTypeKeyPath = value; }
-  get subrowsKeyPath(): NSString { return this.nativeObject.subrowsKeyPath; }
-  set subrowsKeyPath(value: NSString | string) { this.nativeObject.subrowsKeyPath = value; }
-  get criteriaKeyPath(): NSString { return this.nativeObject.criteriaKeyPath; }
-  set criteriaKeyPath(value: NSString | string) { this.nativeObject.criteriaKeyPath = value; }
-  get displayValuesKeyPath(): NSString { return this.nativeObject.displayValuesKeyPath; }
-  set displayValuesKeyPath(value: NSString | string) { this.nativeObject.displayValuesKeyPath = value; }
+  get rowTypeKeyPath(): string { return this.nativeObject.rowTypeKeyPath; }
+  set rowTypeKeyPath(value: string) { this.nativeObject.rowTypeKeyPath = value; }
+  get subrowsKeyPath(): string { return this.nativeObject.subrowsKeyPath; }
+  set subrowsKeyPath(value: string) { this.nativeObject.subrowsKeyPath = value; }
+  get criteriaKeyPath(): string { return this.nativeObject.criteriaKeyPath; }
+  set criteriaKeyPath(value: string) { this.nativeObject.criteriaKeyPath = value; }
+  get displayValuesKeyPath(): string { return this.nativeObject.displayValuesKeyPath; }
+  set displayValuesKeyPath(value: string) { this.nativeObject.displayValuesKeyPath = value; }
 
   set ruleEditorNumberOfChildrenForCriterionWithRowType(value: (editor: NSRuleEditor, criterion: interop.Object | null, rowType: interop.Enum<typeof NSRuleEditorRowType>) => number) {
     this.delegate.ruleEditorNumberOfChildrenForCriterionWithRowType = value;
@@ -9425,8 +9425,8 @@ export class HTMLNSStepperElement extends HTMLNSControlElement {
   set valueWraps(value: boolean) { this.nativeObject.valueWraps = value; }
   get autorepeat(): boolean { return this.nativeObject.autorepeat; }
   set autorepeat(value: boolean) { this.nativeObject.autorepeat = value; }
-  get accessibilityLabel(): NSString { return this.nativeObject.accessibilityLabel; }
-  set accessibilityLabel(value: NSString | string) { this.nativeObject.accessibilityLabel = value; }
+  get accessibilityLabel(): string { return this.nativeObject.accessibilityLabel; }
+  set accessibilityLabel(value: string) { this.nativeObject.accessibilityLabel = value; }
   get accessibilityValue(): interop.Object { return this.nativeObject.accessibilityValue; }
   set accessibilityValue(value: interop.Object) { this.nativeObject.accessibilityValue = value; }
   get accessibilityFrame(): CGRect { return this.nativeObject.accessibilityFrame; }
@@ -9435,14 +9435,14 @@ export class HTMLNSStepperElement extends HTMLNSControlElement {
   set accessibilityParent(value: interop.Object) { this.nativeObject.accessibilityParent = value; }
   get isAccessibilityFocused(): boolean { return this.nativeObject.isAccessibilityFocused; }
   set isAccessibilityFocused(value: boolean) { this.nativeObject.isAccessibilityFocused = value; }
-  get accessibilityIdentifier(): NSString { return this.nativeObject.accessibilityIdentifier; }
-  set accessibilityIdentifier(value: NSString | string) { this.nativeObject.accessibilityIdentifier = value; }
+  get accessibilityIdentifier(): string { return this.nativeObject.accessibilityIdentifier; }
+  set accessibilityIdentifier(value: string) { this.nativeObject.accessibilityIdentifier = value; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSBrowserElement extends HTMLNSControlElement {
@@ -9483,8 +9483,8 @@ export class HTMLNSBrowserElement extends HTMLNSControlElement {
   set takesTitleFromPreviousColumn(value: boolean) { this.nativeObject.takesTitleFromPreviousColumn = value; }
   get sendsActionOnArrowKeys(): boolean { return this.nativeObject.sendsActionOnArrowKeys; }
   set sendsActionOnArrowKeys(value: boolean) { this.nativeObject.sendsActionOnArrowKeys = value; }
-  get pathSeparator(): NSString { return this.nativeObject.pathSeparator; }
-  set pathSeparator(value: NSString | string) { this.nativeObject.pathSeparator = value; }
+  get pathSeparator(): string { return this.nativeObject.pathSeparator; }
+  set pathSeparator(value: string) { this.nativeObject.pathSeparator = value; }
   get clickedColumn(): number { return this.nativeObject.clickedColumn; }
   get clickedRow(): number { return this.nativeObject.clickedRow; }
   get selectedColumn(): number { return this.nativeObject.selectedColumn; }
@@ -9493,7 +9493,7 @@ export class HTMLNSBrowserElement extends HTMLNSControlElement {
   get selectionIndexPath(): NSIndexPath { return this.nativeObject.selectionIndexPath; }
   set selectionIndexPath(value: NSIndexPath) { this.nativeObject.selectionIndexPath = value; }
   get selectionIndexPaths(): NSArray { return this.nativeObject.selectionIndexPaths; }
-  set selectionIndexPaths(value: NSArray | unknown[]) { this.nativeObject.selectionIndexPaths = value; }
+  set selectionIndexPaths(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.selectionIndexPaths = value; }
   get lastColumn(): number { return this.nativeObject.lastColumn; }
   set lastColumn(value: number) { this.nativeObject.lastColumn = value; }
   get numberOfVisibleColumns(): number { return this.nativeObject.numberOfVisibleColumns; }
@@ -9506,8 +9506,8 @@ export class HTMLNSBrowserElement extends HTMLNSControlElement {
   set prefersAllColumnUserResizing(value: boolean) { this.nativeObject.prefersAllColumnUserResizing = value; }
   get rowHeight(): number { return this.nativeObject.rowHeight; }
   set rowHeight(value: number) { this.nativeObject.rowHeight = value; }
-  get columnsAutosaveName(): NSString { return this.nativeObject.columnsAutosaveName; }
-  set columnsAutosaveName(value: NSString | string) { this.nativeObject.columnsAutosaveName = value; }
+  get columnsAutosaveName(): string { return this.nativeObject.columnsAutosaveName; }
+  set columnsAutosaveName(value: string) { this.nativeObject.columnsAutosaveName = value; }
   get allowsTypeSelect(): boolean { return this.nativeObject.allowsTypeSelect; }
   set allowsTypeSelect(value: boolean) { this.nativeObject.allowsTypeSelect = value; }
   get backgroundColor(): NSColor { return this.nativeObject.backgroundColor; }
@@ -9546,10 +9546,10 @@ export class HTMLNSBrowserElement extends HTMLNSControlElement {
   set browserWillDisplayCellAtRowColumn(value: (sender: NSBrowser, cell: interop.Object, row: number, column: number) => void) {
     this.delegate.browserWillDisplayCellAtRowColumn = value;
   }
-  set browserTitleOfColumn(value: (sender: NSBrowser, column: number) => NSString) {
+  set browserTitleOfColumn(value: (sender: NSBrowser, column: number) => string) {
     this.delegate.browserTitleOfColumn = value;
   }
-  set browserSelectCellWithStringInColumn(value: (sender: NSBrowser, title: NSString | string, column: number) => boolean) {
+  set browserSelectCellWithStringInColumn(value: (sender: NSBrowser, title: string, column: number) => boolean) {
     this.delegate.browserSelectCellWithStringInColumn = value;
   }
   set browserSelectRowInColumn(value: (sender: NSBrowser, row: number, column: number) => boolean) {
@@ -9594,13 +9594,13 @@ export class HTMLNSBrowserElement extends HTMLNSControlElement {
   set browserAcceptDropAtRowColumnDropOperation(value: (browser: NSBrowser, info: NSDraggingInfo, row: number, column: number, dropOperation: interop.Enum<typeof NSBrowserDropOperation>) => boolean) {
     this.delegate.browserAcceptDropAtRowColumnDropOperation = value;
   }
-  set browserTypeSelectStringForRowInColumn(value: (browser: NSBrowser, row: number, column: number) => NSString) {
+  set browserTypeSelectStringForRowInColumn(value: (browser: NSBrowser, row: number, column: number) => string) {
     this.delegate.browserTypeSelectStringForRowInColumn = value;
   }
-  set browserShouldTypeSelectForEventWithCurrentSearchString(value: (browser: NSBrowser, event: NSEvent, searchString: NSString | string | null) => boolean) {
+  set browserShouldTypeSelectForEventWithCurrentSearchString(value: (browser: NSBrowser, event: NSEvent, searchString: string | null) => boolean) {
     this.delegate.browserShouldTypeSelectForEventWithCurrentSearchString = value;
   }
-  set browserNextTypeSelectMatchFromRowToRowInColumnForString(value: (browser: NSBrowser, startRow: number, endRow: number, column: number, searchString: NSString | string | null) => number) {
+  set browserNextTypeSelectMatchFromRowToRowInColumnForString(value: (browser: NSBrowser, startRow: number, endRow: number, column: number, searchString: string | null) => number) {
     this.delegate.browserNextTypeSelectMatchFromRowToRowInColumnForString = value;
   }
   set browserPreviewViewControllerForLeafItem(value: (browser: NSBrowser, item: interop.Object) => NSViewController) {
@@ -9626,8 +9626,8 @@ export class HTMLNSTextFieldElement extends HTMLNSControlElement {
     return (this.nativeObject.delegate ??= NSTextFieldDelegateImpl.new()) as NSTextFieldDelegateImpl;
   }
 
-  get placeholderString(): NSString { return this.nativeObject.placeholderString; }
-  set placeholderString(value: NSString | string) { this.nativeObject.placeholderString = value; }
+  get placeholderString(): string { return this.nativeObject.placeholderString; }
+  set placeholderString(value: string) { this.nativeObject.placeholderString = value; }
   get placeholderAttributedString(): NSAttributedString { return this.nativeObject.placeholderAttributedString; }
   set placeholderAttributedString(value: NSAttributedString) { this.nativeObject.placeholderAttributedString = value; }
   get backgroundColor(): NSColor { return this.nativeObject.backgroundColor; }
@@ -9663,8 +9663,8 @@ export class HTMLNSTextFieldElement extends HTMLNSControlElement {
   set allowsEditingTextAttributes(value: boolean) { this.nativeObject.allowsEditingTextAttributes = value; }
   get importsGraphics(): boolean { return this.nativeObject.importsGraphics; }
   set importsGraphics(value: boolean) { this.nativeObject.importsGraphics = value; }
-  get accessibilityValue(): NSString { return this.nativeObject.accessibilityValue; }
-  set accessibilityValue(value: NSString | string) { this.nativeObject.accessibilityValue = value; }
+  get accessibilityValue(): string { return this.nativeObject.accessibilityValue; }
+  set accessibilityValue(value: string) { this.nativeObject.accessibilityValue = value; }
   get accessibilityVisibleCharacterRange(): _NSRange { return this.nativeObject.accessibilityVisibleCharacterRange; }
   set accessibilityVisibleCharacterRange(value: _NSRange) { this.nativeObject.accessibilityVisibleCharacterRange = value; }
   get accessibilityFrame(): CGRect { return this.nativeObject.accessibilityFrame; }
@@ -9673,16 +9673,16 @@ export class HTMLNSTextFieldElement extends HTMLNSControlElement {
   set accessibilityParent(value: interop.Object) { this.nativeObject.accessibilityParent = value; }
   get isAccessibilityFocused(): boolean { return this.nativeObject.isAccessibilityFocused; }
   set isAccessibilityFocused(value: boolean) { this.nativeObject.isAccessibilityFocused = value; }
-  get accessibilityIdentifier(): NSString { return this.nativeObject.accessibilityIdentifier; }
-  set accessibilityIdentifier(value: NSString | string) { this.nativeObject.accessibilityIdentifier = value; }
+  get accessibilityIdentifier(): string { return this.nativeObject.accessibilityIdentifier; }
+  set accessibilityIdentifier(value: string) { this.nativeObject.accessibilityIdentifier = value; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
-  get contentType(): NSString { return this.nativeObject.contentType; }
-  set contentType(value: NSString | string) { this.nativeObject.contentType = value; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
+  get contentType(): string { return this.nativeObject.contentType; }
+  set contentType(value: string) { this.nativeObject.contentType = value; }
 
   set textFieldTextViewCandidatesForSelectedRange(value: (textField: NSTextField, textView: NSTextView, selectedRange: _NSRange) => NSArray) {
     this.delegate.textFieldTextViewCandidatesForSelectedRange = value;
@@ -9764,22 +9764,22 @@ export class HTMLNSImageViewElement extends HTMLNSControlElement {
   get preferredImageDynamicRange(): interop.Enum<typeof NSImageDynamicRange> { return this.nativeObject.preferredImageDynamicRange; }
   set preferredImageDynamicRange(value: interop.Enum<typeof NSImageDynamicRange>) { this.nativeObject.preferredImageDynamicRange = value; }
   get imageDynamicRange(): interop.Enum<typeof NSImageDynamicRange> { return this.nativeObject.imageDynamicRange; }
-  get accessibilityLabel(): NSString { return this.nativeObject.accessibilityLabel; }
-  set accessibilityLabel(value: NSString | string) { this.nativeObject.accessibilityLabel = value; }
+  get accessibilityLabel(): string { return this.nativeObject.accessibilityLabel; }
+  set accessibilityLabel(value: string) { this.nativeObject.accessibilityLabel = value; }
   get accessibilityFrame(): CGRect { return this.nativeObject.accessibilityFrame; }
   set accessibilityFrame(value: CGRect) { this.nativeObject.accessibilityFrame = value; }
   get accessibilityParent(): interop.Object { return this.nativeObject.accessibilityParent; }
   set accessibilityParent(value: interop.Object) { this.nativeObject.accessibilityParent = value; }
   get isAccessibilityFocused(): boolean { return this.nativeObject.isAccessibilityFocused; }
   set isAccessibilityFocused(value: boolean) { this.nativeObject.isAccessibilityFocused = value; }
-  get accessibilityIdentifier(): NSString { return this.nativeObject.accessibilityIdentifier; }
-  set accessibilityIdentifier(value: NSString | string) { this.nativeObject.accessibilityIdentifier = value; }
+  get accessibilityIdentifier(): string { return this.nativeObject.accessibilityIdentifier; }
+  set accessibilityIdentifier(value: string) { this.nativeObject.accessibilityIdentifier = value; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSSecureTextFieldElement extends HTMLNSTextFieldElement {
@@ -9815,18 +9815,18 @@ export class HTMLNSTextViewElement extends HTMLNSTextElement {
   get readablePasteboardTypes(): NSArray { return this.nativeObject.readablePasteboardTypes; }
   get acceptableDragTypes(): NSArray { return this.nativeObject.acceptableDragTypes; }
   get selectedRanges(): NSArray { return this.nativeObject.selectedRanges; }
-  set selectedRanges(value: NSArray | unknown[]) { this.nativeObject.selectedRanges = value; }
+  set selectedRanges(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.selectedRanges = value; }
   get selectionAffinity(): interop.Enum<typeof NSSelectionAffinity> { return this.nativeObject.selectionAffinity; }
   get selectionGranularity(): interop.Enum<typeof NSSelectionGranularity> { return this.nativeObject.selectionGranularity; }
   set selectionGranularity(value: interop.Enum<typeof NSSelectionGranularity>) { this.nativeObject.selectionGranularity = value; }
   get selectedTextAttributes(): NSDictionary { return this.nativeObject.selectedTextAttributes; }
-  set selectedTextAttributes(value: NSDictionary | Record<string, unknown>) { this.nativeObject.selectedTextAttributes = value; }
+  set selectedTextAttributes(value: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>) { this.nativeObject.selectedTextAttributes = value; }
   get insertionPointColor(): NSColor { return this.nativeObject.insertionPointColor; }
   set insertionPointColor(value: NSColor) { this.nativeObject.insertionPointColor = value; }
   get markedTextAttributes(): NSDictionary { return this.nativeObject.markedTextAttributes; }
-  set markedTextAttributes(value: NSDictionary | Record<string, unknown>) { this.nativeObject.markedTextAttributes = value; }
+  set markedTextAttributes(value: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>) { this.nativeObject.markedTextAttributes = value; }
   get linkTextAttributes(): NSDictionary { return this.nativeObject.linkTextAttributes; }
-  set linkTextAttributes(value: NSDictionary | Record<string, unknown>) { this.nativeObject.linkTextAttributes = value; }
+  set linkTextAttributes(value: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>) { this.nativeObject.linkTextAttributes = value; }
   get displaysLinkToolTips(): boolean { return this.nativeObject.displaysLinkToolTips; }
   set displaysLinkToolTips(value: boolean) { this.nativeObject.displaysLinkToolTips = value; }
   get acceptsGlyphInfo(): boolean { return this.nativeObject.acceptsGlyphInfo; }
@@ -9841,7 +9841,7 @@ export class HTMLNSTextViewElement extends HTMLNSTextElement {
   get isGrammarCheckingEnabled(): boolean { return this.nativeObject.isGrammarCheckingEnabled; }
   set isGrammarCheckingEnabled(value: boolean) { this.nativeObject.isGrammarCheckingEnabled = value; }
   get typingAttributes(): NSDictionary { return this.nativeObject.typingAttributes; }
-  set typingAttributes(value: NSDictionary | Record<string, unknown>) { this.nativeObject.typingAttributes = value; }
+  set typingAttributes(value: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>) { this.nativeObject.typingAttributes = value; }
   get rangesForUserTextChange(): NSArray { return this.nativeObject.rangesForUserTextChange; }
   get rangesForUserCharacterAttributeChange(): NSArray { return this.nativeObject.rangesForUserCharacterAttributeChange; }
   get rangesForUserParagraphAttributeChange(): NSArray { return this.nativeObject.rangesForUserParagraphAttributeChange; }
@@ -9878,7 +9878,7 @@ export class HTMLNSTextViewElement extends HTMLNSTextElement {
   get isRulerVisible(): boolean { return this.nativeObject.isRulerVisible; }
   set isRulerVisible(value: boolean) { this.nativeObject.isRulerVisible = value; }
   get allowedInputSourceLocales(): NSArray { return this.nativeObject.allowedInputSourceLocales; }
-  set allowedInputSourceLocales(value: NSArray | unknown[]) { this.nativeObject.allowedInputSourceLocales = value; }
+  set allowedInputSourceLocales(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.allowedInputSourceLocales = value; }
   get smartInsertDeleteEnabled(): boolean { return this.nativeObject.smartInsertDeleteEnabled; }
   set smartInsertDeleteEnabled(value: boolean) { this.nativeObject.smartInsertDeleteEnabled = value; }
   get isAutomaticQuoteSubstitutionEnabled(): boolean { return this.nativeObject.isAutomaticQuoteSubstitutionEnabled; }
@@ -9912,15 +9912,15 @@ export class HTMLNSTextViewElement extends HTMLNSTextElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
   get selectedRange(): _NSRange { return this.nativeObject.selectedRange; }
   set selectedRange(value: _NSRange) { this.nativeObject.selectedRange = value; }
   get unionRectInVisibleSelectedRange(): CGRect { return this.nativeObject.unionRectInVisibleSelectedRange; }
   get documentVisibleRect(): CGRect { return this.nativeObject.documentVisibleRect; }
   get layoutOrientation(): interop.Enum<typeof NSTextLayoutOrientation> { return this.nativeObject.layoutOrientation; }
-  get accessibilityValue(): NSString { return this.nativeObject.accessibilityValue; }
-  set accessibilityValue(value: NSString | string) { this.nativeObject.accessibilityValue = value; }
+  get accessibilityValue(): string { return this.nativeObject.accessibilityValue; }
+  set accessibilityValue(value: string) { this.nativeObject.accessibilityValue = value; }
   get accessibilityVisibleCharacterRange(): _NSRange { return this.nativeObject.accessibilityVisibleCharacterRange; }
   set accessibilityVisibleCharacterRange(value: _NSRange) { this.nativeObject.accessibilityVisibleCharacterRange = value; }
   get accessibilityFrame(): CGRect { return this.nativeObject.accessibilityFrame; }
@@ -9929,10 +9929,10 @@ export class HTMLNSTextViewElement extends HTMLNSTextElement {
   set accessibilityParent(value: interop.Object) { this.nativeObject.accessibilityParent = value; }
   get isAccessibilityFocused(): boolean { return this.nativeObject.isAccessibilityFocused; }
   set isAccessibilityFocused(value: boolean) { this.nativeObject.isAccessibilityFocused = value; }
-  get accessibilityIdentifier(): NSString { return this.nativeObject.accessibilityIdentifier; }
-  set accessibilityIdentifier(value: NSString | string) { this.nativeObject.accessibilityIdentifier = value; }
-  get contentType(): NSString { return this.nativeObject.contentType; }
-  set contentType(value: NSString | string) { this.nativeObject.contentType = value; }
+  get accessibilityIdentifier(): string { return this.nativeObject.accessibilityIdentifier; }
+  set accessibilityIdentifier(value: string) { this.nativeObject.accessibilityIdentifier = value; }
+  get contentType(): string { return this.nativeObject.contentType; }
+  set contentType(value: string) { this.nativeObject.contentType = value; }
 
   set textViewClickedOnLinkAtIndex(value: (textView: NSTextView, link: interop.Object, charIndex: number) => boolean) {
     this.delegate.textViewClickedOnLinkAtIndex = value;
@@ -9949,19 +9949,19 @@ export class HTMLNSTextViewElement extends HTMLNSTextElement {
   set textViewWritablePasteboardTypesForCellAtIndex(value: (view: NSTextView, cell: NSTextAttachmentCell, charIndex: number) => NSArray) {
     this.delegate.textViewWritablePasteboardTypesForCellAtIndex = value;
   }
-  set textViewWriteCellAtIndexToPasteboardType(value: (view: NSTextView, cell: NSTextAttachmentCell, charIndex: number, pboard: NSPasteboard, type: NSString | string) => boolean) {
+  set textViewWriteCellAtIndexToPasteboardType(value: (view: NSTextView, cell: NSTextAttachmentCell, charIndex: number, pboard: NSPasteboard, type: string) => boolean) {
     this.delegate.textViewWriteCellAtIndexToPasteboardType = value;
   }
   set textViewWillChangeSelectionFromCharacterRangeToCharacterRange(value: (textView: NSTextView, oldSelectedCharRange: _NSRange, newSelectedCharRange: _NSRange) => _NSRange) {
     this.delegate.textViewWillChangeSelectionFromCharacterRangeToCharacterRange = value;
   }
-  set textViewWillChangeSelectionFromCharacterRangesToCharacterRanges(value: (textView: NSTextView, oldSelectedCharRanges: NSArray | unknown[], newSelectedCharRanges: NSArray | unknown[]) => NSArray) {
+  set textViewWillChangeSelectionFromCharacterRangesToCharacterRanges(value: (textView: NSTextView, oldSelectedCharRanges: NSArray<interop.Object> | Array<interop.Object>, newSelectedCharRanges: NSArray<interop.Object> | Array<interop.Object>) => NSArray) {
     this.delegate.textViewWillChangeSelectionFromCharacterRangesToCharacterRanges = value;
   }
-  set textViewShouldChangeTextInRangesReplacementStrings(value: (textView: NSTextView, affectedRanges: NSArray | unknown[], replacementStrings: NSArray | unknown[] | null) => boolean) {
+  set textViewShouldChangeTextInRangesReplacementStrings(value: (textView: NSTextView, affectedRanges: NSArray<interop.Object> | Array<interop.Object>, replacementStrings: NSArray<interop.Object> | Array<interop.Object> | null) => boolean) {
     this.delegate.textViewShouldChangeTextInRangesReplacementStrings = value;
   }
-  set textViewShouldChangeTypingAttributesToAttributes(value: (textView: NSTextView, oldTypingAttributes: NSDictionary | Record<string, unknown>, newTypingAttributes: NSDictionary | Record<string, unknown>) => NSDictionary) {
+  set textViewShouldChangeTypingAttributesToAttributes(value: (textView: NSTextView, oldTypingAttributes: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>, newTypingAttributes: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>) => NSDictionary) {
     this.delegate.textViewShouldChangeTypingAttributesToAttributes = value;
   }
   set textViewDidChangeSelection(value: (notification: NSNotification) => void) {
@@ -9970,13 +9970,13 @@ export class HTMLNSTextViewElement extends HTMLNSTextElement {
   set textViewDidChangeTypingAttributes(value: (notification: NSNotification) => void) {
     this.delegate.textViewDidChangeTypingAttributes = value;
   }
-  set textViewWillDisplayToolTipForCharacterAtIndex(value: (textView: NSTextView, tooltip: NSString | string, characterIndex: number) => NSString) {
+  set textViewWillDisplayToolTipForCharacterAtIndex(value: (textView: NSTextView, tooltip: string, characterIndex: number) => string) {
     this.delegate.textViewWillDisplayToolTipForCharacterAtIndex = value;
   }
-  set textViewCompletionsForPartialWordRangeIndexOfSelectedItem(value: (textView: NSTextView, words: NSArray | unknown[], charRange: _NSRange, index: interop.PointerConvertible) => NSArray) {
+  set textViewCompletionsForPartialWordRangeIndexOfSelectedItem(value: (textView: NSTextView, words: NSArray<interop.Object> | Array<interop.Object>, charRange: _NSRange, index: interop.PointerConvertible) => NSArray) {
     this.delegate.textViewCompletionsForPartialWordRangeIndexOfSelectedItem = value;
   }
-  set textViewShouldChangeTextInRangeReplacementString(value: (textView: NSTextView, affectedCharRange: _NSRange, replacementString: NSString | string | null) => boolean) {
+  set textViewShouldChangeTextInRangeReplacementString(value: (textView: NSTextView, affectedCharRange: _NSRange, replacementString: string | null) => boolean) {
     this.delegate.textViewShouldChangeTextInRangeReplacementString = value;
   }
   set textViewDoCommandBySelector(value: (textView: NSTextView, commandSelector: string) => boolean) {
@@ -9988,22 +9988,22 @@ export class HTMLNSTextViewElement extends HTMLNSTextElement {
   set textViewMenuForEventAtIndex(value: (view: NSTextView, menu: NSMenu, event: NSEvent, charIndex: number) => NSMenu) {
     this.delegate.textViewMenuForEventAtIndex = value;
   }
-  set textViewWillCheckTextInRangeOptionsTypes(value: (view: NSTextView, range: _NSRange, options: NSDictionary | Record<string, unknown>, checkingTypes: interop.PointerConvertible) => NSDictionary) {
+  set textViewWillCheckTextInRangeOptionsTypes(value: (view: NSTextView, range: _NSRange, options: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>, checkingTypes: interop.PointerConvertible) => NSDictionary) {
     this.delegate.textViewWillCheckTextInRangeOptionsTypes = value;
   }
-  set textViewDidCheckTextInRangeTypesOptionsResultsOrthographyWordCount(value: (view: NSTextView, range: _NSRange, checkingTypes: number, options: NSDictionary | Record<string, unknown>, results: NSArray | unknown[], orthography: NSOrthography, wordCount: number) => NSArray) {
+  set textViewDidCheckTextInRangeTypesOptionsResultsOrthographyWordCount(value: (view: NSTextView, range: _NSRange, checkingTypes: number, options: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>, results: NSArray<interop.Object> | Array<interop.Object>, orthography: NSOrthography, wordCount: number) => NSArray) {
     this.delegate.textViewDidCheckTextInRangeTypesOptionsResultsOrthographyWordCount = value;
   }
   set textViewURLForContentsOfTextAttachmentAtIndex(value: (textView: NSTextView, textAttachment: NSTextAttachment, charIndex: number) => NSURL) {
     this.delegate.textViewURLForContentsOfTextAttachmentAtIndex = value;
   }
-  set textViewWillShowSharingServicePickerForItems(value: (textView: NSTextView, servicePicker: NSSharingServicePicker, items: NSArray | unknown[]) => NSSharingServicePicker) {
+  set textViewWillShowSharingServicePickerForItems(value: (textView: NSTextView, servicePicker: NSSharingServicePicker, items: NSArray<interop.Object> | Array<interop.Object>) => NSSharingServicePicker) {
     this.delegate.textViewWillShowSharingServicePickerForItems = value;
   }
   set undoManagerForTextView(value: (view: NSTextView) => NSUndoManager) {
     this.delegate.undoManagerForTextView = value;
   }
-  set textViewShouldUpdateTouchBarItemIdentifiers(value: (textView: NSTextView, identifiers: NSArray | unknown[]) => NSArray) {
+  set textViewShouldUpdateTouchBarItemIdentifiers(value: (textView: NSTextView, identifiers: NSArray<interop.Object> | Array<interop.Object>) => NSArray) {
     this.delegate.textViewShouldUpdateTouchBarItemIdentifiers = value;
   }
   set textViewCandidatesForSelectedRange(value: (textView: NSTextView, selectedRange: _NSRange) => NSArray) {
@@ -10069,15 +10069,15 @@ export class HTMLNSTabViewControllerElement extends HTMLNSViewControllerElement 
   get canPropagateSelectedChildViewControllerTitle(): boolean { return this.nativeObject.canPropagateSelectedChildViewControllerTitle; }
   set canPropagateSelectedChildViewControllerTitle(value: boolean) { this.nativeObject.canPropagateSelectedChildViewControllerTitle = value; }
   get tabViewItems(): NSArray { return this.nativeObject.tabViewItems; }
-  set tabViewItems(value: NSArray | unknown[]) { this.nativeObject.tabViewItems = value; }
+  set tabViewItems(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.tabViewItems = value; }
   get selectedTabViewItemIndex(): number { return this.nativeObject.selectedTabViewItemIndex; }
   set selectedTabViewItemIndex(value: number) { this.nativeObject.selectedTabViewItemIndex = value; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSSharingServicePickerTouchBarItemElement extends HTMLNSTouchBarItemElement {
@@ -10089,8 +10089,8 @@ export class HTMLNSSharingServicePickerTouchBarItemElement extends HTMLNSTouchBa
   set delegate(value: NSSharingServicePickerTouchBarItemDelegate | null) { this.nativeObject.delegate = value; }
   get isEnabled(): boolean { return this.nativeObject.isEnabled; }
   set isEnabled(value: boolean) { this.nativeObject.isEnabled = value; }
-  get buttonTitle(): NSString { return this.nativeObject.buttonTitle; }
-  set buttonTitle(value: NSString | string) { this.nativeObject.buttonTitle = value; }
+  get buttonTitle(): string { return this.nativeObject.buttonTitle; }
+  set buttonTitle(value: string) { this.nativeObject.buttonTitle = value; }
   get buttonImage(): NSImage { return this.nativeObject.buttonImage; }
   set buttonImage(value: NSImage) { this.nativeObject.buttonImage = value; }
 }
@@ -10112,8 +10112,8 @@ export class HTMLNSTextContentStorageElement extends HTMLNSTextContentManagerEle
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 
   set textContentStorageTextParagraphWithRange(value: (textContentStorage: NSTextContentStorage, range: _NSRange) => NSTextParagraph) {
     this.delegate.textContentStorageTextParagraphWithRange = value;
@@ -10128,24 +10128,24 @@ export class HTMLNSSwitchElement extends HTMLNSControlElement {
 
   get state(): number { return this.nativeObject.state; }
   set state(value: number) { this.nativeObject.state = value; }
-  get accessibilityValue(): NSString { return this.nativeObject.accessibilityValue; }
-  set accessibilityValue(value: NSString | string) { this.nativeObject.accessibilityValue = value; }
-  get accessibilityLabel(): NSString { return this.nativeObject.accessibilityLabel; }
-  set accessibilityLabel(value: NSString | string) { this.nativeObject.accessibilityLabel = value; }
+  get accessibilityValue(): string { return this.nativeObject.accessibilityValue; }
+  set accessibilityValue(value: string) { this.nativeObject.accessibilityValue = value; }
+  get accessibilityLabel(): string { return this.nativeObject.accessibilityLabel; }
+  set accessibilityLabel(value: string) { this.nativeObject.accessibilityLabel = value; }
   get accessibilityFrame(): CGRect { return this.nativeObject.accessibilityFrame; }
   set accessibilityFrame(value: CGRect) { this.nativeObject.accessibilityFrame = value; }
   get accessibilityParent(): interop.Object { return this.nativeObject.accessibilityParent; }
   set accessibilityParent(value: interop.Object) { this.nativeObject.accessibilityParent = value; }
   get isAccessibilityFocused(): boolean { return this.nativeObject.isAccessibilityFocused; }
   set isAccessibilityFocused(value: boolean) { this.nativeObject.isAccessibilityFocused = value; }
-  get accessibilityIdentifier(): NSString { return this.nativeObject.accessibilityIdentifier; }
-  set accessibilityIdentifier(value: NSString | string) { this.nativeObject.accessibilityIdentifier = value; }
+  get accessibilityIdentifier(): string { return this.nativeObject.accessibilityIdentifier; }
+  set accessibilityIdentifier(value: string) { this.nativeObject.accessibilityIdentifier = value; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSOpenPanelElement extends HTMLNSSavePanelElement {
@@ -10204,16 +10204,16 @@ export class HTMLNSPageControllerElement extends HTMLNSViewControllerElement {
   get transitionStyle(): interop.Enum<typeof NSPageControllerTransitionStyle> { return this.nativeObject.transitionStyle; }
   set transitionStyle(value: interop.Enum<typeof NSPageControllerTransitionStyle>) { this.nativeObject.transitionStyle = value; }
   get arrangedObjects(): NSArray { return this.nativeObject.arrangedObjects; }
-  set arrangedObjects(value: NSArray | unknown[]) { this.nativeObject.arrangedObjects = value; }
+  set arrangedObjects(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.arrangedObjects = value; }
   get selectedIndex(): number { return this.nativeObject.selectedIndex; }
   set selectedIndex(value: number) { this.nativeObject.selectedIndex = value; }
   get animations(): NSDictionary { return this.nativeObject.animations; }
-  set animations(value: NSDictionary | Record<string, unknown>) { this.nativeObject.animations = value; }
+  set animations(value: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>) { this.nativeObject.animations = value; }
 
-  set pageControllerIdentifierForObject(value: (pageController: NSPageController, object: interop.Object) => NSString) {
+  set pageControllerIdentifierForObject(value: (pageController: NSPageController, object: interop.Object) => string) {
     this.delegate.pageControllerIdentifierForObject = value;
   }
-  set pageControllerViewControllerForIdentifier(value: (pageController: NSPageController, identifier: NSString | string) => NSViewController) {
+  set pageControllerViewControllerForIdentifier(value: (pageController: NSPageController, identifier: string) => NSViewController) {
     this.delegate.pageControllerViewControllerForIdentifier = value;
   }
   set pageControllerFrameForObject(value: (pageController: NSPageController, object: interop.Object | null) => CGRect) {
@@ -10301,8 +10301,8 @@ export class HTMLNSSliderElement extends HTMLNSControlElement {
   set tickMarkPosition(value: interop.Enum<typeof NSTickMarkPosition>) { this.nativeObject.tickMarkPosition = value; }
   get allowsTickMarkValuesOnly(): boolean { return this.nativeObject.allowsTickMarkValuesOnly; }
   set allowsTickMarkValuesOnly(value: boolean) { this.nativeObject.allowsTickMarkValuesOnly = value; }
-  get accessibilityLabel(): NSString { return this.nativeObject.accessibilityLabel; }
-  set accessibilityLabel(value: NSString | string) { this.nativeObject.accessibilityLabel = value; }
+  get accessibilityLabel(): string { return this.nativeObject.accessibilityLabel; }
+  set accessibilityLabel(value: string) { this.nativeObject.accessibilityLabel = value; }
   get accessibilityValue(): interop.Object { return this.nativeObject.accessibilityValue; }
   set accessibilityValue(value: interop.Object) { this.nativeObject.accessibilityValue = value; }
   get accessibilityFrame(): CGRect { return this.nativeObject.accessibilityFrame; }
@@ -10311,14 +10311,14 @@ export class HTMLNSSliderElement extends HTMLNSControlElement {
   set accessibilityParent(value: interop.Object) { this.nativeObject.accessibilityParent = value; }
   get isAccessibilityFocused(): boolean { return this.nativeObject.isAccessibilityFocused; }
   set isAccessibilityFocused(value: boolean) { this.nativeObject.isAccessibilityFocused = value; }
-  get accessibilityIdentifier(): NSString { return this.nativeObject.accessibilityIdentifier; }
-  set accessibilityIdentifier(value: NSString | string) { this.nativeObject.accessibilityIdentifier = value; }
+  get accessibilityIdentifier(): string { return this.nativeObject.accessibilityIdentifier; }
+  set accessibilityIdentifier(value: string) { this.nativeObject.accessibilityIdentifier = value; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSSearchFieldElement extends HTMLNSTextFieldElement {
@@ -10334,9 +10334,9 @@ export class HTMLNSSearchFieldElement extends HTMLNSTextFieldElement {
   get searchButtonBounds(): CGRect { return this.nativeObject.searchButtonBounds; }
   get cancelButtonBounds(): CGRect { return this.nativeObject.cancelButtonBounds; }
   get recentSearches(): NSArray { return this.nativeObject.recentSearches; }
-  set recentSearches(value: NSArray | unknown[]) { this.nativeObject.recentSearches = value; }
-  get recentsAutosaveName(): NSString { return this.nativeObject.recentsAutosaveName; }
-  set recentsAutosaveName(value: NSString | string) { this.nativeObject.recentsAutosaveName = value; }
+  set recentSearches(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.recentSearches = value; }
+  get recentsAutosaveName(): string { return this.nativeObject.recentsAutosaveName; }
+  set recentsAutosaveName(value: string) { this.nativeObject.recentsAutosaveName = value; }
   get searchMenuTemplate(): NSMenu { return this.nativeObject.searchMenuTemplate; }
   set searchMenuTemplate(value: NSMenu) { this.nativeObject.searchMenuTemplate = value; }
   get sendsWholeSearchString(): boolean { return this.nativeObject.sendsWholeSearchString; }
@@ -10372,22 +10372,22 @@ export class HTMLNSTokenFieldElement extends HTMLNSTextFieldElement {
   get tokenizingCharacterSet(): NSCharacterSet { return this.nativeObject.tokenizingCharacterSet; }
   set tokenizingCharacterSet(value: NSCharacterSet) { this.nativeObject.tokenizingCharacterSet = value; }
 
-  set tokenFieldCompletionsForSubstringIndexOfTokenIndexOfSelectedItem(value: (tokenField: NSTokenField, substring: NSString | string, tokenIndex: number, selectedIndex: interop.PointerConvertible) => NSArray) {
+  set tokenFieldCompletionsForSubstringIndexOfTokenIndexOfSelectedItem(value: (tokenField: NSTokenField, substring: string, tokenIndex: number, selectedIndex: interop.PointerConvertible) => NSArray) {
     this.delegate.tokenFieldCompletionsForSubstringIndexOfTokenIndexOfSelectedItem = value;
   }
-  set tokenFieldShouldAddObjectsAtIndex(value: (tokenField: NSTokenField, tokens: NSArray | unknown[], index: number) => NSArray) {
+  set tokenFieldShouldAddObjectsAtIndex(value: (tokenField: NSTokenField, tokens: NSArray<interop.Object> | Array<interop.Object>, index: number) => NSArray) {
     this.delegate.tokenFieldShouldAddObjectsAtIndex = value;
   }
-  set tokenFieldDisplayStringForRepresentedObject(value: (tokenField: NSTokenField, representedObject: interop.Object) => NSString) {
+  set tokenFieldDisplayStringForRepresentedObject(value: (tokenField: NSTokenField, representedObject: interop.Object) => string) {
     this.delegate.tokenFieldDisplayStringForRepresentedObject = value;
   }
-  set tokenFieldEditingStringForRepresentedObject(value: (tokenField: NSTokenField, representedObject: interop.Object) => NSString) {
+  set tokenFieldEditingStringForRepresentedObject(value: (tokenField: NSTokenField, representedObject: interop.Object) => string) {
     this.delegate.tokenFieldEditingStringForRepresentedObject = value;
   }
-  set tokenFieldRepresentedObjectForEditingString(value: (tokenField: NSTokenField, editingString: NSString | string) => interop.Object) {
+  set tokenFieldRepresentedObjectForEditingString(value: (tokenField: NSTokenField, editingString: string) => interop.Object) {
     this.delegate.tokenFieldRepresentedObjectForEditingString = value;
   }
-  set tokenFieldWriteRepresentedObjectsToPasteboard(value: (tokenField: NSTokenField, objects: NSArray | unknown[], pboard: NSPasteboard) => boolean) {
+  set tokenFieldWriteRepresentedObjectsToPasteboard(value: (tokenField: NSTokenField, objects: NSArray<interop.Object> | Array<interop.Object>, pboard: NSPasteboard) => boolean) {
     this.delegate.tokenFieldWriteRepresentedObjectsToPasteboard = value;
   }
   set tokenFieldReadFromPasteboard(value: (tokenField: NSTokenField, pboard: NSPasteboard) => NSArray) {
@@ -10450,7 +10450,7 @@ export class HTMLNSTableViewElement extends HTMLNSControlElement {
   get doubleAction(): string { return this.nativeObject.doubleAction; }
   set doubleAction(value: string) { this.nativeObject.doubleAction = value; }
   get sortDescriptors(): NSArray { return this.nativeObject.sortDescriptors; }
-  set sortDescriptors(value: NSArray | unknown[]) { this.nativeObject.sortDescriptors = value; }
+  set sortDescriptors(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.sortDescriptors = value; }
   get highlightedTableColumn(): NSTableColumn { return this.nativeObject.highlightedTableColumn; }
   set highlightedTableColumn(value: NSTableColumn) { this.nativeObject.highlightedTableColumn = value; }
   get verticalMotionCanBeginDrag(): boolean { return this.nativeObject.verticalMotionCanBeginDrag; }
@@ -10474,8 +10474,8 @@ export class HTMLNSTableViewElement extends HTMLNSControlElement {
   set selectionHighlightStyle(value: interop.Enum<typeof NSTableViewSelectionHighlightStyle>) { this.nativeObject.selectionHighlightStyle = value; }
   get draggingDestinationFeedbackStyle(): interop.Enum<typeof NSTableViewDraggingDestinationFeedbackStyle> { return this.nativeObject.draggingDestinationFeedbackStyle; }
   set draggingDestinationFeedbackStyle(value: interop.Enum<typeof NSTableViewDraggingDestinationFeedbackStyle>) { this.nativeObject.draggingDestinationFeedbackStyle = value; }
-  get autosaveName(): NSString { return this.nativeObject.autosaveName; }
-  set autosaveName(value: NSString | string) { this.nativeObject.autosaveName = value; }
+  get autosaveName(): string { return this.nativeObject.autosaveName; }
+  set autosaveName(value: string) { this.nativeObject.autosaveName = value; }
   get autosaveTableColumns(): boolean { return this.nativeObject.autosaveTableColumns; }
   set autosaveTableColumns(value: boolean) { this.nativeObject.autosaveTableColumns = value; }
   get floatsGroupRows(): boolean { return this.nativeObject.floatsGroupRows; }
@@ -10494,38 +10494,38 @@ export class HTMLNSTableViewElement extends HTMLNSControlElement {
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
-  get accessibilityLabel(): NSString { return this.nativeObject.accessibilityLabel; }
-  set accessibilityLabel(value: NSString | string) { this.nativeObject.accessibilityLabel = value; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
+  get accessibilityLabel(): string { return this.nativeObject.accessibilityLabel; }
+  set accessibilityLabel(value: string) { this.nativeObject.accessibilityLabel = value; }
   get accessibilityRows(): NSArray { return this.nativeObject.accessibilityRows; }
-  set accessibilityRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityRows = value; }
+  set accessibilityRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRows = value; }
   get accessibilitySelectedRows(): NSArray { return this.nativeObject.accessibilitySelectedRows; }
-  set accessibilitySelectedRows(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedRows = value; }
+  set accessibilitySelectedRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedRows = value; }
   get accessibilityVisibleRows(): NSArray { return this.nativeObject.accessibilityVisibleRows; }
-  set accessibilityVisibleRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleRows = value; }
+  set accessibilityVisibleRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleRows = value; }
   get accessibilityColumns(): NSArray { return this.nativeObject.accessibilityColumns; }
-  set accessibilityColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumns = value; }
+  set accessibilityColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumns = value; }
   get accessibilityVisibleColumns(): NSArray { return this.nativeObject.accessibilityVisibleColumns; }
-  set accessibilityVisibleColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleColumns = value; }
+  set accessibilityVisibleColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleColumns = value; }
   get accessibilitySelectedColumns(): NSArray { return this.nativeObject.accessibilitySelectedColumns; }
-  set accessibilitySelectedColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedColumns = value; }
+  set accessibilitySelectedColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedColumns = value; }
   get accessibilitySelectedCells(): NSArray { return this.nativeObject.accessibilitySelectedCells; }
-  set accessibilitySelectedCells(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedCells = value; }
+  set accessibilitySelectedCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedCells = value; }
   get accessibilityVisibleCells(): NSArray { return this.nativeObject.accessibilityVisibleCells; }
-  set accessibilityVisibleCells(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleCells = value; }
+  set accessibilityVisibleCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleCells = value; }
   get accessibilityRowHeaderUIElements(): NSArray { return this.nativeObject.accessibilityRowHeaderUIElements; }
-  set accessibilityRowHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
+  set accessibilityRowHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
   get accessibilityColumnHeaderUIElements(): NSArray { return this.nativeObject.accessibilityColumnHeaderUIElements; }
-  set accessibilityColumnHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
+  set accessibilityColumnHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
   get accessibilityFrame(): CGRect { return this.nativeObject.accessibilityFrame; }
   set accessibilityFrame(value: CGRect) { this.nativeObject.accessibilityFrame = value; }
   get accessibilityParent(): interop.Object { return this.nativeObject.accessibilityParent; }
   set accessibilityParent(value: interop.Object) { this.nativeObject.accessibilityParent = value; }
   get isAccessibilityFocused(): boolean { return this.nativeObject.isAccessibilityFocused; }
   set isAccessibilityFocused(value: boolean) { this.nativeObject.isAccessibilityFocused = value; }
-  get accessibilityIdentifier(): NSString { return this.nativeObject.accessibilityIdentifier; }
-  set accessibilityIdentifier(value: NSString | string) { this.nativeObject.accessibilityIdentifier = value; }
+  get accessibilityIdentifier(): string { return this.nativeObject.accessibilityIdentifier; }
+  set accessibilityIdentifier(value: string) { this.nativeObject.accessibilityIdentifier = value; }
 
   set tableViewViewForTableColumnRow(value: (tableView: NSTableView, tableColumn: NSTableColumn | null, row: number) => NSView) {
     this.delegate.tableViewViewForTableColumnRow = value;
@@ -10545,7 +10545,7 @@ export class HTMLNSTableViewElement extends HTMLNSControlElement {
   set tableViewShouldEditTableColumnRow(value: (tableView: NSTableView, tableColumn: NSTableColumn | null, row: number) => boolean) {
     this.delegate.tableViewShouldEditTableColumnRow = value;
   }
-  set tableViewToolTipForCellRectTableColumnRowMouseLocation(value: (tableView: NSTableView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, row: number, mouseLocation: CGPoint) => NSString) {
+  set tableViewToolTipForCellRectTableColumnRowMouseLocation(value: (tableView: NSTableView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, row: number, mouseLocation: CGPoint) => string) {
     this.delegate.tableViewToolTipForCellRectTableColumnRowMouseLocation = value;
   }
   set tableViewShouldShowCellExpansionForTableColumnRow(value: (tableView: NSTableView, tableColumn: NSTableColumn | null, row: number) => boolean) {
@@ -10581,13 +10581,13 @@ export class HTMLNSTableViewElement extends HTMLNSControlElement {
   set tableViewHeightOfRow(value: (tableView: NSTableView, row: number) => number) {
     this.delegate.tableViewHeightOfRow = value;
   }
-  set tableViewTypeSelectStringForTableColumnRow(value: (tableView: NSTableView, tableColumn: NSTableColumn | null, row: number) => NSString) {
+  set tableViewTypeSelectStringForTableColumnRow(value: (tableView: NSTableView, tableColumn: NSTableColumn | null, row: number) => string) {
     this.delegate.tableViewTypeSelectStringForTableColumnRow = value;
   }
-  set tableViewNextTypeSelectMatchFromRowToRowForString(value: (tableView: NSTableView, startRow: number, endRow: number, searchString: NSString | string) => number) {
+  set tableViewNextTypeSelectMatchFromRowToRowForString(value: (tableView: NSTableView, startRow: number, endRow: number, searchString: string) => number) {
     this.delegate.tableViewNextTypeSelectMatchFromRowToRowForString = value;
   }
-  set tableViewShouldTypeSelectForEventWithCurrentSearchString(value: (tableView: NSTableView, event: NSEvent, searchString: NSString | string | null) => boolean) {
+  set tableViewShouldTypeSelectForEventWithCurrentSearchString(value: (tableView: NSTableView, event: NSEvent, searchString: string | null) => boolean) {
     this.delegate.tableViewShouldTypeSelectForEventWithCurrentSearchString = value;
   }
   set tableViewIsGroupRow(value: (tableView: NSTableView, row: number) => boolean) {
@@ -10605,7 +10605,7 @@ export class HTMLNSTableViewElement extends HTMLNSControlElement {
   set tableViewUserCanChangeVisibilityOfTableColumn(value: (tableView: NSTableView, column: NSTableColumn) => boolean) {
     this.delegate.tableViewUserCanChangeVisibilityOfTableColumn = value;
   }
-  set tableViewUserDidChangeVisibilityOfTableColumns(value: (tableView: NSTableView, columns: NSArray | unknown[]) => void) {
+  set tableViewUserDidChangeVisibilityOfTableColumns(value: (tableView: NSTableView, columns: NSArray<interop.Object> | Array<interop.Object>) => void) {
     this.delegate.tableViewUserDidChangeVisibilityOfTableColumns = value;
   }
   set tableViewSelectionDidChange(value: (notification: NSNotification) => void) {
@@ -10638,8 +10638,8 @@ export class HTMLNSButtonElement extends HTMLNSControlElement {
 
   get attributedTitle(): NSAttributedString { return this.nativeObject.attributedTitle; }
   set attributedTitle(value: NSAttributedString) { this.nativeObject.attributedTitle = value; }
-  get alternateTitle(): NSString { return this.nativeObject.alternateTitle; }
-  set alternateTitle(value: NSString | string) { this.nativeObject.alternateTitle = value; }
+  get alternateTitle(): string { return this.nativeObject.alternateTitle; }
+  set alternateTitle(value: string) { this.nativeObject.alternateTitle = value; }
   get attributedAlternateTitle(): NSAttributedString { return this.nativeObject.attributedAlternateTitle; }
   set attributedAlternateTitle(value: NSAttributedString) { this.nativeObject.attributedAlternateTitle = value; }
   get hasDestructiveAction(): boolean { return this.nativeObject.hasDestructiveAction; }
@@ -10678,27 +10678,27 @@ export class HTMLNSButtonElement extends HTMLNSControlElement {
   set state(value: number) { this.nativeObject.state = value; }
   get allowsMixedState(): boolean { return this.nativeObject.allowsMixedState; }
   set allowsMixedState(value: boolean) { this.nativeObject.allowsMixedState = value; }
-  get keyEquivalent(): NSString { return this.nativeObject.keyEquivalent; }
-  set keyEquivalent(value: NSString | string) { this.nativeObject.keyEquivalent = value; }
+  get keyEquivalent(): string { return this.nativeObject.keyEquivalent; }
+  set keyEquivalent(value: string) { this.nativeObject.keyEquivalent = value; }
   get keyEquivalentModifierMask(): interop.Enum<typeof NSEventModifierFlags> { return this.nativeObject.keyEquivalentModifierMask; }
   set keyEquivalentModifierMask(value: interop.Enum<typeof NSEventModifierFlags>) { this.nativeObject.keyEquivalentModifierMask = value; }
   get activeCompressionOptions(): NSUserInterfaceCompressionOptions { return this.nativeObject.activeCompressionOptions; }
-  get accessibilityLabel(): NSString { return this.nativeObject.accessibilityLabel; }
-  set accessibilityLabel(value: NSString | string) { this.nativeObject.accessibilityLabel = value; }
+  get accessibilityLabel(): string { return this.nativeObject.accessibilityLabel; }
+  set accessibilityLabel(value: string) { this.nativeObject.accessibilityLabel = value; }
   get accessibilityFrame(): CGRect { return this.nativeObject.accessibilityFrame; }
   set accessibilityFrame(value: CGRect) { this.nativeObject.accessibilityFrame = value; }
   get accessibilityParent(): interop.Object { return this.nativeObject.accessibilityParent; }
   set accessibilityParent(value: interop.Object) { this.nativeObject.accessibilityParent = value; }
   get isAccessibilityFocused(): boolean { return this.nativeObject.isAccessibilityFocused; }
   set isAccessibilityFocused(value: boolean) { this.nativeObject.isAccessibilityFocused = value; }
-  get accessibilityIdentifier(): NSString { return this.nativeObject.accessibilityIdentifier; }
-  set accessibilityIdentifier(value: NSString | string) { this.nativeObject.accessibilityIdentifier = value; }
+  get accessibilityIdentifier(): string { return this.nativeObject.accessibilityIdentifier; }
+  set accessibilityIdentifier(value: string) { this.nativeObject.accessibilityIdentifier = value; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
 export class HTMLNSScrubberSelectionViewElement extends HTMLNSScrubberArrangedViewElement {
@@ -10724,9 +10724,9 @@ export class HTMLNSSearchFieldCellElement extends HTMLNSTextFieldCellElement {
   get maximumRecents(): number { return this.nativeObject.maximumRecents; }
   set maximumRecents(value: number) { this.nativeObject.maximumRecents = value; }
   get recentSearches(): NSArray { return this.nativeObject.recentSearches; }
-  set recentSearches(value: NSArray | unknown[]) { this.nativeObject.recentSearches = value; }
-  get recentsAutosaveName(): NSString { return this.nativeObject.recentsAutosaveName; }
-  set recentsAutosaveName(value: NSString | string) { this.nativeObject.recentsAutosaveName = value; }
+  set recentSearches(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.recentSearches = value; }
+  get recentsAutosaveName(): string { return this.nativeObject.recentsAutosaveName; }
+  set recentsAutosaveName(value: string) { this.nativeObject.recentsAutosaveName = value; }
   get sendsSearchStringImmediately(): boolean { return this.nativeObject.sendsSearchStringImmediately; }
   set sendsSearchStringImmediately(value: boolean) { this.nativeObject.sendsSearchStringImmediately = value; }
 }
@@ -10742,8 +10742,8 @@ export class HTMLNSRunningApplicationElement extends HTMLNSObjectElement {
   get isActive(): boolean { return this.nativeObject.isActive; }
   get ownsMenuBar(): boolean { return this.nativeObject.ownsMenuBar; }
   get activationPolicy(): interop.Enum<typeof NSApplicationActivationPolicy> { return this.nativeObject.activationPolicy; }
-  get localizedName(): NSString { return this.nativeObject.localizedName; }
-  get bundleIdentifier(): NSString { return this.nativeObject.bundleIdentifier; }
+  get localizedName(): string { return this.nativeObject.localizedName; }
+  get bundleIdentifier(): string { return this.nativeObject.bundleIdentifier; }
   get bundleURL(): NSURL { return this.nativeObject.bundleURL; }
   get executableURL(): NSURL { return this.nativeObject.executableURL; }
   get processIdentifier(): number { return this.nativeObject.processIdentifier; }
@@ -10791,7 +10791,7 @@ export class HTMLNSPopUpButtonElement extends HTMLNSButtonElement {
   get indexOfSelectedItem(): number { return this.nativeObject.indexOfSelectedItem; }
   get selectedTag(): number { return this.nativeObject.selectedTag; }
   get itemTitles(): NSArray { return this.nativeObject.itemTitles; }
-  get titleOfSelectedItem(): NSString { return this.nativeObject.titleOfSelectedItem; }
+  get titleOfSelectedItem(): string { return this.nativeObject.titleOfSelectedItem; }
 }
 
 export class HTMLNSStatusBarButtonElement extends HTMLNSButtonElement {
@@ -10822,7 +10822,7 @@ export class HTMLNSPredicateEditorElement extends HTMLNSRuleEditorElement {
   readonly nativeObject = NSPredicateEditor.new();
 
   get rowTemplates(): NSArray { return this.nativeObject.rowTemplates; }
-  set rowTemplates(value: NSArray | unknown[]) { this.nativeObject.rowTemplates = value; }
+  set rowTemplates(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.rowTemplates = value; }
 }
 
 export class HTMLNSColorPanelElement extends HTMLNSPanelElement {
@@ -10854,9 +10854,9 @@ export class HTMLNSPathControlElement extends HTMLNSControlElement {
   get isEditable(): boolean { return this.nativeObject.isEditable; }
   set isEditable(value: boolean) { this.nativeObject.isEditable = value; }
   get allowedTypes(): NSArray { return this.nativeObject.allowedTypes; }
-  set allowedTypes(value: NSArray | unknown[]) { this.nativeObject.allowedTypes = value; }
-  get placeholderString(): NSString { return this.nativeObject.placeholderString; }
-  set placeholderString(value: NSString | string) { this.nativeObject.placeholderString = value; }
+  set allowedTypes(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.allowedTypes = value; }
+  get placeholderString(): string { return this.nativeObject.placeholderString; }
+  set placeholderString(value: string) { this.nativeObject.placeholderString = value; }
   get placeholderAttributedString(): NSAttributedString { return this.nativeObject.placeholderAttributedString; }
   set placeholderAttributedString(value: NSAttributedString) { this.nativeObject.placeholderAttributedString = value; }
   get URL(): NSURL { return this.nativeObject.URL; }
@@ -10867,7 +10867,7 @@ export class HTMLNSPathControlElement extends HTMLNSControlElement {
   set pathStyle(value: interop.Enum<typeof NSPathStyle>) { this.nativeObject.pathStyle = value; }
   get clickedPathItem(): NSPathControlItem { return this.nativeObject.clickedPathItem; }
   get pathItems(): NSArray { return this.nativeObject.pathItems; }
-  set pathItems(value: NSArray | unknown[]) { this.nativeObject.pathItems = value; }
+  set pathItems(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.pathItems = value; }
   get backgroundColor(): NSColor { return this.nativeObject.backgroundColor; }
   set backgroundColor(value: NSColor) { this.nativeObject.backgroundColor = value; }
   get menu(): NSMenu { return this.nativeObject.menu; }
@@ -10914,7 +10914,7 @@ export class HTMLNSAnimationElement extends HTMLNSObjectElement {
   set animationCurve(value: interop.Enum<typeof NSAnimationCurve>) { this.nativeObject.animationCurve = value; }
   get currentValue(): number { return this.nativeObject.currentValue; }
   get progressMarks(): NSArray { return this.nativeObject.progressMarks; }
-  set progressMarks(value: NSArray | unknown[]) { this.nativeObject.progressMarks = value; }
+  set progressMarks(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.progressMarks = value; }
   get runLoopModesForAnimating(): NSArray { return this.nativeObject.runLoopModesForAnimating; }
 
   set animationShouldStart(value: (animation: NSAnimation) => boolean) {
@@ -10940,7 +10940,7 @@ export class HTMLNSViewAnimationElement extends HTMLNSAnimationElement {
   readonly nativeObject = NSViewAnimation.new();
 
   get viewAnimations(): NSArray { return this.nativeObject.viewAnimations; }
-  set viewAnimations(value: NSArray | unknown[]) { this.nativeObject.viewAnimations = value; }
+  set viewAnimations(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.viewAnimations = value; }
 }
 
 export class HTMLNSScrollerElement extends HTMLNSControlElement {
@@ -11002,42 +11002,42 @@ export class HTMLNSOutlineViewElement extends HTMLNSTableViewElement {
   set userInterfaceLayoutDirection(value: interop.Enum<typeof NSUserInterfaceLayoutDirection>) { this.nativeObject.userInterfaceLayoutDirection = value; }
   get stronglyReferencesItems(): boolean { return this.nativeObject.stronglyReferencesItems; }
   set stronglyReferencesItems(value: boolean) { this.nativeObject.stronglyReferencesItems = value; }
-  get accessibilityLabel(): NSString { return this.nativeObject.accessibilityLabel; }
-  set accessibilityLabel(value: NSString | string) { this.nativeObject.accessibilityLabel = value; }
+  get accessibilityLabel(): string { return this.nativeObject.accessibilityLabel; }
+  set accessibilityLabel(value: string) { this.nativeObject.accessibilityLabel = value; }
   get accessibilityRows(): NSArray { return this.nativeObject.accessibilityRows; }
-  set accessibilityRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityRows = value; }
+  set accessibilityRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRows = value; }
   get accessibilitySelectedRows(): NSArray { return this.nativeObject.accessibilitySelectedRows; }
-  set accessibilitySelectedRows(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedRows = value; }
+  set accessibilitySelectedRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedRows = value; }
   get accessibilityVisibleRows(): NSArray { return this.nativeObject.accessibilityVisibleRows; }
-  set accessibilityVisibleRows(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleRows = value; }
+  set accessibilityVisibleRows(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleRows = value; }
   get accessibilityColumns(): NSArray { return this.nativeObject.accessibilityColumns; }
-  set accessibilityColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumns = value; }
+  set accessibilityColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumns = value; }
   get accessibilityVisibleColumns(): NSArray { return this.nativeObject.accessibilityVisibleColumns; }
-  set accessibilityVisibleColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleColumns = value; }
+  set accessibilityVisibleColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleColumns = value; }
   get accessibilitySelectedColumns(): NSArray { return this.nativeObject.accessibilitySelectedColumns; }
-  set accessibilitySelectedColumns(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedColumns = value; }
+  set accessibilitySelectedColumns(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedColumns = value; }
   get accessibilitySelectedCells(): NSArray { return this.nativeObject.accessibilitySelectedCells; }
-  set accessibilitySelectedCells(value: NSArray | unknown[]) { this.nativeObject.accessibilitySelectedCells = value; }
+  set accessibilitySelectedCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilitySelectedCells = value; }
   get accessibilityVisibleCells(): NSArray { return this.nativeObject.accessibilityVisibleCells; }
-  set accessibilityVisibleCells(value: NSArray | unknown[]) { this.nativeObject.accessibilityVisibleCells = value; }
+  set accessibilityVisibleCells(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityVisibleCells = value; }
   get accessibilityRowHeaderUIElements(): NSArray { return this.nativeObject.accessibilityRowHeaderUIElements; }
-  set accessibilityRowHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
+  set accessibilityRowHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityRowHeaderUIElements = value; }
   get accessibilityColumnHeaderUIElements(): NSArray { return this.nativeObject.accessibilityColumnHeaderUIElements; }
-  set accessibilityColumnHeaderUIElements(value: NSArray | unknown[]) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
+  set accessibilityColumnHeaderUIElements(value: NSArray<interop.Object> | Array<interop.Object>) { this.nativeObject.accessibilityColumnHeaderUIElements = value; }
   get accessibilityFrame(): CGRect { return this.nativeObject.accessibilityFrame; }
   set accessibilityFrame(value: CGRect) { this.nativeObject.accessibilityFrame = value; }
   get accessibilityParent(): interop.Object { return this.nativeObject.accessibilityParent; }
   set accessibilityParent(value: interop.Object) { this.nativeObject.accessibilityParent = value; }
   get isAccessibilityFocused(): boolean { return this.nativeObject.isAccessibilityFocused; }
   set isAccessibilityFocused(value: boolean) { this.nativeObject.isAccessibilityFocused = value; }
-  get accessibilityIdentifier(): NSString { return this.nativeObject.accessibilityIdentifier; }
-  set accessibilityIdentifier(value: NSString | string) { this.nativeObject.accessibilityIdentifier = value; }
+  get accessibilityIdentifier(): string { return this.nativeObject.accessibilityIdentifier; }
+  set accessibilityIdentifier(value: string) { this.nativeObject.accessibilityIdentifier = value; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
   get zone(): interop.Pointer { return this.nativeObject.zone; }
-  get description(): NSString { return this.nativeObject.description; }
-  get debugDescription(): NSString { return this.nativeObject.debugDescription; }
+  get description(): string { return this.nativeObject.description; }
+  get debugDescription(): string { return this.nativeObject.debugDescription; }
 
   set outlineViewViewForTableColumnItem(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object) => NSView) {
     this.delegate.outlineViewViewForTableColumnItem = value;
@@ -11078,7 +11078,7 @@ export class HTMLNSOutlineViewElement extends HTMLNSTableViewElement {
   set outlineViewDidDragTableColumn(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn) => void) {
     this.delegate.outlineViewDidDragTableColumn = value;
   }
-  set outlineViewToolTipForCellRectTableColumnItemMouseLocation(value: (outlineView: NSOutlineView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, item: interop.Object, mouseLocation: CGPoint) => NSString) {
+  set outlineViewToolTipForCellRectTableColumnItemMouseLocation(value: (outlineView: NSOutlineView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, item: interop.Object, mouseLocation: CGPoint) => string) {
     this.delegate.outlineViewToolTipForCellRectTableColumnItemMouseLocation = value;
   }
   set outlineViewHeightOfRowByItem(value: (outlineView: NSOutlineView, item: interop.Object) => number) {
@@ -11087,13 +11087,13 @@ export class HTMLNSOutlineViewElement extends HTMLNSTableViewElement {
   set outlineViewTintConfigurationForItem(value: (outlineView: NSOutlineView, item: interop.Object) => NSTintConfiguration) {
     this.delegate.outlineViewTintConfigurationForItem = value;
   }
-  set outlineViewTypeSelectStringForTableColumnItem(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object) => NSString) {
+  set outlineViewTypeSelectStringForTableColumnItem(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object) => string) {
     this.delegate.outlineViewTypeSelectStringForTableColumnItem = value;
   }
-  set outlineViewNextTypeSelectMatchFromItemToItemForString(value: (outlineView: NSOutlineView, startItem: interop.Object, endItem: interop.Object, searchString: NSString | string) => interop.Object) {
+  set outlineViewNextTypeSelectMatchFromItemToItemForString(value: (outlineView: NSOutlineView, startItem: interop.Object, endItem: interop.Object, searchString: string) => interop.Object) {
     this.delegate.outlineViewNextTypeSelectMatchFromItemToItemForString = value;
   }
-  set outlineViewShouldTypeSelectForEventWithCurrentSearchString(value: (outlineView: NSOutlineView, event: NSEvent, searchString: NSString | string | null) => boolean) {
+  set outlineViewShouldTypeSelectForEventWithCurrentSearchString(value: (outlineView: NSOutlineView, event: NSEvent, searchString: string | null) => boolean) {
     this.delegate.outlineViewShouldTypeSelectForEventWithCurrentSearchString = value;
   }
   set outlineViewShouldShowCellExpansionForTableColumnItem(value: (outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object) => boolean) {
@@ -11129,7 +11129,7 @@ export class HTMLNSOutlineViewElement extends HTMLNSTableViewElement {
   set outlineViewUserCanChangeVisibilityOfTableColumn(value: (outlineView: NSOutlineView, column: NSTableColumn) => boolean) {
     this.delegate.outlineViewUserCanChangeVisibilityOfTableColumn = value;
   }
-  set outlineViewUserDidChangeVisibilityOfTableColumns(value: (outlineView: NSOutlineView, columns: NSArray | unknown[]) => void) {
+  set outlineViewUserDidChangeVisibilityOfTableColumns(value: (outlineView: NSOutlineView, columns: NSArray<interop.Object> | Array<interop.Object>) => void) {
     this.delegate.outlineViewUserDidChangeVisibilityOfTableColumns = value;
   }
   set outlineViewSelectionDidChange(value: (notification: NSNotification) => void) {
@@ -11163,8 +11163,8 @@ export class HTMLNSDraggingImageComponentElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDraggingImageComponent.new();
 
-  get key(): NSString { return this.nativeObject.key; }
-  set key(value: NSString | string) { this.nativeObject.key = value; }
+  get key(): string { return this.nativeObject.key; }
+  set key(value: string) { this.nativeObject.key = value; }
   get contents(): interop.Object { return this.nativeObject.contents; }
   set contents(value: interop.Object) { this.nativeObject.contents = value; }
   get frame(): CGRect { return this.nativeObject.frame; }
@@ -11193,7 +11193,7 @@ export class NSTableViewDelegateImpl extends NSObject implements NSTableViewDele
   tableViewDidRemoveRowViewForRow?(tableView: NSTableView, rowView: NSTableRowView, row: number): void;
   tableViewWillDisplayCellForTableColumnRow?(tableView: NSTableView, cell: interop.Object, tableColumn: NSTableColumn | null, row: number): void;
   tableViewShouldEditTableColumnRow?(tableView: NSTableView, tableColumn: NSTableColumn | null, row: number): boolean;
-  tableViewToolTipForCellRectTableColumnRowMouseLocation?(tableView: NSTableView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, row: number, mouseLocation: CGPoint): NSString;
+  tableViewToolTipForCellRectTableColumnRowMouseLocation?(tableView: NSTableView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, row: number, mouseLocation: CGPoint): string;
   tableViewShouldShowCellExpansionForTableColumnRow?(tableView: NSTableView, tableColumn: NSTableColumn | null, row: number): boolean;
   tableViewShouldTrackCellForTableColumnRow?(tableView: NSTableView, cell: NSCell, tableColumn: NSTableColumn | null, row: number): boolean;
   tableViewDataCellForTableColumnRow?(tableView: NSTableView, tableColumn: NSTableColumn | null, row: number): NSCell;
@@ -11205,15 +11205,15 @@ export class NSTableViewDelegateImpl extends NSObject implements NSTableViewDele
   tableViewDidClickTableColumn?(tableView: NSTableView, tableColumn: NSTableColumn): void;
   tableViewDidDragTableColumn?(tableView: NSTableView, tableColumn: NSTableColumn): void;
   tableViewHeightOfRow?(tableView: NSTableView, row: number): number;
-  tableViewTypeSelectStringForTableColumnRow?(tableView: NSTableView, tableColumn: NSTableColumn | null, row: number): NSString;
-  tableViewNextTypeSelectMatchFromRowToRowForString?(tableView: NSTableView, startRow: number, endRow: number, searchString: NSString | string): number;
-  tableViewShouldTypeSelectForEventWithCurrentSearchString?(tableView: NSTableView, event: NSEvent, searchString: NSString | string | null): boolean;
+  tableViewTypeSelectStringForTableColumnRow?(tableView: NSTableView, tableColumn: NSTableColumn | null, row: number): string;
+  tableViewNextTypeSelectMatchFromRowToRowForString?(tableView: NSTableView, startRow: number, endRow: number, searchString: string): number;
+  tableViewShouldTypeSelectForEventWithCurrentSearchString?(tableView: NSTableView, event: NSEvent, searchString: string | null): boolean;
   tableViewIsGroupRow?(tableView: NSTableView, row: number): boolean;
   tableViewSizeToFitWidthOfColumn?(tableView: NSTableView, column: number): number;
   tableViewShouldReorderColumnToColumn?(tableView: NSTableView, columnIndex: number, newColumnIndex: number): boolean;
   tableViewRowActionsForRowEdge?(tableView: NSTableView, row: number, edge: interop.Enum<typeof NSTableRowActionEdge>): NSArray;
   tableViewUserCanChangeVisibilityOfTableColumn?(tableView: NSTableView, column: NSTableColumn): boolean;
-  tableViewUserDidChangeVisibilityOfTableColumns?(tableView: NSTableView, columns: NSArray | unknown[]): void;
+  tableViewUserDidChangeVisibilityOfTableColumns?(tableView: NSTableView, columns: NSArray<interop.Object> | Array<interop.Object>): void;
   tableViewSelectionDidChange?(notification: NSNotification): void;
   tableViewColumnDidMove?(notification: NSNotification): void;
   tableViewColumnDidResize?(notification: NSNotification): void;
@@ -11266,8 +11266,8 @@ export class NSMenuDelegateImpl extends NSObject implements NSMenuDelegate {
 export class NSStackViewDelegateImpl extends NSObject implements NSStackViewDelegate {
   static ObjCProtocols = [NSStackViewDelegate];
 
-  stackViewWillDetachViews?(stackView: NSStackView, views: NSArray | unknown[]): void;
-  stackViewDidReattachViews?(stackView: NSStackView, views: NSArray | unknown[]): void;
+  stackViewWillDetachViews?(stackView: NSStackView, views: NSArray<interop.Object> | Array<interop.Object>): void;
+  stackViewDidReattachViews?(stackView: NSStackView, views: NSArray<interop.Object> | Array<interop.Object>): void;
 }
 
 export class NSViewLayerContentScaleDelegateImpl extends NSObject implements NSViewLayerContentScaleDelegate {
@@ -11312,8 +11312,8 @@ export class NSRuleEditorDelegateImpl extends NSObject implements NSRuleEditorDe
 export class NSPageControllerDelegateImpl extends NSObject implements NSPageControllerDelegate {
   static ObjCProtocols = [NSPageControllerDelegate];
 
-  pageControllerIdentifierForObject?(pageController: NSPageController, object: interop.Object): NSString;
-  pageControllerViewControllerForIdentifier?(pageController: NSPageController, identifier: NSString | string): NSViewController;
+  pageControllerIdentifierForObject?(pageController: NSPageController, object: interop.Object): string;
+  pageControllerViewControllerForIdentifier?(pageController: NSPageController, identifier: string): NSViewController;
   pageControllerFrameForObject?(pageController: NSPageController, object: interop.Object | null): CGRect;
   pageControllerPrepareViewControllerWithObject?(pageController: NSPageController, viewController: NSViewController, object: interop.Object | null): void;
   pageControllerDidTransitionToObject?(pageController: NSPageController, object: interop.Object): void;
@@ -11350,25 +11350,25 @@ export class NSTextViewDelegateImpl extends NSObject implements NSTextViewDelega
   textViewDoubleClickedOnCellInRectAtIndex?(textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect, charIndex: number): void;
   textViewDraggedCellInRectEventAtIndex?(view: NSTextView, cell: NSTextAttachmentCell, rect: CGRect, event: NSEvent, charIndex: number): void;
   textViewWritablePasteboardTypesForCellAtIndex?(view: NSTextView, cell: NSTextAttachmentCell, charIndex: number): NSArray;
-  textViewWriteCellAtIndexToPasteboardType?(view: NSTextView, cell: NSTextAttachmentCell, charIndex: number, pboard: NSPasteboard, type: NSString | string): boolean;
+  textViewWriteCellAtIndexToPasteboardType?(view: NSTextView, cell: NSTextAttachmentCell, charIndex: number, pboard: NSPasteboard, type: string): boolean;
   textViewWillChangeSelectionFromCharacterRangeToCharacterRange?(textView: NSTextView, oldSelectedCharRange: _NSRange, newSelectedCharRange: _NSRange): _NSRange;
-  textViewWillChangeSelectionFromCharacterRangesToCharacterRanges?(textView: NSTextView, oldSelectedCharRanges: NSArray | unknown[], newSelectedCharRanges: NSArray | unknown[]): NSArray;
-  textViewShouldChangeTextInRangesReplacementStrings?(textView: NSTextView, affectedRanges: NSArray | unknown[], replacementStrings: NSArray | unknown[] | null): boolean;
-  textViewShouldChangeTypingAttributesToAttributes?(textView: NSTextView, oldTypingAttributes: NSDictionary | Record<string, unknown>, newTypingAttributes: NSDictionary | Record<string, unknown>): NSDictionary;
+  textViewWillChangeSelectionFromCharacterRangesToCharacterRanges?(textView: NSTextView, oldSelectedCharRanges: NSArray<interop.Object> | Array<interop.Object>, newSelectedCharRanges: NSArray<interop.Object> | Array<interop.Object>): NSArray;
+  textViewShouldChangeTextInRangesReplacementStrings?(textView: NSTextView, affectedRanges: NSArray<interop.Object> | Array<interop.Object>, replacementStrings: NSArray<interop.Object> | Array<interop.Object> | null): boolean;
+  textViewShouldChangeTypingAttributesToAttributes?(textView: NSTextView, oldTypingAttributes: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>, newTypingAttributes: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>): NSDictionary;
   textViewDidChangeSelection?(notification: NSNotification): void;
   textViewDidChangeTypingAttributes?(notification: NSNotification): void;
-  textViewWillDisplayToolTipForCharacterAtIndex?(textView: NSTextView, tooltip: NSString | string, characterIndex: number): NSString;
-  textViewCompletionsForPartialWordRangeIndexOfSelectedItem?(textView: NSTextView, words: NSArray | unknown[], charRange: _NSRange, index: interop.PointerConvertible): NSArray;
-  textViewShouldChangeTextInRangeReplacementString?(textView: NSTextView, affectedCharRange: _NSRange, replacementString: NSString | string | null): boolean;
+  textViewWillDisplayToolTipForCharacterAtIndex?(textView: NSTextView, tooltip: string, characterIndex: number): string;
+  textViewCompletionsForPartialWordRangeIndexOfSelectedItem?(textView: NSTextView, words: NSArray<interop.Object> | Array<interop.Object>, charRange: _NSRange, index: interop.PointerConvertible): NSArray;
+  textViewShouldChangeTextInRangeReplacementString?(textView: NSTextView, affectedCharRange: _NSRange, replacementString: string | null): boolean;
   textViewDoCommandBySelector?(textView: NSTextView, commandSelector: string): boolean;
   textViewShouldSetSpellingStateRange?(textView: NSTextView, value: number, affectedCharRange: _NSRange): number;
   textViewMenuForEventAtIndex?(view: NSTextView, menu: NSMenu, event: NSEvent, charIndex: number): NSMenu;
-  textViewWillCheckTextInRangeOptionsTypes?(view: NSTextView, range: _NSRange, options: NSDictionary | Record<string, unknown>, checkingTypes: interop.PointerConvertible): NSDictionary;
-  textViewDidCheckTextInRangeTypesOptionsResultsOrthographyWordCount?(view: NSTextView, range: _NSRange, checkingTypes: number, options: NSDictionary | Record<string, unknown>, results: NSArray | unknown[], orthography: NSOrthography, wordCount: number): NSArray;
+  textViewWillCheckTextInRangeOptionsTypes?(view: NSTextView, range: _NSRange, options: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>, checkingTypes: interop.PointerConvertible): NSDictionary;
+  textViewDidCheckTextInRangeTypesOptionsResultsOrthographyWordCount?(view: NSTextView, range: _NSRange, checkingTypes: number, options: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>, results: NSArray<interop.Object> | Array<interop.Object>, orthography: NSOrthography, wordCount: number): NSArray;
   textViewURLForContentsOfTextAttachmentAtIndex?(textView: NSTextView, textAttachment: NSTextAttachment, charIndex: number): NSURL;
-  textViewWillShowSharingServicePickerForItems?(textView: NSTextView, servicePicker: NSSharingServicePicker, items: NSArray | unknown[]): NSSharingServicePicker;
+  textViewWillShowSharingServicePickerForItems?(textView: NSTextView, servicePicker: NSSharingServicePicker, items: NSArray<interop.Object> | Array<interop.Object>): NSSharingServicePicker;
   undoManagerForTextView?(view: NSTextView): NSUndoManager;
-  textViewShouldUpdateTouchBarItemIdentifiers?(textView: NSTextView, identifiers: NSArray | unknown[]): NSArray;
+  textViewShouldUpdateTouchBarItemIdentifiers?(textView: NSTextView, identifiers: NSArray<interop.Object> | Array<interop.Object>): NSArray;
   textViewCandidatesForSelectedRange?(textView: NSTextView, selectedRange: _NSRange): NSArray;
   textViewShouldSelectCandidateAtIndex?(textView: NSTextView, index: number): boolean;
   textViewClickedOnLink?(textView: NSTextView, link: interop.Object): boolean;
@@ -11380,12 +11380,12 @@ export class NSTextViewDelegateImpl extends NSObject implements NSTextViewDelega
 export class NSSharingServiceDelegateImpl extends NSObject implements NSSharingServiceDelegate {
   static ObjCProtocols = [NSSharingServiceDelegate];
 
-  sharingServiceWillShareItems?(sharingService: NSSharingService, items: NSArray | unknown[]): void;
-  sharingServiceDidFailToShareItemsError?(sharingService: NSSharingService, items: NSArray | unknown[], error: NSError): void;
-  sharingServiceDidShareItems?(sharingService: NSSharingService, items: NSArray | unknown[]): void;
+  sharingServiceWillShareItems?(sharingService: NSSharingService, items: NSArray<interop.Object> | Array<interop.Object>): void;
+  sharingServiceDidFailToShareItemsError?(sharingService: NSSharingService, items: NSArray<interop.Object> | Array<interop.Object>, error: NSError): void;
+  sharingServiceDidShareItems?(sharingService: NSSharingService, items: NSArray<interop.Object> | Array<interop.Object>): void;
   sharingServiceSourceFrameOnScreenForShareItem?(sharingService: NSSharingService, item: interop.Object): CGRect;
   sharingServiceTransitionImageForShareItemContentRect?(sharingService: NSSharingService, item: interop.Object, contentRect: interop.PointerConvertible): NSImage;
-  sharingServiceSourceWindowForShareItemsSharingContentScope?(sharingService: NSSharingService, items: NSArray | unknown[], sharingContentScope: interop.PointerConvertible): NSWindow;
+  sharingServiceSourceWindowForShareItemsSharingContentScope?(sharingService: NSSharingService, items: NSArray<interop.Object> | Array<interop.Object>, sharingContentScope: interop.PointerConvertible): NSWindow;
   anchoringViewForSharingServiceShowRelativeToRectPreferredEdge?(sharingService: NSSharingService, positioningRect: interop.PointerConvertible, preferredEdge: interop.PointerConvertible): NSView;
 }
 
@@ -11401,11 +11401,11 @@ export class NSControlTextEditingDelegateImpl extends NSObject implements NSCont
 
   controlTextShouldBeginEditing?(control: NSControl, fieldEditor: NSText): boolean;
   controlTextShouldEndEditing?(control: NSControl, fieldEditor: NSText): boolean;
-  controlDidFailToFormatStringErrorDescription?(control: NSControl, string: NSString | string, error: NSString | string | null): boolean;
-  controlDidFailToValidatePartialStringErrorDescription?(control: NSControl, string: NSString | string, error: NSString | string | null): void;
+  controlDidFailToFormatStringErrorDescription?(control: NSControl, string: string, error: string | null): boolean;
+  controlDidFailToValidatePartialStringErrorDescription?(control: NSControl, string: string, error: string | null): void;
   controlIsValidObject?(control: NSControl, obj: interop.Object | null): boolean;
   controlTextViewDoCommandBySelector?(control: NSControl, textView: NSTextView, commandSelector: string): boolean;
-  controlTextViewCompletionsForPartialWordRangeIndexOfSelectedItem?(control: NSControl, textView: NSTextView, words: NSArray | unknown[], charRange: _NSRange, index: interop.PointerConvertible): NSArray;
+  controlTextViewCompletionsForPartialWordRangeIndexOfSelectedItem?(control: NSControl, textView: NSTextView, words: NSArray<interop.Object> | Array<interop.Object>, charRange: _NSRange, index: interop.PointerConvertible): NSArray;
 }
 
 export class NSTextFieldDelegateImpl extends NSObject implements NSTextFieldDelegate {
@@ -11421,7 +11421,7 @@ export class NSOpenSavePanelDelegateImpl extends NSObject implements NSOpenSaveP
   panelShouldEnableURL?(sender: interop.Object, url: NSURL): boolean;
   panelValidateURLError?(sender: interop.Object, url: NSURL, outError: interop.PointerConvertible): boolean;
   panelDidChangeToDirectoryURL?(sender: interop.Object, url: NSURL | null): void;
-  panelUserEnteredFilenameConfirmed?(sender: interop.Object, filename: NSString | string, okFlag: boolean): NSString;
+  panelUserEnteredFilenameConfirmed?(sender: interop.Object, filename: string, okFlag: boolean): string;
   panelWillExpand?(sender: interop.Object, expanding: boolean): void;
   panelSelectionDidChange?(sender: interop.Object | null): void;
 }
@@ -11429,13 +11429,13 @@ export class NSOpenSavePanelDelegateImpl extends NSObject implements NSOpenSaveP
 export class NSSpeechRecognizerDelegateImpl extends NSObject implements NSSpeechRecognizerDelegate {
   static ObjCProtocols = [NSSpeechRecognizerDelegate];
 
-  speechRecognizerDidRecognizeCommand?(sender: NSSpeechRecognizer, command: NSString | string): void;
+  speechRecognizerDidRecognizeCommand?(sender: NSSpeechRecognizer, command: string): void;
 }
 
 export class NSCloudSharingServiceDelegateImpl extends NSObject implements NSCloudSharingServiceDelegate {
   static ObjCProtocols = [NSCloudSharingServiceDelegate];
 
-  sharingServiceDidCompleteForItemsError?(sharingService: NSSharingService, items: NSArray | unknown[], error: NSError | null): void;
+  sharingServiceDidCompleteForItemsError?(sharingService: NSSharingService, items: NSArray<interop.Object> | Array<interop.Object>, error: NSError | null): void;
   optionsForSharingServiceShareProvider?(cloudKitSharingService: NSSharingService, provider: NSItemProvider): interop.Enum<typeof NSCloudKitSharingServiceOptions>;
   sharingServiceDidSaveShare?(sharingService: NSSharingService, share: CKShare): void;
   sharingServiceDidStopSharing?(sharingService: NSSharingService, share: CKShare): void;
@@ -11451,10 +11451,10 @@ export class NSSpeechSynthesizerDelegateImpl extends NSObject implements NSSpeec
   static ObjCProtocols = [NSSpeechSynthesizerDelegate];
 
   speechSynthesizerDidFinishSpeaking?(sender: NSSpeechSynthesizer, finishedSpeaking: boolean): void;
-  speechSynthesizerWillSpeakWordOfString?(sender: NSSpeechSynthesizer, characterRange: _NSRange, string: NSString | string): void;
+  speechSynthesizerWillSpeakWordOfString?(sender: NSSpeechSynthesizer, characterRange: _NSRange, string: string): void;
   speechSynthesizerWillSpeakPhoneme?(sender: NSSpeechSynthesizer, phonemeOpcode: number): void;
-  speechSynthesizerDidEncounterErrorAtIndexOfStringMessage?(sender: NSSpeechSynthesizer, characterIndex: number, string: NSString | string, message: NSString | string): void;
-  speechSynthesizerDidEncounterSyncMessage?(sender: NSSpeechSynthesizer, message: NSString | string): void;
+  speechSynthesizerDidEncounterErrorAtIndexOfStringMessage?(sender: NSSpeechSynthesizer, characterIndex: number, string: string, message: string): void;
+  speechSynthesizerDidEncounterSyncMessage?(sender: NSSpeechSynthesizer, message: string): void;
 }
 
 export class NSCandidateListTouchBarItemDelegateImpl extends NSObject implements NSCandidateListTouchBarItemDelegate {
@@ -11480,8 +11480,8 @@ export class NSBrowserDelegateImpl extends NSObject implements NSBrowserDelegate
   browserSetObjectValueForItem?(browser: NSBrowser, object: interop.Object | null, item: interop.Object | null): void;
   browserShouldEditItem?(browser: NSBrowser, item: interop.Object | null): boolean;
   browserWillDisplayCellAtRowColumn?(sender: NSBrowser, cell: interop.Object, row: number, column: number): void;
-  browserTitleOfColumn?(sender: NSBrowser, column: number): NSString;
-  browserSelectCellWithStringInColumn?(sender: NSBrowser, title: NSString | string, column: number): boolean;
+  browserTitleOfColumn?(sender: NSBrowser, column: number): string;
+  browserSelectCellWithStringInColumn?(sender: NSBrowser, title: string, column: number): boolean;
   browserSelectRowInColumn?(sender: NSBrowser, row: number, column: number): boolean;
   browserIsColumnValid?(sender: NSBrowser, column: number): boolean;
   browserWillScroll?(sender: NSBrowser): void;
@@ -11496,9 +11496,9 @@ export class NSBrowserDelegateImpl extends NSObject implements NSBrowserDelegate
   browserDraggingImageForRowsWithIndexesInColumnWithEventOffset?(browser: NSBrowser, rowIndexes: NSIndexSet, column: number, event: NSEvent, dragImageOffset: interop.PointerConvertible): NSImage;
   browserValidateDropProposedRowColumnDropOperation?(browser: NSBrowser, info: NSDraggingInfo, row: interop.PointerConvertible, column: interop.PointerConvertible, dropOperation: interop.PointerConvertible): interop.Enum<typeof NSDragOperation>;
   browserAcceptDropAtRowColumnDropOperation?(browser: NSBrowser, info: NSDraggingInfo, row: number, column: number, dropOperation: interop.Enum<typeof NSBrowserDropOperation>): boolean;
-  browserTypeSelectStringForRowInColumn?(browser: NSBrowser, row: number, column: number): NSString;
-  browserShouldTypeSelectForEventWithCurrentSearchString?(browser: NSBrowser, event: NSEvent, searchString: NSString | string | null): boolean;
-  browserNextTypeSelectMatchFromRowToRowInColumnForString?(browser: NSBrowser, startRow: number, endRow: number, column: number, searchString: NSString | string | null): number;
+  browserTypeSelectStringForRowInColumn?(browser: NSBrowser, row: number, column: number): string;
+  browserShouldTypeSelectForEventWithCurrentSearchString?(browser: NSBrowser, event: NSEvent, searchString: string | null): boolean;
+  browserNextTypeSelectMatchFromRowToRowInColumnForString?(browser: NSBrowser, startRow: number, endRow: number, column: number, searchString: string | null): number;
   browserPreviewViewControllerForLeafItem?(browser: NSBrowser, item: interop.Object): NSViewController;
   browserHeaderViewControllerForItem?(browser: NSBrowser, item: interop.Object | null): NSViewController;
   browserDidChangeLastColumnToColumn?(browser: NSBrowser, oldLastColumn: number, column: number): void;
@@ -11590,9 +11590,9 @@ export class NSCollectionViewDelegateImpl extends NSObject implements NSCollecti
   collectionViewDidSelectItemsAtIndexPaths?(collectionView: NSCollectionView, indexPaths: NSSet): void;
   collectionViewDidDeselectItemsAtIndexPaths?(collectionView: NSCollectionView, indexPaths: NSSet): void;
   collectionViewWillDisplayItemForRepresentedObjectAtIndexPath?(collectionView: NSCollectionView, item: NSCollectionViewItem, indexPath: NSIndexPath): void;
-  collectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath?(collectionView: NSCollectionView, view: NSView, elementKind: NSString | string, indexPath: NSIndexPath): void;
+  collectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath?(collectionView: NSCollectionView, view: NSView, elementKind: string, indexPath: NSIndexPath): void;
   collectionViewDidEndDisplayingItemForRepresentedObjectAtIndexPath?(collectionView: NSCollectionView, item: NSCollectionViewItem, indexPath: NSIndexPath): void;
-  collectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath?(collectionView: NSCollectionView, view: NSView, elementKind: NSString | string, indexPath: NSIndexPath): void;
+  collectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath?(collectionView: NSCollectionView, view: NSView, elementKind: string, indexPath: NSIndexPath): void;
   collectionViewTransitionLayoutForOldLayoutNewLayout?(collectionView: NSCollectionView, fromLayout: NSCollectionViewLayout, toLayout: NSCollectionViewLayout): NSCollectionViewTransitionLayout;
 }
 
@@ -11633,7 +11633,7 @@ export class NSTextContentManagerDelegateImpl extends NSObject implements NSText
 export class NSTouchBarDelegateImpl extends NSObject implements NSTouchBarDelegate {
   static ObjCProtocols = [NSTouchBarDelegate];
 
-  touchBarMakeItemForIdentifier?(touchBar: NSTouchBar, identifier: NSString | string): NSTouchBarItem;
+  touchBarMakeItemForIdentifier?(touchBar: NSTouchBar, identifier: string): NSTouchBarItem;
 }
 
 export class NSPopoverDelegateImpl extends NSObject implements NSPopoverDelegate {
@@ -11667,12 +11667,12 @@ export class NSAccessibilityCustomRotorItemSearchDelegateImpl extends NSObject i
 export class NSTokenFieldCellDelegateImpl extends NSObject implements NSTokenFieldCellDelegate {
   static ObjCProtocols = [NSTokenFieldCellDelegate];
 
-  tokenFieldCellCompletionsForSubstringIndexOfTokenIndexOfSelectedItem?(tokenFieldCell: NSTokenFieldCell, substring: NSString | string, tokenIndex: number, selectedIndex: interop.PointerConvertible): NSArray;
-  tokenFieldCellShouldAddObjectsAtIndex?(tokenFieldCell: NSTokenFieldCell, tokens: NSArray | unknown[], index: number): NSArray;
-  tokenFieldCellDisplayStringForRepresentedObject?(tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object): NSString;
-  tokenFieldCellEditingStringForRepresentedObject?(tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object): NSString;
-  tokenFieldCellRepresentedObjectForEditingString?(tokenFieldCell: NSTokenFieldCell, editingString: NSString | string): interop.Object;
-  tokenFieldCellWriteRepresentedObjectsToPasteboard?(tokenFieldCell: NSTokenFieldCell, objects: NSArray | unknown[], pboard: NSPasteboard): boolean;
+  tokenFieldCellCompletionsForSubstringIndexOfTokenIndexOfSelectedItem?(tokenFieldCell: NSTokenFieldCell, substring: string, tokenIndex: number, selectedIndex: interop.PointerConvertible): NSArray;
+  tokenFieldCellShouldAddObjectsAtIndex?(tokenFieldCell: NSTokenFieldCell, tokens: NSArray<interop.Object> | Array<interop.Object>, index: number): NSArray;
+  tokenFieldCellDisplayStringForRepresentedObject?(tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object): string;
+  tokenFieldCellEditingStringForRepresentedObject?(tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object): string;
+  tokenFieldCellRepresentedObjectForEditingString?(tokenFieldCell: NSTokenFieldCell, editingString: string): interop.Object;
+  tokenFieldCellWriteRepresentedObjectsToPasteboard?(tokenFieldCell: NSTokenFieldCell, objects: NSArray<interop.Object> | Array<interop.Object>, pboard: NSPasteboard): boolean;
   tokenFieldCellReadFromPasteboard?(tokenFieldCell: NSTokenFieldCell, pboard: NSPasteboard): NSArray;
   tokenFieldCellMenuForRepresentedObject?(tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object): NSMenu;
   tokenFieldCellHasMenuForRepresentedObject?(tokenFieldCell: NSTokenFieldCell, representedObject: interop.Object): boolean;
@@ -11693,7 +11693,7 @@ export class NSPathControlDelegateImpl extends NSObject implements NSPathControl
 export class NSFilePromiseProviderDelegateImpl extends NSObject implements NSFilePromiseProviderDelegate {
   static ObjCProtocols = [NSFilePromiseProviderDelegate];
 
-  filePromiseProviderFileNameForType(filePromiseProvider: NSFilePromiseProvider, fileType: NSString | string): NSString {
+  filePromiseProviderFileNameForType(filePromiseProvider: NSFilePromiseProvider, fileType: string): string {
     throw new Error("Please provide implementation for: NSFilePromiseProviderDelegate > filePromiseProviderFileNameForType");
   }
   filePromiseProviderWritePromiseToURLCompletionHandler(filePromiseProvider: NSFilePromiseProvider, url: NSURL, completionHandler: (p1: NSError) => void | null): void {
@@ -11706,29 +11706,29 @@ export class NSApplicationDelegateImpl extends NSObject implements NSApplication
   static ObjCProtocols = [NSApplicationDelegate];
 
   applicationShouldTerminate?(sender: NSApplication): interop.Enum<typeof NSApplicationTerminateReply>;
-  applicationOpenURLs?(application: NSApplication, urls: NSArray | unknown[]): void;
-  applicationOpenFile?(sender: NSApplication, filename: NSString | string): boolean;
-  applicationOpenFiles?(sender: NSApplication, filenames: NSArray | unknown[]): void;
-  applicationOpenTempFile?(sender: NSApplication, filename: NSString | string): boolean;
+  applicationOpenURLs?(application: NSApplication, urls: NSArray<interop.Object> | Array<interop.Object>): void;
+  applicationOpenFile?(sender: NSApplication, filename: string): boolean;
+  applicationOpenFiles?(sender: NSApplication, filenames: NSArray<interop.Object> | Array<interop.Object>): void;
+  applicationOpenTempFile?(sender: NSApplication, filename: string): boolean;
   applicationShouldOpenUntitledFile?(sender: NSApplication): boolean;
   applicationOpenUntitledFile?(sender: NSApplication): boolean;
-  applicationOpenFileWithoutUI?(sender: interop.Object, filename: NSString | string): boolean;
-  applicationPrintFile?(sender: NSApplication, filename: NSString | string): boolean;
-  applicationPrintFilesWithSettingsShowPrintPanels?(application: NSApplication, fileNames: NSArray | unknown[], printSettings: NSDictionary | Record<string, unknown>, showPrintPanels: boolean): interop.Enum<typeof NSApplicationPrintReply>;
+  applicationOpenFileWithoutUI?(sender: interop.Object, filename: string): boolean;
+  applicationPrintFile?(sender: NSApplication, filename: string): boolean;
+  applicationPrintFilesWithSettingsShowPrintPanels?(application: NSApplication, fileNames: NSArray<interop.Object> | Array<interop.Object>, printSettings: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>, showPrintPanels: boolean): interop.Enum<typeof NSApplicationPrintReply>;
   applicationShouldTerminateAfterLastWindowClosed?(sender: NSApplication): boolean;
   applicationShouldHandleReopenHasVisibleWindows?(sender: NSApplication, flag: boolean): boolean;
   applicationDockMenu?(sender: NSApplication): NSMenu;
   applicationWillPresentError?(application: NSApplication, error: NSError): NSError;
   applicationDidRegisterForRemoteNotificationsWithDeviceToken?(application: NSApplication, deviceToken: NSData): void;
   applicationDidFailToRegisterForRemoteNotificationsWithError?(application: NSApplication, error: NSError): void;
-  applicationDidReceiveRemoteNotification?(application: NSApplication, userInfo: NSDictionary | Record<string, unknown>): void;
+  applicationDidReceiveRemoteNotification?(application: NSApplication, userInfo: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>): void;
   applicationSupportsSecureRestorableState?(app: NSApplication): boolean;
   applicationHandlerForIntent?(application: NSApplication, intent: INIntent): interop.Object;
   applicationWillEncodeRestorableState?(app: NSApplication, coder: NSCoder): void;
   applicationDidDecodeRestorableState?(app: NSApplication, coder: NSCoder): void;
-  applicationWillContinueUserActivityWithType?(application: NSApplication, userActivityType: NSString | string): boolean;
-  applicationContinueUserActivityRestorationHandler?(application: NSApplication, userActivity: NSUserActivity, restorationHandler: (p1: NSArray | unknown[]) => void): boolean;
-  applicationDidFailToContinueUserActivityWithTypeError?(application: NSApplication, userActivityType: NSString | string, error: NSError): void;
+  applicationWillContinueUserActivityWithType?(application: NSApplication, userActivityType: string): boolean;
+  applicationContinueUserActivityRestorationHandler?(application: NSApplication, userActivity: NSUserActivity, restorationHandler: (p1: NSArray<interop.Object> | Array<interop.Object>) => void): boolean;
+  applicationDidFailToContinueUserActivityWithTypeError?(application: NSApplication, userActivityType: string, error: NSError): void;
   applicationDidUpdateUserActivity?(application: NSApplication, userActivity: NSUserActivity): void;
   applicationUserDidAcceptCloudKitShareWithMetadata?(application: NSApplication, metadata: CKShareMetadata): void;
   applicationShouldAutomaticallyLocalizeKeyEquivalents?(application: NSApplication): boolean;
@@ -11785,12 +11785,12 @@ export class NSOutlineViewDelegateImpl extends NSObject implements NSOutlineView
   outlineViewMouseDownInHeaderOfTableColumn?(outlineView: NSOutlineView, tableColumn: NSTableColumn): void;
   outlineViewDidClickTableColumn?(outlineView: NSOutlineView, tableColumn: NSTableColumn): void;
   outlineViewDidDragTableColumn?(outlineView: NSOutlineView, tableColumn: NSTableColumn): void;
-  outlineViewToolTipForCellRectTableColumnItemMouseLocation?(outlineView: NSOutlineView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, item: interop.Object, mouseLocation: CGPoint): NSString;
+  outlineViewToolTipForCellRectTableColumnItemMouseLocation?(outlineView: NSOutlineView, cell: NSCell, rect: interop.PointerConvertible, tableColumn: NSTableColumn | null, item: interop.Object, mouseLocation: CGPoint): string;
   outlineViewHeightOfRowByItem?(outlineView: NSOutlineView, item: interop.Object): number;
   outlineViewTintConfigurationForItem?(outlineView: NSOutlineView, item: interop.Object): NSTintConfiguration;
-  outlineViewTypeSelectStringForTableColumnItem?(outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object): NSString;
-  outlineViewNextTypeSelectMatchFromItemToItemForString?(outlineView: NSOutlineView, startItem: interop.Object, endItem: interop.Object, searchString: NSString | string): interop.Object;
-  outlineViewShouldTypeSelectForEventWithCurrentSearchString?(outlineView: NSOutlineView, event: NSEvent, searchString: NSString | string | null): boolean;
+  outlineViewTypeSelectStringForTableColumnItem?(outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object): string;
+  outlineViewNextTypeSelectMatchFromItemToItemForString?(outlineView: NSOutlineView, startItem: interop.Object, endItem: interop.Object, searchString: string): interop.Object;
+  outlineViewShouldTypeSelectForEventWithCurrentSearchString?(outlineView: NSOutlineView, event: NSEvent, searchString: string | null): boolean;
   outlineViewShouldShowCellExpansionForTableColumnItem?(outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object): boolean;
   outlineViewShouldTrackCellForTableColumnItem?(outlineView: NSOutlineView, cell: NSCell, tableColumn: NSTableColumn | null, item: interop.Object): boolean;
   outlineViewDataCellForTableColumnItem?(outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object): NSCell;
@@ -11802,7 +11802,7 @@ export class NSOutlineViewDelegateImpl extends NSObject implements NSOutlineView
   outlineViewShouldReorderColumnToColumn?(outlineView: NSOutlineView, columnIndex: number, newColumnIndex: number): boolean;
   outlineViewShouldShowOutlineCellForItem?(outlineView: NSOutlineView, item: interop.Object): boolean;
   outlineViewUserCanChangeVisibilityOfTableColumn?(outlineView: NSOutlineView, column: NSTableColumn): boolean;
-  outlineViewUserDidChangeVisibilityOfTableColumns?(outlineView: NSOutlineView, columns: NSArray | unknown[]): void;
+  outlineViewUserDidChangeVisibilityOfTableColumns?(outlineView: NSOutlineView, columns: NSArray<interop.Object> | Array<interop.Object>): void;
   outlineViewSelectionDidChange?(notification: NSNotification): void;
   outlineViewColumnDidMove?(notification: NSNotification): void;
   outlineViewColumnDidResize?(notification: NSNotification): void;
@@ -11820,7 +11820,7 @@ export class NSMatrixDelegateImpl extends NSObject implements NSMatrixDelegate {
 export class NSSharingServicePickerDelegateImpl extends NSObject implements NSSharingServicePickerDelegate {
   static ObjCProtocols = [NSSharingServicePickerDelegate];
 
-  sharingServicePickerSharingServicesForItemsProposedSharingServices?(sharingServicePicker: NSSharingServicePicker, items: NSArray | unknown[], proposedServices: NSArray | unknown[]): NSArray;
+  sharingServicePickerSharingServicesForItemsProposedSharingServices?(sharingServicePicker: NSSharingServicePicker, items: NSArray<interop.Object> | Array<interop.Object>, proposedServices: NSArray<interop.Object> | Array<interop.Object>): NSArray;
   sharingServicePickerDelegateForSharingService?(sharingServicePicker: NSSharingServicePicker, sharingService: NSSharingService): NSSharingServiceDelegate;
   sharingServicePickerDidChooseSharingService?(sharingServicePicker: NSSharingServicePicker, service: NSSharingService | null): void;
 }
@@ -11854,12 +11854,12 @@ export class NSComboBoxDelegateImpl extends NSObject implements NSComboBoxDelega
 export class NSToolbarDelegateImpl extends NSObject implements NSToolbarDelegate {
   static ObjCProtocols = [NSToolbarDelegate];
 
-  toolbarItemForItemIdentifierWillBeInsertedIntoToolbar?(toolbar: NSToolbar, itemIdentifier: NSString | string, flag: boolean): NSToolbarItem;
+  toolbarItemForItemIdentifierWillBeInsertedIntoToolbar?(toolbar: NSToolbar, itemIdentifier: string, flag: boolean): NSToolbarItem;
   toolbarDefaultItemIdentifiers?(toolbar: NSToolbar): NSArray;
   toolbarAllowedItemIdentifiers?(toolbar: NSToolbar): NSArray;
   toolbarSelectableItemIdentifiers?(toolbar: NSToolbar): NSArray;
   toolbarImmovableItemIdentifiers?(toolbar: NSToolbar): NSSet;
-  toolbarItemIdentifierCanBeInsertedAtIndex?(toolbar: NSToolbar, itemIdentifier: NSString | string, index: number): boolean;
+  toolbarItemIdentifierCanBeInsertedAtIndex?(toolbar: NSToolbar, itemIdentifier: string, index: number): boolean;
   toolbarWillAddItem?(notification: NSNotification): void;
   toolbarDidRemoveItem?(notification: NSNotification): void;
 }
@@ -11867,12 +11867,12 @@ export class NSToolbarDelegateImpl extends NSObject implements NSToolbarDelegate
 export class NSTokenFieldDelegateImpl extends NSObject implements NSTokenFieldDelegate {
   static ObjCProtocols = [NSTokenFieldDelegate];
 
-  tokenFieldCompletionsForSubstringIndexOfTokenIndexOfSelectedItem?(tokenField: NSTokenField, substring: NSString | string, tokenIndex: number, selectedIndex: interop.PointerConvertible): NSArray;
-  tokenFieldShouldAddObjectsAtIndex?(tokenField: NSTokenField, tokens: NSArray | unknown[], index: number): NSArray;
-  tokenFieldDisplayStringForRepresentedObject?(tokenField: NSTokenField, representedObject: interop.Object): NSString;
-  tokenFieldEditingStringForRepresentedObject?(tokenField: NSTokenField, representedObject: interop.Object): NSString;
-  tokenFieldRepresentedObjectForEditingString?(tokenField: NSTokenField, editingString: NSString | string): interop.Object;
-  tokenFieldWriteRepresentedObjectsToPasteboard?(tokenField: NSTokenField, objects: NSArray | unknown[], pboard: NSPasteboard): boolean;
+  tokenFieldCompletionsForSubstringIndexOfTokenIndexOfSelectedItem?(tokenField: NSTokenField, substring: string, tokenIndex: number, selectedIndex: interop.PointerConvertible): NSArray;
+  tokenFieldShouldAddObjectsAtIndex?(tokenField: NSTokenField, tokens: NSArray<interop.Object> | Array<interop.Object>, index: number): NSArray;
+  tokenFieldDisplayStringForRepresentedObject?(tokenField: NSTokenField, representedObject: interop.Object): string;
+  tokenFieldEditingStringForRepresentedObject?(tokenField: NSTokenField, representedObject: interop.Object): string;
+  tokenFieldRepresentedObjectForEditingString?(tokenField: NSTokenField, editingString: string): interop.Object;
+  tokenFieldWriteRepresentedObjectsToPasteboard?(tokenField: NSTokenField, objects: NSArray<interop.Object> | Array<interop.Object>, pboard: NSPasteboard): boolean;
   tokenFieldReadFromPasteboard?(tokenField: NSTokenField, pboard: NSPasteboard): NSArray;
   tokenFieldMenuForRepresentedObject?(tokenField: NSTokenField, representedObject: interop.Object): NSMenu;
   tokenFieldHasMenuForRepresentedObject?(tokenField: NSTokenField, representedObject: interop.Object): boolean;
@@ -11884,7 +11884,7 @@ export class NSTextLayoutManagerDelegateImpl extends NSObject implements NSTextL
 
   textLayoutManagerTextLayoutFragmentForLocationInTextElement?(textLayoutManager: NSTextLayoutManager, location: NSTextLocation, textElement: NSTextElement): NSTextLayoutFragment;
   textLayoutManagerShouldBreakLineBeforeLocationHyphenating?(textLayoutManager: NSTextLayoutManager, location: NSTextLocation, hyphenating: boolean): boolean;
-  textLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes?(textLayoutManager: NSTextLayoutManager, link: interop.Object, location: NSTextLocation, renderingAttributes: NSDictionary | Record<string, unknown>): NSDictionary;
+  textLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes?(textLayoutManager: NSTextLayoutManager, link: interop.Object, location: NSTextLocation, renderingAttributes: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>): NSDictionary;
 }
 
 export class NSLayoutManagerDelegateImpl extends NSObject implements NSLayoutManagerDelegate {
@@ -11902,7 +11902,7 @@ export class NSLayoutManagerDelegateImpl extends NSObject implements NSLayoutMan
   layoutManagerDidInvalidateLayout?(sender: NSLayoutManager): void;
   layoutManagerDidCompleteLayoutForTextContainerAtEnd?(layoutManager: NSLayoutManager, textContainer: NSTextContainer | null, layoutFinishedFlag: boolean): void;
   layoutManagerTextContainerDidChangeGeometryFromSize?(layoutManager: NSLayoutManager, textContainer: NSTextContainer, oldSize: CGSize): void;
-  layoutManagerShouldUseTemporaryAttributesForDrawingToScreenAtCharacterIndexEffectiveRange?(layoutManager: NSLayoutManager, attrs: NSDictionary | Record<string, unknown>, toScreen: boolean, charIndex: number, effectiveCharRange: interop.PointerConvertible): NSDictionary;
+  layoutManagerShouldUseTemporaryAttributesForDrawingToScreenAtCharacterIndexEffectiveRange?(layoutManager: NSLayoutManager, attrs: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>, toScreen: boolean, charIndex: number, effectiveCharRange: interop.PointerConvertible): NSDictionary;
 }
 
 export class NSSearchFieldDelegateImpl extends NSObject implements NSSearchFieldDelegate {

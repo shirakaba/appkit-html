@@ -889,6 +889,7 @@ function parseTsIgnore(line) {
   contents: Array<string>;
   footer: string;
   className: string;
+  classGeneric?: string;
   superclass: string;
 }} ClassMeta
 */
@@ -899,7 +900,7 @@ function parseTsIgnore(line) {
  */
 function parseViewClassHeader(line, tsIgnoring) {
   const match = line.match(
-    /^declare class (.*?) extends (.*?) (?:implements (.*?) )?{/
+    /^declare class (.*?)(<.*>)? extends (.*?) (?:implements (.*?) )?{/
   );
   if (!match) {
     return null;
@@ -907,7 +908,7 @@ function parseViewClassHeader(line, tsIgnoring) {
 
   // Warning: superclass may come from outside AppKit (NSObject).
   // Warning: class may extend a class that is only declared later on.
-  const [_header, className, superclass, _implementees] = match;
+  const [_header, className, classGeneric, superclass, _implementees] = match;
 
   // We're only interested in view classes, and NSObject.
   if (
@@ -941,7 +942,7 @@ function parseViewClassHeader(line, tsIgnoring) {
   ];
   const footer = '}';
 
-  return { header, contents, footer, className, superclass };
+  return { header, contents, footer, className, classGeneric, superclass };
 }
 
 /**
