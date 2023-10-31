@@ -1170,6 +1170,8 @@ export class HTMLNSCellElement extends HTMLNSObjectElement {
   set action(value: string) { this.nativeObject.action = value; }
   get tag(): number { return this.nativeObject.tag; }
   set tag(value: number) { this.nativeObject.tag = value; }
+  get title(): string { return this.nativeObject.title; }
+  set title(value: string) { this.nativeObject.title = value; }
   get isOpaque(): boolean { return this.nativeObject.isOpaque; }
   get isEnabled(): boolean { return this.nativeObject.isEnabled; }
   set isEnabled(value: boolean) { this.nativeObject.isEnabled = value; }
@@ -1536,6 +1538,8 @@ export class HTMLNSStatusItemElement extends HTMLNSObjectElement {
   set doubleAction(value: string) { this.nativeObject.doubleAction = value; }
   get target(): interop.Object { return this.nativeObject.target; }
   set target(value: interop.Object) { this.nativeObject.target = value; }
+  get title(): string { return this.nativeObject.title; }
+  set title(value: string) { this.nativeObject.title = value; }
   get attributedTitle(): NSAttributedString { return this.nativeObject.attributedTitle; }
   set attributedTitle(value: NSAttributedString) { this.nativeObject.attributedTitle = value; }
   get image(): NSImage { return this.nativeObject.image; }
@@ -1591,6 +1595,8 @@ export class HTMLNSTableViewRowActionElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTableViewRowAction.new();
 
+  get title(): string { return this.nativeObject.title; }
+  set title(value: string) { this.nativeObject.title = value; }
   get backgroundColor(): NSColor { return this.nativeObject.backgroundColor; }
   set backgroundColor(value: NSColor) { this.nativeObject.backgroundColor = value; }
   get image(): NSImage { return this.nativeObject.image; }
@@ -1638,6 +1644,8 @@ export class HTMLNSToolbarItemElement extends HTMLNSObjectElement {
   set isEnabled(value: boolean) { this.nativeObject.isEnabled = value; }
   get image(): NSImage { return this.nativeObject.image; }
   set image(value: NSImage) { this.nativeObject.image = value; }
+  get title(): string { return this.nativeObject.title; }
+  set title(value: string) { this.nativeObject.title = value; }
   get isBordered(): boolean { return this.nativeObject.isBordered; }
   set isBordered(value: boolean) { this.nativeObject.isBordered = value; }
   get isNavigational(): boolean { return this.nativeObject.isNavigational; }
@@ -2594,6 +2602,8 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
     return this.nativeObject.delegate as NSWindowDelegateImpl;
   }
 
+  get title(): string { return this.nativeObject.title; }
+  set title(value: string) { this.nativeObject.title = value; }
   get subtitle(): string { return this.nativeObject.subtitle; }
   set subtitle(value: string) { this.nativeObject.subtitle = value; }
   get titleVisibility(): interop.Enum<typeof NSWindowTitleVisibility> { return this.nativeObject.titleVisibility; }
@@ -3402,6 +3412,8 @@ export class HTMLNSWindowTabElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSWindowTab.new();
 
+  get title(): string { return this.nativeObject.title; }
+  set title(value: string) { this.nativeObject.title = value; }
   get attributedTitle(): NSAttributedString { return this.nativeObject.attributedTitle; }
   set attributedTitle(value: NSAttributedString) { this.nativeObject.attributedTitle = value; }
   get toolTip(): string { return this.nativeObject.toolTip; }
@@ -3817,6 +3829,7 @@ export class HTMLNSSharingServiceElement extends HTMLNSObjectElement {
     return this.nativeObject.delegate as NSSharingServiceDelegateImpl;
   }
 
+  get title(): string { return this.nativeObject.title; }
   get image(): NSImage { return this.nativeObject.image; }
   get alternateImage(): NSImage { return this.nativeObject.alternateImage; }
   get menuItemTitle(): string { return this.nativeObject.menuItemTitle; }
@@ -3927,6 +3940,7 @@ export class HTMLNSPreviewRepresentingActivityItemElement extends HTMLNSObjectEl
   readonly nativeObject = NSPreviewRepresentingActivityItem.new();
 
   get item(): interop.Object { return this.nativeObject.item; }
+  get title(): string { return this.nativeObject.title; }
   get imageProvider(): NSItemProvider { return this.nativeObject.imageProvider; }
   get iconProvider(): NSItemProvider { return this.nativeObject.iconProvider; }
   get hash(): number { return this.nativeObject.hash; }
@@ -5304,6 +5318,8 @@ export class HTMLNSSliderCellElement extends HTMLNSActionCellElement {
   set tickMarkPosition(value: interop.Enum<typeof NSTickMarkPosition>) { this.nativeObject.tickMarkPosition = value; }
   get allowsTickMarkValuesOnly(): boolean { return this.nativeObject.allowsTickMarkValuesOnly; }
   set allowsTickMarkValuesOnly(value: boolean) { this.nativeObject.allowsTickMarkValuesOnly = value; }
+  get title(): string { return this.nativeObject.title; }
+  set title(value: string) { this.nativeObject.title = value; }
   get image(): NSImage { return this.nativeObject.image; }
   set image(value: NSImage) { this.nativeObject.image = value; }
 }
@@ -5373,6 +5389,8 @@ export class HTMLNSButtonTouchBarItemElement extends HTMLNSTouchBarItemElement {
   // @ts-ignore
   readonly nativeObject = NSButtonTouchBarItem.new();
 
+  get title(): string { return this.nativeObject.title; }
+  set title(value: string) { this.nativeObject.title = value; }
   get image(): NSImage { return this.nativeObject.image; }
   set image(value: NSImage) { this.nativeObject.image = value; }
   get bezelColor(): NSColor { return this.nativeObject.bezelColor; }
@@ -5722,6 +5740,8 @@ export class HTMLNSButtonCellElement extends HTMLNSActionCellElement {
   set highlightsBy(value: interop.Enum<typeof NSCellStyleMask>) { this.nativeObject.highlightsBy = value; }
   get showsStateBy(): interop.Enum<typeof NSCellStyleMask> { return this.nativeObject.showsStateBy; }
   set showsStateBy(value: interop.Enum<typeof NSCellStyleMask>) { this.nativeObject.showsStateBy = value; }
+  get title(): string { return this.nativeObject.title; }
+  set title(value: string) { this.nativeObject.title = value; }
   get attributedTitle(): NSAttributedString { return this.nativeObject.attributedTitle; }
   set attributedTitle(value: NSAttributedString) { this.nativeObject.attributedTitle = value; }
   get alternateTitle(): string { return this.nativeObject.alternateTitle; }
@@ -5764,6 +5784,8 @@ export class HTMLNSBoxElement extends HTMLNSViewElement {
   set boxType(value: interop.Enum<typeof NSBoxType>) { this.nativeObject.boxType = value; }
   get titlePosition(): interop.Enum<typeof NSTitlePosition> { return this.nativeObject.titlePosition; }
   set titlePosition(value: interop.Enum<typeof NSTitlePosition>) { this.nativeObject.titlePosition = value; }
+  get title(): string { return this.nativeObject.title; }
+  set title(value: string) { this.nativeObject.title = value; }
   get titleFont(): NSFont { return this.nativeObject.titleFont; }
   set titleFont(value: NSFont) { this.nativeObject.titleFont = value; }
   get borderRect(): CGRect { return this.nativeObject.borderRect; }
@@ -6260,6 +6282,8 @@ export class HTMLNSFormCellElement extends HTMLNSActionCellElement {
 
   get titleWidth(): number { return this.nativeObject.titleWidth; }
   set titleWidth(value: number) { this.nativeObject.titleWidth = value; }
+  get title(): string { return this.nativeObject.title; }
+  set title(value: string) { this.nativeObject.title = value; }
   get titleFont(): NSFont { return this.nativeObject.titleFont; }
   set titleFont(value: NSFont) { this.nativeObject.titleFont = value; }
   get isOpaque(): boolean { return this.nativeObject.isOpaque; }
@@ -6390,6 +6414,8 @@ export class HTMLNSMenuItemElement extends HTMLNSObjectElement {
   get submenu(): NSMenu { return this.nativeObject.submenu; }
   set submenu(value: NSMenu) { this.nativeObject.submenu = value; }
   get parentItem(): NSMenuItem { return this.nativeObject.parentItem; }
+  get title(): string { return this.nativeObject.title; }
+  set title(value: string) { this.nativeObject.title = value; }
   get attributedTitle(): NSAttributedString { return this.nativeObject.attributedTitle; }
   set attributedTitle(value: NSAttributedString) { this.nativeObject.attributedTitle = value; }
   get isSeparatorItem(): boolean { return this.nativeObject.isSeparatorItem; }
@@ -7355,6 +7381,8 @@ export class HTMLNSTableColumnElement extends HTMLNSObjectElement {
   set minWidth(value: number) { this.nativeObject.minWidth = value; }
   get maxWidth(): number { return this.nativeObject.maxWidth; }
   set maxWidth(value: number) { this.nativeObject.maxWidth = value; }
+  get title(): string { return this.nativeObject.title; }
+  set title(value: string) { this.nativeObject.title = value; }
   get headerCell(): NSTableHeaderCell { return this.nativeObject.headerCell; }
   set headerCell(value: NSTableHeaderCell) { this.nativeObject.headerCell = value; }
   get isEditable(): boolean { return this.nativeObject.isEditable; }
@@ -7446,6 +7474,8 @@ export class HTMLNSPathControlItemElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPathControlItem.new();
 
+  get title(): string { return this.nativeObject.title; }
+  set title(value: string) { this.nativeObject.title = value; }
   get attributedTitle(): NSAttributedString { return this.nativeObject.attributedTitle; }
   set attributedTitle(value: NSAttributedString) { this.nativeObject.attributedTitle = value; }
   get image(): NSImage { return this.nativeObject.image; }
@@ -7777,6 +7807,8 @@ export class HTMLNSViewControllerElement extends HTMLNSResponderElement {
   get nibBundle(): NSBundle { return this.nativeObject.nibBundle; }
   get representedObject(): interop.Object { return this.nativeObject.representedObject; }
   set representedObject(value: interop.Object) { this.nativeObject.representedObject = value; }
+  get title(): string { return this.nativeObject.title; }
+  set title(value: string) { this.nativeObject.title = value; }
   get view(): NSView { return this.nativeObject.view; }
   set view(value: NSView) { this.nativeObject.view = value; }
   get viewIfLoaded(): NSView { return this.nativeObject.viewIfLoaded; }
@@ -8240,6 +8272,8 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
     return this.nativeObject.delegate as NSMenuDelegateImpl;
   }
 
+  get title(): string { return this.nativeObject.title; }
+  set title(value: string) { this.nativeObject.title = value; }
   get supermenu(): NSMenu { return this.nativeObject.supermenu; }
   set supermenu(value: NSMenu) { this.nativeObject.supermenu = value; }
   get itemArray(): NSArray { return this.nativeObject.itemArray; }
@@ -8767,6 +8801,8 @@ export class HTMLNSSavePanelElement extends HTMLNSPanelElement {
   set treatsFilePackagesAsDirectories(value: boolean) { this.nativeObject.treatsFilePackagesAsDirectories = value; }
   get prompt(): string { return this.nativeObject.prompt; }
   set prompt(value: string) { this.nativeObject.prompt = value; }
+  get title(): string { return this.nativeObject.title; }
+  set title(value: string) { this.nativeObject.title = value; }
   get nameFieldLabel(): string { return this.nativeObject.nameFieldLabel; }
   set nameFieldLabel(value: string) { this.nativeObject.nameFieldLabel = value; }
   get nameFieldStringValue(): string { return this.nativeObject.nameFieldStringValue; }
@@ -10757,6 +10793,8 @@ export class HTMLNSScrubberTextItemViewElement extends HTMLNSScrubberItemViewEle
   readonly nativeObject = NSScrubberTextItemView.new();
 
   get textField(): NSTextField { return this.nativeObject.textField; }
+  get title(): string { return this.nativeObject.title; }
+  set title(value: string) { this.nativeObject.title = value; }
 }
 
 export class HTMLNSButtonElement extends HTMLNSControlElement {
@@ -10765,6 +10803,8 @@ export class HTMLNSButtonElement extends HTMLNSControlElement {
   // @ts-ignore
   readonly nativeObject = NSButton.new();
 
+  get title(): string { return this.nativeObject.title; }
+  set title(value: string) { this.nativeObject.title = value; }
   get attributedTitle(): NSAttributedString { return this.nativeObject.attributedTitle; }
   set attributedTitle(value: NSAttributedString) { this.nativeObject.attributedTitle = value; }
   get alternateTitle(): string { return this.nativeObject.alternateTitle; }
@@ -11104,6 +11144,8 @@ export class HTMLNSComboButtonElement extends HTMLNSControlElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSComboButton.new();
 
+  get title(): string { return this.nativeObject.title; }
+  set title(value: string) { this.nativeObject.title = value; }
   get image(): NSImage { return this.nativeObject.image; }
   set image(value: NSImage) { this.nativeObject.image = value; }
   get imageScaling(): interop.Enum<typeof NSImageScaling> { return this.nativeObject.imageScaling; }

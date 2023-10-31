@@ -216,7 +216,7 @@ function parseDeclaration(lines) {
         'parentNode',
         'parentElement',
         'style',
-        'title',
+        // 'title',
       ]);
 
       return [
