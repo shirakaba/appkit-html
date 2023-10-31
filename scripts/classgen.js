@@ -171,7 +171,10 @@ function parseDeclaration(lines) {
           const impl = `${delegatesByClassValue[propName]}Impl`;
           return [
             `  get ${propName}(): ${impl} {`,
-            `    return (this.nativeObject.${propName} ??= ${impl}.new()) as ${impl};`,
+            `    if(!this.nativeObject.${propName}){`,
+            `      this.nativeObject.${propName} = ${impl}.new();`,
+            '    }',
+            `    return this.nativeObject.${propName} as ${impl};`,
             '  }',
           ].join('\n');
         }

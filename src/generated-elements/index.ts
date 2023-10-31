@@ -1557,7 +1557,10 @@ export class HTMLNSSpeechRecognizerElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSpeechRecognizer.new();
   get delegate(): NSSpeechRecognizerDelegateImpl {
-    return (this.nativeObject.delegate ??= NSSpeechRecognizerDelegateImpl.new()) as NSSpeechRecognizerDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSSpeechRecognizerDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSSpeechRecognizerDelegateImpl;
   }
 
   get commands(): NSArray { return this.nativeObject.commands; }
@@ -1900,7 +1903,10 @@ export class HTMLNSSharingServicePickerElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSharingServicePicker.new();
   get delegate(): NSSharingServicePickerDelegateImpl {
-    return (this.nativeObject.delegate ??= NSSharingServicePickerDelegateImpl.new()) as NSSharingServicePickerDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSSharingServicePickerDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSSharingServicePickerDelegateImpl;
   }
 
   get standardShareMenuItem(): NSMenuItem { return this.nativeObject.standardShareMenuItem; }
@@ -1960,7 +1966,10 @@ export class HTMLNSTouchBarElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTouchBar.new();
   get delegate(): NSTouchBarDelegateImpl {
-    return (this.nativeObject.delegate ??= NSTouchBarDelegateImpl.new()) as NSTouchBarDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSTouchBarDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSTouchBarDelegateImpl;
   }
 
   get customizationIdentifier(): string { return this.nativeObject.customizationIdentifier; }
@@ -2579,7 +2588,10 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSWindow.new();
   get delegate(): NSWindowDelegateImpl {
-    return (this.nativeObject.delegate ??= NSWindowDelegateImpl.new()) as NSWindowDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSWindowDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSWindowDelegateImpl;
   }
 
   get subtitle(): string { return this.nativeObject.subtitle; }
@@ -3291,7 +3303,10 @@ export class HTMLNSPathCellElement extends HTMLNSActionCellElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPathCell.new();
   get delegate(): NSPathCellDelegateImpl {
-    return (this.nativeObject.delegate ??= NSPathCellDelegateImpl.new()) as NSPathCellDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSPathCellDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSPathCellDelegateImpl;
   }
 
   get pathStyle(): interop.Enum<typeof NSPathStyle> { return this.nativeObject.pathStyle; }
@@ -3338,7 +3353,10 @@ export class HTMLNSTextLayoutManagerElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextLayoutManager.new();
   get delegate(): NSTextLayoutManagerDelegateImpl {
-    return (this.nativeObject.delegate ??= NSTextLayoutManagerDelegateImpl.new()) as NSTextLayoutManagerDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSTextLayoutManagerDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSTextLayoutManagerDelegateImpl;
   }
 
   get usesFontLeading(): boolean { return this.nativeObject.usesFontLeading; }
@@ -3397,7 +3415,10 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDrawer.new();
   get delegate(): NSDrawerDelegateImpl {
-    return (this.nativeObject.delegate ??= NSDrawerDelegateImpl.new()) as NSDrawerDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSDrawerDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSDrawerDelegateImpl;
   }
 
   get parentWindow(): NSWindow { return this.nativeObject.parentWindow; }
@@ -3701,7 +3722,10 @@ export class HTMLNSLayoutManagerElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSLayoutManager.new();
   get delegate(): NSLayoutManagerDelegateImpl {
-    return (this.nativeObject.delegate ??= NSLayoutManagerDelegateImpl.new()) as NSLayoutManagerDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSLayoutManagerDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSLayoutManagerDelegateImpl;
   }
 
   get textStorage(): NSTextStorage { return this.nativeObject.textStorage; }
@@ -3787,7 +3811,10 @@ export class HTMLNSSharingServiceElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSharingService.new();
   get delegate(): NSSharingServiceDelegateImpl {
-    return (this.nativeObject.delegate ??= NSSharingServiceDelegateImpl.new()) as NSSharingServiceDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSSharingServiceDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSSharingServiceDelegateImpl;
   }
 
   get image(): NSImage { return this.nativeObject.image; }
@@ -3946,7 +3973,10 @@ export class HTMLNSTextContentManagerElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextContentManager.new();
   get delegate(): NSTextContentManagerDelegateImpl {
-    return (this.nativeObject.delegate ??= NSTextContentManagerDelegateImpl.new()) as NSTextContentManagerDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSTextContentManagerDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSTextContentManagerDelegateImpl;
   }
 
   get textLayoutManagers(): NSArray { return this.nativeObject.textLayoutManagers; }
@@ -4531,7 +4561,10 @@ export class HTMLNSImageElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSImage.new();
   get delegate(): NSImageDelegateImpl {
-    return (this.nativeObject.delegate ??= NSImageDelegateImpl.new()) as NSImageDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSImageDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSImageDelegateImpl;
   }
 
   get size(): CGSize { return this.nativeObject.size; }
@@ -4586,7 +4619,10 @@ export class HTMLNSToolbarElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSToolbar.new();
   get delegate(): NSToolbarDelegateImpl {
-    return (this.nativeObject.delegate ??= NSToolbarDelegateImpl.new()) as NSToolbarDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSToolbarDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSToolbarDelegateImpl;
   }
 
   get isVisible(): boolean { return this.nativeObject.isVisible; }
@@ -4652,7 +4688,10 @@ export class HTMLNSTabViewElement extends HTMLNSViewElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTabView.new();
   get delegate(): NSTabViewDelegateImpl {
-    return (this.nativeObject.delegate ??= NSTabViewDelegateImpl.new()) as NSTabViewDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSTabViewDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSTabViewDelegateImpl;
   }
 
   get selectedTabViewItem(): NSTabViewItem { return this.nativeObject.selectedTabViewItem; }
@@ -4697,7 +4736,10 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSApplication.sharedApplication;
   get delegate(): NSApplicationDelegateImpl {
-    return (this.nativeObject.delegate ??= NSApplicationDelegateImpl.new()) as NSApplicationDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSApplicationDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSApplicationDelegateImpl;
   }
 
   get mainWindow(): NSWindow { return this.nativeObject.mainWindow; }
@@ -5150,7 +5192,10 @@ export class HTMLNSCandidateListTouchBarItemElement extends HTMLNSTouchBarItemEl
   // @ts-ignore
   readonly nativeObject = NSCandidateListTouchBarItem.new();
   get delegate(): NSCandidateListTouchBarItemDelegateImpl {
-    return (this.nativeObject.delegate ??= NSCandidateListTouchBarItemDelegateImpl.new()) as NSCandidateListTouchBarItemDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSCandidateListTouchBarItemDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSCandidateListTouchBarItemDelegateImpl;
   }
 
   get client(): NSView { return this.nativeObject.client; }
@@ -5268,7 +5313,10 @@ export class HTMLNSTokenFieldCellElement extends HTMLNSTextFieldCellElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTokenFieldCell.new();
   get delegate(): NSTokenFieldCellDelegateImpl {
-    return (this.nativeObject.delegate ??= NSTokenFieldCellDelegateImpl.new()) as NSTokenFieldCellDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSTokenFieldCellDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSTokenFieldCellDelegateImpl;
   }
 
   get tokenStyle(): interop.Enum<typeof NSTokenStyle> { return this.nativeObject.tokenStyle; }
@@ -5524,7 +5572,10 @@ export class HTMLNSCollectionViewElement extends HTMLNSViewElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionView.new();
   get delegate(): NSCollectionViewDelegateImpl {
-    return (this.nativeObject.delegate ??= NSCollectionViewDelegateImpl.new()) as NSCollectionViewDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSCollectionViewDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSCollectionViewDelegateImpl;
   }
 
   get dataSource(): NSCollectionViewDataSource { return this.nativeObject.dataSource; }
@@ -5996,7 +6047,10 @@ export class HTMLNSAlertElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSAlert.new();
   get delegate(): NSAlertDelegateImpl {
-    return (this.nativeObject.delegate ??= NSAlertDelegateImpl.new()) as NSAlertDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSAlertDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSAlertDelegateImpl;
   }
 
   get messageText(): string { return this.nativeObject.messageText; }
@@ -6715,7 +6769,10 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPopover.new();
   get delegate(): NSPopoverDelegateImpl {
-    return (this.nativeObject.delegate ??= NSPopoverDelegateImpl.new()) as NSPopoverDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSPopoverDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSPopoverDelegateImpl;
   }
 
   get appearance(): NSAppearance { return this.nativeObject.appearance; }
@@ -7035,7 +7092,10 @@ export class HTMLNSGestureRecognizerElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSGestureRecognizer.new();
   get delegate(): NSGestureRecognizerDelegateImpl {
-    return (this.nativeObject.delegate ??= NSGestureRecognizerDelegateImpl.new()) as NSGestureRecognizerDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSGestureRecognizerDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSGestureRecognizerDelegateImpl;
   }
 
   get target(): interop.Object { return this.nativeObject.target; }
@@ -7602,7 +7662,10 @@ export class HTMLNSSplitViewElement extends HTMLNSViewElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSplitView.new();
   get delegate(): NSSplitViewDelegateImpl {
-    return (this.nativeObject.delegate ??= NSSplitViewDelegateImpl.new()) as NSSplitViewDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSSplitViewDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSSplitViewDelegateImpl;
   }
 
   get isVertical(): boolean { return this.nativeObject.isVertical; }
@@ -7667,7 +7730,10 @@ export class HTMLNSDatePickerCellElement extends HTMLNSActionCellElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDatePickerCell.new();
   get delegate(): NSDatePickerCellDelegateImpl {
-    return (this.nativeObject.delegate ??= NSDatePickerCellDelegateImpl.new()) as NSDatePickerCellDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSDatePickerCellDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSDatePickerCellDelegateImpl;
   }
 
   get datePickerStyle(): interop.Enum<typeof NSDatePickerStyle> { return this.nativeObject.datePickerStyle; }
@@ -7795,7 +7861,10 @@ export class HTMLNSTextElement extends HTMLNSViewElement {
   // @ts-ignore
   readonly nativeObject = NSText.new();
   get delegate(): NSTextDelegateImpl {
-    return (this.nativeObject.delegate ??= NSTextDelegateImpl.new()) as NSTextDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSTextDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSTextDelegateImpl;
   }
 
   get string(): string { return this.nativeObject.string; }
@@ -7869,7 +7938,10 @@ export class HTMLNSTextViewportLayoutControllerElement extends HTMLNSObjectEleme
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextViewportLayoutController.new();
   get delegate(): NSTextViewportLayoutControllerDelegateImpl {
-    return (this.nativeObject.delegate ??= NSTextViewportLayoutControllerDelegateImpl.new()) as NSTextViewportLayoutControllerDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSTextViewportLayoutControllerDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSTextViewportLayoutControllerDelegateImpl;
   }
 
   get textLayoutManager(): NSTextLayoutManager | null { return this.nativeObject.textLayoutManager; }
@@ -8012,7 +8084,10 @@ export class HTMLNSSpeechSynthesizerElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSpeechSynthesizer.new();
   get delegate(): NSSpeechSynthesizerDelegateImpl {
-    return (this.nativeObject.delegate ??= NSSpeechSynthesizerDelegateImpl.new()) as NSSpeechSynthesizerDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSSpeechSynthesizerDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSSpeechSynthesizerDelegateImpl;
   }
 
   get isSpeaking(): boolean { return this.nativeObject.isSpeaking; }
@@ -8159,7 +8234,10 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSMenu.new();
   get delegate(): NSMenuDelegateImpl {
-    return (this.nativeObject.delegate ??= NSMenuDelegateImpl.new()) as NSMenuDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSMenuDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSMenuDelegateImpl;
   }
 
   get supermenu(): NSMenu { return this.nativeObject.supermenu; }
@@ -8661,7 +8739,10 @@ export class HTMLNSSavePanelElement extends HTMLNSPanelElement {
   // @ts-ignore
   readonly nativeObject = NSSavePanel.new();
   get delegate(): NSOpenSavePanelDelegateImpl {
-    return (this.nativeObject.delegate ??= NSOpenSavePanelDelegateImpl.new()) as NSOpenSavePanelDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSOpenSavePanelDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSOpenSavePanelDelegateImpl;
   }
 
   get URL(): NSURL { return this.nativeObject.URL; }
@@ -8827,7 +8908,10 @@ export class HTMLNSScrubberElement extends HTMLNSViewElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSScrubber.new();
   get delegate(): NSScrubberDelegateImpl {
-    return (this.nativeObject.delegate ??= NSScrubberDelegateImpl.new()) as NSScrubberDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSScrubberDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSScrubberDelegateImpl;
   }
 
   get dataSource(): NSScrubberDataSource { return this.nativeObject.dataSource; }
@@ -8942,7 +9026,10 @@ export class HTMLNSStackViewElement extends HTMLNSViewElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSStackView.new();
   get delegate(): NSStackViewDelegateImpl {
-    return (this.nativeObject.delegate ??= NSStackViewDelegateImpl.new()) as NSStackViewDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSStackViewDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSStackViewDelegateImpl;
   }
 
   get orientation(): interop.Enum<typeof NSUserInterfaceLayoutOrientation> { return this.nativeObject.orientation; }
@@ -9015,7 +9102,10 @@ export class HTMLNSSoundElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSound.new();
   get delegate(): NSSoundDelegateImpl {
-    return (this.nativeObject.delegate ??= NSSoundDelegateImpl.new()) as NSSoundDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSSoundDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSSoundDelegateImpl;
   }
 
   get name(): string { return this.nativeObject.name; }
@@ -9171,7 +9261,10 @@ export class HTMLNSFilePromiseProviderElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSFilePromiseProvider.new();
   get delegate(): NSFilePromiseProviderDelegateImpl {
-    return (this.nativeObject.delegate ??= NSFilePromiseProviderDelegateImpl.new()) as NSFilePromiseProviderDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSFilePromiseProviderDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSFilePromiseProviderDelegateImpl;
   }
 
   get fileType(): string { return this.nativeObject.fileType; }
@@ -9224,7 +9317,10 @@ export class HTMLNSDatePickerElement extends HTMLNSControlElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDatePicker.new();
   get delegate(): NSDatePickerCellDelegateImpl {
-    return (this.nativeObject.delegate ??= NSDatePickerCellDelegateImpl.new()) as NSDatePickerCellDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSDatePickerCellDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSDatePickerCellDelegateImpl;
   }
 
   get datePickerStyle(): interop.Enum<typeof NSDatePickerStyle> { return this.nativeObject.datePickerStyle; }
@@ -9282,7 +9378,10 @@ export class HTMLNSMatrixElement extends HTMLNSControlElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSMatrix.new();
   get delegate(): NSMatrixDelegateImpl {
-    return (this.nativeObject.delegate ??= NSMatrixDelegateImpl.new()) as NSMatrixDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSMatrixDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSMatrixDelegateImpl;
   }
 
   get cellClass(): interop.Object { return this.nativeObject.cellClass; }
@@ -9340,7 +9439,10 @@ export class HTMLNSRuleEditorElement extends HTMLNSControlElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSRuleEditor.new();
   get delegate(): NSRuleEditorDelegateImpl {
-    return (this.nativeObject.delegate ??= NSRuleEditorDelegateImpl.new()) as NSRuleEditorDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSRuleEditorDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSRuleEditorDelegateImpl;
   }
 
   get formattingStringsFilename(): string { return this.nativeObject.formattingStringsFilename; }
@@ -9451,7 +9553,10 @@ export class HTMLNSBrowserElement extends HTMLNSControlElement {
   // @ts-ignore
   readonly nativeObject = NSBrowser.new();
   get delegate(): NSBrowserDelegateImpl {
-    return (this.nativeObject.delegate ??= NSBrowserDelegateImpl.new()) as NSBrowserDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSBrowserDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSBrowserDelegateImpl;
   }
 
   get isLoaded(): boolean { return this.nativeObject.isLoaded; }
@@ -9623,7 +9728,10 @@ export class HTMLNSTextFieldElement extends HTMLNSControlElement {
   // @ts-ignore
   readonly nativeObject = NSTextField.new();
   get delegate(): NSTextFieldDelegateImpl {
-    return (this.nativeObject.delegate ??= NSTextFieldDelegateImpl.new()) as NSTextFieldDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSTextFieldDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSTextFieldDelegateImpl;
   }
 
   get placeholderString(): string { return this.nativeObject.placeholderString; }
@@ -9795,7 +9903,10 @@ export class HTMLNSTextViewElement extends HTMLNSTextElement {
   // @ts-ignore
   readonly nativeObject = NSTextView.new();
   get delegate(): NSTextViewDelegateImpl {
-    return (this.nativeObject.delegate ??= NSTextViewDelegateImpl.new()) as NSTextViewDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSTextViewDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSTextViewDelegateImpl;
   }
 
   get textContainer(): NSTextContainer { return this.nativeObject.textContainer; }
@@ -10101,7 +10212,10 @@ export class HTMLNSTextContentStorageElement extends HTMLNSTextContentManagerEle
   // @ts-ignore
   readonly nativeObject = NSTextContentStorage.new();
   get delegate(): NSTextContentStorageDelegateImpl {
-    return (this.nativeObject.delegate ??= NSTextContentStorageDelegateImpl.new()) as NSTextContentStorageDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSTextContentStorageDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSTextContentStorageDelegateImpl;
   }
 
   get attributedString(): NSAttributedString { return this.nativeObject.attributedString; }
@@ -10197,7 +10311,10 @@ export class HTMLNSPageControllerElement extends HTMLNSViewControllerElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPageController.new();
   get delegate(): NSPageControllerDelegateImpl {
-    return (this.nativeObject.delegate ??= NSPageControllerDelegateImpl.new()) as NSPageControllerDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSPageControllerDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSPageControllerDelegateImpl;
   }
 
   get selectedViewController(): NSViewController { return this.nativeObject.selectedViewController; }
@@ -10239,7 +10356,10 @@ export class HTMLNSComboBoxElement extends HTMLNSTextFieldElement {
   // @ts-ignore
   readonly nativeObject = NSComboBox.new();
   get delegate(): NSComboBoxDelegateImpl {
-    return (this.nativeObject.delegate ??= NSComboBoxDelegateImpl.new()) as NSComboBoxDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSComboBoxDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSComboBoxDelegateImpl;
   }
 
   get hasVerticalScroller(): boolean { return this.nativeObject.hasVerticalScroller; }
@@ -10327,7 +10447,10 @@ export class HTMLNSSearchFieldElement extends HTMLNSTextFieldElement {
   // @ts-ignore
   readonly nativeObject = NSSearchField.new();
   get delegate(): NSSearchFieldDelegateImpl {
-    return (this.nativeObject.delegate ??= NSSearchFieldDelegateImpl.new()) as NSSearchFieldDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSSearchFieldDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSSearchFieldDelegateImpl;
   }
 
   get searchTextBounds(): CGRect { return this.nativeObject.searchTextBounds; }
@@ -10362,7 +10485,10 @@ export class HTMLNSTokenFieldElement extends HTMLNSTextFieldElement {
   // @ts-ignore
   readonly nativeObject = NSTokenField.new();
   get delegate(): NSTokenFieldDelegateImpl {
-    return (this.nativeObject.delegate ??= NSTokenFieldDelegateImpl.new()) as NSTokenFieldDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSTokenFieldDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSTokenFieldDelegateImpl;
   }
 
   get tokenStyle(): interop.Enum<typeof NSTokenStyle> { return this.nativeObject.tokenStyle; }
@@ -10410,7 +10536,10 @@ export class HTMLNSTableViewElement extends HTMLNSControlElement {
   // @ts-ignore
   readonly nativeObject = NSTableView.new();
   get delegate(): NSTableViewDelegateImpl {
-    return (this.nativeObject.delegate ??= NSTableViewDelegateImpl.new()) as NSTableViewDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSTableViewDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSTableViewDelegateImpl;
   }
 
   get dataSource(): NSTableViewDataSource { return this.nativeObject.dataSource; }
@@ -10848,7 +10977,10 @@ export class HTMLNSPathControlElement extends HTMLNSControlElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPathControl.new();
   get delegate(): NSPathControlDelegateImpl {
-    return (this.nativeObject.delegate ??= NSPathControlDelegateImpl.new()) as NSPathControlDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSPathControlDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSPathControlDelegateImpl;
   }
 
   get isEditable(): boolean { return this.nativeObject.isEditable; }
@@ -10898,7 +11030,10 @@ export class HTMLNSAnimationElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSAnimation.new();
   get delegate(): NSAnimationDelegateImpl {
-    return (this.nativeObject.delegate ??= NSAnimationDelegateImpl.new()) as NSAnimationDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSAnimationDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSAnimationDelegateImpl;
   }
 
   get isAnimating(): boolean { return this.nativeObject.isAnimating; }
@@ -10983,7 +11118,10 @@ export class HTMLNSOutlineViewElement extends HTMLNSTableViewElement {
   // @ts-ignore
   readonly nativeObject = NSOutlineView.new();
   get delegate(): NSOutlineViewDelegateImpl {
-    return (this.nativeObject.delegate ??= NSOutlineViewDelegateImpl.new()) as NSOutlineViewDelegateImpl;
+    if(!this.nativeObject.delegate){
+      this.nativeObject.delegate = NSOutlineViewDelegateImpl.new();
+    }
+    return this.nativeObject.delegate as NSOutlineViewDelegateImpl;
   }
 
   get dataSource(): NSOutlineViewDataSource { return this.nativeObject.dataSource; }
