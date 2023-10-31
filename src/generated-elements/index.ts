@@ -11313,6 +11313,9 @@ export class HTMLNSDraggingImageComponentElement extends HTMLNSObjectElement {
 
 export class NSScrubberDelegateImpl extends NSObject implements NSScrubberDelegate {
   static ObjCProtocols = [NSScrubberDelegate];
+  static {
+    NativeClass(this);
+  }
 
   scrubberDidSelectItemAtIndex?(scrubber: NSScrubber, selectedIndex: number): void;
   scrubberDidHighlightItemAtIndex?(scrubber: NSScrubber, highlightedIndex: number): void;
@@ -11324,6 +11327,9 @@ export class NSScrubberDelegateImpl extends NSObject implements NSScrubberDelega
 
 export class NSTableViewDelegateImpl extends NSObject implements NSTableViewDelegate {
   static ObjCProtocols = [NSTableViewDelegate];
+  static {
+    NativeClass(this);
+  }
 
   tableViewViewForTableColumnRow?(tableView: NSTableView, tableColumn: NSTableColumn | null, row: number): NSView;
   tableViewRowViewForRow?(tableView: NSTableView, row: number): NSTableRowView;
@@ -11360,6 +11366,9 @@ export class NSTableViewDelegateImpl extends NSObject implements NSTableViewDele
 
 export class NSSharingServicePickerTouchBarItemDelegateImpl extends NSObject implements NSSharingServicePickerTouchBarItemDelegate {
   static ObjCProtocols = [NSSharingServicePickerTouchBarItemDelegate];
+  static {
+    NativeClass(this);
+  }
 
   itemsForSharingServicePickerTouchBarItem(pickerTouchBarItem: NSSharingServicePickerTouchBarItem): NSArray {
     throw new Error("Please provide implementation for: NSSharingServicePickerTouchBarItemDelegate > itemsForSharingServicePickerTouchBarItem");
@@ -11368,6 +11377,9 @@ export class NSSharingServicePickerTouchBarItemDelegateImpl extends NSObject imp
 
 export class NSDrawerDelegateImpl extends NSObject implements NSDrawerDelegate {
   static ObjCProtocols = [NSDrawerDelegate];
+  static {
+    NativeClass(this);
+  }
 
   drawerShouldOpen?(sender: NSDrawer): boolean;
   drawerShouldClose?(sender: NSDrawer): boolean;
@@ -11380,6 +11392,9 @@ export class NSDrawerDelegateImpl extends NSObject implements NSDrawerDelegate {
 
 export class NSImageDelegateImpl extends NSObject implements NSImageDelegate {
   static ObjCProtocols = [NSImageDelegate];
+  static {
+    NativeClass(this);
+  }
 
   imageDidNotDrawInRect?(sender: NSImage, rect: CGRect): NSImage;
   imageWillLoadRepresentation?(image: NSImage, rep: NSImageRep): void;
@@ -11390,6 +11405,9 @@ export class NSImageDelegateImpl extends NSObject implements NSImageDelegate {
 
 export class NSMenuDelegateImpl extends NSObject implements NSMenuDelegate {
   static ObjCProtocols = [NSMenuDelegate];
+  static {
+    NativeClass(this);
+  }
 
   menuNeedsUpdate?(menu: NSMenu): void;
   numberOfItemsInMenu?(menu: NSMenu): number;
@@ -11403,6 +11421,9 @@ export class NSMenuDelegateImpl extends NSObject implements NSMenuDelegate {
 
 export class NSStackViewDelegateImpl extends NSObject implements NSStackViewDelegate {
   static ObjCProtocols = [NSStackViewDelegate];
+  static {
+    NativeClass(this);
+  }
 
   stackViewWillDetachViews?(stackView: NSStackView, views: NSArray<interop.Object> | Array<interop.Object>): void;
   stackViewDidReattachViews?(stackView: NSStackView, views: NSArray<interop.Object> | Array<interop.Object>): void;
@@ -11410,16 +11431,25 @@ export class NSStackViewDelegateImpl extends NSObject implements NSStackViewDele
 
 export class NSViewLayerContentScaleDelegateImpl extends NSObject implements NSViewLayerContentScaleDelegate {
   static ObjCProtocols = [NSViewLayerContentScaleDelegate];
+  static {
+    NativeClass(this);
+  }
 }
 
 export class NSTextContentStorageDelegateImpl extends NSObject implements NSTextContentStorageDelegate {
   static ObjCProtocols = [NSTextContentStorageDelegate];
+  static {
+    NativeClass(this);
+  }
 
   textContentStorageTextParagraphWithRange?(textContentStorage: NSTextContentStorage, range: _NSRange): NSTextParagraph;
 }
 
 export class NSTextViewportLayoutControllerDelegateImpl extends NSObject implements NSTextViewportLayoutControllerDelegate {
   static ObjCProtocols = [NSTextViewportLayoutControllerDelegate];
+  static {
+    NativeClass(this);
+  }
 
   viewportBoundsForTextViewportLayoutController(textViewportLayoutController: NSTextViewportLayoutController): CGRect {
     throw new Error("Please provide implementation for: NSTextViewportLayoutControllerDelegate > viewportBoundsForTextViewportLayoutController");
@@ -11433,6 +11463,9 @@ export class NSTextViewportLayoutControllerDelegateImpl extends NSObject impleme
 
 export class NSRuleEditorDelegateImpl extends NSObject implements NSRuleEditorDelegate {
   static ObjCProtocols = [NSRuleEditorDelegate];
+  static {
+    NativeClass(this);
+  }
 
   ruleEditorNumberOfChildrenForCriterionWithRowType(editor: NSRuleEditor, criterion: interop.Object | null, rowType: interop.Enum<typeof NSRuleEditorRowType>): number {
     throw new Error("Please provide implementation for: NSRuleEditorDelegate > ruleEditorNumberOfChildrenForCriterionWithRowType");
@@ -11449,6 +11482,9 @@ export class NSRuleEditorDelegateImpl extends NSObject implements NSRuleEditorDe
 
 export class NSPageControllerDelegateImpl extends NSObject implements NSPageControllerDelegate {
   static ObjCProtocols = [NSPageControllerDelegate];
+  static {
+    NativeClass(this);
+  }
 
   pageControllerIdentifierForObject?(pageController: NSPageController, object: interop.Object): string;
   pageControllerViewControllerForIdentifier?(pageController: NSPageController, identifier: string): NSViewController;
@@ -11461,18 +11497,27 @@ export class NSPageControllerDelegateImpl extends NSObject implements NSPageCont
 
 export class NSDatePickerCellDelegateImpl extends NSObject implements NSDatePickerCellDelegate {
   static ObjCProtocols = [NSDatePickerCellDelegate];
+  static {
+    NativeClass(this);
+  }
 
   datePickerCellValidateProposedDateValueTimeInterval?(datePickerCell: NSDatePickerCell, proposedDateValue: interop.PointerConvertible, proposedTimeInterval: interop.PointerConvertible): void;
 }
 
 export class NSSoundDelegateImpl extends NSObject implements NSSoundDelegate {
   static ObjCProtocols = [NSSoundDelegate];
+  static {
+    NativeClass(this);
+  }
 
   soundDidFinishPlaying?(sound: NSSound, flag: boolean): void;
 }
 
 export class NSTabViewDelegateImpl extends NSObject implements NSTabViewDelegate {
   static ObjCProtocols = [NSTabViewDelegate];
+  static {
+    NativeClass(this);
+  }
 
   tabViewShouldSelectTabViewItem?(tabView: NSTabView, tabViewItem: NSTabViewItem | null): boolean;
   tabViewWillSelectTabViewItem?(tabView: NSTabView, tabViewItem: NSTabViewItem | null): void;
@@ -11482,6 +11527,9 @@ export class NSTabViewDelegateImpl extends NSObject implements NSTabViewDelegate
 
 export class NSTextViewDelegateImpl extends NSObject implements NSTextViewDelegate {
   static ObjCProtocols = [NSTextViewDelegate];
+  static {
+    NativeClass(this);
+  }
 
   textViewClickedOnLinkAtIndex?(textView: NSTextView, link: interop.Object, charIndex: number): boolean;
   textViewClickedOnCellInRectAtIndex?(textView: NSTextView, cell: NSTextAttachmentCell, cellFrame: CGRect, charIndex: number): void;
@@ -11517,6 +11565,9 @@ export class NSTextViewDelegateImpl extends NSObject implements NSTextViewDelega
 
 export class NSSharingServiceDelegateImpl extends NSObject implements NSSharingServiceDelegate {
   static ObjCProtocols = [NSSharingServiceDelegate];
+  static {
+    NativeClass(this);
+  }
 
   sharingServiceWillShareItems?(sharingService: NSSharingService, items: NSArray<interop.Object> | Array<interop.Object>): void;
   sharingServiceDidFailToShareItemsError?(sharingService: NSSharingService, items: NSArray<interop.Object> | Array<interop.Object>, error: NSError): void;
@@ -11529,6 +11580,9 @@ export class NSSharingServiceDelegateImpl extends NSObject implements NSSharingS
 
 export class NSTextStorageDelegateImpl extends NSObject implements NSTextStorageDelegate {
   static ObjCProtocols = [NSTextStorageDelegate];
+  static {
+    NativeClass(this);
+  }
 
   textStorageWillProcessEditingRangeChangeInLength?(textStorage: NSTextStorage, editedMask: interop.Enum<typeof NSTextStorageEditActions>, editedRange: _NSRange, delta: number): void;
   textStorageDidProcessEditingRangeChangeInLength?(textStorage: NSTextStorage, editedMask: interop.Enum<typeof NSTextStorageEditActions>, editedRange: _NSRange, delta: number): void;
@@ -11536,6 +11590,9 @@ export class NSTextStorageDelegateImpl extends NSObject implements NSTextStorage
 
 export class NSControlTextEditingDelegateImpl extends NSObject implements NSControlTextEditingDelegate {
   static ObjCProtocols = [NSControlTextEditingDelegate];
+  static {
+    NativeClass(this);
+  }
 
   controlTextShouldBeginEditing?(control: NSControl, fieldEditor: NSText): boolean;
   controlTextShouldEndEditing?(control: NSControl, fieldEditor: NSText): boolean;
@@ -11548,6 +11605,9 @@ export class NSControlTextEditingDelegateImpl extends NSObject implements NSCont
 
 export class NSTextFieldDelegateImpl extends NSObject implements NSTextFieldDelegate {
   static ObjCProtocols = [NSTextFieldDelegate];
+  static {
+    NativeClass(this);
+  }
 
   textFieldTextViewCandidatesForSelectedRange?(textField: NSTextField, textView: NSTextView, selectedRange: _NSRange): NSArray;
   textFieldTextViewShouldSelectCandidateAtIndex?(textField: NSTextField, textView: NSTextView, index: number): boolean;
@@ -11555,6 +11615,9 @@ export class NSTextFieldDelegateImpl extends NSObject implements NSTextFieldDele
 
 export class NSOpenSavePanelDelegateImpl extends NSObject implements NSOpenSavePanelDelegate {
   static ObjCProtocols = [NSOpenSavePanelDelegate];
+  static {
+    NativeClass(this);
+  }
 
   panelShouldEnableURL?(sender: interop.Object, url: NSURL): boolean;
   panelValidateURLError?(sender: interop.Object, url: NSURL, outError: interop.PointerConvertible): boolean;
@@ -11566,12 +11629,18 @@ export class NSOpenSavePanelDelegateImpl extends NSObject implements NSOpenSaveP
 
 export class NSSpeechRecognizerDelegateImpl extends NSObject implements NSSpeechRecognizerDelegate {
   static ObjCProtocols = [NSSpeechRecognizerDelegate];
+  static {
+    NativeClass(this);
+  }
 
   speechRecognizerDidRecognizeCommand?(sender: NSSpeechRecognizer, command: string): void;
 }
 
 export class NSCloudSharingServiceDelegateImpl extends NSObject implements NSCloudSharingServiceDelegate {
   static ObjCProtocols = [NSCloudSharingServiceDelegate];
+  static {
+    NativeClass(this);
+  }
 
   sharingServiceDidCompleteForItemsError?(sharingService: NSSharingService, items: NSArray<interop.Object> | Array<interop.Object>, error: NSError | null): void;
   optionsForSharingServiceShareProvider?(cloudKitSharingService: NSSharingService, provider: NSItemProvider): interop.Enum<typeof NSCloudKitSharingServiceOptions>;
@@ -11581,12 +11650,18 @@ export class NSCloudSharingServiceDelegateImpl extends NSObject implements NSClo
 
 export class NSScrubberFlowLayoutDelegateImpl extends NSObject implements NSScrubberFlowLayoutDelegate {
   static ObjCProtocols = [NSScrubberFlowLayoutDelegate];
+  static {
+    NativeClass(this);
+  }
 
   scrubberLayoutSizeForItemAtIndex?(scrubber: NSScrubber, layout: NSScrubberFlowLayout, itemIndex: number): CGSize;
 }
 
 export class NSSpeechSynthesizerDelegateImpl extends NSObject implements NSSpeechSynthesizerDelegate {
   static ObjCProtocols = [NSSpeechSynthesizerDelegate];
+  static {
+    NativeClass(this);
+  }
 
   speechSynthesizerDidFinishSpeaking?(sender: NSSpeechSynthesizer, finishedSpeaking: boolean): void;
   speechSynthesizerWillSpeakWordOfString?(sender: NSSpeechSynthesizer, characterRange: _NSRange, string: string): void;
@@ -11597,6 +11672,9 @@ export class NSSpeechSynthesizerDelegateImpl extends NSObject implements NSSpeec
 
 export class NSCandidateListTouchBarItemDelegateImpl extends NSObject implements NSCandidateListTouchBarItemDelegate {
   static ObjCProtocols = [NSCandidateListTouchBarItemDelegate];
+  static {
+    NativeClass(this);
+  }
 
   candidateListTouchBarItemBeginSelectingCandidateAtIndex?(anItem: NSCandidateListTouchBarItem, index: number): void;
   candidateListTouchBarItemChangeSelectionFromCandidateAtIndexToIndex?(anItem: NSCandidateListTouchBarItem, previousIndex: number, index: number): void;
@@ -11606,6 +11684,9 @@ export class NSCandidateListTouchBarItemDelegateImpl extends NSObject implements
 
 export class NSBrowserDelegateImpl extends NSObject implements NSBrowserDelegate {
   static ObjCProtocols = [NSBrowserDelegate];
+  static {
+    NativeClass(this);
+  }
 
   browserNumberOfRowsInColumn?(sender: NSBrowser, column: number): number;
   browserCreateRowsForColumnInMatrix?(sender: NSBrowser, column: number, matrix: NSMatrix): void;
@@ -11645,6 +11726,9 @@ export class NSBrowserDelegateImpl extends NSObject implements NSBrowserDelegate
 
 export class NSWindowDelegateImpl extends NSObject implements NSWindowDelegate {
   static ObjCProtocols = [NSWindowDelegate];
+  static {
+    NativeClass(this);
+  }
 
   windowShouldClose?(sender: NSWindow): boolean;
   windowWillReturnFieldEditorToObject?(sender: NSWindow, client: interop.Object | null): interop.Object;
@@ -11702,6 +11786,9 @@ export class NSWindowDelegateImpl extends NSObject implements NSWindowDelegate {
 
 export class NSCollectionViewDelegateImpl extends NSObject implements NSCollectionViewDelegate {
   static ObjCProtocols = [NSCollectionViewDelegate];
+  static {
+    NativeClass(this);
+  }
 
   collectionViewCanDragItemsAtIndexPathsWithEvent?(collectionView: NSCollectionView, indexPaths: NSSet, event: NSEvent): boolean;
   collectionViewCanDragItemsAtIndexesWithEvent?(collectionView: NSCollectionView, indexes: NSIndexSet, event: NSEvent): boolean;
@@ -11736,12 +11823,18 @@ export class NSCollectionViewDelegateImpl extends NSObject implements NSCollecti
 
 export class NSAlertDelegateImpl extends NSObject implements NSAlertDelegate {
   static ObjCProtocols = [NSAlertDelegate];
+  static {
+    NativeClass(this);
+  }
 
   alertShowHelp?(alert: NSAlert): boolean;
 }
 
 export class NSTextDelegateImpl extends NSObject implements NSTextDelegate {
   static ObjCProtocols = [NSTextDelegate];
+  static {
+    NativeClass(this);
+  }
 
   textShouldBeginEditing?(textObject: NSText): boolean;
   textShouldEndEditing?(textObject: NSText): boolean;
@@ -11752,6 +11845,9 @@ export class NSTextDelegateImpl extends NSObject implements NSTextDelegate {
 
 export class NSGestureRecognizerDelegateImpl extends NSObject implements NSGestureRecognizerDelegate {
   static ObjCProtocols = [NSGestureRecognizerDelegate];
+  static {
+    NativeClass(this);
+  }
 
   gestureRecognizerShouldAttemptToRecognizeWithEvent?(gestureRecognizer: NSGestureRecognizer, event: NSEvent): boolean;
   gestureRecognizerShouldBegin?(gestureRecognizer: NSGestureRecognizer): boolean;
@@ -11763,6 +11859,9 @@ export class NSGestureRecognizerDelegateImpl extends NSObject implements NSGestu
 
 export class NSTextContentManagerDelegateImpl extends NSObject implements NSTextContentManagerDelegate {
   static ObjCProtocols = [NSTextContentManagerDelegate];
+  static {
+    NativeClass(this);
+  }
 
   textContentManagerTextElementAtLocation?(textContentManager: NSTextContentManager, location: NSTextLocation): NSTextElement;
   textContentManagerShouldEnumerateTextElementOptions?(textContentManager: NSTextContentManager, textElement: NSTextElement, options: interop.Enum<typeof NSTextContentManagerEnumerationOptions>): boolean;
@@ -11770,12 +11869,18 @@ export class NSTextContentManagerDelegateImpl extends NSObject implements NSText
 
 export class NSTouchBarDelegateImpl extends NSObject implements NSTouchBarDelegate {
   static ObjCProtocols = [NSTouchBarDelegate];
+  static {
+    NativeClass(this);
+  }
 
   touchBarMakeItemForIdentifier?(touchBar: NSTouchBar, identifier: string): NSTouchBarItem;
 }
 
 export class NSPopoverDelegateImpl extends NSObject implements NSPopoverDelegate {
   static ObjCProtocols = [NSPopoverDelegate];
+  static {
+    NativeClass(this);
+  }
 
   popoverShouldClose?(popover: NSPopover): boolean;
   popoverShouldDetach?(popover: NSPopover): boolean;
@@ -11789,6 +11894,9 @@ export class NSPopoverDelegateImpl extends NSObject implements NSPopoverDelegate
 
 export class NSPathCellDelegateImpl extends NSObject implements NSPathCellDelegate {
   static ObjCProtocols = [NSPathCellDelegate];
+  static {
+    NativeClass(this);
+  }
 
   pathCellWillDisplayOpenPanel?(pathCell: NSPathCell, openPanel: NSOpenPanel): void;
   pathCellWillPopUpMenu?(pathCell: NSPathCell, menu: NSMenu): void;
@@ -11796,6 +11904,9 @@ export class NSPathCellDelegateImpl extends NSObject implements NSPathCellDelega
 
 export class NSAccessibilityCustomRotorItemSearchDelegateImpl extends NSObject implements NSAccessibilityCustomRotorItemSearchDelegate {
   static ObjCProtocols = [NSAccessibilityCustomRotorItemSearchDelegate];
+  static {
+    NativeClass(this);
+  }
 
   rotorResultForSearchParameters(rotor: NSAccessibilityCustomRotor, searchParameters: NSAccessibilityCustomRotorSearchParameters): NSAccessibilityCustomRotorItemResult {
     throw new Error("Please provide implementation for: NSAccessibilityCustomRotorItemSearchDelegate > rotorResultForSearchParameters");
@@ -11804,6 +11915,9 @@ export class NSAccessibilityCustomRotorItemSearchDelegateImpl extends NSObject i
 
 export class NSTokenFieldCellDelegateImpl extends NSObject implements NSTokenFieldCellDelegate {
   static ObjCProtocols = [NSTokenFieldCellDelegate];
+  static {
+    NativeClass(this);
+  }
 
   tokenFieldCellCompletionsForSubstringIndexOfTokenIndexOfSelectedItem?(tokenFieldCell: NSTokenFieldCell, substring: string, tokenIndex: number, selectedIndex: interop.PointerConvertible): NSArray;
   tokenFieldCellShouldAddObjectsAtIndex?(tokenFieldCell: NSTokenFieldCell, tokens: NSArray<interop.Object> | Array<interop.Object>, index: number): NSArray;
@@ -11819,6 +11933,9 @@ export class NSTokenFieldCellDelegateImpl extends NSObject implements NSTokenFie
 
 export class NSPathControlDelegateImpl extends NSObject implements NSPathControlDelegate {
   static ObjCProtocols = [NSPathControlDelegate];
+  static {
+    NativeClass(this);
+  }
 
   pathControlShouldDragItemWithPasteboard?(pathControl: NSPathControl, pathItem: NSPathControlItem, pasteboard: NSPasteboard): boolean;
   pathControlShouldDragPathComponentCellWithPasteboard?(pathControl: NSPathControl, pathComponentCell: NSPathComponentCell, pasteboard: NSPasteboard): boolean;
@@ -11830,6 +11947,9 @@ export class NSPathControlDelegateImpl extends NSObject implements NSPathControl
 
 export class NSFilePromiseProviderDelegateImpl extends NSObject implements NSFilePromiseProviderDelegate {
   static ObjCProtocols = [NSFilePromiseProviderDelegate];
+  static {
+    NativeClass(this);
+  }
 
   filePromiseProviderFileNameForType(filePromiseProvider: NSFilePromiseProvider, fileType: string): string {
     throw new Error("Please provide implementation for: NSFilePromiseProviderDelegate > filePromiseProviderFileNameForType");
@@ -11842,6 +11962,9 @@ export class NSFilePromiseProviderDelegateImpl extends NSObject implements NSFil
 
 export class NSApplicationDelegateImpl extends NSObject implements NSApplicationDelegate {
   static ObjCProtocols = [NSApplicationDelegate];
+  static {
+    NativeClass(this);
+  }
 
   applicationShouldTerminate?(sender: NSApplication): interop.Enum<typeof NSApplicationTerminateReply>;
   applicationOpenURLs?(application: NSApplication, urls: NSArray<interop.Object> | Array<interop.Object>): void;
@@ -11891,6 +12014,9 @@ export class NSApplicationDelegateImpl extends NSObject implements NSApplication
 
 export class NSAnimationDelegateImpl extends NSObject implements NSAnimationDelegate {
   static ObjCProtocols = [NSAnimationDelegate];
+  static {
+    NativeClass(this);
+  }
 
   animationShouldStart?(animation: NSAnimation): boolean;
   animationDidStop?(animation: NSAnimation): void;
@@ -11901,6 +12027,9 @@ export class NSAnimationDelegateImpl extends NSObject implements NSAnimationDele
 
 export class NSSharingServicePickerToolbarItemDelegateImpl extends NSObject implements NSSharingServicePickerToolbarItemDelegate {
   static ObjCProtocols = [NSSharingServicePickerToolbarItemDelegate];
+  static {
+    NativeClass(this);
+  }
 
   itemsForSharingServicePickerToolbarItem(pickerToolbarItem: NSSharingServicePickerToolbarItem): NSArray {
     throw new Error("Please provide implementation for: NSSharingServicePickerToolbarItemDelegate > itemsForSharingServicePickerToolbarItem");
@@ -11909,6 +12038,9 @@ export class NSSharingServicePickerToolbarItemDelegateImpl extends NSObject impl
 
 export class NSOutlineViewDelegateImpl extends NSObject implements NSOutlineViewDelegate {
   static ObjCProtocols = [NSOutlineViewDelegate];
+  static {
+    NativeClass(this);
+  }
 
   outlineViewViewForTableColumnItem?(outlineView: NSOutlineView, tableColumn: NSTableColumn | null, item: interop.Object): NSView;
   outlineViewRowViewForItem?(outlineView: NSOutlineView, item: interop.Object): NSTableRowView;
@@ -11953,10 +12085,16 @@ export class NSOutlineViewDelegateImpl extends NSObject implements NSOutlineView
 
 export class NSMatrixDelegateImpl extends NSObject implements NSMatrixDelegate {
   static ObjCProtocols = [NSMatrixDelegate];
+  static {
+    NativeClass(this);
+  }
 }
 
 export class NSSharingServicePickerDelegateImpl extends NSObject implements NSSharingServicePickerDelegate {
   static ObjCProtocols = [NSSharingServicePickerDelegate];
+  static {
+    NativeClass(this);
+  }
 
   sharingServicePickerSharingServicesForItemsProposedSharingServices?(sharingServicePicker: NSSharingServicePicker, items: NSArray<interop.Object> | Array<interop.Object>, proposedServices: NSArray<interop.Object> | Array<interop.Object>): NSArray;
   sharingServicePickerDelegateForSharingService?(sharingServicePicker: NSSharingServicePicker, sharingService: NSSharingService): NSSharingServiceDelegate;
@@ -11965,6 +12103,9 @@ export class NSSharingServicePickerDelegateImpl extends NSObject implements NSSh
 
 export class NSSplitViewDelegateImpl extends NSObject implements NSSplitViewDelegate {
   static ObjCProtocols = [NSSplitViewDelegate];
+  static {
+    NativeClass(this);
+  }
 
   splitViewCanCollapseSubview?(splitView: NSSplitView, subview: NSView): boolean;
   splitViewShouldCollapseSubviewForDoubleClickOnDividerAtIndex?(splitView: NSSplitView, subview: NSView, dividerIndex: number): boolean;
@@ -11982,6 +12123,9 @@ export class NSSplitViewDelegateImpl extends NSObject implements NSSplitViewDele
 
 export class NSComboBoxDelegateImpl extends NSObject implements NSComboBoxDelegate {
   static ObjCProtocols = [NSComboBoxDelegate];
+  static {
+    NativeClass(this);
+  }
 
   comboBoxWillPopUp?(notification: NSNotification): void;
   comboBoxWillDismiss?(notification: NSNotification): void;
@@ -11991,6 +12135,9 @@ export class NSComboBoxDelegateImpl extends NSObject implements NSComboBoxDelega
 
 export class NSToolbarDelegateImpl extends NSObject implements NSToolbarDelegate {
   static ObjCProtocols = [NSToolbarDelegate];
+  static {
+    NativeClass(this);
+  }
 
   toolbarItemForItemIdentifierWillBeInsertedIntoToolbar?(toolbar: NSToolbar, itemIdentifier: string, flag: boolean): NSToolbarItem;
   toolbarDefaultItemIdentifiers?(toolbar: NSToolbar): NSArray;
@@ -12004,6 +12151,9 @@ export class NSToolbarDelegateImpl extends NSObject implements NSToolbarDelegate
 
 export class NSTokenFieldDelegateImpl extends NSObject implements NSTokenFieldDelegate {
   static ObjCProtocols = [NSTokenFieldDelegate];
+  static {
+    NativeClass(this);
+  }
 
   tokenFieldCompletionsForSubstringIndexOfTokenIndexOfSelectedItem?(tokenField: NSTokenField, substring: string, tokenIndex: number, selectedIndex: interop.PointerConvertible): NSArray;
   tokenFieldShouldAddObjectsAtIndex?(tokenField: NSTokenField, tokens: NSArray<interop.Object> | Array<interop.Object>, index: number): NSArray;
@@ -12019,6 +12169,9 @@ export class NSTokenFieldDelegateImpl extends NSObject implements NSTokenFieldDe
 
 export class NSTextLayoutManagerDelegateImpl extends NSObject implements NSTextLayoutManagerDelegate {
   static ObjCProtocols = [NSTextLayoutManagerDelegate];
+  static {
+    NativeClass(this);
+  }
 
   textLayoutManagerTextLayoutFragmentForLocationInTextElement?(textLayoutManager: NSTextLayoutManager, location: NSTextLocation, textElement: NSTextElement): NSTextLayoutFragment;
   textLayoutManagerShouldBreakLineBeforeLocationHyphenating?(textLayoutManager: NSTextLayoutManager, location: NSTextLocation, hyphenating: boolean): boolean;
@@ -12027,6 +12180,9 @@ export class NSTextLayoutManagerDelegateImpl extends NSObject implements NSTextL
 
 export class NSLayoutManagerDelegateImpl extends NSObject implements NSLayoutManagerDelegate {
   static ObjCProtocols = [NSLayoutManagerDelegate];
+  static {
+    NativeClass(this);
+  }
 
   layoutManagerShouldGenerateGlyphsPropertiesCharacterIndexesFontForGlyphRange?(layoutManager: NSLayoutManager, glyphs: interop.PointerConvertible, props: interop.PointerConvertible, charIndexes: interop.PointerConvertible, aFont: NSFont, glyphRange: _NSRange): number;
   layoutManagerLineSpacingAfterGlyphAtIndexWithProposedLineFragmentRect?(layoutManager: NSLayoutManager, glyphIndex: number, rect: CGRect): number;
@@ -12045,6 +12201,9 @@ export class NSLayoutManagerDelegateImpl extends NSObject implements NSLayoutMan
 
 export class NSSearchFieldDelegateImpl extends NSObject implements NSSearchFieldDelegate {
   static ObjCProtocols = [NSSearchFieldDelegate];
+  static {
+    NativeClass(this);
+  }
 
   searchFieldDidStartSearching?(sender: NSSearchField): void;
   searchFieldDidEndSearching?(sender: NSSearchField): void;

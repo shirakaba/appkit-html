@@ -1175,7 +1175,12 @@ function parseDelegateHeader(line) {
 
   const implHeader = `export class ${impl} extends NSObject implements ${delegateName} {`;
   // TODO: lazy-init protocol conformance (once supported)
-  const implContents = [`  static ObjCProtocols = [${delegateName}];`];
+  const implContents = [
+    `  static ObjCProtocols = [${delegateName}];`,
+    '  static {',
+    '    NativeClass(this);',
+    '  }',
+  ];
   const implFooter = '}';
 
   return {
