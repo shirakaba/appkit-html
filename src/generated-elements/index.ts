@@ -530,6 +530,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
 
   remove(): void {
     super.remove();
+    this.nativeRemove();
   }
   nativeRemove(): void {
     // TODO: handle Text nodes, maybe with a class called NativeText.
@@ -592,18 +593,22 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       throw new Error("Reference node is not a child of this element.");
     }
 
-    const nativeSubviews = this.getNativeSubviews(newNode.nativeSubviewsProp);
+    const nativeChildNodes = this.nativeChildNodesImpl;
+    if(!nativeChildNodes){
+      throw new Error("Unable to insert newNode before referenceNode because nativeChildNodesImpl is not implemented.");
+    }
+
     let referenceNodeIndex = referenceNode instanceof HTMLNativeObjectElement ?
-      nativeSubviews?.indexOfObject(referenceNode.nativeObject) ?? -1 :
+      nativeChildNodes.indexOfObject(referenceNode.nativeObject) ?? -1 :
       -1;
 
-    // If the referenceNode's nativeObject is not in the nativeSubviews array
+    // If the referenceNode's nativeObject is not in the nativeChildNodes array
     // (e.g. because it's a Comment node), look through each nextSibling just in
     // case.
     let nextSibling = referenceNode.nextSibling;
     while(nextSibling && referenceNodeIndex === -1){
       referenceNodeIndex = nextSibling instanceof HTMLNativeObjectElement ?
-        nativeSubviews?.indexOfObject(nextSibling.nativeObject) ?? -1 :
+        nativeChildNodes.indexOfObject(nextSibling.nativeObject) ?? -1 :
         -1;
       nextSibling = nextSibling.nextSibling;
     }
@@ -648,8 +653,10 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
   }
 
   replaceChild<T extends Node>(node: Node, child: T): T {
-    const result = super.replaceChild(node, child);
+    // TODO: review all cases to decide whether native actions should always
+    // precede non-native ones, or just for removals.
     this.nativeReplaceChild(node, child);
+    const result = super.replaceChild(node, child);
     return result;
   }
   nativeReplaceChild<T extends Node>(newChild: Node, oldChild: T): void {
@@ -673,19 +680,21 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
         this.ownerDocument.createTextNode(node) :
         node
     );
+    // TODO: handle Text nodes, maybe with a class called NativeText.
+    const hasNativeNode = processedNodes.some(
+      node => node instanceof HTMLNativeObjectElement
+    );
+
+    if(!(this.parentNode instanceof HTMLNativeObjectElement)){
+      throw new Error("Can't replace native nodes unless parent is a HTMLNativeObjectElement.");
+    }
+
+    for(const node of processedNodes){
+      this.parentNode.nativeInsertBefore(node, this);
+    }
+    this.nativeRemove();
 
     super.replaceWith(...processedNodes);
-    this.nativeReplaceWith(...processedNodes);
-  }
-  nativeReplaceWith(...nodes: Node[]): void {
-    for(const node of nodes){
-      // TODO: handle Text nodes, maybe with a class called NativeText.
-      if(!(node instanceof HTMLNativeObjectElement)){
-        continue;
-      }
-
-      // TODO
-    }
   }
 
   replaceChildren(...nodes: (string | Node)[]): void {
@@ -694,18 +703,16 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
         this.ownerDocument.createTextNode(node) :
         node
     );
-    super.replaceChildren(...processedNodes);
-    this.nativeReplaceChildren(...processedNodes);
-  }
-  nativeReplaceChildren(...nodes: Node[]): void {
-    for(const node of nodes){
-      // TODO: handle Text nodes, maybe with a class called NativeText.
-      if(!(node instanceof HTMLNativeObjectElement)){
-        continue;
-      }
 
-      // TODO
+    for(const child of this.childNodes){
+      this.nativeRemoveChild(child);
     }
+
+    for(const node of processedNodes){
+      this.nativeAppendChild(node);
+    }
+
+    super.replaceChildren(...processedNodes);
   }
 }
 
