@@ -381,169 +381,75 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
   abstract readonly nativeObject: NativeObject;
 
   /**
-   * Set this to inform the parent what property to use to add this as a child.
+   * Gets the native child nodes of the nativeObject.
+   * @returns the child nodes, if implemented; otherwise, undefined.
    * @example
-   * <ns-stackview>
-   *   <ns-view nativeSubviewsProp="arrangedSubviews"></ns-view>
-   * </ns-stackview>
+   * this.nativeChildNodesImpl();
+   * // For an HTMLNSStackViewElement, returns:
+   * // this.nativeObject.arrangedSubviews;
    */
-  nativeSubviewsProp?: string;
-  /**
-   * Gets the subviews of the nativeObject by the property name.
-   * @returns the value of the property, if an NSArray; otherwise, null.
-   * @example
-   * stackviewElement.getNativeSubviews("arrangedSubviews");
-   * // Returns: stackviewElement.nativeObject.arrangedSubviews
-   */
-  protected getNativeSubviews(propName: string | undefined): NSArray | null {
-    if(!propName){
-      return null;
-    }
-
-    const subviews = (this.nativeObject as any)[propName];
-    return subviews instanceof NSArray ? subviews : null;
+  protected get nativeChildNodesImpl(): NSArray | undefined {
+    return;
   }
 
   /**
-   * Set this to inform the parent what method to use to add this as a child.
+   * Appends a native child node to the nativeObject.
+   * @returns the appended child, if implemented; otherwise, undefined.
    * @example
-   * <ns-stackview>
-   *   <ns-view nativeAddSubviewProp="arrangedSubviews"></ns-view>
-   * </ns-stackview>
+   * this.nativeAppendChildImpl(subview);
+   * // For an HTMLNSStackViewElement, evaluates:
+   * // this.nativeObject.addArrangedSubview(subview);
    */
-  protected nativeAddSubviewProp?: string;
-  /**
-   * Adds a subview to the nativeObject by the property name.
-   * @returns true if the method was able to be called; otherwise, false.
-   * @example
-   * stackviewElement.addNativeSubview("addArrangedSubview", subview);
-   * // Evaluates: stackviewElement.nativeObject.addArrangedSubview(subview);
-   */
-  protected addNativeSubview(propName: string | undefined, subview: NativeObject): boolean {
-    if(!propName){
-      return false;
-    }
-
-    if(propName in this.nativeObject){
-      (this.nativeObject as any)[propName](subview);
-      return true;
-    }
-
-    return false;
-  }
+  protected abstract nativeAppendChildImpl?<T extends NativeObject>(node: T): T;
 
   /**
-   * Set this to inform the parent what method to use to remove this child.
+   * Removes a native child node from the nativeObject.
+   * @returns the removed child, if implemented; otherwise, undefined.
    * @example
-   * <ns-stackview>
-   *   <ns-view nativeRemoveSubviewProp="arrangedSubviews"></ns-view>
-   * </ns-stackview>
+   * this.nativeRemoveChildImpl(subview);
+   * // For an HTMLNSStackViewElement, evaluates:
+   * // this.nativeObject.removeArrangedSubview(subview);
    */
-  protected nativeRemoveSubviewProp?: string;
-  /**
-   * Removes a subview from the nativeObject by the property name.
-   * @returns true if the method was able to be called; otherwise, false.
-   * @example
-   * stackviewElement.removeNativeSubview("removeArrangedSubview", subview);
-   * // Evaluates: stackviewElement.nativeObject.removeArrangedSubview(subview);
-   */
-  protected removeNativeSubview(propName: string | undefined, subview: NativeObject): boolean {
-    if(!propName){
-      return false;
-    }
-
-    if(propName in this.nativeObject){
-      (this.nativeObject as any)[propName](subview);
-      return true;
-    }
-
-    return false;
-  }
+  protected abstract nativeRemoveChildImpl?<T extends NativeObject>(child: T): T;
 
   /**
-   * Set this to inform the parent what method to use to remove this child.
+   * Removes the native child node at the given index from the nativeObject.
+   * @returns the removed child, if implemented; otherwise, undefined.
    * @example
-   * <ns-menu>
-   *   <ns-menuitem nativeRemoveSubviewAtIndexProp="removeItemAtIndex"></ns-menuitem>
-   * </ns-menu>
+   * this.nativeRemoveChildAtIndexImpl(index);
+   * // For an HTMLNSMenuElement, evaluates:
+   * // this.nativeObject.removeItemAtIndex(index);
    */
-  protected nativeRemoveSubviewAtIndexProp?: string;
-  /**
-   * Removes the native subview at the given index by the property name.
-   * @returns true if the method was able to be called; otherwise, false.
-   * @example
-   * menuElement.removeNativeSubviewAtIndex("removeItemAtIndex", 0);
-   * // Evaluates: menuElement.nativeObject.removeItemAtIndex(0);
-   */
-  protected removeNativeSubviewAtIndex(propName: string | undefined, index: number): boolean {
-    if(!propName){
-      return false;
-    }
-
-    if(propName in this.nativeObject){
-      (this.nativeObject as any)[propName](index);
-      return true;
-    }
-
-    return false;
-  }
+  protected abstract nativeRemoveChildAtIndexImpl?<T extends NativeObject>(index: number): T;
 
   /**
-   * Set this to inform the child what method to use to remove itself from its
-   * parent.
+   * Removes a native view from its parent.
    * @example
-   * <ns-view>
-   *   <ns-view nativeRemoveSubviewBySelfProp="removeFromSuperview"></ns-view>
-   * </ns-view>
+   * // For an HTMLNSViewElement, evaluates:
+   * // this.nativeObject.removeFromSuperview();
    */
-  protected nativeRemoveSubviewBySelfProp?: string;
-  /**
-   * Removes a native view from its parent by the property name.
-   * @returns true if the method was able to be called; otherwise, false.
-   * @example
-   * viewElement.removeNativeSubviewBySelf("removeFromSuperview");
-   * // Evaluates: viewElement.nativeObject.removeFromSuperview();
-   */
-  protected removeNativeSubviewBySelf(propName: string | undefined): boolean {
-    if(!propName){
-      return false;
-    }
+  protected abstract nativeRemoveImpl?(): void;
 
-    if(propName in this.nativeObject){
-      (this.nativeObject as any)[propName]();
-      return true;
-    }
-
-    return false;
-  }
+  // /**
+  //  * Inserts a new native child before the reference native child.
+  //  * @example
+  //  * this.nativeInsertBeforeImpl(newNode, referenceNode);
+  //  * // For an HTMLNSStackViewElement, evaluates something like:
+  //  * // this.nativeObject.insertArrangedSubviewAtIndex(
+  //  * //   newNode,
+  //  * //   this.nativeChildNodesImpl!.indexOf(referenceNode),
+  //  * // );
+  //  */
+  // protected abstract nativeInsertBeforeImpl?<T extends NativeObject>(newNode: T, referenceNode: NativeObject | null): T;
 
   /**
-   * Set this to inform the parent what method to use to insert this as a child.
+   * Inserts a new native child at the specified index.
    * @example
-   * <ns-stackview>
-   *   <ns-view nativeInsertSubviewProp="insertArrangedSubviewAtIndex"></ns-view>
-   * </ns-stackview>
+   * this.nativeInsertAtIndexImpl(newNode, index);
+   * // For an HTMLNSStackViewElement, evaluates something like:
+   * // this.nativeObject.insertArrangedSubviewAtIndex(newNode, index);
    */
-  protected nativeInsertSubviewProp?: string;
-  /**
-   * Adds a subview to the nativeObject by the property name.
-   * @returns true if the method was able to be called; otherwise, false.
-   * @example
-   * stackviewElement.insertNativeSubview("insertArrangedSubviewAtIndex", subview, 1);
-   * // Evaluates: stackviewElement.nativeObject.insertArrangedSubviewAtIndex(subview, 1);
-   */
-  protected insertNativeSubview(propName: string | undefined, subview: NSObject, index: number): boolean {
-    if(!propName){
-      return false;
-    }
-
-    if(propName in this.nativeObject){
-      (this.nativeObject as any)[propName](subview, index);
-      return true;
-    }
-
-    return false;
-  }
+  protected abstract nativeInsertAtIndexImpl?<T extends NativeObject>(newNode: T, index: number): T;
 
   /**
    * Inserts the nativeObject for the given node into the nativeSubviews array
@@ -551,23 +457,30 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    * @param index a positive integer. Can be null, meaning the end of the array.
    */
   protected nativeInsertAtIndex<T extends HTMLNativeObjectElement>(node: T, index: number | null): void {
-    const nativeSubviews = this.getNativeSubviews(node.nativeSubviewsProp);
-
     if(index !== null && index < 0){
       throw new Error("Index must be a positive integer, or null.");
     }
 
-    if((index === nativeSubviews?.count || index === null) && this.nativeAddSubviewProp){
-      (this.nativeObject as any)[this.nativeAddSubviewProp](node.nativeObject);
+    const childNodesCount = this.nativeChildNodesImpl?.count ?? null;
+    if(index === childNodesCount && this.nativeAppendChildImpl){
+      this.nativeAppendChildImpl(node.nativeObject);
       return;
     }
 
-    if(this.nativeInsertSubviewProp){
-      (this.nativeObject as any)[this.nativeInsertSubviewProp](node.nativeObject, index);
+    if(index === null){
+      index = childNodesCount;
+    }
+
+    if(typeof index === 'number' && this.nativeInsertAtIndexImpl){
+      this.nativeInsertAtIndexImpl(node.nativeObject, index);
       return;
     }
 
-    throw new Error("Unable to perform nativeInsertAtIndex as both nativeAddSubviewProp and nativeInsertSubviewProp are missing.")
+    // if(this.nativeInsertBeforeImpl && this.nativeChildNodesImpl){
+    //   this.nativeInsertBeforeImpl(node.nativeObject, this.nativeChildNodesImpl.objectAtIndex(index))
+    // }
+
+    throw new Error("Unable to perform nativeInsertAtIndex as nativeAppendChildImpl, nativeChildNodesImpl, and/or nativeInsertAtIndexImpl are missing.");
   }
 
   appendChild<T extends Node>(node: T): T {
@@ -595,20 +508,25 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       return;
     }
 
-    if(child.nativeRemoveSubviewProp){
-      this.removeNativeSubview(child.nativeRemoveSubviewProp, child.nativeObject);
+    if(this.nativeRemoveChildImpl){
+      this.nativeRemoveChildImpl(child.nativeObject);
       return;
     }
 
-    if(child.nativeRemoveSubviewBySelfProp){
-      child.removeNativeSubviewBySelf(child.nativeRemoveSubviewBySelfProp);
+    if(child.nativeRemoveImpl){
+      child.nativeRemoveImpl();
       return;
     }
 
-    if(child.nativeRemoveSubviewAtIndexProp && child.nativeSubviewsProp){
-      const subviews = this.getNativeSubviews(child.nativeSubviewsProp);
-      const index = subviews?.indexOfObject(child.nativeObject) ?? -1;
-      this.removeNativeSubviewAtIndex(child.nativeRemoveSubviewAtIndexProp, index);
+    const nativeChildNodes = this.nativeChildNodesImpl;
+    if(this.nativeRemoveChildAtIndexImpl && nativeChildNodes){
+      const index = nativeChildNodes.indexOfObject(child.nativeObject) ?? -1;
+      if(index === -1){
+        throw new Error("Unable to find specified child.");
+      }
+
+      this.nativeRemoveChildAtIndexImpl(index);
+      return;
     }
 
     throw new Error("Unable to remove child due to lack of removal methods.");
@@ -812,13 +730,6 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
         return `    // ?: HTML${className}Element;`;
       }
 
-      // const tagNameMatch = className.match(/^([A-Z]+)([A-Z].*)/);
-      // if (!tagNameMatch) {
-      //   throw new Error(
-      //     'Unable to define Custom Element as namespace was unable to be parsed.'
-      //   );
-      // }
-      // const [, namespace, classPortion] = tagNameMatch;
       const namespace = 'ns';
       const classPortion = className.slice('ns'.length);
 
