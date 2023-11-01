@@ -396,7 +396,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    * // For an HTMLNSStackViewElement, evaluates:
    * // this.nativeObject.addArrangedSubview(subview);
    */
-  protected abstract nativeAppendChildImpl?<T extends NativeObject>(node: T): T;
+  protected nativeAppendChildImpl?<T extends NativeObject>(node: T): T;
 
   /**
    * Removes a native child node from the nativeObject.
@@ -406,7 +406,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    * // For an HTMLNSStackViewElement, evaluates:
    * // this.nativeObject.removeArrangedSubview(subview);
    */
-  protected abstract nativeRemoveChildImpl?<T extends NativeObject>(child: T): T;
+  protected nativeRemoveChildImpl?<T extends NativeObject>(child: T): T;
 
   /**
    * Removes the native child node at the given index from the nativeObject.
@@ -416,7 +416,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    * // For an HTMLNSMenuElement, evaluates:
    * // this.nativeObject.removeItemAtIndex(index);
    */
-  protected abstract nativeRemoveChildAtIndexImpl?<T extends NativeObject>(index: number): T;
+  protected nativeRemoveChildAtIndexImpl?<T extends NativeObject>(index: number): T;
 
   /**
    * Removes a native view from its parent.
@@ -424,7 +424,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    * // For an HTMLNSViewElement, evaluates:
    * // this.nativeObject.removeFromSuperview();
    */
-  protected abstract nativeRemoveImpl?(): void;
+  protected nativeRemoveImpl?(): void;
 
   // /**
   //  * Inserts a new native child before the reference native child.
@@ -436,7 +436,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
   //  * //   this.nativeChildNodesImpl!.indexOf(referenceNode),
   //  * // );
   //  */
-  // protected abstract nativeInsertBeforeImpl?<T extends NativeObject>(newNode: T, referenceNode: NativeObject | null): T;
+  // protected nativeInsertBeforeImpl?<T extends NativeObject>(newNode: T, referenceNode: NativeObject | null): T;
 
   /**
    * Inserts a new native child at the specified index.
@@ -445,7 +445,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    * // For an HTMLNSStackViewElement, evaluates something like:
    * // this.nativeObject.insertArrangedSubviewAtIndex(newNode, index);
    */
-  protected abstract nativeInsertAtIndexImpl?<T extends NativeObject>(newNode: T, index: number): T;
+  protected nativeInsertAtIndexImpl?<T extends NativeObject>(newNode: T, index: number): T;
 
   /**
    * Inserts the nativeObject for the given node into the nativeSubviews array
@@ -4633,6 +4633,34 @@ export class HTMLNSTabViewElement extends HTMLNSViewElement {
     return this.nativeObject.delegate as NSTabViewDelegateImpl;
   }
 
+  protected get nativeChildNodesImpl(): NSArray {
+    return this.nativeObject.tabViewItems;
+  }
+
+  protected nativeAppendChildImpl<T extends NativeObject>(node: T): T {
+    if(!(node instanceof NSTabViewItem)){
+      throw new Error("Expected NSTabViewItem.");
+    }
+    this.nativeObject.addTabViewItem(node);
+    return node;
+  }
+
+  protected nativeRemoveChildImpl<T extends NativeObject>(child: T): T {
+    if(!(child instanceof NSTabViewItem)){
+      throw new Error("Expected NSTabViewItem.");
+    }
+    this.nativeObject.removeTabViewItem(child);
+    return child;
+  }
+
+  protected nativeInsertAtIndexImpl<T extends NativeObject>(newNode: T, index: number): T {
+    if(!(newNode instanceof NSTabViewItem)){
+      throw new Error("Expected NSTabViewItem.");
+    }
+    this.nativeObject.insertTabViewItemAtIndex(newNode, index);
+    return newNode;
+  }
+
   get selectedTabViewItem(): NSTabViewItem { return this.nativeObject.selectedTabViewItem; }
   get font(): NSFont { return this.nativeObject.font; }
   set font(value: NSFont) { this.nativeObject.font = value; }
@@ -7623,6 +7651,34 @@ export class HTMLNSSplitViewElement extends HTMLNSViewElement {
     return this.nativeObject.delegate as NSSplitViewDelegateImpl;
   }
 
+  protected get nativeChildNodesImpl(): NSArray {
+    return this.nativeObject.arrangedSubviews;
+  }
+
+  protected nativeAppendChildImpl<T extends NativeObject>(node: T): T {
+    if(!(node instanceof NSView)){
+      throw new Error("Expected NSView");
+    }
+    this.nativeObject.addArrangedSubview(node);
+    return node;
+  }
+
+  protected nativeRemoveChildImpl<T extends NativeObject>(child: T): T {
+    if(!(child instanceof NSView)){
+      throw new Error("Expected NSView");
+    }
+    this.nativeObject.removeArrangedSubview(child);
+    return child;
+  }
+
+  protected nativeInsertAtIndexImpl<T extends NativeObject>(newNode: T, index: number): T {
+    if(!(newNode instanceof NSView)){
+      throw new Error("Expected NSView");
+    }
+    this.nativeObject.insertArrangedSubviewAtIndex(newNode, index);
+    return newNode;
+  }
+
   get isVertical(): boolean { return this.nativeObject.isVertical; }
   set isVertical(value: boolean) { this.nativeObject.isVertical = value; }
   get dividerStyle(): interop.Enum<typeof NSSplitViewDividerStyle> { return this.nativeObject.dividerStyle; }
@@ -8991,6 +9047,34 @@ export class HTMLNSStackViewElement extends HTMLNSViewElement {
       this.nativeObject.delegate = NSStackViewDelegateImpl.new();
     }
     return this.nativeObject.delegate as NSStackViewDelegateImpl;
+  }
+
+  protected get nativeChildNodesImpl(): NSArray {
+    return this.nativeObject.arrangedSubviews;
+  }
+
+  protected nativeAppendChildImpl<T extends NativeObject>(node: T): T {
+    if(!(node instanceof NSView)){
+      throw new Error("Expected NSView");
+    }
+    this.nativeObject.addArrangedSubview(node);
+    return node;
+  }
+
+  protected nativeRemoveChildImpl<T extends NativeObject>(child: T): T {
+    if(!(child instanceof NSView)){
+      throw new Error("Expected NSView");
+    }
+    this.nativeObject.removeArrangedSubview(child);
+    return child;
+  }
+
+  protected nativeInsertAtIndexImpl<T extends NativeObject>(newNode: T, index: number): T {
+    if(!(newNode instanceof NSView)){
+      throw new Error("Expected NSView");
+    }
+    this.nativeObject.insertArrangedSubviewAtIndex(newNode, index);
+    return newNode;
   }
 
   get orientation(): interop.Enum<typeof NSUserInterfaceLayoutOrientation> { return this.nativeObject.orientation; }
