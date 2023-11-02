@@ -259,6 +259,11 @@ function parseDeclaration(lines) {
     if(!(node instanceof NSGridRow)){
       throw new Error("Expected NSGridRow");
     }
+    // FIXME: we appear to be inserting an Array<NSGridRow> instead of an
+    // Array<NSGridCell>.
+    // Instead, we should insert the array of cells and capture the return (the
+    // new row) and set that upon the HTMLNSGridRowElement. Our API doesn't
+    // support that just yet.
     this.nativeObject.insertRowAtIndexWithViews(this.nativeObject.numberOfRows, [node]);
     return node;
   }
@@ -276,6 +281,58 @@ function parseDeclaration(lines) {
       throw new Error("Expected NSGridRow");
     }
     this.nativeObject.insertRowAtIndexWithViews(index, [newNode]);
+    return newNode;
+  }
+`.slice('\n'.length);
+          break;
+        case 'NSGridRow':
+          nodeOps = `
+  protected get nativeChildNodesImpl(): NSArray {
+    const arr = NSMutableArray.new();
+    const count = this.nativeObject.numberOfCells;
+    for(let i = 0; i < count; i++){
+      arr.addObject(this.nativeObject.cellAtIndex(i));
+    }
+    return arr;
+  }
+
+  protected nativeAppendChildImpl<T extends NativeObject>(node: T): T {
+    if(!(node instanceof NSGridCell)){
+      throw new Error("Expected NSGridCell");
+    }
+    if(!(this.parentNode instanceof HTMLNSGridViewElement)){
+      throw new Error("Expected NSGridRow to be in an NSGridView.");
+    }
+
+    // NSGridRow lacks an API to add cells, so we need to discard the current
+    // row and build a new one.
+
+    const currentCells = this.nativeChildNodesImpl as NSMutableArray;
+    currentCells.addObject(node);
+
+    const rowIndex = this.parentNode.nativeObject.indexOfRow(this.nativeObject);
+    this.parentNode.nativeObject.removeRowAtIndex(rowIndex);
+    const newRow = this.parentNode.nativeObject.insertRowAtIndexWithViews(rowIndex, currentCells);
+
+    // @ts-ignore overwrite the readonly field
+    this.nativeObject = newRow;
+
+    return node;
+  }
+
+  protected nativeRemoveChildImpl<T extends NativeObject>(child: T): T {
+    if(!(child instanceof NSGridCell)){
+      throw new Error("Expected NSGridCell");
+    }
+    // TODO
+    return child;
+  }
+
+  protected nativeInsertAtIndexImpl<T extends NativeObject>(newNode: T, index: number): T {
+    if(!(newNode instanceof NSGridCell)){
+      throw new Error("Expected NSGridCell");
+    }
+    // TODO
     return newNode;
   }
 `.slice('\n'.length);
