@@ -240,6 +240,46 @@ function parseDeclaration(lines) {
   }
 `.slice('\n'.length);
           break;
+        // TODO: Could add a convenience function for getting number of native
+        // child nodes (given that we only wanted to read
+        // this.nativeObject.numberOfRows in the first place, so building the
+        // array is wasteful).
+        case 'NSGridView':
+          nodeOps = `
+  protected get nativeChildNodesImpl(): NSArray {
+    const arr = NSMutableArray.new();
+    const count = this.nativeObject.numberOfRows;
+    for(let i = 0; i < count; i++){
+      arr.addObject(this.nativeObject.rowAtIndex(i));
+    }
+    return arr;
+  }
+
+  protected nativeAppendChildImpl<T extends NativeObject>(node: T): T {
+    if(!(node instanceof NSGridRow)){
+      throw new Error("Expected NSGridRow");
+    }
+    this.nativeObject.insertRowAtIndexWithViews(this.nativeObject.numberOfRows, [node]);
+    return node;
+  }
+
+  protected nativeRemoveChildImpl<T extends NativeObject>(child: T): T {
+    if(!(child instanceof NSGridRow)){
+      throw new Error("Expected NSGridRow");
+    }
+    this.nativeObject.removeRowAtIndex(this.nativeObject.indexOfRow(child));
+    return child;
+  }
+
+  protected nativeInsertAtIndexImpl<T extends NativeObject>(newNode: T, index: number): T {
+    if(!(newNode instanceof NSGridRow)){
+      throw new Error("Expected NSGridRow");
+    }
+    this.nativeObject.insertRowAtIndexWithViews(index, [newNode]);
+    return newNode;
+  }
+`.slice('\n'.length);
+          break;
         case 'NSTabView':
           nodeOps = `
   protected get nativeChildNodesImpl(): NSArray {

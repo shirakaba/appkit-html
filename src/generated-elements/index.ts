@@ -7626,6 +7626,39 @@ export class HTMLNSGridViewElement extends HTMLNSViewElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSGridView.new();
 
+  protected get nativeChildNodesImpl(): NSArray {
+    const arr = NSMutableArray.new();
+    const count = this.nativeObject.numberOfRows;
+    for(let i = 0; i < count; i++){
+      arr.addObject(this.nativeObject.rowAtIndex(i));
+    }
+    return arr;
+  }
+
+  protected nativeAppendChildImpl<T extends NativeObject>(node: T): T {
+    if(!(node instanceof NSGridRow)){
+      throw new Error("Expected NSGridRow");
+    }
+    this.nativeObject.insertRowAtIndexWithViews(this.nativeObject.numberOfRows, [node]);
+    return node;
+  }
+
+  protected nativeRemoveChildImpl<T extends NativeObject>(child: T): T {
+    if(!(child instanceof NSGridRow)){
+      throw new Error("Expected NSGridRow");
+    }
+    this.nativeObject.removeRowAtIndex(this.nativeObject.indexOfRow(child));
+    return child;
+  }
+
+  protected nativeInsertAtIndexImpl<T extends NativeObject>(newNode: T, index: number): T {
+    if(!(newNode instanceof NSGridRow)){
+      throw new Error("Expected NSGridRow");
+    }
+    this.nativeObject.insertRowAtIndexWithViews(index, [newNode]);
+    return newNode;
+  }
+
   get numberOfRows(): number { return this.nativeObject.numberOfRows; }
   get numberOfColumns(): number { return this.nativeObject.numberOfColumns; }
   get xPlacement(): interop.Enum<typeof NSGridCellPlacement> { return this.nativeObject.xPlacement; }
