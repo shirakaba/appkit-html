@@ -205,7 +205,6 @@ function parseDeclaration(lines) {
         }
       );
 
-      // XXX
       let nodeOps = '';
       switch (className) {
         case 'NSSplitView':
@@ -215,28 +214,25 @@ function parseDeclaration(lines) {
     return this.nativeObject.arrangedSubviews;
   }
 
-  protected nativeAppendChildImpl<T extends HTMLNativeObjectElement>(node: T): T {
+  protected nativeAppendChildImpl<T extends HTMLNativeObjectElement>(node: T): void {
     if(!(node.nativeObject instanceof NSView)){
       throw new Error("Expected NSView");
     }
     this.nativeObject.addArrangedSubview(node.nativeObject);
-    return node;
   }
 
-  protected nativeRemoveChildImpl<T extends HTMLNativeObjectElement>(child: T): T {
+  protected nativeRemoveChildImpl<T extends HTMLNativeObjectElement>(child: T): void {
     if(!(child.nativeObject instanceof NSView)){
       throw new Error("Expected NSView");
     }
     this.nativeObject.removeArrangedSubview(child.nativeObject);
-    return child;
   }
 
-  protected nativeInsertAtIndexImpl<T extends HTMLNativeObjectElement>(newNode: T, index: number): T {
+  protected nativeInsertAtIndexImpl<T extends HTMLNativeObjectElement>(newNode: T, index: number): void {
     if(!(newNode.nativeObject instanceof NSView)){
       throw new Error("Expected NSView");
     }
     this.nativeObject.insertArrangedSubviewAtIndex(newNode.nativeObject, index);
-    return newNode;
   }
 `.slice('\n'.length);
           break;
@@ -246,106 +242,242 @@ function parseDeclaration(lines) {
         // array is wasteful).
         case 'NSGridView':
           nodeOps = `
-  protected get nativeChildNodesImpl(): NSArray {
-    const arr = NSMutableArray.new();
-    const count = this.nativeObject.numberOfRows;
-    for(let i = 0; i < count; i++){
-      arr.addObject(this.nativeObject.rowAtIndex(i));
+  protected nativeAppendChildImpl<T extends HTMLNativeObjectElement>(node: T): void {
+    if(node instanceof HTMLNSGridRowElement){
+      node.replaceNativeObject(this.nativeObject.addRowWithViews(this.getRowCells(node)));
+      return;
     }
-    return arr;
+    if(node instanceof HTMLNSGridColumnElement){
+      node.replaceNativeObject(this.nativeObject.addColumnWithViews(this.getColumnCells(node)));
+      return;
+    }
+
+    throw new Error("Expected HTMLNSGridRowElement or HTMLNSGridColumnElement");
   }
 
-  protected nativeAppendChildImpl<T extends HTMLNativeObjectElement>(node: T): T {
-    if(node instanceof NSGridRow){
-      const arr = NSMutableArray.new();
-      const count = node.numberOfCells;
-      for(let i = 0; i < count; i++){
-        arr.addObject(node.cellAtIndex(i));
-      }
-
-      node.numberOfCells
-      return this.nativeObject.insertRowAtIndexWithViews(this.nativeObject.numberOfRows, []) as unknown as T;
+  protected nativeRemoveChildImpl<T extends HTMLNativeObjectElement>(child: T): void {
+    if(child instanceof HTMLNSGridRowElement){
+      this.nativeObject.removeRowAtIndex(this.nativeObject.indexOfRow(child.nativeObject));
+      return;
     }
-    if(node instanceof NSGridColumn){
-      return this.nativeObject.insertColumnAtIndexWithViews(this.nativeObject.numberOfColumns, []) as unknown as T;
+    if(child instanceof HTMLNSGridColumnElement){
+      this.nativeObject.removeColumnAtIndex(this.nativeObject.indexOfColumn(child.nativeObject));
+      return;
     }
 
-    throw new Error("Expected NSGridRow or NSGridColumn");
-
-    // FIXME: we appear to be inserting an Array<NSGridRow> instead of an
-    // Array<NSGridCell>.
-    // Instead, we should insert the array of cells and capture the return (the
-    // new row) and set that upon the HTMLNSGridRowElement. Our API doesn't
-    // support that just yet.
-    return node;
+    throw new Error("Expected HTMLNSGridRowElement or HTMLNSGridColumnElement");
   }
 
-  protected nativeRemoveChildImpl<T extends HTMLNativeObjectElement>(child: T): T {
-    if(!(child instanceof NSGridRow)){
-      throw new Error("Expected NSGridRow");
+  protected nativeInsertAtIndexImpl<T extends HTMLNativeObjectElement>(newNode: T, index: number): void {
+    if(newNode instanceof HTMLNSGridRowElement){
+      newNode.replaceNativeObject(this.nativeObject.insertRowAtIndexWithViews(index, this.getRowCells(newNode)));
+      return;
     }
-    this.nativeObject.removeRowAtIndex(this.nativeObject.indexOfRow(child));
-    return child;
+    if(newNode instanceof HTMLNSGridColumnElement){
+      newNode.replaceNativeObject(this.nativeObject.insertColumnAtIndexWithViews(index, this.getColumnCells(newNode)));
+      return;
+    }
+
+    throw new Error("Expected HTMLNSGridRowElement or HTMLNSGridColumnElement");
   }
 
-  protected nativeInsertAtIndexImpl<T extends HTMLNativeObjectElement>(newNode: T, index: number): T {
-    if(!(newNode instanceof NSGridRow)){
-      throw new Error("Expected NSGridRow");
-    }
-    this.nativeObject.insertRowAtIndexWithViews(index, [newNode]);
-    return newNode;
+  private getRowCells(row: HTMLNSGridRowElement): NSMutableArray {
+    return (row as any).nativeChildNodesImpl;
+  }
+
+  private getColumnCells(col: HTMLNSGridColumnElement): NSMutableArray {
+    return (col as any).nativeChildNodesImpl;
   }
 `.slice('\n'.length);
           break;
         case 'NSGridRow':
           nodeOps = `
-  protected get nativeChildNodesImpl(): NSArray {
-    const arr = NSMutableArray.new();
-    const count = this.nativeObject.numberOfCells;
-    for(let i = 0; i < count; i++){
-      arr.addObject(this.nativeObject.cellAtIndex(i));
+  protected get nativeChildNodesImpl(): NSMutableArray<NSGridCell> {
+    const mutableArr = NSMutableArray.new<typeof NSMutableArray<NSGridCell>>();
+    for(let i = 0, count = this.nativeObject.numberOfCells; i < count; i++){
+      mutableArr.addObject(this.nativeObject.cellAtIndex(i));
     }
-    return arr;
+    return mutableArr;
   }
 
-  protected nativeAppendChildImpl<T extends HTMLNativeObjectElement>(node: T): T {
-    if(!(node instanceof NSGridCell)){
-      throw new Error("Expected NSGridCell");
+  protected nativeAppendChildImpl<T extends HTMLNativeObjectElement>(node: T): void {
+    if(!(node instanceof HTMLNSGridCellElement)){
+      throw new Error("Expected HTMLNSGridCellElement");
     }
+
+    const currentCells = this.nativeChildNodesImpl;
+    currentCells.addObject(node.nativeObject);
+    this.regenerateRowWithCells(currentCells);
+  }
+
+  protected nativeRemoveChildImpl<T extends HTMLNativeObjectElement>(child: T): void {
+    if(!(child instanceof HTMLNSGridCellElement)){
+      throw new Error("Expected HTMLNSGridCellElement");
+    }
+
+    const currentCells = this.nativeChildNodesImpl;
+    currentCells.removeObject(child.nativeObject);
+    this.regenerateRowWithCells(currentCells);
+  }
+
+  protected nativeInsertAtIndexImpl<T extends HTMLNativeObjectElement>(newNode: T, index: number): void {
+    if(!(newNode instanceof HTMLNSGridCellElement)){
+      throw new Error("Expected HTMLNSGridCellElement");
+    }
+
+    const currentCells = this.nativeChildNodesImpl;
+    currentCells.insertObjectAtIndex(newNode.nativeObject, index);
+    this.regenerateRowWithCells(currentCells);
+  }
+
+  /**
+   * NSGridRow lacks an API to add cells, so we need to discard the current row
+   * and build a new one.
+   */
+  private regenerateRowWithCells(cells: NSArray<NSGridCell>) {
     if(!(this.parentNode instanceof HTMLNSGridViewElement)){
-      throw new Error("Expected NSGridRow to be in an NSGridView.");
+      // Can only regenerate NSGridRow when parented by an NSGridView.
+      return;
     }
 
-    // NSGridRow lacks an API to add cells, so we need to discard the current
-    // row and build a new one.
-
-    const currentCells = this.nativeChildNodesImpl as NSMutableArray;
-    currentCells.addObject(node);
-
+    // Regenerate NSGridRow
     const rowIndex = this.parentNode.nativeObject.indexOfRow(this.nativeObject);
     this.parentNode.nativeObject.removeRowAtIndex(rowIndex);
-    const newRow = this.parentNode.nativeObject.insertRowAtIndexWithViews(rowIndex, currentCells);
 
-    // @ts-ignore overwrite the readonly field
-    this.nativeObject = newRow;
+    const cellViews = new Array<NSView>();
+    for(let i = 0, count = cells.count; i < count; i++){
+      cellViews.push(cells.objectAtIndex(i).contentView);
+    }
+    this.replaceNativeObject(this.parentNode.nativeObject.insertRowAtIndexWithViews(rowIndex, cellViews));
 
-    return node;
+    // Regenerate NSGridCells
+    let i = 0;
+    for(const node of this.childNodes){
+      if(!(node instanceof HTMLNSGridCellElement)){
+        // Skip Comment nodes, etc.
+        continue;
+      }
+
+      node.replaceNativeObject(this.nativeObject.cellAtIndex(i));
+      i++;
+    }
   }
 
-  protected nativeRemoveChildImpl<T extends HTMLNativeObjectElement>(child: T): T {
-    if(!(child instanceof NSGridCell)){
-      throw new Error("Expected NSGridCell");
+  replaceNativeObject(nativeObject: NSGridRow): void {
+    nativeObject.yPlacement = this.nativeObject.yPlacement;
+    nativeObject.rowAlignment = this.nativeObject.rowAlignment;
+    nativeObject.height = this.nativeObject.height;
+    nativeObject.topPadding = this.nativeObject.topPadding;
+    nativeObject.bottomPadding = this.nativeObject.bottomPadding;
+    nativeObject.isHidden = this.nativeObject.isHidden;
+
+    this.nativeObject = nativeObject;
+  }
+`.slice('\n'.length);
+          break;
+        case 'NSGridColumn':
+          nodeOps = `
+  protected get nativeChildNodesImpl(): NSMutableArray<NSGridCell> {
+    const mutableArr = NSMutableArray.new<typeof NSMutableArray<NSGridCell>>();
+    for(let i = 0, count = this.nativeObject.numberOfCells; i < count; i++){
+      mutableArr.addObject(this.nativeObject.cellAtIndex(i));
     }
-    // TODO
-    return child;
+    return mutableArr;
   }
 
-  protected nativeInsertAtIndexImpl<T extends HTMLNativeObjectElement>(newNode: T, index: number): T {
-    if(!(newNode instanceof NSGridCell)){
-      throw new Error("Expected NSGridCell");
+  protected nativeAppendChildImpl<T extends HTMLNativeObjectElement>(node: T): void {
+    if(!(node instanceof HTMLNSGridCellElement)){
+      throw new Error("Expected HTMLNSGridCellElement");
     }
-    // TODO
-    return newNode;
+
+    const currentCells = this.nativeChildNodesImpl;
+    currentCells.addObject(node.nativeObject);
+    this.regenerateColumnWithCells(currentCells);
+  }
+
+  protected nativeRemoveChildImpl<T extends HTMLNativeObjectElement>(child: T): void {
+    if(!(child instanceof HTMLNSGridCellElement)){
+      throw new Error("Expected HTMLNSGridCellElement");
+    }
+
+    const currentCells = this.nativeChildNodesImpl;
+    currentCells.removeObject(child.nativeObject);
+    this.regenerateColumnWithCells(currentCells);
+  }
+
+  protected nativeInsertAtIndexImpl<T extends HTMLNativeObjectElement>(newNode: T, index: number): void {
+    if(!(newNode instanceof HTMLNSGridCellElement)){
+      throw new Error("Expected HTMLNSGridCellElement");
+    }
+
+    const currentCells = this.nativeChildNodesImpl;
+    currentCells.insertObjectAtIndex(newNode.nativeObject, index);
+    this.regenerateColumnWithCells(currentCells);
+  }
+
+  /**
+   * NSGridColumn lacks an API to add cells, so we need to discard the current
+   * column and build a new one.
+   */
+  private regenerateColumnWithCells(cells: NSArray<NSGridCell>) {
+    if(!(this.parentNode instanceof HTMLNSGridViewElement)){
+      // Can only regenerate NSGridColumn when parented by an NSGridView.
+      return;
+    }
+
+    // Regenerate NSGridColumn
+    const columnIndex = this.parentNode.nativeObject.indexOfColumn(this.nativeObject);
+    this.parentNode.nativeObject.removeColumnAtIndex(columnIndex);
+
+    const cellViews = new Array<NSView>();
+    for(let i = 0, count = cells.count; i < count; i++){
+      cellViews.push(cells.objectAtIndex(i).contentView);
+    }
+    this.replaceNativeObject(this.parentNode.nativeObject.insertColumnAtIndexWithViews(columnIndex, cellViews));
+
+    // Regenerate NSGridCells
+    let i = 0;
+    for(const node of this.childNodes){
+      if(!(node instanceof HTMLNSGridCellElement)){
+        // Skip Comment nodes, etc.
+        continue;
+      }
+
+      node.replaceNativeObject(this.nativeObject.cellAtIndex(i));
+      i++;
+    }
+  }
+
+  /**
+   * Sets a new value for this.nativeObject, copying all the previous state over
+   * to it. For use by the library, not users.
+   * @private
+   */
+  replaceNativeObject(nativeObject: NSGridColumn): void {
+    nativeObject.xPlacement = this.nativeObject.xPlacement;
+    nativeObject.width = this.nativeObject.width;
+    nativeObject.leadingPadding = this.nativeObject.leadingPadding;
+    nativeObject.trailingPadding = this.nativeObject.trailingPadding;
+    nativeObject.isHidden = this.nativeObject.isHidden;
+
+    this.nativeObject = nativeObject;
+  }
+`.slice('\n'.length);
+          break;
+        case 'NSGridCell':
+          nodeOps = `
+  /**
+   * Sets a new value for this.nativeObject, copying all the previous state over
+   * to it. For use by the library, not users.
+   * @private
+   */
+  replaceNativeObject(nativeObject: NSGridCell): void {
+    nativeObject.xPlacement = this.nativeObject.xPlacement;
+    nativeObject.yPlacement = this.nativeObject.yPlacement;
+    nativeObject.rowAlignment = this.nativeObject.rowAlignment;
+    nativeObject.customPlacementConstraints = this.nativeObject.customPlacementConstraints;
+
+    this.nativeObject = nativeObject;
   }
 `.slice('\n'.length);
           break;
@@ -355,28 +487,25 @@ function parseDeclaration(lines) {
     return this.nativeObject.tabViewItems;
   }
 
-  protected nativeAppendChildImpl<T extends HTMLNativeObjectElement>(node: T): T {
+  protected nativeAppendChildImpl<T extends HTMLNativeObjectElement>(node: T): void {
     if(!(node.nativeObject instanceof NSTabViewItem)){
       throw new Error("Expected NSTabViewItem.");
     }
     this.nativeObject.addTabViewItem(node.nativeObject);
-    return node;
   }
 
-  protected nativeRemoveChildImpl<T extends HTMLNativeObjectElement>(child: T): T {
+  protected nativeRemoveChildImpl<T extends HTMLNativeObjectElement>(child: T): void {
     if(!(child.nativeObject instanceof NSTabViewItem)){
       throw new Error("Expected NSTabViewItem.");
     }
     this.nativeObject.removeTabViewItem(child.nativeObject);
-    return child;
   }
 
-  protected nativeInsertAtIndexImpl<T extends HTMLNativeObjectElement>(newNode: T, index: number): T {
+  protected nativeInsertAtIndexImpl<T extends HTMLNativeObjectElement>(newNode: T, index: number): void {
     if(!(newNode.nativeObject instanceof NSTabViewItem)){
       throw new Error("Expected NSTabViewItem.");
     }
     this.nativeObject.insertTabViewItemAtIndex(newNode.nativeObject, index);
-    return newNode;
   }
 `.slice('\n'.length);
       }
@@ -577,7 +706,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    * // For an HTMLNSStackViewElement, evaluates:
    * // this.nativeObject.addArrangedSubview(subview);
    */
-  protected nativeAppendChildImpl?<T extends HTMLNativeObjectElement>(node: T): T;
+  protected nativeAppendChildImpl?<T extends HTMLNativeObjectElement>(node: T): void;
 
   /**
    * Removes a native child node from the nativeObject.
@@ -587,7 +716,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    * // For an HTMLNSStackViewElement, evaluates:
    * // this.nativeObject.removeArrangedSubview(subview);
    */
-  protected nativeRemoveChildImpl?<T extends HTMLNativeObjectElement>(child: T): T;
+  protected nativeRemoveChildImpl?<T extends HTMLNativeObjectElement>(child: T): void;
 
   /**
    * Removes the native child node at the given index from the nativeObject.
@@ -597,7 +726,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    * // For an HTMLNSMenuElement, evaluates:
    * // this.nativeObject.removeItemAtIndex(index);
    */
-  protected nativeRemoveChildAtIndexImpl?<T extends HTMLNativeObjectElement>(index: number): T;
+  protected nativeRemoveChildAtIndexImpl?<T extends HTMLNativeObjectElement>(index: number): void;
 
   /**
    * Removes a native view from its parent.
@@ -617,7 +746,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
   //  * //   this.nativeChildNodesImpl!.indexOf(referenceNode),
   //  * // );
   //  */
-  // protected nativeInsertBeforeImpl?<T extends HTMLNativeObjectElement>(newNode: T, referenceNode: NativeObject | null): T;
+  // protected nativeInsertBeforeImpl?<T extends HTMLNativeObjectElement>(newNode: T, referenceNode: NativeObject | null): void;
 
   /**
    * Inserts a new native child at the specified index.
@@ -626,7 +755,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    * // For an HTMLNSStackViewElement, evaluates something like:
    * // this.nativeObject.insertArrangedSubviewAtIndex(newNode, index);
    */
-  protected nativeInsertAtIndexImpl?<T extends HTMLNativeObjectElement>(newNode: T, index: number): T;
+  protected nativeInsertAtIndexImpl?<T extends HTMLNativeObjectElement>(newNode: T, index: number): void;
 
   /**
    * Inserts the nativeObject for the given node into the nativeSubviews array
@@ -1032,6 +1161,16 @@ function parseViewClassHeader(line, tsIgnoring) {
       ? 'NSApplication.sharedApplication'
       : `${className}.new()`;
 
+  /**
+   * In some cases, the AppKit element maps very poorly to HTML so we have to
+   * regenerate its child/grandchild nativeObjects.
+   */
+  const isNativeObjectReadonly = ![
+    'NSGridRow',
+    'NSGridColumn',
+    'NSGridCell',
+  ].includes(className);
+
   const header = `export class HTML${className}Element extends HTML${superclass}Element {`;
   const contents = [
     '  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };',
@@ -1042,7 +1181,9 @@ function parseViewClassHeader(line, tsIgnoring) {
      * sometimes when TS insists that a class is incompatible with its superclass.
      */
     ...(tsIgnoring ? ['  // @ts-ignore'] : []),
-    `  readonly nativeObject = ${nativeObject};`,
+    `  ${
+      isNativeObjectReadonly ? 'readonly ' : ''
+    }nativeObject = ${nativeObject};`,
   ];
   const footer = '}';
 
