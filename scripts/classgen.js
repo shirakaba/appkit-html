@@ -943,6 +943,12 @@ ${tagNameMap}
 ${[
   ...new Set([
     ...imports,
+    '/// <reference types="objc/types/macos/CoreFoundation.d.ts" />',
+    '/// <reference types="objc/types/macos/CoreData.d.ts" />',
+    '/// <reference types="objc/types/macos/CoreImage.d.ts" />',
+    '/// <reference types="objc/types/macos/CloudKit.d.ts" />',
+    '/// <reference types="objc/types/macos/Intents.d.ts" />',
+    '/// <reference types="objc/types/macos/WebKit.d.ts" />',
     '/// <reference types="objc/types/macos/AppKit.d.ts" />',
   ]),
 ].join('\n')}

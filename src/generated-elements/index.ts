@@ -2,6 +2,12 @@
 /// <reference types="objc/types/macos/Runtime.d.ts" />
 /// <reference types="objc/types/macos/QuartzCore.d.ts" />
 /// <reference types="objc/types/macos/Foundation.d.ts" />
+/// <reference types="objc/types/macos/CoreFoundation.d.ts" />
+/// <reference types="objc/types/macos/CoreData.d.ts" />
+/// <reference types="objc/types/macos/CoreImage.d.ts" />
+/// <reference types="objc/types/macos/CloudKit.d.ts" />
+/// <reference types="objc/types/macos/Intents.d.ts" />
+/// <reference types="objc/types/macos/WebKit.d.ts" />
 /// <reference types="objc/types/macos/AppKit.d.ts" />
 
 // Call e.g. HTMLNSAlertElement.defineCustomElement(); to register each Custom
