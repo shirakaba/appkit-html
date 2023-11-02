@@ -215,27 +215,27 @@ function parseDeclaration(lines) {
     return this.nativeObject.arrangedSubviews;
   }
 
-  protected nativeAppendChildImpl<T extends NativeObject>(node: T): T {
-    if(!(node instanceof NSView)){
+  protected nativeAppendChildImpl<T extends HTMLNativeObjectElement>(node: T): T {
+    if(!(node.nativeObject instanceof NSView)){
       throw new Error("Expected NSView");
     }
-    this.nativeObject.addArrangedSubview(node);
+    this.nativeObject.addArrangedSubview(node.nativeObject);
     return node;
   }
 
-  protected nativeRemoveChildImpl<T extends NativeObject>(child: T): T {
-    if(!(child instanceof NSView)){
+  protected nativeRemoveChildImpl<T extends HTMLNativeObjectElement>(child: T): T {
+    if(!(child.nativeObject instanceof NSView)){
       throw new Error("Expected NSView");
     }
-    this.nativeObject.removeArrangedSubview(child);
+    this.nativeObject.removeArrangedSubview(child.nativeObject);
     return child;
   }
 
-  protected nativeInsertAtIndexImpl<T extends NativeObject>(newNode: T, index: number): T {
-    if(!(newNode instanceof NSView)){
+  protected nativeInsertAtIndexImpl<T extends HTMLNativeObjectElement>(newNode: T, index: number): T {
+    if(!(newNode.nativeObject instanceof NSView)){
       throw new Error("Expected NSView");
     }
-    this.nativeObject.insertArrangedSubviewAtIndex(newNode, index);
+    this.nativeObject.insertArrangedSubviewAtIndex(newNode.nativeObject, index);
     return newNode;
   }
 `.slice('\n'.length);
@@ -255,7 +255,7 @@ function parseDeclaration(lines) {
     return arr;
   }
 
-  protected nativeAppendChildImpl<T extends NativeObject>(node: T): T {
+  protected nativeAppendChildImpl<T extends HTMLNativeObjectElement>(node: T): T {
     if(node instanceof NSGridRow){
       const arr = NSMutableArray.new();
       const count = node.numberOfCells;
@@ -280,7 +280,7 @@ function parseDeclaration(lines) {
     return node;
   }
 
-  protected nativeRemoveChildImpl<T extends NativeObject>(child: T): T {
+  protected nativeRemoveChildImpl<T extends HTMLNativeObjectElement>(child: T): T {
     if(!(child instanceof NSGridRow)){
       throw new Error("Expected NSGridRow");
     }
@@ -288,7 +288,7 @@ function parseDeclaration(lines) {
     return child;
   }
 
-  protected nativeInsertAtIndexImpl<T extends NativeObject>(newNode: T, index: number): T {
+  protected nativeInsertAtIndexImpl<T extends HTMLNativeObjectElement>(newNode: T, index: number): T {
     if(!(newNode instanceof NSGridRow)){
       throw new Error("Expected NSGridRow");
     }
@@ -308,7 +308,7 @@ function parseDeclaration(lines) {
     return arr;
   }
 
-  protected nativeAppendChildImpl<T extends NativeObject>(node: T): T {
+  protected nativeAppendChildImpl<T extends HTMLNativeObjectElement>(node: T): T {
     if(!(node instanceof NSGridCell)){
       throw new Error("Expected NSGridCell");
     }
@@ -332,7 +332,7 @@ function parseDeclaration(lines) {
     return node;
   }
 
-  protected nativeRemoveChildImpl<T extends NativeObject>(child: T): T {
+  protected nativeRemoveChildImpl<T extends HTMLNativeObjectElement>(child: T): T {
     if(!(child instanceof NSGridCell)){
       throw new Error("Expected NSGridCell");
     }
@@ -340,7 +340,7 @@ function parseDeclaration(lines) {
     return child;
   }
 
-  protected nativeInsertAtIndexImpl<T extends NativeObject>(newNode: T, index: number): T {
+  protected nativeInsertAtIndexImpl<T extends HTMLNativeObjectElement>(newNode: T, index: number): T {
     if(!(newNode instanceof NSGridCell)){
       throw new Error("Expected NSGridCell");
     }
@@ -355,27 +355,27 @@ function parseDeclaration(lines) {
     return this.nativeObject.tabViewItems;
   }
 
-  protected nativeAppendChildImpl<T extends NativeObject>(node: T): T {
-    if(!(node instanceof NSTabViewItem)){
+  protected nativeAppendChildImpl<T extends HTMLNativeObjectElement>(node: T): T {
+    if(!(node.nativeObject instanceof NSTabViewItem)){
       throw new Error("Expected NSTabViewItem.");
     }
-    this.nativeObject.addTabViewItem(node);
+    this.nativeObject.addTabViewItem(node.nativeObject);
     return node;
   }
 
-  protected nativeRemoveChildImpl<T extends NativeObject>(child: T): T {
-    if(!(child instanceof NSTabViewItem)){
+  protected nativeRemoveChildImpl<T extends HTMLNativeObjectElement>(child: T): T {
+    if(!(child.nativeObject instanceof NSTabViewItem)){
       throw new Error("Expected NSTabViewItem.");
     }
-    this.nativeObject.removeTabViewItem(child);
+    this.nativeObject.removeTabViewItem(child.nativeObject);
     return child;
   }
 
-  protected nativeInsertAtIndexImpl<T extends NativeObject>(newNode: T, index: number): T {
-    if(!(newNode instanceof NSTabViewItem)){
+  protected nativeInsertAtIndexImpl<T extends HTMLNativeObjectElement>(newNode: T, index: number): T {
+    if(!(newNode.nativeObject instanceof NSTabViewItem)){
       throw new Error("Expected NSTabViewItem.");
     }
-    this.nativeObject.insertTabViewItemAtIndex(newNode, index);
+    this.nativeObject.insertTabViewItemAtIndex(newNode.nativeObject, index);
     return newNode;
   }
 `.slice('\n'.length);
@@ -577,7 +577,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    * // For an HTMLNSStackViewElement, evaluates:
    * // this.nativeObject.addArrangedSubview(subview);
    */
-  protected nativeAppendChildImpl?<T extends NativeObject>(node: T): T;
+  protected nativeAppendChildImpl?<T extends HTMLNativeObjectElement>(node: T): T;
 
   /**
    * Removes a native child node from the nativeObject.
@@ -587,7 +587,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    * // For an HTMLNSStackViewElement, evaluates:
    * // this.nativeObject.removeArrangedSubview(subview);
    */
-  protected nativeRemoveChildImpl?<T extends NativeObject>(child: T): T;
+  protected nativeRemoveChildImpl?<T extends HTMLNativeObjectElement>(child: T): T;
 
   /**
    * Removes the native child node at the given index from the nativeObject.
@@ -597,7 +597,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    * // For an HTMLNSMenuElement, evaluates:
    * // this.nativeObject.removeItemAtIndex(index);
    */
-  protected nativeRemoveChildAtIndexImpl?<T extends NativeObject>(index: number): T;
+  protected nativeRemoveChildAtIndexImpl?<T extends HTMLNativeObjectElement>(index: number): T;
 
   /**
    * Removes a native view from its parent.
@@ -617,7 +617,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
   //  * //   this.nativeChildNodesImpl!.indexOf(referenceNode),
   //  * // );
   //  */
-  // protected nativeInsertBeforeImpl?<T extends NativeObject>(newNode: T, referenceNode: NativeObject | null): T;
+  // protected nativeInsertBeforeImpl?<T extends HTMLNativeObjectElement>(newNode: T, referenceNode: NativeObject | null): T;
 
   /**
    * Inserts a new native child at the specified index.
@@ -626,7 +626,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    * // For an HTMLNSStackViewElement, evaluates something like:
    * // this.nativeObject.insertArrangedSubviewAtIndex(newNode, index);
    */
-  protected nativeInsertAtIndexImpl?<T extends NativeObject>(newNode: T, index: number): T;
+  protected nativeInsertAtIndexImpl?<T extends HTMLNativeObjectElement>(newNode: T, index: number): T;
 
   /**
    * Inserts the nativeObject for the given node into the nativeSubviews array
@@ -640,7 +640,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
 
     const childNodesCount = this.nativeChildNodesImpl?.count ?? null;
     if(index === childNodesCount && this.nativeAppendChildImpl){
-      this.nativeAppendChildImpl(node.nativeObject);
+      this.nativeAppendChildImpl(node);
       return;
     }
 
@@ -649,12 +649,12 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
     }
 
     if(typeof index === 'number' && this.nativeInsertAtIndexImpl){
-      this.nativeInsertAtIndexImpl(node.nativeObject, index);
+      this.nativeInsertAtIndexImpl(node, index);
       return;
     }
 
     // if(this.nativeInsertBeforeImpl && this.nativeChildNodesImpl){
-    //   this.nativeInsertBeforeImpl(node.nativeObject, this.nativeChildNodesImpl.objectAtIndex(index))
+    //   this.nativeInsertBeforeImpl(node, this.nativeChildNodesImpl.objectAtIndex(index))
     // }
 
     throw new Error("Unable to perform nativeInsertAtIndex as nativeAppendChildImpl, nativeChildNodesImpl, and/or nativeInsertAtIndexImpl are missing.");
@@ -686,7 +686,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
     }
 
     if(this.nativeRemoveChildImpl){
-      this.nativeRemoveChildImpl(child.nativeObject);
+      this.nativeRemoveChildImpl(child);
       return;
     }
 
