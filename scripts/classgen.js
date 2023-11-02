@@ -256,15 +256,27 @@ function parseDeclaration(lines) {
   }
 
   protected nativeAppendChildImpl<T extends NativeObject>(node: T): T {
-    if(!(node instanceof NSGridRow)){
-      throw new Error("Expected NSGridRow");
+    if(node instanceof NSGridRow){
+      const arr = NSMutableArray.new();
+      const count = node.numberOfCells;
+      for(let i = 0; i < count; i++){
+        arr.addObject(node.cellAtIndex(i));
+      }
+
+      node.numberOfCells
+      return this.nativeObject.insertRowAtIndexWithViews(this.nativeObject.numberOfRows, []) as unknown as T;
     }
+    if(node instanceof NSGridColumn){
+      return this.nativeObject.insertColumnAtIndexWithViews(this.nativeObject.numberOfColumns, []) as unknown as T;
+    }
+
+    throw new Error("Expected NSGridRow or NSGridColumn");
+
     // FIXME: we appear to be inserting an Array<NSGridRow> instead of an
     // Array<NSGridCell>.
     // Instead, we should insert the array of cells and capture the return (the
     // new row) and set that upon the HTMLNSGridRowElement. Our API doesn't
     // support that just yet.
-    this.nativeObject.insertRowAtIndexWithViews(this.nativeObject.numberOfRows, [node]);
     return node;
   }
 
