@@ -383,9 +383,9 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
   abstract readonly nativeObject: NativeObject;
 
   /**
-   * Informs the parent of the key for the property by which to set this node.
-   * If set, takes priority over all other DOM-manipulating APIs (e.g. takes
-   * priority over this.nativeAppendChildImpl).
+   * Informs the parent of the property name by which to set this node as a
+   * child. If set, takes priority over all other DOM-manipulating APIs (e.g.
+   * takes priority over this.nativeAppendChildImpl).
    *
    * @example
    * const view = document.createElement("ns-view");
@@ -397,6 +397,22 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    * // scrollView.nativeObject.documentView = view;
    */
   parentProp?: string;
+
+  /**
+   * The property name to set any child with. If set, takes priority over all
+   * other DOM-manipulating APIs (e.g. takes priority over
+   * this.nativeAppendChildImpl) except child.parentProp.
+   *
+   * @example
+   * const view = document.createElement("ns-view");
+   *
+   * const scrollView = document.createElement("ns-scrollview");
+   * scrollView.childProp = "documentView"
+   * scrollView.appendChild(view);
+   * // Evaluates:
+   * // scrollView.nativeObject.documentView = view;
+   */
+  childProp?: string;
 
   /**
    * Gets the native child nodes of the nativeObject.
@@ -484,6 +500,11 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       return;
     }
 
+    if(this.childProp){
+      (this.nativeObject as any)[this.childProp] = node.nativeObject;
+      return;
+    }
+
     const childNodesCount = this.nativeChildNodesImpl?.count ?? null;
     if(index === childNodesCount && this.nativeAppendChildImpl){
       this.nativeAppendChildImpl(node);
@@ -536,6 +557,11 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       // turns out to be insufficient. UIKit had cases like
       // UINavigationController and UIViewController that may have been such.
       (this.nativeObject as any)[child.parentProp] = null;
+      return;
+    }
+
+    if(this.childProp){
+      (this.nativeObject as any)[this.childProp] = null;
       return;
     }
 
@@ -633,6 +659,11 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       return;
     }
 
+    if(this.childProp){
+      (this.nativeObject as any)[this.childProp] = newNode.nativeObject;
+      return;
+    }
+
     const nativeChildNodes = this.nativeChildNodesImpl;
     if(!nativeChildNodes){
       throw new Error("Unable to insert newNode before referenceNode because nativeChildNodesImpl is not implemented.");
@@ -709,6 +740,11 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       // TODO: here we simply assign over the old value, but we may find cases
       // where we need to support custom assignment.
       (this.nativeObject as any)[newChild.parentProp] = newChild.nativeObject;
+      return;
+    }
+
+    if(this.childProp){
+      (this.nativeObject as any)[this.childProp] = newChild.nativeObject;
       return;
     }
 
@@ -1650,6 +1686,11 @@ export class HTMLNSGridCellElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   nativeObject = NSGridCell.new();
 
+  declare childProp: 'contentView';
+  static {
+    this.prototype.childProp = 'contentView';
+  }
+
   /**
    * Sets a new value for this.nativeObject, copying all the previous state over
    * to it. For use by the library, not users.
@@ -2590,6 +2631,11 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
     return this.nativeObject.delegate as NSWindowDelegateImpl;
   }
 
+  declare childProp: 'contentView';
+  static {
+    this.prototype.childProp = 'contentView';
+  }
+
   get title(): string { return this.nativeObject.title; }
   set title(value: string) { this.nativeObject.title = value; }
   get subtitle(): string { return this.nativeObject.subtitle; }
@@ -3505,6 +3551,11 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
       this.nativeObject.delegate = NSDrawerDelegateImpl.new();
     }
     return this.nativeObject.delegate as NSDrawerDelegateImpl;
+  }
+
+  declare childProp: 'contentView';
+  static {
+    this.prototype.childProp = 'contentView';
   }
 
   get parentWindow(): NSWindow { return this.nativeObject.parentWindow; }
@@ -5879,6 +5930,11 @@ export class HTMLNSBoxElement extends HTMLNSViewElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSBox.new();
 
+  declare childProp: 'contentView';
+  static {
+    this.prototype.childProp = 'contentView';
+  }
+
   get boxType(): interop.Enum<typeof NSBoxType> { return this.nativeObject.boxType; }
   set boxType(value: interop.Enum<typeof NSBoxType>) { this.nativeObject.boxType = value; }
   get titlePosition(): interop.Enum<typeof NSTitlePosition> { return this.nativeObject.titlePosition; }
@@ -5913,6 +5969,11 @@ export class HTMLNSScrollViewElement extends HTMLNSViewElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSScrollView.new();
+
+  declare childProp: 'documentView';
+  static {
+    this.prototype.childProp = 'documentView';
+  }
 
   get documentVisibleRect(): CGRect { return this.nativeObject.documentVisibleRect; }
   get contentSize(): CGSize { return this.nativeObject.contentSize; }
@@ -6152,6 +6213,11 @@ export class HTMLNSDockTileElement extends HTMLNSObjectElement {
   protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDockTile.new();
+
+  declare childProp: 'contentView';
+  static {
+    this.prototype.childProp = 'contentView';
+  }
 
   get size(): CGSize { return this.nativeObject.size; }
   get contentView(): NSView { return this.nativeObject.contentView; }
@@ -6870,6 +6936,11 @@ export class HTMLNSClipViewElement extends HTMLNSViewElement {
   protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSClipView.new();
+
+  declare childProp: 'documentView';
+  static {
+    this.prototype.childProp = 'documentView';
+  }
 
   get backgroundColor(): NSColor { return this.nativeObject.backgroundColor; }
   set backgroundColor(value: NSColor) { this.nativeObject.backgroundColor = value; }

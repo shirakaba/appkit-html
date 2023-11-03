@@ -1,14 +1,57 @@
+Worth reading:
+https://developer.apple.com/documentation/appkit/views_and_controls?language=objc
+
+
+Containers:
+
+* √ NSGridView > NSGridRow/NSGridColumn > NSGridCell (need to support .contentView)
+* √ NSSplitView
+* √ NSStackView
+* √ NSTabView
+* √ NSScrollView > .documentView (and other customisable props like .findBarView)
+
+Content views:
+
+* NSBrowser > NSBrowserCell
+* NSCollectionView > makes NSCollectionViewItem based on NSCollectionViewDataSource (similar to a delegate, but actually a protocol).
+* NSOutlineView > makes an `id` based on NSOutlineViewDataSource.
+* NSTableView > makes an NSTableCellView based on an NSTableViewDataSource.
+
+Summary:
+
+* `NSStackView extends NSView`, `NSSplitView extends NSView`:
+  * `insertArrangedSubviewAtIndex`
+* `NSSplitViewController extends NSViewController`:
+  * `insertSplitViewItemAtIndex`
+* `NSViewController extends NSResponder`:
+  ```ts
+  view: NSView;
+  get childViewControllers(): NSArray;
+  sourceItemView: NSView;
+  ```
+* `NSResponder extends NSObject`:
+  ```ts
+  nextResponder: NSResponder;
+  menu: NSMenu;
+  readonly undoManager: NSUndoManager;
+  userActivity: NSUserActivity;
+  touchBar: NSTouchBar;
+  ```
+* `NSScrollView extends NSView`, `NSClipView extends NSView`:
+  ```ts
+  documentView: NSView;
+  contentView: NSClipView;
+  documentCursor: NSCursor;
+  verticalScroller: NSScroller;
+  horizontalScroller: NSScroller;
+  horizontalRulerView: NSRulerView;
+  verticalRulerView: NSRulerView;
+  findBarView: NSView;
+  ```
+
 Views that take multiple subviews:
 
 ```ts
-declare class NSSplitView extends NSView {
-  addArrangedSubview(view: NSView): void;
-
-  insertArrangedSubviewAtIndex(view: NSView, index: number): void;
-
-  removeArrangedSubview(view: NSView): void;
-}
-
 declare class NSTableView
   extends NSControl
   implements

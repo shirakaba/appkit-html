@@ -466,6 +466,11 @@ function parseDeclaration(lines) {
           break;
         case 'NSGridCell':
           nodeOps = `
+  declare childProp: 'contentView';
+  static {
+    this.prototype.childProp = 'contentView';
+  }
+
   /**
    * Sets a new value for this.nativeObject, copying all the previous state over
    * to it. For use by the library, not users.
@@ -508,6 +513,55 @@ function parseDeclaration(lines) {
     this.nativeObject.insertTabViewItemAtIndex(newNode.nativeObject, index);
   }
 `.slice('\n'.length);
+          break;
+        case 'NSScrollView':
+          nodeOps = `
+  declare childProp: 'documentView';
+  static {
+    this.prototype.childProp = 'documentView';
+  }
+`.slice('\n'.length);
+          break;
+        case 'NSClipView':
+          nodeOps = `
+  declare childProp: 'documentView';
+  static {
+    this.prototype.childProp = 'documentView';
+  }
+`.slice('\n'.length);
+          break;
+        case 'NSDrawer':
+          nodeOps = `
+  declare childProp: 'contentView';
+  static {
+    this.prototype.childProp = 'contentView';
+  }
+`.slice('\n'.length);
+          break;
+        case 'NSDockTile':
+          nodeOps = `
+  declare childProp: 'contentView';
+  static {
+    this.prototype.childProp = 'contentView';
+  }
+`.slice('\n'.length);
+          break;
+        case 'NSBox':
+          nodeOps = `
+  declare childProp: 'contentView';
+  static {
+    this.prototype.childProp = 'contentView';
+  }
+`.slice('\n'.length);
+          break;
+        case 'NSWindow':
+          nodeOps = `
+  declare childProp: 'contentView';
+  static {
+    this.prototype.childProp = 'contentView';
+  }
+`.slice('\n'.length);
+          break;
       }
 
       /**
@@ -687,9 +741,9 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
   abstract readonly nativeObject: NativeObject;
 
   /**
-   * Informs the parent of the key for the property by which to set this node.
-   * If set, takes priority over all other DOM-manipulating APIs (e.g. takes
-   * priority over this.nativeAppendChildImpl).
+   * Informs the parent of the property name by which to set this node as a
+   * child. If set, takes priority over all other DOM-manipulating APIs (e.g.
+   * takes priority over this.nativeAppendChildImpl).
    *
    * @example
    * const view = document.createElement("ns-view");
@@ -701,6 +755,22 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    * // scrollView.nativeObject.documentView = view;
    */
   parentProp?: string;
+
+  /**
+   * The property name to set any child with. If set, takes priority over all
+   * other DOM-manipulating APIs (e.g. takes priority over
+   * this.nativeAppendChildImpl) except child.parentProp.
+   *
+   * @example
+   * const view = document.createElement("ns-view");
+   *
+   * const scrollView = document.createElement("ns-scrollview");
+   * scrollView.childProp = "documentView"
+   * scrollView.appendChild(view);
+   * // Evaluates:
+   * // scrollView.nativeObject.documentView = view;
+   */
+  childProp?: string;
 
   /**
    * Gets the native child nodes of the nativeObject.
@@ -788,6 +858,11 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       return;
     }
 
+    if(this.childProp){
+      (this.nativeObject as any)[this.childProp] = node.nativeObject;
+      return;
+    }
+
     const childNodesCount = this.nativeChildNodesImpl?.count ?? null;
     if(index === childNodesCount && this.nativeAppendChildImpl){
       this.nativeAppendChildImpl(node);
@@ -840,6 +915,11 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       // turns out to be insufficient. UIKit had cases like
       // UINavigationController and UIViewController that may have been such.
       (this.nativeObject as any)[child.parentProp] = null;
+      return;
+    }
+
+    if(this.childProp){
+      (this.nativeObject as any)[this.childProp] = null;
       return;
     }
 
@@ -937,6 +1017,11 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       return;
     }
 
+    if(this.childProp){
+      (this.nativeObject as any)[this.childProp] = newNode.nativeObject;
+      return;
+    }
+
     const nativeChildNodes = this.nativeChildNodesImpl;
     if(!nativeChildNodes){
       throw new Error("Unable to insert newNode before referenceNode because nativeChildNodesImpl is not implemented.");
@@ -1013,6 +1098,11 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       // TODO: here we simply assign over the old value, but we may find cases
       // where we need to support custom assignment.
       (this.nativeObject as any)[newChild.parentProp] = newChild.nativeObject;
+      return;
+    }
+
+    if(this.childProp){
+      (this.nativeObject as any)[this.childProp] = newChild.nativeObject;
       return;
     }
 
