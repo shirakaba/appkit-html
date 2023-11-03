@@ -687,6 +687,22 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
   abstract readonly nativeObject: NativeObject;
 
   /**
+   * Informs the parent of the key for the property by which to set this node.
+   * If set, takes priority over all other DOM-manipulating APIs (e.g. takes
+   * priority over this.nativeAppendChildImpl).
+   *
+   * @example
+   * const view = document.createElement("ns-view");
+   * view.parentProp = "documentView";
+   *
+   * const scrollView = document.createElement("ns-scrollview");
+   * scrollView.appendChild(view);
+   * // Evaluates:
+   * // scrollView.nativeObject.documentView = view;
+   */
+  parentProp?: string;
+
+  /**
    * Gets the native child nodes of the nativeObject.
    * @returns the child nodes, if implemented; otherwise, undefined.
    * @example
@@ -726,7 +742,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    * // For an HTMLNSMenuElement, evaluates:
    * // this.nativeObject.removeItemAtIndex(index);
    */
-  protected nativeRemoveChildAtIndexImpl?<T extends HTMLNativeObjectElement>(index: number): void;
+  protected nativeRemoveChildAtIndexImpl?(index: number): void;
 
   /**
    * Removes a native view from its parent.
@@ -765,6 +781,11 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
   protected nativeInsertAtIndex<T extends HTMLNativeObjectElement>(node: T, index: number | null): void {
     if(index !== null && index < 0){
       throw new Error("Index must be a positive integer, or null.");
+    }
+
+    if(node.parentProp){
+      (this.nativeObject as any)[node.parentProp] = node.nativeObject;
+      return;
     }
 
     const childNodesCount = this.nativeChildNodesImpl?.count ?? null;
@@ -811,6 +832,14 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
   nativeRemoveChild<T extends Node>(child: T): void {
     // TODO: handle Text nodes, maybe with a class called NativeText.
     if(!(child instanceof HTMLNativeObjectElement)){
+      return;
+    }
+
+    if(child.parentProp){
+      // TODO: support custom removal method, if nulling out the property ever
+      // turns out to be insufficient. UIKit had cases like
+      // UINavigationController and UIViewController that may have been such.
+      (this.nativeObject as any)[child.parentProp] = null;
       return;
     }
 
@@ -903,6 +932,11 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       throw new Error("Reference node is not a child of this element.");
     }
 
+    if(newNode.parentProp){
+      (this.nativeObject as any)[newNode.parentProp] = newNode.nativeObject;
+      return;
+    }
+
     const nativeChildNodes = this.nativeChildNodesImpl;
     if(!nativeChildNodes){
       throw new Error("Unable to insert newNode before referenceNode because nativeChildNodesImpl is not implemented.");
@@ -975,6 +1009,13 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       return;
     }
 
+    if(newChild.parentProp){
+      // TODO: here we simply assign over the old value, but we may find cases
+      // where we need to support custom assignment.
+      (this.nativeObject as any)[newChild.parentProp] = newChild.nativeObject;
+      return;
+    }
+
     this.nativeInsertBefore(newChild, oldChild);
 
     if(!(oldChild instanceof HTMLNativeObjectElement)){
@@ -995,14 +1036,16 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       node => node instanceof HTMLNativeObjectElement
     );
 
-    if(!(this.parentNode instanceof HTMLNativeObjectElement)){
-      throw new Error("Can't replace native nodes unless parent is a HTMLNativeObjectElement.");
-    }
+    if(hasNativeNode){
+      if(!(this.parentNode instanceof HTMLNativeObjectElement)){
+        throw new Error("Can't replace native nodes unless parent is a HTMLNativeObjectElement.");
+      }
 
-    for(const node of processedNodes){
-      this.parentNode.nativeInsertBefore(node, this);
+      for(const node of processedNodes){
+        this.parentNode.nativeInsertBefore(node, this);
+      }
+      this.nativeRemove();
     }
-    this.nativeRemove();
 
     super.replaceWith(...processedNodes);
   }
