@@ -236,6 +236,29 @@ function parseDeclaration(lines) {
   }
 `.slice('\n'.length);
           break;
+        case 'NSView':
+          nodeOps = `
+  protected get nativeChildNodesImpl(): NSArray<NSView> {
+    return this.nativeObject.subviews;
+  }
+
+  protected nativeAppendChildImpl<T extends HTMLNativeObjectElement>(node: T): void {
+    if(!(node.nativeObject instanceof NSView)){
+      throw new Error("Expected NSView");
+    }
+    this.nativeObject.addSubview(node.nativeObject);
+  }
+
+  protected nativeRemoveChildImpl<T extends HTMLNativeObjectElement>(child: T): void {
+    if(!(child.nativeObject instanceof NSView)){
+      throw new Error("Expected NSView");
+    }
+    child.nativeObject.removeFromSuperview();
+  }
+
+  // TODO: implement solution for nativeInsertAtIndexImpl
+`.slice('\n'.length);
+          break;
         case 'NSSplitViewController':
           nodeOps = `
   protected get nativeChildNodesImpl(): NSArray<NSSplitViewItem> {
@@ -899,7 +922,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
     }
 
     const childNodesCount = this.nativeChildNodesImpl?.count ?? null;
-    if(index === childNodesCount && this.nativeAppendChildImpl){
+    if((index === childNodesCount || index === null) && this.nativeAppendChildImpl){
       this.nativeAppendChildImpl(node);
       return;
     }
