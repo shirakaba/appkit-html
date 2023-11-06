@@ -389,30 +389,28 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
    *
    * @example
    * const view = document.createElement("ns-view");
-   * view.parentProp = "documentView";
+   * view.slot = "documentView";
    *
    * const scrollView = document.createElement("ns-scrollview");
    * scrollView.appendChild(view);
    * // Evaluates:
    * // scrollView.nativeObject.documentView = view;
    */
-  parentProp?: string;
+  declare slot: string;
 
   /**
    * The property name to set any child with. If set, takes priority over all
    * other DOM-manipulating APIs (e.g. takes priority over
-   * this.nativeAppendChildImpl) except child.parentProp.
+   * this.nativeAppendChildImpl) except child.slot.
    *
    * @example
-   * const view = document.createElement("ns-view");
-   *
    * const scrollView = document.createElement("ns-scrollview");
-   * scrollView.childProp = "documentView"
-   * scrollView.appendChild(view);
+   * scrollView.childSlot = "documentView"
+   * scrollView.appendChild(document.createElement("ns-view"));
    * // Evaluates:
    * // scrollView.nativeObject.documentView = view;
    */
-  childProp?: string;
+  childSlot?: string;
 
   /**
    * Gets the native child nodes of the nativeObject.
@@ -495,13 +493,13 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       throw new Error("Index must be a positive integer, or null.");
     }
 
-    if(node.parentProp){
-      (this.nativeObject as any)[node.parentProp] = node.nativeObject;
+    if(node.slot){
+      (this.nativeObject as any)[node.slot] = node.nativeObject;
       return;
     }
 
-    if(this.childProp){
-      (this.nativeObject as any)[this.childProp] = node.nativeObject;
+    if(this.childSlot){
+      (this.nativeObject as any)[this.childSlot] = node.nativeObject;
       return;
     }
 
@@ -552,16 +550,16 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       return;
     }
 
-    if(child.parentProp){
+    if(child.slot){
       // TODO: support custom removal method, if nulling out the property ever
       // turns out to be insufficient. UIKit had cases like
       // UINavigationController and UIViewController that may have been such.
-      (this.nativeObject as any)[child.parentProp] = null;
+      (this.nativeObject as any)[child.slot] = null;
       return;
     }
 
-    if(this.childProp){
-      (this.nativeObject as any)[this.childProp] = null;
+    if(this.childSlot){
+      (this.nativeObject as any)[this.childSlot] = null;
       return;
     }
 
@@ -654,13 +652,13 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       throw new Error("Reference node is not a child of this element.");
     }
 
-    if(newNode.parentProp){
-      (this.nativeObject as any)[newNode.parentProp] = newNode.nativeObject;
+    if(newNode.slot){
+      (this.nativeObject as any)[newNode.slot] = newNode.nativeObject;
       return;
     }
 
-    if(this.childProp){
-      (this.nativeObject as any)[this.childProp] = newNode.nativeObject;
+    if(this.childSlot){
+      (this.nativeObject as any)[this.childSlot] = newNode.nativeObject;
       return;
     }
 
@@ -736,15 +734,15 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       return;
     }
 
-    if(newChild.parentProp){
+    if(newChild.slot){
       // TODO: here we simply assign over the old value, but we may find cases
       // where we need to support custom assignment.
-      (this.nativeObject as any)[newChild.parentProp] = newChild.nativeObject;
+      (this.nativeObject as any)[newChild.slot] = newChild.nativeObject;
       return;
     }
 
-    if(this.childProp){
-      (this.nativeObject as any)[this.childProp] = newChild.nativeObject;
+    if(this.childSlot){
+      (this.nativeObject as any)[this.childSlot] = newChild.nativeObject;
       return;
     }
 
@@ -1686,9 +1684,9 @@ export class HTMLNSGridCellElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   nativeObject = NSGridCell.new();
 
-  declare childProp: 'contentView';
+  declare childSlot: 'contentView';
   static {
-    this.prototype.childProp = 'contentView';
+    this.prototype.childSlot = 'contentView';
   }
 
   /**
@@ -2469,9 +2467,9 @@ export class HTMLNSSplitViewItemElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSplitViewItem.new();
 
-  declare childProp: 'viewController';
+  declare childSlot: 'viewController';
   static {
-    this.prototype.childProp = 'viewController';
+    this.prototype.childSlot = 'viewController';
   }
 
   get behavior(): interop.Enum<typeof NSSplitViewItemBehavior> { return this.nativeObject.behavior; }
@@ -2636,9 +2634,9 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
     return this.nativeObject.delegate as NSWindowDelegateImpl;
   }
 
-  declare childProp: 'contentView';
+  declare childSlot: 'contentView';
   static {
-    this.prototype.childProp = 'contentView';
+    this.prototype.childSlot = 'contentView';
   }
 
   get title(): string { return this.nativeObject.title; }
@@ -3558,9 +3556,9 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
     return this.nativeObject.delegate as NSDrawerDelegateImpl;
   }
 
-  declare childProp: 'contentView';
+  declare childSlot: 'contentView';
   static {
-    this.prototype.childProp = 'contentView';
+    this.prototype.childSlot = 'contentView';
   }
 
   get parentWindow(): NSWindow { return this.nativeObject.parentWindow; }
@@ -5935,9 +5933,9 @@ export class HTMLNSBoxElement extends HTMLNSViewElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSBox.new();
 
-  declare childProp: 'contentView';
+  declare childSlot: 'contentView';
   static {
-    this.prototype.childProp = 'contentView';
+    this.prototype.childSlot = 'contentView';
   }
 
   get boxType(): interop.Enum<typeof NSBoxType> { return this.nativeObject.boxType; }
@@ -5975,9 +5973,9 @@ export class HTMLNSScrollViewElement extends HTMLNSViewElement {
   // @ts-ignore
   readonly nativeObject = NSScrollView.new();
 
-  declare childProp: 'documentView';
+  declare childSlot: 'documentView';
   static {
-    this.prototype.childProp = 'documentView';
+    this.prototype.childSlot = 'documentView';
   }
 
   get documentVisibleRect(): CGRect { return this.nativeObject.documentVisibleRect; }
@@ -6219,9 +6217,9 @@ export class HTMLNSDockTileElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDockTile.new();
 
-  declare childProp: 'contentView';
+  declare childSlot: 'contentView';
   static {
-    this.prototype.childProp = 'contentView';
+    this.prototype.childSlot = 'contentView';
   }
 
   get size(): CGSize { return this.nativeObject.size; }
@@ -6942,9 +6940,9 @@ export class HTMLNSClipViewElement extends HTMLNSViewElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSClipView.new();
 
-  declare childProp: 'documentView';
+  declare childSlot: 'documentView';
   static {
-    this.prototype.childProp = 'documentView';
+    this.prototype.childSlot = 'documentView';
   }
 
   get backgroundColor(): NSColor { return this.nativeObject.backgroundColor; }
