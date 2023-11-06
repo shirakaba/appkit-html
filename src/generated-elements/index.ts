@@ -9156,6 +9156,7 @@ export class HTMLNSSplitViewControllerElement extends HTMLNSViewControllerElemen
     if(!(node.nativeObject instanceof NSSplitViewItem)){
       throw new Error("Expected NSSplitViewItem");
     }
+    node.nativeObject.viewController = this.nativeObject;
     this.nativeObject.addSplitViewItem(node.nativeObject);
   }
 
@@ -9163,6 +9164,8 @@ export class HTMLNSSplitViewControllerElement extends HTMLNSViewControllerElemen
     if(!(child.nativeObject instanceof NSSplitViewItem)){
       throw new Error("Expected NSSplitViewItem");
     }
+    // @ts-ignore
+    child.nativeObject.viewController = null;
     this.nativeObject.removeSplitViewItem(child.nativeObject);
   }
 
@@ -9170,6 +9173,7 @@ export class HTMLNSSplitViewControllerElement extends HTMLNSViewControllerElemen
     if(!(newNode.nativeObject instanceof NSSplitViewItem)){
       throw new Error("Expected NSSplitViewItem");
     }
+    newNode.nativeObject.viewController = this.nativeObject;
     this.nativeObject.insertSplitViewItemAtIndex(newNode.nativeObject, index);
   }
 

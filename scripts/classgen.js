@@ -278,6 +278,7 @@ function parseDeclaration(lines) {
     if(!(node.nativeObject instanceof NSSplitViewItem)){
       throw new Error("Expected NSSplitViewItem");
     }
+    node.nativeObject.viewController = this.nativeObject;
     this.nativeObject.addSplitViewItem(node.nativeObject);
   }
 
@@ -285,6 +286,8 @@ function parseDeclaration(lines) {
     if(!(child.nativeObject instanceof NSSplitViewItem)){
       throw new Error("Expected NSSplitViewItem");
     }
+    // @ts-ignore
+    child.nativeObject.viewController = null;
     this.nativeObject.removeSplitViewItem(child.nativeObject);
   }
 
@@ -292,6 +295,7 @@ function parseDeclaration(lines) {
     if(!(newNode.nativeObject instanceof NSSplitViewItem)){
       throw new Error("Expected NSSplitViewItem");
     }
+    newNode.nativeObject.viewController = this.nativeObject;
     this.nativeObject.insertSplitViewItemAtIndex(newNode.nativeObject, index);
   }
 `.slice('\n'.length);
