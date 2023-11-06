@@ -383,6 +383,20 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
   abstract readonly nativeObject: NativeObject;
 
   /**
+   * Informs the parent that its view is found on a key of this.nativeObject
+   * rather than this.nativeObject itself.
+   */
+  viewKey?: string;
+
+  /**
+   * The native view that this HTML Element wraps. Usually just the native
+   * object itself, but for viewControllers, may be the view managed by it.
+   */
+  get nativeView(): NativeObject {
+    return this.viewKey ? (this.nativeObject as any)[this.viewKey] : this.nativeObject;
+  }
+
+  /**
    * Informs the parent of the property name by which to set this node as a
    * child. If set, takes priority over all other DOM-manipulating APIs (e.g.
    * takes priority over this.nativeAppendChildImpl).
@@ -493,13 +507,15 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       throw new Error("Index must be a positive integer, or null.");
     }
 
+    const view = node.nativeView;
+
     if(node.slot){
-      (this.nativeObject as any)[node.slot] = node.nativeObject;
+      (this.nativeObject as any)[node.slot] = view;
       return;
     }
 
     if(this.childSlot){
-      (this.nativeObject as any)[this.childSlot] = node.nativeObject;
+      (this.nativeObject as any)[this.childSlot] = view;
       return;
     }
 
@@ -575,7 +591,8 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
 
     const nativeChildNodes = this.nativeChildNodesImpl;
     if(this.nativeRemoveChildAtIndexImpl && nativeChildNodes){
-      const index = nativeChildNodes.indexOfObject(child.nativeObject) ?? -1;
+      const childView = child.nativeView;
+      const index = nativeChildNodes.indexOfObject(childView) ?? -1;
       if(index === -1){
         throw new Error("Unable to find specified child.");
       }
@@ -652,13 +669,15 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       throw new Error("Reference node is not a child of this element.");
     }
 
+    const newView = newNode.nativeView;
+
     if(newNode.slot){
-      (this.nativeObject as any)[newNode.slot] = newNode.nativeObject;
+      (this.nativeObject as any)[newNode.slot] = newView;
       return;
     }
 
     if(this.childSlot){
-      (this.nativeObject as any)[this.childSlot] = newNode.nativeObject;
+      (this.nativeObject as any)[this.childSlot] = newView;
       return;
     }
 
@@ -668,7 +687,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
     }
 
     let referenceNodeIndex = referenceNode instanceof HTMLNativeObjectElement ?
-      nativeChildNodes.indexOfObject(referenceNode.nativeObject) ?? -1 :
+      nativeChildNodes.indexOfObject(referenceNode.nativeView) ?? -1 :
       -1;
 
     // If the referenceNode's nativeObject is not in the nativeChildNodes array
@@ -677,7 +696,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
     let nextSibling = referenceNode.nextSibling;
     while(nextSibling && referenceNodeIndex === -1){
       referenceNodeIndex = nextSibling instanceof HTMLNativeObjectElement ?
-        nativeChildNodes.indexOfObject(nextSibling.nativeObject) ?? -1 :
+        nativeChildNodes.indexOfObject(nextSibling.nativeView) ?? -1 :
         -1;
       nextSibling = nextSibling.nextSibling;
     }
@@ -734,15 +753,17 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       return;
     }
 
+    const newView = newChild.nativeView;
+
     if(newChild.slot){
       // TODO: here we simply assign over the old value, but we may find cases
       // where we need to support custom assignment.
-      (this.nativeObject as any)[newChild.slot] = newChild.nativeObject;
+      (this.nativeObject as any)[newChild.slot] = newView;
       return;
     }
 
     if(this.childSlot){
-      (this.nativeObject as any)[this.childSlot] = newChild.nativeObject;
+      (this.nativeObject as any)[this.childSlot] = newView;
       return;
     }
 
@@ -4292,20 +4313,24 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
   }
 
   protected nativeAppendChildImpl<T extends HTMLNativeObjectElement>(node: T): void {
-    if(!(node.nativeObject instanceof NSView)){
+    const view = node.nativeView;
+    if(!(view instanceof NSView)){
       throw new Error("Expected NSView");
     }
-    this.nativeObject.addSubview(node.nativeObject);
+    this.nativeObject.addSubview(view);
   }
 
   protected nativeRemoveChildImpl<T extends HTMLNativeObjectElement>(child: T): void {
-    if(!(child.nativeObject instanceof NSView)){
+    const view = child.nativeView;
+    if(!(view instanceof NSView)){
       throw new Error("Expected NSView");
     }
-    child.nativeObject.removeFromSuperview();
+    view.removeFromSuperview();
   }
 
   // TODO: implement solution for nativeInsertAtIndexImpl
+  // TODO: make a nativeObjectView getter so we don't have to keep looking up
+  // viewKey
 
   get window(): NSWindow { return this.nativeObject.window; }
   get superview(): NSView { return this.nativeObject.superview; }
@@ -9117,6 +9142,11 @@ export class HTMLNSSplitViewControllerElement extends HTMLNSViewControllerElemen
   protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSplitViewController.new();
+
+  declare viewKey: "splitView";
+  static {
+    this.prototype.viewKey = "splitView";
+  }
 
   protected get nativeChildNodesImpl(): NSArray<NSSplitViewItem> {
     return this.nativeObject.splitViewItems;
