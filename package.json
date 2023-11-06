@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Render AppKit with DOM and HTML",
   "module": "dist/index.js",
+  "main": "dist/index.js",
   "type": "module",
   "scripts": {
     "build": "tsc",

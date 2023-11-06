@@ -2,7 +2,7 @@
 import dominimal from 'dominimal';
 const JSDOM = dominimal.JSDOM;
 
-export async function polyfill(_globalThis: typeof globalThis) {
+export function polyfill(_globalThis: typeof globalThis) {
   const jsdom = new JSDOM('', { pretendToBeVisual: true });
   const window = jsdom.window;
 
@@ -24,12 +24,4 @@ export async function polyfill(_globalThis: typeof globalThis) {
     }
     Object.defineProperty(_globalThis, prop, { value: jsdom.window[prop] });
   }
-
-  // src/generated-elements/index.ts
-  const { HTMLNSWindowElement, HTMLNSApplicationElement } = await import(
-    './generated-elements/index.js'
-  );
-
-  HTMLNSApplicationElement.defineCustomElement();
-  HTMLNSWindowElement.defineCustomElement();
 }

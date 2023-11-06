@@ -4,16 +4,27 @@ import 'objc';
 
 import { polyfill } from '../dist/index.js';
 
-await polyfill(globalThis);
-// const { HTMLNSApplicationElement, NSApplicationDelegateImpl } = await import(
-//   '../dist/generated-elements/index.js'
-// );
+polyfill(globalThis);
+
+const { registerAllElements } = await import(
+  '../dist/generated-elements/register-all-elements.js'
+);
+
+await registerAllElements();
+
+const { NSApplicationDelegateImpl } = await import(
+  '../dist/generated-elements/index.js'
+);
+
+console.log(document.documentElement.outerHTML);
 
 const nsApplication = document.createElement('ns-application');
 const NSApp = nsApplication.nativeObject;
+console.log('delegate', NSApp.delegate);
 
 let running = false;
-nsApplication.applicationDidFinishLaunching = (
+nsApplication.nativeObject.delegate = NSApplicationDelegateImpl.new();
+nsApplication.nativeObject.delegate.applicationDidFinishLaunching = (
   /** @type {NSNotification} */ notification
 ) => {
   console.log('applicationDidFinishLaunching', notification);
@@ -42,6 +53,11 @@ nsApplication.applicationDidFinishLaunching = (
 
   setTimeout(loop, 0);
 };
+console.log('delegate', NSApp.delegate);
+console.log(
+  'delegate.applicationDidFinishLaunching',
+  NSApp.delegate.applicationDidFinishLaunching
+);
 console.log('still alive');
 nsApplication.applicationWillTerminate = () => {
   running = false;
