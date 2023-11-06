@@ -236,6 +236,34 @@ function parseDeclaration(lines) {
   }
 `.slice('\n'.length);
           break;
+        case 'NSSplitViewController':
+          nodeOps = `
+  protected get nativeChildNodesImpl(): NSArray<NSSplitViewItem> {
+    return this.nativeObject.splitViewItems;
+  }
+
+  protected nativeAppendChildImpl<T extends HTMLNativeObjectElement>(node: T): void {
+    if(!(node.nativeObject instanceof NSSplitViewItem)){
+      throw new Error("Expected NSSplitViewItem");
+    }
+    this.nativeObject.addSplitViewItem(node.nativeObject);
+  }
+
+  protected nativeRemoveChildImpl<T extends HTMLNativeObjectElement>(child: T): void {
+    if(!(child.nativeObject instanceof NSSplitViewItem)){
+      throw new Error("Expected NSSplitViewItem");
+    }
+    this.nativeObject.removeSplitViewItem(child.nativeObject);
+  }
+
+  protected nativeInsertAtIndexImpl<T extends HTMLNativeObjectElement>(newNode: T, index: number): void {
+    if(!(newNode.nativeObject instanceof NSSplitViewItem)){
+      throw new Error("Expected NSSplitViewItem");
+    }
+    this.nativeObject.insertSplitViewItemAtIndex(newNode.nativeObject, index);
+  }
+`.slice('\n'.length);
+          break;
         // TODO: Could add a convenience function for getting number of native
         // child nodes (given that we only wanted to read
         // this.nativeObject.numberOfRows in the first place, so building the
@@ -519,6 +547,15 @@ function parseDeclaration(lines) {
   declare childProp: 'documentView';
   static {
     this.prototype.childProp = 'documentView';
+  }
+`.slice('\n'.length);
+          break;
+        // TODO: support the static constructor methods somehow
+        case 'NSSplitViewItem':
+          nodeOps = `
+  declare childProp: 'viewController';
+  static {
+    this.prototype.childProp = 'viewController';
   }
 `.slice('\n'.length);
           break;

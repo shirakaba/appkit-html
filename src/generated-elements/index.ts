@@ -2469,6 +2469,11 @@ export class HTMLNSSplitViewItemElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSplitViewItem.new();
 
+  declare childProp: 'viewController';
+  static {
+    this.prototype.childProp = 'viewController';
+  }
+
   get behavior(): interop.Enum<typeof NSSplitViewItemBehavior> { return this.nativeObject.behavior; }
   get viewController(): NSViewController { return this.nativeObject.viewController; }
   set viewController(value: NSViewController) { this.nativeObject.viewController = value; }
@@ -9094,6 +9099,31 @@ export class HTMLNSSplitViewControllerElement extends HTMLNSViewControllerElemen
   protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSplitViewController.new();
+
+  protected get nativeChildNodesImpl(): NSArray<NSSplitViewItem> {
+    return this.nativeObject.splitViewItems;
+  }
+
+  protected nativeAppendChildImpl<T extends HTMLNativeObjectElement>(node: T): void {
+    if(!(node.nativeObject instanceof NSSplitViewItem)){
+      throw new Error("Expected NSSplitViewItem");
+    }
+    this.nativeObject.addSplitViewItem(node.nativeObject);
+  }
+
+  protected nativeRemoveChildImpl<T extends HTMLNativeObjectElement>(child: T): void {
+    if(!(child.nativeObject instanceof NSSplitViewItem)){
+      throw new Error("Expected NSSplitViewItem");
+    }
+    this.nativeObject.removeSplitViewItem(child.nativeObject);
+  }
+
+  protected nativeInsertAtIndexImpl<T extends HTMLNativeObjectElement>(newNode: T, index: number): void {
+    if(!(newNode.nativeObject instanceof NSSplitViewItem)){
+      throw new Error("Expected NSSplitViewItem");
+    }
+    this.nativeObject.insertSplitViewItemAtIndex(newNode.nativeObject, index);
+  }
 
   get splitView(): NSSplitView { return this.nativeObject.splitView; }
   set splitView(value: NSSplitView) { this.nativeObject.splitView = value; }
