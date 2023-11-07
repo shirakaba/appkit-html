@@ -263,9 +263,10 @@ function parseDeclaration(lines) {
           break;
         case 'NSSplitViewController':
           nodeOps = `
-  declare viewKey: "splitView";
+  // view seems to show more life than splitView, but still not sure.
+  declare viewKey: "view";
   static {
-    this.prototype.viewKey = "splitView";
+    this.prototype.viewKey = "view";
   }
 
   protected get nativeChildNodesImpl(): NSArray<NSSplitViewItem> {
