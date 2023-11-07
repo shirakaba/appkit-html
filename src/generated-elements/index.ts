@@ -2486,11 +2486,91 @@ export class HTMLNSMenuToolbarItemElement extends HTMLNSToolbarItemElement {
 export class HTMLNSSplitViewItemElement extends HTMLNSObjectElement {
   protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
-  readonly nativeObject = NSSplitViewItem.new();
+  nativeObject = NSSplitViewItem.splitViewItemWithViewController(NSViewController.new());
 
-  declare childSlot: 'viewController';
-  static {
-    this.prototype.childSlot = 'viewController';
+  // We avoid the childSlot approach because we want to call regenerateItem, not
+  // simply set a value on a key.
+  // declare childSlot: 'viewController';
+  // static {
+  //   this.prototype.childSlot = 'viewController';
+  // }
+
+  // FIXME: Svelte appends from trunk to leaf, so
+  // -[NSSplitViewController addSplitViewItem:] runs before we can populate our
+  // child.
+  protected nativeAppendChildImpl<T extends HTMLNativeObjectElement>(node: T): void {
+    if(!(node instanceof HTMLNSViewControllerElement)){
+      throw new Error("Expected HTMLNSViewControllerElement");
+    }
+
+    this.regenerateItem(node.nativeObject);
+  }
+
+  protected nativeRemoveChildImpl<T extends HTMLNativeObjectElement>(child: T): void {
+    if(!(child instanceof HTMLNSViewControllerElement)){
+      throw new Error("Expected HTMLNSViewControllerElement");
+    }
+
+    // You can't set the viewController to null, so best we can do is regenerate
+    // with a blank viewController.
+    this.regenerateItem(NSViewController.new());
+  }
+
+  protected nativeInsertAtIndexImpl<T extends HTMLNativeObjectElement>(newNode: T, index: number): void {
+    if(!(newNode instanceof HTMLNSViewControllerElement)){
+      throw new Error("Expected HTMLNSViewControllerElement");
+    }
+
+    this.regenerateItem(newNode.nativeObject);
+  }
+
+  /**
+   * NSSplitViewItem can only be (usefully) made using factory methods, so we
+   * have to create a new one and transfer styles if the type changes.
+   */
+  private regenerateItem(
+    childViewController: NSViewController,
+    behavior: typeof NSSplitViewItemBehavior[keyof typeof NSSplitViewItemBehavior] = NSSplitViewItemBehavior.Default
+  ) {
+    let item: NSSplitViewItem;
+    switch(behavior){
+      case NSSplitViewItemBehavior.Default:
+        item = NSSplitViewItem.splitViewItemWithViewController(childViewController);
+        break;
+      case NSSplitViewItemBehavior.Sidebar:
+        item = NSSplitViewItem.sidebarWithViewController(childViewController);
+        break;
+      case NSSplitViewItemBehavior.ContentList:
+        item = NSSplitViewItem.contentListWithViewController(childViewController);
+        break;
+      case NSSplitViewItemBehavior.Inspector:
+        item = NSSplitViewItem.inspectorWithViewController(childViewController);
+        break;
+    }
+
+    this.replaceNativeObject(item);
+  }
+
+  replaceNativeObject(nativeObject: NSSplitViewItem): void {
+    // TODO: regenerate state
+
+    // nativeObject.yPlacement = this.nativeObject.yPlacement;
+    // nativeObject.rowAlignment = this.nativeObject.rowAlignment;
+    // nativeObject.height = this.nativeObject.height;
+    // nativeObject.topPadding = this.nativeObject.topPadding;
+    // nativeObject.bottomPadding = this.nativeObject.bottomPadding;
+    // nativeObject.isHidden = this.nativeObject.isHidden;
+
+    // Replace the old one
+    if(this.parentNode instanceof HTMLNSSplitViewControllerElement){
+      this.parentNode.nativeObject.insertSplitViewItemAtIndex(
+        nativeObject,
+        this.parentNode.nativeObject.splitViewItems.indexOfObject(this.nativeObject),
+      );
+      this.parentNode.nativeObject.removeSplitViewItem(this.nativeObject);
+    }
+
+    this.nativeObject = nativeObject;
   }
 
   get behavior(): interop.Enum<typeof NSSplitViewItemBehavior> { return this.nativeObject.behavior; }
@@ -4329,8 +4409,6 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
   }
 
   // TODO: implement solution for nativeInsertAtIndexImpl
-  // TODO: make a nativeObjectView getter so we don't have to keep looking up
-  // viewKey
 
   get window(): NSWindow { return this.nativeObject.window; }
   get superview(): NSView { return this.nativeObject.superview; }
