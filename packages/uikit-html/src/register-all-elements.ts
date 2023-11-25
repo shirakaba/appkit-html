@@ -444,7 +444,7 @@ export async function registerAllElements() {
     HTMLUIWindowScenePlacementElement,
     HTMLUIWindowSceneProminentPlacementElement,
     HTMLUIWindowSceneStandardPlacementElement,
-  } = await import('./generated.js');
+  } = await import('./generated-elements.js');
 
   customElements.define(
     'ns-collectionlayoutanchor',

@@ -1,4 +1,4 @@
-/// <reference path="./generated-elements/index.ts" />
+/// <reference path="./generated-elements.ts" />
 import dominimal from 'dominimal';
 const JSDOM = dominimal.JSDOM;
 

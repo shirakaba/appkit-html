@@ -1,0 +1,35 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  objc:
+    specifier: file:../../lib/objc-1.0.0.tgz
+    version: file:../../lib/objc-1.0.0.tgz
+
+devDependencies:
+  typescript:
+    specifier: ^5.3.2
+    version: 5.3.2
+
+packages:
+
+  /mitata@0.1.6:
+    resolution: {integrity: sha512-VKQ0r3jriTOU9E2Z+mwbZrUmbg4Li4QyFfi7kfHKl6reZhGzL0AYlu3wE0VPXzIwA5xnFzmEQoBwCcNT8stUkA==}
+    dev: false
+
+  /typescript@5.3.2:
+    resolution: {integrity: sha512-6l+RyNy7oAHDfxC4FzSJcz9vnjTKxrLpDG5M2Vu4SHRVNg6xzqZp6LYSR9zjqQTu8DU/f5xwxUdADOkbrIX2gQ==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    dev: true
+
+  file:../../lib/objc-1.0.0.tgz:
+    resolution: {integrity: sha512-Vp9LA/DM6P5qndla1BfTl7M08/tBY/CV49kKPjErFT4UB6E4T61AYgmQGY2UW3+SzFTskv/oAzHGi4QqQCPMuQ==, tarball: file:../../lib/objc-1.0.0.tgz}
+    name: objc
+    version: 1.0.0
+    dependencies:
+      mitata: 0.1.6
+    dev: false

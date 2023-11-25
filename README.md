@@ -27,14 +27,14 @@ deno task build
 # Optional: generate the metadata (or just use the ready-committed metadata)
 deno task metagen macos
 
-# Link the package (the package.json name is 'objc' so it'll link as 'objc'):
-yarn link
+# Create a tarball of the package and move it into this repo, under lib/.
+pnpm pack
+mv objc-1.1.0.tgz objc-html/lib
 
 # The rest of the steps take place inside appkit-html:
 
 # Install deps
-yarn install
-yarn link objc
+pnpm install
 
 # Generate the TS for our HTML Custom Elements
 node scripts/classgen.js

@@ -26,10 +26,18 @@ const options = {
     type: 'string',
     short: 'i',
     /** The path to the objc runtime types. */
-    default: resolve(
-      import.meta.resolve(`${objcLib}/package.json`).replace(/^file:\/\//, ''),
-      '../types'
-    ),
+    default: (() => {
+      try {
+        return resolve(
+          import.meta
+            .resolve(`${objcLib}/package.json`)
+            .replace(/^file:\/\//, ''),
+          '../types'
+        );
+      } catch (error) {
+        return '';
+      }
+    })(),
   },
   output: {
     type: 'string',
@@ -47,7 +55,7 @@ mkdirSync(dirname(output), { recursive: true });
 
 if (sdk === 'macos' || !sdk) {
   writeFileSync(
-    join(output, 'src-appkit/generated-elements.ts'),
+    join(output, 'generated-elements.ts'),
     parseDeclaration(
       [
         ...readFileSync(resolve(input, 'macos/Runtime.d.ts'), 'utf-8').split(
@@ -65,7 +73,7 @@ if (sdk === 'macos' || !sdk) {
 
 if (sdk === 'ios' || !sdk) {
   writeFileSync(
-    join(output, 'src-uikit/generated-elements.ts'),
+    join(output, 'generated-elements.ts'),
     parseDeclaration(
       [
         ...readFileSync(resolve(input, 'ios/Runtime.d.ts'), 'utf-8').split(
@@ -87,7 +95,7 @@ function parseDeclaration(lines, sdk) {
   /** @type {Map<string, string>} */
   const heredity = new Map();
   /** @type {Array<string>} */
-  const imports = ['/// <reference path="./globals.d.ts" />'];
+  const imports = ['/// <reference path="./globals.types.ts" />'];
   /** @type {Array<ClassMeta & { fields: Array<Field>> }} */
   const classes = [];
   /** @type {Array<DelegateMeta & { fields: Array<Field>> }>} */
@@ -1765,9 +1773,27 @@ function findIndexOfMatchingBracket(code, openingIndex, openingBracket) {
  * @param {string} line
  */
 function parseDelegateHeader(line) {
-  const match = line.match(
-    /^declare interface (.*?Delegate)(?: extends (.*?))? {/
-  );
+  /** @type {RegExpMatchArray | null} */
+  let match = null;
+
+  // This case is weird as it not only extends a delegate but doesn't itself end
+  // with the suffix "Delegate". Unique, so not worth generalising.
+  const exceptionalCase =
+    'declare interface NSCollectionViewDelegateFlowLayout extends NSCollectionViewDelegate {';
+
+  if (line === exceptionalCase) {
+    match = [
+      exceptionalCase,
+      'NSCollectionViewDelegateFlowLayout',
+      'NSCollectionViewDelegate',
+      0,
+      exceptionalCase,
+      undefined,
+    ];
+  } else {
+    match = line.match(/^declare interface (.*?Delegate)(?: extends (.*?))? {/);
+  }
+
   if (!match) {
     return null;
   }

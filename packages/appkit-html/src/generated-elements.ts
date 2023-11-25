@@ -1,4 +1,4 @@
-/// <reference path="./globals.d.ts" />
+/// <reference path="./globals.types.ts" />
 /// <reference types="objc/lib/types.d.ts" />
 /// <reference types="objc/types/macos/Runtime.d.ts" />
 /// <reference types="objc/types/macos/QuartzCore.d.ts" />
@@ -11867,8 +11867,8 @@ export class NSScrubberDelegateImpl extends NSObject implements NSScrubberDelega
   didCancelInteractingWithScrubber?(scrubber: NSScrubber): void;
 }
 
-export class NSCollectionViewDelegateFlowLayout extends NSCollectionViewDelegateImpl extends NSObject implements NSCollectionViewDelegateFlowLayout extends NSCollectionViewDelegate {
-  static ObjCProtocols = [NSCollectionViewDelegateFlowLayout extends NSCollectionViewDelegate];
+export class NSCollectionViewDelegateFlowLayoutImpl extends NSObject implements NSCollectionViewDelegateFlowLayout {
+  static ObjCProtocols = [NSCollectionViewDelegateFlowLayout];
   static {
     NativeClass(this);
   }

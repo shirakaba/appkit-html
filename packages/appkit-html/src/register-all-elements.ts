@@ -299,7 +299,7 @@ export async function registerAllElements() {
     HTMLNSWorkspaceElement,
     HTMLNSWorkspaceAuthorizationElement,
     HTMLNSWorkspaceOpenConfigurationElement,
-  } = await import('./generated.js');
+  } = await import('./generated-elements.js');
 
   customElements.define(
     'ns-accessibilitycustomaction',

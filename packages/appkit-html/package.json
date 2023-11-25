@@ -1,0 +1,22 @@
+{
+  "name": "appkit-html",
+  "version": "0.0.1",
+  "description": "Render AppKit with DOM and HTML",
+  "module": "dist/index.js",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "classgen": "node ../../scripts/classgen.js --sdk macos -i ./node_modules/objc/types -o ./src",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "author": "Jamie Birch",
+  "license": "MIT",
+  "dependencies": {
+    "dominimal": "^0.0.3",
+    "objc": "file:../../lib/objc-1.0.0.tgz"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.2"
+  }
+}

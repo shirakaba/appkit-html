@@ -4,4 +4,3 @@
 /// <reference types="objc/types/ios/Symbols.d.ts" />'
 /// <reference types="objc/types/ios/UIKit.d.ts" />'
 /// <reference types="objc/types/ios/UserNotifications.d.ts" />'
-/// <reference path="./AppKit-discrepancies.d.ts" />'

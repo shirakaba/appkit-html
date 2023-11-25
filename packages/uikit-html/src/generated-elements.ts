@@ -1,4 +1,4 @@
-/// <reference path="./globals.d.ts" />
+/// <reference path="./globals.types.ts" />
 /// <reference types="objc/lib/types.d.ts" />
 /// <reference types="objc/types/ios/Runtime.d.ts" />
 /// <reference types="objc/types/ios/Foundation.d.ts" />

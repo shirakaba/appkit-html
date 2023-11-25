@@ -1,0 +1,21 @@
+{
+  "name": "uikit-html",
+  "version": "0.0.1",
+  "description": "Render UIKit with DOM and HTML",
+  "module": "dist/index.js",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "classgen": "node ../../scripts/classgen.js --sdk ios -i ./node_modules/objc/types -o ./src",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "author": "Jamie Birch",
+  "license": "MIT",
+  "dependencies": {
+    "objc": "file:../../lib/objc-1.0.0.tgz"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.2"
+  }
+}
