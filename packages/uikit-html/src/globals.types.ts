@@ -1,4 +1,6 @@
+/// <reference types="objc/types/ios/CloudKit.d.ts" />'
 /// <reference types="objc/types/ios/CoreData.d.ts" />'
+/// <reference types="objc/types/ios/CoreImage.d.ts" />'
 /// <reference types="objc/types/ios/CoreFoundation.d.ts" />'
 /// <reference types="objc/types/ios/CoreGraphics.d.ts" />'
 /// <reference types="objc/types/ios/Symbols.d.ts" />'
