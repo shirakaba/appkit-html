@@ -2325,7 +2325,7 @@ export class HTMLUIListSeparatorConfigurationElement extends HTMLNSObjectElement
   set visualEffect(value: UIVisualEffect) { this.nativeObject.visualEffect = value; }
 }
 
-export class HTMLNSDiffableDataSourceSnapshotElement extends HTMLNSObjectElement {
+export class HTMLNSDiffableDataSourceSnapshotElement<SectionIdentifierType = interop.Object, ItemIdentifierType = interop.Object> extends HTMLNSObjectElement {
   protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDiffableDataSourceSnapshot.new();
@@ -2464,7 +2464,7 @@ export class HTMLUICollectionViewCompositionalLayoutConfigurationElement extends
   set contentInsetsReference(value: interop.Enum<typeof UIContentInsetsReference>) { this.nativeObject.contentInsetsReference = value; }
 }
 
-export class HTMLNSLayoutAnchorElement extends HTMLNSObjectElement {
+export class HTMLNSLayoutAnchorElement<AnchorType = interop.Object> extends HTMLNSObjectElement {
   protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSLayoutAnchor.new();
@@ -3643,7 +3643,7 @@ export class HTMLUIStoryboardElement extends HTMLNSObjectElement {
 
 }
 
-export class HTMLNSDiffableDataSourceSectionTransactionElement extends HTMLNSObjectElement {
+export class HTMLNSDiffableDataSourceSectionTransactionElement<SectionIdentifierType = interop.Object, ItemIdentifierType = interop.Object> extends HTMLNSObjectElement {
   protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDiffableDataSourceSectionTransaction.new();
@@ -3760,7 +3760,7 @@ export class HTMLUICommandElement extends HTMLUIMenuElementElement {
   get debugDescription(): string { return this.nativeObject.debugDescription; }
 }
 
-export class HTMLNSDiffableDataSourceSectionSnapshotElement extends HTMLNSObjectElement {
+export class HTMLNSDiffableDataSourceSectionSnapshotElement<ItemIdentifierType = interop.Object> extends HTMLNSObjectElement {
   protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDiffableDataSourceSectionSnapshot.new();
@@ -5776,7 +5776,7 @@ export class HTMLUIBlurEffectElement extends HTMLUIVisualEffectElement {
 
 }
 
-export class HTMLNSDiffableDataSourceTransactionElement extends HTMLNSObjectElement {
+export class HTMLNSDiffableDataSourceTransactionElement<SectionIdentifierType = interop.Object, ItemIdentifierType = interop.Object> extends HTMLNSObjectElement {
   protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDiffableDataSourceTransaction.new();
@@ -6442,7 +6442,7 @@ export class HTMLUIFontMetricsElement extends HTMLNSObjectElement {
 
 }
 
-export class HTMLUICollectionViewDiffableDataSourceReorderingHandlersElement extends HTMLNSObjectElement {
+export class HTMLUICollectionViewDiffableDataSourceReorderingHandlersElement<SectionType = interop.Object, ItemType = interop.Object> extends HTMLNSObjectElement {
   protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UICollectionViewDiffableDataSourceReorderingHandlers.new();
@@ -8032,7 +8032,7 @@ export class HTMLUICellAccessoryInsertElement extends HTMLUICellAccessoryElement
   set actionHandler(value: () => void) { this.nativeObject.actionHandler = value; }
 }
 
-export class HTMLUICollectionViewDiffableDataSourceSectionSnapshotHandlersElement extends HTMLNSObjectElement {
+export class HTMLUICollectionViewDiffableDataSourceSectionSnapshotHandlersElement<ItemType = interop.Object> extends HTMLNSObjectElement {
   protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UICollectionViewDiffableDataSourceSectionSnapshotHandlers.new();
@@ -9655,7 +9655,7 @@ export class HTMLUISymbolEffectCompletionContextElement extends HTMLNSObjectElem
   get contentTransition(): NSSymbolContentTransition { return this.nativeObject.contentTransition; }
 }
 
-export class HTMLUICollectionViewDiffableDataSourceElement extends HTMLNSObjectElement {
+export class HTMLUICollectionViewDiffableDataSourceElement<SectionIdentifierType = interop.Object, ItemIdentifierType = interop.Object> extends HTMLNSObjectElement {
   protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UICollectionViewDiffableDataSource.new();
@@ -10068,7 +10068,7 @@ export class HTMLUIFontPickerViewControllerConfigurationElement extends HTMLNSOb
   set filteredLanguagesPredicate(value: NSPredicate) { this.nativeObject.filteredLanguagesPredicate = value; }
 }
 
-export class HTMLUITableViewDiffableDataSourceElement extends HTMLNSObjectElement {
+export class HTMLUITableViewDiffableDataSourceElement<SectionIdentifierType = interop.Object, ItemIdentifierType = interop.Object> extends HTMLNSObjectElement {
   protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UITableViewDiffableDataSource.new();

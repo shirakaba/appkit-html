@@ -1539,7 +1539,9 @@ function parseViewClassHeader(line, tsIgnoring) {
     'NSSplitViewItem',
   ].includes(className);
 
-  const header = `export class HTML${className}Element extends HTML${superclass}Element {`;
+  const header = `export class HTML${className}Element${
+    classGeneric ?? ''
+  } extends HTML${superclass}Element {`;
   const contents = [
     '  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };',
     '  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);',
