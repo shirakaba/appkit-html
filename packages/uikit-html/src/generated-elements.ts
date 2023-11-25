@@ -11332,8 +11332,8 @@ export class UICollisionBehaviorDelegateImpl extends NSObject implements UIColli
   collisionBehaviorEndedContactForItemWithBoundaryIdentifier?(behavior: UICollisionBehavior, item: UIDynamicItem, identifier: NSCopying | null): void;
 }
 
-export class UICollectionViewDelegateFlowLayout extends UICollectionViewDelegateImpl extends NSObject implements UICollectionViewDelegateFlowLayout extends UICollectionViewDelegate {
-  static ObjCProtocols = [UICollectionViewDelegateFlowLayout extends UICollectionViewDelegate];
+export class UICollectionViewDelegateFlowLayoutImpl extends NSObject implements UICollectionViewDelegateFlowLayout {
+  static ObjCProtocols = [UICollectionViewDelegateFlowLayout];
   static {
     NativeClass(this);
   }

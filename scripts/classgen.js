@@ -1785,17 +1785,28 @@ function parseDelegateHeader(line) {
   let match = null;
 
   // This case is weird as it not only extends a delegate but doesn't itself end
-  // with the suffix "Delegate". Unique, so not worth generalising.
-  const exceptionalCase =
+  // with the suffix "Delegate". Unique in each SDK, so not worth generalising.
+  const exceptionalCase1 =
     'declare interface NSCollectionViewDelegateFlowLayout extends NSCollectionViewDelegate {';
+  const exceptionalCase2 =
+    'declare interface UICollectionViewDelegateFlowLayout extends UICollectionViewDelegate {';
 
-  if (line === exceptionalCase) {
+  if (line === exceptionalCase1) {
     match = [
-      exceptionalCase,
+      exceptionalCase1,
       'NSCollectionViewDelegateFlowLayout',
       'NSCollectionViewDelegate',
       0,
-      exceptionalCase,
+      exceptionalCase1,
+      undefined,
+    ];
+  } else if (line === exceptionalCase2) {
+    match = [
+      exceptionalCase2,
+      'UICollectionViewDelegateFlowLayout',
+      'UICollectionViewDelegate',
+      0,
+      exceptionalCase2,
       undefined,
     ];
   } else {
