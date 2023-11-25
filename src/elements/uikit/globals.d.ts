@@ -3,3 +3,4 @@
 /// <reference types="objc/types/ios/Symbols.d.ts" />'
 /// <reference types="objc/types/ios/UIKit.d.ts" />'
 /// <reference types="objc/types/ios/UserNotifications.d.ts" />'
+/// <reference path="./NSObject-patches.d.ts" />'
