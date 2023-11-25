@@ -1,6 +1,11 @@
-// Manual patches to the runtime declarations (when the NSObject declarations
-// from both the iOS and macOS SDKs are imported, we end up with the
-// intersection, so iOS ends up losing out).
+// Manual patches to the runtime declarations (when a same-named class is
+// declared in both the iOS and macOS SDKs, TypeScript resolves their contents
+// as the intersection of the two, generally meaning iOS needs extra APIs to be
+// declared).
+//
+// For iOS-only or macOS-only projects, this file could be omitted entirely as
+// long as just one SDK's types are included in the compilation context.
+
 declare interface NSObject {
   get accessibilityElements(): NSArray;
   set accessibilityElements(
@@ -184,4 +189,35 @@ declare interface NSObject {
   set accessibilityDropPointDescriptors(
     value: NSArray<interop.Object> | Array<interop.Object>
   );
+}
+
+declare interface NSDiffableDataSourceSnapshot<
+  SectionIdentifierType = interop.Object,
+  ItemIdentifierType = interop.Object
+> {
+  readonly reloadedSectionIdentifiers: NSArray;
+
+  readonly reloadedItemIdentifiers: NSArray;
+
+  readonly reconfiguredItemIdentifiers: NSArray;
+}
+
+declare interface NSCollectionLayoutDimension {
+  readonly isUniformAcrossSiblings: boolean;
+}
+
+declare interface NSCollectionLayoutSection {
+  contentInsetsReference: interop.Enum<typeof UIContentInsetsReference>;
+
+  supplementaryContentInsetsReference: interop.Enum<
+    typeof UIContentInsetsReference
+  >;
+
+  readonly orthogonalScrollingProperties: UICollectionLayoutSectionOrthogonalScrollingProperties;
+}
+
+declare interface NSStringDrawingContext {
+  minimumTrackingAdjustment: number;
+
+  readonly actualTrackingAdjustment: number;
 }
