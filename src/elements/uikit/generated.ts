@@ -7880,6 +7880,73 @@ export class HTMLUISplitViewControllerElement extends HTMLUIViewControllerElemen
   set primaryEdge(value: interop.Enum<typeof UISplitViewControllerPrimaryEdge>) { this.nativeObject.primaryEdge = value; }
   get primaryBackgroundStyle(): interop.Enum<typeof UISplitViewControllerBackgroundStyle> { return this.nativeObject.primaryBackgroundStyle; }
   set primaryBackgroundStyle(value: interop.Enum<typeof UISplitViewControllerBackgroundStyle>) { this.nativeObject.primaryBackgroundStyle = value; }
+
+  set splitViewControllerWillChangeToDisplayMode(value: (svc: UISplitViewController, displayMode: interop.Enum<typeof UISplitViewControllerDisplayMode>) => void) {
+    this.delegate.splitViewControllerWillChangeToDisplayMode = value;
+  }
+  set targetDisplayModeForActionInSplitViewController(value: (svc: UISplitViewController) => interop.Enum<typeof UISplitViewControllerDisplayMode>) {
+    this.delegate.targetDisplayModeForActionInSplitViewController = value;
+  }
+  set splitViewControllerShowViewControllerSender(value: (splitViewController: UISplitViewController, vc: UIViewController, sender: interop.Object | null) => boolean) {
+    this.delegate.splitViewControllerShowViewControllerSender = value;
+  }
+  set splitViewControllerShowDetailViewControllerSender(value: (splitViewController: UISplitViewController, vc: UIViewController, sender: interop.Object | null) => boolean) {
+    this.delegate.splitViewControllerShowDetailViewControllerSender = value;
+  }
+  set primaryViewControllerForCollapsingSplitViewController(value: (splitViewController: UISplitViewController) => UIViewController) {
+    this.delegate.primaryViewControllerForCollapsingSplitViewController = value;
+  }
+  set primaryViewControllerForExpandingSplitViewController(value: (splitViewController: UISplitViewController) => UIViewController) {
+    this.delegate.primaryViewControllerForExpandingSplitViewController = value;
+  }
+  set splitViewControllerCollapseSecondaryViewControllerOntoPrimaryViewController(value: (splitViewController: UISplitViewController, secondaryViewController: UIViewController, primaryViewController: UIViewController) => boolean) {
+    this.delegate.splitViewControllerCollapseSecondaryViewControllerOntoPrimaryViewController = value;
+  }
+  set splitViewControllerSeparateSecondaryViewControllerFromPrimaryViewController(value: (splitViewController: UISplitViewController, primaryViewController: UIViewController) => UIViewController) {
+    this.delegate.splitViewControllerSeparateSecondaryViewControllerFromPrimaryViewController = value;
+  }
+  set splitViewControllerSupportedInterfaceOrientations(value: (splitViewController: UISplitViewController) => interop.Enum<typeof UIInterfaceOrientationMask>) {
+    this.delegate.splitViewControllerSupportedInterfaceOrientations = value;
+  }
+  set splitViewControllerPreferredInterfaceOrientationForPresentation(value: (splitViewController: UISplitViewController) => interop.Enum<typeof UIInterfaceOrientation>) {
+    this.delegate.splitViewControllerPreferredInterfaceOrientationForPresentation = value;
+  }
+  set splitViewControllerWillHideViewControllerWithBarButtonItemForPopoverController(value: (svc: UISplitViewController, aViewController: UIViewController, barButtonItem: UIBarButtonItem, pc: UIPopoverController) => void) {
+    this.delegate.splitViewControllerWillHideViewControllerWithBarButtonItemForPopoverController = value;
+  }
+  set splitViewControllerWillShowViewControllerInvalidatingBarButtonItem(value: (svc: UISplitViewController, aViewController: UIViewController, barButtonItem: UIBarButtonItem) => void) {
+    this.delegate.splitViewControllerWillShowViewControllerInvalidatingBarButtonItem = value;
+  }
+  set splitViewControllerPopoverControllerWillPresentViewController(value: (svc: UISplitViewController, pc: UIPopoverController, aViewController: UIViewController) => void) {
+    this.delegate.splitViewControllerPopoverControllerWillPresentViewController = value;
+  }
+  set splitViewControllerShouldHideViewControllerInOrientation(value: (svc: UISplitViewController, vc: UIViewController, orientation: interop.Enum<typeof UIInterfaceOrientation>) => boolean) {
+    this.delegate.splitViewControllerShouldHideViewControllerInOrientation = value;
+  }
+  set splitViewControllerTopColumnForCollapsingToProposedTopColumn(value: (svc: UISplitViewController, proposedTopColumn: interop.Enum<typeof UISplitViewControllerColumn>) => interop.Enum<typeof UISplitViewControllerColumn>) {
+    this.delegate.splitViewControllerTopColumnForCollapsingToProposedTopColumn = value;
+  }
+  set splitViewControllerDisplayModeForExpandingToProposedDisplayMode(value: (svc: UISplitViewController, proposedDisplayMode: interop.Enum<typeof UISplitViewControllerDisplayMode>) => interop.Enum<typeof UISplitViewControllerDisplayMode>) {
+    this.delegate.splitViewControllerDisplayModeForExpandingToProposedDisplayMode = value;
+  }
+  set splitViewControllerDidCollapse(value: (svc: UISplitViewController) => void) {
+    this.delegate.splitViewControllerDidCollapse = value;
+  }
+  set splitViewControllerDidExpand(value: (svc: UISplitViewController) => void) {
+    this.delegate.splitViewControllerDidExpand = value;
+  }
+  set splitViewControllerWillShowColumn(value: (svc: UISplitViewController, column: interop.Enum<typeof UISplitViewControllerColumn>) => void) {
+    this.delegate.splitViewControllerWillShowColumn = value;
+  }
+  set splitViewControllerWillHideColumn(value: (svc: UISplitViewController, column: interop.Enum<typeof UISplitViewControllerColumn>) => void) {
+    this.delegate.splitViewControllerWillHideColumn = value;
+  }
+  set splitViewControllerInteractivePresentationGestureWillBegin(value: (svc: UISplitViewController) => void) {
+    this.delegate.splitViewControllerInteractivePresentationGestureWillBegin = value;
+  }
+  set splitViewControllerInteractivePresentationGestureDidEnd(value: (svc: UISplitViewController) => void) {
+    this.delegate.splitViewControllerInteractivePresentationGestureDidEnd = value;
+  }
 }
 
 export class HTMLUISliderElement extends HTMLUIControlElement {
@@ -11265,6 +11332,20 @@ export class UICollisionBehaviorDelegateImpl extends NSObject implements UIColli
   collisionBehaviorEndedContactForItemWithBoundaryIdentifier?(behavior: UICollisionBehavior, item: UIDynamicItem, identifier: NSCopying | null): void;
 }
 
+export class UICollectionViewDelegateFlowLayout extends UICollectionViewDelegateImpl extends NSObject implements UICollectionViewDelegateFlowLayout extends UICollectionViewDelegate {
+  static ObjCProtocols = [UICollectionViewDelegateFlowLayout extends UICollectionViewDelegate];
+  static {
+    NativeClass(this);
+  }
+
+  collectionViewLayoutSizeForItemAtIndexPath?(collectionView: UICollectionView, collectionViewLayout: UICollectionViewLayout, indexPath: NSIndexPath): CGSize;
+  collectionViewLayoutInsetForSectionAtIndex?(collectionView: UICollectionView, collectionViewLayout: UICollectionViewLayout, section: number): UIEdgeInsets;
+  collectionViewLayoutMinimumLineSpacingForSectionAtIndex?(collectionView: UICollectionView, collectionViewLayout: UICollectionViewLayout, section: number): number;
+  collectionViewLayoutMinimumInteritemSpacingForSectionAtIndex?(collectionView: UICollectionView, collectionViewLayout: UICollectionViewLayout, section: number): number;
+  collectionViewLayoutReferenceSizeForHeaderInSection?(collectionView: UICollectionView, collectionViewLayout: UICollectionViewLayout, section: number): CGSize;
+  collectionViewLayoutReferenceSizeForFooterInSection?(collectionView: UICollectionView, collectionViewLayout: UICollectionViewLayout, section: number): CGSize;
+}
+
 export class UISearchBarDelegateImpl extends NSObject implements UISearchBarDelegate {
   static ObjCProtocols = [UISearchBarDelegate];
   static {
@@ -11424,6 +11505,36 @@ export class UITextDropDelegateImpl extends NSObject implements UITextDropDelega
   textDroppableViewDropSessionDidUpdate?(textDroppableView: UIView, session: UIDropSession): void;
   textDroppableViewDropSessionDidExit?(textDroppableView: UIView, session: UIDropSession): void;
   textDroppableViewDropSessionDidEnd?(textDroppableView: UIView, session: UIDropSession): void;
+}
+
+export class UISplitViewControllerDelegateImpl extends NSObject implements UISplitViewControllerDelegate {
+  static ObjCProtocols = [UISplitViewControllerDelegate];
+  static {
+    NativeClass(this);
+  }
+
+  splitViewControllerWillChangeToDisplayMode?(svc: UISplitViewController, displayMode: interop.Enum<typeof UISplitViewControllerDisplayMode>): void;
+  targetDisplayModeForActionInSplitViewController?(svc: UISplitViewController): interop.Enum<typeof UISplitViewControllerDisplayMode>;
+  splitViewControllerShowViewControllerSender?(splitViewController: UISplitViewController, vc: UIViewController, sender: interop.Object | null): boolean;
+  splitViewControllerShowDetailViewControllerSender?(splitViewController: UISplitViewController, vc: UIViewController, sender: interop.Object | null): boolean;
+  primaryViewControllerForCollapsingSplitViewController?(splitViewController: UISplitViewController): UIViewController;
+  primaryViewControllerForExpandingSplitViewController?(splitViewController: UISplitViewController): UIViewController;
+  splitViewControllerCollapseSecondaryViewControllerOntoPrimaryViewController?(splitViewController: UISplitViewController, secondaryViewController: UIViewController, primaryViewController: UIViewController): boolean;
+  splitViewControllerSeparateSecondaryViewControllerFromPrimaryViewController?(splitViewController: UISplitViewController, primaryViewController: UIViewController): UIViewController;
+  splitViewControllerSupportedInterfaceOrientations?(splitViewController: UISplitViewController): interop.Enum<typeof UIInterfaceOrientationMask>;
+  splitViewControllerPreferredInterfaceOrientationForPresentation?(splitViewController: UISplitViewController): interop.Enum<typeof UIInterfaceOrientation>;
+  splitViewControllerWillHideViewControllerWithBarButtonItemForPopoverController?(svc: UISplitViewController, aViewController: UIViewController, barButtonItem: UIBarButtonItem, pc: UIPopoverController): void;
+  splitViewControllerWillShowViewControllerInvalidatingBarButtonItem?(svc: UISplitViewController, aViewController: UIViewController, barButtonItem: UIBarButtonItem): void;
+  splitViewControllerPopoverControllerWillPresentViewController?(svc: UISplitViewController, pc: UIPopoverController, aViewController: UIViewController): void;
+  splitViewControllerShouldHideViewControllerInOrientation?(svc: UISplitViewController, vc: UIViewController, orientation: interop.Enum<typeof UIInterfaceOrientation>): boolean;
+  splitViewControllerTopColumnForCollapsingToProposedTopColumn?(svc: UISplitViewController, proposedTopColumn: interop.Enum<typeof UISplitViewControllerColumn>): interop.Enum<typeof UISplitViewControllerColumn>;
+  splitViewControllerDisplayModeForExpandingToProposedDisplayMode?(svc: UISplitViewController, proposedDisplayMode: interop.Enum<typeof UISplitViewControllerDisplayMode>): interop.Enum<typeof UISplitViewControllerDisplayMode>;
+  splitViewControllerDidCollapse?(svc: UISplitViewController): void;
+  splitViewControllerDidExpand?(svc: UISplitViewController): void;
+  splitViewControllerWillShowColumn?(svc: UISplitViewController, column: interop.Enum<typeof UISplitViewControllerColumn>): void;
+  splitViewControllerWillHideColumn?(svc: UISplitViewController, column: interop.Enum<typeof UISplitViewControllerColumn>): void;
+  splitViewControllerInteractivePresentationGestureWillBegin?(svc: UISplitViewController): void;
+  splitViewControllerInteractivePresentationGestureDidEnd?(svc: UISplitViewController): void;
 }
 
 export class UIBarPositioningDelegateImpl extends NSObject implements UIBarPositioningDelegate {

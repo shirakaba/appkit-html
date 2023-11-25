@@ -1765,7 +1765,9 @@ function findIndexOfMatchingBracket(code, openingIndex, openingBracket) {
  * @param {string} line
  */
 function parseDelegateHeader(line) {
-  const match = line.match(/^declare interface (.*?Delegate) extends (.*?) {/);
+  const match = line.match(
+    /^declare interface (.*?Delegate)(?: extends (.*?))? {/
+  );
   if (!match) {
     return null;
   }
@@ -1790,7 +1792,9 @@ function parseDelegateHeader(line) {
     implContents,
     implFooter,
     delegateName,
-    superinterfaces,
+    // While most extend NSObjectProtocol or some base delegate,
+    // UISplitViewControllerDelegate actually has no superinterface at all.
+    superinterfaces: superinterfaces ?? '',
   };
 }
 

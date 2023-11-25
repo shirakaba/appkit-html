@@ -11867,6 +11867,20 @@ export class NSScrubberDelegateImpl extends NSObject implements NSScrubberDelega
   didCancelInteractingWithScrubber?(scrubber: NSScrubber): void;
 }
 
+export class NSCollectionViewDelegateFlowLayout extends NSCollectionViewDelegateImpl extends NSObject implements NSCollectionViewDelegateFlowLayout extends NSCollectionViewDelegate {
+  static ObjCProtocols = [NSCollectionViewDelegateFlowLayout extends NSCollectionViewDelegate];
+  static {
+    NativeClass(this);
+  }
+
+  collectionViewLayoutSizeForItemAtIndexPath?(collectionView: NSCollectionView, collectionViewLayout: NSCollectionViewLayout, indexPath: NSIndexPath): CGSize;
+  collectionViewLayoutInsetForSectionAtIndex?(collectionView: NSCollectionView, collectionViewLayout: NSCollectionViewLayout, section: number): NSEdgeInsets;
+  collectionViewLayoutMinimumLineSpacingForSectionAtIndex?(collectionView: NSCollectionView, collectionViewLayout: NSCollectionViewLayout, section: number): number;
+  collectionViewLayoutMinimumInteritemSpacingForSectionAtIndex?(collectionView: NSCollectionView, collectionViewLayout: NSCollectionViewLayout, section: number): number;
+  collectionViewLayoutReferenceSizeForHeaderInSection?(collectionView: NSCollectionView, collectionViewLayout: NSCollectionViewLayout, section: number): CGSize;
+  collectionViewLayoutReferenceSizeForFooterInSection?(collectionView: NSCollectionView, collectionViewLayout: NSCollectionViewLayout, section: number): CGSize;
+}
+
 export class NSTableViewDelegateImpl extends NSObject implements NSTableViewDelegate {
   static ObjCProtocols = [NSTableViewDelegate];
   static {
