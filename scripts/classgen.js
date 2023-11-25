@@ -812,12 +812,18 @@ function parseDeclaration(lines, sdk) {
                   return null;
                 }
 
+                // Hardly foolproof, but a harmless way to resolve cases like
+                // sectionIdentifier, where the underlying type is unknown.
+                const maybeGeneric = field.value.endsWith('Type')
+                  ? ` as ${field.value}`
+                  : '';
+
                 if (field.isReadonly) {
-                  return `  get ${field.name}(): ${field.value} { return this.nativeObject.${field.name}; }`;
+                  return `  get ${field.name}(): ${field.value} { return this.nativeObject.${field.name}${maybeGeneric}; }`;
                 }
 
                 return [
-                  `  get ${field.name}(): ${field.value} { return this.nativeObject.${field.name}; }`,
+                  `  get ${field.name}(): ${field.value} { return this.nativeObject.${field.name}${maybeGeneric}; }`,
                   `  set ${field.name}(value: ${field.value}) { this.nativeObject.${field.name} = value; }`,
                 ].join('\n');
               }

@@ -3648,7 +3648,7 @@ export class HTMLNSDiffableDataSourceSectionTransactionElement<SectionIdentifier
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDiffableDataSourceSectionTransaction.new();
 
-  get sectionIdentifier(): SectionIdentifierType { return this.nativeObject.sectionIdentifier; }
+  get sectionIdentifier(): SectionIdentifierType { return this.nativeObject.sectionIdentifier as SectionIdentifierType; }
   get initialSnapshot(): NSDiffableDataSourceSectionSnapshot { return this.nativeObject.initialSnapshot; }
   get finalSnapshot(): NSDiffableDataSourceSectionSnapshot { return this.nativeObject.finalSnapshot; }
   get difference(): NSOrderedCollectionDifference { return this.nativeObject.difference; }
