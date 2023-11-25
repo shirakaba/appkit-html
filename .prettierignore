@@ -1,2 +1,3 @@
-src/generated-elements/index.ts
+src/elements/appkit/generated.ts
+src/elements/uikit/generated.ts
 notes.md

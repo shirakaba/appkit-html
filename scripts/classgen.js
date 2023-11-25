@@ -12,47 +12,82 @@ const objcLib = 'objc';
 
 /** @type {import('node:util').ParseArgsConfig['options'] & {}} */
 const options = {
+  sdk: {
+    type: 'string',
+    short: 'p',
+    /**
+     * 'macos': just the macOS SDK (AppKit).
+     * 'ios': just the iOS SDK (UIKit).
+     * '': both.
+     */
+    default: '',
+  },
   input: {
     type: 'string',
     short: 'i',
+    /** The path to the objc runtime types. */
     default: resolve(
       import.meta.resolve(`${objcLib}/package.json`).replace(/^file:\/\//, ''),
-      '../types/macos'
+      '../types'
     ),
   },
   output: {
     type: 'string',
     short: 'o',
-    default: resolve(__dirname, '../src/elements/generated.ts'),
+    /** Default to outputting inside this repo. */
+    default: resolve(__dirname, '../src/elements'),
   },
 };
 
 const {
-  values: { input, output },
+  values: { input, output, sdk },
 } = parseArgs({ args: process.argv.slice(2), options });
 
-const runtimeLines = readFileSync(
-  resolve(input, 'Runtime.d.ts'),
-  'utf-8'
-).split('\n');
-const appKitLines = readFileSync(resolve(input, 'AppKit.d.ts'), 'utf-8').split(
-  '\n'
-);
-const lines = [...runtimeLines, ...appKitLines];
-const result = parseDeclaration(lines);
-// console.log(result);
-
 mkdirSync(dirname(output), { recursive: true });
-writeFileSync(output, result, 'utf-8');
+
+if (sdk === 'macos' || !sdk) {
+  writeFileSync(
+    join(output, 'appkit/generated.ts'),
+    parseDeclaration(
+      [
+        ...readFileSync(resolve(input, 'macos/Runtime.d.ts'), 'utf-8').split(
+          '\n'
+        ),
+        ...readFileSync(resolve(input, 'macos/AppKit.d.ts'), 'utf-8').split(
+          '\n'
+        ),
+      ],
+      'macos'
+    ),
+    'utf-8'
+  );
+}
+
+if (sdk === 'ios' || !sdk) {
+  writeFileSync(
+    join(output, 'uikit/generated.ts'),
+    parseDeclaration(
+      [
+        ...readFileSync(resolve(input, 'ios/Runtime.d.ts'), 'utf-8').split(
+          '\n'
+        ),
+        ...readFileSync(resolve(input, 'ios/UIKit.d.ts'), 'utf-8').split('\n'),
+      ],
+      'ios'
+    ),
+    'utf-8'
+  );
+}
 
 /**
  * @param {Array<string>} lines
+ * @param {'macos'|'ios'} sdk
  */
-function parseDeclaration(lines) {
+function parseDeclaration(lines, sdk) {
   /** @type {Map<string, string>} */
   const heredity = new Map();
   /** @type {Array<string>} */
-  const imports = [];
+  const imports = ['/// <reference path="./globals.d.ts" />'];
   /** @type {Array<ClassMeta & { fields: Array<Field>> }} */
   const classes = [];
   /** @type {Array<DelegateMeta & { fields: Array<Field>> }>} */
@@ -83,7 +118,7 @@ function parseDeclaration(lines) {
   let inside = null;
 
   for (const line of lines) {
-    const directive = parseImportDirective(line);
+    const directive = parseImportDirective(line, sdk);
     if (directive) {
       imports.push(directive);
       continue;
@@ -1339,48 +1374,44 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
       return lowerA > lowerB ? 1 : -1;
     })
     .map(({ className }) => {
-      if (!className.startsWith('NS')) {
+      let tagName = '';
+      if (className.startsWith('NS')) {
+        const namespace = 'ns';
+        const classPortion = className.slice('ns'.length);
+        tagName = `${namespace}-${classPortion}`.toLowerCase();
+      } else if (className.startsWith('UI')) {
+        const namespace = 'ui';
+        const classPortion = className.slice('ui'.length);
+        tagName = `${namespace}-${classPortion}`.toLowerCase();
+      } else {
         return `    // ?: HTML${className}Element;`;
       }
 
-      const namespace = 'ns';
-      const classPortion = className.slice('ns'.length);
-
-      const tagName = `${namespace}-${classPortion}`.toLowerCase();
       return `    "${tagName}": HTML${className}Element;`;
     })
     .join('\n');
+
+  const uiFramework = sdk === 'ios' ? 'UIKit' : 'AppKit';
 
   const globalDeclarations = `
 // Call e.g. HTMLNSAlertElement.defineCustomElement(); to register each Custom
 // Element.
 declare global {
-  interface AppKitCustomElementTagNameMap {
+  interface ${uiFramework}CustomElementTagNameMap {
 ${tagNameMap}
   }
 
   interface Document {
-    createElement<K extends keyof AppKitCustomElementTagNameMap>(
+    createElement<K extends keyof ${uiFramework}CustomElementTagNameMap>(
       tagName: K,
       options?: ElementCreationOptions
-    ): AppKitCustomElementTagNameMap[K];
+    ): ${uiFramework}CustomElementTagNameMap[K];
   }
 }
 `.trim();
 
   return `
-${[
-  ...new Set([
-    ...imports,
-    '/// <reference types="objc/types/macos/CoreFoundation.d.ts" />',
-    '/// <reference types="objc/types/macos/CoreData.d.ts" />',
-    '/// <reference types="objc/types/macos/CoreImage.d.ts" />',
-    '/// <reference types="objc/types/macos/CloudKit.d.ts" />',
-    '/// <reference types="objc/types/macos/Intents.d.ts" />',
-    '/// <reference types="objc/types/macos/WebKit.d.ts" />',
-    '/// <reference types="objc/types/macos/AppKit.d.ts" />',
-  ]),
-].join('\n')}
+${[...new Set([...imports])].join('\n')}
 
 ${globalDeclarations}
 
@@ -1397,15 +1428,16 @@ ${processedDelegates.join('\n\n')}
 
 /**
  * @param {string} line
+ * @param {'macos'|'ios'} sdk
  */
-function parseImportDirective(line) {
+function parseImportDirective(line, sdk) {
   const match = line.match(/^\/\/\/ <reference path="(.*?)" ?\/>/);
   if (!match) {
     return null;
   }
 
   const [, path] = match;
-  const typesPath = join(`${objcLib}/types/macos`, path);
+  const typesPath = join(`${objcLib}/types/${sdk}`, path);
   return `/// <reference types="${typesPath}" />`;
 }
 

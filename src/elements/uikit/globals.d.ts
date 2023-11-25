@@ -1,0 +1,5 @@
+/// <reference types="objc/types/ios/CoreFoundation.d.ts" />'
+/// <reference types="objc/types/ios/CoreGraphics.d.ts" />'
+/// <reference types="objc/types/ios/Symbols.d.ts" />'
+/// <reference types="objc/types/ios/UIKit.d.ts" />'
+/// <reference types="objc/types/ios/UserNotifications.d.ts" />'
