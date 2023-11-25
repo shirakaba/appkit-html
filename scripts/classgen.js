@@ -35,7 +35,7 @@ const options = {
     type: 'string',
     short: 'o',
     /** Default to outputting inside this repo. */
-    default: resolve(__dirname, '../src/elements'),
+    default: resolve(__dirname, '..'),
   },
 };
 
@@ -47,7 +47,7 @@ mkdirSync(dirname(output), { recursive: true });
 
 if (sdk === 'macos' || !sdk) {
   writeFileSync(
-    join(output, 'appkit/generated.ts'),
+    join(output, 'src-appkit/generated-elements.ts'),
     parseDeclaration(
       [
         ...readFileSync(resolve(input, 'macos/Runtime.d.ts'), 'utf-8').split(
@@ -65,7 +65,7 @@ if (sdk === 'macos' || !sdk) {
 
 if (sdk === 'ios' || !sdk) {
   writeFileSync(
-    join(output, 'uikit/generated.ts'),
+    join(output, 'src-uikit/generated-elements.ts'),
     parseDeclaration(
       [
         ...readFileSync(resolve(input, 'ios/Runtime.d.ts'), 'utf-8').split(
