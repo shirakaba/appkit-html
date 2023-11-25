@@ -99,7 +99,7 @@ function parseDeclaration(lines, sdk) {
   /**
    * key: class name
    * value: a map of delegate prop names to their corresponding classes.
-   * @type {{ [className: string]: { [propName: string]: string; }}>}
+   * @type {{ [className: string]: { [propName: string]: { delegateName: string; isReadonly: boolean; }; }}>}
    * @example
    * {
    *   NSTextStorage: {
@@ -155,7 +155,10 @@ function parseDeclaration(lines, sdk) {
 
         if (field.type === 'property' && isDelegateField(field)) {
           const record = delegatesByClass[current.className] ?? {};
-          record[field.name] = field.value;
+          record[field.name] = {
+            delegateName: field.value,
+            isReadonly: field.isReadonly,
+          };
           delegatesByClass[current.className] = record;
         }
 
@@ -198,12 +201,26 @@ function parseDeclaration(lines, sdk) {
 
   const processedClasses = sortedClasses.map(
     ({ header, className, contents, footer, fields }) => {
-      /** @type {{ [propName: string]: string; }} */
+      /** @type {{ [propName: string]: { delegateName: string; isReadonly: boolean; }; }} */
       const delegatesByClassValue = delegatesByClass[className] ?? {};
 
       const delegateLazyInits = Object.keys(delegatesByClassValue).map(
         (propName) => {
-          const impl = `${delegatesByClassValue[propName]}Impl`;
+          const { delegateName, isReadonly } = delegatesByClassValue[propName];
+          const impl = `${delegateName}Impl`;
+
+          if (isReadonly) {
+            // TODO: find out whether we can adorn existing delegate
+            // implementations at runtime, or whether it's a required use-case
+            // in the first place.
+            return [
+              `  get ${propName}(): ${impl} {`,
+              '    // delegate is readonly, so not lazy-initialized.',
+              `    return this.nativeObject.${propName} as ${impl};`,
+              '  }',
+            ].join('\n');
+          }
+
           return [
             `  get ${propName}(): ${impl} {`,
             `    if(!this.nativeObject.${propName}){`,
@@ -217,7 +234,7 @@ function parseDeclaration(lines, sdk) {
 
       const delegateMethods = Object.keys(delegatesByClassValue).flatMap(
         (propName) => {
-          const delegateName = delegatesByClassValue[propName];
+          const { delegateName } = delegatesByClassValue[propName];
           const delegateMeta = delegatesRecord[delegateName];
           if (!delegateMeta?.fields.length) {
             return [];

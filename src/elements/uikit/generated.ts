@@ -1453,9 +1453,7 @@ export class HTMLUIPointerInteractionElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UIPointerInteraction.new();
   get delegate(): UIPointerInteractionDelegateImpl {
-    if(!this.nativeObject.delegate){
-      this.nativeObject.delegate = UIPointerInteractionDelegateImpl.new();
-    }
+    // delegate is readonly, so not lazy-initialized.
     return this.nativeObject.delegate as UIPointerInteractionDelegateImpl;
   }
 
@@ -1616,9 +1614,7 @@ export class HTMLUIIndirectScribbleInteractionElement extends HTMLNSObjectElemen
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UIIndirectScribbleInteraction.new();
   get delegate(): UIIndirectScribbleInteractionDelegateImpl {
-    if(!this.nativeObject.delegate){
-      this.nativeObject.delegate = UIIndirectScribbleInteractionDelegateImpl.new();
-    }
+    // delegate is readonly, so not lazy-initialized.
     return this.nativeObject.delegate as UIIndirectScribbleInteractionDelegateImpl;
   }
 
@@ -2180,9 +2176,7 @@ export class HTMLUILargeContentViewerInteractionElement extends HTMLNSObjectElem
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UILargeContentViewerInteraction.new();
   get delegate(): UILargeContentViewerInteractionDelegateImpl {
-    if(!this.nativeObject.delegate){
-      this.nativeObject.delegate = UILargeContentViewerInteractionDelegateImpl.new();
-    }
+    // delegate is readonly, so not lazy-initialized.
     return this.nativeObject.delegate as UILargeContentViewerInteractionDelegateImpl;
   }
 
@@ -4292,9 +4286,7 @@ export class HTMLUICalendarSelectionMultiDateElement extends HTMLUICalendarSelec
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UICalendarSelectionMultiDate.new();
   get delegate(): UICalendarSelectionMultiDateDelegateImpl {
-    if(!this.nativeObject.delegate){
-      this.nativeObject.delegate = UICalendarSelectionMultiDateDelegateImpl.new();
-    }
+    // delegate is readonly, so not lazy-initialized.
     return this.nativeObject.delegate as UICalendarSelectionMultiDateDelegateImpl;
   }
 
@@ -5662,9 +5654,7 @@ export class HTMLUIEditMenuInteractionElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UIEditMenuInteraction.new();
   get delegate(): UIEditMenuInteractionDelegateImpl {
-    if(!this.nativeObject.delegate){
-      this.nativeObject.delegate = UIEditMenuInteractionDelegateImpl.new();
-    }
+    // delegate is readonly, so not lazy-initialized.
     return this.nativeObject.delegate as UIEditMenuInteractionDelegateImpl;
   }
 
@@ -7802,9 +7792,7 @@ export class HTMLUIScribbleInteractionElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UIScribbleInteraction.new();
   get delegate(): UIScribbleInteractionDelegateImpl {
-    if(!this.nativeObject.delegate){
-      this.nativeObject.delegate = UIScribbleInteractionDelegateImpl.new();
-    }
+    // delegate is readonly, so not lazy-initialized.
     return this.nativeObject.delegate as UIScribbleInteractionDelegateImpl;
   }
 
@@ -8264,9 +8252,7 @@ export class HTMLUIDropInteractionElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UIDropInteraction.new();
   get delegate(): UIDropInteractionDelegateImpl {
-    if(!this.nativeObject.delegate){
-      this.nativeObject.delegate = UIDropInteractionDelegateImpl.new();
-    }
+    // delegate is readonly, so not lazy-initialized.
     return this.nativeObject.delegate as UIDropInteractionDelegateImpl;
   }
 
@@ -9299,9 +9285,7 @@ export class HTMLUICalendarSelectionSingleDateElement extends HTMLUICalendarSele
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UICalendarSelectionSingleDate.new();
   get delegate(): UICalendarSelectionSingleDateDelegateImpl {
-    if(!this.nativeObject.delegate){
-      this.nativeObject.delegate = UICalendarSelectionSingleDateDelegateImpl.new();
-    }
+    // delegate is readonly, so not lazy-initialized.
     return this.nativeObject.delegate as UICalendarSelectionSingleDateDelegateImpl;
   }
 
@@ -9466,9 +9450,7 @@ export class HTMLUIDragInteractionElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UIDragInteraction.new();
   get delegate(): UIDragInteractionDelegateImpl {
-    if(!this.nativeObject.delegate){
-      this.nativeObject.delegate = UIDragInteractionDelegateImpl.new();
-    }
+    // delegate is readonly, so not lazy-initialized.
     return this.nativeObject.delegate as UIDragInteractionDelegateImpl;
   }
 
