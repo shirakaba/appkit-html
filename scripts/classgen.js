@@ -23,7 +23,7 @@ const options = {
   output: {
     type: 'string',
     short: 'o',
-    default: resolve(__dirname, '../src/generated-elements/index.ts'),
+    default: resolve(__dirname, '../src/elements/generated.ts'),
   },
 };
 
