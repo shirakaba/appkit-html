@@ -1627,7 +1627,7 @@ function parseField(line) {
     case ': (': {
       const name = prelude.split(' ').slice(-1)[0];
       const isStatic = prelude.startsWith('static');
-      const isReadonly = prelude.match(/^(static )?readonly /);
+      const isReadonly = !!prelude.match(/^(static )?readonly /);
 
       const value = line
         .slice(fullMatch.length - (discriminator === ': (' ? '('.length : 0))
