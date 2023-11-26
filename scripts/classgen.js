@@ -789,11 +789,13 @@ function parseDeclaration(lines, sdk) {
       const reservedAttributes = new Set([
         'attributes',
         'className',
+        'children',
         'childNodes',
         'parentNode',
         'parentElement',
         'style',
-        // 'title',
+        'role',
+        'title',
       ]);
 
       return [
@@ -805,9 +807,9 @@ function parseDeclaration(lines, sdk) {
           ...(nodeOps ? [nodeOps] : []),
           ...fields
             .map((field) => {
-              if (reservedAttributes.has(field.name)) {
-                return null;
-              }
+              const unreservedName = reservedAttributes.has(field.name)
+                ? `${field.name}Native`
+                : field.name;
 
               // We'll not expose this as an attribute as we're managing it
               // ourselves.
@@ -829,22 +831,22 @@ function parseDeclaration(lines, sdk) {
                   : '';
 
                 if (field.isReadonly) {
-                  return `  get ${field.name}(): ${field.value} { return this.nativeObject.${field.name}${maybeGeneric}; }`;
+                  return `  get ${unreservedName}(): ${field.value} { return this.nativeObject.${field.name}${maybeGeneric}; }`;
                 }
 
                 return [
-                  `  get ${field.name}(): ${field.value} { return this.nativeObject.${field.name}${maybeGeneric}; }`,
-                  `  set ${field.name}(value: ${field.value}) { this.nativeObject.${field.name} = value; }`,
+                  `  get ${unreservedName}(): ${field.value} { return this.nativeObject.${field.name}${maybeGeneric}; }`,
+                  `  set ${unreservedName}(value: ${field.value}) { this.nativeObject.${field.name} = value; }`,
                 ].join('\n');
               }
 
               if (field.type === 'getter') {
-                return `  get ${field.name}(): ${field.returnType} { return this.nativeObject.${field.name}; }`;
+                return `  get ${unreservedName}(): ${field.returnType} { return this.nativeObject.${field.name}; }`;
               }
 
               if (field.type === 'setter') {
                 // fields.args always uses the name 'value' in practice.
-                return `  set ${field.name}(${field.args}) { this.nativeObject.${field.name} = value; }`;
+                return `  set ${unreservedName}(${field.args}) { this.nativeObject.${field.name} = value; }`;
               }
 
               // TODO: Should we expose methods? Given the size of the generated

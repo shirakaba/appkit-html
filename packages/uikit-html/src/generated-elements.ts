@@ -1600,7 +1600,7 @@ export class HTMLUISceneSessionElement extends HTMLNSObjectElement {
   readonly nativeObject = UISceneSession.new();
 
   get scene(): UIScene { return this.nativeObject.scene; }
-  get role(): string { return this.nativeObject.role; }
+  get roleNative(): string { return this.nativeObject.role; }
   get configuration(): UISceneConfiguration { return this.nativeObject.configuration; }
   get persistentIdentifier(): string { return this.nativeObject.persistentIdentifier; }
   get stateRestorationActivity(): NSUserActivity { return this.nativeObject.stateRestorationActivity; }
@@ -2344,9 +2344,10 @@ export class HTMLUIContextualActionElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UIContextualAction.new();
 
+  get styleNative(): interop.Enum<typeof UIContextualActionStyle> { return this.nativeObject.style; }
   get handler(): (p1: UIContextualAction, p2: UIView, p3: (p1: boolean) => void) => void { return this.nativeObject.handler; }
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get backgroundColor(): UIColor { return this.nativeObject.backgroundColor; }
   set backgroundColor(value: UIColor) { this.nativeObject.backgroundColor = value; }
   get image(): UIImage { return this.nativeObject.image; }
@@ -2525,8 +2526,8 @@ export class HTMLUIButtonConfigurationElement extends HTMLNSObjectElement {
   set showsActivityIndicator(value: boolean) { this.nativeObject.showsActivityIndicator = value; }
   get activityIndicatorColorTransformer(): (p1: UIColor) => UIColor { return this.nativeObject.activityIndicatorColorTransformer; }
   set activityIndicatorColorTransformer(value: (p1: UIColor) => UIColor) { this.nativeObject.activityIndicatorColorTransformer = value; }
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get attributedTitle(): NSAttributedString { return this.nativeObject.attributedTitle; }
   set attributedTitle(value: NSAttributedString) { this.nativeObject.attributedTitle = value; }
   get titleTextAttributesTransformer(): (p1: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>) => NSDictionary { return this.nativeObject.titleTextAttributesTransformer; }
@@ -2575,8 +2576,8 @@ export class HTMLUIBarItemElement extends HTMLNSObjectElement {
 
   get isEnabled(): boolean { return this.nativeObject.isEnabled; }
   set isEnabled(value: boolean) { this.nativeObject.isEnabled = value; }
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get image(): UIImage { return this.nativeObject.image; }
   set image(value: UIImage) { this.nativeObject.image = value; }
   get landscapeImagePhone(): UIImage { return this.nativeObject.landscapeImagePhone; }
@@ -2842,7 +2843,7 @@ export class HTMLUICommandAlternateElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UICommandAlternate.new();
 
-  get title(): string { return this.nativeObject.title; }
+  get titleNative(): string { return this.nativeObject.title; }
   get action(): string { return this.nativeObject.action; }
   get modifierFlags(): interop.Enum<typeof UIKeyModifierFlags> { return this.nativeObject.modifierFlags; }
 }
@@ -2906,8 +2907,9 @@ export class HTMLUITableViewRowActionElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UITableViewRowAction.new();
 
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get styleNative(): interop.Enum<typeof UITableViewRowActionStyle> { return this.nativeObject.style; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get backgroundColor(): UIColor { return this.nativeObject.backgroundColor; }
   set backgroundColor(value: UIColor) { this.nativeObject.backgroundColor = value; }
   get backgroundEffect(): UIVisualEffect { return this.nativeObject.backgroundEffect; }
@@ -3130,8 +3132,8 @@ export class HTMLUIViewControllerElement extends HTMLUIResponderElement {
   get nibName(): string { return this.nativeObject.nibName; }
   get nibBundle(): NSBundle { return this.nativeObject.nibBundle; }
   get storyboard(): UIStoryboard { return this.nativeObject.storyboard; }
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get parentViewController(): UIViewController { return this.nativeObject.parentViewController; }
   get modalViewController(): UIViewController { return this.nativeObject.modalViewController; }
   get presentedViewController(): UIViewController { return this.nativeObject.presentedViewController; }
@@ -3561,8 +3563,8 @@ export class HTMLUINavigationItemElement extends HTMLNSObjectElement {
     return this.nativeObject.renameDelegate as UINavigationItemRenameDelegateImpl;
   }
 
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get titleView(): UIView { return this.nativeObject.titleView; }
   set titleView(value: UIView) { this.nativeObject.titleView = value; }
   get prompt(): string { return this.nativeObject.prompt; }
@@ -3606,6 +3608,8 @@ export class HTMLUINavigationItemElement extends HTMLNSObjectElement {
   get overflowPresentationSource(): UIPopoverPresentationControllerSourceItem { return this.nativeObject.overflowPresentationSource; }
   get largeTitleDisplayMode(): interop.Enum<typeof UINavigationItemLargeTitleDisplayMode> { return this.nativeObject.largeTitleDisplayMode; }
   set largeTitleDisplayMode(value: interop.Enum<typeof UINavigationItemLargeTitleDisplayMode>) { this.nativeObject.largeTitleDisplayMode = value; }
+  get styleNative(): interop.Enum<typeof UINavigationItemStyle> { return this.nativeObject.style; }
+  set styleNative(value: interop.Enum<typeof UINavigationItemStyle>) { this.nativeObject.style = value; }
   get searchController(): UISearchController { return this.nativeObject.searchController; }
   set searchController(value: UISearchController) { this.nativeObject.searchController = value; }
   get hidesSearchBarWhenScrolling(): boolean { return this.nativeObject.hidesSearchBarWhenScrolling; }
@@ -3681,7 +3685,7 @@ export class HTMLUIMenuElementElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UIMenuElement.new();
 
-  get title(): string { return this.nativeObject.title; }
+  get titleNative(): string { return this.nativeObject.title; }
   get subtitle(): string { return this.nativeObject.subtitle; }
   set subtitle(value: string) { this.nativeObject.subtitle = value; }
   get image(): UIImage { return this.nativeObject.image; }
@@ -3737,14 +3741,16 @@ export class HTMLUICommandElement extends HTMLUIMenuElementElement {
   // @ts-ignore
   readonly nativeObject = UICommand.new();
 
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get image(): UIImage { return this.nativeObject.image; }
   set image(value: UIImage) { this.nativeObject.image = value; }
   get discoverabilityTitle(): string { return this.nativeObject.discoverabilityTitle; }
   set discoverabilityTitle(value: string) { this.nativeObject.discoverabilityTitle = value; }
   get action(): string { return this.nativeObject.action; }
   get propertyList(): interop.Object { return this.nativeObject.propertyList; }
+  get attributesNative(): interop.Enum<typeof UIMenuElementAttributes> { return this.nativeObject.attributes; }
+  set attributesNative(value: interop.Enum<typeof UIMenuElementAttributes>) { this.nativeObject.attributes = value; }
   get state(): interop.Enum<typeof UIMenuElementState> { return this.nativeObject.state; }
   set state(value: interop.Enum<typeof UIMenuElementState>) { this.nativeObject.state = value; }
   get alternates(): NSArray { return this.nativeObject.alternates; }
@@ -3816,6 +3822,8 @@ export class HTMLUIBarButtonItemElement extends HTMLUIBarItemElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UIBarButtonItem.new();
 
+  get styleNative(): interop.Enum<typeof UIBarButtonItemStyle> { return this.nativeObject.style; }
+  set styleNative(value: interop.Enum<typeof UIBarButtonItemStyle>) { this.nativeObject.style = value; }
   get width(): number { return this.nativeObject.width; }
   set width(value: number) { this.nativeObject.width = value; }
   get possibleTitles(): NSSet { return this.nativeObject.possibleTitles; }
@@ -3958,7 +3966,7 @@ export class HTMLUISceneSessionActivationRequestElement extends HTMLNSObjectElem
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UISceneSessionActivationRequest.new();
 
-  get role(): string { return this.nativeObject.role; }
+  get roleNative(): string { return this.nativeObject.role; }
   get session(): UISceneSession { return this.nativeObject.session; }
   get userActivity(): NSUserActivity { return this.nativeObject.userActivity; }
   set userActivity(value: NSUserActivity) { this.nativeObject.userActivity = value; }
@@ -3995,7 +4003,7 @@ export class HTMLUISceneConfigurationElement extends HTMLNSObjectElement {
   readonly nativeObject = UISceneConfiguration.new();
 
   get name(): string { return this.nativeObject.name; }
-  get role(): string { return this.nativeObject.role; }
+  get roleNative(): string { return this.nativeObject.role; }
   get sceneClass(): interop.Object { return this.nativeObject.sceneClass; }
   set sceneClass(value: interop.Object) { this.nativeObject.sceneClass = value; }
   get delegateClass(): interop.Object { return this.nativeObject.delegateClass; }
@@ -4217,8 +4225,8 @@ export class HTMLUIMenuItemElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UIMenuItem.new();
 
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get action(): string { return this.nativeObject.action; }
   set action(value: string) { this.nativeObject.action = value; }
 }
@@ -4269,7 +4277,8 @@ export class HTMLUIAlertActionElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UIAlertAction.new();
 
-  get title(): string { return this.nativeObject.title; }
+  get titleNative(): string { return this.nativeObject.title; }
+  get styleNative(): interop.Enum<typeof UIAlertActionStyle> { return this.nativeObject.style; }
   get isEnabled(): boolean { return this.nativeObject.isEnabled; }
   set isEnabled(value: boolean) { this.nativeObject.isEnabled = value; }
 }
@@ -4801,8 +4810,8 @@ export class HTMLUISceneElement extends HTMLUIResponderElement {
 
   get session(): UISceneSession { return this.nativeObject.session; }
   get activationState(): interop.Enum<typeof UISceneActivationState> { return this.nativeObject.activationState; }
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get subtitle(): string { return this.nativeObject.subtitle; }
   set subtitle(value: string) { this.nativeObject.subtitle = value; }
   get activationConditions(): UISceneActivationConditions { return this.nativeObject.activationConditions; }
@@ -5018,8 +5027,8 @@ export class HTMLUIKeyCommandElement extends HTMLUICommandElement {
   // @ts-ignore
   readonly nativeObject = UIKeyCommand.new();
 
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get image(): UIImage { return this.nativeObject.image; }
   set image(value: UIImage) { this.nativeObject.image = value; }
   get discoverabilityTitle(): string { return this.nativeObject.discoverabilityTitle; }
@@ -5028,6 +5037,8 @@ export class HTMLUIKeyCommandElement extends HTMLUICommandElement {
   get input(): string { return this.nativeObject.input; }
   get modifierFlags(): interop.Enum<typeof UIKeyModifierFlags> { return this.nativeObject.modifierFlags; }
   get propertyList(): interop.Object { return this.nativeObject.propertyList; }
+  get attributesNative(): interop.Enum<typeof UIMenuElementAttributes> { return this.nativeObject.attributes; }
+  set attributesNative(value: interop.Enum<typeof UIMenuElementAttributes>) { this.nativeObject.attributes = value; }
   get state(): interop.Enum<typeof UIMenuElementState> { return this.nativeObject.state; }
   set state(value: interop.Enum<typeof UIMenuElementState>) { this.nativeObject.state = value; }
   get alternates(): NSArray { return this.nativeObject.alternates; }
@@ -5358,6 +5369,7 @@ export class HTMLNSTextElementElement extends HTMLNSObjectElement {
   get elementRange(): NSTextRange { return this.nativeObject.elementRange; }
   set elementRange(value: NSTextRange) { this.nativeObject.elementRange = value; }
   get childElements(): NSArray { return this.nativeObject.childElements; }
+  get parentElementNative(): NSTextElement { return this.nativeObject.parentElement; }
   get isRepresentedElement(): boolean { return this.nativeObject.isRepresentedElement; }
 }
 
@@ -5874,8 +5886,8 @@ export class HTMLUIContentUnavailableButtonPropertiesElement extends HTMLNSObjec
   set menu(value: UIMenu) { this.nativeObject.menu = value; }
   get isEnabled(): boolean { return this.nativeObject.isEnabled; }
   set isEnabled(value: boolean) { this.nativeObject.isEnabled = value; }
-  get role(): interop.Enum<typeof UIButtonRole> { return this.nativeObject.role; }
-  set role(value: interop.Enum<typeof UIButtonRole>) { this.nativeObject.role = value; }
+  get roleNative(): interop.Enum<typeof UIButtonRole> { return this.nativeObject.role; }
+  set roleNative(value: interop.Enum<typeof UIButtonRole>) { this.nativeObject.role = value; }
 }
 
 export class HTMLUICollectionLayoutSectionOrthogonalScrollingPropertiesElement extends HTMLNSObjectElement {
@@ -6034,8 +6046,8 @@ export class HTMLUIAlertViewElement extends HTMLUIViewElement {
 
   get delegate(): interop.Object { return this.nativeObject.delegate; }
   set delegate(value: interop.Object) { this.nativeObject.delegate = value; }
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get message(): string { return this.nativeObject.message; }
   set message(value: string) { this.nativeObject.message = value; }
   get numberOfButtons(): number { return this.nativeObject.numberOfButtons; }
@@ -6265,6 +6277,8 @@ export class HTMLUICellAccessoryOutlineDisclosureElement extends HTMLUICellAcces
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UICellAccessoryOutlineDisclosure.new();
 
+  get styleNative(): interop.Enum<typeof UICellAccessoryOutlineDisclosureStyle> { return this.nativeObject.style; }
+  set styleNative(value: interop.Enum<typeof UICellAccessoryOutlineDisclosureStyle>) { this.nativeObject.style = value; }
   get actionHandler(): () => void { return this.nativeObject.actionHandler; }
   set actionHandler(value: () => void) { this.nativeObject.actionHandler = value; }
 }
@@ -6285,7 +6299,7 @@ export class HTMLUIUserNotificationActionElement extends HTMLNSObjectElement {
   readonly nativeObject = UIUserNotificationAction.new();
 
   get identifier(): string { return this.nativeObject.identifier; }
-  get title(): string { return this.nativeObject.title; }
+  get titleNative(): string { return this.nativeObject.title; }
   get behavior(): interop.Enum<typeof UIUserNotificationActionBehavior> { return this.nativeObject.behavior; }
   get parameters(): NSDictionary { return this.nativeObject.parameters; }
   get activationMode(): interop.Enum<typeof UIUserNotificationActivationMode> { return this.nativeObject.activationMode; }
@@ -6325,7 +6339,7 @@ export class HTMLUIPreviewActionGroupElement extends HTMLNSObjectElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UIPreviewActionGroup.new();
 
-  get title(): string { return this.nativeObject.title; }
+  get titleNative(): string { return this.nativeObject.title; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
@@ -6365,7 +6379,7 @@ export class HTMLUIMenuElement extends HTMLUIMenuElementElement {
   get options(): interop.Enum<typeof UIMenuOptions> { return this.nativeObject.options; }
   get preferredElementSize(): interop.Enum<typeof UIMenuElementSize> { return this.nativeObject.preferredElementSize; }
   set preferredElementSize(value: interop.Enum<typeof UIMenuElementSize>) { this.nativeObject.preferredElementSize = value; }
-  get children(): NSArray { return this.nativeObject.children; }
+  get childrenNative(): NSArray { return this.nativeObject.children; }
   get selectedElements(): NSArray { return this.nativeObject.selectedElements; }
 }
 
@@ -6706,8 +6720,8 @@ export class HTMLUIActionSheetElement extends HTMLUIViewElement {
     return this.nativeObject.delegate as UIActionSheetDelegateImpl;
   }
 
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get actionSheetStyle(): interop.Enum<typeof UIActionSheetStyle> { return this.nativeObject.actionSheetStyle; }
   set actionSheetStyle(value: interop.Enum<typeof UIActionSheetStyle>) { this.nativeObject.actionSheetStyle = value; }
   get numberOfButtons(): number { return this.nativeObject.numberOfButtons; }
@@ -6761,8 +6775,8 @@ export class HTMLUIButtonElement extends HTMLUIControlElement {
   get buttonType(): interop.Enum<typeof UIButtonType> { return this.nativeObject.buttonType; }
   get isHovered(): boolean { return this.nativeObject.isHovered; }
   get isHeld(): boolean { return this.nativeObject.isHeld; }
-  get role(): interop.Enum<typeof UIButtonRole> { return this.nativeObject.role; }
-  set role(value: interop.Enum<typeof UIButtonRole>) { this.nativeObject.role = value; }
+  get roleNative(): interop.Enum<typeof UIButtonRole> { return this.nativeObject.role; }
+  set roleNative(value: interop.Enum<typeof UIButtonRole>) { this.nativeObject.role = value; }
   get isPointerInteractionEnabled(): boolean { return this.nativeObject.isPointerInteractionEnabled; }
   set isPointerInteractionEnabled(value: boolean) { this.nativeObject.isPointerInteractionEnabled = value; }
   get pointerStyleProvider(): (p1: UIButton, p2: UIPointerEffect, p3: UIPointerShape) => UIPointerStyle { return this.nativeObject.pointerStyleProvider; }
@@ -6813,8 +6827,8 @@ export class HTMLUIColorWellElement extends HTMLUIControlElement {
   protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = UIColorWell.new();
 
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get supportsAlpha(): boolean { return this.nativeObject.supportsAlpha; }
   set supportsAlpha(value: boolean) { this.nativeObject.supportsAlpha = value; }
   get selectedColor(): UIColor { return this.nativeObject.selectedColor; }
@@ -6865,8 +6879,8 @@ export class HTMLUIMutableUserNotificationActionElement extends HTMLUIUserNotifi
 
   get identifier(): string { return this.nativeObject.identifier; }
   set identifier(value: string) { this.nativeObject.identifier = value; }
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get behavior(): interop.Enum<typeof UIUserNotificationActionBehavior> { return this.nativeObject.behavior; }
   set behavior(value: interop.Enum<typeof UIUserNotificationActionBehavior>) { this.nativeObject.behavior = value; }
   get parameters(): NSDictionary { return this.nativeObject.parameters; }
@@ -7846,6 +7860,7 @@ export class HTMLUISplitViewControllerElement extends HTMLUIViewControllerElemen
     return this.nativeObject.delegate as UISplitViewControllerDelegateImpl;
   }
 
+  get styleNative(): interop.Enum<typeof UISplitViewControllerStyle> { return this.nativeObject.style; }
   get showsSecondaryOnlyButton(): boolean { return this.nativeObject.showsSecondaryOnlyButton; }
   set showsSecondaryOnlyButton(value: boolean) { this.nativeObject.showsSecondaryOnlyButton = value; }
   get preferredSplitBehavior(): interop.Enum<typeof UISplitViewControllerSplitBehavior> { return this.nativeObject.preferredSplitBehavior; }
@@ -8838,6 +8853,7 @@ export class HTMLNSTextListElementElement extends HTMLNSTextParagraphElement {
   get markerAttributes(): NSDictionary { return this.nativeObject.markerAttributes; }
   get attributedString(): NSAttributedString { return this.nativeObject.attributedString; }
   get childElements(): NSArray { return this.nativeObject.childElements; }
+  get parentElementNative(): NSTextListElement { return this.nativeObject.parentElement; }
 }
 
 export class HTMLUICollectionViewFlowLayoutInvalidationContextElement extends HTMLUICollectionViewLayoutInvalidationContextElement {
@@ -8875,6 +8891,7 @@ export class HTMLUITableViewElement extends HTMLUIScrollViewElement {
     return this.nativeObject.dropDelegate as UITableViewDropDelegateImpl;
   }
 
+  get styleNative(): interop.Enum<typeof UITableViewStyle> { return this.nativeObject.style; }
   get dataSource(): UITableViewDataSource { return this.nativeObject.dataSource; }
   set dataSource(value: UITableViewDataSource) { this.nativeObject.dataSource = value; }
   get prefetchDataSource(): UITableViewDataSourcePrefetching { return this.nativeObject.prefetchDataSource; }
@@ -9200,8 +9217,9 @@ export class HTMLUISwitchElement extends HTMLUIControlElement {
   set onImage(value: UIImage) { this.nativeObject.onImage = value; }
   get offImage(): UIImage { return this.nativeObject.offImage; }
   set offImage(value: UIImage) { this.nativeObject.offImage = value; }
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
+  get styleNative(): interop.Enum<typeof UISwitchStyle> { return this.nativeObject.style; }
   get preferredStyle(): interop.Enum<typeof UISwitchStyle> { return this.nativeObject.preferredStyle; }
   set preferredStyle(value: interop.Enum<typeof UISwitchStyle>) { this.nativeObject.preferredStyle = value; }
   get isOn(): boolean { return this.nativeObject.isOn; }
@@ -9684,7 +9702,7 @@ export class HTMLUIPreviewActionElement extends HTMLNSObjectElement {
   readonly nativeObject = UIPreviewAction.new();
 
   get handler(): (p1: UIPreviewActionItem, p2: UIViewController) => void { return this.nativeObject.handler; }
-  get title(): string { return this.nativeObject.title; }
+  get titleNative(): string { return this.nativeObject.title; }
   get hash(): number { return this.nativeObject.hash; }
   get superclass(): interop.Object { return this.nativeObject.superclass; }
   get isProxy(): boolean { return this.nativeObject.isProxy; }
@@ -9926,8 +9944,8 @@ export class HTMLUIAlertControllerElement extends HTMLUIViewControllerElement {
   get preferredAction(): UIAlertAction { return this.nativeObject.preferredAction; }
   set preferredAction(value: UIAlertAction) { this.nativeObject.preferredAction = value; }
   get textFields(): NSArray { return this.nativeObject.textFields; }
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get message(): string { return this.nativeObject.message; }
   set message(value: string) { this.nativeObject.message = value; }
   get preferredStyle(): interop.Enum<typeof UIAlertControllerStyle> { return this.nativeObject.preferredStyle; }
@@ -10643,13 +10661,15 @@ export class HTMLUIActionElement extends HTMLUIMenuElementElement {
   // @ts-ignore
   readonly nativeObject = UIAction.new();
 
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get image(): UIImage { return this.nativeObject.image; }
   set image(value: UIImage) { this.nativeObject.image = value; }
   get discoverabilityTitle(): string { return this.nativeObject.discoverabilityTitle; }
   set discoverabilityTitle(value: string) { this.nativeObject.discoverabilityTitle = value; }
   get identifier(): string { return this.nativeObject.identifier; }
+  get attributesNative(): interop.Enum<typeof UIMenuElementAttributes> { return this.nativeObject.attributes; }
+  set attributesNative(value: interop.Enum<typeof UIMenuElementAttributes>) { this.nativeObject.attributes = value; }
   get state(): interop.Enum<typeof UIMenuElementState> { return this.nativeObject.state; }
   set state(value: interop.Enum<typeof UIMenuElementState>) { this.nativeObject.state = value; }
   get sender(): interop.Object { return this.nativeObject.sender; }
@@ -10693,8 +10713,8 @@ export class HTMLUIWindowSceneActivationActionElement extends HTMLUIActionElemen
   // @ts-ignore
   readonly nativeObject = UIWindowSceneActivationAction.new();
 
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
 }
 
 export class HTMLUISearchTextFieldElement extends HTMLUITextFieldElement {
