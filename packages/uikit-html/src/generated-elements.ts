@@ -3040,6 +3040,7 @@ export class HTMLUICollectionViewControllerElement extends HTMLUIViewControllerE
 }
 
 export class HTMLUIEventElement extends HTMLNSObjectElement {
+  // @ts-ignore
   readonly nativeObject = UIEvent.new();
 
   get type(): interop.Enum<typeof UIEventType> { return this.nativeObject.type; }
@@ -4163,6 +4164,7 @@ export class HTMLUISearchControllerElement extends HTMLUIViewControllerElement {
 }
 
 export class HTMLUIPressesEventElement extends HTMLUIEventElement {
+  // @ts-ignore
   readonly nativeObject = UIPressesEvent.new();
 
   get allPresses(): NSSet { return this.nativeObject.allPresses; }

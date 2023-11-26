@@ -1494,6 +1494,8 @@ function parseViewClassHeader(line, tsIgnoring) {
     return null;
   }
 
+  let shouldIgnore = tsIgnoring;
+
   /**
    * Allocate an instance of the given class, except for any singletons.
    * @type {string}
@@ -1506,6 +1508,12 @@ function parseViewClassHeader(line, tsIgnoring) {
     case 'NSSplitViewItem':
       factoryMethod =
         'NSSplitViewItem.splitViewItemWithViewController(NSViewController.new())';
+      break;
+    // UIEvent name-clashes with libdom.d.ts, and UIPressesEvent extends it.
+    case 'UIEvent':
+    case 'UIPressesEvent':
+      shouldIgnore = true;
+      factoryMethod = `${className}.new()`;
       break;
     default:
       factoryMethod = `${className}.new()`;
@@ -1532,7 +1540,7 @@ function parseViewClassHeader(line, tsIgnoring) {
      * methods with an incompatible signature), so we have to resort to ts-ignore
      * sometimes when TS insists that a class is incompatible with its superclass.
      */
-    ...(tsIgnoring ? ['  // @ts-ignore'] : []),
+    ...(shouldIgnore ? ['  // @ts-ignore'] : []),
     `  ${
       isNativeObjectReadonly ? 'readonly ' : ''
     }nativeObject = ${factoryMethod};`,
