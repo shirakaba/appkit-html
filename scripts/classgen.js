@@ -250,6 +250,16 @@ function parseDeclaration(lines, sdk) {
 
           return delegateMeta.fields
             .map((field) => {
+              if (field.type === 'property') {
+                return [
+                  '  // TODO: check whether proxying delegate properties actually works',
+                  // prettier-ignore
+                  `  set ${field.name}(value: ${field.value}) {`,
+                  `    this.${propName}.${field.name} = value;`,
+                  '  }',
+                ].join('\n');
+              }
+
               if (field.type === 'method') {
                 return [
                   // prettier-ignore
@@ -860,6 +870,12 @@ function parseDeclaration(lines, sdk) {
     ({ implHeader, implContents, implFooter, fields, delegateName }) => {
       const processedFields = fields
         .map((field) => {
+          if (field.type === 'property') {
+            return `  declare ${field.isReadonly ? 'readonly ' : ''}${
+              field.name
+            }: ${field.value};`;
+          }
+
           if (field.type === 'method') {
             // Has already been implemented in our ancestor, so no need to mark
             // as optional or even mention it.

@@ -7538,6 +7538,10 @@ export class HTMLUIApplicationElement extends HTMLUIResponderElement {
   set applicationProtectedDataDidBecomeAvailable(value: (application: UIApplication) => void) {
     this.delegate.applicationProtectedDataDidBecomeAvailable = value;
   }
+  // TODO: check whether proxying delegate properties actually works
+  set window(value: UIWindow) {
+    this.delegate.window = value;
+  }
   set applicationSupportedInterfaceOrientationsForWindow(value: (application: UIApplication, window: UIWindow | null) => interop.Enum<typeof UIInterfaceOrientationMask>) {
     this.delegate.applicationSupportedInterfaceOrientationsForWindow = value;
   }
@@ -11076,6 +11080,7 @@ export class UIApplicationDelegateImpl extends NSObject implements UIApplication
   applicationWillEnterForeground?(application: UIApplication): void;
   applicationProtectedDataWillBecomeUnavailable?(application: UIApplication): void;
   applicationProtectedDataDidBecomeAvailable?(application: UIApplication): void;
+  declare window: UIWindow;
   applicationSupportedInterfaceOrientationsForWindow?(application: UIApplication, window: UIWindow | null): interop.Enum<typeof UIInterfaceOrientationMask>;
   applicationShouldAllowExtensionPointIdentifier?(application: UIApplication, extensionPointIdentifier: string): boolean;
   applicationViewControllerWithRestorationIdentifierPathCoder?(application: UIApplication, identifierComponents: NSArray<interop.Object> | Array<interop.Object>, coder: NSCoder): UIViewController;
@@ -11552,6 +11557,7 @@ export class UIWindowSceneDelegateImpl extends NSObject implements UIWindowScene
     NativeClass(this);
   }
 
+  declare window: UIWindow;
   windowSceneDidUpdateCoordinateSpaceInterfaceOrientationTraitCollection?(windowScene: UIWindowScene, previousCoordinateSpace: UICoordinateSpace, previousInterfaceOrientation: interop.Enum<typeof UIInterfaceOrientation>, previousTraitCollection: UITraitCollection): void;
   windowScenePerformActionForShortcutItemCompletionHandler?(windowScene: UIWindowScene, shortcutItem: UIApplicationShortcutItem, completionHandler: (p1: boolean) => void): void;
   windowSceneUserDidAcceptCloudKitShareWithMetadata?(windowScene: UIWindowScene, cloudKitShareMetadata: CKShareMetadata): void;
@@ -11788,6 +11794,7 @@ export class UIGuidedAccessRestrictionDelegateImpl extends NSObject implements U
     NativeClass(this);
   }
 
+  declare readonly guidedAccessRestrictionIdentifiers: NSArray;
   guidedAccessRestrictionWithIdentifierDidChangeState(restrictionIdentifier: string, newRestrictionState: interop.Enum<typeof UIGuidedAccessRestrictionState>): void {
     throw new Error("Please provide implementation for: UIGuidedAccessRestrictionDelegate > guidedAccessRestrictionWithIdentifierDidChangeState");
   }
