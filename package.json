@@ -5,9 +5,9 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "build": "tsc",
-    "prepare": "husky install",
-    "start": "node dist/index.js"
+    "build": "pnpm -r build",
+    "classgen": "pnpm -r classgen",
+    "prepare": "husky install"
   },
   "author": "Jamie Birch",
   "license": "MIT",

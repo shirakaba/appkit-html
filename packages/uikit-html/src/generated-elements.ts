@@ -462,17 +462,16 @@ declare global {
 }
 
 export abstract class HTMLNativeObjectElement extends HTMLElement {
-  static defineCustomElement(){
-    const callerClass = this as unknown as typeof HTMLElement;
+  /**
+   * The suggested tagName to use when defining this Custom Element. Used by the
+   * defineCustomElement() convenience method.
+   */
+  static get tagName(): string {
+    throw new Error("Not implemented; expected to be implemented on subclasses.");
+  }
 
-    const namespace = 'NS';
-    const nativeClassName = callerClass.name.replace(/^HTML/, "").replace(/Element$/, "");
-    if(!nativeClassName.startsWith(namespace)){
-      console.warn(`Unable to define Custom Element "${callerClass.name}", as namespace unexpectedly began with something other than ${namespace}.`);
-      return;
-    }
-
-    customElements.define(`${namespace}-${nativeClassName.slice(namespace.length)}`.toLowerCase(), callerClass);
+  static defineCustomElement(): void {
+    customElements.define(this.tagName, this as unknown as typeof HTMLElement);
   }
 
   /**
@@ -919,6 +918,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
 }
 
 export class HTMLNSObjectElement extends HTMLNativeObjectElement {
+  static readonly tagName: string = "ns-object";
   readonly nativeObject = NSObject.new();
 
   get classForCoder(): interop.Object { return this.nativeObject.classForCoder; }
@@ -1055,12 +1055,14 @@ export class HTMLNSObjectElement extends HTMLNativeObjectElement {
 }
 
 export class HTMLUIWindowSceneGeometryElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-windowscenegeometry";
   readonly nativeObject = UIWindowSceneGeometry.new();
 
   get interfaceOrientation(): interop.Enum<typeof UIInterfaceOrientation> { return this.nativeObject.interfaceOrientation; }
 }
 
 export class HTMLNSCollectionLayoutSpacingElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionlayoutspacing";
   readonly nativeObject = NSCollectionLayoutSpacing.new();
 
   get spacing(): number { return this.nativeObject.spacing; }
@@ -1069,6 +1071,7 @@ export class HTMLNSCollectionLayoutSpacingElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIPercentDrivenInteractiveTransitionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-percentdriveninteractivetransition";
   readonly nativeObject = UIPercentDrivenInteractiveTransition.new();
 
   get duration(): number { return this.nativeObject.duration; }
@@ -1090,6 +1093,7 @@ export class HTMLUIPercentDrivenInteractiveTransitionElement extends HTMLNSObjec
 }
 
 export class HTMLUICollectionViewSupplementaryRegistrationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-collectionviewsupplementaryregistration";
   readonly nativeObject = UICollectionViewSupplementaryRegistration.new();
 
   get supplementaryClass(): interop.Object { return this.nativeObject.supplementaryClass; }
@@ -1099,11 +1103,13 @@ export class HTMLUICollectionViewSupplementaryRegistrationElement extends HTMLNS
 }
 
 export class HTMLUINibElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-nib";
   readonly nativeObject = UINib.new();
 
 }
 
 export class HTMLUIActivityElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-activity";
   readonly nativeObject = UIActivity.new();
 
   get activityType(): string { return this.nativeObject.activityType; }
@@ -1113,12 +1119,14 @@ export class HTMLUIActivityElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITextPlaceholderElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-textplaceholder";
   readonly nativeObject = UITextPlaceholder.new();
 
   get rects(): NSArray { return this.nativeObject.rects; }
 }
 
 export class HTMLUIPrinterDestinationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-printerdestination";
   readonly nativeObject = UIPrinterDestination.new();
 
   get URL(): NSURL { return this.nativeObject.URL; }
@@ -1130,6 +1138,7 @@ export class HTMLUIPrinterDestinationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIPrintInfoElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-printinfo";
   readonly nativeObject = UIPrintInfo.new();
 
   get printerID(): string { return this.nativeObject.printerID; }
@@ -1146,6 +1155,7 @@ export class HTMLUIPrintInfoElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIPrintFormatterElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-printformatter";
   readonly nativeObject = UIPrintFormatter.new();
 
   get printPageRenderer(): UIPrintPageRenderer { return this.nativeObject.printPageRenderer; }
@@ -1164,6 +1174,7 @@ export class HTMLUIPrintFormatterElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIDocumentBrowserActionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-documentbrowseraction";
   readonly nativeObject = UIDocumentBrowserAction.new();
 
   get identifier(): string { return this.nativeObject.identifier; }
@@ -1178,6 +1189,7 @@ export class HTMLUIDocumentBrowserActionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIScreenModeElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-screenmode";
   readonly nativeObject = UIScreenMode.new();
 
   get size(): CGSize { return this.nativeObject.size; }
@@ -1185,6 +1197,7 @@ export class HTMLUIScreenModeElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextViewportLayoutControllerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textviewportlayoutcontroller";
   readonly nativeObject = NSTextViewportLayoutController.new();
   get delegate(): NSTextViewportLayoutControllerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -1212,6 +1225,7 @@ export class HTMLNSTextViewportLayoutControllerElement extends HTMLNSObjectEleme
 }
 
 export class HTMLNSTextSelectionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textselection";
   readonly nativeObject = NSTextSelection.new();
 
   get textRanges(): NSArray { return this.nativeObject.textRanges; }
@@ -1229,6 +1243,7 @@ export class HTMLNSTextSelectionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIContentUnavailableConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-contentunavailableconfiguration";
   readonly nativeObject = UIContentUnavailableConfiguration.new();
 
   get image(): UIImage { return this.nativeObject.image; }
@@ -1275,11 +1290,13 @@ export class HTMLUIContentUnavailableConfigurationElement extends HTMLNSObjectEl
 }
 
 export class HTMLUITraitForceTouchCapabilityElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-traitforcetouchcapability";
   readonly nativeObject = UITraitForceTouchCapability.new();
 
 }
 
 export class HTMLUIToolTipConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-tooltipconfiguration";
   readonly nativeObject = UIToolTipConfiguration.new();
 
   get toolTip(): string { return this.nativeObject.toolTip; }
@@ -1287,6 +1304,7 @@ export class HTMLUIToolTipConfigurationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSParagraphStyleElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-paragraphstyle";
   readonly nativeObject = NSParagraphStyle.new();
 
   get lineSpacing(): number { return this.nativeObject.lineSpacing; }
@@ -1311,11 +1329,13 @@ export class HTMLNSParagraphStyleElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIFocusEffectElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-focuseffect";
   readonly nativeObject = UIFocusEffect.new();
 
 }
 
 export class HTMLNSTextLayoutFragmentElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textlayoutfragment";
   readonly nativeObject = NSTextLayoutFragment.new();
 
   get textLayoutManager(): NSTextLayoutManager { return this.nativeObject.textLayoutManager; }
@@ -1335,6 +1355,7 @@ export class HTMLNSTextLayoutFragmentElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIEventAttributionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-eventattribution";
   readonly nativeObject = UIEventAttribution.new();
 
   get sourceIdentifier(): number { return this.nativeObject.sourceIdentifier; }
@@ -1345,6 +1366,7 @@ export class HTMLUIEventAttributionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIPointerAccessoryElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-pointeraccessory";
   readonly nativeObject = UIPointerAccessory.new();
 
   get shape(): UIPointerShape { return this.nativeObject.shape; }
@@ -1354,6 +1376,7 @@ export class HTMLUIPointerAccessoryElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIPointerRegionRequestElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-pointerregionrequest";
   readonly nativeObject = UIPointerRegionRequest.new();
 
   get location(): CGPoint { return this.nativeObject.location; }
@@ -1361,6 +1384,7 @@ export class HTMLUIPointerRegionRequestElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIPointerInteractionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-pointerinteraction";
   readonly nativeObject = UIPointerInteraction.new();
   get delegate(): UIPointerInteractionDelegateImpl {
     // delegate is readonly, so not lazy-initialized.
@@ -1392,6 +1416,7 @@ export class HTMLUIPointerInteractionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIPointerRegionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-pointerregion";
   readonly nativeObject = UIPointerRegion.new();
 
   get rect(): CGRect { return this.nativeObject.rect; }
@@ -1401,6 +1426,7 @@ export class HTMLUIPointerRegionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIStatusBarManagerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-statusbarmanager";
   readonly nativeObject = UIStatusBarManager.new();
 
   get statusBarStyle(): interop.Enum<typeof UIStatusBarStyle> { return this.nativeObject.statusBarStyle; }
@@ -1409,6 +1435,7 @@ export class HTMLUIStatusBarManagerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIOpenURLContextElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-openurlcontext";
   readonly nativeObject = UIOpenURLContext.new();
 
   get URL(): NSURL { return this.nativeObject.URL; }
@@ -1416,21 +1443,25 @@ export class HTMLUIOpenURLContextElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITextLoupeSessionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-textloupesession";
   readonly nativeObject = UITextLoupeSession.new();
 
 }
 
 export class HTMLUIFeedbackGeneratorElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-feedbackgenerator";
   readonly nativeObject = UIFeedbackGenerator.new();
 
 }
 
 export class HTMLUIRegionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-region";
   readonly nativeObject = UIRegion.new();
 
 }
 
 export class HTMLUISceneActivationConditionsElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-sceneactivationconditions";
   readonly nativeObject = UISceneActivationConditions.new();
 
   get canActivateForTargetContentIdentifierPredicate(): NSPredicate { return this.nativeObject.canActivateForTargetContentIdentifierPredicate; }
@@ -1440,6 +1471,7 @@ export class HTMLUISceneActivationConditionsElement extends HTMLNSObjectElement 
 }
 
 export class HTMLUIDynamicAnimatorElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-dynamicanimator";
   readonly nativeObject = UIDynamicAnimator.new();
   get delegate(): UIDynamicAnimatorDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -1462,6 +1494,7 @@ export class HTMLUIDynamicAnimatorElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIPreviewInteractionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-previewinteraction";
   readonly nativeObject = UIPreviewInteraction.new();
   get delegate(): UIPreviewInteractionDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -1487,6 +1520,7 @@ export class HTMLUIPreviewInteractionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUISceneSessionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-scenesession";
   readonly nativeObject = UISceneSession.new();
 
   get scene(): UIScene { return this.nativeObject.scene; }
@@ -1500,6 +1534,7 @@ export class HTMLUISceneSessionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIIndirectScribbleInteractionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-indirectscribbleinteraction";
   readonly nativeObject = UIIndirectScribbleInteraction.new();
   get delegate(): UIIndirectScribbleInteractionDelegateImpl {
     // delegate is readonly, so not lazy-initialized.
@@ -1539,6 +1574,7 @@ export class HTMLUIIndirectScribbleInteractionElement extends HTMLNSObjectElemen
 }
 
 export class HTMLUISearchSuggestionItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-searchsuggestionitem";
   readonly nativeObject = UISearchSuggestionItem.new();
 
   get localizedAttributedSuggestion(): NSAttributedString { return this.nativeObject.localizedAttributedSuggestion; }
@@ -1556,6 +1592,7 @@ export class HTMLUISearchSuggestionItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIBarButtonItemAppearanceElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-barbuttonitemappearance";
   // @ts-ignore
   readonly nativeObject = UIBarButtonItemAppearance.new();
 
@@ -1566,6 +1603,7 @@ export class HTMLUIBarButtonItemAppearanceElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITargetedPreviewElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-targetedpreview";
   readonly nativeObject = UITargetedPreview.new();
 
   get target(): UIPreviewTarget { return this.nativeObject.target; }
@@ -1575,6 +1613,7 @@ export class HTMLUITargetedPreviewElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIPreviewParametersElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-previewparameters";
   readonly nativeObject = UIPreviewParameters.new();
 
   get visiblePath(): UIBezierPath { return this.nativeObject.visiblePath; }
@@ -1586,6 +1625,7 @@ export class HTMLUIPreviewParametersElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIFindSessionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-findsession";
   readonly nativeObject = UIFindSession.new();
 
   get resultCount(): number { return this.nativeObject.resultCount; }
@@ -1598,6 +1638,7 @@ export class HTMLUIFindSessionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITextSelectionDisplayInteractionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-textselectiondisplayinteraction";
   readonly nativeObject = UITextSelectionDisplayInteraction.new();
 
   get isActivated(): boolean { return this.nativeObject.isActivated; }
@@ -1620,6 +1661,7 @@ export class HTMLUITextSelectionDisplayInteractionElement extends HTMLNSObjectEl
 }
 
 export class HTMLUICellAccessoryElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-cellaccessory";
   readonly nativeObject = UICellAccessory.new();
 
   get displayedState(): interop.Enum<typeof UICellAccessoryDisplayedState> { return this.nativeObject.displayedState; }
@@ -1633,6 +1675,7 @@ export class HTMLUICellAccessoryElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIStoryboardUnwindSegueSourceElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-storyboardunwindseguesource";
   readonly nativeObject = UIStoryboardUnwindSegueSource.new();
 
   get sourceViewController(): UIViewController { return this.nativeObject.sourceViewController; }
@@ -1641,6 +1684,7 @@ export class HTMLUIStoryboardUnwindSegueSourceElement extends HTMLNSObjectElemen
 }
 
 export class HTMLUISearchDisplayControllerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-searchdisplaycontroller";
   readonly nativeObject = UISearchDisplayController.new();
   get delegate(): UISearchDisplayDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -1866,6 +1910,7 @@ export class HTMLUISearchDisplayControllerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUISpringTimingParametersElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-springtimingparameters";
   readonly nativeObject = UISpringTimingParameters.new();
 
   get initialVelocity(): CGVector { return this.nativeObject.initialVelocity; }
@@ -1875,6 +1920,7 @@ export class HTMLUISpringTimingParametersElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIPasteControlConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-pastecontrolconfiguration";
   readonly nativeObject = UIPasteControlConfiguration.new();
 
   get displayMode(): interop.Enum<typeof UIPasteControlDisplayMode> { return this.nativeObject.displayMode; }
@@ -1890,6 +1936,7 @@ export class HTMLUIPasteControlConfigurationElement extends HTMLNSObjectElement 
 }
 
 export class HTMLUIPageControlProgressElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-pagecontrolprogress";
   readonly nativeObject = UIPageControlProgress.new();
   get delegate(): UIPageControlProgressDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -1911,6 +1958,7 @@ export class HTMLUIPageControlProgressElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITextInputContextElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-textinputcontext";
   readonly nativeObject = UITextInputContext.new();
 
   get isPencilInputExpected(): boolean { return this.nativeObject.isPencilInputExpected; }
@@ -1922,6 +1970,7 @@ export class HTMLUITextInputContextElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUILocalizedIndexedCollationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-localizedindexedcollation";
   readonly nativeObject = UILocalizedIndexedCollation.new();
 
   get sectionTitles(): NSArray { return this.nativeObject.sectionTitles; }
@@ -1929,6 +1978,7 @@ export class HTMLUILocalizedIndexedCollationElement extends HTMLNSObjectElement 
 }
 
 export class HTMLUIResolvedShapeElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-resolvedshape";
   readonly nativeObject = UIResolvedShape.new();
 
   get shape(): UIShape { return this.nativeObject.shape; }
@@ -1937,6 +1987,7 @@ export class HTMLUIResolvedShapeElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIHoverStyleElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-hoverstyle";
   readonly nativeObject = UIHoverStyle.new();
 
   get effect(): UIHoverEffect { return this.nativeObject.effect; }
@@ -1948,6 +1999,7 @@ export class HTMLUIHoverStyleElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIHoverAutomaticEffectElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-hoverautomaticeffect";
   readonly nativeObject = UIHoverAutomaticEffect.new();
 
   get hash(): number { return this.nativeObject.hash; }
@@ -1959,6 +2011,7 @@ export class HTMLUIHoverAutomaticEffectElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIHoverHighlightEffectElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-hoverhighlighteffect";
   readonly nativeObject = UIHoverHighlightEffect.new();
 
   get hash(): number { return this.nativeObject.hash; }
@@ -1970,12 +2023,14 @@ export class HTMLUIHoverHighlightEffectElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIFocusSystemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-focussystem";
   readonly nativeObject = UIFocusSystem.new();
 
   get focusedItem(): UIFocusItem { return this.nativeObject.focusedItem; }
 }
 
 export class HTMLUIListContentImagePropertiesElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-listcontentimageproperties";
   readonly nativeObject = UIListContentImageProperties.new();
 
   get preferredSymbolConfiguration(): UIImageSymbolConfiguration { return this.nativeObject.preferredSymbolConfiguration; }
@@ -1995,6 +2050,7 @@ export class HTMLUIListContentImagePropertiesElement extends HTMLNSObjectElement
 }
 
 export class HTMLUISceneOpenExternalURLOptionsElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-sceneopenexternalurloptions";
   readonly nativeObject = UISceneOpenExternalURLOptions.new();
 
   get universalLinksOnly(): boolean { return this.nativeObject.universalLinksOnly; }
@@ -2004,6 +2060,7 @@ export class HTMLUISceneOpenExternalURLOptionsElement extends HTMLNSObjectElemen
 }
 
 export class HTMLUISceneConnectionOptionsElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-sceneconnectionoptions";
   readonly nativeObject = UISceneConnectionOptions.new();
 
   get URLContexts(): NSSet { return this.nativeObject.URLContexts; }
@@ -2016,6 +2073,7 @@ export class HTMLUISceneConnectionOptionsElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUILargeContentViewerInteractionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-largecontentviewerinteraction";
   readonly nativeObject = UILargeContentViewerInteraction.new();
   get delegate(): UILargeContentViewerInteractionDelegateImpl {
     // delegate is readonly, so not lazy-initialized.
@@ -2043,11 +2101,13 @@ export class HTMLUILargeContentViewerInteractionElement extends HTMLNSObjectElem
 }
 
 export class HTMLUIImageAssetElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-imageasset";
   readonly nativeObject = UIImageAsset.new();
 
 }
 
 export class HTMLNSTextAttachmentViewProviderElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textattachmentviewprovider";
   readonly nativeObject = NSTextAttachmentViewProvider.new();
 
   get textAttachment(): NSTextAttachment | null { return this.nativeObject.textAttachment; }
@@ -2060,6 +2120,7 @@ export class HTMLNSTextAttachmentViewProviderElement extends HTMLNSObjectElement
 }
 
 export class HTMLUIGraphicsRendererElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-graphicsrenderer";
   readonly nativeObject = UIGraphicsRenderer.new();
 
   get format(): UIGraphicsRendererFormat { return this.nativeObject.format; }
@@ -2067,11 +2128,13 @@ export class HTMLUIGraphicsRendererElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIVisualEffectElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-visualeffect";
   readonly nativeObject = UIVisualEffect.new();
 
 }
 
 export class HTMLUIDocumentElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-document";
   readonly nativeObject = UIDocument.new();
 
   get fileURL(): NSURL { return this.nativeObject.fileURL; }
@@ -2099,6 +2162,7 @@ export class HTMLUIDocumentElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIListContentConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-listcontentconfiguration";
   readonly nativeObject = UIListContentConfiguration.new();
 
   get image(): UIImage { return this.nativeObject.image; }
@@ -2135,6 +2199,7 @@ export class HTMLUIListContentConfigurationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIListSeparatorConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-listseparatorconfiguration";
   readonly nativeObject = UIListSeparatorConfiguration.new();
 
   get topSeparatorVisibility(): interop.Enum<typeof UIListSeparatorVisibility> { return this.nativeObject.topSeparatorVisibility; }
@@ -2154,6 +2219,7 @@ export class HTMLUIListSeparatorConfigurationElement extends HTMLNSObjectElement
 }
 
 export class HTMLNSDiffableDataSourceSnapshotElement<SectionIdentifierType = interop.Object, ItemIdentifierType = interop.Object> extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-diffabledatasourcesnapshot";
   readonly nativeObject = NSDiffableDataSourceSnapshot.new();
 
   get numberOfItems(): number { return this.nativeObject.numberOfItems; }
@@ -2166,6 +2232,7 @@ export class HTMLNSDiffableDataSourceSnapshotElement<SectionIdentifierType = int
 }
 
 export class HTMLUIContextualActionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-contextualaction";
   readonly nativeObject = UIContextualAction.new();
 
   get styleNative(): interop.Enum<typeof UIContextualActionStyle> { return this.nativeObject.style; }
@@ -2179,6 +2246,7 @@ export class HTMLUIContextualActionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUICellAccessoryLabelElement extends HTMLUICellAccessoryElement {
+  static readonly tagName: string = "ui-cellaccessorylabel";
   readonly nativeObject = UICellAccessoryLabel.new();
 
   get text(): string { return this.nativeObject.text; }
@@ -2189,6 +2257,7 @@ export class HTMLUICellAccessoryLabelElement extends HTMLUICellAccessoryElement 
 }
 
 export class HTMLUICellAccessoryMultiselectElement extends HTMLUICellAccessoryElement {
+  static readonly tagName: string = "ui-cellaccessorymultiselect";
   readonly nativeObject = UICellAccessoryMultiselect.new();
 
   get backgroundColor(): UIColor { return this.nativeObject.backgroundColor; }
@@ -2196,6 +2265,7 @@ export class HTMLUICellAccessoryMultiselectElement extends HTMLUICellAccessoryEl
 }
 
 export class HTMLUICellAccessoryReorderElement extends HTMLUICellAccessoryElement {
+  static readonly tagName: string = "ui-cellaccessoryreorder";
   readonly nativeObject = UICellAccessoryReorder.new();
 
   get showsVerticalSeparator(): boolean { return this.nativeObject.showsVerticalSeparator; }
@@ -2203,6 +2273,7 @@ export class HTMLUICellAccessoryReorderElement extends HTMLUICellAccessoryElemen
 }
 
 export class HTMLUISceneOpenURLOptionsElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-sceneopenurloptions";
   readonly nativeObject = UISceneOpenURLOptions.new();
 
   get sourceApplication(): string { return this.nativeObject.sourceApplication; }
@@ -2212,11 +2283,13 @@ export class HTMLUISceneOpenURLOptionsElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUICellAccessoryCheckmarkElement extends HTMLUICellAccessoryElement {
+  static readonly tagName: string = "ui-cellaccessorycheckmark";
   readonly nativeObject = UICellAccessoryCheckmark.new();
 
 }
 
 export class HTMLNSCollectionLayoutDimensionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionlayoutdimension";
   readonly nativeObject = NSCollectionLayoutDimension.new();
 
   get isFractionalWidth(): boolean { return this.nativeObject.isFractionalWidth; }
@@ -2228,6 +2301,7 @@ export class HTMLNSCollectionLayoutDimensionElement extends HTMLNSObjectElement 
 }
 
 export class HTMLNSCollectionLayoutGroupCustomItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionlayoutgroupcustomitem";
   readonly nativeObject = NSCollectionLayoutGroupCustomItem.new();
 
   get frame(): CGRect { return this.nativeObject.frame; }
@@ -2235,6 +2309,7 @@ export class HTMLNSCollectionLayoutGroupCustomItemElement extends HTMLNSObjectEl
 }
 
 export class HTMLNSCollectionLayoutSectionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionlayoutsection";
   readonly nativeObject = NSCollectionLayoutSection.new();
 
   get contentInsets(): NSDirectionalEdgeInsets { return this.nativeObject.contentInsets; }
@@ -2259,6 +2334,7 @@ export class HTMLNSCollectionLayoutSectionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUICollectionViewCompositionalLayoutConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-collectionviewcompositionallayoutconfiguration";
   readonly nativeObject = UICollectionViewCompositionalLayoutConfiguration.new();
 
   get scrollDirection(): interop.Enum<typeof UICollectionViewScrollDirection> { return this.nativeObject.scrollDirection; }
@@ -2272,17 +2348,20 @@ export class HTMLUICollectionViewCompositionalLayoutConfigurationElement extends
 }
 
 export class HTMLNSLayoutAnchorElement<AnchorType = interop.Object> extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-layoutanchor";
   readonly nativeObject = NSLayoutAnchor.new();
 
 }
 
 export class HTMLUITextInputPasswordRulesElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-textinputpasswordrules";
   readonly nativeObject = UITextInputPasswordRules.new();
 
   get passwordRulesDescriptor(): string { return this.nativeObject.passwordRulesDescriptor; }
 }
 
 export class HTMLUICollectionViewUpdateItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-collectionviewupdateitem";
   readonly nativeObject = UICollectionViewUpdateItem.new();
 
   get indexPathBeforeUpdate(): NSIndexPath { return this.nativeObject.indexPathBeforeUpdate; }
@@ -2291,6 +2370,7 @@ export class HTMLUICollectionViewUpdateItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUICollectionViewPlaceholderElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-collectionviewplaceholder";
   readonly nativeObject = UICollectionViewPlaceholder.new();
 
   get cellUpdateHandler(): (p1: UICollectionViewCell) => void { return this.nativeObject.cellUpdateHandler; }
@@ -2298,6 +2378,7 @@ export class HTMLUICollectionViewPlaceholderElement extends HTMLNSObjectElement 
 }
 
 export class HTMLUIButtonConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-buttonconfiguration";
   readonly nativeObject = UIButtonConfiguration.new();
 
   get background(): UIBackgroundConfiguration { return this.nativeObject.background; }
@@ -2357,6 +2438,7 @@ export class HTMLUIButtonConfigurationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionLayoutSizeElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionlayoutsize";
   readonly nativeObject = NSCollectionLayoutSize.new();
 
   get widthDimension(): NSCollectionLayoutDimension { return this.nativeObject.widthDimension; }
@@ -2364,6 +2446,7 @@ export class HTMLNSCollectionLayoutSizeElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIBarItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-baritem";
   readonly nativeObject = UIBarItem.new();
 
   get isEnabled(): boolean { return this.nativeObject.isEnabled; }
@@ -2393,6 +2476,7 @@ export class HTMLUIBarItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIAccessibilityCustomActionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-accessibilitycustomaction";
   readonly nativeObject = UIAccessibilityCustomAction.new();
 
   get name(): string { return this.nativeObject.name; }
@@ -2410,6 +2494,7 @@ export class HTMLUIAccessibilityCustomActionElement extends HTMLNSObjectElement 
 }
 
 export class HTMLUIAccelerometerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-accelerometer";
   readonly nativeObject = UIAccelerometer.new();
   get delegate(): UIAccelerometerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -2427,6 +2512,7 @@ export class HTMLUIAccelerometerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSStringDrawingContextElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-stringdrawingcontext";
   readonly nativeObject = NSStringDrawingContext.new();
 
   get minimumScaleFactor(): number { return this.nativeObject.minimumScaleFactor; }
@@ -2439,6 +2525,7 @@ export class HTMLNSStringDrawingContextElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUILexiconEntryElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-lexiconentry";
   readonly nativeObject = UILexiconEntry.new();
 
   get documentText(): string { return this.nativeObject.documentText; }
@@ -2446,6 +2533,7 @@ export class HTMLUILexiconEntryElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIAccessibilityCustomRotorElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-accessibilitycustomrotor";
   readonly nativeObject = UIAccessibilityCustomRotor.new();
 
   get name(): string { return this.nativeObject.name; }
@@ -2458,6 +2546,7 @@ export class HTMLUIAccessibilityCustomRotorElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIImageConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-imageconfiguration";
   readonly nativeObject = UIImageConfiguration.new();
 
   get traitCollection(): UITraitCollection { return this.nativeObject.traitCollection; }
@@ -2465,6 +2554,7 @@ export class HTMLUIImageConfigurationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextAttachmentElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textattachment";
   readonly nativeObject = NSTextAttachment.new();
 
   get contents(): NSData { return this.nativeObject.contents; }
@@ -2491,11 +2581,13 @@ export class HTMLNSTextAttachmentElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITraitUserInterfaceIdiomElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-traituserinterfaceidiom";
   readonly nativeObject = UITraitUserInterfaceIdiom.new();
 
 }
 
 export class HTMLUITraitCollectionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-traitcollection";
   readonly nativeObject = UITraitCollection.new();
 
   get userInterfaceIdiom(): interop.Enum<typeof UIUserInterfaceIdiom> { return this.nativeObject.userInterfaceIdiom; }
@@ -2519,6 +2611,7 @@ export class HTMLUITraitCollectionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIPasteConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-pasteconfiguration";
   readonly nativeObject = UIPasteConfiguration.new();
 
   get acceptableTypeIdentifiers(): NSArray { return this.nativeObject.acceptableTypeIdentifiers; }
@@ -2526,17 +2619,20 @@ export class HTMLUIPasteConfigurationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITextInputModeElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-textinputmode";
   readonly nativeObject = UITextInputMode.new();
 
   get primaryLanguage(): string { return this.nativeObject.primaryLanguage; }
 }
 
 export class HTMLUITextPositionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-textposition";
   readonly nativeObject = UITextPosition.new();
 
 }
 
 export class HTMLUITextInputAssistantItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-textinputassistantitem";
   readonly nativeObject = UITextInputAssistantItem.new();
 
   get allowsHidingShortcuts(): boolean { return this.nativeObject.allowsHidingShortcuts; }
@@ -2548,6 +2644,7 @@ export class HTMLUITextInputAssistantItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionLayoutEdgeSpacingElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionlayoutedgespacing";
   readonly nativeObject = NSCollectionLayoutEdgeSpacing.new();
 
   get leading(): NSCollectionLayoutSpacing { return this.nativeObject.leading; }
@@ -2557,6 +2654,7 @@ export class HTMLNSCollectionLayoutEdgeSpacingElement extends HTMLNSObjectElemen
 }
 
 export class HTMLNSMutableParagraphStyleElement extends HTMLNSParagraphStyleElement {
+  static readonly tagName: string = "ns-mutableparagraphstyle";
   // @ts-ignore
   readonly nativeObject = NSMutableParagraphStyle.new();
 
@@ -2601,6 +2699,7 @@ export class HTMLNSMutableParagraphStyleElement extends HTMLNSParagraphStyleElem
 }
 
 export class HTMLUICommandAlternateElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-commandalternate";
   readonly nativeObject = UICommandAlternate.new();
 
   get titleNative(): string { return this.nativeObject.title; }
@@ -2609,6 +2708,7 @@ export class HTMLUICommandAlternateElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSLayoutConstraintElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-layoutconstraint";
   readonly nativeObject = NSLayoutConstraint.new();
 
   get priority(): number { return this.nativeObject.priority; }
@@ -2632,6 +2732,7 @@ export class HTMLNSLayoutConstraintElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITouchElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-touch";
   readonly nativeObject = UITouch.new();
 
   get timestamp(): number { return this.nativeObject.timestamp; }
@@ -2652,11 +2753,13 @@ export class HTMLUITouchElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITraitToolbarItemPresentationSizeElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-traittoolbaritempresentationsize";
   readonly nativeObject = UITraitToolbarItemPresentationSize.new();
 
 }
 
 export class HTMLUITableViewRowActionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-tableviewrowaction";
   readonly nativeObject = UITableViewRowAction.new();
 
   get styleNative(): interop.Enum<typeof UITableViewRowActionStyle> { return this.nativeObject.style; }
@@ -2669,6 +2772,7 @@ export class HTMLUITableViewRowActionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUICollectionViewCellRegistrationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-collectionviewcellregistration";
   readonly nativeObject = UICollectionViewCellRegistration.new();
 
   get cellClass(): interop.Object { return this.nativeObject.cellClass; }
@@ -2677,11 +2781,13 @@ export class HTMLUICollectionViewCellRegistrationElement extends HTMLNSObjectEle
 }
 
 export class HTMLUITraitLayoutDirectionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-traitlayoutdirection";
   readonly nativeObject = UITraitLayoutDirection.new();
 
 }
 
 export class HTMLUIDeviceElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-device";
   readonly nativeObject = UIDevice.new();
 
   get name(): string { return this.nativeObject.name; }
@@ -2704,6 +2810,7 @@ export class HTMLUIDeviceElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUILayoutGuideElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-layoutguide";
   readonly nativeObject = UILayoutGuide.new();
 
   get layoutFrame(): CGRect { return this.nativeObject.layoutFrame; }
@@ -2725,6 +2832,7 @@ export class HTMLUILayoutGuideElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIColorElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-color";
   readonly nativeObject = UIColor.new();
 
   get CGColor(): interop.Pointer { return this.nativeObject.CGColor; }
@@ -2733,6 +2841,7 @@ export class HTMLUIColorElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIResponderElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-responder";
   // @ts-ignore
   readonly nativeObject = UIResponder.new();
 
@@ -2763,6 +2872,7 @@ export class HTMLUIResponderElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITableViewPlaceholderElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-tableviewplaceholder";
   readonly nativeObject = UITableViewPlaceholder.new();
 
   get cellUpdateHandler(): (p1: UITableViewCell) => void { return this.nativeObject.cellUpdateHandler; }
@@ -2770,16 +2880,19 @@ export class HTMLUITableViewPlaceholderElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUICalendarSelectionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-calendarselection";
   readonly nativeObject = UICalendarSelection.new();
 
 }
 
 export class HTMLUITraitTypesettingLanguageElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-traittypesettinglanguage";
   readonly nativeObject = UITraitTypesettingLanguage.new();
 
 }
 
 export class HTMLNSTextLineFragmentElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textlinefragment";
   readonly nativeObject = NSTextLineFragment.new();
 
   get attributedString(): NSAttributedString { return this.nativeObject.attributedString; }
@@ -2789,6 +2902,7 @@ export class HTMLNSTextLineFragmentElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIPrinterPickerControllerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-printerpickercontroller";
   readonly nativeObject = UIPrinterPickerController.new();
   get delegate(): UIPrinterPickerControllerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -2823,6 +2937,7 @@ export class HTMLUIPrinterPickerControllerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIPrinterElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-printer";
   readonly nativeObject = UIPrinter.new();
 
   get URL(): NSURL { return this.nativeObject.URL; }
@@ -2835,12 +2950,14 @@ export class HTMLUIPrinterElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIViewPrintFormatterElement extends HTMLUIPrintFormatterElement {
+  static readonly tagName: string = "ui-viewprintformatter";
   readonly nativeObject = UIViewPrintFormatter.new();
 
   get view(): UIView { return this.nativeObject.view; }
 }
 
 export class HTMLUIViewControllerElement extends HTMLUIResponderElement {
+  static readonly tagName: string = "ui-viewcontroller";
   readonly nativeObject = UIViewController.new();
   get transitioningDelegate(): UIViewControllerTransitioningDelegateImpl {
     if(!this.nativeObject.transitioningDelegate){
@@ -2985,6 +3102,7 @@ export class HTMLUIViewControllerElement extends HTMLUIResponderElement {
 }
 
 export class HTMLUIViewPropertyAnimatorElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-viewpropertyanimator";
   readonly nativeObject = UIViewPropertyAnimator.new();
 
   get timingParameters(): UITimingCurveProvider { return this.nativeObject.timingParameters; }
@@ -3015,11 +3133,13 @@ export class HTMLUIViewPropertyAnimatorElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITraitUserInterfaceStyleElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-traituserinterfacestyle";
   readonly nativeObject = UITraitUserInterfaceStyle.new();
 
 }
 
 export class HTMLUICollectionViewControllerElement extends HTMLUIViewControllerElement {
+  static readonly tagName: string = "ui-collectionviewcontroller";
   readonly nativeObject = UICollectionViewController.new();
 
   get collectionView(): UICollectionView { return this.nativeObject.collectionView; }
@@ -3040,6 +3160,7 @@ export class HTMLUICollectionViewControllerElement extends HTMLUIViewControllerE
 }
 
 export class HTMLUIEventElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-event";
   // @ts-ignore
   readonly nativeObject = UIEvent.new();
 
@@ -3052,6 +3173,7 @@ export class HTMLUIEventElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITextInteractionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-textinteraction";
   readonly nativeObject = UITextInteraction.new();
 
   get delegate(): UITextInteractionDelegate | null { return this.nativeObject.delegate; }
@@ -3070,6 +3192,7 @@ export class HTMLUITextInteractionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIDocumentInteractionControllerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-documentinteractioncontroller";
   readonly nativeObject = UIDocumentInteractionController.new();
   get delegate(): UIDocumentInteractionControllerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -3137,6 +3260,7 @@ export class HTMLUIDocumentInteractionControllerElement extends HTMLNSObjectElem
 }
 
 export class HTMLUIToolTipInteractionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-tooltipinteraction";
   readonly nativeObject = UIToolTipInteraction.new();
   get delegate(): UIToolTipInteractionDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -3163,6 +3287,7 @@ export class HTMLUIToolTipInteractionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIPrintPageRendererElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-printpagerenderer";
   readonly nativeObject = UIPrintPageRenderer.new();
 
   get headerHeight(): number { return this.nativeObject.headerHeight; }
@@ -3177,6 +3302,7 @@ export class HTMLUIPrintPageRendererElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIBarAppearanceElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-barappearance";
   // @ts-ignore
   readonly nativeObject = UIBarAppearance.new();
 
@@ -3196,6 +3322,7 @@ export class HTMLUIBarAppearanceElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextLayoutManagerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textlayoutmanager";
   readonly nativeObject = NSTextLayoutManager.new();
   get delegate(): NSTextLayoutManagerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -3243,6 +3370,7 @@ export class HTMLNSTextLayoutManagerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIBarButtonItemStateAppearanceElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-barbuttonitemstateappearance";
   readonly nativeObject = UIBarButtonItemStateAppearance.new();
 
   get titleTextAttributes(): NSDictionary { return this.nativeObject.titleTextAttributes; }
@@ -3256,6 +3384,7 @@ export class HTMLUIBarButtonItemStateAppearanceElement extends HTMLNSObjectEleme
 }
 
 export class HTMLUINavigationItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-navigationitem";
   readonly nativeObject = UINavigationItem.new();
   get renameDelegate(): UINavigationItemRenameDelegateImpl {
     if(!this.nativeObject.renameDelegate){
@@ -3342,11 +3471,13 @@ export class HTMLUINavigationItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIStoryboardElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-storyboard";
   readonly nativeObject = UIStoryboard.new();
 
 }
 
 export class HTMLNSDiffableDataSourceSectionTransactionElement<SectionIdentifierType = interop.Object, ItemIdentifierType = interop.Object> extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-diffabledatasourcesectiontransaction";
   readonly nativeObject = NSDiffableDataSourceSectionTransaction.new();
 
   get sectionIdentifier(): SectionIdentifierType { return this.nativeObject.sectionIdentifier as SectionIdentifierType; }
@@ -3356,6 +3487,7 @@ export class HTMLNSDiffableDataSourceSectionTransactionElement<SectionIdentifier
 }
 
 export class HTMLUICellAccessoryDetailElement extends HTMLUICellAccessoryElement {
+  static readonly tagName: string = "ui-cellaccessorydetail";
   readonly nativeObject = UICellAccessoryDetail.new();
 
   get actionHandler(): () => void { return this.nativeObject.actionHandler; }
@@ -3363,6 +3495,7 @@ export class HTMLUICellAccessoryDetailElement extends HTMLUICellAccessoryElement
 }
 
 export class HTMLNSCollectionLayoutItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionlayoutitem";
   readonly nativeObject = NSCollectionLayoutItem.new();
 
   get contentInsets(): NSDirectionalEdgeInsets { return this.nativeObject.contentInsets; }
@@ -3374,6 +3507,7 @@ export class HTMLNSCollectionLayoutItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIMenuElementElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-menuelement";
   readonly nativeObject = UIMenuElement.new();
 
   get titleNative(): string { return this.nativeObject.title; }
@@ -3383,11 +3517,13 @@ export class HTMLUIMenuElementElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIDragPreviewParametersElement extends HTMLUIPreviewParametersElement {
+  static readonly tagName: string = "ui-dragpreviewparameters";
   readonly nativeObject = UIDragPreviewParameters.new();
 
 }
 
 export class HTMLUISceneWindowingBehaviorsElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-scenewindowingbehaviors";
   readonly nativeObject = UISceneWindowingBehaviors.new();
 
   get isClosable(): boolean { return this.nativeObject.isClosable; }
@@ -3397,6 +3533,7 @@ export class HTMLUISceneWindowingBehaviorsElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIPencilInteractionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-pencilinteraction";
   readonly nativeObject = UIPencilInteraction.new();
   get delegate(): UIPencilInteractionDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -3421,6 +3558,7 @@ export class HTMLUIPencilInteractionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUICommandElement extends HTMLUIMenuElementElement {
+  static readonly tagName: string = "ui-command";
   // @ts-ignore
   readonly nativeObject = UICommand.new();
 
@@ -3450,6 +3588,7 @@ export class HTMLUICommandElement extends HTMLUIMenuElementElement {
 }
 
 export class HTMLNSDiffableDataSourceSectionSnapshotElement<ItemIdentifierType = interop.Object> extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-diffabledatasourcesectionsnapshot";
   readonly nativeObject = NSDiffableDataSourceSectionSnapshot.new();
 
   get items(): NSArray { return this.nativeObject.items; }
@@ -3458,6 +3597,7 @@ export class HTMLNSDiffableDataSourceSectionSnapshotElement<ItemIdentifierType =
 }
 
 export class HTMLUIManagedDocumentElement extends HTMLUIDocumentElement {
+  static readonly tagName: string = "ui-manageddocument";
   readonly nativeObject = UIManagedDocument.new();
 
   get managedObjectContext(): NSManagedObjectContext { return this.nativeObject.managedObjectContext; }
@@ -3469,6 +3609,7 @@ export class HTMLUIManagedDocumentElement extends HTMLUIDocumentElement {
 }
 
 export class HTMLUIKeyElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-key";
   readonly nativeObject = UIKey.new();
 
   get characters(): string { return this.nativeObject.characters; }
@@ -3478,6 +3619,7 @@ export class HTMLUIKeyElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIContentUnavailableConfigurationStateElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-contentunavailableconfigurationstate";
   readonly nativeObject = UIContentUnavailableConfigurationState.new();
 
   get traitCollection(): UITraitCollection { return this.nativeObject.traitCollection; }
@@ -3493,6 +3635,7 @@ export class HTMLUIContentUnavailableConfigurationStateElement extends HTMLNSObj
 }
 
 export class HTMLUIBarButtonItemElement extends HTMLUIBarItemElement {
+  static readonly tagName: string = "ui-barbuttonitem";
   readonly nativeObject = UIBarButtonItem.new();
 
   get styleNative(): interop.Enum<typeof UIBarButtonItemStyle> { return this.nativeObject.style; }
@@ -3529,11 +3672,13 @@ export class HTMLUIBarButtonItemElement extends HTMLUIBarItemElement {
 }
 
 export class HTMLUITextItemMenuConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-textitemmenuconfiguration";
   readonly nativeObject = UITextItemMenuConfiguration.new();
 
 }
 
 export class HTMLNSTextContainerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textcontainer";
   readonly nativeObject = NSTextContainer.new();
 
   get layoutManager(): NSLayoutManager { return this.nativeObject.layoutManager; }
@@ -3558,6 +3703,7 @@ export class HTMLNSTextContainerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITabBarItemAppearanceElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-tabbaritemappearance";
   // @ts-ignore
   readonly nativeObject = UITabBarItemAppearance.new();
 
@@ -3568,6 +3714,7 @@ export class HTMLUITabBarItemAppearanceElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIColorPickerViewControllerElement extends HTMLUIViewControllerElement {
+  static readonly tagName: string = "ui-colorpickerviewcontroller";
   readonly nativeObject = UIColorPickerViewController.new();
   get delegate(): UIColorPickerViewControllerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -3593,11 +3740,13 @@ export class HTMLUIColorPickerViewControllerElement extends HTMLUIViewController
 }
 
 export class HTMLUITraitHorizontalSizeClassElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-traithorizontalsizeclass";
   readonly nativeObject = UITraitHorizontalSizeClass.new();
 
 }
 
 export class HTMLUIBarButtonItemGroupElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-barbuttonitemgroup";
   readonly nativeObject = UIBarButtonItemGroup.new();
 
   get barButtonItems(): NSArray { return this.nativeObject.barButtonItems; }
@@ -3614,6 +3763,7 @@ export class HTMLUIBarButtonItemGroupElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUISearchTokenElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-searchtoken";
   readonly nativeObject = UISearchToken.new();
 
   get representedObject(): interop.Object { return this.nativeObject.representedObject; }
@@ -3621,6 +3771,7 @@ export class HTMLUISearchTokenElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUISceneSessionActivationRequestElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-scenesessionactivationrequest";
   readonly nativeObject = UISceneSessionActivationRequest.new();
 
   get roleNative(): string { return this.nativeObject.role; }
@@ -3632,6 +3783,7 @@ export class HTMLUISceneSessionActivationRequestElement extends HTMLNSObjectElem
 }
 
 export class HTMLUIFindInteractionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-findinteraction";
   readonly nativeObject = UIFindInteraction.new();
 
   get isFindNavigatorVisible(): boolean { return this.nativeObject.isFindNavigatorVisible; }
@@ -3653,6 +3805,7 @@ export class HTMLUIFindInteractionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUISceneConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-sceneconfiguration";
   readonly nativeObject = UISceneConfiguration.new();
 
   get name(): string { return this.nativeObject.name; }
@@ -3666,6 +3819,7 @@ export class HTMLUISceneConfigurationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIAccessibilityCustomRotorItemResultElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-accessibilitycustomrotoritemresult";
   readonly nativeObject = UIAccessibilityCustomRotorItemResult.new();
 
   get targetElement(): NSObject | null { return this.nativeObject.targetElement; }
@@ -3675,6 +3829,7 @@ export class HTMLUIAccessibilityCustomRotorItemResultElement extends HTMLNSObjec
 }
 
 export class HTMLUITabBarItemStateAppearanceElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-tabbaritemstateappearance";
   readonly nativeObject = UITabBarItemStateAppearance.new();
 
   get titleTextAttributes(): NSDictionary { return this.nativeObject.titleTextAttributes; }
@@ -3694,6 +3849,7 @@ export class HTMLUITabBarItemStateAppearanceElement extends HTMLNSObjectElement 
 }
 
 export class HTMLUIFocusHaloEffectElement extends HTMLUIFocusEffectElement {
+  static readonly tagName: string = "ui-focushaloeffect";
   readonly nativeObject = UIFocusHaloEffect.new();
 
   get containerView(): UIView { return this.nativeObject.containerView; }
@@ -3705,6 +3861,7 @@ export class HTMLUIFocusHaloEffectElement extends HTMLUIFocusEffectElement {
 }
 
 export class HTMLNSLayoutManagerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-layoutmanager";
   readonly nativeObject = NSLayoutManager.new();
   get delegate(): NSLayoutManagerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -3775,6 +3932,7 @@ export class HTMLNSLayoutManagerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUICollectionLayoutListConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-collectionlayoutlistconfiguration";
   readonly nativeObject = UICollectionLayoutListConfiguration.new();
 
   get appearance(): interop.Enum<typeof UICollectionLayoutListAppearance> { return this.nativeObject.appearance; }
@@ -3799,6 +3957,7 @@ export class HTMLUICollectionLayoutListConfigurationElement extends HTMLNSObject
 }
 
 export class HTMLUIContextMenuConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-contextmenuconfiguration";
   readonly nativeObject = UIContextMenuConfiguration.new();
 
   get identifier(): NSCopying { return this.nativeObject.identifier; }
@@ -3811,12 +3970,14 @@ export class HTMLUIContextMenuConfigurationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIUserNotificationCategoryElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-usernotificationcategory";
   readonly nativeObject = UIUserNotificationCategory.new();
 
   get identifier(): string { return this.nativeObject.identifier; }
 }
 
 export class HTMLUIPopoverControllerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-popovercontroller";
   readonly nativeObject = UIPopoverController.new();
   get delegate(): UIPopoverControllerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -3858,6 +4019,7 @@ export class HTMLUIPopoverControllerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIMenuItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-menuitem";
   readonly nativeObject = UIMenuItem.new();
 
   get titleNative(): string { return this.nativeObject.title; }
@@ -3867,6 +4029,7 @@ export class HTMLUIMenuItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIFocusUpdateContextElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-focusupdatecontext";
   readonly nativeObject = UIFocusUpdateContext.new();
 
   get previouslyFocusedItem(): UIFocusItem { return this.nativeObject.previouslyFocusedItem; }
@@ -3877,27 +4040,32 @@ export class HTMLUIFocusUpdateContextElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITargetedDragPreviewElement extends HTMLUITargetedPreviewElement {
+  static readonly tagName: string = "ui-targeteddragpreview";
   // @ts-ignore
   readonly nativeObject = UITargetedDragPreview.new();
 
 }
 
 export class HTMLUIReferenceLibraryViewControllerElement extends HTMLUIViewControllerElement {
+  static readonly tagName: string = "ui-referencelibraryviewcontroller";
   readonly nativeObject = UIReferenceLibraryViewController.new();
 
 }
 
 export class HTMLUICellAccessoryDisclosureIndicatorElement extends HTMLUICellAccessoryElement {
+  static readonly tagName: string = "ui-cellaccessorydisclosureindicator";
   readonly nativeObject = UICellAccessoryDisclosureIndicator.new();
 
 }
 
 export class HTMLUIFocusAnimationCoordinatorElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-focusanimationcoordinator";
   readonly nativeObject = UIFocusAnimationCoordinator.new();
 
 }
 
 export class HTMLUIAlertActionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-alertaction";
   readonly nativeObject = UIAlertAction.new();
 
   get titleNative(): string { return this.nativeObject.title; }
@@ -3907,11 +4075,13 @@ export class HTMLUIAlertActionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIApplicationShortcutIconElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-applicationshortcuticon";
   readonly nativeObject = UIApplicationShortcutIcon.new();
 
 }
 
 export class HTMLUICalendarSelectionMultiDateElement extends HTMLUICalendarSelectionElement {
+  static readonly tagName: string = "ui-calendarselectionmultidate";
   readonly nativeObject = UICalendarSelectionMultiDate.new();
   get delegate(): UICalendarSelectionMultiDateDelegateImpl {
     // delegate is readonly, so not lazy-initialized.
@@ -3936,6 +4106,7 @@ export class HTMLUICalendarSelectionMultiDateElement extends HTMLUICalendarSelec
 }
 
 export class HTMLUITableViewDropPlaceholderElement extends HTMLUITableViewPlaceholderElement {
+  static readonly tagName: string = "ui-tableviewdropplaceholder";
   readonly nativeObject = UITableViewDropPlaceholder.new();
 
   get previewParametersProvider(): (p1: UITableViewCell) => UIDragPreviewParameters | null { return this.nativeObject.previewParametersProvider; }
@@ -3943,6 +4114,7 @@ export class HTMLUITableViewDropPlaceholderElement extends HTMLUITableViewPlaceh
 }
 
 export class HTMLUITabBarAppearanceElement extends HTMLUIBarAppearanceElement {
+  static readonly tagName: string = "ui-tabbarappearance";
   readonly nativeObject = UITabBarAppearance.new();
 
   get stackedLayoutAppearance(): UITabBarItemAppearance { return this.nativeObject.stackedLayoutAppearance; }
@@ -3964,6 +4136,7 @@ export class HTMLUITabBarAppearanceElement extends HTMLUIBarAppearanceElement {
 }
 
 export class HTMLUITableViewControllerElement extends HTMLUIViewControllerElement {
+  static readonly tagName: string = "ui-tableviewcontroller";
   readonly nativeObject = UITableViewController.new();
 
   get tableView(): UITableView { return this.nativeObject.tableView; }
@@ -3981,11 +4154,13 @@ export class HTMLUITableViewControllerElement extends HTMLUIViewControllerElemen
 }
 
 export class HTMLUINotificationFeedbackGeneratorElement extends HTMLUIFeedbackGeneratorElement {
+  static readonly tagName: string = "ui-notificationfeedbackgenerator";
   readonly nativeObject = UINotificationFeedbackGenerator.new();
 
 }
 
 export class HTMLUICellAccessoryCustomViewElement extends HTMLUICellAccessoryElement {
+  static readonly tagName: string = "ui-cellaccessorycustomview";
   readonly nativeObject = UICellAccessoryCustomView.new();
 
   get customView(): UIView { return this.nativeObject.customView; }
@@ -3997,16 +4172,19 @@ export class HTMLUICellAccessoryCustomViewElement extends HTMLUICellAccessoryEle
 }
 
 export class HTMLNSLayoutYAxisAnchorElement extends HTMLNSLayoutAnchorElement {
+  static readonly tagName: string = "ns-layoutyaxisanchor";
   readonly nativeObject = NSLayoutYAxisAnchor.new();
 
 }
 
 export class HTMLNSLayoutXAxisAnchorElement extends HTMLNSLayoutAnchorElement {
+  static readonly tagName: string = "ns-layoutxaxisanchor";
   readonly nativeObject = NSLayoutXAxisAnchor.new();
 
 }
 
 export class HTMLUINavigationBarAppearanceElement extends HTMLUIBarAppearanceElement {
+  static readonly tagName: string = "ui-navigationbarappearance";
   readonly nativeObject = UINavigationBarAppearance.new();
 
   get titleTextAttributes(): NSDictionary { return this.nativeObject.titleTextAttributes; }
@@ -4026,6 +4204,7 @@ export class HTMLUINavigationBarAppearanceElement extends HTMLUIBarAppearanceEle
 }
 
 export class HTMLUITabBarItemElement extends HTMLUIBarItemElement {
+  static readonly tagName: string = "ui-tabbaritem";
   readonly nativeObject = UITabBarItem.new();
 
   get selectedImage(): UIImage { return this.nativeObject.selectedImage; }
@@ -4043,6 +4222,7 @@ export class HTMLUITabBarItemElement extends HTMLUIBarItemElement {
 }
 
 export class HTMLUITabBarControllerElement extends HTMLUIViewControllerElement {
+  static readonly tagName: string = "ui-tabbarcontroller";
   readonly nativeObject = UITabBarController.new();
   get delegate(): UITabBarControllerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -4098,6 +4278,7 @@ export class HTMLUITabBarControllerElement extends HTMLUIViewControllerElement {
 }
 
 export class HTMLUISearchControllerElement extends HTMLUIViewControllerElement {
+  static readonly tagName: string = "ui-searchcontroller";
   readonly nativeObject = UISearchController.new();
   get delegate(): UISearchControllerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -4164,6 +4345,7 @@ export class HTMLUISearchControllerElement extends HTMLUIViewControllerElement {
 }
 
 export class HTMLUIPressesEventElement extends HTMLUIEventElement {
+  static readonly tagName: string = "ui-pressesevent";
   // @ts-ignore
   readonly nativeObject = UIPressesEvent.new();
 
@@ -4171,6 +4353,7 @@ export class HTMLUIPressesEventElement extends HTMLUIEventElement {
 }
 
 export class HTMLUIPageViewControllerElement extends HTMLUIViewControllerElement {
+  static readonly tagName: string = "ui-pageviewcontroller";
   readonly nativeObject = UIPageViewController.new();
   get delegate(): UIPageViewControllerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -4207,6 +4390,7 @@ export class HTMLUIPageViewControllerElement extends HTMLUIViewControllerElement
 }
 
 export class HTMLUIInputViewControllerElement extends HTMLUIViewControllerElement {
+  static readonly tagName: string = "ui-inputviewcontroller";
   // @ts-ignore
   readonly nativeObject = UIInputViewController.new();
 
@@ -4228,6 +4412,7 @@ export class HTMLUIInputViewControllerElement extends HTMLUIViewControllerElemen
 }
 
 export class HTMLUINavigationControllerElement extends HTMLUIViewControllerElement {
+  static readonly tagName: string = "ui-navigationcontroller";
   // @ts-ignore
   readonly nativeObject = UINavigationController.new();
   get delegate(): UINavigationControllerDelegateImpl {
@@ -4280,12 +4465,14 @@ export class HTMLUINavigationControllerElement extends HTMLUIViewControllerEleme
 }
 
 export class HTMLUIGraphicsImageRendererElement extends HTMLUIGraphicsRendererElement {
+  static readonly tagName: string = "ui-graphicsimagerenderer";
   // @ts-ignore
   readonly nativeObject = UIGraphicsImageRenderer.new();
 
 }
 
 export class HTMLUIFontPickerViewControllerElement extends HTMLUIViewControllerElement {
+  static readonly tagName: string = "ui-fontpickerviewcontroller";
   readonly nativeObject = UIFontPickerViewController.new();
   get delegate(): UIFontPickerViewControllerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -4307,6 +4494,7 @@ export class HTMLUIFontPickerViewControllerElement extends HTMLUIViewControllerE
 }
 
 export class HTMLUIDocumentPickerExtensionViewControllerElement extends HTMLUIViewControllerElement {
+  static readonly tagName: string = "ui-documentpickerextensionviewcontroller";
   readonly nativeObject = UIDocumentPickerExtensionViewController.new();
 
   get documentPickerMode(): interop.Enum<typeof UIDocumentPickerMode> { return this.nativeObject.documentPickerMode; }
@@ -4317,6 +4505,7 @@ export class HTMLUIDocumentPickerExtensionViewControllerElement extends HTMLUIVi
 }
 
 export class HTMLUITableViewFocusUpdateContextElement extends HTMLUIFocusUpdateContextElement {
+  static readonly tagName: string = "ui-tableviewfocusupdatecontext";
   readonly nativeObject = UITableViewFocusUpdateContext.new();
 
   get previouslyFocusedIndexPath(): NSIndexPath { return this.nativeObject.previouslyFocusedIndexPath; }
@@ -4324,6 +4513,7 @@ export class HTMLUITableViewFocusUpdateContextElement extends HTMLUIFocusUpdateC
 }
 
 export class HTMLUICollectionViewDropPlaceholderElement extends HTMLUICollectionViewPlaceholderElement {
+  static readonly tagName: string = "ui-collectionviewdropplaceholder";
   readonly nativeObject = UICollectionViewDropPlaceholder.new();
 
   get previewParametersProvider(): (p1: UICollectionViewCell) => UIDragPreviewParameters | null { return this.nativeObject.previewParametersProvider; }
@@ -4331,6 +4521,7 @@ export class HTMLUICollectionViewDropPlaceholderElement extends HTMLUICollection
 }
 
 export class HTMLUIAccessibilityElementElement extends HTMLUIResponderElement {
+  static readonly tagName: string = "ui-accessibilityelement";
   readonly nativeObject = UIAccessibilityElement.new();
 
   get accessibilityContainer(): interop.Object { return this.nativeObject.accessibilityContainer; }
@@ -4360,6 +4551,7 @@ export class HTMLUIAccessibilityElementElement extends HTMLUIResponderElement {
 }
 
 export class HTMLUICollectionViewFocusUpdateContextElement extends HTMLUIFocusUpdateContextElement {
+  static readonly tagName: string = "ui-collectionviewfocusupdatecontext";
   readonly nativeObject = UICollectionViewFocusUpdateContext.new();
 
   get previouslyFocusedIndexPath(): NSIndexPath { return this.nativeObject.previouslyFocusedIndexPath; }
@@ -4367,11 +4559,13 @@ export class HTMLUICollectionViewFocusUpdateContextElement extends HTMLUIFocusUp
 }
 
 export class HTMLUIImageSymbolConfigurationElement extends HTMLUIImageConfigurationElement {
+  static readonly tagName: string = "ui-imagesymbolconfiguration";
   readonly nativeObject = UIImageSymbolConfiguration.new();
 
 }
 
 export class HTMLUISceneElement extends HTMLUIResponderElement {
+  static readonly tagName: string = "ui-scene";
   readonly nativeObject = UIScene.new();
   get delegate(): UISceneDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -4432,6 +4626,7 @@ export class HTMLUISceneElement extends HTMLUIResponderElement {
 }
 
 export class HTMLNSCollectionLayoutGroupElement extends HTMLNSCollectionLayoutItemElement {
+  static readonly tagName: string = "ns-collectionlayoutgroup";
   // @ts-ignore
   readonly nativeObject = NSCollectionLayoutGroup.new();
 
@@ -4443,6 +4638,7 @@ export class HTMLNSCollectionLayoutGroupElement extends HTMLNSCollectionLayoutIt
 }
 
 export class HTMLUIViewElement extends HTMLUIResponderElement {
+  static readonly tagName: string = "ui-view";
   readonly nativeObject = UIView.new();
 
   get isUserInteractionEnabled(): boolean { return this.nativeObject.isUserInteractionEnabled; }
@@ -4590,6 +4786,7 @@ export class HTMLUIViewElement extends HTMLUIResponderElement {
 }
 
 export class HTMLUIKeyCommandElement extends HTMLUICommandElement {
+  static readonly tagName: string = "ui-keycommand";
   // @ts-ignore
   readonly nativeObject = UIKeyCommand.new();
 
@@ -4617,6 +4814,7 @@ export class HTMLUIKeyCommandElement extends HTMLUICommandElement {
 }
 
 export class HTMLUIPickerViewElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-pickerview";
   readonly nativeObject = UIPickerView.new();
   get delegate(): UIPickerViewDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -4652,6 +4850,7 @@ export class HTMLUIPickerViewElement extends HTMLUIViewElement {
 }
 
 export class HTMLUIWebViewElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-webview";
   readonly nativeObject = UIWebView.new();
   get delegate(): UIWebViewDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -4716,6 +4915,7 @@ export class HTMLUIWebViewElement extends HTMLUIViewElement {
 }
 
 export class HTMLUIWindowElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-window";
   readonly nativeObject = UIWindow.new();
 
   get windowScene(): UIWindowScene { return this.nativeObject.windowScene; }
@@ -4734,11 +4934,13 @@ export class HTMLUIWindowElement extends HTMLUIViewElement {
 }
 
 export class HTMLUIEventAttributionViewElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-eventattributionview";
   readonly nativeObject = UIEventAttributionView.new();
 
 }
 
 export class HTMLUINavigationBarElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-navigationbar";
   readonly nativeObject = UINavigationBar.new();
   get delegate(): UINavigationBarDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -4809,6 +5011,7 @@ export class HTMLUINavigationBarElement extends HTMLUIViewElement {
 }
 
 export class HTMLUIPageControlTimerProgressElement extends HTMLUIPageControlProgressElement {
+  static readonly tagName: string = "ui-pagecontroltimerprogress";
   // @ts-ignore
   readonly nativeObject = UIPageControlTimerProgress.new();
   get delegate(): UIPageControlTimerProgressDelegateImpl {
@@ -4833,6 +5036,7 @@ export class HTMLUIPageControlTimerProgressElement extends HTMLUIPageControlProg
 }
 
 export class HTMLUIFocusGuideElement extends HTMLUILayoutGuideElement {
+  static readonly tagName: string = "ui-focusguide";
   readonly nativeObject = UIFocusGuide.new();
 
   get isEnabled(): boolean { return this.nativeObject.isEnabled; }
@@ -4844,12 +5048,14 @@ export class HTMLUIFocusGuideElement extends HTMLUILayoutGuideElement {
 }
 
 export class HTMLUIShapeResolutionContextElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-shaperesolutioncontext";
   readonly nativeObject = UIShapeResolutionContext.new();
 
   get contentShape(): UIResolvedShape { return this.nativeObject.contentShape; }
 }
 
 export class HTMLUIPasteboardElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-pasteboard";
   readonly nativeObject = UIPasteboard.new();
 
   get name(): string { return this.nativeObject.name; }
@@ -4884,6 +5090,7 @@ export class HTMLUIPasteboardElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIPrintPaperElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-printpaper";
   readonly nativeObject = UIPrintPaper.new();
 
   get paperSize(): CGSize { return this.nativeObject.paperSize; }
@@ -4891,6 +5098,7 @@ export class HTMLUIPrintPaperElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIActivityViewControllerElement extends HTMLUIViewControllerElement {
+  static readonly tagName: string = "ui-activityviewcontroller";
   readonly nativeObject = UIActivityViewController.new();
 
   get completionHandler(): (p1: string, p2: boolean) => void { return this.nativeObject.completionHandler; }
@@ -4904,6 +5112,7 @@ export class HTMLUIActivityViewControllerElement extends HTMLUIViewControllerEle
 }
 
 export class HTMLNSTextElementElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textelement";
   readonly nativeObject = NSTextElement.new();
 
   get textContentManager(): NSTextContentManager { return this.nativeObject.textContentManager; }
@@ -4916,6 +5125,7 @@ export class HTMLNSTextElementElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextRangeElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textrange";
   readonly nativeObject = NSTextRange.new();
 
   get isEmpty(): boolean { return this.nativeObject.isEmpty; }
@@ -4924,6 +5134,7 @@ export class HTMLNSTextRangeElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIContentUnavailableImagePropertiesElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-contentunavailableimageproperties";
   readonly nativeObject = UIContentUnavailableImageProperties.new();
 
   get preferredSymbolConfiguration(): UIImageSymbolConfiguration { return this.nativeObject.preferredSymbolConfiguration; }
@@ -4939,6 +5150,7 @@ export class HTMLUIContentUnavailableImagePropertiesElement extends HTMLNSObject
 }
 
 export class HTMLNSTextListElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textlist";
   readonly nativeObject = NSTextList.new();
 
   get markerFormat(): string { return this.nativeObject.markerFormat; }
@@ -4949,6 +5161,7 @@ export class HTMLNSTextListElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITableViewCellElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-tableviewcell";
   readonly nativeObject = UITableViewCell.new();
 
   get configurationState(): UICellConfigurationState { return this.nativeObject.configurationState; }
@@ -5038,6 +5251,7 @@ export class HTMLUITableViewCellElement extends HTMLUIViewElement {
 }
 
 export class HTMLUISwipeActionsConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-swipeactionsconfiguration";
   readonly nativeObject = UISwipeActionsConfiguration.new();
 
   get actions(): NSArray { return this.nativeObject.actions; }
@@ -5046,6 +5260,7 @@ export class HTMLUISwipeActionsConfigurationElement extends HTMLNSObjectElement 
 }
 
 export class HTMLUIWindowSceneActivationInteractionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-windowsceneactivationinteraction";
   readonly nativeObject = UIWindowSceneActivationInteraction.new();
 
   get view(): UIView { return this.nativeObject.view; }
@@ -5058,11 +5273,13 @@ export class HTMLUIWindowSceneActivationInteractionElement extends HTMLNSObjectE
 }
 
 export class HTMLUIWindowScenePlacementElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-windowsceneplacement";
   readonly nativeObject = UIWindowScenePlacement.new();
 
 }
 
 export class HTMLUITextDragPreviewRendererElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-textdragpreviewrenderer";
   readonly nativeObject = UITextDragPreviewRenderer.new();
 
   get layoutManager(): NSLayoutManager { return this.nativeObject.layoutManager; }
@@ -5073,11 +5290,13 @@ export class HTMLUITextDragPreviewRendererElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSLayoutDimensionElement extends HTMLNSLayoutAnchorElement {
+  static readonly tagName: string = "ns-layoutdimension";
   readonly nativeObject = NSLayoutDimension.new();
 
 }
 
 export class HTMLUIActivityItemsConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-activityitemsconfiguration";
   readonly nativeObject = UIActivityItemsConfiguration.new();
 
   get localObject(): interop.Object { return this.nativeObject.localObject; }
@@ -5103,6 +5322,7 @@ export class HTMLUIActivityItemsConfigurationElement extends HTMLNSObjectElement
 }
 
 export class HTMLUIPreviewTargetElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-previewtarget";
   readonly nativeObject = UIPreviewTarget.new();
 
   get container(): UIView { return this.nativeObject.container; }
@@ -5111,6 +5331,7 @@ export class HTMLUIPreviewTargetElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITextSearchOptionsElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-textsearchoptions";
   readonly nativeObject = UITextSearchOptions.new();
 
   get wordMatchMethod(): interop.Enum<typeof UITextSearchMatchMethod> { return this.nativeObject.wordMatchMethod; }
@@ -5118,6 +5339,7 @@ export class HTMLUITextSearchOptionsElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITabBarElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-tabbar";
   readonly nativeObject = UITabBar.new();
   get delegate(): UITabBarDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -5178,6 +5400,7 @@ export class HTMLUITabBarElement extends HTMLUIViewElement {
 }
 
 export class HTMLUIEditMenuInteractionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-editmenuinteraction";
   readonly nativeObject = UIEditMenuInteraction.new();
   get delegate(): UIEditMenuInteractionDelegateImpl {
     // delegate is readonly, so not lazy-initialized.
@@ -5207,16 +5430,19 @@ export class HTMLUIEditMenuInteractionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITraitActiveAppearanceElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-traitactiveappearance";
   readonly nativeObject = UITraitActiveAppearance.new();
 
 }
 
 export class HTMLUIMotionEffectElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-motioneffect";
   readonly nativeObject = UIMotionEffect.new();
 
 }
 
 export class HTMLUIToolbarElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-toolbar";
   readonly nativeObject = UIToolbar.new();
   get delegate(): UIToolbarDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -5253,6 +5479,7 @@ export class HTMLUIToolbarElement extends HTMLUIViewElement {
 }
 
 export class HTMLUIFocusMovementHintElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-focusmovementhint";
   readonly nativeObject = UIFocusMovementHint.new();
 
   get movementDirection(): CGVector { return this.nativeObject.movementDirection; }
@@ -5263,6 +5490,7 @@ export class HTMLUIFocusMovementHintElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIUserNotificationSettingsElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-usernotificationsettings";
   readonly nativeObject = UIUserNotificationSettings.new();
 
   get types(): interop.Enum<typeof UIUserNotificationType> { return this.nativeObject.types; }
@@ -5270,23 +5498,27 @@ export class HTMLUIUserNotificationSettingsElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIGraphicsPDFRendererElement extends HTMLUIGraphicsRendererElement {
+  static readonly tagName: string = "ui-graphicspdfrenderer";
   // @ts-ignore
   readonly nativeObject = UIGraphicsPDFRenderer.new();
 
 }
 
 export class HTMLUIGraphicsRendererFormatElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-graphicsrendererformat";
   readonly nativeObject = UIGraphicsRendererFormat.new();
 
   get bounds(): CGRect { return this.nativeObject.bounds; }
 }
 
 export class HTMLUIBlurEffectElement extends HTMLUIVisualEffectElement {
+  static readonly tagName: string = "ui-blureffect";
   readonly nativeObject = UIBlurEffect.new();
 
 }
 
 export class HTMLNSDiffableDataSourceTransactionElement<SectionIdentifierType = interop.Object, ItemIdentifierType = interop.Object> extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-diffabledatasourcetransaction";
   readonly nativeObject = NSDiffableDataSourceTransaction.new();
 
   get initialSnapshot(): NSDiffableDataSourceSnapshot { return this.nativeObject.initialSnapshot; }
@@ -5296,6 +5528,7 @@ export class HTMLNSDiffableDataSourceTransactionElement<SectionIdentifierType = 
 }
 
 export class HTMLUIGestureRecognizerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-gesturerecognizer";
   readonly nativeObject = UIGestureRecognizer.new();
   get delegate(): UIGestureRecognizerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -5350,6 +5583,7 @@ export class HTMLUIGestureRecognizerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIDragPreviewElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-dragpreview";
   readonly nativeObject = UIDragPreview.new();
 
   get view(): UIView { return this.nativeObject.view; }
@@ -5357,6 +5591,7 @@ export class HTMLUIDragPreviewElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUICellAccessoryDeleteElement extends HTMLUICellAccessoryElement {
+  static readonly tagName: string = "ui-cellaccessorydelete";
   readonly nativeObject = UICellAccessoryDelete.new();
 
   get backgroundColor(): UIColor { return this.nativeObject.backgroundColor; }
@@ -5366,6 +5601,7 @@ export class HTMLUICellAccessoryDeleteElement extends HTMLUICellAccessoryElement
 }
 
 export class HTMLUIContentUnavailableButtonPropertiesElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-contentunavailablebuttonproperties";
   readonly nativeObject = UIContentUnavailableButtonProperties.new();
 
   get primaryAction(): UIAction { return this.nativeObject.primaryAction; }
@@ -5379,6 +5615,7 @@ export class HTMLUIContentUnavailableButtonPropertiesElement extends HTMLNSObjec
 }
 
 export class HTMLUICollectionLayoutSectionOrthogonalScrollingPropertiesElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-collectionlayoutsectionorthogonalscrollingproperties";
   readonly nativeObject = UICollectionLayoutSectionOrthogonalScrollingProperties.new();
 
   get decelerationRate(): number { return this.nativeObject.decelerationRate; }
@@ -5388,6 +5625,7 @@ export class HTMLUICollectionLayoutSectionOrthogonalScrollingPropertiesElement e
 }
 
 export class HTMLUICollectionViewLayoutElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-collectionviewlayout";
   readonly nativeObject = UICollectionViewLayout.new();
 
   get collectionView(): UICollectionView { return this.nativeObject.collectionView; }
@@ -5397,6 +5635,7 @@ export class HTMLUICollectionViewLayoutElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUICollectionViewLayoutAttributesElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-collectionviewlayoutattributes";
   readonly nativeObject = UICollectionViewLayoutAttributes.new();
 
   get frame(): CGRect { return this.nativeObject.frame; }
@@ -5432,6 +5671,7 @@ export class HTMLUICollectionViewLayoutAttributesElement extends HTMLNSObjectEle
 }
 
 export class HTMLUIAccessibilityLocationDescriptorElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-accessibilitylocationdescriptor";
   readonly nativeObject = UIAccessibilityLocationDescriptor.new();
 
   get view(): UIView | null { return this.nativeObject.view; }
@@ -5441,11 +5681,13 @@ export class HTMLUIAccessibilityLocationDescriptorElement extends HTMLNSObjectEl
 }
 
 export class HTMLUITraitVerticalSizeClassElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-traitverticalsizeclass";
   readonly nativeObject = UITraitVerticalSizeClass.new();
 
 }
 
 export class HTMLUILocalNotificationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-localnotification";
   readonly nativeObject = UILocalNotification.new();
 
   get fireDate(): NSDate { return this.nativeObject.fireDate; }
@@ -5481,6 +5723,7 @@ export class HTMLUILocalNotificationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSDataAssetElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-dataasset";
   readonly nativeObject = NSDataAsset.new();
 
   get name(): string { return this.nativeObject.name; }
@@ -5489,6 +5732,7 @@ export class HTMLNSDataAssetElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIBezierPathElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-bezierpath";
   readonly nativeObject = UIBezierPath.new();
 
   get CGPath(): interop.Pointer { return this.nativeObject.CGPath; }
@@ -5511,6 +5755,7 @@ export class HTMLUIBezierPathElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIAlertViewElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-alertview";
   // @ts-ignore
   readonly nativeObject = UIAlertView.new();
 
@@ -5530,6 +5775,7 @@ export class HTMLUIAlertViewElement extends HTMLUIViewElement {
 }
 
 export class HTMLUITextRangeElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-textrange";
   readonly nativeObject = UITextRange.new();
 
   get isEmpty(): boolean { return this.nativeObject.isEmpty; }
@@ -5538,6 +5784,7 @@ export class HTMLUITextRangeElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIDictationPhraseElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-dictationphrase";
   readonly nativeObject = UIDictationPhrase.new();
 
   get text(): string { return this.nativeObject.text; }
@@ -5545,6 +5792,7 @@ export class HTMLUIDictationPhraseElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIControlElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-control";
   readonly nativeObject = UIControl.new();
 
   get isEnabled(): boolean { return this.nativeObject.isEnabled; }
@@ -5576,6 +5824,7 @@ export class HTMLUIControlElement extends HTMLUIViewElement {
 }
 
 export class HTMLUIContextMenuInteractionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-contextmenuinteraction";
   readonly nativeObject = UIContextMenuInteraction.new();
 
   get delegate(): UIContextMenuInteractionDelegate | null { return this.nativeObject.delegate; }
@@ -5590,16 +5839,19 @@ export class HTMLUIContextMenuInteractionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITraitLegibilityWeightElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-traitlegibilityweight";
   readonly nativeObject = UITraitLegibilityWeight.new();
 
 }
 
 export class HTMLUITraitDisplayScaleElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-traitdisplayscale";
   readonly nativeObject = UITraitDisplayScale.new();
 
 }
 
 export class HTMLUIFontElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-font";
   readonly nativeObject = UIFont.new();
 
   get familyName(): string { return this.nativeObject.familyName; }
@@ -5615,6 +5867,7 @@ export class HTMLUIFontElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIGraphicsPDFRendererFormatElement extends HTMLUIGraphicsRendererFormatElement {
+  static readonly tagName: string = "ui-graphicspdfrendererformat";
   readonly nativeObject = UIGraphicsPDFRendererFormat.new();
 
   get documentInfo(): NSDictionary { return this.nativeObject.documentInfo; }
@@ -5622,6 +5875,7 @@ export class HTMLUIGraphicsPDFRendererFormatElement extends HTMLUIGraphicsRender
 }
 
 export class HTMLNSCollectionLayoutDecorationItemElement extends HTMLNSCollectionLayoutItemElement {
+  static readonly tagName: string = "ns-collectionlayoutdecorationitem";
   readonly nativeObject = NSCollectionLayoutDecorationItem.new();
 
   get zIndex(): number { return this.nativeObject.zIndex; }
@@ -5630,12 +5884,14 @@ export class HTMLNSCollectionLayoutDecorationItemElement extends HTMLNSCollectio
 }
 
 export class HTMLUISheetPresentationControllerDetentElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-sheetpresentationcontrollerdetent";
   readonly nativeObject = UISheetPresentationControllerDetent.new();
 
   get identifier(): string { return this.nativeObject.identifier; }
 }
 
 export class HTMLUIViewConfigurationStateElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-viewconfigurationstate";
   readonly nativeObject = UIViewConfigurationState.new();
 
   get traitCollection(): UITraitCollection { return this.nativeObject.traitCollection; }
@@ -5659,6 +5915,7 @@ export class HTMLUIViewConfigurationStateElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextTabElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-texttab";
   readonly nativeObject = NSTextTab.new();
 
   get alignment(): interop.Enum<typeof NSTextAlignment> { return this.nativeObject.alignment; }
@@ -5667,6 +5924,7 @@ export class HTMLNSTextTabElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIScreenshotServiceElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-screenshotservice";
   readonly nativeObject = UIScreenshotService.new();
   get delegate(): UIScreenshotServiceDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -5683,6 +5941,7 @@ export class HTMLUIScreenshotServiceElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIApplicationShortcutItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-applicationshortcutitem";
   readonly nativeObject = UIApplicationShortcutItem.new();
 
   get type(): string { return this.nativeObject.type; }
@@ -5694,6 +5953,7 @@ export class HTMLUIApplicationShortcutItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIBandSelectionInteractionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-bandselectioninteraction";
   readonly nativeObject = UIBandSelectionInteraction.new();
 
   get isEnabled(): boolean { return this.nativeObject.isEnabled; }
@@ -5713,6 +5973,7 @@ export class HTMLUIBandSelectionInteractionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUICellAccessoryOutlineDisclosureElement extends HTMLUICellAccessoryElement {
+  static readonly tagName: string = "ui-cellaccessoryoutlinedisclosure";
   readonly nativeObject = UICellAccessoryOutlineDisclosure.new();
 
   get styleNative(): interop.Enum<typeof UICellAccessoryOutlineDisclosureStyle> { return this.nativeObject.style; }
@@ -5722,6 +5983,7 @@ export class HTMLUICellAccessoryOutlineDisclosureElement extends HTMLUICellAcces
 }
 
 export class HTMLUIStoryboardSegueElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-storyboardsegue";
   readonly nativeObject = UIStoryboardSegue.new();
 
   get identifier(): string { return this.nativeObject.identifier; }
@@ -5730,6 +5992,7 @@ export class HTMLUIStoryboardSegueElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIUserNotificationActionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-usernotificationaction";
   readonly nativeObject = UIUserNotificationAction.new();
 
   get identifier(): string { return this.nativeObject.identifier; }
@@ -5742,6 +6005,7 @@ export class HTMLUIUserNotificationActionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIDropProposalElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-dropproposal";
   readonly nativeObject = UIDropProposal.new();
 
   get operation(): interop.Enum<typeof UIDropOperation> { return this.nativeObject.operation; }
@@ -5752,17 +6016,20 @@ export class HTMLUIDropProposalElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITextSearchingFindSessionElement extends HTMLUIFindSessionElement {
+  static readonly tagName: string = "ui-textsearchingfindsession";
   readonly nativeObject = UITextSearchingFindSession.new();
 
   get searchableObject(): UITextSearching | null { return this.nativeObject.searchableObject; }
 }
 
 export class HTMLUIImpactFeedbackGeneratorElement extends HTMLUIFeedbackGeneratorElement {
+  static readonly tagName: string = "ui-impactfeedbackgenerator";
   readonly nativeObject = UIImpactFeedbackGenerator.new();
 
 }
 
 export class HTMLUIPreviewActionGroupElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-previewactiongroup";
   readonly nativeObject = UIPreviewActionGroup.new();
 
   get titleNative(): string { return this.nativeObject.title; }
@@ -5775,11 +6042,13 @@ export class HTMLUIPreviewActionGroupElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIWindowSceneProminentPlacementElement extends HTMLUIWindowScenePlacementElement {
+  static readonly tagName: string = "ui-windowsceneprominentplacement";
   readonly nativeObject = UIWindowSceneProminentPlacement.new();
 
 }
 
 export class HTMLUIPressElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-press";
   readonly nativeObject = UIPress.new();
 
   get timestamp(): number { return this.nativeObject.timestamp; }
@@ -5793,6 +6062,7 @@ export class HTMLUIPressElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIMenuElement extends HTMLUIMenuElementElement {
+  static readonly tagName: string = "ui-menu";
   readonly nativeObject = UIMenu.new();
 
   get identifier(): string { return this.nativeObject.identifier; }
@@ -5804,6 +6074,7 @@ export class HTMLUIMenuElement extends HTMLUIMenuElementElement {
 }
 
 export class HTMLUIDynamicItemGroupElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-dynamicitemgroup";
   readonly nativeObject = UIDynamicItemGroup.new();
 
   get items(): NSArray { return this.nativeObject.items; }
@@ -5823,6 +6094,7 @@ export class HTMLUIDynamicItemGroupElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIGraphicsRendererContextElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-graphicsrenderercontext";
   readonly nativeObject = UIGraphicsRendererContext.new();
 
   get CGContext(): interop.Pointer { return this.nativeObject.CGContext; }
@@ -5830,6 +6102,7 @@ export class HTMLUIGraphicsRendererContextElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITextFormattingCoordinatorElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-textformattingcoordinator";
   readonly nativeObject = UITextFormattingCoordinator.new();
   get delegate(): UITextFormattingCoordinatorDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -5851,6 +6124,7 @@ export class HTMLUITextFormattingCoordinatorElement extends HTMLNSObjectElement 
 }
 
 export class HTMLNSShadowElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-shadow";
   readonly nativeObject = NSShadow.new();
 
   get shadowOffset(): CGSize { return this.nativeObject.shadowOffset; }
@@ -5862,11 +6136,13 @@ export class HTMLNSShadowElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIFontMetricsElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-fontmetrics";
   readonly nativeObject = UIFontMetrics.new();
 
 }
 
 export class HTMLUICollectionViewDiffableDataSourceReorderingHandlersElement<SectionType = interop.Object, ItemType = interop.Object> extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-collectionviewdiffabledatasourcereorderinghandlers";
   readonly nativeObject = UICollectionViewDiffableDataSourceReorderingHandlers.new();
 
   get canReorderItemHandler(): (p1: interop.Object) => boolean { return this.nativeObject.canReorderItemHandler; }
@@ -5878,6 +6154,7 @@ export class HTMLUICollectionViewDiffableDataSourceReorderingHandlersElement<Sec
 }
 
 export class HTMLUIImageReaderConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-imagereaderconfiguration";
   readonly nativeObject = UIImageReaderConfiguration.new();
 
   get prefersHighDynamicRange(): boolean { return this.nativeObject.prefersHighDynamicRange; }
@@ -5891,6 +6168,7 @@ export class HTMLUIImageReaderConfigurationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIScreenElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-screen";
   readonly nativeObject = UIScreen.new();
 
   get bounds(): CGRect { return this.nativeObject.bounds; }
@@ -5931,6 +6209,7 @@ export class HTMLUIScreenElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIMenuControllerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-menucontroller";
   readonly nativeObject = UIMenuController.new();
 
   get isMenuVisible(): boolean { return this.nativeObject.isMenuVisible; }
@@ -5943,6 +6222,7 @@ export class HTMLUIMenuControllerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITextItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-textitem";
   readonly nativeObject = UITextItem.new();
 
   get contentType(): interop.Enum<typeof UITextItemContentType> { return this.nativeObject.contentType; }
@@ -5953,18 +6233,21 @@ export class HTMLUITextItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIImageReaderElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-imagereader";
   readonly nativeObject = UIImageReader.new();
 
   get configuration(): UIImageReaderConfiguration { return this.nativeObject.configuration; }
 }
 
 export class HTMLUICollectionViewDropProposalElement extends HTMLUIDropProposalElement {
+  static readonly tagName: string = "ui-collectionviewdropproposal";
   readonly nativeObject = UICollectionViewDropProposal.new();
 
   get intent(): interop.Enum<typeof UICollectionViewDropIntent> { return this.nativeObject.intent; }
 }
 
 export class HTMLUIContentUnavailableViewElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-contentunavailableview";
   readonly nativeObject = UIContentUnavailableView.new();
 
   get configuration(): UIContentUnavailableConfiguration { return this.nativeObject.configuration; }
@@ -5980,6 +6263,7 @@ export class HTMLUIContentUnavailableViewElement extends HTMLUIViewElement {
 }
 
 export class HTMLUISwipeGestureRecognizerElement extends HTMLUIGestureRecognizerElement {
+  static readonly tagName: string = "ui-swipegesturerecognizer";
   readonly nativeObject = UISwipeGestureRecognizer.new();
 
   get numberOfTouchesRequired(): number { return this.nativeObject.numberOfTouchesRequired; }
@@ -5989,6 +6273,7 @@ export class HTMLUISwipeGestureRecognizerElement extends HTMLUIGestureRecognizer
 }
 
 export class HTMLUITableViewHeaderFooterViewElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-tableviewheaderfooterview";
   readonly nativeObject = UITableViewHeaderFooterView.new();
 
   get configurationState(): UIViewConfigurationState { return this.nativeObject.configurationState; }
@@ -6011,6 +6296,7 @@ export class HTMLUITableViewHeaderFooterViewElement extends HTMLUIViewElement {
 }
 
 export class HTMLUISegmentedControlElement extends HTMLUIControlElement {
+  static readonly tagName: string = "ui-segmentedcontrol";
   readonly nativeObject = UISegmentedControl.new();
 
   get segmentedControlStyle(): interop.Enum<typeof UISegmentedControlStyle> { return this.nativeObject.segmentedControlStyle; }
@@ -6027,6 +6313,7 @@ export class HTMLUISegmentedControlElement extends HTMLUIControlElement {
 }
 
 export class HTMLNSTextParagraphElement extends HTMLNSTextElementElement {
+  static readonly tagName: string = "ns-textparagraph";
   readonly nativeObject = NSTextParagraph.new();
 
   get attributedString(): NSAttributedString { return this.nativeObject.attributedString; }
@@ -6035,6 +6322,7 @@ export class HTMLNSTextParagraphElement extends HTMLNSTextElementElement {
 }
 
 export class HTMLUIMotionEffectGroupElement extends HTMLUIMotionEffectElement {
+  static readonly tagName: string = "ui-motioneffectgroup";
   readonly nativeObject = UIMotionEffectGroup.new();
 
   get motionEffects(): NSArray { return this.nativeObject.motionEffects; }
@@ -6042,6 +6330,7 @@ export class HTMLUIMotionEffectGroupElement extends HTMLUIMotionEffectElement {
 }
 
 export class HTMLUIPanGestureRecognizerElement extends HTMLUIGestureRecognizerElement {
+  static readonly tagName: string = "ui-pangesturerecognizer";
   readonly nativeObject = UIPanGestureRecognizer.new();
 
   get minimumNumberOfTouches(): number { return this.nativeObject.minimumNumberOfTouches; }
@@ -6053,6 +6342,7 @@ export class HTMLUIPanGestureRecognizerElement extends HTMLUIGestureRecognizerEl
 }
 
 export class HTMLUIGraphicsImageRendererFormatElement extends HTMLUIGraphicsRendererFormatElement {
+  static readonly tagName: string = "ui-graphicsimagerendererformat";
   readonly nativeObject = UIGraphicsImageRendererFormat.new();
 
   get scale(): number { return this.nativeObject.scale; }
@@ -6067,6 +6357,7 @@ export class HTMLUIGraphicsImageRendererFormatElement extends HTMLUIGraphicsRend
 }
 
 export class HTMLUICollectionViewCompositionalLayoutElement extends HTMLUICollectionViewLayoutElement {
+  static readonly tagName: string = "ui-collectionviewcompositionallayout";
   readonly nativeObject = UICollectionViewCompositionalLayout.new();
 
   get configuration(): UICollectionViewCompositionalLayoutConfiguration { return this.nativeObject.configuration; }
@@ -6074,6 +6365,7 @@ export class HTMLUICollectionViewCompositionalLayoutElement extends HTMLUICollec
 }
 
 export class HTMLUIActivityIndicatorViewElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-activityindicatorview";
   readonly nativeObject = UIActivityIndicatorView.new();
 
   get activityIndicatorViewStyle(): interop.Enum<typeof UIActivityIndicatorViewStyle> { return this.nativeObject.activityIndicatorViewStyle; }
@@ -6086,6 +6378,7 @@ export class HTMLUIActivityIndicatorViewElement extends HTMLUIViewElement {
 }
 
 export class HTMLUIActionSheetElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-actionsheet";
   readonly nativeObject = UIActionSheet.new();
   get delegate(): UIActionSheetDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -6127,11 +6420,13 @@ export class HTMLUIActionSheetElement extends HTMLUIViewElement {
 }
 
 export class HTMLUIWindowSceneStandardPlacementElement extends HTMLUIWindowScenePlacementElement {
+  static readonly tagName: string = "ui-windowscenestandardplacement";
   readonly nativeObject = UIWindowSceneStandardPlacement.new();
 
 }
 
 export class HTMLUIButtonElement extends HTMLUIControlElement {
+  static readonly tagName: string = "ui-button";
   readonly nativeObject = UIButton.new();
 
   get configuration(): UIButtonConfiguration { return this.nativeObject.configuration; }
@@ -6193,6 +6488,7 @@ export class HTMLUIButtonElement extends HTMLUIControlElement {
 }
 
 export class HTMLUIColorWellElement extends HTMLUIControlElement {
+  static readonly tagName: string = "ui-colorwell";
   readonly nativeObject = UIColorWell.new();
 
   get titleNative(): string { return this.nativeObject.title; }
@@ -6204,6 +6500,7 @@ export class HTMLUIColorWellElement extends HTMLUIControlElement {
 }
 
 export class HTMLUICollectionViewTransitionLayoutElement extends HTMLUICollectionViewLayoutElement {
+  static readonly tagName: string = "ui-collectionviewtransitionlayout";
   readonly nativeObject = UICollectionViewTransitionLayout.new();
 
   get transitionProgress(): number { return this.nativeObject.transitionProgress; }
@@ -6213,6 +6510,7 @@ export class HTMLUICollectionViewTransitionLayoutElement extends HTMLUICollectio
 }
 
 export class HTMLUILongPressGestureRecognizerElement extends HTMLUIGestureRecognizerElement {
+  static readonly tagName: string = "ui-longpressgesturerecognizer";
   readonly nativeObject = UILongPressGestureRecognizer.new();
 
   get numberOfTapsRequired(): number { return this.nativeObject.numberOfTapsRequired; }
@@ -6226,6 +6524,7 @@ export class HTMLUILongPressGestureRecognizerElement extends HTMLUIGestureRecogn
 }
 
 export class HTMLUIPasteControlElement extends HTMLUIControlElement {
+  static readonly tagName: string = "ui-pastecontrol";
   readonly nativeObject = UIPasteControl.new();
 
   get configuration(): UIPasteControlConfiguration { return this.nativeObject.configuration; }
@@ -6234,6 +6533,7 @@ export class HTMLUIPasteControlElement extends HTMLUIControlElement {
 }
 
 export class HTMLUIMutableUserNotificationActionElement extends HTMLUIUserNotificationActionElement {
+  static readonly tagName: string = "ui-mutableusernotificationaction";
   // @ts-ignore
   readonly nativeObject = UIMutableUserNotificationAction.new();
 
@@ -6254,6 +6554,7 @@ export class HTMLUIMutableUserNotificationActionElement extends HTMLUIUserNotifi
 }
 
 export class HTMLUIScreenEdgePanGestureRecognizerElement extends HTMLUIPanGestureRecognizerElement {
+  static readonly tagName: string = "ui-screenedgepangesturerecognizer";
   readonly nativeObject = UIScreenEdgePanGestureRecognizer.new();
 
   get edges(): interop.Enum<typeof UIRectEdge> { return this.nativeObject.edges; }
@@ -6261,6 +6562,7 @@ export class HTMLUIScreenEdgePanGestureRecognizerElement extends HTMLUIPanGestur
 }
 
 export class HTMLUIPointerStyleElement extends HTMLUIHoverStyleElement {
+  static readonly tagName: string = "ui-pointerstyle";
   // @ts-ignore
   readonly nativeObject = UIPointerStyle.new();
 
@@ -6269,6 +6571,7 @@ export class HTMLUIPointerStyleElement extends HTMLUIHoverStyleElement {
 }
 
 export class HTMLUIScrollViewElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-scrollview";
   readonly nativeObject = UIScrollView.new();
   get delegate(): UIScrollViewDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -6400,6 +6703,7 @@ export class HTMLUIScrollViewElement extends HTMLUIViewElement {
 }
 
 export class HTMLUIVideoEditorControllerElement extends HTMLUINavigationControllerElement {
+  static readonly tagName: string = "ui-videoeditorcontroller";
   readonly nativeObject = UIVideoEditorController.new();
   get delegate(): UINavigationControllerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -6436,12 +6740,14 @@ export class HTMLUIVideoEditorControllerElement extends HTMLUINavigationControll
 }
 
 export class HTMLUIStoryboardPopoverSegueElement extends HTMLUIStoryboardSegueElement {
+  static readonly tagName: string = "ui-storyboardpopoversegue";
   readonly nativeObject = UIStoryboardPopoverSegue.new();
 
   get popoverController(): UIPopoverController { return this.nativeObject.popoverController; }
 }
 
 export class HTMLUIPopoverBackgroundViewElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-popoverbackgroundview";
   readonly nativeObject = UIPopoverBackgroundView.new();
 
   get arrowOffset(): number { return this.nativeObject.arrowOffset; }
@@ -6451,6 +6757,7 @@ export class HTMLUIPopoverBackgroundViewElement extends HTMLUIViewElement {
 }
 
 export class HTMLUIInputViewElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-inputview";
   readonly nativeObject = UIInputView.new();
 
   get inputViewStyle(): interop.Enum<typeof UIInputViewStyle> { return this.nativeObject.inputViewStyle; }
@@ -6459,6 +6766,7 @@ export class HTMLUIInputViewElement extends HTMLUIViewElement {
 }
 
 export class HTMLUIMutableApplicationShortcutItemElement extends HTMLUIApplicationShortcutItemElement {
+  static readonly tagName: string = "ui-mutableapplicationshortcutitem";
   // @ts-ignore
   readonly nativeObject = UIMutableApplicationShortcutItem.new();
 
@@ -6477,6 +6785,7 @@ export class HTMLUIMutableApplicationShortcutItemElement extends HTMLUIApplicati
 }
 
 export class HTMLUIDocumentMenuViewControllerElement extends HTMLUIViewControllerElement {
+  static readonly tagName: string = "ui-documentmenuviewcontroller";
   readonly nativeObject = UIDocumentMenuViewController.new();
   get delegate(): UIDocumentMenuDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -6495,6 +6804,7 @@ export class HTMLUIDocumentMenuViewControllerElement extends HTMLUIViewControlle
 }
 
 export class HTMLUICollectionViewElement extends HTMLUIScrollViewElement {
+  static readonly tagName: string = "ui-collectionview";
   // @ts-ignore
   readonly nativeObject = UICollectionView.new();
   get delegate(): UICollectionViewDelegateImpl {
@@ -6730,12 +7040,14 @@ export class HTMLUICollectionViewElement extends HTMLUIScrollViewElement {
 }
 
 export class HTMLUISearchContainerViewControllerElement extends HTMLUIViewControllerElement {
+  static readonly tagName: string = "ui-searchcontainerviewcontroller";
   readonly nativeObject = UISearchContainerViewController.new();
 
   get searchController(): UISearchController { return this.nativeObject.searchController; }
 }
 
 export class HTMLUIApplicationElement extends HTMLUIResponderElement {
+  static readonly tagName: string = "ui-application";
   readonly nativeObject = UIApplication.new();
   get delegate(): UIApplicationDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -6946,6 +7258,7 @@ export class HTMLUIApplicationElement extends HTMLUIResponderElement {
 }
 
 export class HTMLUIListContentViewElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-listcontentview";
   readonly nativeObject = UIListContentView.new();
 
   get configuration(): UIListContentConfiguration { return this.nativeObject.configuration; }
@@ -6962,6 +7275,7 @@ export class HTMLUIListContentViewElement extends HTMLUIViewElement {
 }
 
 export class HTMLUIPinchGestureRecognizerElement extends HTMLUIGestureRecognizerElement {
+  static readonly tagName: string = "ui-pinchgesturerecognizer";
   readonly nativeObject = UIPinchGestureRecognizer.new();
 
   get scale(): number { return this.nativeObject.scale; }
@@ -6970,6 +7284,7 @@ export class HTMLUIPinchGestureRecognizerElement extends HTMLUIGestureRecognizer
 }
 
 export class HTMLUIDatePickerElement extends HTMLUIControlElement {
+  static readonly tagName: string = "ui-datepicker";
   readonly nativeObject = UIDatePicker.new();
 
   get datePickerMode(): interop.Enum<typeof UIDatePickerMode> { return this.nativeObject.datePickerMode; }
@@ -6998,6 +7313,7 @@ export class HTMLUIDatePickerElement extends HTMLUIControlElement {
 }
 
 export class HTMLUITapGestureRecognizerElement extends HTMLUIGestureRecognizerElement {
+  static readonly tagName: string = "ui-tapgesturerecognizer";
   readonly nativeObject = UITapGestureRecognizer.new();
 
   get numberOfTapsRequired(): number { return this.nativeObject.numberOfTapsRequired; }
@@ -7009,6 +7325,7 @@ export class HTMLUITapGestureRecognizerElement extends HTMLUIGestureRecognizerEl
 }
 
 export class HTMLNSCollectionLayoutSupplementaryItemElement extends HTMLNSCollectionLayoutItemElement {
+  static readonly tagName: string = "ns-collectionlayoutsupplementaryitem";
   readonly nativeObject = NSCollectionLayoutSupplementaryItem.new();
 
   get zIndex(): number { return this.nativeObject.zIndex; }
@@ -7019,11 +7336,13 @@ export class HTMLNSCollectionLayoutSupplementaryItemElement extends HTMLNSCollec
 }
 
 export class HTMLUIPrintServiceExtensionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-printserviceextension";
   readonly nativeObject = UIPrintServiceExtension.new();
 
 }
 
 export class HTMLUIDocumentBrowserViewControllerElement extends HTMLUIViewControllerElement {
+  static readonly tagName: string = "ui-documentbrowserviewcontroller";
   readonly nativeObject = UIDocumentBrowserViewController.new();
   get delegate(): UIDocumentBrowserViewControllerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -7078,6 +7397,7 @@ export class HTMLUIDocumentBrowserViewControllerElement extends HTMLUIViewContro
 }
 
 export class HTMLUIContentUnavailableTextPropertiesElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-contentunavailabletextproperties";
   readonly nativeObject = UIContentUnavailableTextProperties.new();
 
   get font(): UIFont { return this.nativeObject.font; }
@@ -7097,6 +7417,7 @@ export class HTMLUIContentUnavailableTextPropertiesElement extends HTMLNSObjectE
 }
 
 export class HTMLUIWindowSceneDragInteractionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-windowscenedraginteraction";
   readonly nativeObject = UIWindowSceneDragInteraction.new();
 
   get gestureForFailureRelationships(): UIGestureRecognizer { return this.nativeObject.gestureForFailureRelationships; }
@@ -7110,16 +7431,19 @@ export class HTMLUIWindowSceneDragInteractionElement extends HTMLNSObjectElement
 }
 
 export class HTMLUIPointerShapeElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-pointershape";
   readonly nativeObject = UIPointerShape.new();
 
 }
 
 export class HTMLUITextItemMenuPreviewElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-textitemmenupreview";
   readonly nativeObject = UITextItemMenuPreview.new();
 
 }
 
 export class HTMLUIScribbleInteractionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-scribbleinteraction";
   readonly nativeObject = UIScribbleInteraction.new();
   get delegate(): UIScribbleInteractionDelegateImpl {
     // delegate is readonly, so not lazy-initialized.
@@ -7150,6 +7474,7 @@ export class HTMLUIScribbleInteractionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIDragItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-dragitem";
   readonly nativeObject = UIDragItem.new();
 
   get itemProvider(): NSItemProvider { return this.nativeObject.itemProvider; }
@@ -7160,6 +7485,7 @@ export class HTMLUIDragItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUISplitViewControllerElement extends HTMLUIViewControllerElement {
+  static readonly tagName: string = "ui-splitviewcontroller";
   readonly nativeObject = UISplitViewController.new();
   get delegate(): UISplitViewControllerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -7277,6 +7603,7 @@ export class HTMLUISplitViewControllerElement extends HTMLUIViewControllerElemen
 }
 
 export class HTMLUISliderElement extends HTMLUIControlElement {
+  static readonly tagName: string = "ui-slider";
   readonly nativeObject = UISlider.new();
 
   get value(): number { return this.nativeObject.value; }
@@ -7306,6 +7633,7 @@ export class HTMLUISliderElement extends HTMLUIControlElement {
 }
 
 export class HTMLUIHoverLiftEffectElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-hoverlifteffect";
   readonly nativeObject = UIHoverLiftEffect.new();
 
   get hash(): number { return this.nativeObject.hash; }
@@ -7317,12 +7645,14 @@ export class HTMLUIHoverLiftEffectElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUILexiconElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-lexicon";
   readonly nativeObject = UILexicon.new();
 
   get entries(): NSArray { return this.nativeObject.entries; }
 }
 
 export class HTMLUICloudSharingControllerElement extends HTMLUIViewControllerElement {
+  static readonly tagName: string = "ui-cloudsharingcontroller";
   readonly nativeObject = UICloudSharingController.new();
 
   get delegate(): UICloudSharingControllerDelegate | null { return this.nativeObject.delegate; }
@@ -7333,12 +7663,14 @@ export class HTMLUICloudSharingControllerElement extends HTMLUIViewControllerEle
 }
 
 export class HTMLUITableViewDropProposalElement extends HTMLUIDropProposalElement {
+  static readonly tagName: string = "ui-tableviewdropproposal";
   readonly nativeObject = UITableViewDropProposal.new();
 
   get intent(): interop.Enum<typeof UITableViewDropIntent> { return this.nativeObject.intent; }
 }
 
 export class HTMLUICellAccessoryInsertElement extends HTMLUICellAccessoryElement {
+  static readonly tagName: string = "ui-cellaccessoryinsert";
   readonly nativeObject = UICellAccessoryInsert.new();
 
   get backgroundColor(): UIColor { return this.nativeObject.backgroundColor; }
@@ -7348,6 +7680,7 @@ export class HTMLUICellAccessoryInsertElement extends HTMLUICellAccessoryElement
 }
 
 export class HTMLUICollectionViewDiffableDataSourceSectionSnapshotHandlersElement<ItemType = interop.Object> extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-collectionviewdiffabledatasourcesectionsnapshothandlers";
   readonly nativeObject = UICollectionViewDiffableDataSourceSectionSnapshotHandlers.new();
 
   get shouldExpandItemHandler(): (p1: interop.Object) => boolean { return this.nativeObject.shouldExpandItemHandler; }
@@ -7363,12 +7696,14 @@ export class HTMLUICollectionViewDiffableDataSourceSectionSnapshotHandlersElemen
 }
 
 export class HTMLUICollectionReusableViewElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-collectionreusableview";
   readonly nativeObject = UICollectionReusableView.new();
 
   get reuseIdentifier(): string { return this.nativeObject.reuseIdentifier; }
 }
 
 export class HTMLUIAccessibilityCustomRotorSearchPredicateElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-accessibilitycustomrotorsearchpredicate";
   readonly nativeObject = UIAccessibilityCustomRotorSearchPredicate.new();
 
   get currentItem(): UIAccessibilityCustomRotorItemResult { return this.nativeObject.currentItem; }
@@ -7378,17 +7713,20 @@ export class HTMLUIAccessibilityCustomRotorSearchPredicateElement extends HTMLNS
 }
 
 export class HTMLUIDeferredMenuElementElement extends HTMLUIMenuElementElement {
+  static readonly tagName: string = "ui-deferredmenuelement";
   readonly nativeObject = UIDeferredMenuElement.new();
 
 }
 
 export class HTMLUIPointerLockStateElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-pointerlockstate";
   readonly nativeObject = UIPointerLockState.new();
 
   get isLocked(): boolean { return this.nativeObject.isLocked; }
 }
 
 export class HTMLUITextInputStringTokenizerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-textinputstringtokenizer";
   readonly nativeObject = UITextInputStringTokenizer.new();
 
   get hash(): number { return this.nativeObject.hash; }
@@ -7400,16 +7738,19 @@ export class HTMLUITextInputStringTokenizerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITrackingLayoutGuideElement extends HTMLUILayoutGuideElement {
+  static readonly tagName: string = "ui-trackinglayoutguide";
   readonly nativeObject = UITrackingLayoutGuide.new();
 
 }
 
 export class HTMLUITraitUserInterfaceLevelElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-traituserinterfacelevel";
   readonly nativeObject = UITraitUserInterfaceLevel.new();
 
 }
 
 export class HTMLUIFontDescriptorElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-fontdescriptor";
   readonly nativeObject = UIFontDescriptor.new();
 
   get postscriptName(): string { return this.nativeObject.postscriptName; }
@@ -7420,6 +7761,7 @@ export class HTMLUIFontDescriptorElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIVisualEffectViewElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-visualeffectview";
   readonly nativeObject = UIVisualEffectView.new();
 
   get contentView(): UIView { return this.nativeObject.contentView; }
@@ -7428,21 +7770,25 @@ export class HTMLUIVisualEffectViewElement extends HTMLUIViewElement {
 }
 
 export class HTMLUIFocusDebuggerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-focusdebugger";
   readonly nativeObject = UIFocusDebugger.new();
 
 }
 
 export class HTMLUITraitPreferredContentSizeCategoryElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-traitpreferredcontentsizecategory";
   readonly nativeObject = UITraitPreferredContentSizeCategory.new();
 
 }
 
 export class HTMLUIDragPreviewTargetElement extends HTMLUIPreviewTargetElement {
+  static readonly tagName: string = "ui-dragpreviewtarget";
   readonly nativeObject = UIDragPreviewTarget.new();
 
 }
 
 export class HTMLUITextSelectionRectElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-textselectionrect";
   readonly nativeObject = UITextSelectionRect.new();
 
   get rect(): CGRect { return this.nativeObject.rect; }
@@ -7453,11 +7799,13 @@ export class HTMLUITextSelectionRectElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIWindowSceneGeometryPreferencesElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-windowscenegeometrypreferences";
   readonly nativeObject = UIWindowSceneGeometryPreferences.new();
 
 }
 
 export class HTMLUIPresentationControllerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-presentationcontroller";
   readonly nativeObject = UIPresentationController.new();
   get delegate(): UIAdaptivePresentationControllerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -7522,6 +7870,7 @@ export class HTMLUIPresentationControllerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUICollectionViewLayoutInvalidationContextElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-collectionviewlayoutinvalidationcontext";
   readonly nativeObject = UICollectionViewLayoutInvalidationContext.new();
 
   get invalidateEverything(): boolean { return this.nativeObject.invalidateEverything; }
@@ -7539,6 +7888,7 @@ export class HTMLUICollectionViewLayoutInvalidationContextElement extends HTMLNS
 }
 
 export class HTMLUIPointerEffectElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-pointereffect";
   readonly nativeObject = UIPointerEffect.new();
 
   get preview(): UITargetedPreview { return this.nativeObject.preview; }
@@ -7551,6 +7901,7 @@ export class HTMLUIPointerEffectElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIEditMenuConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-editmenuconfiguration";
   readonly nativeObject = UIEditMenuConfiguration.new();
 
   get identifier(): NSCopying { return this.nativeObject.identifier; }
@@ -7560,11 +7911,13 @@ export class HTMLUIEditMenuConfigurationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIMenuSystemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-menusystem";
   readonly nativeObject = UIMenuSystem.new();
 
 }
 
 export class HTMLUIDocumentViewControllerElement extends HTMLUIViewControllerElement {
+  static readonly tagName: string = "ui-documentviewcontroller";
   readonly nativeObject = UIDocumentViewController.new();
 
   get document(): UIDocument { return this.nativeObject.document; }
@@ -7573,6 +7926,7 @@ export class HTMLUIDocumentViewControllerElement extends HTMLUIViewControllerEle
 }
 
 export class HTMLUITextDropProposalElement extends HTMLUIDropProposalElement {
+  static readonly tagName: string = "ui-textdropproposal";
   readonly nativeObject = UITextDropProposal.new();
 
   get dropAction(): interop.Enum<typeof UITextDropAction> { return this.nativeObject.dropAction; }
@@ -7586,6 +7940,7 @@ export class HTMLUITextDropProposalElement extends HTMLUIDropProposalElement {
 }
 
 export class HTMLUIDropInteractionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-dropinteraction";
   readonly nativeObject = UIDropInteraction.new();
   get delegate(): UIDropInteractionDelegateImpl {
     // delegate is readonly, so not lazy-initialized.
@@ -7632,6 +7987,7 @@ export class HTMLUIDropInteractionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUICollectionViewCellElement extends HTMLUICollectionReusableViewElement {
+  static readonly tagName: string = "ui-collectionviewcell";
   readonly nativeObject = UICollectionViewCell.new();
 
   get configurationState(): UICellConfigurationState { return this.nativeObject.configurationState; }
@@ -7657,6 +8013,7 @@ export class HTMLUICollectionViewCellElement extends HTMLUICollectionReusableVie
 }
 
 export class HTMLUIPointerHoverEffectElement extends HTMLUIPointerEffectElement {
+  static readonly tagName: string = "ui-pointerhovereffect";
   readonly nativeObject = UIPointerHoverEffect.new();
 
   get preferredTintMode(): interop.Enum<typeof UIPointerEffectTintMode> { return this.nativeObject.preferredTintMode; }
@@ -7668,6 +8025,7 @@ export class HTMLUIPointerHoverEffectElement extends HTMLUIPointerEffectElement 
 }
 
 export class HTMLUIWindowSceneGeometryPreferencesMacElement extends HTMLUIWindowSceneGeometryPreferencesElement {
+  static readonly tagName: string = "ui-windowscenegeometrypreferencesmac";
   readonly nativeObject = UIWindowSceneGeometryPreferencesMac.new();
 
   get systemFrame(): CGRect { return this.nativeObject.systemFrame; }
@@ -7675,6 +8033,7 @@ export class HTMLUIWindowSceneGeometryPreferencesMacElement extends HTMLUIWindow
 }
 
 export class HTMLUITextViewElement extends HTMLUIScrollViewElement {
+  static readonly tagName: string = "ui-textview";
   // @ts-ignore
   readonly nativeObject = UITextView.new();
   get delegate(): UITextViewDelegateImpl {
@@ -7856,6 +8215,7 @@ export class HTMLUITextViewElement extends HTMLUIScrollViewElement {
 }
 
 export class HTMLUISheetPresentationControllerElement extends HTMLUIPresentationControllerElement {
+  static readonly tagName: string = "ui-sheetpresentationcontroller";
   // @ts-ignore
   readonly nativeObject = UISheetPresentationController.new();
   get delegate(): UISheetPresentationControllerDelegateImpl {
@@ -7892,11 +8252,13 @@ export class HTMLUISheetPresentationControllerElement extends HTMLUIPresentation
 }
 
 export class HTMLUIPointerHighlightEffectElement extends HTMLUIPointerEffectElement {
+  static readonly tagName: string = "ui-pointerhighlighteffect";
   readonly nativeObject = UIPointerHighlightEffect.new();
 
 }
 
 export class HTMLUICalendarViewElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-calendarview";
   readonly nativeObject = UICalendarView.new();
   get delegate(): UICalendarViewDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -7931,6 +8293,7 @@ export class HTMLUICalendarViewElement extends HTMLUIViewElement {
 }
 
 export class HTMLUIPopoverPresentationControllerElement extends HTMLUIPresentationControllerElement {
+  static readonly tagName: string = "ui-popoverpresentationcontroller";
   // @ts-ignore
   readonly nativeObject = UIPopoverPresentationController.new();
   get delegate(): UIPopoverPresentationControllerDelegateImpl {
@@ -7978,6 +8341,7 @@ export class HTMLUIPopoverPresentationControllerElement extends HTMLUIPresentati
 }
 
 export class HTMLUIProgressViewElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-progressview";
   readonly nativeObject = UIProgressView.new();
 
   get progressViewStyle(): interop.Enum<typeof UIProgressViewStyle> { return this.nativeObject.progressViewStyle; }
@@ -7997,6 +8361,7 @@ export class HTMLUIProgressViewElement extends HTMLUIViewElement {
 }
 
 export class HTMLUIImagePickerControllerElement extends HTMLUINavigationControllerElement {
+  static readonly tagName: string = "ui-imagepickercontroller";
   // @ts-ignore
   readonly nativeObject = UIImagePickerController.new();
   get delegate(): UIImagePickerControllerDelegateImpl {
@@ -8047,6 +8412,7 @@ export class HTMLUIImagePickerControllerElement extends HTMLUINavigationControll
 }
 
 export class HTMLUIKeyboardLayoutGuideElement extends HTMLUITrackingLayoutGuideElement {
+  static readonly tagName: string = "ui-keyboardlayoutguide";
   readonly nativeObject = UIKeyboardLayoutGuide.new();
 
   get followsUndockedKeyboard(): boolean { return this.nativeObject.followsUndockedKeyboard; }
@@ -8058,6 +8424,7 @@ export class HTMLUIKeyboardLayoutGuideElement extends HTMLUITrackingLayoutGuideE
 }
 
 export class HTMLUIInterpolatingMotionEffectElement extends HTMLUIMotionEffectElement {
+  static readonly tagName: string = "ui-interpolatingmotioneffect";
   readonly nativeObject = UIInterpolatingMotionEffect.new();
 
   get keyPath(): string { return this.nativeObject.keyPath; }
@@ -8069,6 +8436,7 @@ export class HTMLUIInterpolatingMotionEffectElement extends HTMLUIMotionEffectEl
 }
 
 export class HTMLNSTextListElementElement extends HTMLNSTextParagraphElement {
+  static readonly tagName: string = "ns-textlistelement";
   // @ts-ignore
   readonly nativeObject = NSTextListElement.new();
 
@@ -8081,6 +8449,7 @@ export class HTMLNSTextListElementElement extends HTMLNSTextParagraphElement {
 }
 
 export class HTMLUICollectionViewFlowLayoutInvalidationContextElement extends HTMLUICollectionViewLayoutInvalidationContextElement {
+  static readonly tagName: string = "ui-collectionviewflowlayoutinvalidationcontext";
   readonly nativeObject = UICollectionViewFlowLayoutInvalidationContext.new();
 
   get invalidateFlowLayoutDelegateMetrics(): boolean { return this.nativeObject.invalidateFlowLayoutDelegateMetrics; }
@@ -8090,6 +8459,7 @@ export class HTMLUICollectionViewFlowLayoutInvalidationContextElement extends HT
 }
 
 export class HTMLUITableViewElement extends HTMLUIScrollViewElement {
+  static readonly tagName: string = "ui-tableview";
   // @ts-ignore
   readonly nativeObject = UITableView.new();
   get delegate(): UITableViewDelegateImpl {
@@ -8404,6 +8774,7 @@ export class HTMLUITableViewElement extends HTMLUIScrollViewElement {
 }
 
 export class HTMLUIToolbarAppearanceElement extends HTMLUIBarAppearanceElement {
+  static readonly tagName: string = "ui-toolbarappearance";
   readonly nativeObject = UIToolbarAppearance.new();
 
   get buttonAppearance(): UIBarButtonItemAppearance { return this.nativeObject.buttonAppearance; }
@@ -8413,6 +8784,7 @@ export class HTMLUIToolbarAppearanceElement extends HTMLUIBarAppearanceElement {
 }
 
 export class HTMLUIRotationGestureRecognizerElement extends HTMLUIGestureRecognizerElement {
+  static readonly tagName: string = "ui-rotationgesturerecognizer";
   readonly nativeObject = UIRotationGestureRecognizer.new();
 
   get rotation(): number { return this.nativeObject.rotation; }
@@ -8421,6 +8793,7 @@ export class HTMLUIRotationGestureRecognizerElement extends HTMLUIGestureRecogni
 }
 
 export class HTMLUISwitchElement extends HTMLUIControlElement {
+  static readonly tagName: string = "ui-switch";
   readonly nativeObject = UISwitch.new();
 
   get onTintColor(): UIColor { return this.nativeObject.onTintColor; }
@@ -8441,6 +8814,7 @@ export class HTMLUISwitchElement extends HTMLUIControlElement {
 }
 
 export class HTMLUICollectionViewListCellElement extends HTMLUICollectionViewCellElement {
+  static readonly tagName: string = "ui-collectionviewlistcell";
   readonly nativeObject = UICollectionViewListCell.new();
 
   get indentationLevel(): number { return this.nativeObject.indentationLevel; }
@@ -8455,6 +8829,7 @@ export class HTMLUICollectionViewListCellElement extends HTMLUICollectionViewCel
 }
 
 export class HTMLUIDocumentPickerViewControllerElement extends HTMLUIViewControllerElement {
+  static readonly tagName: string = "ui-documentpickerviewcontroller";
   readonly nativeObject = UIDocumentPickerViewController.new();
   get delegate(): UIDocumentPickerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -8483,6 +8858,7 @@ export class HTMLUIDocumentPickerViewControllerElement extends HTMLUIViewControl
 }
 
 export class HTMLUIMutableUserNotificationCategoryElement extends HTMLUIUserNotificationCategoryElement {
+  static readonly tagName: string = "ui-mutableusernotificationcategory";
   // @ts-ignore
   readonly nativeObject = UIMutableUserNotificationCategory.new();
 
@@ -8491,6 +8867,7 @@ export class HTMLUIMutableUserNotificationCategoryElement extends HTMLUIUserNoti
 }
 
 export class HTMLUIRefreshControlElement extends HTMLUIControlElement {
+  static readonly tagName: string = "ui-refreshcontrol";
   readonly nativeObject = UIRefreshControl.new();
 
   get isRefreshing(): boolean { return this.nativeObject.isRefreshing; }
@@ -8501,6 +8878,7 @@ export class HTMLUIRefreshControlElement extends HTMLUIControlElement {
 }
 
 export class HTMLUIPrintInteractionControllerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-printinteractioncontroller";
   readonly nativeObject = UIPrintInteractionController.new();
   get delegate(): UIPrintInteractionControllerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -8562,6 +8940,7 @@ export class HTMLUIPrintInteractionControllerElement extends HTMLNSObjectElement
 }
 
 export class HTMLNSTextSelectionNavigationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textselectionnavigation";
   readonly nativeObject = NSTextSelectionNavigation.new();
 
   get textSelectionDataSource(): NSTextSelectionDataSource | null { return this.nativeObject.textSelectionDataSource; }
@@ -8572,6 +8951,7 @@ export class HTMLNSTextSelectionNavigationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUICalendarSelectionSingleDateElement extends HTMLUICalendarSelectionElement {
+  static readonly tagName: string = "ui-calendarselectionsingledate";
   readonly nativeObject = UICalendarSelectionSingleDate.new();
   get delegate(): UICalendarSelectionSingleDateDelegateImpl {
     // delegate is readonly, so not lazy-initialized.
@@ -8590,6 +8970,7 @@ export class HTMLUICalendarSelectionSingleDateElement extends HTMLUICalendarSele
 }
 
 export class HTMLUISpringLoadedInteractionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-springloadedinteraction";
   readonly nativeObject = UISpringLoadedInteraction.new();
 
   get interactionBehavior(): UISpringLoadedInteractionBehavior { return this.nativeObject.interactionBehavior; }
@@ -8604,6 +8985,7 @@ export class HTMLUISpringLoadedInteractionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUICubicTimingParametersElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-cubictimingparameters";
   readonly nativeObject = UICubicTimingParameters.new();
 
   get animationCurve(): interop.Enum<typeof UIViewAnimationCurve> { return this.nativeObject.animationCurve; }
@@ -8615,6 +8997,7 @@ export class HTMLUICubicTimingParametersElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUISceneSizeRestrictionsElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-scenesizerestrictions";
   readonly nativeObject = UISceneSizeRestrictions.new();
 
   get minimumSize(): CGSize { return this.nativeObject.minimumSize; }
@@ -8626,6 +9009,7 @@ export class HTMLUISceneSizeRestrictionsElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIListContentTextPropertiesElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-listcontenttextproperties";
   readonly nativeObject = UIListContentTextProperties.new();
 
   get font(): UIFont { return this.nativeObject.font; }
@@ -8655,6 +9039,7 @@ export class HTMLUIListContentTextPropertiesElement extends HTMLNSObjectElement 
 }
 
 export class HTMLNSCollectionLayoutAnchorElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionlayoutanchor";
   readonly nativeObject = NSCollectionLayoutAnchor.new();
 
   get edges(): interop.Enum<typeof NSDirectionalRectEdge> { return this.nativeObject.edges; }
@@ -8664,6 +9049,7 @@ export class HTMLNSCollectionLayoutAnchorElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIImageViewElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-imageview";
   readonly nativeObject = UIImageView.new();
 
   get image(): UIImage { return this.nativeObject.image; }
@@ -8693,6 +9079,7 @@ export class HTMLUIImageViewElement extends HTMLUIViewElement {
 }
 
 export class HTMLUIImageElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-image";
   readonly nativeObject = UIImage.new();
 
   get size(): CGSize { return this.nativeObject.size; }
@@ -8721,6 +9108,7 @@ export class HTMLUIImageElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIDragInteractionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-draginteraction";
   readonly nativeObject = UIDragInteraction.new();
   get delegate(): UIDragInteractionDelegateImpl {
     // delegate is readonly, so not lazy-initialized.
@@ -8790,6 +9178,7 @@ export class HTMLUIDragInteractionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIDynamicBehaviorElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-dynamicbehavior";
   readonly nativeObject = UIDynamicBehavior.new();
 
   get childBehaviors(): NSArray { return this.nativeObject.childBehaviors; }
@@ -8799,6 +9188,7 @@ export class HTMLUIDynamicBehaviorElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUISimpleTextPrintFormatterElement extends HTMLUIPrintFormatterElement {
+  static readonly tagName: string = "ui-simpletextprintformatter";
   readonly nativeObject = UISimpleTextPrintFormatter.new();
 
   get text(): string { return this.nativeObject.text; }
@@ -8814,11 +9204,13 @@ export class HTMLUISimpleTextPrintFormatterElement extends HTMLUIPrintFormatterE
 }
 
 export class HTMLUITraitDisplayGamutElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-traitdisplaygamut";
   readonly nativeObject = UITraitDisplayGamut.new();
 
 }
 
 export class HTMLUISceneActivationRequestOptionsElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-sceneactivationrequestoptions";
   readonly nativeObject = UISceneActivationRequestOptions.new();
 
   get requestingScene(): UIScene { return this.nativeObject.requestingScene; }
@@ -8826,6 +9218,7 @@ export class HTMLUISceneActivationRequestOptionsElement extends HTMLNSObjectElem
 }
 
 export class HTMLUIDocumentBrowserTransitionControllerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-documentbrowsertransitioncontroller";
   readonly nativeObject = UIDocumentBrowserTransitionController.new();
 
   get loadingProgress(): NSProgress { return this.nativeObject.loadingProgress; }
@@ -8841,6 +9234,7 @@ export class HTMLUIDocumentBrowserTransitionControllerElement extends HTMLNSObje
 }
 
 export class HTMLUISymbolEffectCompletionContextElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-symboleffectcompletioncontext";
   readonly nativeObject = UISymbolEffectCompletionContext.new();
 
   get isFinished(): boolean { return this.nativeObject.isFinished; }
@@ -8850,6 +9244,7 @@ export class HTMLUISymbolEffectCompletionContextElement extends HTMLNSObjectElem
 }
 
 export class HTMLUICollectionViewDiffableDataSourceElement<SectionIdentifierType = interop.Object, ItemIdentifierType = interop.Object> extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-collectionviewdiffabledatasource";
   readonly nativeObject = UICollectionViewDiffableDataSource.new();
 
   get supplementaryViewProvider(): (p1: UICollectionView, p2: string, p3: NSIndexPath) => UICollectionReusableView { return this.nativeObject.supplementaryViewProvider; }
@@ -8867,6 +9262,7 @@ export class HTMLUICollectionViewDiffableDataSourceElement<SectionIdentifierType
 }
 
 export class HTMLUIPreviewActionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-previewaction";
   readonly nativeObject = UIPreviewAction.new();
 
   get handler(): (p1: UIPreviewActionItem, p2: UIViewController) => void { return this.nativeObject.handler; }
@@ -8880,6 +9276,7 @@ export class HTMLUIPreviewActionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIWindowSceneActivationRequestOptionsElement extends HTMLUISceneActivationRequestOptionsElement {
+  static readonly tagName: string = "ui-windowsceneactivationrequestoptions";
   readonly nativeObject = UIWindowSceneActivationRequestOptions.new();
 
   get preferredPresentationStyle(): interop.Enum<typeof UIWindowScenePresentationStyle> { return this.nativeObject.preferredPresentationStyle; }
@@ -8889,6 +9286,7 @@ export class HTMLUIWindowSceneActivationRequestOptionsElement extends HTMLUIScen
 }
 
 export class HTMLUIFieldBehaviorElement extends HTMLUIDynamicBehaviorElement {
+  static readonly tagName: string = "ui-fieldbehavior";
   readonly nativeObject = UIFieldBehavior.new();
 
   get items(): NSArray { return this.nativeObject.items; }
@@ -8911,6 +9309,7 @@ export class HTMLUIFieldBehaviorElement extends HTMLUIDynamicBehaviorElement {
 }
 
 export class HTMLUIPushBehaviorElement extends HTMLUIDynamicBehaviorElement {
+  static readonly tagName: string = "ui-pushbehavior";
   readonly nativeObject = UIPushBehavior.new();
 
   get items(): NSArray { return this.nativeObject.items; }
@@ -8926,6 +9325,7 @@ export class HTMLUIPushBehaviorElement extends HTMLUIDynamicBehaviorElement {
 }
 
 export class HTMLUICollisionBehaviorElement extends HTMLUIDynamicBehaviorElement {
+  static readonly tagName: string = "ui-collisionbehavior";
   readonly nativeObject = UICollisionBehavior.new();
   get collisionDelegate(): UICollisionBehaviorDelegateImpl {
     if(!this.nativeObject.collisionDelegate){
@@ -8956,11 +9356,13 @@ export class HTMLUICollisionBehaviorElement extends HTMLUIDynamicBehaviorElement
 }
 
 export class HTMLUIPointerLiftEffectElement extends HTMLUIPointerEffectElement {
+  static readonly tagName: string = "ui-pointerlifteffect";
   readonly nativeObject = UIPointerLiftEffect.new();
 
 }
 
 export class HTMLUIAttachmentBehaviorElement extends HTMLUIDynamicBehaviorElement {
+  static readonly tagName: string = "ui-attachmentbehavior";
   readonly nativeObject = UIAttachmentBehavior.new();
 
   get items(): NSArray { return this.nativeObject.items; }
@@ -8980,6 +9382,7 @@ export class HTMLUIAttachmentBehaviorElement extends HTMLUIDynamicBehaviorElemen
 }
 
 export class HTMLUIStackViewElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-stackview";
   readonly nativeObject = UIStackView.new();
 
   get arrangedSubviews(): NSArray { return this.nativeObject.arrangedSubviews; }
@@ -8998,6 +9401,7 @@ export class HTMLUIStackViewElement extends HTMLUIViewElement {
 }
 
 export class HTMLUIHoverGestureRecognizerElement extends HTMLUIGestureRecognizerElement {
+  static readonly tagName: string = "ui-hovergesturerecognizer";
   readonly nativeObject = UIHoverGestureRecognizer.new();
 
   get zOffset(): number { return this.nativeObject.zOffset; }
@@ -9005,6 +9409,7 @@ export class HTMLUIHoverGestureRecognizerElement extends HTMLUIGestureRecognizer
 }
 
 export class HTMLUIWindowSceneElement extends HTMLUISceneElement {
+  static readonly tagName: string = "ui-windowscene";
   readonly nativeObject = UIWindowScene.new();
 
   get screen(): UIScreen { return this.nativeObject.screen; }
@@ -9026,6 +9431,7 @@ export class HTMLUIWindowSceneElement extends HTMLUISceneElement {
 }
 
 export class HTMLUIStepperElement extends HTMLUIControlElement {
+  static readonly tagName: string = "ui-stepper";
   readonly nativeObject = UIStepper.new();
 
   get isContinuous(): boolean { return this.nativeObject.isContinuous; }
@@ -9045,11 +9451,13 @@ export class HTMLUIStepperElement extends HTMLUIControlElement {
 }
 
 export class HTMLUISelectionFeedbackGeneratorElement extends HTMLUIFeedbackGeneratorElement {
+  static readonly tagName: string = "ui-selectionfeedbackgenerator";
   readonly nativeObject = UISelectionFeedbackGenerator.new();
 
 }
 
 export class HTMLUIPageControlElement extends HTMLUIControlElement {
+  static readonly tagName: string = "ui-pagecontrol";
   readonly nativeObject = UIPageControl.new();
 
   get numberOfPages(): number { return this.nativeObject.numberOfPages; }
@@ -9080,6 +9488,7 @@ export class HTMLUIPageControlElement extends HTMLUIControlElement {
 }
 
 export class HTMLUIAlertControllerElement extends HTMLUIViewControllerElement {
+  static readonly tagName: string = "ui-alertcontroller";
   readonly nativeObject = UIAlertController.new();
 
   get actions(): NSArray { return this.nativeObject.actions; }
@@ -9096,6 +9505,7 @@ export class HTMLUIAlertControllerElement extends HTMLUIViewControllerElement {
 }
 
 export class HTMLUILabelElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-label";
   readonly nativeObject = UILabel.new();
 
   get text(): string { return this.nativeObject.text; }
@@ -9157,6 +9567,7 @@ export class HTMLUILabelElement extends HTMLUIViewElement {
 }
 
 export class HTMLUIMarkupTextPrintFormatterElement extends HTMLUIPrintFormatterElement {
+  static readonly tagName: string = "ui-markuptextprintformatter";
   readonly nativeObject = UIMarkupTextPrintFormatter.new();
 
   get markupText(): string { return this.nativeObject.markupText; }
@@ -9164,6 +9575,7 @@ export class HTMLUIMarkupTextPrintFormatterElement extends HTMLUIPrintFormatterE
 }
 
 export class HTMLUIWindowSceneGeometryPreferencesIOSElement extends HTMLUIWindowSceneGeometryPreferencesElement {
+  static readonly tagName: string = "ui-windowscenegeometrypreferencesios";
   readonly nativeObject = UIWindowSceneGeometryPreferencesIOS.new();
 
   get interfaceOrientations(): interop.Enum<typeof UIInterfaceOrientationMask> { return this.nativeObject.interfaceOrientations; }
@@ -9171,6 +9583,7 @@ export class HTMLUIWindowSceneGeometryPreferencesIOSElement extends HTMLUIWindow
 }
 
 export class HTMLUIShapeElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-shape";
   readonly nativeObject = UIShape.new();
 
   get hash(): number { return this.nativeObject.hash; }
@@ -9182,6 +9595,7 @@ export class HTMLUIShapeElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUICellAccessoryPopUpMenuElement extends HTMLUICellAccessoryElement {
+  static readonly tagName: string = "ui-cellaccessorypopupmenu";
   readonly nativeObject = UICellAccessoryPopUpMenu.new();
 
   get menu(): UIMenu { return this.nativeObject.menu; }
@@ -9190,6 +9604,7 @@ export class HTMLUICellAccessoryPopUpMenuElement extends HTMLUICellAccessoryElem
 }
 
 export class HTMLUIAccelerationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-acceleration";
   readonly nativeObject = UIAcceleration.new();
 
   get timestamp(): number { return this.nativeObject.timestamp; }
@@ -9199,11 +9614,13 @@ export class HTMLUIAccelerationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUITraitImageDynamicRangeElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-traitimagedynamicrange";
   readonly nativeObject = UITraitImageDynamicRange.new();
 
 }
 
 export class HTMLUIFontPickerViewControllerConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-fontpickerviewcontrollerconfiguration";
   readonly nativeObject = UIFontPickerViewControllerConfiguration.new();
 
   get includeFaces(): boolean { return this.nativeObject.includeFaces; }
@@ -9217,6 +9634,7 @@ export class HTMLUIFontPickerViewControllerConfigurationElement extends HTMLNSOb
 }
 
 export class HTMLUITableViewDiffableDataSourceElement<SectionIdentifierType = interop.Object, ItemIdentifierType = interop.Object> extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-tableviewdiffabledatasource";
   readonly nativeObject = UITableViewDiffableDataSource.new();
 
   get defaultRowAnimation(): interop.Enum<typeof UITableViewRowAnimation> { return this.nativeObject.defaultRowAnimation; }
@@ -9230,6 +9648,7 @@ export class HTMLUITableViewDiffableDataSourceElement<SectionIdentifierType = in
 }
 
 export class HTMLUIBackgroundConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-backgroundconfiguration";
   readonly nativeObject = UIBackgroundConfiguration.new();
 
   get customView(): UIView { return this.nativeObject.customView; }
@@ -9261,6 +9680,7 @@ export class HTMLUIBackgroundConfigurationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIWindowSceneActivationConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-windowsceneactivationconfiguration";
   readonly nativeObject = UIWindowSceneActivationConfiguration.new();
 
   get userActivity(): NSUserActivity { return this.nativeObject.userActivity; }
@@ -9271,6 +9691,7 @@ export class HTMLUIWindowSceneActivationConfigurationElement extends HTMLNSObjec
 }
 
 export class HTMLUIDynamicItemBehaviorElement extends HTMLUIDynamicBehaviorElement {
+  static readonly tagName: string = "ui-dynamicitembehavior";
   readonly nativeObject = UIDynamicItemBehavior.new();
 
   get items(): NSArray { return this.nativeObject.items; }
@@ -9293,6 +9714,7 @@ export class HTMLUIDynamicItemBehaviorElement extends HTMLUIDynamicBehaviorEleme
 }
 
 export class HTMLUISnapBehaviorElement extends HTMLUIDynamicBehaviorElement {
+  static readonly tagName: string = "ui-snapbehavior";
   readonly nativeObject = UISnapBehavior.new();
 
   get snapPoint(): CGPoint { return this.nativeObject.snapPoint; }
@@ -9302,6 +9724,7 @@ export class HTMLUISnapBehaviorElement extends HTMLUIDynamicBehaviorElement {
 }
 
 export class HTMLNSCollectionLayoutBoundarySupplementaryItemElement extends HTMLNSCollectionLayoutSupplementaryItemElement {
+  static readonly tagName: string = "ns-collectionlayoutboundarysupplementaryitem";
   readonly nativeObject = NSCollectionLayoutBoundarySupplementaryItem.new();
 
   get extendsBoundary(): boolean { return this.nativeObject.extendsBoundary; }
@@ -9313,6 +9736,7 @@ export class HTMLNSCollectionLayoutBoundarySupplementaryItemElement extends HTML
 }
 
 export class HTMLUICellConfigurationStateElement extends HTMLUIViewConfigurationStateElement {
+  static readonly tagName: string = "ui-cellconfigurationstate";
   readonly nativeObject = UICellConfigurationState.new();
 
   get isEditing(): boolean { return this.nativeObject.isEditing; }
@@ -9330,16 +9754,19 @@ export class HTMLUICellConfigurationStateElement extends HTMLUIViewConfiguration
 }
 
 export class HTMLUIVibrancyEffectElement extends HTMLUIVisualEffectElement {
+  static readonly tagName: string = "ui-vibrancyeffect";
   readonly nativeObject = UIVibrancyEffect.new();
 
 }
 
 export class HTMLUISceneDestructionRequestOptionsElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-scenedestructionrequestoptions";
   readonly nativeObject = UISceneDestructionRequestOptions.new();
 
 }
 
 export class HTMLUITextCheckerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-textchecker";
   readonly nativeObject = UITextChecker.new();
 
   get ignoredWords(): NSArray { return this.nativeObject.ignoredWords; }
@@ -9347,6 +9774,7 @@ export class HTMLUITextCheckerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUICollectionViewFlowLayoutElement extends HTMLUICollectionViewLayoutElement {
+  static readonly tagName: string = "ui-collectionviewflowlayout";
   readonly nativeObject = UICollectionViewFlowLayout.new();
 
   get minimumLineSpacing(): number { return this.nativeObject.minimumLineSpacing; }
@@ -9374,6 +9802,7 @@ export class HTMLUICollectionViewFlowLayoutElement extends HTMLUICollectionViewL
 }
 
 export class HTMLNSTextContentManagerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textcontentmanager";
   readonly nativeObject = NSTextContentManager.new();
   get delegate(): NSTextContentManagerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -9407,6 +9836,7 @@ export class HTMLNSTextContentManagerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUISearchBarElement extends HTMLUIViewElement {
+  static readonly tagName: string = "ui-searchbar";
   // @ts-ignore
   readonly nativeObject = UISearchBar.new();
   get delegate(): UISearchBarDelegateImpl {
@@ -9534,6 +9964,7 @@ export class HTMLUISearchBarElement extends HTMLUIViewElement {
 }
 
 export class HTMLUIWindowSceneDestructionRequestOptionsElement extends HTMLUISceneDestructionRequestOptionsElement {
+  static readonly tagName: string = "ui-windowscenedestructionrequestoptions";
   readonly nativeObject = UIWindowSceneDestructionRequestOptions.new();
 
   get windowDismissalAnimation(): interop.Enum<typeof UIWindowSceneDismissalAnimation> { return this.nativeObject.windowDismissalAnimation; }
@@ -9541,6 +9972,7 @@ export class HTMLUIWindowSceneDestructionRequestOptionsElement extends HTMLUISce
 }
 
 export class HTMLNSTextContentStorageElement extends HTMLNSTextContentManagerElement {
+  static readonly tagName: string = "ns-textcontentstorage";
   // @ts-ignore
   readonly nativeObject = NSTextContentStorage.new();
   get delegate(): NSTextContentStorageDelegateImpl {
@@ -9567,6 +9999,7 @@ export class HTMLNSTextContentStorageElement extends HTMLNSTextContentManagerEle
 }
 
 export class HTMLUIGravityBehaviorElement extends HTMLUIDynamicBehaviorElement {
+  static readonly tagName: string = "ui-gravitybehavior";
   readonly nativeObject = UIGravityBehavior.new();
 
   get items(): NSArray { return this.nativeObject.items; }
@@ -9579,6 +10012,7 @@ export class HTMLUIGravityBehaviorElement extends HTMLUIDynamicBehaviorElement {
 }
 
 export class HTMLUITextFieldElement extends HTMLUIControlElement {
+  static readonly tagName: string = "ui-textfield";
   // @ts-ignore
   readonly nativeObject = UITextField.new();
   get delegate(): UITextFieldDelegateImpl {
@@ -9748,6 +10182,7 @@ export class HTMLUITextFieldElement extends HTMLUIControlElement {
 }
 
 export class HTMLUIActionElement extends HTMLUIMenuElementElement {
+  static readonly tagName: string = "ui-action";
   // @ts-ignore
   readonly nativeObject = UIAction.new();
 
@@ -9775,12 +10210,14 @@ export class HTMLUIActionElement extends HTMLUIMenuElementElement {
 }
 
 export class HTMLUIGraphicsPDFRendererContextElement extends HTMLUIGraphicsRendererContextElement {
+  static readonly tagName: string = "ui-graphicspdfrenderercontext";
   readonly nativeObject = UIGraphicsPDFRendererContext.new();
 
   get pdfContextBounds(): CGRect { return this.nativeObject.pdfContextBounds; }
 }
 
 export class HTMLUIDocumentPropertiesElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-documentproperties";
   readonly nativeObject = UIDocumentProperties.new();
 
   get metadata(): interop.Object { return this.nativeObject.metadata; }
@@ -9794,6 +10231,7 @@ export class HTMLUIDocumentPropertiesElement extends HTMLNSObjectElement {
 }
 
 export class HTMLUIWindowSceneActivationActionElement extends HTMLUIActionElement {
+  static readonly tagName: string = "ui-windowsceneactivationaction";
   // @ts-ignore
   readonly nativeObject = UIWindowSceneActivationAction.new();
 
@@ -9802,6 +10240,7 @@ export class HTMLUIWindowSceneActivationActionElement extends HTMLUIActionElemen
 }
 
 export class HTMLUISearchTextFieldElement extends HTMLUITextFieldElement {
+  static readonly tagName: string = "ui-searchtextfield";
   readonly nativeObject = UISearchTextField.new();
 
   get tokens(): NSArray { return this.nativeObject.tokens; }
@@ -9818,22 +10257,26 @@ export class HTMLUISearchTextFieldElement extends HTMLUITextFieldElement {
 }
 
 export class HTMLUIGraphicsImageRendererContextElement extends HTMLUIGraphicsRendererContextElement {
+  static readonly tagName: string = "ui-graphicsimagerenderercontext";
   readonly nativeObject = UIGraphicsImageRendererContext.new();
 
   get currentImage(): UIImage { return this.nativeObject.currentImage; }
 }
 
 export class HTMLUITraitSceneCaptureStateElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-traitscenecapturestate";
   readonly nativeObject = UITraitSceneCaptureState.new();
 
 }
 
 export class HTMLUICalendarViewDecorationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-calendarviewdecoration";
   readonly nativeObject = UICalendarViewDecoration.new();
 
 }
 
 export class HTMLUITraitAccessibilityContrastElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ui-traitaccessibilitycontrast";
   readonly nativeObject = UITraitAccessibilityContrast.new();
 
 }

@@ -301,585 +301,303 @@ export async function registerAllElements() {
     HTMLNSWorkspaceOpenConfigurationElement,
   } = await import('./generated-elements.js');
 
-  customElements.define(
-    'ns-accessibilitycustomaction',
-    HTMLNSAccessibilityCustomActionElement
-  );
-  customElements.define(
-    'ns-accessibilitycustomrotor',
-    HTMLNSAccessibilityCustomRotorElement
-  );
-  customElements.define(
-    'ns-accessibilitycustomrotoritemresult',
-    HTMLNSAccessibilityCustomRotorItemResultElement
-  );
-  customElements.define(
-    'ns-accessibilitycustomrotorsearchparameters',
-    HTMLNSAccessibilityCustomRotorSearchParametersElement
-  );
-  customElements.define(
-    'ns-accessibilityelement',
-    HTMLNSAccessibilityElementElement
-  );
-  customElements.define('ns-actioncell', HTMLNSActionCellElement);
-  customElements.define('ns-alert', HTMLNSAlertElement);
-  customElements.define(
-    'ns-alignmentfeedbackfilter',
-    HTMLNSAlignmentFeedbackFilterElement
-  );
-  customElements.define('ns-animation', HTMLNSAnimationElement);
-  customElements.define('ns-animationcontext', HTMLNSAnimationContextElement);
-  customElements.define('ns-appearance', HTMLNSAppearanceElement);
-  customElements.define('ns-application', HTMLNSApplicationElement);
-  customElements.define('ns-arraycontroller', HTMLNSArrayControllerElement);
-  customElements.define('ns-atstypesetter', HTMLNSATSTypesetterElement);
-  customElements.define('ns-bezierpath', HTMLNSBezierPathElement);
-  customElements.define(
-    'ns-bindingselectionmarker',
-    HTMLNSBindingSelectionMarkerElement
-  );
-  customElements.define('ns-bitmapimagerep', HTMLNSBitmapImageRepElement);
-  customElements.define('ns-box', HTMLNSBoxElement);
-  customElements.define('ns-browser', HTMLNSBrowserElement);
-  customElements.define('ns-browsercell', HTMLNSBrowserCellElement);
-  customElements.define('ns-button', HTMLNSButtonElement);
-  customElements.define('ns-buttoncell', HTMLNSButtonCellElement);
-  customElements.define(
-    'ns-buttontouchbaritem',
-    HTMLNSButtonTouchBarItemElement
-  );
-  customElements.define('ns-cachedimagerep', HTMLNSCachedImageRepElement);
-  customElements.define(
-    'ns-candidatelisttouchbaritem',
-    HTMLNSCandidateListTouchBarItemElement
-  );
-  customElements.define('ns-cell', HTMLNSCellElement);
-  customElements.define('ns-ciimagerep', HTMLNSCIImageRepElement);
-  customElements.define(
-    'ns-clickgesturerecognizer',
-    HTMLNSClickGestureRecognizerElement
-  );
-  customElements.define('ns-clipview', HTMLNSClipViewElement);
-  customElements.define(
-    'ns-collectionlayoutanchor',
-    HTMLNSCollectionLayoutAnchorElement
-  );
-  customElements.define(
-    'ns-collectionlayoutboundarysupplementaryitem',
-    HTMLNSCollectionLayoutBoundarySupplementaryItemElement
-  );
-  customElements.define(
-    'ns-collectionlayoutdecorationitem',
-    HTMLNSCollectionLayoutDecorationItemElement
-  );
-  customElements.define(
-    'ns-collectionlayoutdimension',
-    HTMLNSCollectionLayoutDimensionElement
-  );
-  customElements.define(
-    'ns-collectionlayoutedgespacing',
-    HTMLNSCollectionLayoutEdgeSpacingElement
-  );
-  customElements.define(
-    'ns-collectionlayoutgroup',
-    HTMLNSCollectionLayoutGroupElement
-  );
-  customElements.define(
-    'ns-collectionlayoutgroupcustomitem',
-    HTMLNSCollectionLayoutGroupCustomItemElement
-  );
-  customElements.define(
-    'ns-collectionlayoutitem',
-    HTMLNSCollectionLayoutItemElement
-  );
-  customElements.define(
-    'ns-collectionlayoutsection',
-    HTMLNSCollectionLayoutSectionElement
-  );
-  customElements.define(
-    'ns-collectionlayoutsize',
-    HTMLNSCollectionLayoutSizeElement
-  );
-  customElements.define(
-    'ns-collectionlayoutspacing',
-    HTMLNSCollectionLayoutSpacingElement
-  );
-  customElements.define(
-    'ns-collectionlayoutsupplementaryitem',
-    HTMLNSCollectionLayoutSupplementaryItemElement
-  );
-  customElements.define('ns-collectionview', HTMLNSCollectionViewElement);
-  customElements.define(
-    'ns-collectionviewcompositionallayout',
-    HTMLNSCollectionViewCompositionalLayoutElement
-  );
-  customElements.define(
-    'ns-collectionviewcompositionallayoutconfiguration',
-    HTMLNSCollectionViewCompositionalLayoutConfigurationElement
-  );
-  customElements.define(
-    'ns-collectionviewdiffabledatasource',
-    HTMLNSCollectionViewDiffableDataSourceElement
-  );
-  customElements.define(
-    'ns-collectionviewflowlayout',
-    HTMLNSCollectionViewFlowLayoutElement
-  );
-  customElements.define(
-    'ns-collectionviewflowlayoutinvalidationcontext',
-    HTMLNSCollectionViewFlowLayoutInvalidationContextElement
-  );
-  customElements.define(
-    'ns-collectionviewgridlayout',
-    HTMLNSCollectionViewGridLayoutElement
-  );
-  customElements.define(
-    'ns-collectionviewitem',
-    HTMLNSCollectionViewItemElement
-  );
-  customElements.define(
-    'ns-collectionviewlayout',
-    HTMLNSCollectionViewLayoutElement
-  );
-  customElements.define(
-    'ns-collectionviewlayoutattributes',
-    HTMLNSCollectionViewLayoutAttributesElement
-  );
-  customElements.define(
-    'ns-collectionviewlayoutinvalidationcontext',
-    HTMLNSCollectionViewLayoutInvalidationContextElement
-  );
-  customElements.define(
-    'ns-collectionviewtransitionlayout',
-    HTMLNSCollectionViewTransitionLayoutElement
-  );
-  customElements.define(
-    'ns-collectionviewupdateitem',
-    HTMLNSCollectionViewUpdateItemElement
-  );
-  customElements.define('ns-color', HTMLNSColorElement);
-  customElements.define('ns-colorlist', HTMLNSColorListElement);
-  customElements.define('ns-colorpanel', HTMLNSColorPanelElement);
-  customElements.define('ns-colorpicker', HTMLNSColorPickerElement);
-  customElements.define(
-    'ns-colorpickertouchbaritem',
-    HTMLNSColorPickerTouchBarItemElement
-  );
-  customElements.define('ns-colorsampler', HTMLNSColorSamplerElement);
-  customElements.define('ns-colorspace', HTMLNSColorSpaceElement);
-  customElements.define('ns-colorwell', HTMLNSColorWellElement);
-  customElements.define('ns-combobox', HTMLNSComboBoxElement);
-  customElements.define('ns-comboboxcell', HTMLNSComboBoxCellElement);
-  customElements.define('ns-combobutton', HTMLNSComboButtonElement);
-  customElements.define('ns-control', HTMLNSControlElement);
-  customElements.define('ns-controller', HTMLNSControllerElement);
-  customElements.define('ns-cursor', HTMLNSCursorElement);
-  customElements.define('ns-customimagerep', HTMLNSCustomImageRepElement);
-  customElements.define(
-    'ns-customtouchbaritem',
-    HTMLNSCustomTouchBarItemElement
-  );
-  customElements.define('ns-dataasset', HTMLNSDataAssetElement);
-  customElements.define('ns-datepicker', HTMLNSDatePickerElement);
-  customElements.define('ns-datepickercell', HTMLNSDatePickerCellElement);
-  customElements.define(
-    'ns-dictionarycontroller',
-    HTMLNSDictionaryControllerElement
-  );
-  customElements.define(
-    'ns-dictionarycontrollerkeyvaluepair',
-    HTMLNSDictionaryControllerKeyValuePairElement
-  );
-  customElements.define(
-    'ns-diffabledatasourcesnapshot',
-    HTMLNSDiffableDataSourceSnapshotElement
-  );
-  customElements.define('ns-docktile', HTMLNSDockTileElement);
-  customElements.define('ns-document', HTMLNSDocumentElement);
-  customElements.define(
-    'ns-documentcontroller',
-    HTMLNSDocumentControllerElement
-  );
-  customElements.define(
-    'ns-draggingimagecomponent',
-    HTMLNSDraggingImageComponentElement
-  );
-  customElements.define('ns-draggingitem', HTMLNSDraggingItemElement);
-  customElements.define('ns-draggingsession', HTMLNSDraggingSessionElement);
-  customElements.define('ns-drawer', HTMLNSDrawerElement);
-  customElements.define('ns-epsimagerep', HTMLNSEPSImageRepElement);
-  customElements.define('ns-event', HTMLNSEventElement);
-  customElements.define(
-    'ns-filepromiseprovider',
-    HTMLNSFilePromiseProviderElement
-  );
-  customElements.define(
-    'ns-filepromisereceiver',
-    HTMLNSFilePromiseReceiverElement
-  );
-  customElements.define('ns-font', HTMLNSFontElement);
-  customElements.define('ns-fontassetrequest', HTMLNSFontAssetRequestElement);
-  customElements.define('ns-fontcollection', HTMLNSFontCollectionElement);
-  customElements.define('ns-fontdescriptor', HTMLNSFontDescriptorElement);
-  customElements.define('ns-fontmanager', HTMLNSFontManagerElement);
-  customElements.define('ns-fontpanel', HTMLNSFontPanelElement);
-  customElements.define('ns-form', HTMLNSFormElement);
-  customElements.define('ns-formcell', HTMLNSFormCellElement);
-  customElements.define('ns-gesturerecognizer', HTMLNSGestureRecognizerElement);
-  customElements.define('ns-glyphgenerator', HTMLNSGlyphGeneratorElement);
-  customElements.define('ns-glyphinfo', HTMLNSGlyphInfoElement);
-  customElements.define('ns-gradient', HTMLNSGradientElement);
-  customElements.define('ns-graphicscontext', HTMLNSGraphicsContextElement);
-  customElements.define('ns-gridcell', HTMLNSGridCellElement);
-  customElements.define('ns-gridcolumn', HTMLNSGridColumnElement);
-  customElements.define('ns-gridrow', HTMLNSGridRowElement);
-  customElements.define('ns-gridview', HTMLNSGridViewElement);
-  customElements.define('ns-grouptouchbaritem', HTMLNSGroupTouchBarItemElement);
-  customElements.define(
-    'ns-hapticfeedbackmanager',
-    HTMLNSHapticFeedbackManagerElement
-  );
-  customElements.define('ns-helpmanager', HTMLNSHelpManagerElement);
-  customElements.define('ns-image', HTMLNSImageElement);
-  customElements.define('ns-imagecell', HTMLNSImageCellElement);
-  customElements.define('ns-imagerep', HTMLNSImageRepElement);
-  customElements.define(
-    'ns-imagesymbolconfiguration',
-    HTMLNSImageSymbolConfigurationElement
-  );
-  customElements.define('ns-imageview', HTMLNSImageViewElement);
-  customElements.define('ns-inputmanager', HTMLNSInputManagerElement);
-  customElements.define('ns-inputserver', HTMLNSInputServerElement);
-  customElements.define('ns-layoutanchor', HTMLNSLayoutAnchorElement);
-  customElements.define('ns-layoutconstraint', HTMLNSLayoutConstraintElement);
-  customElements.define('ns-layoutdimension', HTMLNSLayoutDimensionElement);
-  customElements.define('ns-layoutguide', HTMLNSLayoutGuideElement);
-  customElements.define('ns-layoutmanager', HTMLNSLayoutManagerElement);
-  customElements.define('ns-layoutxaxisanchor', HTMLNSLayoutXAxisAnchorElement);
-  customElements.define('ns-layoutyaxisanchor', HTMLNSLayoutYAxisAnchorElement);
-  customElements.define('ns-levelindicator', HTMLNSLevelIndicatorElement);
-  customElements.define(
-    'ns-levelindicatorcell',
-    HTMLNSLevelIndicatorCellElement
-  );
-  customElements.define(
-    'ns-magnificationgesturerecognizer',
-    HTMLNSMagnificationGestureRecognizerElement
-  );
-  customElements.define('ns-matrix', HTMLNSMatrixElement);
-  customElements.define(
-    'ns-medialibrarybrowsercontroller',
-    HTMLNSMediaLibraryBrowserControllerElement
-  );
-  customElements.define('ns-menu', HTMLNSMenuElement);
-  customElements.define('ns-menuitem', HTMLNSMenuItemElement);
-  customElements.define('ns-menuitembadge', HTMLNSMenuItemBadgeElement);
-  customElements.define('ns-menuitemcell', HTMLNSMenuItemCellElement);
-  customElements.define('ns-menutoolbaritem', HTMLNSMenuToolbarItemElement);
-  customElements.define('ns-movie', HTMLNSMovieElement);
-  customElements.define(
-    'ns-mutablefontcollection',
-    HTMLNSMutableFontCollectionElement
-  );
-  customElements.define(
-    'ns-mutableparagraphstyle',
-    HTMLNSMutableParagraphStyleElement
-  );
-  customElements.define('ns-nib', HTMLNSNibElement);
-  customElements.define('ns-object', HTMLNSObjectElement);
-  customElements.define('ns-objectcontroller', HTMLNSObjectControllerElement);
-  customElements.define('ns-openglcontext', HTMLNSOpenGLContextElement);
-  customElements.define('ns-openglpixelbuffer', HTMLNSOpenGLPixelBufferElement);
-  customElements.define('ns-openglpixelformat', HTMLNSOpenGLPixelFormatElement);
-  customElements.define('ns-openglview', HTMLNSOpenGLViewElement);
-  customElements.define('ns-openpanel', HTMLNSOpenPanelElement);
-  customElements.define('ns-outlineview', HTMLNSOutlineViewElement);
-  customElements.define('ns-pagecontroller', HTMLNSPageControllerElement);
-  customElements.define('ns-pagelayout', HTMLNSPageLayoutElement);
-  customElements.define('ns-panel', HTMLNSPanelElement);
-  customElements.define(
-    'ns-pangesturerecognizer',
-    HTMLNSPanGestureRecognizerElement
-  );
-  customElements.define('ns-paragraphstyle', HTMLNSParagraphStyleElement);
-  customElements.define('ns-pasteboard', HTMLNSPasteboardElement);
-  customElements.define('ns-pasteboarditem', HTMLNSPasteboardItemElement);
-  customElements.define('ns-pathcell', HTMLNSPathCellElement);
-  customElements.define('ns-pathcomponentcell', HTMLNSPathComponentCellElement);
-  customElements.define('ns-pathcontrol', HTMLNSPathControlElement);
-  customElements.define('ns-pathcontrolitem', HTMLNSPathControlItemElement);
-  customElements.define('ns-pdfimagerep', HTMLNSPDFImageRepElement);
-  customElements.define('ns-pdfinfo', HTMLNSPDFInfoElement);
-  customElements.define('ns-pdfpanel', HTMLNSPDFPanelElement);
-  customElements.define(
-    'ns-persistentdocument',
-    HTMLNSPersistentDocumentElement
-  );
-  customElements.define(
-    'ns-pickertouchbaritem',
-    HTMLNSPickerTouchBarItemElement
-  );
-  customElements.define('ns-pictimagerep', HTMLNSPICTImageRepElement);
-  customElements.define('ns-popover', HTMLNSPopoverElement);
-  customElements.define(
-    'ns-popovertouchbaritem',
-    HTMLNSPopoverTouchBarItemElement
-  );
-  customElements.define('ns-popupbutton', HTMLNSPopUpButtonElement);
-  customElements.define('ns-popupbuttoncell', HTMLNSPopUpButtonCellElement);
-  customElements.define('ns-predicateeditor', HTMLNSPredicateEditorElement);
-  customElements.define(
-    'ns-predicateeditorrowtemplate',
-    HTMLNSPredicateEditorRowTemplateElement
-  );
-  customElements.define(
-    'ns-pressgesturerecognizer',
-    HTMLNSPressGestureRecognizerElement
-  );
-  customElements.define(
-    'ns-pressureconfiguration',
-    HTMLNSPressureConfigurationElement
-  );
-  customElements.define(
-    'ns-previewrepresentingactivityitem',
-    HTMLNSPreviewRepresentingActivityItemElement
-  );
-  customElements.define('ns-printer', HTMLNSPrinterElement);
-  customElements.define('ns-printinfo', HTMLNSPrintInfoElement);
-  customElements.define('ns-printoperation', HTMLNSPrintOperationElement);
-  customElements.define('ns-printpanel', HTMLNSPrintPanelElement);
-  customElements.define('ns-progressindicator', HTMLNSProgressIndicatorElement);
-  customElements.define('ns-responder', HTMLNSResponderElement);
-  customElements.define(
-    'ns-rotationgesturerecognizer',
-    HTMLNSRotationGestureRecognizerElement
-  );
-  customElements.define('ns-ruleeditor', HTMLNSRuleEditorElement);
-  customElements.define('ns-rulermarker', HTMLNSRulerMarkerElement);
-  customElements.define('ns-rulerview', HTMLNSRulerViewElement);
-  customElements.define(
-    'ns-runningapplication',
-    HTMLNSRunningApplicationElement
-  );
-  customElements.define('ns-savepanel', HTMLNSSavePanelElement);
-  customElements.define('ns-screen', HTMLNSScreenElement);
-  customElements.define('ns-scroller', HTMLNSScrollerElement);
-  customElements.define('ns-scrollview', HTMLNSScrollViewElement);
-  customElements.define('ns-scrubber', HTMLNSScrubberElement);
-  customElements.define(
-    'ns-scrubberarrangedview',
-    HTMLNSScrubberArrangedViewElement
-  );
-  customElements.define(
-    'ns-scrubberflowlayout',
-    HTMLNSScrubberFlowLayoutElement
-  );
-  customElements.define(
-    'ns-scrubberimageitemview',
-    HTMLNSScrubberImageItemViewElement
-  );
-  customElements.define('ns-scrubberitemview', HTMLNSScrubberItemViewElement);
-  customElements.define('ns-scrubberlayout', HTMLNSScrubberLayoutElement);
-  customElements.define(
-    'ns-scrubberlayoutattributes',
-    HTMLNSScrubberLayoutAttributesElement
-  );
-  customElements.define(
-    'ns-scrubberproportionallayout',
-    HTMLNSScrubberProportionalLayoutElement
-  );
-  customElements.define(
-    'ns-scrubberselectionstyle',
-    HTMLNSScrubberSelectionStyleElement
-  );
-  customElements.define(
-    'ns-scrubberselectionview',
-    HTMLNSScrubberSelectionViewElement
-  );
-  customElements.define(
-    'ns-scrubbertextitemview',
-    HTMLNSScrubberTextItemViewElement
-  );
-  customElements.define('ns-searchfield', HTMLNSSearchFieldElement);
-  customElements.define('ns-searchfieldcell', HTMLNSSearchFieldCellElement);
-  customElements.define('ns-searchtoolbaritem', HTMLNSSearchToolbarItemElement);
-  customElements.define('ns-securetextfield', HTMLNSSecureTextFieldElement);
-  customElements.define(
-    'ns-securetextfieldcell',
-    HTMLNSSecureTextFieldCellElement
-  );
-  customElements.define('ns-segmentedcell', HTMLNSSegmentedCellElement);
-  customElements.define('ns-segmentedcontrol', HTMLNSSegmentedControlElement);
-  customElements.define('ns-shadow', HTMLNSShadowElement);
-  customElements.define('ns-sharingservice', HTMLNSSharingServiceElement);
-  customElements.define(
-    'ns-sharingservicepicker',
-    HTMLNSSharingServicePickerElement
-  );
-  customElements.define(
-    'ns-sharingservicepickertoolbaritem',
-    HTMLNSSharingServicePickerToolbarItemElement
-  );
-  customElements.define(
-    'ns-sharingservicepickertouchbaritem',
-    HTMLNSSharingServicePickerTouchBarItemElement
-  );
-  customElements.define('ns-slider', HTMLNSSliderElement);
-  customElements.define('ns-slideraccessory', HTMLNSSliderAccessoryElement);
-  customElements.define(
-    'ns-slideraccessorybehavior',
-    HTMLNSSliderAccessoryBehaviorElement
-  );
-  customElements.define('ns-slidercell', HTMLNSSliderCellElement);
-  customElements.define(
-    'ns-slidertouchbaritem',
-    HTMLNSSliderTouchBarItemElement
-  );
-  customElements.define('ns-sound', HTMLNSSoundElement);
-  customElements.define('ns-speechrecognizer', HTMLNSSpeechRecognizerElement);
-  customElements.define('ns-speechsynthesizer', HTMLNSSpeechSynthesizerElement);
-  customElements.define('ns-spellchecker', HTMLNSSpellCheckerElement);
-  customElements.define('ns-splitview', HTMLNSSplitViewElement);
-  customElements.define(
-    'ns-splitviewcontroller',
-    HTMLNSSplitViewControllerElement
-  );
-  customElements.define('ns-splitviewitem', HTMLNSSplitViewItemElement);
-  customElements.define('ns-stackview', HTMLNSStackViewElement);
-  customElements.define('ns-statusbar', HTMLNSStatusBarElement);
-  customElements.define('ns-statusbarbutton', HTMLNSStatusBarButtonElement);
-  customElements.define('ns-statusitem', HTMLNSStatusItemElement);
-  customElements.define('ns-stepper', HTMLNSStepperElement);
-  customElements.define('ns-steppercell', HTMLNSStepperCellElement);
-  customElements.define(
-    'ns-steppertouchbaritem',
-    HTMLNSStepperTouchBarItemElement
-  );
-  customElements.define('ns-storyboard', HTMLNSStoryboardElement);
-  customElements.define('ns-storyboardsegue', HTMLNSStoryboardSegueElement);
-  customElements.define(
-    'ns-stringdrawingcontext',
-    HTMLNSStringDrawingContextElement
-  );
-  customElements.define('ns-switch', HTMLNSSwitchElement);
-  customElements.define('ns-tablecellview', HTMLNSTableCellViewElement);
-  customElements.define('ns-tablecolumn', HTMLNSTableColumnElement);
-  customElements.define('ns-tableheadercell', HTMLNSTableHeaderCellElement);
-  customElements.define('ns-tableheaderview', HTMLNSTableHeaderViewElement);
-  customElements.define('ns-tablerowview', HTMLNSTableRowViewElement);
-  customElements.define('ns-tableview', HTMLNSTableViewElement);
-  customElements.define(
-    'ns-tableviewdiffabledatasource',
-    HTMLNSTableViewDiffableDataSourceElement
-  );
-  customElements.define(
-    'ns-tableviewrowaction',
-    HTMLNSTableViewRowActionElement
-  );
-  customElements.define('ns-tabview', HTMLNSTabViewElement);
-  customElements.define('ns-tabviewcontroller', HTMLNSTabViewControllerElement);
-  customElements.define('ns-tabviewitem', HTMLNSTabViewItemElement);
-  customElements.define('ns-text', HTMLNSTextElement);
-  customElements.define('ns-textalternatives', HTMLNSTextAlternativesElement);
-  customElements.define('ns-textattachment', HTMLNSTextAttachmentElement);
-  customElements.define(
-    'ns-textattachmentcell',
-    HTMLNSTextAttachmentCellElement
-  );
-  customElements.define(
-    'ns-textattachmentviewprovider',
-    HTMLNSTextAttachmentViewProviderElement
-  );
-  customElements.define('ns-textblock', HTMLNSTextBlockElement);
-  customElements.define(
-    'ns-textcheckingcontroller',
-    HTMLNSTextCheckingControllerElement
-  );
-  customElements.define('ns-textcontainer', HTMLNSTextContainerElement);
-  customElements.define(
-    'ns-textcontentmanager',
-    HTMLNSTextContentManagerElement
-  );
-  customElements.define(
-    'ns-textcontentstorage',
-    HTMLNSTextContentStorageElement
-  );
-  customElements.define('ns-textelement', HTMLNSTextElementElement);
-  customElements.define('ns-textfield', HTMLNSTextFieldElement);
-  customElements.define('ns-textfieldcell', HTMLNSTextFieldCellElement);
-  customElements.define('ns-textfinder', HTMLNSTextFinderElement);
-  customElements.define('ns-textinputcontext', HTMLNSTextInputContextElement);
-  customElements.define(
-    'ns-textinsertionindicator',
-    HTMLNSTextInsertionIndicatorElement
-  );
-  customElements.define(
-    'ns-textlayoutfragment',
-    HTMLNSTextLayoutFragmentElement
-  );
-  customElements.define('ns-textlayoutmanager', HTMLNSTextLayoutManagerElement);
-  customElements.define('ns-textlinefragment', HTMLNSTextLineFragmentElement);
-  customElements.define('ns-textlist', HTMLNSTextListElement);
-  customElements.define('ns-textlistelement', HTMLNSTextListElementElement);
-  customElements.define('ns-textparagraph', HTMLNSTextParagraphElement);
-  customElements.define('ns-textrange', HTMLNSTextRangeElement);
-  customElements.define('ns-textselection', HTMLNSTextSelectionElement);
-  customElements.define(
-    'ns-textselectionnavigation',
-    HTMLNSTextSelectionNavigationElement
-  );
-  customElements.define('ns-texttab', HTMLNSTextTabElement);
-  customElements.define('ns-texttable', HTMLNSTextTableElement);
-  customElements.define('ns-texttableblock', HTMLNSTextTableBlockElement);
-  customElements.define('ns-textview', HTMLNSTextViewElement);
-  customElements.define(
-    'ns-textviewportlayoutcontroller',
-    HTMLNSTextViewportLayoutControllerElement
-  );
-  customElements.define('ns-tintconfiguration', HTMLNSTintConfigurationElement);
-  customElements.define(
-    'ns-titlebaraccessoryviewcontroller',
-    HTMLNSTitlebarAccessoryViewControllerElement
-  );
-  customElements.define('ns-tokenfield', HTMLNSTokenFieldElement);
-  customElements.define('ns-tokenfieldcell', HTMLNSTokenFieldCellElement);
-  customElements.define('ns-toolbar', HTMLNSToolbarElement);
-  customElements.define('ns-toolbaritem', HTMLNSToolbarItemElement);
-  customElements.define('ns-toolbaritemgroup', HTMLNSToolbarItemGroupElement);
-  customElements.define('ns-touch', HTMLNSTouchElement);
-  customElements.define('ns-touchbar', HTMLNSTouchBarElement);
-  customElements.define('ns-touchbaritem', HTMLNSTouchBarItemElement);
-  customElements.define('ns-trackingarea', HTMLNSTrackingAreaElement);
-  customElements.define(
-    'ns-trackingseparatortoolbaritem',
-    HTMLNSTrackingSeparatorToolbarItemElement
-  );
-  customElements.define('ns-treecontroller', HTMLNSTreeControllerElement);
-  customElements.define('ns-treenode', HTMLNSTreeNodeElement);
-  customElements.define('ns-typesetter', HTMLNSTypesetterElement);
-  customElements.define(
-    'ns-userdefaultscontroller',
-    HTMLNSUserDefaultsControllerElement
-  );
-  customElements.define(
-    'ns-userinterfacecompressionoptions',
-    HTMLNSUserInterfaceCompressionOptionsElement
-  );
-  customElements.define('ns-view', HTMLNSViewElement);
-  customElements.define('ns-viewanimation', HTMLNSViewAnimationElement);
-  customElements.define('ns-viewcontroller', HTMLNSViewControllerElement);
-  customElements.define('ns-visualeffectview', HTMLNSVisualEffectViewElement);
-  customElements.define('ns-window', HTMLNSWindowElement);
-  customElements.define('ns-windowcontroller', HTMLNSWindowControllerElement);
-  customElements.define('ns-windowtab', HTMLNSWindowTabElement);
-  customElements.define('ns-windowtabgroup', HTMLNSWindowTabGroupElement);
-  customElements.define('ns-workspace', HTMLNSWorkspaceElement);
-  customElements.define(
-    'ns-workspaceauthorization',
-    HTMLNSWorkspaceAuthorizationElement
-  );
-  customElements.define(
-    'ns-workspaceopenconfiguration',
-    HTMLNSWorkspaceOpenConfigurationElement
-  );
+  HTMLNSAccessibilityCustomActionElement.defineCustomElement();
+  HTMLNSAccessibilityCustomRotorElement.defineCustomElement();
+  HTMLNSAccessibilityCustomRotorItemResultElement.defineCustomElement();
+  HTMLNSAccessibilityCustomRotorSearchParametersElement.defineCustomElement();
+  HTMLNSAccessibilityElementElement.defineCustomElement();
+  HTMLNSActionCellElement.defineCustomElement();
+  HTMLNSAlertElement.defineCustomElement();
+  HTMLNSAlignmentFeedbackFilterElement.defineCustomElement();
+  HTMLNSAnimationElement.defineCustomElement();
+  HTMLNSAnimationContextElement.defineCustomElement();
+  HTMLNSAppearanceElement.defineCustomElement();
+  HTMLNSApplicationElement.defineCustomElement();
+  HTMLNSArrayControllerElement.defineCustomElement();
+  HTMLNSATSTypesetterElement.defineCustomElement();
+  HTMLNSBezierPathElement.defineCustomElement();
+  HTMLNSBindingSelectionMarkerElement.defineCustomElement();
+  HTMLNSBitmapImageRepElement.defineCustomElement();
+  HTMLNSBoxElement.defineCustomElement();
+  HTMLNSBrowserElement.defineCustomElement();
+  HTMLNSBrowserCellElement.defineCustomElement();
+  HTMLNSButtonElement.defineCustomElement();
+  HTMLNSButtonCellElement.defineCustomElement();
+  HTMLNSButtonTouchBarItemElement.defineCustomElement();
+  HTMLNSCachedImageRepElement.defineCustomElement();
+  HTMLNSCandidateListTouchBarItemElement.defineCustomElement();
+  HTMLNSCellElement.defineCustomElement();
+  HTMLNSCIImageRepElement.defineCustomElement();
+  HTMLNSClickGestureRecognizerElement.defineCustomElement();
+  HTMLNSClipViewElement.defineCustomElement();
+  HTMLNSCollectionLayoutAnchorElement.defineCustomElement();
+  HTMLNSCollectionLayoutBoundarySupplementaryItemElement.defineCustomElement();
+  HTMLNSCollectionLayoutDecorationItemElement.defineCustomElement();
+  HTMLNSCollectionLayoutDimensionElement.defineCustomElement();
+  HTMLNSCollectionLayoutEdgeSpacingElement.defineCustomElement();
+  HTMLNSCollectionLayoutGroupElement.defineCustomElement();
+  HTMLNSCollectionLayoutGroupCustomItemElement.defineCustomElement();
+  HTMLNSCollectionLayoutItemElement.defineCustomElement();
+  HTMLNSCollectionLayoutSectionElement.defineCustomElement();
+  HTMLNSCollectionLayoutSizeElement.defineCustomElement();
+  HTMLNSCollectionLayoutSpacingElement.defineCustomElement();
+  HTMLNSCollectionLayoutSupplementaryItemElement.defineCustomElement();
+  HTMLNSCollectionViewElement.defineCustomElement();
+  HTMLNSCollectionViewCompositionalLayoutElement.defineCustomElement();
+  HTMLNSCollectionViewCompositionalLayoutConfigurationElement.defineCustomElement();
+  HTMLNSCollectionViewDiffableDataSourceElement.defineCustomElement();
+  HTMLNSCollectionViewFlowLayoutElement.defineCustomElement();
+  HTMLNSCollectionViewFlowLayoutInvalidationContextElement.defineCustomElement();
+  HTMLNSCollectionViewGridLayoutElement.defineCustomElement();
+  HTMLNSCollectionViewItemElement.defineCustomElement();
+  HTMLNSCollectionViewLayoutElement.defineCustomElement();
+  HTMLNSCollectionViewLayoutAttributesElement.defineCustomElement();
+  HTMLNSCollectionViewLayoutInvalidationContextElement.defineCustomElement();
+  HTMLNSCollectionViewTransitionLayoutElement.defineCustomElement();
+  HTMLNSCollectionViewUpdateItemElement.defineCustomElement();
+  HTMLNSColorElement.defineCustomElement();
+  HTMLNSColorListElement.defineCustomElement();
+  HTMLNSColorPanelElement.defineCustomElement();
+  HTMLNSColorPickerElement.defineCustomElement();
+  HTMLNSColorPickerTouchBarItemElement.defineCustomElement();
+  HTMLNSColorSamplerElement.defineCustomElement();
+  HTMLNSColorSpaceElement.defineCustomElement();
+  HTMLNSColorWellElement.defineCustomElement();
+  HTMLNSComboBoxElement.defineCustomElement();
+  HTMLNSComboBoxCellElement.defineCustomElement();
+  HTMLNSComboButtonElement.defineCustomElement();
+  HTMLNSControlElement.defineCustomElement();
+  HTMLNSControllerElement.defineCustomElement();
+  HTMLNSCursorElement.defineCustomElement();
+  HTMLNSCustomImageRepElement.defineCustomElement();
+  HTMLNSCustomTouchBarItemElement.defineCustomElement();
+  HTMLNSDataAssetElement.defineCustomElement();
+  HTMLNSDatePickerElement.defineCustomElement();
+  HTMLNSDatePickerCellElement.defineCustomElement();
+  HTMLNSDictionaryControllerElement.defineCustomElement();
+  HTMLNSDictionaryControllerKeyValuePairElement.defineCustomElement();
+  HTMLNSDiffableDataSourceSnapshotElement.defineCustomElement();
+  HTMLNSDockTileElement.defineCustomElement();
+  HTMLNSDocumentElement.defineCustomElement();
+  HTMLNSDocumentControllerElement.defineCustomElement();
+  HTMLNSDraggingImageComponentElement.defineCustomElement();
+  HTMLNSDraggingItemElement.defineCustomElement();
+  HTMLNSDraggingSessionElement.defineCustomElement();
+  HTMLNSDrawerElement.defineCustomElement();
+  HTMLNSEPSImageRepElement.defineCustomElement();
+  HTMLNSEventElement.defineCustomElement();
+  HTMLNSFilePromiseProviderElement.defineCustomElement();
+  HTMLNSFilePromiseReceiverElement.defineCustomElement();
+  HTMLNSFontElement.defineCustomElement();
+  HTMLNSFontAssetRequestElement.defineCustomElement();
+  HTMLNSFontCollectionElement.defineCustomElement();
+  HTMLNSFontDescriptorElement.defineCustomElement();
+  HTMLNSFontManagerElement.defineCustomElement();
+  HTMLNSFontPanelElement.defineCustomElement();
+  HTMLNSFormElement.defineCustomElement();
+  HTMLNSFormCellElement.defineCustomElement();
+  HTMLNSGestureRecognizerElement.defineCustomElement();
+  HTMLNSGlyphGeneratorElement.defineCustomElement();
+  HTMLNSGlyphInfoElement.defineCustomElement();
+  HTMLNSGradientElement.defineCustomElement();
+  HTMLNSGraphicsContextElement.defineCustomElement();
+  HTMLNSGridCellElement.defineCustomElement();
+  HTMLNSGridColumnElement.defineCustomElement();
+  HTMLNSGridRowElement.defineCustomElement();
+  HTMLNSGridViewElement.defineCustomElement();
+  HTMLNSGroupTouchBarItemElement.defineCustomElement();
+  HTMLNSHapticFeedbackManagerElement.defineCustomElement();
+  HTMLNSHelpManagerElement.defineCustomElement();
+  HTMLNSImageElement.defineCustomElement();
+  HTMLNSImageCellElement.defineCustomElement();
+  HTMLNSImageRepElement.defineCustomElement();
+  HTMLNSImageSymbolConfigurationElement.defineCustomElement();
+  HTMLNSImageViewElement.defineCustomElement();
+  HTMLNSInputManagerElement.defineCustomElement();
+  HTMLNSInputServerElement.defineCustomElement();
+  HTMLNSLayoutAnchorElement.defineCustomElement();
+  HTMLNSLayoutConstraintElement.defineCustomElement();
+  HTMLNSLayoutDimensionElement.defineCustomElement();
+  HTMLNSLayoutGuideElement.defineCustomElement();
+  HTMLNSLayoutManagerElement.defineCustomElement();
+  HTMLNSLayoutXAxisAnchorElement.defineCustomElement();
+  HTMLNSLayoutYAxisAnchorElement.defineCustomElement();
+  HTMLNSLevelIndicatorElement.defineCustomElement();
+  HTMLNSLevelIndicatorCellElement.defineCustomElement();
+  HTMLNSMagnificationGestureRecognizerElement.defineCustomElement();
+  HTMLNSMatrixElement.defineCustomElement();
+  HTMLNSMediaLibraryBrowserControllerElement.defineCustomElement();
+  HTMLNSMenuElement.defineCustomElement();
+  HTMLNSMenuItemElement.defineCustomElement();
+  HTMLNSMenuItemBadgeElement.defineCustomElement();
+  HTMLNSMenuItemCellElement.defineCustomElement();
+  HTMLNSMenuToolbarItemElement.defineCustomElement();
+  HTMLNSMovieElement.defineCustomElement();
+  HTMLNSMutableFontCollectionElement.defineCustomElement();
+  HTMLNSMutableParagraphStyleElement.defineCustomElement();
+  HTMLNSNibElement.defineCustomElement();
+  HTMLNSObjectElement.defineCustomElement();
+  HTMLNSObjectControllerElement.defineCustomElement();
+  HTMLNSOpenGLContextElement.defineCustomElement();
+  HTMLNSOpenGLPixelBufferElement.defineCustomElement();
+  HTMLNSOpenGLPixelFormatElement.defineCustomElement();
+  HTMLNSOpenGLViewElement.defineCustomElement();
+  HTMLNSOpenPanelElement.defineCustomElement();
+  HTMLNSOutlineViewElement.defineCustomElement();
+  HTMLNSPageControllerElement.defineCustomElement();
+  HTMLNSPageLayoutElement.defineCustomElement();
+  HTMLNSPanelElement.defineCustomElement();
+  HTMLNSPanGestureRecognizerElement.defineCustomElement();
+  HTMLNSParagraphStyleElement.defineCustomElement();
+  HTMLNSPasteboardElement.defineCustomElement();
+  HTMLNSPasteboardItemElement.defineCustomElement();
+  HTMLNSPathCellElement.defineCustomElement();
+  HTMLNSPathComponentCellElement.defineCustomElement();
+  HTMLNSPathControlElement.defineCustomElement();
+  HTMLNSPathControlItemElement.defineCustomElement();
+  HTMLNSPDFImageRepElement.defineCustomElement();
+  HTMLNSPDFInfoElement.defineCustomElement();
+  HTMLNSPDFPanelElement.defineCustomElement();
+  HTMLNSPersistentDocumentElement.defineCustomElement();
+  HTMLNSPickerTouchBarItemElement.defineCustomElement();
+  HTMLNSPICTImageRepElement.defineCustomElement();
+  HTMLNSPopoverElement.defineCustomElement();
+  HTMLNSPopoverTouchBarItemElement.defineCustomElement();
+  HTMLNSPopUpButtonElement.defineCustomElement();
+  HTMLNSPopUpButtonCellElement.defineCustomElement();
+  HTMLNSPredicateEditorElement.defineCustomElement();
+  HTMLNSPredicateEditorRowTemplateElement.defineCustomElement();
+  HTMLNSPressGestureRecognizerElement.defineCustomElement();
+  HTMLNSPressureConfigurationElement.defineCustomElement();
+  HTMLNSPreviewRepresentingActivityItemElement.defineCustomElement();
+  HTMLNSPrinterElement.defineCustomElement();
+  HTMLNSPrintInfoElement.defineCustomElement();
+  HTMLNSPrintOperationElement.defineCustomElement();
+  HTMLNSPrintPanelElement.defineCustomElement();
+  HTMLNSProgressIndicatorElement.defineCustomElement();
+  HTMLNSResponderElement.defineCustomElement();
+  HTMLNSRotationGestureRecognizerElement.defineCustomElement();
+  HTMLNSRuleEditorElement.defineCustomElement();
+  HTMLNSRulerMarkerElement.defineCustomElement();
+  HTMLNSRulerViewElement.defineCustomElement();
+  HTMLNSRunningApplicationElement.defineCustomElement();
+  HTMLNSSavePanelElement.defineCustomElement();
+  HTMLNSScreenElement.defineCustomElement();
+  HTMLNSScrollerElement.defineCustomElement();
+  HTMLNSScrollViewElement.defineCustomElement();
+  HTMLNSScrubberElement.defineCustomElement();
+  HTMLNSScrubberArrangedViewElement.defineCustomElement();
+  HTMLNSScrubberFlowLayoutElement.defineCustomElement();
+  HTMLNSScrubberImageItemViewElement.defineCustomElement();
+  HTMLNSScrubberItemViewElement.defineCustomElement();
+  HTMLNSScrubberLayoutElement.defineCustomElement();
+  HTMLNSScrubberLayoutAttributesElement.defineCustomElement();
+  HTMLNSScrubberProportionalLayoutElement.defineCustomElement();
+  HTMLNSScrubberSelectionStyleElement.defineCustomElement();
+  HTMLNSScrubberSelectionViewElement.defineCustomElement();
+  HTMLNSScrubberTextItemViewElement.defineCustomElement();
+  HTMLNSSearchFieldElement.defineCustomElement();
+  HTMLNSSearchFieldCellElement.defineCustomElement();
+  HTMLNSSearchToolbarItemElement.defineCustomElement();
+  HTMLNSSecureTextFieldElement.defineCustomElement();
+  HTMLNSSecureTextFieldCellElement.defineCustomElement();
+  HTMLNSSegmentedCellElement.defineCustomElement();
+  HTMLNSSegmentedControlElement.defineCustomElement();
+  HTMLNSShadowElement.defineCustomElement();
+  HTMLNSSharingServiceElement.defineCustomElement();
+  HTMLNSSharingServicePickerElement.defineCustomElement();
+  HTMLNSSharingServicePickerToolbarItemElement.defineCustomElement();
+  HTMLNSSharingServicePickerTouchBarItemElement.defineCustomElement();
+  HTMLNSSliderElement.defineCustomElement();
+  HTMLNSSliderAccessoryElement.defineCustomElement();
+  HTMLNSSliderAccessoryBehaviorElement.defineCustomElement();
+  HTMLNSSliderCellElement.defineCustomElement();
+  HTMLNSSliderTouchBarItemElement.defineCustomElement();
+  HTMLNSSoundElement.defineCustomElement();
+  HTMLNSSpeechRecognizerElement.defineCustomElement();
+  HTMLNSSpeechSynthesizerElement.defineCustomElement();
+  HTMLNSSpellCheckerElement.defineCustomElement();
+  HTMLNSSplitViewElement.defineCustomElement();
+  HTMLNSSplitViewControllerElement.defineCustomElement();
+  HTMLNSSplitViewItemElement.defineCustomElement();
+  HTMLNSStackViewElement.defineCustomElement();
+  HTMLNSStatusBarElement.defineCustomElement();
+  HTMLNSStatusBarButtonElement.defineCustomElement();
+  HTMLNSStatusItemElement.defineCustomElement();
+  HTMLNSStepperElement.defineCustomElement();
+  HTMLNSStepperCellElement.defineCustomElement();
+  HTMLNSStepperTouchBarItemElement.defineCustomElement();
+  HTMLNSStoryboardElement.defineCustomElement();
+  HTMLNSStoryboardSegueElement.defineCustomElement();
+  HTMLNSStringDrawingContextElement.defineCustomElement();
+  HTMLNSSwitchElement.defineCustomElement();
+  HTMLNSTableCellViewElement.defineCustomElement();
+  HTMLNSTableColumnElement.defineCustomElement();
+  HTMLNSTableHeaderCellElement.defineCustomElement();
+  HTMLNSTableHeaderViewElement.defineCustomElement();
+  HTMLNSTableRowViewElement.defineCustomElement();
+  HTMLNSTableViewElement.defineCustomElement();
+  HTMLNSTableViewDiffableDataSourceElement.defineCustomElement();
+  HTMLNSTableViewRowActionElement.defineCustomElement();
+  HTMLNSTabViewElement.defineCustomElement();
+  HTMLNSTabViewControllerElement.defineCustomElement();
+  HTMLNSTabViewItemElement.defineCustomElement();
+  HTMLNSTextElement.defineCustomElement();
+  HTMLNSTextAlternativesElement.defineCustomElement();
+  HTMLNSTextAttachmentElement.defineCustomElement();
+  HTMLNSTextAttachmentCellElement.defineCustomElement();
+  HTMLNSTextAttachmentViewProviderElement.defineCustomElement();
+  HTMLNSTextBlockElement.defineCustomElement();
+  HTMLNSTextCheckingControllerElement.defineCustomElement();
+  HTMLNSTextContainerElement.defineCustomElement();
+  HTMLNSTextContentManagerElement.defineCustomElement();
+  HTMLNSTextContentStorageElement.defineCustomElement();
+  HTMLNSTextElementElement.defineCustomElement();
+  HTMLNSTextFieldElement.defineCustomElement();
+  HTMLNSTextFieldCellElement.defineCustomElement();
+  HTMLNSTextFinderElement.defineCustomElement();
+  HTMLNSTextInputContextElement.defineCustomElement();
+  HTMLNSTextInsertionIndicatorElement.defineCustomElement();
+  HTMLNSTextLayoutFragmentElement.defineCustomElement();
+  HTMLNSTextLayoutManagerElement.defineCustomElement();
+  HTMLNSTextLineFragmentElement.defineCustomElement();
+  HTMLNSTextListElement.defineCustomElement();
+  HTMLNSTextListElementElement.defineCustomElement();
+  HTMLNSTextParagraphElement.defineCustomElement();
+  HTMLNSTextRangeElement.defineCustomElement();
+  HTMLNSTextSelectionElement.defineCustomElement();
+  HTMLNSTextSelectionNavigationElement.defineCustomElement();
+  HTMLNSTextTabElement.defineCustomElement();
+  HTMLNSTextTableElement.defineCustomElement();
+  HTMLNSTextTableBlockElement.defineCustomElement();
+  HTMLNSTextViewElement.defineCustomElement();
+  HTMLNSTextViewportLayoutControllerElement.defineCustomElement();
+  HTMLNSTintConfigurationElement.defineCustomElement();
+  HTMLNSTitlebarAccessoryViewControllerElement.defineCustomElement();
+  HTMLNSTokenFieldElement.defineCustomElement();
+  HTMLNSTokenFieldCellElement.defineCustomElement();
+  HTMLNSToolbarElement.defineCustomElement();
+  HTMLNSToolbarItemElement.defineCustomElement();
+  HTMLNSToolbarItemGroupElement.defineCustomElement();
+  HTMLNSTouchElement.defineCustomElement();
+  HTMLNSTouchBarElement.defineCustomElement();
+  HTMLNSTouchBarItemElement.defineCustomElement();
+  HTMLNSTrackingAreaElement.defineCustomElement();
+  HTMLNSTrackingSeparatorToolbarItemElement.defineCustomElement();
+  HTMLNSTreeControllerElement.defineCustomElement();
+  HTMLNSTreeNodeElement.defineCustomElement();
+  HTMLNSTypesetterElement.defineCustomElement();
+  HTMLNSUserDefaultsControllerElement.defineCustomElement();
+  HTMLNSUserInterfaceCompressionOptionsElement.defineCustomElement();
+  HTMLNSViewElement.defineCustomElement();
+  HTMLNSViewAnimationElement.defineCustomElement();
+  HTMLNSViewControllerElement.defineCustomElement();
+  HTMLNSVisualEffectViewElement.defineCustomElement();
+  HTMLNSWindowElement.defineCustomElement();
+  HTMLNSWindowControllerElement.defineCustomElement();
+  HTMLNSWindowTabElement.defineCustomElement();
+  HTMLNSWindowTabGroupElement.defineCustomElement();
+  HTMLNSWorkspaceElement.defineCustomElement();
+  HTMLNSWorkspaceAuthorizationElement.defineCustomElement();
+  HTMLNSWorkspaceOpenConfigurationElement.defineCustomElement();
 }

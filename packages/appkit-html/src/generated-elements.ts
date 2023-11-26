@@ -318,17 +318,16 @@ declare global {
 }
 
 export abstract class HTMLNativeObjectElement extends HTMLElement {
-  static defineCustomElement(){
-    const callerClass = this as unknown as typeof HTMLElement;
+  /**
+   * The suggested tagName to use when defining this Custom Element. Used by the
+   * defineCustomElement() convenience method.
+   */
+  static get tagName(): string {
+    throw new Error("Not implemented; expected to be implemented on subclasses.");
+  }
 
-    const namespace = 'NS';
-    const nativeClassName = callerClass.name.replace(/^HTML/, "").replace(/Element$/, "");
-    if(!nativeClassName.startsWith(namespace)){
-      console.warn(`Unable to define Custom Element "${callerClass.name}", as namespace unexpectedly began with something other than ${namespace}.`);
-      return;
-    }
-
-    customElements.define(`${namespace}-${nativeClassName.slice(namespace.length)}`.toLowerCase(), callerClass);
+  static defineCustomElement(): void {
+    customElements.define(this.tagName, this as unknown as typeof HTMLElement);
   }
 
   /**
@@ -775,6 +774,7 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
 }
 
 export class HTMLNSObjectElement extends HTMLNativeObjectElement {
+  static readonly tagName: string = "ns-object";
   readonly nativeObject = NSObject.new();
 
   get classForCoder(): interop.Object { return this.nativeObject.classForCoder; }
@@ -808,6 +808,7 @@ export class HTMLNSObjectElement extends HTMLNativeObjectElement {
 }
 
 export class HTMLNSWindowTabGroupElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-windowtabgroup";
   readonly nativeObject = NSWindowTabGroup.new();
 
   get identifier(): string { return this.nativeObject.identifier; }
@@ -820,6 +821,7 @@ export class HTMLNSWindowTabGroupElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSAccessibilityCustomRotorSearchParametersElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-accessibilitycustomrotorsearchparameters";
   readonly nativeObject = NSAccessibilityCustomRotorSearchParameters.new();
 
   get currentItem(): NSAccessibilityCustomRotorItemResult { return this.nativeObject.currentItem; }
@@ -831,6 +833,7 @@ export class HTMLNSAccessibilityCustomRotorSearchParametersElement extends HTMLN
 }
 
 export class HTMLNSFontManagerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-fontmanager";
   readonly nativeObject = NSFontManager.new();
 
   get isMultiple(): boolean { return this.nativeObject.isMultiple; }
@@ -856,6 +859,7 @@ export class HTMLNSFontManagerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSScrubberLayoutElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-scrubberlayout";
   readonly nativeObject = NSScrubberLayout.new();
 
   get scrubber(): NSScrubber { return this.nativeObject.scrubber; }
@@ -867,6 +871,7 @@ export class HTMLNSScrubberLayoutElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionViewUpdateItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionviewupdateitem";
   readonly nativeObject = NSCollectionViewUpdateItem.new();
 
   get indexPathBeforeUpdate(): NSIndexPath { return this.nativeObject.indexPathBeforeUpdate; }
@@ -875,6 +880,7 @@ export class HTMLNSCollectionViewUpdateItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSControllerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-controller";
   readonly nativeObject = NSController.new();
 
   get isEditing(): boolean { return this.nativeObject.isEditing; }
@@ -887,11 +893,13 @@ export class HTMLNSControllerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSHelpManagerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-helpmanager";
   readonly nativeObject = NSHelpManager.new();
 
 }
 
 export class HTMLNSOpenGLPixelFormatElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-openglpixelformat";
   readonly nativeObject = NSOpenGLPixelFormat.new();
 
   get numberOfVirtualScreens(): number { return this.nativeObject.numberOfVirtualScreens; }
@@ -899,6 +907,7 @@ export class HTMLNSOpenGLPixelFormatElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextAttachmentElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textattachment";
   readonly nativeObject = NSTextAttachment.new();
 
   get contents(): NSData { return this.nativeObject.contents; }
@@ -927,6 +936,7 @@ export class HTMLNSTextAttachmentElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionViewLayoutElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionviewlayout";
   readonly nativeObject = NSCollectionViewLayout.new();
 
   get collectionView(): NSCollectionView { return this.nativeObject.collectionView; }
@@ -934,6 +944,7 @@ export class HTMLNSCollectionViewLayoutElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPasteboardItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-pasteboarditem";
   readonly nativeObject = NSPasteboardItem.new();
 
   get types(): NSArray { return this.nativeObject.types; }
@@ -946,6 +957,7 @@ export class HTMLNSPasteboardItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSScrubberFlowLayoutElement extends HTMLNSScrubberLayoutElement {
+  static readonly tagName: string = "ns-scrubberflowlayout";
   readonly nativeObject = NSScrubberFlowLayout.new();
 
   get itemSpacing(): number { return this.nativeObject.itemSpacing; }
@@ -955,6 +967,7 @@ export class HTMLNSScrubberFlowLayoutElement extends HTMLNSScrubberLayoutElement
 }
 
 export class HTMLNSTextElementElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textelement";
   readonly nativeObject = NSTextElement.new();
 
   get textContentManager(): NSTextContentManager { return this.nativeObject.textContentManager; }
@@ -967,6 +980,7 @@ export class HTMLNSTextElementElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextSelectionNavigationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textselectionnavigation";
   readonly nativeObject = NSTextSelectionNavigation.new();
 
   get textSelectionDataSource(): NSTextSelectionDataSource | null { return this.nativeObject.textSelectionDataSource; }
@@ -977,6 +991,7 @@ export class HTMLNSTextSelectionNavigationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextRangeElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textrange";
   readonly nativeObject = NSTextRange.new();
 
   get isEmpty(): boolean { return this.nativeObject.isEmpty; }
@@ -985,17 +1000,20 @@ export class HTMLNSTextRangeElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPressureConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-pressureconfiguration";
   readonly nativeObject = NSPressureConfiguration.new();
 
   get pressureBehavior(): interop.Enum<typeof NSPressureBehavior> { return this.nativeObject.pressureBehavior; }
 }
 
 export class HTMLNSHapticFeedbackManagerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-hapticfeedbackmanager";
   readonly nativeObject = NSHapticFeedbackManager.new();
 
 }
 
 export class HTMLNSTextBlockElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textblock";
   readonly nativeObject = NSTextBlock.new();
 
   get contentWidth(): number { return this.nativeObject.contentWidth; }
@@ -1007,6 +1025,7 @@ export class HTMLNSTextBlockElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextListElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textlist";
   readonly nativeObject = NSTextList.new();
 
   get markerFormat(): string { return this.nativeObject.markerFormat; }
@@ -1017,6 +1036,7 @@ export class HTMLNSTextListElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTreeNodeElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-treenode";
   readonly nativeObject = NSTreeNode.new();
 
   get representedObject(): interop.Object { return this.nativeObject.representedObject; }
@@ -1028,6 +1048,7 @@ export class HTMLNSTreeNodeElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSObjectControllerElement extends HTMLNSControllerElement {
+  static readonly tagName: string = "ns-objectcontroller";
   readonly nativeObject = NSObjectController.new();
 
   get content(): interop.Object { return this.nativeObject.content; }
@@ -1053,6 +1074,7 @@ export class HTMLNSObjectControllerElement extends HTMLNSControllerElement {
 }
 
 export class HTMLNSGlyphInfoElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-glyphinfo";
   readonly nativeObject = NSGlyphInfo.new();
 
   get glyphID(): number { return this.nativeObject.glyphID; }
@@ -1063,6 +1085,7 @@ export class HTMLNSGlyphInfoElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTableViewDiffableDataSourceElement<SectionIdentifierType = interop.Object, ItemIdentifierType = interop.Object> extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-tableviewdiffabledatasource";
   readonly nativeObject = NSTableViewDiffableDataSource.new();
 
   get rowViewProvider(): (p1: NSTableView, p2: number, p3: interop.Object) => NSTableRowView { return this.nativeObject.rowViewProvider; }
@@ -1080,6 +1103,7 @@ export class HTMLNSTableViewDiffableDataSourceElement<SectionIdentifierType = in
 }
 
 export class HTMLNSOpenGLPixelBufferElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-openglpixelbuffer";
   readonly nativeObject = NSOpenGLPixelBuffer.new();
 
   get CGLPBufferObj(): interop.Pointer { return this.nativeObject.CGLPBufferObj; }
@@ -1091,6 +1115,7 @@ export class HTMLNSOpenGLPixelBufferElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCellElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-cell";
   readonly nativeObject = NSCell.new();
 
   get controlView(): NSView { return this.nativeObject.controlView; }
@@ -1451,6 +1476,7 @@ export class HTMLNSCellElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSStatusItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-statusitem";
   readonly nativeObject = NSStatusItem.new();
 
   get statusBar(): NSStatusBar | null { return this.nativeObject.statusBar; }
@@ -1490,6 +1516,7 @@ export class HTMLNSStatusItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSSpeechRecognizerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-speechrecognizer";
   readonly nativeObject = NSSpeechRecognizer.new();
   get delegate(): NSSpeechRecognizerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -1513,6 +1540,7 @@ export class HTMLNSSpeechRecognizerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionLayoutGroupCustomItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionlayoutgroupcustomitem";
   readonly nativeObject = NSCollectionLayoutGroupCustomItem.new();
 
   get frame(): CGRect { return this.nativeObject.frame; }
@@ -1520,6 +1548,7 @@ export class HTMLNSCollectionLayoutGroupCustomItemElement extends HTMLNSObjectEl
 }
 
 export class HTMLNSTableViewRowActionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-tableviewrowaction";
   readonly nativeObject = NSTableViewRowAction.new();
 
   get styleNative(): interop.Enum<typeof NSTableViewRowActionStyle> { return this.nativeObject.style; }
@@ -1532,6 +1561,7 @@ export class HTMLNSTableViewRowActionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextAttachmentViewProviderElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textattachmentviewprovider";
   readonly nativeObject = NSTextAttachmentViewProvider.new();
 
   get textAttachment(): NSTextAttachment | null { return this.nativeObject.textAttachment; }
@@ -1544,6 +1574,7 @@ export class HTMLNSTextAttachmentViewProviderElement extends HTMLNSObjectElement
 }
 
 export class HTMLNSToolbarItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-toolbaritem";
   readonly nativeObject = NSToolbarItem.new();
 
   get itemIdentifier(): string { return this.nativeObject.itemIdentifier; }
@@ -1589,11 +1620,13 @@ export class HTMLNSToolbarItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSGlyphGeneratorElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-glyphgenerator";
   readonly nativeObject = NSGlyphGenerator.new();
 
 }
 
 export class HTMLNSGridCellElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-gridcell";
   nativeObject = NSGridCell.new();
 
   declare childSlot: 'contentView';
@@ -1630,11 +1663,13 @@ export class HTMLNSGridCellElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSColorSamplerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-colorsampler";
   readonly nativeObject = NSColorSampler.new();
 
 }
 
 export class HTMLNSPDFPanelElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-pdfpanel";
   readonly nativeObject = NSPDFPanel.new();
 
   get accessoryController(): NSViewController { return this.nativeObject.accessoryController; }
@@ -1646,6 +1681,7 @@ export class HTMLNSPDFPanelElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPageLayoutElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-pagelayout";
   readonly nativeObject = NSPageLayout.new();
 
   get accessoryControllers(): NSArray { return this.nativeObject.accessoryControllers; }
@@ -1653,6 +1689,7 @@ export class HTMLNSPageLayoutElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSScreenElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-screen";
   readonly nativeObject = NSScreen.new();
 
   get depth(): interop.Enum<typeof NSWindowDepth> { return this.nativeObject.depth; }
@@ -1677,11 +1714,13 @@ export class HTMLNSScreenElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSImageSymbolConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-imagesymbolconfiguration";
   readonly nativeObject = NSImageSymbolConfiguration.new();
 
 }
 
 export class HTMLNSRulerMarkerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-rulermarker";
   readonly nativeObject = NSRulerMarker.new();
 
   get ruler(): NSRulerView | null { return this.nativeObject.ruler; }
@@ -1703,6 +1742,7 @@ export class HTMLNSRulerMarkerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSFilePromiseReceiverElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-filepromisereceiver";
   readonly nativeObject = NSFilePromiseReceiver.new();
 
   get fileTypes(): NSArray { return this.nativeObject.fileTypes; }
@@ -1716,6 +1756,7 @@ export class HTMLNSFilePromiseReceiverElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSColorPickerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-colorpicker";
   readonly nativeObject = NSColorPicker.new();
 
   get colorPanel(): NSColorPanel { return this.nativeObject.colorPanel; }
@@ -1725,6 +1766,7 @@ export class HTMLNSColorPickerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSBrowserCellElement extends HTMLNSCellElement {
+  static readonly tagName: string = "ns-browsercell";
   readonly nativeObject = NSBrowserCell.new();
 
   get isLeaf(): boolean { return this.nativeObject.isLeaf; }
@@ -1738,6 +1780,7 @@ export class HTMLNSBrowserCellElement extends HTMLNSCellElement {
 }
 
 export class HTMLNSImageRepElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-imagerep";
   readonly nativeObject = NSImageRep.new();
 
   get size(): CGSize { return this.nativeObject.size; }
@@ -1759,6 +1802,7 @@ export class HTMLNSImageRepElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSFontCollectionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-fontcollection";
   readonly nativeObject = NSFontCollection.new();
 
   get queryDescriptors(): NSArray { return this.nativeObject.queryDescriptors; }
@@ -1767,6 +1811,7 @@ export class HTMLNSFontCollectionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSFontAssetRequestElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-fontassetrequest";
   readonly nativeObject = NSFontAssetRequest.new();
 
   get downloadedFontDescriptors(): NSArray { return this.nativeObject.downloadedFontDescriptors; }
@@ -1780,6 +1825,7 @@ export class HTMLNSFontAssetRequestElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSFontDescriptorElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-fontdescriptor";
   readonly nativeObject = NSFontDescriptor.new();
 
   get postscriptName(): string { return this.nativeObject.postscriptName; }
@@ -1791,6 +1837,7 @@ export class HTMLNSFontDescriptorElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSGradientElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-gradient";
   readonly nativeObject = NSGradient.new();
 
   get colorSpace(): NSColorSpace { return this.nativeObject.colorSpace; }
@@ -1798,6 +1845,7 @@ export class HTMLNSGradientElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionLayoutEdgeSpacingElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionlayoutedgespacing";
   readonly nativeObject = NSCollectionLayoutEdgeSpacing.new();
 
   get leading(): NSCollectionLayoutSpacing { return this.nativeObject.leading; }
@@ -1807,6 +1855,7 @@ export class HTMLNSCollectionLayoutEdgeSpacingElement extends HTMLNSObjectElemen
 }
 
 export class HTMLNSCollectionLayoutSizeElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionlayoutsize";
   readonly nativeObject = NSCollectionLayoutSize.new();
 
   get widthDimension(): NSCollectionLayoutDimension { return this.nativeObject.widthDimension; }
@@ -1814,6 +1863,7 @@ export class HTMLNSCollectionLayoutSizeElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSSharingServicePickerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-sharingservicepicker";
   readonly nativeObject = NSSharingServicePicker.new();
   get delegate(): NSSharingServicePickerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -1836,6 +1886,7 @@ export class HTMLNSSharingServicePickerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionViewCompositionalLayoutConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionviewcompositionallayoutconfiguration";
   readonly nativeObject = NSCollectionViewCompositionalLayoutConfiguration.new();
 
   get scrollDirection(): interop.Enum<typeof NSCollectionViewScrollDirection> { return this.nativeObject.scrollDirection; }
@@ -1847,6 +1898,7 @@ export class HTMLNSCollectionViewCompositionalLayoutConfigurationElement extends
 }
 
 export class HTMLNSCollectionViewLayoutInvalidationContextElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionviewlayoutinvalidationcontext";
   readonly nativeObject = NSCollectionViewLayoutInvalidationContext.new();
 
   get invalidateEverything(): boolean { return this.nativeObject.invalidateEverything; }
@@ -1861,6 +1913,7 @@ export class HTMLNSCollectionViewLayoutInvalidationContextElement extends HTMLNS
 }
 
 export class HTMLNSStoryboardSegueElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-storyboardsegue";
   readonly nativeObject = NSStoryboardSegue.new();
 
   get identifier(): string { return this.nativeObject.identifier; }
@@ -1869,6 +1922,7 @@ export class HTMLNSStoryboardSegueElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTouchBarElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-touchbar";
   readonly nativeObject = NSTouchBar.new();
   get delegate(): NSTouchBarDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -1900,6 +1954,7 @@ export class HTMLNSTouchBarElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSActionCellElement extends HTMLNSCellElement {
+  static readonly tagName: string = "ns-actioncell";
   readonly nativeObject = NSActionCell.new();
 
   get target(): interop.Object { return this.nativeObject.target; }
@@ -1911,6 +1966,7 @@ export class HTMLNSActionCellElement extends HTMLNSCellElement {
 }
 
 export class HTMLNSColorListElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-colorlist";
   readonly nativeObject = NSColorList.new();
 
   get name(): string { return this.nativeObject.name; }
@@ -1919,6 +1975,7 @@ export class HTMLNSColorListElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSDocumentElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-document";
   readonly nativeObject = NSDocument.new();
 
   get fileType(): string { return this.nativeObject.fileType; }
@@ -1977,11 +2034,13 @@ export class HTMLNSDocumentElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSBindingSelectionMarkerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-bindingselectionmarker";
   readonly nativeObject = NSBindingSelectionMarker.new();
 
 }
 
 export class HTMLNSTextTabElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-texttab";
   readonly nativeObject = NSTextTab.new();
 
   get alignment(): interop.Enum<typeof NSTextAlignment> { return this.nativeObject.alignment; }
@@ -1991,6 +2050,7 @@ export class HTMLNSTextTabElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSResponderElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-responder";
   readonly nativeObject = NSResponder.new();
 
   get nextResponder(): NSResponder { return this.nativeObject.nextResponder; }
@@ -2006,6 +2066,7 @@ export class HTMLNSResponderElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTouchElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-touch";
   readonly nativeObject = NSTouch.new();
 
   get identity(): NSCopying { return this.nativeObject.identity; }
@@ -2018,6 +2079,7 @@ export class HTMLNSTouchElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSWorkspaceElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-workspace";
   readonly nativeObject = NSWorkspace.new();
 
   get notificationCenter(): NSNotificationCenter { return this.nativeObject.notificationCenter; }
@@ -2036,6 +2098,7 @@ export class HTMLNSWorkspaceElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSAccessibilityElementElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-accessibilityelement";
   readonly nativeObject = NSAccessibilityElement.new();
 
   get accessibilityFrameInParentSpace(): CGRect { return this.nativeObject.accessibilityFrameInParentSpace; }
@@ -2297,11 +2360,13 @@ export class HTMLNSAccessibilityElementElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSNibElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-nib";
   readonly nativeObject = NSNib.new();
 
 }
 
 export class HTMLNSMenuToolbarItemElement extends HTMLNSToolbarItemElement {
+  static readonly tagName: string = "ns-menutoolbaritem";
   readonly nativeObject = NSMenuToolbarItem.new();
 
   get menu(): NSMenu { return this.nativeObject.menu; }
@@ -2311,6 +2376,7 @@ export class HTMLNSMenuToolbarItemElement extends HTMLNSToolbarItemElement {
 }
 
 export class HTMLNSSplitViewItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-splitviewitem";
   nativeObject = NSSplitViewItem.splitViewItemWithViewController(NSViewController.new());
 
   // We avoid the childSlot approach because we want to call regenerateItem, not
@@ -2430,6 +2496,7 @@ export class HTMLNSSplitViewItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSShadowElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-shadow";
   readonly nativeObject = NSShadow.new();
 
   get shadowOffset(): CGSize { return this.nativeObject.shadowOffset; }
@@ -2441,6 +2508,7 @@ export class HTMLNSShadowElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSInputManagerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-inputmanager";
   readonly nativeObject = NSInputManager.new();
 
   get selectedRange(): _NSRange { return this.nativeObject.selectedRange; }
@@ -2448,6 +2516,7 @@ export class HTMLNSInputManagerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSEventElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-event";
   readonly nativeObject = NSEvent.new();
 
   get type(): interop.Enum<typeof NSEventType> { return this.nativeObject.type; }
@@ -2509,6 +2578,7 @@ export class HTMLNSEventElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSSliderAccessoryElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-slideraccessory";
   readonly nativeObject = NSSliderAccessory.new();
 
   get behavior(): NSSliderAccessoryBehavior { return this.nativeObject.behavior; }
@@ -2518,6 +2588,7 @@ export class HTMLNSSliderAccessoryElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSAccessibilityCustomRotorItemResultElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-accessibilitycustomrotoritemresult";
   readonly nativeObject = NSAccessibilityCustomRotorItemResult.new();
 
   get targetElement(): NSAccessibilityElement { return this.nativeObject.targetElement; }
@@ -2529,6 +2600,7 @@ export class HTMLNSAccessibilityCustomRotorItemResultElement extends HTMLNSObjec
 }
 
 export class HTMLNSPasteboardElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-pasteboard";
   readonly nativeObject = NSPasteboard.new();
 
   get name(): string { return this.nativeObject.name; }
@@ -2538,6 +2610,7 @@ export class HTMLNSPasteboardElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSWindowElement extends HTMLNSResponderElement {
+  static readonly tagName: string = "ns-window";
   readonly nativeObject = NSWindow.new();
   get delegate(): NSWindowDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -3159,6 +3232,7 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
 }
 
 export class HTMLNSScrubberLayoutAttributesElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-scrubberlayoutattributes";
   readonly nativeObject = NSScrubberLayoutAttributes.new();
 
   get itemIndex(): number { return this.nativeObject.itemIndex; }
@@ -3170,6 +3244,7 @@ export class HTMLNSScrubberLayoutAttributesElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextLayoutFragmentElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textlayoutfragment";
   readonly nativeObject = NSTextLayoutFragment.new();
 
   get textLayoutManager(): NSTextLayoutManager { return this.nativeObject.textLayoutManager; }
@@ -3189,6 +3264,7 @@ export class HTMLNSTextLayoutFragmentElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCursorElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-cursor";
   readonly nativeObject = NSCursor.new();
 
   get image(): NSImage { return this.nativeObject.image; }
@@ -3198,6 +3274,7 @@ export class HTMLNSCursorElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTabViewItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-tabviewitem";
   readonly nativeObject = NSTabViewItem.new();
 
   get identifier(): interop.Object { return this.nativeObject.identifier; }
@@ -3221,6 +3298,7 @@ export class HTMLNSTabViewItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSMenuItemBadgeElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-menuitembadge";
   readonly nativeObject = NSMenuItemBadge.new();
 
   get itemCount(): number { return this.nativeObject.itemCount; }
@@ -3229,6 +3307,7 @@ export class HTMLNSMenuItemBadgeElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSGridColumnElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-gridcolumn";
   nativeObject = NSGridColumn.new();
 
   protected get nativeChildNodesImpl(): NSMutableArray<NSGridCell> {
@@ -3332,6 +3411,7 @@ export class HTMLNSGridColumnElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPathCellElement extends HTMLNSActionCellElement {
+  static readonly tagName: string = "ns-pathcell";
   readonly nativeObject = NSPathCell.new();
   get delegate(): NSPathCellDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -3373,11 +3453,13 @@ export class HTMLNSPathCellElement extends HTMLNSActionCellElement {
 }
 
 export class HTMLNSWorkspaceAuthorizationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-workspaceauthorization";
   readonly nativeObject = NSWorkspaceAuthorization.new();
 
 }
 
 export class HTMLNSTextLayoutManagerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textlayoutmanager";
   readonly nativeObject = NSTextLayoutManager.new();
   get delegate(): NSTextLayoutManagerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -3425,6 +3507,7 @@ export class HTMLNSTextLayoutManagerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSWindowTabElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-windowtab";
   readonly nativeObject = NSWindowTab.new();
 
   get titleNative(): string { return this.nativeObject.title; }
@@ -3438,6 +3521,7 @@ export class HTMLNSWindowTabElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSDrawerElement extends HTMLNSResponderElement {
+  static readonly tagName: string = "ns-drawer";
   readonly nativeObject = NSDrawer.new();
   get delegate(): NSDrawerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -3748,6 +3832,7 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
 }
 
 export class HTMLNSLayoutManagerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-layoutmanager";
   readonly nativeObject = NSLayoutManager.new();
   get delegate(): NSLayoutManagerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -3835,6 +3920,7 @@ export class HTMLNSLayoutManagerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSSharingServiceElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-sharingservice";
   readonly nativeObject = NSSharingService.new();
   get delegate(): NSSharingServiceDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -3881,6 +3967,7 @@ export class HTMLNSSharingServiceElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTreeControllerElement extends HTMLNSObjectControllerElement {
+  static readonly tagName: string = "ns-treecontroller";
   readonly nativeObject = NSTreeController.new();
 
   get arrangedObjects(): NSTreeNode { return this.nativeObject.arrangedObjects; }
@@ -3912,6 +3999,7 @@ export class HTMLNSTreeControllerElement extends HTMLNSObjectControllerElement {
 }
 
 export class HTMLNSTypesetterElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-typesetter";
   readonly nativeObject = NSTypesetter.new();
 
   get usesFontLeading(): boolean { return this.nativeObject.usesFontLeading; }
@@ -3938,11 +4026,13 @@ export class HTMLNSTypesetterElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSScrubberSelectionStyleElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-scrubberselectionstyle";
   readonly nativeObject = NSScrubberSelectionStyle.new();
 
 }
 
 export class HTMLNSPreviewRepresentingActivityItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-previewrepresentingactivityitem";
   readonly nativeObject = NSPreviewRepresentingActivityItem.new();
 
   get item(): interop.Object { return this.nativeObject.item; }
@@ -3958,6 +4048,7 @@ export class HTMLNSPreviewRepresentingActivityItemElement extends HTMLNSObjectEl
 }
 
 export class HTMLNSDraggingSessionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-draggingsession";
   readonly nativeObject = NSDraggingSession.new();
 
   get draggingFormation(): interop.Enum<typeof NSDraggingFormation> { return this.nativeObject.draggingFormation; }
@@ -3972,6 +4063,7 @@ export class HTMLNSDraggingSessionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionViewDiffableDataSourceElement<SectionIdentifierType = interop.Object, ItemIdentifierType = interop.Object> extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionviewdiffabledatasource";
   readonly nativeObject = NSCollectionViewDiffableDataSource.new();
 
   get supplementaryViewProvider(): (p1: NSCollectionView, p2: string, p3: NSIndexPath) => NSView { return this.nativeObject.supplementaryViewProvider; }
@@ -3985,6 +4077,7 @@ export class HTMLNSCollectionViewDiffableDataSourceElement<SectionIdentifierType
 }
 
 export class HTMLNSTextContentManagerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textcontentmanager";
   readonly nativeObject = NSTextContentManager.new();
   get delegate(): NSTextContentManagerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -4018,6 +4111,7 @@ export class HTMLNSTextContentManagerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPrinterElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-printer";
   readonly nativeObject = NSPrinter.new();
 
   get name(): string { return this.nativeObject.name; }
@@ -4027,6 +4121,7 @@ export class HTMLNSPrinterElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSAppearanceElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-appearance";
   readonly nativeObject = NSAppearance.new();
 
   get name(): string { return this.nativeObject.name; }
@@ -4034,6 +4129,7 @@ export class HTMLNSAppearanceElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextInputContextElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textinputcontext";
   readonly nativeObject = NSTextInputContext.new();
 
   get client(): NSTextInputClient { return this.nativeObject.client; }
@@ -4047,6 +4143,7 @@ export class HTMLNSTextInputContextElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCustomImageRepElement extends HTMLNSImageRepElement {
+  static readonly tagName: string = "ns-customimagerep";
   readonly nativeObject = NSCustomImageRep.new();
 
   get drawingHandler(): (p1: CGRect) => boolean { return this.nativeObject.drawingHandler; }
@@ -4055,6 +4152,7 @@ export class HTMLNSCustomImageRepElement extends HTMLNSImageRepElement {
 }
 
 export class HTMLNSTextCheckingControllerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textcheckingcontroller";
   readonly nativeObject = NSTextCheckingController.new();
 
   get client(): NSTextCheckingClient { return this.nativeObject.client; }
@@ -4063,6 +4161,7 @@ export class HTMLNSTextCheckingControllerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSColorSpaceElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-colorspace";
   readonly nativeObject = NSColorSpace.new();
 
   get ICCProfileData(): NSData { return this.nativeObject.ICCProfileData; }
@@ -4074,6 +4173,7 @@ export class HTMLNSColorSpaceElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSAnimationContextElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-animationcontext";
   readonly nativeObject = NSAnimationContext.new();
 
   get duration(): number { return this.nativeObject.duration; }
@@ -4087,6 +4187,7 @@ export class HTMLNSAnimationContextElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSStringDrawingContextElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-stringdrawingcontext";
   readonly nativeObject = NSStringDrawingContext.new();
 
   get minimumScaleFactor(): number { return this.nativeObject.minimumScaleFactor; }
@@ -4096,6 +4197,7 @@ export class HTMLNSStringDrawingContextElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSBezierPathElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-bezierpath";
   readonly nativeObject = NSBezierPath.new();
 
   get CGPath(): interop.Pointer { return this.nativeObject.CGPath; }
@@ -4122,6 +4224,7 @@ export class HTMLNSBezierPathElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSAccessibilityCustomActionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-accessibilitycustomaction";
   readonly nativeObject = NSAccessibilityCustomAction.new();
 
   get name(): string { return this.nativeObject.name; }
@@ -4135,6 +4238,7 @@ export class HTMLNSAccessibilityCustomActionElement extends HTMLNSObjectElement 
 }
 
 export class HTMLNSViewElement extends HTMLNSResponderElement {
+  static readonly tagName: string = "ns-view";
   readonly nativeObject = NSView.new();
 
   protected get nativeChildNodesImpl(): NSArray<NSView> {
@@ -4571,6 +4675,7 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
 }
 
 export class HTMLNSImageElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-image";
   readonly nativeObject = NSImage.new();
   get delegate(): NSImageDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -4627,6 +4732,7 @@ export class HTMLNSImageElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSToolbarElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-toolbar";
   readonly nativeObject = NSToolbar.new();
   get delegate(): NSToolbarDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -4694,6 +4800,7 @@ export class HTMLNSToolbarElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTabViewElement extends HTMLNSViewElement {
+  static readonly tagName: string = "ns-tabview";
   readonly nativeObject = NSTabView.new();
   get delegate(): NSTabViewDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -4765,6 +4872,7 @@ export class HTMLNSTabViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSApplicationElement extends HTMLNSResponderElement {
+  static readonly tagName: string = "ns-application";
   readonly nativeObject = NSApplication.sharedApplication;
   get delegate(): NSApplicationDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -5204,6 +5312,7 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
 }
 
 export class HTMLNSTouchBarItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-touchbaritem";
   readonly nativeObject = NSTouchBarItem.new();
 
   get identifier(): string { return this.nativeObject.identifier; }
@@ -5216,6 +5325,7 @@ export class HTMLNSTouchBarItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCandidateListTouchBarItemElement<CandidateType = interop.Object> extends HTMLNSTouchBarItemElement {
+  static readonly tagName: string = "ns-candidatelisttouchbaritem";
   // @ts-ignore
   readonly nativeObject = NSCandidateListTouchBarItem.new();
   get delegate(): NSCandidateListTouchBarItemDelegateImpl {
@@ -5255,6 +5365,7 @@ export class HTMLNSCandidateListTouchBarItemElement<CandidateType = interop.Obje
 }
 
 export class HTMLNSWindowControllerElement extends HTMLNSResponderElement {
+  static readonly tagName: string = "ns-windowcontroller";
   readonly nativeObject = NSWindowController.new();
 
   get windowNibName(): string { return this.nativeObject.windowNibName; }
@@ -5285,6 +5396,7 @@ export class HTMLNSWindowControllerElement extends HTMLNSResponderElement {
 }
 
 export class HTMLNSTextFieldCellElement extends HTMLNSActionCellElement {
+  static readonly tagName: string = "ns-textfieldcell";
   readonly nativeObject = NSTextFieldCell.new();
 
   get backgroundColor(): NSColor { return this.nativeObject.backgroundColor; }
@@ -5304,6 +5416,7 @@ export class HTMLNSTextFieldCellElement extends HTMLNSActionCellElement {
 }
 
 export class HTMLNSSliderCellElement extends HTMLNSActionCellElement {
+  static readonly tagName: string = "ns-slidercell";
   // @ts-ignore
   readonly nativeObject = NSSliderCell.new();
 
@@ -5332,6 +5445,7 @@ export class HTMLNSSliderCellElement extends HTMLNSActionCellElement {
 }
 
 export class HTMLNSTokenFieldCellElement extends HTMLNSTextFieldCellElement {
+  static readonly tagName: string = "ns-tokenfieldcell";
   readonly nativeObject = NSTokenFieldCell.new();
   get delegate(): NSTokenFieldCellDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -5380,6 +5494,7 @@ export class HTMLNSTokenFieldCellElement extends HTMLNSTextFieldCellElement {
 }
 
 export class HTMLNSSharingServicePickerToolbarItemElement extends HTMLNSToolbarItemElement {
+  static readonly tagName: string = "ns-sharingservicepickertoolbaritem";
   readonly nativeObject = NSSharingServicePickerToolbarItem.new();
 
   get delegate(): NSSharingServicePickerToolbarItemDelegate | null { return this.nativeObject.delegate; }
@@ -5387,6 +5502,7 @@ export class HTMLNSSharingServicePickerToolbarItemElement extends HTMLNSToolbarI
 }
 
 export class HTMLNSButtonTouchBarItemElement extends HTMLNSTouchBarItemElement {
+  static readonly tagName: string = "ns-buttontouchbaritem";
   // @ts-ignore
   readonly nativeObject = NSButtonTouchBarItem.new();
 
@@ -5407,6 +5523,7 @@ export class HTMLNSButtonTouchBarItemElement extends HTMLNSTouchBarItemElement {
 }
 
 export class HTMLNSTextTableBlockElement extends HTMLNSTextBlockElement {
+  static readonly tagName: string = "ns-texttableblock";
   readonly nativeObject = NSTextTableBlock.new();
 
   get table(): NSTextTable { return this.nativeObject.table; }
@@ -5417,6 +5534,7 @@ export class HTMLNSTextTableBlockElement extends HTMLNSTextBlockElement {
 }
 
 export class HTMLNSComboBoxCellElement extends HTMLNSTextFieldCellElement {
+  static readonly tagName: string = "ns-comboboxcell";
   readonly nativeObject = NSComboBoxCell.new();
 
   get hasVerticalScroller(): boolean { return this.nativeObject.hasVerticalScroller; }
@@ -5442,6 +5560,7 @@ export class HTMLNSComboBoxCellElement extends HTMLNSTextFieldCellElement {
 }
 
 export class HTMLNSSecureTextFieldCellElement extends HTMLNSTextFieldCellElement {
+  static readonly tagName: string = "ns-securetextfieldcell";
   readonly nativeObject = NSSecureTextFieldCell.new();
 
   get echosBullets(): boolean { return this.nativeObject.echosBullets; }
@@ -5449,6 +5568,7 @@ export class HTMLNSSecureTextFieldCellElement extends HTMLNSTextFieldCellElement
 }
 
 export class HTMLNSTrackingSeparatorToolbarItemElement extends HTMLNSToolbarItemElement {
+  static readonly tagName: string = "ns-trackingseparatortoolbaritem";
   readonly nativeObject = NSTrackingSeparatorToolbarItem.new();
 
   get splitView(): NSSplitView { return this.nativeObject.splitView; }
@@ -5458,6 +5578,7 @@ export class HTMLNSTrackingSeparatorToolbarItemElement extends HTMLNSToolbarItem
 }
 
 export class HTMLNSStepperCellElement extends HTMLNSActionCellElement {
+  static readonly tagName: string = "ns-steppercell";
   readonly nativeObject = NSStepperCell.new();
 
   get minValue(): number { return this.nativeObject.minValue; }
@@ -5473,6 +5594,7 @@ export class HTMLNSStepperCellElement extends HTMLNSActionCellElement {
 }
 
 export class HTMLNSPopoverTouchBarItemElement extends HTMLNSTouchBarItemElement {
+  static readonly tagName: string = "ns-popovertouchbaritem";
   // @ts-ignore
   readonly nativeObject = NSPopoverTouchBarItem.new();
 
@@ -5493,6 +5615,7 @@ export class HTMLNSPopoverTouchBarItemElement extends HTMLNSTouchBarItemElement 
 }
 
 export class HTMLNSPersistentDocumentElement extends HTMLNSDocumentElement {
+  static readonly tagName: string = "ns-persistentdocument";
   // @ts-ignore
   readonly nativeObject = NSPersistentDocument.new();
 
@@ -5502,6 +5625,7 @@ export class HTMLNSPersistentDocumentElement extends HTMLNSDocumentElement {
 }
 
 export class HTMLNSColorPickerTouchBarItemElement extends HTMLNSTouchBarItemElement {
+  static readonly tagName: string = "ns-colorpickertouchbaritem";
   // @ts-ignore
   readonly nativeObject = NSColorPickerTouchBarItem.new();
 
@@ -5524,6 +5648,7 @@ export class HTMLNSColorPickerTouchBarItemElement extends HTMLNSTouchBarItemElem
 }
 
 export class HTMLNSEPSImageRepElement extends HTMLNSImageRepElement {
+  static readonly tagName: string = "ns-epsimagerep";
   readonly nativeObject = NSEPSImageRep.new();
 
   get boundingBox(): CGRect { return this.nativeObject.boundingBox; }
@@ -5531,12 +5656,14 @@ export class HTMLNSEPSImageRepElement extends HTMLNSImageRepElement {
 }
 
 export class HTMLNSCIImageRepElement extends HTMLNSImageRepElement {
+  static readonly tagName: string = "ns-ciimagerep";
   readonly nativeObject = NSCIImageRep.new();
 
   get CIImage(): CIImage { return this.nativeObject.CIImage; }
 }
 
 export class HTMLNSBitmapImageRepElement extends HTMLNSImageRepElement {
+  static readonly tagName: string = "ns-bitmapimagerep";
   readonly nativeObject = NSBitmapImageRep.new();
 
   get bitmapData(): interop.Pointer { return this.nativeObject.bitmapData; }
@@ -5553,6 +5680,7 @@ export class HTMLNSBitmapImageRepElement extends HTMLNSImageRepElement {
 }
 
 export class HTMLNSMutableFontCollectionElement extends HTMLNSFontCollectionElement {
+  static readonly tagName: string = "ns-mutablefontcollection";
   // @ts-ignore
   readonly nativeObject = NSMutableFontCollection.new();
 
@@ -5563,6 +5691,7 @@ export class HTMLNSMutableFontCollectionElement extends HTMLNSFontCollectionElem
 }
 
 export class HTMLNSCollectionViewElement extends HTMLNSViewElement {
+  static readonly tagName: string = "ns-collectionview";
   readonly nativeObject = NSCollectionView.new();
   get delegate(): NSCollectionViewDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -5704,6 +5833,7 @@ export class HTMLNSCollectionViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSButtonCellElement extends HTMLNSActionCellElement {
+  static readonly tagName: string = "ns-buttoncell";
   // @ts-ignore
   readonly nativeObject = NSButtonCell.new();
 
@@ -5749,6 +5879,7 @@ export class HTMLNSButtonCellElement extends HTMLNSActionCellElement {
 }
 
 export class HTMLNSBoxElement extends HTMLNSViewElement {
+  static readonly tagName: string = "ns-box";
   readonly nativeObject = NSBox.new();
 
   declare childSlot: 'contentView';
@@ -5786,6 +5917,7 @@ export class HTMLNSBoxElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSScrollViewElement extends HTMLNSViewElement {
+  static readonly tagName: string = "ns-scrollview";
   // @ts-ignore
   readonly nativeObject = NSScrollView.new();
 
@@ -5881,6 +6013,7 @@ export class HTMLNSScrollViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSATSTypesetterElement extends HTMLNSTypesetterElement {
+  static readonly tagName: string = "ns-atstypesetter";
   readonly nativeObject = NSATSTypesetter.new();
 
   get usesFontLeading(): boolean { return this.nativeObject.usesFontLeading; }
@@ -5902,6 +6035,7 @@ export class HTMLNSATSTypesetterElement extends HTMLNSTypesetterElement {
 }
 
 export class HTMLNSTableCellViewElement extends HTMLNSViewElement {
+  static readonly tagName: string = "ns-tablecellview";
   readonly nativeObject = NSTableCellView.new();
 
   get objectValue(): interop.Object { return this.nativeObject.objectValue; }
@@ -5918,6 +6052,7 @@ export class HTMLNSTableCellViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSVisualEffectViewElement extends HTMLNSViewElement {
+  static readonly tagName: string = "ns-visualeffectview";
   readonly nativeObject = NSVisualEffectView.new();
 
   get material(): interop.Enum<typeof NSVisualEffectMaterial> { return this.nativeObject.material; }
@@ -5934,6 +6069,7 @@ export class HTMLNSVisualEffectViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSTableRowViewElement extends HTMLNSViewElement {
+  static readonly tagName: string = "ns-tablerowview";
   readonly nativeObject = NSTableRowView.new();
 
   get selectionHighlightStyle(): interop.Enum<typeof NSTableViewSelectionHighlightStyle> { return this.nativeObject.selectionHighlightStyle; }
@@ -5981,6 +6117,7 @@ export class HTMLNSTableRowViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSCollectionViewGridLayoutElement extends HTMLNSCollectionViewLayoutElement {
+  static readonly tagName: string = "ns-collectionviewgridlayout";
   readonly nativeObject = NSCollectionViewGridLayout.new();
 
   get margins(): NSEdgeInsets { return this.nativeObject.margins; }
@@ -6002,6 +6139,7 @@ export class HTMLNSCollectionViewGridLayoutElement extends HTMLNSCollectionViewL
 }
 
 export class HTMLNSCollectionLayoutSpacingElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionlayoutspacing";
   readonly nativeObject = NSCollectionLayoutSpacing.new();
 
   get spacing(): number { return this.nativeObject.spacing; }
@@ -6010,11 +6148,13 @@ export class HTMLNSCollectionLayoutSpacingElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCachedImageRepElement extends HTMLNSImageRepElement {
+  static readonly tagName: string = "ns-cachedimagerep";
   readonly nativeObject = NSCachedImageRep.new();
 
 }
 
 export class HTMLNSDockTileElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-docktile";
   readonly nativeObject = NSDockTile.new();
 
   declare childSlot: 'contentView';
@@ -6033,6 +6173,7 @@ export class HTMLNSDockTileElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSAlertElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-alert";
   readonly nativeObject = NSAlert.new();
   get delegate(): NSAlertDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -6067,6 +6208,7 @@ export class HTMLNSAlertElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextLineFragmentElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textlinefragment";
   readonly nativeObject = NSTextLineFragment.new();
 
   get attributedString(): NSAttributedString { return this.nativeObject.attributedString; }
@@ -6076,6 +6218,7 @@ export class HTMLNSTextLineFragmentElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextSelectionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textselection";
   readonly nativeObject = NSTextSelection.new();
 
   get textRanges(): NSArray { return this.nativeObject.textRanges; }
@@ -6093,11 +6236,13 @@ export class HTMLNSTextSelectionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSAlignmentFeedbackFilterElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-alignmentfeedbackfilter";
   readonly nativeObject = NSAlignmentFeedbackFilter.new();
 
 }
 
 export class HTMLNSParagraphStyleElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-paragraphstyle";
   readonly nativeObject = NSParagraphStyle.new();
 
   get lineSpacing(): number { return this.nativeObject.lineSpacing; }
@@ -6125,6 +6270,7 @@ export class HTMLNSParagraphStyleElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSDictionaryControllerKeyValuePairElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-dictionarycontrollerkeyvaluepair";
   readonly nativeObject = NSDictionaryControllerKeyValuePair.new();
 
   get key(): string { return this.nativeObject.key; }
@@ -6137,6 +6283,7 @@ export class HTMLNSDictionaryControllerKeyValuePairElement extends HTMLNSObjectE
 }
 
 export class HTMLNSOpenGLViewElement extends HTMLNSViewElement {
+  static readonly tagName: string = "ns-openglview";
   readonly nativeObject = NSOpenGLView.new();
 
   get openGLContext(): NSOpenGLContext { return this.nativeObject.openGLContext; }
@@ -6150,11 +6297,13 @@ export class HTMLNSOpenGLViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSMovieElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-movie";
   readonly nativeObject = NSMovie.new();
 
 }
 
 export class HTMLNSDataAssetElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-dataasset";
   readonly nativeObject = NSDataAsset.new();
 
   get name(): string { return this.nativeObject.name; }
@@ -6163,6 +6312,7 @@ export class HTMLNSDataAssetElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTableHeaderViewElement extends HTMLNSViewElement {
+  static readonly tagName: string = "ns-tableheaderview";
   readonly nativeObject = NSTableHeaderView.new();
 
   get tableView(): NSTableView { return this.nativeObject.tableView; }
@@ -6179,6 +6329,7 @@ export class HTMLNSTableHeaderViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSTextInsertionIndicatorElement extends HTMLNSViewElement {
+  static readonly tagName: string = "ns-textinsertionindicator";
   readonly nativeObject = NSTextInsertionIndicator.new();
 
   get displayMode(): interop.Enum<typeof NSTextInsertionIndicatorDisplayMode> { return this.nativeObject.displayMode; }
@@ -6192,6 +6343,7 @@ export class HTMLNSTextInsertionIndicatorElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSSegmentedCellElement extends HTMLNSActionCellElement {
+  static readonly tagName: string = "ns-segmentedcell";
   readonly nativeObject = NSSegmentedCell.new();
 
   get segmentCount(): number { return this.nativeObject.segmentCount; }
@@ -6205,16 +6357,19 @@ export class HTMLNSSegmentedCellElement extends HTMLNSActionCellElement {
 }
 
 export class HTMLNSSliderAccessoryBehaviorElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-slideraccessorybehavior";
   readonly nativeObject = NSSliderAccessoryBehavior.new();
 
 }
 
 export class HTMLNSInputServerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-inputserver";
   readonly nativeObject = NSInputServer.new();
 
 }
 
 export class HTMLNSFormCellElement extends HTMLNSActionCellElement {
+  static readonly tagName: string = "ns-formcell";
   // @ts-ignore
   readonly nativeObject = NSFormCell.new();
 
@@ -6240,6 +6395,7 @@ export class HTMLNSFormCellElement extends HTMLNSActionCellElement {
 }
 
 export class HTMLNSFontElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-font";
   readonly nativeObject = NSFont.new();
 
   get fontName(): string { return this.nativeObject.fontName; }
@@ -6271,6 +6427,7 @@ export class HTMLNSFontElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSLayoutAnchorElement<AnchorType = interop.Object> extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-layoutanchor";
   readonly nativeObject = NSLayoutAnchor.new();
 
   get name(): string { return this.nativeObject.name; }
@@ -6280,6 +6437,7 @@ export class HTMLNSLayoutAnchorElement<AnchorType = interop.Object> extends HTML
 }
 
 export class HTMLNSCollectionLayoutDimensionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionlayoutdimension";
   readonly nativeObject = NSCollectionLayoutDimension.new();
 
   get isFractionalWidth(): boolean { return this.nativeObject.isFractionalWidth; }
@@ -6290,6 +6448,7 @@ export class HTMLNSCollectionLayoutDimensionElement extends HTMLNSObjectElement 
 }
 
 export class HTMLNSCollectionViewLayoutAttributesElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionviewlayoutattributes";
   readonly nativeObject = NSCollectionViewLayoutAttributes.new();
 
   get frame(): CGRect { return this.nativeObject.frame; }
@@ -6309,12 +6468,14 @@ export class HTMLNSCollectionViewLayoutAttributesElement extends HTMLNSObjectEle
 }
 
 export class HTMLNSUserInterfaceCompressionOptionsElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-userinterfacecompressionoptions";
   readonly nativeObject = NSUserInterfaceCompressionOptions.new();
 
   get isEmpty(): boolean { return this.nativeObject.isEmpty; }
 }
 
 export class HTMLNSTextAttachmentCellElement extends HTMLNSCellElement {
+  static readonly tagName: string = "ns-textattachmentcell";
   // @ts-ignore
   readonly nativeObject = NSTextAttachmentCell.new();
 
@@ -6330,6 +6491,7 @@ export class HTMLNSTextAttachmentCellElement extends HTMLNSCellElement {
 }
 
 export class HTMLNSMenuItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-menuitem";
   readonly nativeObject = NSMenuItem.new();
 
   get menu(): NSMenu { return this.nativeObject.menu; }
@@ -6648,6 +6810,7 @@ export class HTMLNSMenuItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPrintOperationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-printoperation";
   readonly nativeObject = NSPrintOperation.new();
 
   get isCopyingOperation(): boolean { return this.nativeObject.isCopyingOperation; }
@@ -6675,6 +6838,7 @@ export class HTMLNSPrintOperationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSAccessibilityCustomRotorElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-accessibilitycustomrotor";
   readonly nativeObject = NSAccessibilityCustomRotor.new();
 
   get type(): interop.Enum<typeof NSAccessibilityCustomRotorType> { return this.nativeObject.type; }
@@ -6688,6 +6852,7 @@ export class HTMLNSAccessibilityCustomRotorElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSClipViewElement extends HTMLNSViewElement {
+  static readonly tagName: string = "ns-clipview";
   readonly nativeObject = NSClipView.new();
 
   declare childSlot: 'documentView';
@@ -6714,6 +6879,7 @@ export class HTMLNSClipViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSPopoverElement extends HTMLNSResponderElement {
+  static readonly tagName: string = "ns-popover";
   readonly nativeObject = NSPopover.new();
   get delegate(): NSPopoverDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -7021,6 +7187,7 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
 }
 
 export class HTMLNSCustomTouchBarItemElement extends HTMLNSTouchBarItemElement {
+  static readonly tagName: string = "ns-customtouchbaritem";
   // @ts-ignore
   readonly nativeObject = NSCustomTouchBarItem.new();
 
@@ -7033,6 +7200,7 @@ export class HTMLNSCustomTouchBarItemElement extends HTMLNSTouchBarItemElement {
 }
 
 export class HTMLNSGestureRecognizerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-gesturerecognizer";
   readonly nativeObject = NSGestureRecognizer.new();
   get delegate(): NSGestureRecognizerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -7087,6 +7255,7 @@ export class HTMLNSGestureRecognizerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSStatusBarElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-statusbar";
   readonly nativeObject = NSStatusBar.new();
 
   get isVertical(): boolean { return this.nativeObject.isVertical; }
@@ -7094,6 +7263,7 @@ export class HTMLNSStatusBarElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPDFInfoElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-pdfinfo";
   readonly nativeObject = NSPDFInfo.new();
 
   get URL(): NSURL { return this.nativeObject.URL; }
@@ -7110,6 +7280,7 @@ export class HTMLNSPDFInfoElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextTableElement extends HTMLNSTextBlockElement {
+  static readonly tagName: string = "ns-texttable";
   readonly nativeObject = NSTextTable.new();
 
   get numberOfColumns(): number { return this.nativeObject.numberOfColumns; }
@@ -7123,6 +7294,7 @@ export class HTMLNSTextTableElement extends HTMLNSTextBlockElement {
 }
 
 export class HTMLNSCollectionViewFlowLayoutInvalidationContextElement extends HTMLNSCollectionViewLayoutInvalidationContextElement {
+  static readonly tagName: string = "ns-collectionviewflowlayoutinvalidationcontext";
   readonly nativeObject = NSCollectionViewFlowLayoutInvalidationContext.new();
 
   get invalidateFlowLayoutDelegateMetrics(): boolean { return this.nativeObject.invalidateFlowLayoutDelegateMetrics; }
@@ -7132,6 +7304,7 @@ export class HTMLNSCollectionViewFlowLayoutInvalidationContextElement extends HT
 }
 
 export class HTMLNSPrintPanelElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-printpanel";
   readonly nativeObject = NSPrintPanel.new();
 
   get accessoryControllers(): NSArray { return this.nativeObject.accessoryControllers; }
@@ -7145,6 +7318,7 @@ export class HTMLNSPrintPanelElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSDocumentControllerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-documentcontroller";
   readonly nativeObject = NSDocumentController.new();
 
   get documents(): NSArray { return this.nativeObject.documents; }
@@ -7167,6 +7341,7 @@ export class HTMLNSDocumentControllerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSStepperTouchBarItemElement extends HTMLNSTouchBarItemElement {
+  static readonly tagName: string = "ns-steppertouchbaritem";
   // @ts-ignore
   readonly nativeObject = NSStepperTouchBarItem.new();
 
@@ -7187,6 +7362,7 @@ export class HTMLNSStepperTouchBarItemElement extends HTMLNSTouchBarItemElement 
 }
 
 export class HTMLNSPrintInfoElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-printinfo";
   readonly nativeObject = NSPrintInfo.new();
 
   get paperName(): string { return this.nativeObject.paperName; }
@@ -7225,6 +7401,7 @@ export class HTMLNSPrintInfoElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextFinderElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textfinder";
   readonly nativeObject = NSTextFinder.new();
 
   get client(): NSTextFinderClient { return this.nativeObject.client; }
@@ -7241,6 +7418,7 @@ export class HTMLNSTextFinderElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionViewTransitionLayoutElement extends HTMLNSCollectionViewLayoutElement {
+  static readonly tagName: string = "ns-collectionviewtransitionlayout";
   readonly nativeObject = NSCollectionViewTransitionLayout.new();
 
   get transitionProgress(): number { return this.nativeObject.transitionProgress; }
@@ -7250,6 +7428,7 @@ export class HTMLNSCollectionViewTransitionLayoutElement extends HTMLNSCollectio
 }
 
 export class HTMLNSToolbarItemGroupElement extends HTMLNSToolbarItemElement {
+  static readonly tagName: string = "ns-toolbaritemgroup";
   readonly nativeObject = NSToolbarItemGroup.new();
 
   get subitems(): NSArray { return this.nativeObject.subitems; }
@@ -7263,6 +7442,7 @@ export class HTMLNSToolbarItemGroupElement extends HTMLNSToolbarItemElement {
 }
 
 export class HTMLNSTableColumnElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-tablecolumn";
   readonly nativeObject = NSTableColumn.new();
 
   get identifier(): string { return this.nativeObject.identifier; }
@@ -7294,6 +7474,7 @@ export class HTMLNSTableColumnElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPICTImageRepElement extends HTMLNSImageRepElement {
+  static readonly tagName: string = "ns-pictimagerep";
   readonly nativeObject = NSPICTImageRep.new();
 
   get PICTRepresentation(): NSData { return this.nativeObject.PICTRepresentation; }
@@ -7301,6 +7482,7 @@ export class HTMLNSPICTImageRepElement extends HTMLNSImageRepElement {
 }
 
 export class HTMLNSWorkspaceOpenConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-workspaceopenconfiguration";
   readonly nativeObject = NSWorkspaceOpenConfiguration.new();
 
   get promptsUserIfNeeded(): boolean { return this.nativeObject.promptsUserIfNeeded; }
@@ -7332,6 +7514,7 @@ export class HTMLNSWorkspaceOpenConfigurationElement extends HTMLNSObjectElement
 }
 
 export class HTMLNSPredicateEditorRowTemplateElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-predicateeditorrowtemplate";
   readonly nativeObject = NSPredicateEditorRowTemplate.new();
 
   get templateViews(): NSArray { return this.nativeObject.templateViews; }
@@ -7345,6 +7528,7 @@ export class HTMLNSPredicateEditorRowTemplateElement extends HTMLNSObjectElement
 }
 
 export class HTMLNSMediaLibraryBrowserControllerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-medialibrarybrowsercontroller";
   readonly nativeObject = NSMediaLibraryBrowserController.new();
 
   get isVisible(): boolean { return this.nativeObject.isVisible; }
@@ -7356,6 +7540,7 @@ export class HTMLNSMediaLibraryBrowserControllerElement extends HTMLNSObjectElem
 }
 
 export class HTMLNSPathControlItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-pathcontrolitem";
   readonly nativeObject = NSPathControlItem.new();
 
   get titleNative(): string { return this.nativeObject.title; }
@@ -7368,6 +7553,7 @@ export class HTMLNSPathControlItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSSliderTouchBarItemElement extends HTMLNSTouchBarItemElement {
+  static readonly tagName: string = "ns-slidertouchbaritem";
   // @ts-ignore
   readonly nativeObject = NSSliderTouchBarItem.new();
 
@@ -7397,11 +7583,13 @@ export class HTMLNSSliderTouchBarItemElement extends HTMLNSTouchBarItemElement {
 }
 
 export class HTMLNSTableHeaderCellElement extends HTMLNSTextFieldCellElement {
+  static readonly tagName: string = "ns-tableheadercell";
   readonly nativeObject = NSTableHeaderCell.new();
 
 }
 
 export class HTMLNSMenuItemCellElement extends HTMLNSButtonCellElement {
+  static readonly tagName: string = "ns-menuitemcell";
   // @ts-ignore
   readonly nativeObject = NSMenuItemCell.new();
 
@@ -7420,6 +7608,7 @@ export class HTMLNSMenuItemCellElement extends HTMLNSButtonCellElement {
 }
 
 export class HTMLNSPanGestureRecognizerElement extends HTMLNSGestureRecognizerElement {
+  static readonly tagName: string = "ns-pangesturerecognizer";
   readonly nativeObject = NSPanGestureRecognizer.new();
 
   get buttonMask(): number { return this.nativeObject.buttonMask; }
@@ -7429,6 +7618,7 @@ export class HTMLNSPanGestureRecognizerElement extends HTMLNSGestureRecognizerEl
 }
 
 export class HTMLNSClickGestureRecognizerElement extends HTMLNSGestureRecognizerElement {
+  static readonly tagName: string = "ns-clickgesturerecognizer";
   readonly nativeObject = NSClickGestureRecognizer.new();
 
   get buttonMask(): number { return this.nativeObject.buttonMask; }
@@ -7440,11 +7630,13 @@ export class HTMLNSClickGestureRecognizerElement extends HTMLNSGestureRecognizer
 }
 
 export class HTMLNSLayoutYAxisAnchorElement extends HTMLNSLayoutAnchorElement {
+  static readonly tagName: string = "ns-layoutyaxisanchor";
   readonly nativeObject = NSLayoutYAxisAnchor.new();
 
 }
 
 export class HTMLNSMagnificationGestureRecognizerElement extends HTMLNSGestureRecognizerElement {
+  static readonly tagName: string = "ns-magnificationgesturerecognizer";
   readonly nativeObject = NSMagnificationGestureRecognizer.new();
 
   get magnification(): number { return this.nativeObject.magnification; }
@@ -7452,6 +7644,7 @@ export class HTMLNSMagnificationGestureRecognizerElement extends HTMLNSGestureRe
 }
 
 export class HTMLNSImageCellElement extends HTMLNSCellElement {
+  static readonly tagName: string = "ns-imagecell";
   readonly nativeObject = NSImageCell.new();
 
   get imageAlignment(): interop.Enum<typeof NSImageAlignment> { return this.nativeObject.imageAlignment; }
@@ -7463,6 +7656,7 @@ export class HTMLNSImageCellElement extends HTMLNSCellElement {
 }
 
 export class HTMLNSSearchToolbarItemElement extends HTMLNSToolbarItemElement {
+  static readonly tagName: string = "ns-searchtoolbaritem";
   readonly nativeObject = NSSearchToolbarItem.new();
 
   get searchField(): NSSearchField { return this.nativeObject.searchField; }
@@ -7474,6 +7668,7 @@ export class HTMLNSSearchToolbarItemElement extends HTMLNSToolbarItemElement {
 }
 
 export class HTMLNSPickerTouchBarItemElement extends HTMLNSTouchBarItemElement {
+  static readonly tagName: string = "ns-pickertouchbaritem";
   // @ts-ignore
   readonly nativeObject = NSPickerTouchBarItem.new();
 
@@ -7502,6 +7697,7 @@ export class HTMLNSPickerTouchBarItemElement extends HTMLNSTouchBarItemElement {
 }
 
 export class HTMLNSArrayControllerElement extends HTMLNSObjectControllerElement {
+  static readonly tagName: string = "ns-arraycontroller";
   readonly nativeObject = NSArrayController.new();
 
   get automaticallyRearrangesObjects(): boolean { return this.nativeObject.automaticallyRearrangesObjects; }
@@ -7531,6 +7727,7 @@ export class HTMLNSArrayControllerElement extends HTMLNSObjectControllerElement 
 }
 
 export class HTMLNSGridViewElement extends HTMLNSViewElement {
+  static readonly tagName: string = "ns-gridview";
   readonly nativeObject = NSGridView.new();
 
   protected nativeAppendChildImpl<T extends HTMLNativeObjectElement>(node: T): void {
@@ -7595,6 +7792,7 @@ export class HTMLNSGridViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSSplitViewElement extends HTMLNSViewElement {
+  static readonly tagName: string = "ns-splitview";
   readonly nativeObject = NSSplitView.new();
   get delegate(): NSSplitViewDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -7679,11 +7877,13 @@ export class HTMLNSSplitViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSLayoutDimensionElement extends HTMLNSLayoutAnchorElement {
+  static readonly tagName: string = "ns-layoutdimension";
   readonly nativeObject = NSLayoutDimension.new();
 
 }
 
 export class HTMLNSDatePickerCellElement extends HTMLNSActionCellElement {
+  static readonly tagName: string = "ns-datepickercell";
   readonly nativeObject = NSDatePickerCell.new();
   get delegate(): NSDatePickerCellDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -7725,6 +7925,7 @@ export class HTMLNSDatePickerCellElement extends HTMLNSActionCellElement {
 }
 
 export class HTMLNSViewControllerElement extends HTMLNSResponderElement {
+  static readonly tagName: string = "ns-viewcontroller";
   readonly nativeObject = NSViewController.new();
 
   get nibName(): string { return this.nativeObject.nibName; }
@@ -7763,6 +7964,7 @@ export class HTMLNSViewControllerElement extends HTMLNSResponderElement {
 }
 
 export class HTMLNSPressGestureRecognizerElement extends HTMLNSGestureRecognizerElement {
+  static readonly tagName: string = "ns-pressgesturerecognizer";
   readonly nativeObject = NSPressGestureRecognizer.new();
 
   get buttonMask(): number { return this.nativeObject.buttonMask; }
@@ -7776,6 +7978,7 @@ export class HTMLNSPressGestureRecognizerElement extends HTMLNSGestureRecognizer
 }
 
 export class HTMLNSPopUpButtonCellElement extends HTMLNSMenuItemCellElement {
+  static readonly tagName: string = "ns-popupbuttoncell";
   readonly nativeObject = NSPopUpButtonCell.new();
 
   get menu(): NSMenu { return this.nativeObject.menu; }
@@ -7808,6 +8011,7 @@ export class HTMLNSPopUpButtonCellElement extends HTMLNSMenuItemCellElement {
 }
 
 export class HTMLNSTextElement extends HTMLNSViewElement {
+  static readonly tagName: string = "ns-text";
   // @ts-ignore
   readonly nativeObject = NSText.new();
   get delegate(): NSTextDelegateImpl {
@@ -7873,6 +8077,7 @@ export class HTMLNSTextElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSDiffableDataSourceSnapshotElement<SectionIdentifierType = interop.Object, ItemIdentifierType = interop.Object> extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-diffabledatasourcesnapshot";
   readonly nativeObject = NSDiffableDataSourceSnapshot.new();
 
   get numberOfItems(): number { return this.nativeObject.numberOfItems; }
@@ -7882,6 +8087,7 @@ export class HTMLNSDiffableDataSourceSnapshotElement<SectionIdentifierType = int
 }
 
 export class HTMLNSTextViewportLayoutControllerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textviewportlayoutcontroller";
   readonly nativeObject = NSTextViewportLayoutController.new();
   get delegate(): NSTextViewportLayoutControllerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -7909,6 +8115,7 @@ export class HTMLNSTextViewportLayoutControllerElement extends HTMLNSObjectEleme
 }
 
 export class HTMLNSTintConfigurationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-tintconfiguration";
   readonly nativeObject = NSTintConfiguration.new();
 
   get baseTintColor(): NSColor { return this.nativeObject.baseTintColor; }
@@ -7917,6 +8124,7 @@ export class HTMLNSTintConfigurationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSUserDefaultsControllerElement extends HTMLNSControllerElement {
+  static readonly tagName: string = "ns-userdefaultscontroller";
   readonly nativeObject = NSUserDefaultsController.new();
 
   get defaults(): NSUserDefaults { return this.nativeObject.defaults; }
@@ -7929,6 +8137,7 @@ export class HTMLNSUserDefaultsControllerElement extends HTMLNSControllerElement
 }
 
 export class HTMLNSOpenGLContextElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-openglcontext";
   readonly nativeObject = NSOpenGLContext.new();
 
   get pixelFormat(): NSOpenGLPixelFormat { return this.nativeObject.pixelFormat; }
@@ -7940,6 +8149,7 @@ export class HTMLNSOpenGLContextElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSProgressIndicatorElement extends HTMLNSViewElement {
+  static readonly tagName: string = "ns-progressindicator";
   // @ts-ignore
   readonly nativeObject = NSProgressIndicator.new();
 
@@ -7984,6 +8194,7 @@ export class HTMLNSProgressIndicatorElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSScrubberArrangedViewElement extends HTMLNSViewElement {
+  static readonly tagName: string = "ns-scrubberarrangedview";
   readonly nativeObject = NSScrubberArrangedView.new();
 
   get isSelected(): boolean { return this.nativeObject.isSelected; }
@@ -7993,6 +8204,7 @@ export class HTMLNSScrubberArrangedViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSLayoutConstraintElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-layoutconstraint";
   readonly nativeObject = NSLayoutConstraint.new();
 
   get priority(): number { return this.nativeObject.priority; }
@@ -8016,6 +8228,7 @@ export class HTMLNSLayoutConstraintElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSSpeechSynthesizerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-speechsynthesizer";
   readonly nativeObject = NSSpeechSynthesizer.new();
   get delegate(): NSSpeechSynthesizerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -8050,6 +8263,7 @@ export class HTMLNSSpeechSynthesizerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSMutableParagraphStyleElement extends HTMLNSParagraphStyleElement {
+  static readonly tagName: string = "ns-mutableparagraphstyle";
   // @ts-ignore
   readonly nativeObject = NSMutableParagraphStyle.new();
 
@@ -8100,11 +8314,13 @@ export class HTMLNSMutableParagraphStyleElement extends HTMLNSParagraphStyleElem
 }
 
 export class HTMLNSStoryboardElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-storyboard";
   readonly nativeObject = NSStoryboard.new();
 
 }
 
 export class HTMLNSCollectionLayoutItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionlayoutitem";
   readonly nativeObject = NSCollectionLayoutItem.new();
 
   get contentInsets(): NSDirectionalEdgeInsets { return this.nativeObject.contentInsets; }
@@ -8116,6 +8332,7 @@ export class HTMLNSCollectionLayoutItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionLayoutSectionElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionlayoutsection";
   readonly nativeObject = NSCollectionLayoutSection.new();
 
   get contentInsets(): NSDirectionalEdgeInsets { return this.nativeObject.contentInsets; }
@@ -8135,6 +8352,7 @@ export class HTMLNSCollectionLayoutSectionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSGroupTouchBarItemElement extends HTMLNSTouchBarItemElement {
+  static readonly tagName: string = "ns-grouptouchbaritem";
   // @ts-ignore
   readonly nativeObject = NSGroupTouchBarItem.new();
 
@@ -8154,6 +8372,7 @@ export class HTMLNSGroupTouchBarItemElement extends HTMLNSTouchBarItemElement {
 }
 
 export class HTMLNSMenuElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-menu";
   readonly nativeObject = NSMenu.new();
   get delegate(): NSMenuDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -8481,6 +8700,7 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSScrubberProportionalLayoutElement extends HTMLNSScrubberLayoutElement {
+  static readonly tagName: string = "ns-scrubberproportionallayout";
   readonly nativeObject = NSScrubberProportionalLayout.new();
 
   get numberOfVisibleItems(): number { return this.nativeObject.numberOfVisibleItems; }
@@ -8488,6 +8708,7 @@ export class HTMLNSScrubberProportionalLayoutElement extends HTMLNSScrubberLayou
 }
 
 export class HTMLNSTextContainerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textcontainer";
   readonly nativeObject = NSTextContainer.new();
 
   get layoutManager(): NSLayoutManager { return this.nativeObject.layoutManager; }
@@ -8516,6 +8737,7 @@ export class HTMLNSTextContainerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPanelElement extends HTMLNSWindowElement {
+  static readonly tagName: string = "ns-panel";
   // @ts-ignore
   readonly nativeObject = NSPanel.new();
 
@@ -8528,6 +8750,7 @@ export class HTMLNSPanelElement extends HTMLNSWindowElement {
 }
 
 export class HTMLNSTitlebarAccessoryViewControllerElement extends HTMLNSViewControllerElement {
+  static readonly tagName: string = "ns-titlebaraccessoryviewcontroller";
   readonly nativeObject = NSTitlebarAccessoryViewController.new();
 
   get layoutAttribute(): interop.Enum<typeof NSLayoutAttribute> { return this.nativeObject.layoutAttribute; }
@@ -8549,6 +8772,7 @@ export class HTMLNSTitlebarAccessoryViewControllerElement extends HTMLNSViewCont
 }
 
 export class HTMLNSRotationGestureRecognizerElement extends HTMLNSGestureRecognizerElement {
+  static readonly tagName: string = "ns-rotationgesturerecognizer";
   readonly nativeObject = NSRotationGestureRecognizer.new();
 
   get rotation(): number { return this.nativeObject.rotation; }
@@ -8558,6 +8782,7 @@ export class HTMLNSRotationGestureRecognizerElement extends HTMLNSGestureRecogni
 }
 
 export class HTMLNSDraggingItemElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-draggingitem";
   readonly nativeObject = NSDraggingItem.new();
 
   get item(): interop.Object { return this.nativeObject.item; }
@@ -8569,6 +8794,7 @@ export class HTMLNSDraggingItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionViewCompositionalLayoutElement extends HTMLNSCollectionViewLayoutElement {
+  static readonly tagName: string = "ns-collectionviewcompositionallayout";
   readonly nativeObject = NSCollectionViewCompositionalLayout.new();
 
   get configuration(): NSCollectionViewCompositionalLayoutConfiguration { return this.nativeObject.configuration; }
@@ -8576,6 +8802,7 @@ export class HTMLNSCollectionViewCompositionalLayoutElement extends HTMLNSCollec
 }
 
 export class HTMLNSTrackingAreaElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-trackingarea";
   readonly nativeObject = NSTrackingArea.new();
 
   get rect(): CGRect { return this.nativeObject.rect; }
@@ -8585,6 +8812,7 @@ export class HTMLNSTrackingAreaElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionLayoutSupplementaryItemElement extends HTMLNSCollectionLayoutItemElement {
+  static readonly tagName: string = "ns-collectionlayoutsupplementaryitem";
   readonly nativeObject = NSCollectionLayoutSupplementaryItem.new();
 
   get zIndex(): number { return this.nativeObject.zIndex; }
@@ -8595,6 +8823,7 @@ export class HTMLNSCollectionLayoutSupplementaryItemElement extends HTMLNSCollec
 }
 
 export class HTMLNSCollectionViewItemElement extends HTMLNSViewControllerElement {
+  static readonly tagName: string = "ns-collectionviewitem";
   readonly nativeObject = NSCollectionViewItem.new();
 
   get collectionView(): NSCollectionView { return this.nativeObject.collectionView; }
@@ -8618,6 +8847,7 @@ export class HTMLNSCollectionViewItemElement extends HTMLNSViewControllerElement
 }
 
 export class HTMLNSDictionaryControllerElement extends HTMLNSArrayControllerElement {
+  static readonly tagName: string = "ns-dictionarycontroller";
   // @ts-ignore
   readonly nativeObject = NSDictionaryController.new();
 
@@ -8636,6 +8866,7 @@ export class HTMLNSDictionaryControllerElement extends HTMLNSArrayControllerElem
 }
 
 export class HTMLNSSavePanelElement extends HTMLNSPanelElement {
+  static readonly tagName: string = "ns-savepanel";
   // @ts-ignore
   readonly nativeObject = NSSavePanel.new();
   get delegate(): NSOpenSavePanelDelegateImpl {
@@ -8705,6 +8936,7 @@ export class HTMLNSSavePanelElement extends HTMLNSPanelElement {
 }
 
 export class HTMLNSCollectionLayoutDecorationItemElement extends HTMLNSCollectionLayoutItemElement {
+  static readonly tagName: string = "ns-collectionlayoutdecorationitem";
   readonly nativeObject = NSCollectionLayoutDecorationItem.new();
 
   get zIndex(): number { return this.nativeObject.zIndex; }
@@ -8713,6 +8945,7 @@ export class HTMLNSCollectionLayoutDecorationItemElement extends HTMLNSCollectio
 }
 
 export class HTMLNSSplitViewControllerElement extends HTMLNSViewControllerElement {
+  static readonly tagName: string = "ns-splitviewcontroller";
   readonly nativeObject = NSSplitViewController.new();
 
   // view seems to show more life than splitView, but still not sure.
@@ -8761,6 +8994,7 @@ export class HTMLNSSplitViewControllerElement extends HTMLNSViewControllerElemen
 }
 
 export class HTMLNSFontPanelElement extends HTMLNSPanelElement {
+  static readonly tagName: string = "ns-fontpanel";
   // @ts-ignore
   readonly nativeObject = NSFontPanel.new();
 
@@ -8773,11 +9007,13 @@ export class HTMLNSFontPanelElement extends HTMLNSPanelElement {
 }
 
 export class HTMLNSScrubberItemViewElement extends HTMLNSScrubberArrangedViewElement {
+  static readonly tagName: string = "ns-scrubberitemview";
   readonly nativeObject = NSScrubberItemView.new();
 
 }
 
 export class HTMLNSCollectionLayoutBoundarySupplementaryItemElement extends HTMLNSCollectionLayoutSupplementaryItemElement {
+  static readonly tagName: string = "ns-collectionlayoutboundarysupplementaryitem";
   readonly nativeObject = NSCollectionLayoutBoundarySupplementaryItem.new();
 
   get extendsBoundary(): boolean { return this.nativeObject.extendsBoundary; }
@@ -8789,6 +9025,7 @@ export class HTMLNSCollectionLayoutBoundarySupplementaryItemElement extends HTML
 }
 
 export class HTMLNSCollectionViewFlowLayoutElement extends HTMLNSCollectionViewLayoutElement {
+  static readonly tagName: string = "ns-collectionviewflowlayout";
   readonly nativeObject = NSCollectionViewFlowLayout.new();
 
   get minimumLineSpacing(): number { return this.nativeObject.minimumLineSpacing; }
@@ -8814,6 +9051,7 @@ export class HTMLNSCollectionViewFlowLayoutElement extends HTMLNSCollectionViewL
 }
 
 export class HTMLNSPathComponentCellElement extends HTMLNSTextFieldCellElement {
+  static readonly tagName: string = "ns-pathcomponentcell";
   readonly nativeObject = NSPathComponentCell.new();
 
   get image(): NSImage { return this.nativeObject.image; }
@@ -8823,6 +9061,7 @@ export class HTMLNSPathComponentCellElement extends HTMLNSTextFieldCellElement {
 }
 
 export class HTMLNSScrubberElement extends HTMLNSViewElement {
+  static readonly tagName: string = "ns-scrubber";
   readonly nativeObject = NSScrubber.new();
   get delegate(): NSScrubberDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -8881,6 +9120,7 @@ export class HTMLNSScrubberElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSControlElement extends HTMLNSViewElement {
+  static readonly tagName: string = "ns-control";
   // @ts-ignore
   readonly nativeObject = NSControl.new();
 
@@ -8937,6 +9177,7 @@ export class HTMLNSControlElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSStackViewElement extends HTMLNSViewElement {
+  static readonly tagName: string = "ns-stackview";
   readonly nativeObject = NSStackView.new();
   get delegate(): NSStackViewDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -8997,6 +9238,7 @@ export class HTMLNSStackViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSRulerViewElement extends HTMLNSViewElement {
+  static readonly tagName: string = "ns-rulerview";
   readonly nativeObject = NSRulerView.new();
 
   get scrollView(): NSScrollView { return this.nativeObject.scrollView; }
@@ -9025,6 +9267,7 @@ export class HTMLNSRulerViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSTextAlternativesElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-textalternatives";
   readonly nativeObject = NSTextAlternatives.new();
 
   get primaryString(): string { return this.nativeObject.primaryString; }
@@ -9032,6 +9275,7 @@ export class HTMLNSTextAlternativesElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSSoundElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-sound";
   readonly nativeObject = NSSound.new();
   get delegate(): NSSoundDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -9064,6 +9308,7 @@ export class HTMLNSSoundElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSGridRowElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-gridrow";
   nativeObject = NSGridRow.new();
 
   protected get nativeChildNodesImpl(): NSMutableArray<NSGridCell> {
@@ -9165,6 +9410,7 @@ export class HTMLNSGridRowElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionLayoutAnchorElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-collectionlayoutanchor";
   readonly nativeObject = NSCollectionLayoutAnchor.new();
 
   get edges(): interop.Enum<typeof NSDirectionalRectEdge> { return this.nativeObject.edges; }
@@ -9174,6 +9420,7 @@ export class HTMLNSCollectionLayoutAnchorElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSColorElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-color";
   readonly nativeObject = NSColor.new();
 
   get type(): interop.Enum<typeof NSColorType> { return this.nativeObject.type; }
@@ -9207,6 +9454,7 @@ export class HTMLNSColorElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSGraphicsContextElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-graphicscontext";
   readonly nativeObject = NSGraphicsContext.new();
 
   get attributesNative(): NSDictionary { return this.nativeObject.attributes; }
@@ -9228,6 +9476,7 @@ export class HTMLNSGraphicsContextElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionLayoutGroupElement extends HTMLNSCollectionLayoutItemElement {
+  static readonly tagName: string = "ns-collectionlayoutgroup";
   // @ts-ignore
   readonly nativeObject = NSCollectionLayoutGroup.new();
 
@@ -9239,6 +9488,7 @@ export class HTMLNSCollectionLayoutGroupElement extends HTMLNSCollectionLayoutIt
 }
 
 export class HTMLNSLayoutGuideElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-layoutguide";
   readonly nativeObject = NSLayoutGuide.new();
 
   get frame(): CGRect { return this.nativeObject.frame; }
@@ -9260,6 +9510,7 @@ export class HTMLNSLayoutGuideElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSFilePromiseProviderElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-filepromiseprovider";
   readonly nativeObject = NSFilePromiseProvider.new();
   get delegate(): NSFilePromiseProviderDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -9291,6 +9542,7 @@ export class HTMLNSFilePromiseProviderElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSLevelIndicatorCellElement extends HTMLNSActionCellElement {
+  static readonly tagName: string = "ns-levelindicatorcell";
   readonly nativeObject = NSLevelIndicatorCell.new();
 
   get levelIndicatorStyle(): interop.Enum<typeof NSLevelIndicatorStyle> { return this.nativeObject.levelIndicatorStyle; }
@@ -9312,6 +9564,7 @@ export class HTMLNSLevelIndicatorCellElement extends HTMLNSActionCellElement {
 }
 
 export class HTMLNSDatePickerElement extends HTMLNSControlElement {
+  static readonly tagName: string = "ns-datepicker";
   readonly nativeObject = NSDatePicker.new();
   get delegate(): NSDatePickerCellDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -9359,6 +9612,7 @@ export class HTMLNSDatePickerElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSScrubberImageItemViewElement extends HTMLNSScrubberItemViewElement {
+  static readonly tagName: string = "ns-scrubberimageitemview";
   readonly nativeObject = NSScrubberImageItemView.new();
 
   get imageView(): NSImageView { return this.nativeObject.imageView; }
@@ -9369,6 +9623,7 @@ export class HTMLNSScrubberImageItemViewElement extends HTMLNSScrubberItemViewEl
 }
 
 export class HTMLNSMatrixElement extends HTMLNSControlElement {
+  static readonly tagName: string = "ns-matrix";
   readonly nativeObject = NSMatrix.new();
   get delegate(): NSMatrixDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -9428,6 +9683,7 @@ export class HTMLNSMatrixElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSRuleEditorElement extends HTMLNSControlElement {
+  static readonly tagName: string = "ns-ruleeditor";
   readonly nativeObject = NSRuleEditor.new();
   get delegate(): NSRuleEditorDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -9480,6 +9736,7 @@ export class HTMLNSRuleEditorElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSSegmentedControlElement extends HTMLNSControlElement {
+  static readonly tagName: string = "ns-segmentedcontrol";
   readonly nativeObject = NSSegmentedControl.new();
 
   get segmentCount(): number { return this.nativeObject.segmentCount; }
@@ -9502,6 +9759,7 @@ export class HTMLNSSegmentedControlElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSStepperElement extends HTMLNSControlElement {
+  static readonly tagName: string = "ns-stepper";
   readonly nativeObject = NSStepper.new();
 
   get minValue(): number { return this.nativeObject.minValue; }
@@ -9535,6 +9793,7 @@ export class HTMLNSStepperElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSBrowserElement extends HTMLNSControlElement {
+  static readonly tagName: string = "ns-browser";
   // @ts-ignore
   readonly nativeObject = NSBrowser.new();
   get delegate(): NSBrowserDelegateImpl {
@@ -9708,6 +9967,7 @@ export class HTMLNSBrowserElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSTextFieldElement extends HTMLNSControlElement {
+  static readonly tagName: string = "ns-textfield";
   // @ts-ignore
   readonly nativeObject = NSTextField.new();
   get delegate(): NSTextFieldDelegateImpl {
@@ -9784,6 +10044,7 @@ export class HTMLNSTextFieldElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSLevelIndicatorElement extends HTMLNSControlElement {
+  static readonly tagName: string = "ns-levelindicator";
   readonly nativeObject = NSLevelIndicator.new();
 
   get levelIndicatorStyle(): interop.Enum<typeof NSLevelIndicatorStyle> { return this.nativeObject.levelIndicatorStyle; }
@@ -9821,11 +10082,13 @@ export class HTMLNSLevelIndicatorElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSFormElement extends HTMLNSMatrixElement {
+  static readonly tagName: string = "ns-form";
   readonly nativeObject = NSForm.new();
 
 }
 
 export class HTMLNSImageViewElement extends HTMLNSControlElement {
+  static readonly tagName: string = "ns-imageview";
   readonly nativeObject = NSImageView.new();
 
   get image(): NSImage { return this.nativeObject.image; }
@@ -9868,11 +10131,13 @@ export class HTMLNSImageViewElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSSecureTextFieldElement extends HTMLNSTextFieldElement {
+  static readonly tagName: string = "ns-securetextfield";
   readonly nativeObject = NSSecureTextField.new();
 
 }
 
 export class HTMLNSTextViewElement extends HTMLNSTextElement {
+  static readonly tagName: string = "ns-textview";
   // @ts-ignore
   readonly nativeObject = NSTextView.new();
   get delegate(): NSTextViewDelegateImpl {
@@ -10111,6 +10376,7 @@ export class HTMLNSTextViewElement extends HTMLNSTextElement {
 }
 
 export class HTMLNSColorWellElement extends HTMLNSControlElement {
+  static readonly tagName: string = "ns-colorwell";
   readonly nativeObject = NSColorWell.new();
 
   get isActive(): boolean { return this.nativeObject.isActive; }
@@ -10131,11 +10397,13 @@ export class HTMLNSColorWellElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSLayoutXAxisAnchorElement extends HTMLNSLayoutAnchorElement {
+  static readonly tagName: string = "ns-layoutxaxisanchor";
   readonly nativeObject = NSLayoutXAxisAnchor.new();
 
 }
 
 export class HTMLNSTabViewControllerElement extends HTMLNSViewControllerElement {
+  static readonly tagName: string = "ns-tabviewcontroller";
   readonly nativeObject = NSTabViewController.new();
 
   get tabStyle(): interop.Enum<typeof NSTabViewControllerTabStyle> { return this.nativeObject.tabStyle; }
@@ -10159,6 +10427,7 @@ export class HTMLNSTabViewControllerElement extends HTMLNSViewControllerElement 
 }
 
 export class HTMLNSSharingServicePickerTouchBarItemElement extends HTMLNSTouchBarItemElement {
+  static readonly tagName: string = "ns-sharingservicepickertouchbaritem";
   readonly nativeObject = NSSharingServicePickerTouchBarItem.new();
 
   get delegate(): NSSharingServicePickerTouchBarItemDelegate | null { return this.nativeObject.delegate; }
@@ -10172,6 +10441,7 @@ export class HTMLNSSharingServicePickerTouchBarItemElement extends HTMLNSTouchBa
 }
 
 export class HTMLNSTextContentStorageElement extends HTMLNSTextContentManagerElement {
+  static readonly tagName: string = "ns-textcontentstorage";
   // @ts-ignore
   readonly nativeObject = NSTextContentStorage.new();
   get delegate(): NSTextContentStorageDelegateImpl {
@@ -10198,6 +10468,7 @@ export class HTMLNSTextContentStorageElement extends HTMLNSTextContentManagerEle
 }
 
 export class HTMLNSSwitchElement extends HTMLNSControlElement {
+  static readonly tagName: string = "ns-switch";
   // @ts-ignore
   readonly nativeObject = NSSwitch.new();
 
@@ -10224,6 +10495,7 @@ export class HTMLNSSwitchElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSOpenPanelElement extends HTMLNSSavePanelElement {
+  static readonly tagName: string = "ns-openpanel";
   readonly nativeObject = NSOpenPanel.new();
 
   get URLs(): NSArray { return this.nativeObject.URLs; }
@@ -10244,6 +10516,7 @@ export class HTMLNSOpenPanelElement extends HTMLNSSavePanelElement {
 }
 
 export class HTMLNSTextParagraphElement extends HTMLNSTextElementElement {
+  static readonly tagName: string = "ns-textparagraph";
   readonly nativeObject = NSTextParagraph.new();
 
   get attributedString(): NSAttributedString { return this.nativeObject.attributedString; }
@@ -10252,6 +10525,7 @@ export class HTMLNSTextParagraphElement extends HTMLNSTextElementElement {
 }
 
 export class HTMLNSPDFImageRepElement extends HTMLNSImageRepElement {
+  static readonly tagName: string = "ns-pdfimagerep";
   readonly nativeObject = NSPDFImageRep.new();
 
   get PDFRepresentation(): NSData { return this.nativeObject.PDFRepresentation; }
@@ -10262,6 +10536,7 @@ export class HTMLNSPDFImageRepElement extends HTMLNSImageRepElement {
 }
 
 export class HTMLNSPageControllerElement extends HTMLNSViewControllerElement {
+  static readonly tagName: string = "ns-pagecontroller";
   readonly nativeObject = NSPageController.new();
   get delegate(): NSPageControllerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -10304,6 +10579,7 @@ export class HTMLNSPageControllerElement extends HTMLNSViewControllerElement {
 }
 
 export class HTMLNSComboBoxElement extends HTMLNSTextFieldElement {
+  static readonly tagName: string = "ns-combobox";
   // @ts-ignore
   readonly nativeObject = NSComboBox.new();
   get delegate(): NSComboBoxDelegateImpl {
@@ -10349,6 +10625,7 @@ export class HTMLNSComboBoxElement extends HTMLNSTextFieldElement {
 }
 
 export class HTMLNSSliderElement extends HTMLNSControlElement {
+  static readonly tagName: string = "ns-slider";
   readonly nativeObject = NSSlider.new();
 
   get sliderType(): interop.Enum<typeof NSSliderType> { return this.nativeObject.sliderType; }
@@ -10391,6 +10668,7 @@ export class HTMLNSSliderElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSSearchFieldElement extends HTMLNSTextFieldElement {
+  static readonly tagName: string = "ns-searchfield";
   // @ts-ignore
   readonly nativeObject = NSSearchField.new();
   get delegate(): NSSearchFieldDelegateImpl {
@@ -10427,6 +10705,7 @@ export class HTMLNSSearchFieldElement extends HTMLNSTextFieldElement {
 }
 
 export class HTMLNSTokenFieldElement extends HTMLNSTextFieldElement {
+  static readonly tagName: string = "ns-tokenfield";
   // @ts-ignore
   readonly nativeObject = NSTokenField.new();
   get delegate(): NSTokenFieldDelegateImpl {
@@ -10476,6 +10755,7 @@ export class HTMLNSTokenFieldElement extends HTMLNSTextFieldElement {
 }
 
 export class HTMLNSTableViewElement extends HTMLNSControlElement {
+  static readonly tagName: string = "ns-tableview";
   // @ts-ignore
   readonly nativeObject = NSTableView.new();
   get delegate(): NSTableViewDelegateImpl {
@@ -10697,6 +10977,7 @@ export class HTMLNSTableViewElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSScrubberTextItemViewElement extends HTMLNSScrubberItemViewElement {
+  static readonly tagName: string = "ns-scrubbertextitemview";
   readonly nativeObject = NSScrubberTextItemView.new();
 
   get textField(): NSTextField { return this.nativeObject.textField; }
@@ -10705,6 +10986,7 @@ export class HTMLNSScrubberTextItemViewElement extends HTMLNSScrubberItemViewEle
 }
 
 export class HTMLNSButtonElement extends HTMLNSControlElement {
+  static readonly tagName: string = "ns-button";
   // @ts-ignore
   readonly nativeObject = NSButton.new();
 
@@ -10776,11 +11058,13 @@ export class HTMLNSButtonElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSScrubberSelectionViewElement extends HTMLNSScrubberArrangedViewElement {
+  static readonly tagName: string = "ns-scrubberselectionview";
   readonly nativeObject = NSScrubberSelectionView.new();
 
 }
 
 export class HTMLNSSearchFieldCellElement extends HTMLNSTextFieldCellElement {
+  static readonly tagName: string = "ns-searchfieldcell";
   readonly nativeObject = NSSearchFieldCell.new();
 
   get searchButtonCell(): NSButtonCell { return this.nativeObject.searchButtonCell; }
@@ -10802,6 +11086,7 @@ export class HTMLNSSearchFieldCellElement extends HTMLNSTextFieldCellElement {
 }
 
 export class HTMLNSRunningApplicationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-runningapplication";
   readonly nativeObject = NSRunningApplication.new();
 
   get isTerminated(): boolean { return this.nativeObject.isTerminated; }
@@ -10821,6 +11106,7 @@ export class HTMLNSRunningApplicationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSSpellCheckerElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-spellchecker";
   readonly nativeObject = NSSpellChecker.new();
 
   get userReplacementsDictionary(): NSDictionary { return this.nativeObject.userReplacementsDictionary; }
@@ -10837,6 +11123,7 @@ export class HTMLNSSpellCheckerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPopUpButtonElement extends HTMLNSButtonElement {
+  static readonly tagName: string = "ns-popupbutton";
   // @ts-ignore
   readonly nativeObject = NSPopUpButton.new();
 
@@ -10859,6 +11146,7 @@ export class HTMLNSPopUpButtonElement extends HTMLNSButtonElement {
 }
 
 export class HTMLNSStatusBarButtonElement extends HTMLNSButtonElement {
+  static readonly tagName: string = "ns-statusbarbutton";
   readonly nativeObject = NSStatusBarButton.new();
 
   get appearsDisabled(): boolean { return this.nativeObject.appearsDisabled; }
@@ -10866,6 +11154,7 @@ export class HTMLNSStatusBarButtonElement extends HTMLNSButtonElement {
 }
 
 export class HTMLNSTextListElementElement extends HTMLNSTextParagraphElement {
+  static readonly tagName: string = "ns-textlistelement";
   // @ts-ignore
   readonly nativeObject = NSTextListElement.new();
 
@@ -10878,6 +11167,7 @@ export class HTMLNSTextListElementElement extends HTMLNSTextParagraphElement {
 }
 
 export class HTMLNSPredicateEditorElement extends HTMLNSRuleEditorElement {
+  static readonly tagName: string = "ns-predicateeditor";
   readonly nativeObject = NSPredicateEditor.new();
 
   get rowTemplates(): NSArray { return this.nativeObject.rowTemplates; }
@@ -10885,6 +11175,7 @@ export class HTMLNSPredicateEditorElement extends HTMLNSRuleEditorElement {
 }
 
 export class HTMLNSColorPanelElement extends HTMLNSPanelElement {
+  static readonly tagName: string = "ns-colorpanel";
   readonly nativeObject = NSColorPanel.new();
 
   get accessoryView(): NSView { return this.nativeObject.accessoryView; }
@@ -10901,6 +11192,7 @@ export class HTMLNSColorPanelElement extends HTMLNSPanelElement {
 }
 
 export class HTMLNSPathControlElement extends HTMLNSControlElement {
+  static readonly tagName: string = "ns-pathcontrol";
   readonly nativeObject = NSPathControl.new();
   get delegate(): NSPathControlDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -10952,6 +11244,7 @@ export class HTMLNSPathControlElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSAnimationElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-animation";
   readonly nativeObject = NSAnimation.new();
   get delegate(): NSAnimationDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -10994,6 +11287,7 @@ export class HTMLNSAnimationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSViewAnimationElement extends HTMLNSAnimationElement {
+  static readonly tagName: string = "ns-viewanimation";
   readonly nativeObject = NSViewAnimation.new();
 
   get viewAnimations(): NSArray { return this.nativeObject.viewAnimations; }
@@ -11001,6 +11295,7 @@ export class HTMLNSViewAnimationElement extends HTMLNSAnimationElement {
 }
 
 export class HTMLNSScrollerElement extends HTMLNSControlElement {
+  static readonly tagName: string = "ns-scroller";
   readonly nativeObject = NSScroller.new();
 
   get scrollerStyle(): interop.Enum<typeof NSScrollerStyle> { return this.nativeObject.scrollerStyle; }
@@ -11020,6 +11315,7 @@ export class HTMLNSScrollerElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSComboButtonElement extends HTMLNSControlElement {
+  static readonly tagName: string = "ns-combobutton";
   readonly nativeObject = NSComboButton.new();
 
   get titleNative(): string { return this.nativeObject.title; }
@@ -11035,6 +11331,7 @@ export class HTMLNSComboButtonElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSOutlineViewElement extends HTMLNSTableViewElement {
+  static readonly tagName: string = "ns-outlineview";
   // @ts-ignore
   readonly nativeObject = NSOutlineView.new();
   get delegate(): NSOutlineViewDelegateImpl {
@@ -11217,6 +11514,7 @@ export class HTMLNSOutlineViewElement extends HTMLNSTableViewElement {
 }
 
 export class HTMLNSDraggingImageComponentElement extends HTMLNSObjectElement {
+  static readonly tagName: string = "ns-draggingimagecomponent";
   readonly nativeObject = NSDraggingImageComponent.new();
 
   get key(): string { return this.nativeObject.key; }

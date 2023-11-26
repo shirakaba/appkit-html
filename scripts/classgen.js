@@ -914,17 +914,16 @@ function parseDeclaration(lines, sdk) {
 
   const HTMLNSObjectElement = `
 export abstract class HTMLNativeObjectElement extends HTMLElement {
-  static defineCustomElement(){
-    const callerClass = this as unknown as typeof HTMLElement;
+  /**
+   * The suggested tagName to use when defining this Custom Element. Used by the
+   * defineCustomElement() convenience method.
+   */
+  static get tagName(): string {
+    throw new Error("Not implemented; expected to be implemented on subclasses.");
+  }
 
-    const namespace = 'NS';
-    const nativeClassName = callerClass.name.replace(/^HTML/, "").replace(/Element$/, "");
-    if(!nativeClassName.startsWith(namespace)){
-      console.warn(\`Unable to define Custom Element "\${callerClass.name}", as namespace unexpectedly began with something other than \${namespace}.\`);
-      return;
-    }
-
-    customElements.define(\`\${namespace}-\${nativeClassName.slice(namespace.length)}\`.toLowerCase(), callerClass);
+  static defineCustomElement(): void {
+    customElements.define(this.tagName, this as unknown as typeof HTMLElement);
   }
 
   /**
@@ -1534,7 +1533,20 @@ function parseViewClassHeader(line, tsIgnoring) {
   const header = `export class HTML${className}Element${
     classGeneric ?? ''
   } extends HTML${superclass}Element {`;
+
+  const tagName = /^(NS|UI)/.test(className)
+    ? `  static readonly tagName: string = "${`${className.slice(
+        0,
+        2
+      )}-${className.slice(2)}`.toLowerCase()}";`
+    : [
+        '  static get tagName(): string {',
+        "    throw new Error(\"Unable to form tagName as the class name didn't begin with 'NS' or 'UI'\");",
+        '  }',
+      ].join('\n');
+
   const contents = [
+    tagName,
     /**
      * Obj-C can express some relationships that TS can't (e.g. override some
      * methods with an incompatible signature), so we have to resort to ts-ignore
