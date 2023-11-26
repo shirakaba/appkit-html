@@ -1,3 +1,10 @@
-src/elements/appkit/generated.ts
-src/elements/uikit/generated.ts
+# .prettierignore does not work in monorepos (even though .prettierrc does):
+# https://github.com/prettier/prettier/issues/4081
+
+/packages/appkit-html/src/generated-elements.ts
+/packages/appkit-html/dist
+
+/packages/uikit-html/src/generated-elements.ts
+/packages/uikit-html/dist
+
 notes.md
