@@ -928,46 +928,6 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
   }
 
   /**
-   * Build a record of lowercased native attributes to their original camelcase.
-   */
-  protected static getOwnNativeAttributes(){
-    return Object.getOwnPropertyNames(this.prototype)
-    .reduce<Record<string, string>>((acc, prop) => {
-      acc[prop.toLowerCase()] = prop;
-      return acc;
-    }, {});
-  }
-
-  /**
-   * A record of lowercased native attributes to their original camelcase.
-   */
-  protected static readonly nativeAttributes = this.getOwnNativeAttributes();
-
-  /**
-   * @see https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#responding_to_attribute_changes
-   */
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
-
-  attributeChangedCallback(name: string, oldValue: any, newValue: any): void {
-    // TODO: should this parse string values to rich values?
-    // TODO: should attributes like backgroundColor be relegated to CSS?
-
-    const callerClass = Object.getPrototypeOf(this).constructor as typeof HTMLNativeObjectElement;
-    const nativeAttributes = callerClass.nativeAttributes;
-    const nativeProp = nativeAttributes[name.toLowerCase()];
-    if(nativeProp){
-      // FIXME: marshal string to rich values where possible
-      (this as any)[nativeProp] = newValue;
-    }
-
-    // With reference to setting attributes on HTMLVideoElement:
-    // - For boolean properties like \`autoplay\`, we should set !!newValue.
-    // - For string properties like \`preload\`, we should preserve the string.
-    // - For rich properties like \`srcObject\`, we should preserve the value.
-    // ... that said, rich properties aren't attributes in the first place.
-  }
-
-  /**
    * The native object from the Obj-C runtime that this HTML Element wraps.
    */
   abstract readonly nativeObject: NativeObject;
@@ -1567,8 +1527,6 @@ function parseViewClassHeader(line, tsIgnoring) {
     classGeneric ?? ''
   } extends HTML${superclass}Element {`;
   const contents = [
-    '  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };',
-    '  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);',
     /**
      * Obj-C can express some relationships that TS can't (e.g. override some
      * methods with an incompatible signature), so we have to resort to ts-ignore

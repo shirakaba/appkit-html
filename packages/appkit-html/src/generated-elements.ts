@@ -332,46 +332,6 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
   }
 
   /**
-   * Build a record of lowercased native attributes to their original camelcase.
-   */
-  protected static getOwnNativeAttributes(){
-    return Object.getOwnPropertyNames(this.prototype)
-    .reduce<Record<string, string>>((acc, prop) => {
-      acc[prop.toLowerCase()] = prop;
-      return acc;
-    }, {});
-  }
-
-  /**
-   * A record of lowercased native attributes to their original camelcase.
-   */
-  protected static readonly nativeAttributes = this.getOwnNativeAttributes();
-
-  /**
-   * @see https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#responding_to_attribute_changes
-   */
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
-
-  attributeChangedCallback(name: string, oldValue: any, newValue: any): void {
-    // TODO: should this parse string values to rich values?
-    // TODO: should attributes like backgroundColor be relegated to CSS?
-
-    const callerClass = Object.getPrototypeOf(this).constructor as typeof HTMLNativeObjectElement;
-    const nativeAttributes = callerClass.nativeAttributes;
-    const nativeProp = nativeAttributes[name.toLowerCase()];
-    if(nativeProp){
-      // FIXME: marshal string to rich values where possible
-      (this as any)[nativeProp] = newValue;
-    }
-
-    // With reference to setting attributes on HTMLVideoElement:
-    // - For boolean properties like `autoplay`, we should set !!newValue.
-    // - For string properties like `preload`, we should preserve the string.
-    // - For rich properties like `srcObject`, we should preserve the value.
-    // ... that said, rich properties aren't attributes in the first place.
-  }
-
-  /**
    * The native object from the Obj-C runtime that this HTML Element wraps.
    */
   abstract readonly nativeObject: NativeObject;
@@ -815,8 +775,6 @@ export abstract class HTMLNativeObjectElement extends HTMLElement {
 }
 
 export class HTMLNSObjectElement extends HTMLNativeObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSObject.new();
 
   get classForCoder(): interop.Object { return this.nativeObject.classForCoder; }
@@ -833,6 +791,7 @@ export class HTMLNSObjectElement extends HTMLNativeObjectElement {
   get scriptingProperties(): NSDictionary { return this.nativeObject.scriptingProperties; }
   set scriptingProperties(value: NSDictionary<interop.Object, interop.Object> | Record<interop.Object, interop.Object>) { this.nativeObject.scriptingProperties = value; }
   get classCode(): number { return this.nativeObject.classCode; }
+  get classNameNative(): string { return this.nativeObject.className; }
   get objectSpecifier(): NSScriptObjectSpecifier { return this.nativeObject.objectSpecifier; }
   get accessibilityFocusedUIElement(): interop.Object { return this.nativeObject.accessibilityFocusedUIElement; }
   get accessibilityNotifiesWhenDestroyed(): boolean { return this.nativeObject.accessibilityNotifiesWhenDestroyed; }
@@ -849,8 +808,6 @@ export class HTMLNSObjectElement extends HTMLNativeObjectElement {
 }
 
 export class HTMLNSWindowTabGroupElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSWindowTabGroup.new();
 
   get identifier(): string { return this.nativeObject.identifier; }
@@ -863,8 +820,6 @@ export class HTMLNSWindowTabGroupElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSAccessibilityCustomRotorSearchParametersElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSAccessibilityCustomRotorSearchParameters.new();
 
   get currentItem(): NSAccessibilityCustomRotorItemResult { return this.nativeObject.currentItem; }
@@ -876,8 +831,6 @@ export class HTMLNSAccessibilityCustomRotorSearchParametersElement extends HTMLN
 }
 
 export class HTMLNSFontManagerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSFontManager.new();
 
   get isMultiple(): boolean { return this.nativeObject.isMultiple; }
@@ -903,8 +856,6 @@ export class HTMLNSFontManagerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSScrubberLayoutElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSScrubberLayout.new();
 
   get scrubber(): NSScrubber { return this.nativeObject.scrubber; }
@@ -916,8 +867,6 @@ export class HTMLNSScrubberLayoutElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionViewUpdateItemElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionViewUpdateItem.new();
 
   get indexPathBeforeUpdate(): NSIndexPath { return this.nativeObject.indexPathBeforeUpdate; }
@@ -926,8 +875,6 @@ export class HTMLNSCollectionViewUpdateItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSControllerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSController.new();
 
   get isEditing(): boolean { return this.nativeObject.isEditing; }
@@ -940,15 +887,11 @@ export class HTMLNSControllerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSHelpManagerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSHelpManager.new();
 
 }
 
 export class HTMLNSOpenGLPixelFormatElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSOpenGLPixelFormat.new();
 
   get numberOfVirtualScreens(): number { return this.nativeObject.numberOfVirtualScreens; }
@@ -956,8 +899,6 @@ export class HTMLNSOpenGLPixelFormatElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextAttachmentElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextAttachment.new();
 
   get contents(): NSData { return this.nativeObject.contents; }
@@ -986,8 +927,6 @@ export class HTMLNSTextAttachmentElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionViewLayoutElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionViewLayout.new();
 
   get collectionView(): NSCollectionView { return this.nativeObject.collectionView; }
@@ -995,8 +934,6 @@ export class HTMLNSCollectionViewLayoutElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPasteboardItemElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPasteboardItem.new();
 
   get types(): NSArray { return this.nativeObject.types; }
@@ -1009,8 +946,6 @@ export class HTMLNSPasteboardItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSScrubberFlowLayoutElement extends HTMLNSScrubberLayoutElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSScrubberFlowLayout.new();
 
   get itemSpacing(): number { return this.nativeObject.itemSpacing; }
@@ -1020,8 +955,6 @@ export class HTMLNSScrubberFlowLayoutElement extends HTMLNSScrubberLayoutElement
 }
 
 export class HTMLNSTextElementElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextElement.new();
 
   get textContentManager(): NSTextContentManager { return this.nativeObject.textContentManager; }
@@ -1029,12 +962,11 @@ export class HTMLNSTextElementElement extends HTMLNSObjectElement {
   get elementRange(): NSTextRange { return this.nativeObject.elementRange; }
   set elementRange(value: NSTextRange) { this.nativeObject.elementRange = value; }
   get childElements(): NSArray { return this.nativeObject.childElements; }
+  get parentElementNative(): NSTextElement { return this.nativeObject.parentElement; }
   get isRepresentedElement(): boolean { return this.nativeObject.isRepresentedElement; }
 }
 
 export class HTMLNSTextSelectionNavigationElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextSelectionNavigation.new();
 
   get textSelectionDataSource(): NSTextSelectionDataSource | null { return this.nativeObject.textSelectionDataSource; }
@@ -1045,8 +977,6 @@ export class HTMLNSTextSelectionNavigationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextRangeElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextRange.new();
 
   get isEmpty(): boolean { return this.nativeObject.isEmpty; }
@@ -1055,23 +985,17 @@ export class HTMLNSTextRangeElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPressureConfigurationElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPressureConfiguration.new();
 
   get pressureBehavior(): interop.Enum<typeof NSPressureBehavior> { return this.nativeObject.pressureBehavior; }
 }
 
 export class HTMLNSHapticFeedbackManagerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSHapticFeedbackManager.new();
 
 }
 
 export class HTMLNSTextBlockElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextBlock.new();
 
   get contentWidth(): number { return this.nativeObject.contentWidth; }
@@ -1083,8 +1007,6 @@ export class HTMLNSTextBlockElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextListElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextList.new();
 
   get markerFormat(): string { return this.nativeObject.markerFormat; }
@@ -1095,19 +1017,17 @@ export class HTMLNSTextListElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTreeNodeElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTreeNode.new();
 
   get representedObject(): interop.Object { return this.nativeObject.representedObject; }
   get indexPath(): NSIndexPath { return this.nativeObject.indexPath; }
   get isLeaf(): boolean { return this.nativeObject.isLeaf; }
+  get childNodesNative(): NSArray { return this.nativeObject.childNodes; }
   get mutableChildNodes(): NSMutableArray { return this.nativeObject.mutableChildNodes; }
+  get parentNodeNative(): NSTreeNode { return this.nativeObject.parentNode; }
 }
 
 export class HTMLNSObjectControllerElement extends HTMLNSControllerElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSObjectController.new();
 
   get content(): interop.Object { return this.nativeObject.content; }
@@ -1133,8 +1053,6 @@ export class HTMLNSObjectControllerElement extends HTMLNSControllerElement {
 }
 
 export class HTMLNSGlyphInfoElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSGlyphInfo.new();
 
   get glyphID(): number { return this.nativeObject.glyphID; }
@@ -1144,9 +1062,7 @@ export class HTMLNSGlyphInfoElement extends HTMLNSObjectElement {
   get characterCollection(): interop.Enum<typeof NSCharacterCollection> { return this.nativeObject.characterCollection; }
 }
 
-export class HTMLNSTableViewDiffableDataSourceElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
+export class HTMLNSTableViewDiffableDataSourceElement<SectionIdentifierType = interop.Object, ItemIdentifierType = interop.Object> extends HTMLNSObjectElement {
   readonly nativeObject = NSTableViewDiffableDataSource.new();
 
   get rowViewProvider(): (p1: NSTableView, p2: number, p3: interop.Object) => NSTableRowView { return this.nativeObject.rowViewProvider; }
@@ -1164,8 +1080,6 @@ export class HTMLNSTableViewDiffableDataSourceElement extends HTMLNSObjectElemen
 }
 
 export class HTMLNSOpenGLPixelBufferElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSOpenGLPixelBuffer.new();
 
   get CGLPBufferObj(): interop.Pointer { return this.nativeObject.CGLPBufferObj; }
@@ -1177,8 +1091,6 @@ export class HTMLNSOpenGLPixelBufferElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCellElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCell.new();
 
   get controlView(): NSView { return this.nativeObject.controlView; }
@@ -1193,8 +1105,8 @@ export class HTMLNSCellElement extends HTMLNSObjectElement {
   set action(value: string) { this.nativeObject.action = value; }
   get tag(): number { return this.nativeObject.tag; }
   set tag(value: number) { this.nativeObject.tag = value; }
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get isOpaque(): boolean { return this.nativeObject.isOpaque; }
   get isEnabled(): boolean { return this.nativeObject.isEnabled; }
   set isEnabled(value: boolean) { this.nativeObject.isEnabled = value; }
@@ -1539,8 +1451,6 @@ export class HTMLNSCellElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSStatusItemElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSStatusItem.new();
 
   get statusBar(): NSStatusBar | null { return this.nativeObject.statusBar; }
@@ -1561,8 +1471,8 @@ export class HTMLNSStatusItemElement extends HTMLNSObjectElement {
   set doubleAction(value: string) { this.nativeObject.doubleAction = value; }
   get target(): interop.Object { return this.nativeObject.target; }
   set target(value: interop.Object) { this.nativeObject.target = value; }
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get attributedTitle(): NSAttributedString { return this.nativeObject.attributedTitle; }
   set attributedTitle(value: NSAttributedString) { this.nativeObject.attributedTitle = value; }
   get image(): NSImage { return this.nativeObject.image; }
@@ -1580,8 +1490,6 @@ export class HTMLNSStatusItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSSpeechRecognizerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSpeechRecognizer.new();
   get delegate(): NSSpeechRecognizerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -1605,8 +1513,6 @@ export class HTMLNSSpeechRecognizerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionLayoutGroupCustomItemElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionLayoutGroupCustomItem.new();
 
   get frame(): CGRect { return this.nativeObject.frame; }
@@ -1614,12 +1520,11 @@ export class HTMLNSCollectionLayoutGroupCustomItemElement extends HTMLNSObjectEl
 }
 
 export class HTMLNSTableViewRowActionElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTableViewRowAction.new();
 
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get styleNative(): interop.Enum<typeof NSTableViewRowActionStyle> { return this.nativeObject.style; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get backgroundColor(): NSColor { return this.nativeObject.backgroundColor; }
   set backgroundColor(value: NSColor) { this.nativeObject.backgroundColor = value; }
   get image(): NSImage { return this.nativeObject.image; }
@@ -1627,8 +1532,6 @@ export class HTMLNSTableViewRowActionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextAttachmentViewProviderElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextAttachmentViewProvider.new();
 
   get textAttachment(): NSTextAttachment | null { return this.nativeObject.textAttachment; }
@@ -1641,8 +1544,6 @@ export class HTMLNSTextAttachmentViewProviderElement extends HTMLNSObjectElement
 }
 
 export class HTMLNSToolbarItemElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSToolbarItem.new();
 
   get itemIdentifier(): string { return this.nativeObject.itemIdentifier; }
@@ -1667,8 +1568,8 @@ export class HTMLNSToolbarItemElement extends HTMLNSObjectElement {
   set isEnabled(value: boolean) { this.nativeObject.isEnabled = value; }
   get image(): NSImage { return this.nativeObject.image; }
   set image(value: NSImage) { this.nativeObject.image = value; }
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get isBordered(): boolean { return this.nativeObject.isBordered; }
   set isBordered(value: boolean) { this.nativeObject.isBordered = value; }
   get isNavigational(): boolean { return this.nativeObject.isNavigational; }
@@ -1688,15 +1589,11 @@ export class HTMLNSToolbarItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSGlyphGeneratorElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSGlyphGenerator.new();
 
 }
 
 export class HTMLNSGridCellElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   nativeObject = NSGridCell.new();
 
   declare childSlot: 'contentView';
@@ -1733,15 +1630,11 @@ export class HTMLNSGridCellElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSColorSamplerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSColorSampler.new();
 
 }
 
 export class HTMLNSPDFPanelElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPDFPanel.new();
 
   get accessoryController(): NSViewController { return this.nativeObject.accessoryController; }
@@ -1753,8 +1646,6 @@ export class HTMLNSPDFPanelElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPageLayoutElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPageLayout.new();
 
   get accessoryControllers(): NSArray { return this.nativeObject.accessoryControllers; }
@@ -1762,8 +1653,6 @@ export class HTMLNSPageLayoutElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSScreenElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSScreen.new();
 
   get depth(): interop.Enum<typeof NSWindowDepth> { return this.nativeObject.depth; }
@@ -1788,15 +1677,11 @@ export class HTMLNSScreenElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSImageSymbolConfigurationElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSImageSymbolConfiguration.new();
 
 }
 
 export class HTMLNSRulerMarkerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSRulerMarker.new();
 
   get ruler(): NSRulerView | null { return this.nativeObject.ruler; }
@@ -1818,8 +1703,6 @@ export class HTMLNSRulerMarkerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSFilePromiseReceiverElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSFilePromiseReceiver.new();
 
   get fileTypes(): NSArray { return this.nativeObject.fileTypes; }
@@ -1833,8 +1716,6 @@ export class HTMLNSFilePromiseReceiverElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSColorPickerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSColorPicker.new();
 
   get colorPanel(): NSColorPanel { return this.nativeObject.colorPanel; }
@@ -1844,8 +1725,6 @@ export class HTMLNSColorPickerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSBrowserCellElement extends HTMLNSCellElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSBrowserCell.new();
 
   get isLeaf(): boolean { return this.nativeObject.isLeaf; }
@@ -1859,8 +1738,6 @@ export class HTMLNSBrowserCellElement extends HTMLNSCellElement {
 }
 
 export class HTMLNSImageRepElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSImageRep.new();
 
   get size(): CGSize { return this.nativeObject.size; }
@@ -1882,8 +1759,6 @@ export class HTMLNSImageRepElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSFontCollectionElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSFontCollection.new();
 
   get queryDescriptors(): NSArray { return this.nativeObject.queryDescriptors; }
@@ -1892,8 +1767,6 @@ export class HTMLNSFontCollectionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSFontAssetRequestElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSFontAssetRequest.new();
 
   get downloadedFontDescriptors(): NSArray { return this.nativeObject.downloadedFontDescriptors; }
@@ -1907,8 +1780,6 @@ export class HTMLNSFontAssetRequestElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSFontDescriptorElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSFontDescriptor.new();
 
   get postscriptName(): string { return this.nativeObject.postscriptName; }
@@ -1920,8 +1791,6 @@ export class HTMLNSFontDescriptorElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSGradientElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSGradient.new();
 
   get colorSpace(): NSColorSpace { return this.nativeObject.colorSpace; }
@@ -1929,8 +1798,6 @@ export class HTMLNSGradientElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionLayoutEdgeSpacingElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionLayoutEdgeSpacing.new();
 
   get leading(): NSCollectionLayoutSpacing { return this.nativeObject.leading; }
@@ -1940,8 +1807,6 @@ export class HTMLNSCollectionLayoutEdgeSpacingElement extends HTMLNSObjectElemen
 }
 
 export class HTMLNSCollectionLayoutSizeElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionLayoutSize.new();
 
   get widthDimension(): NSCollectionLayoutDimension { return this.nativeObject.widthDimension; }
@@ -1949,8 +1814,6 @@ export class HTMLNSCollectionLayoutSizeElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSSharingServicePickerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSharingServicePicker.new();
   get delegate(): NSSharingServicePickerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -1973,8 +1836,6 @@ export class HTMLNSSharingServicePickerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionViewCompositionalLayoutConfigurationElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionViewCompositionalLayoutConfiguration.new();
 
   get scrollDirection(): interop.Enum<typeof NSCollectionViewScrollDirection> { return this.nativeObject.scrollDirection; }
@@ -1986,8 +1847,6 @@ export class HTMLNSCollectionViewCompositionalLayoutConfigurationElement extends
 }
 
 export class HTMLNSCollectionViewLayoutInvalidationContextElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionViewLayoutInvalidationContext.new();
 
   get invalidateEverything(): boolean { return this.nativeObject.invalidateEverything; }
@@ -2002,8 +1861,6 @@ export class HTMLNSCollectionViewLayoutInvalidationContextElement extends HTMLNS
 }
 
 export class HTMLNSStoryboardSegueElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSStoryboardSegue.new();
 
   get identifier(): string { return this.nativeObject.identifier; }
@@ -2012,8 +1869,6 @@ export class HTMLNSStoryboardSegueElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTouchBarElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTouchBar.new();
   get delegate(): NSTouchBarDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -2045,8 +1900,6 @@ export class HTMLNSTouchBarElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSActionCellElement extends HTMLNSCellElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSActionCell.new();
 
   get target(): interop.Object { return this.nativeObject.target; }
@@ -2058,8 +1911,6 @@ export class HTMLNSActionCellElement extends HTMLNSCellElement {
 }
 
 export class HTMLNSColorListElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSColorList.new();
 
   get name(): string { return this.nativeObject.name; }
@@ -2068,8 +1919,6 @@ export class HTMLNSColorListElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSDocumentElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDocument.new();
 
   get fileType(): string { return this.nativeObject.fileType; }
@@ -2128,15 +1977,11 @@ export class HTMLNSDocumentElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSBindingSelectionMarkerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSBindingSelectionMarker.new();
 
 }
 
 export class HTMLNSTextTabElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextTab.new();
 
   get alignment(): interop.Enum<typeof NSTextAlignment> { return this.nativeObject.alignment; }
@@ -2146,8 +1991,6 @@ export class HTMLNSTextTabElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSResponderElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSResponder.new();
 
   get nextResponder(): NSResponder { return this.nativeObject.nextResponder; }
@@ -2163,8 +2006,6 @@ export class HTMLNSResponderElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTouchElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTouch.new();
 
   get identity(): NSCopying { return this.nativeObject.identity; }
@@ -2177,8 +2018,6 @@ export class HTMLNSTouchElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSWorkspaceElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSWorkspace.new();
 
   get notificationCenter(): NSNotificationCenter { return this.nativeObject.notificationCenter; }
@@ -2197,8 +2036,6 @@ export class HTMLNSWorkspaceElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSAccessibilityElementElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSAccessibilityElement.new();
 
   get accessibilityFrameInParentSpace(): CGRect { return this.nativeObject.accessibilityFrameInParentSpace; }
@@ -2460,15 +2297,11 @@ export class HTMLNSAccessibilityElementElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSNibElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSNib.new();
 
 }
 
 export class HTMLNSMenuToolbarItemElement extends HTMLNSToolbarItemElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSMenuToolbarItem.new();
 
   get menu(): NSMenu { return this.nativeObject.menu; }
@@ -2478,8 +2311,6 @@ export class HTMLNSMenuToolbarItemElement extends HTMLNSToolbarItemElement {
 }
 
 export class HTMLNSSplitViewItemElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   nativeObject = NSSplitViewItem.splitViewItemWithViewController(NSViewController.new());
 
   // We avoid the childSlot approach because we want to call regenerateItem, not
@@ -2599,8 +2430,6 @@ export class HTMLNSSplitViewItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSShadowElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSShadow.new();
 
   get shadowOffset(): CGSize { return this.nativeObject.shadowOffset; }
@@ -2612,8 +2441,6 @@ export class HTMLNSShadowElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSInputManagerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSInputManager.new();
 
   get selectedRange(): _NSRange { return this.nativeObject.selectedRange; }
@@ -2621,8 +2448,6 @@ export class HTMLNSInputManagerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSEventElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSEvent.new();
 
   get type(): interop.Enum<typeof NSEventType> { return this.nativeObject.type; }
@@ -2684,8 +2509,6 @@ export class HTMLNSEventElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSSliderAccessoryElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSliderAccessory.new();
 
   get behavior(): NSSliderAccessoryBehavior { return this.nativeObject.behavior; }
@@ -2695,8 +2518,6 @@ export class HTMLNSSliderAccessoryElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSAccessibilityCustomRotorItemResultElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSAccessibilityCustomRotorItemResult.new();
 
   get targetElement(): NSAccessibilityElement { return this.nativeObject.targetElement; }
@@ -2708,8 +2529,6 @@ export class HTMLNSAccessibilityCustomRotorItemResultElement extends HTMLNSObjec
 }
 
 export class HTMLNSPasteboardElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPasteboard.new();
 
   get name(): string { return this.nativeObject.name; }
@@ -2719,8 +2538,6 @@ export class HTMLNSPasteboardElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSWindowElement extends HTMLNSResponderElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSWindow.new();
   get delegate(): NSWindowDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -2734,8 +2551,8 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
     this.prototype.childSlot = 'contentView';
   }
 
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get subtitle(): string { return this.nativeObject.subtitle; }
   set subtitle(value: string) { this.nativeObject.subtitle = value; }
   get titleVisibility(): interop.Enum<typeof NSWindowTitleVisibility> { return this.nativeObject.titleVisibility; }
@@ -3342,8 +3159,6 @@ export class HTMLNSWindowElement extends HTMLNSResponderElement {
 }
 
 export class HTMLNSScrubberLayoutAttributesElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSScrubberLayoutAttributes.new();
 
   get itemIndex(): number { return this.nativeObject.itemIndex; }
@@ -3355,8 +3170,6 @@ export class HTMLNSScrubberLayoutAttributesElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextLayoutFragmentElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextLayoutFragment.new();
 
   get textLayoutManager(): NSTextLayoutManager { return this.nativeObject.textLayoutManager; }
@@ -3376,8 +3189,6 @@ export class HTMLNSTextLayoutFragmentElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCursorElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCursor.new();
 
   get image(): NSImage { return this.nativeObject.image; }
@@ -3387,8 +3198,6 @@ export class HTMLNSCursorElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTabViewItemElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTabViewItem.new();
 
   get identifier(): interop.Object { return this.nativeObject.identifier; }
@@ -3412,8 +3221,6 @@ export class HTMLNSTabViewItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSMenuItemBadgeElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSMenuItemBadge.new();
 
   get itemCount(): number { return this.nativeObject.itemCount; }
@@ -3422,8 +3229,6 @@ export class HTMLNSMenuItemBadgeElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSGridColumnElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   nativeObject = NSGridColumn.new();
 
   protected get nativeChildNodesImpl(): NSMutableArray<NSGridCell> {
@@ -3527,8 +3332,6 @@ export class HTMLNSGridColumnElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPathCellElement extends HTMLNSActionCellElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPathCell.new();
   get delegate(): NSPathCellDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -3570,15 +3373,11 @@ export class HTMLNSPathCellElement extends HTMLNSActionCellElement {
 }
 
 export class HTMLNSWorkspaceAuthorizationElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSWorkspaceAuthorization.new();
 
 }
 
 export class HTMLNSTextLayoutManagerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextLayoutManager.new();
   get delegate(): NSTextLayoutManagerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -3626,12 +3425,10 @@ export class HTMLNSTextLayoutManagerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSWindowTabElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSWindowTab.new();
 
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get attributedTitle(): NSAttributedString { return this.nativeObject.attributedTitle; }
   set attributedTitle(value: NSAttributedString) { this.nativeObject.attributedTitle = value; }
   get toolTip(): string { return this.nativeObject.toolTip; }
@@ -3641,8 +3438,6 @@ export class HTMLNSWindowTabElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSDrawerElement extends HTMLNSResponderElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDrawer.new();
   get delegate(): NSDrawerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -3953,8 +3748,6 @@ export class HTMLNSDrawerElement extends HTMLNSResponderElement {
 }
 
 export class HTMLNSLayoutManagerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSLayoutManager.new();
   get delegate(): NSLayoutManagerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -4042,8 +3835,6 @@ export class HTMLNSLayoutManagerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSSharingServiceElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSharingService.new();
   get delegate(): NSSharingServiceDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -4052,7 +3843,7 @@ export class HTMLNSSharingServiceElement extends HTMLNSObjectElement {
     return this.nativeObject.delegate as NSSharingServiceDelegateImpl;
   }
 
-  get title(): string { return this.nativeObject.title; }
+  get titleNative(): string { return this.nativeObject.title; }
   get image(): NSImage { return this.nativeObject.image; }
   get alternateImage(): NSImage { return this.nativeObject.alternateImage; }
   get menuItemTitle(): string { return this.nativeObject.menuItemTitle; }
@@ -4090,8 +3881,6 @@ export class HTMLNSSharingServiceElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTreeControllerElement extends HTMLNSObjectControllerElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTreeController.new();
 
   get arrangedObjects(): NSTreeNode { return this.nativeObject.arrangedObjects; }
@@ -4123,8 +3912,6 @@ export class HTMLNSTreeControllerElement extends HTMLNSObjectControllerElement {
 }
 
 export class HTMLNSTypesetterElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTypesetter.new();
 
   get usesFontLeading(): boolean { return this.nativeObject.usesFontLeading; }
@@ -4151,19 +3938,15 @@ export class HTMLNSTypesetterElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSScrubberSelectionStyleElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSScrubberSelectionStyle.new();
 
 }
 
 export class HTMLNSPreviewRepresentingActivityItemElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPreviewRepresentingActivityItem.new();
 
   get item(): interop.Object { return this.nativeObject.item; }
-  get title(): string { return this.nativeObject.title; }
+  get titleNative(): string { return this.nativeObject.title; }
   get imageProvider(): NSItemProvider { return this.nativeObject.imageProvider; }
   get iconProvider(): NSItemProvider { return this.nativeObject.iconProvider; }
   get hash(): number { return this.nativeObject.hash; }
@@ -4175,8 +3958,6 @@ export class HTMLNSPreviewRepresentingActivityItemElement extends HTMLNSObjectEl
 }
 
 export class HTMLNSDraggingSessionElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDraggingSession.new();
 
   get draggingFormation(): interop.Enum<typeof NSDraggingFormation> { return this.nativeObject.draggingFormation; }
@@ -4190,9 +3971,7 @@ export class HTMLNSDraggingSessionElement extends HTMLNSObjectElement {
   get draggingLocation(): CGPoint { return this.nativeObject.draggingLocation; }
 }
 
-export class HTMLNSCollectionViewDiffableDataSourceElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
+export class HTMLNSCollectionViewDiffableDataSourceElement<SectionIdentifierType = interop.Object, ItemIdentifierType = interop.Object> extends HTMLNSObjectElement {
   readonly nativeObject = NSCollectionViewDiffableDataSource.new();
 
   get supplementaryViewProvider(): (p1: NSCollectionView, p2: string, p3: NSIndexPath) => NSView { return this.nativeObject.supplementaryViewProvider; }
@@ -4206,8 +3985,6 @@ export class HTMLNSCollectionViewDiffableDataSourceElement extends HTMLNSObjectE
 }
 
 export class HTMLNSTextContentManagerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextContentManager.new();
   get delegate(): NSTextContentManagerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -4241,8 +4018,6 @@ export class HTMLNSTextContentManagerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPrinterElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPrinter.new();
 
   get name(): string { return this.nativeObject.name; }
@@ -4252,8 +4027,6 @@ export class HTMLNSPrinterElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSAppearanceElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSAppearance.new();
 
   get name(): string { return this.nativeObject.name; }
@@ -4261,8 +4034,6 @@ export class HTMLNSAppearanceElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextInputContextElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextInputContext.new();
 
   get client(): NSTextInputClient { return this.nativeObject.client; }
@@ -4276,8 +4047,6 @@ export class HTMLNSTextInputContextElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCustomImageRepElement extends HTMLNSImageRepElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCustomImageRep.new();
 
   get drawingHandler(): (p1: CGRect) => boolean { return this.nativeObject.drawingHandler; }
@@ -4286,8 +4055,6 @@ export class HTMLNSCustomImageRepElement extends HTMLNSImageRepElement {
 }
 
 export class HTMLNSTextCheckingControllerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextCheckingController.new();
 
   get client(): NSTextCheckingClient { return this.nativeObject.client; }
@@ -4296,8 +4063,6 @@ export class HTMLNSTextCheckingControllerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSColorSpaceElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSColorSpace.new();
 
   get ICCProfileData(): NSData { return this.nativeObject.ICCProfileData; }
@@ -4309,8 +4074,6 @@ export class HTMLNSColorSpaceElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSAnimationContextElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSAnimationContext.new();
 
   get duration(): number { return this.nativeObject.duration; }
@@ -4324,8 +4087,6 @@ export class HTMLNSAnimationContextElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSStringDrawingContextElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSStringDrawingContext.new();
 
   get minimumScaleFactor(): number { return this.nativeObject.minimumScaleFactor; }
@@ -4335,8 +4096,6 @@ export class HTMLNSStringDrawingContextElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSBezierPathElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSBezierPath.new();
 
   get CGPath(): interop.Pointer { return this.nativeObject.CGPath; }
@@ -4363,8 +4122,6 @@ export class HTMLNSBezierPathElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSAccessibilityCustomActionElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSAccessibilityCustomAction.new();
 
   get name(): string { return this.nativeObject.name; }
@@ -4378,8 +4135,6 @@ export class HTMLNSAccessibilityCustomActionElement extends HTMLNSObjectElement 
 }
 
 export class HTMLNSViewElement extends HTMLNSResponderElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSView.new();
 
   protected get nativeChildNodesImpl(): NSArray<NSView> {
@@ -4816,8 +4571,6 @@ export class HTMLNSViewElement extends HTMLNSResponderElement {
 }
 
 export class HTMLNSImageElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSImage.new();
   get delegate(): NSImageDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -4874,8 +4627,6 @@ export class HTMLNSImageElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSToolbarElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSToolbar.new();
   get delegate(): NSToolbarDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -4943,8 +4694,6 @@ export class HTMLNSToolbarElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTabViewElement extends HTMLNSViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTabView.new();
   get delegate(): NSTabViewDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -5016,8 +4765,6 @@ export class HTMLNSTabViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSApplicationElement extends HTMLNSResponderElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSApplication.sharedApplication;
   get delegate(): NSApplicationDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -5457,8 +5204,6 @@ export class HTMLNSApplicationElement extends HTMLNSResponderElement {
 }
 
 export class HTMLNSTouchBarItemElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTouchBarItem.new();
 
   get identifier(): string { return this.nativeObject.identifier; }
@@ -5470,9 +5215,7 @@ export class HTMLNSTouchBarItemElement extends HTMLNSObjectElement {
   get isVisible(): boolean { return this.nativeObject.isVisible; }
 }
 
-export class HTMLNSCandidateListTouchBarItemElement extends HTMLNSTouchBarItemElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
+export class HTMLNSCandidateListTouchBarItemElement<CandidateType = interop.Object> extends HTMLNSTouchBarItemElement {
   // @ts-ignore
   readonly nativeObject = NSCandidateListTouchBarItem.new();
   get delegate(): NSCandidateListTouchBarItemDelegateImpl {
@@ -5512,8 +5255,6 @@ export class HTMLNSCandidateListTouchBarItemElement extends HTMLNSTouchBarItemEl
 }
 
 export class HTMLNSWindowControllerElement extends HTMLNSResponderElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSWindowController.new();
 
   get windowNibName(): string { return this.nativeObject.windowNibName; }
@@ -5544,8 +5285,6 @@ export class HTMLNSWindowControllerElement extends HTMLNSResponderElement {
 }
 
 export class HTMLNSTextFieldCellElement extends HTMLNSActionCellElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextFieldCell.new();
 
   get backgroundColor(): NSColor { return this.nativeObject.backgroundColor; }
@@ -5565,8 +5304,6 @@ export class HTMLNSTextFieldCellElement extends HTMLNSActionCellElement {
 }
 
 export class HTMLNSSliderCellElement extends HTMLNSActionCellElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSSliderCell.new();
 
@@ -5588,15 +5325,13 @@ export class HTMLNSSliderCellElement extends HTMLNSActionCellElement {
   set tickMarkPosition(value: interop.Enum<typeof NSTickMarkPosition>) { this.nativeObject.tickMarkPosition = value; }
   get allowsTickMarkValuesOnly(): boolean { return this.nativeObject.allowsTickMarkValuesOnly; }
   set allowsTickMarkValuesOnly(value: boolean) { this.nativeObject.allowsTickMarkValuesOnly = value; }
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get image(): NSImage { return this.nativeObject.image; }
   set image(value: NSImage) { this.nativeObject.image = value; }
 }
 
 export class HTMLNSTokenFieldCellElement extends HTMLNSTextFieldCellElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTokenFieldCell.new();
   get delegate(): NSTokenFieldCellDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -5645,8 +5380,6 @@ export class HTMLNSTokenFieldCellElement extends HTMLNSTextFieldCellElement {
 }
 
 export class HTMLNSSharingServicePickerToolbarItemElement extends HTMLNSToolbarItemElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSharingServicePickerToolbarItem.new();
 
   get delegate(): NSSharingServicePickerToolbarItemDelegate | null { return this.nativeObject.delegate; }
@@ -5654,13 +5387,11 @@ export class HTMLNSSharingServicePickerToolbarItemElement extends HTMLNSToolbarI
 }
 
 export class HTMLNSButtonTouchBarItemElement extends HTMLNSTouchBarItemElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSButtonTouchBarItem.new();
 
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get image(): NSImage { return this.nativeObject.image; }
   set image(value: NSImage) { this.nativeObject.image = value; }
   get bezelColor(): NSColor { return this.nativeObject.bezelColor; }
@@ -5676,8 +5407,6 @@ export class HTMLNSButtonTouchBarItemElement extends HTMLNSTouchBarItemElement {
 }
 
 export class HTMLNSTextTableBlockElement extends HTMLNSTextBlockElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextTableBlock.new();
 
   get table(): NSTextTable { return this.nativeObject.table; }
@@ -5688,8 +5417,6 @@ export class HTMLNSTextTableBlockElement extends HTMLNSTextBlockElement {
 }
 
 export class HTMLNSComboBoxCellElement extends HTMLNSTextFieldCellElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSComboBoxCell.new();
 
   get hasVerticalScroller(): boolean { return this.nativeObject.hasVerticalScroller; }
@@ -5715,8 +5442,6 @@ export class HTMLNSComboBoxCellElement extends HTMLNSTextFieldCellElement {
 }
 
 export class HTMLNSSecureTextFieldCellElement extends HTMLNSTextFieldCellElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSecureTextFieldCell.new();
 
   get echosBullets(): boolean { return this.nativeObject.echosBullets; }
@@ -5724,8 +5449,6 @@ export class HTMLNSSecureTextFieldCellElement extends HTMLNSTextFieldCellElement
 }
 
 export class HTMLNSTrackingSeparatorToolbarItemElement extends HTMLNSToolbarItemElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTrackingSeparatorToolbarItem.new();
 
   get splitView(): NSSplitView { return this.nativeObject.splitView; }
@@ -5735,8 +5458,6 @@ export class HTMLNSTrackingSeparatorToolbarItemElement extends HTMLNSToolbarItem
 }
 
 export class HTMLNSStepperCellElement extends HTMLNSActionCellElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSStepperCell.new();
 
   get minValue(): number { return this.nativeObject.minValue; }
@@ -5752,8 +5473,6 @@ export class HTMLNSStepperCellElement extends HTMLNSActionCellElement {
 }
 
 export class HTMLNSPopoverTouchBarItemElement extends HTMLNSTouchBarItemElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSPopoverTouchBarItem.new();
 
@@ -5774,8 +5493,6 @@ export class HTMLNSPopoverTouchBarItemElement extends HTMLNSTouchBarItemElement 
 }
 
 export class HTMLNSPersistentDocumentElement extends HTMLNSDocumentElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSPersistentDocument.new();
 
@@ -5785,8 +5502,6 @@ export class HTMLNSPersistentDocumentElement extends HTMLNSDocumentElement {
 }
 
 export class HTMLNSColorPickerTouchBarItemElement extends HTMLNSTouchBarItemElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSColorPickerTouchBarItem.new();
 
@@ -5809,8 +5524,6 @@ export class HTMLNSColorPickerTouchBarItemElement extends HTMLNSTouchBarItemElem
 }
 
 export class HTMLNSEPSImageRepElement extends HTMLNSImageRepElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSEPSImageRep.new();
 
   get boundingBox(): CGRect { return this.nativeObject.boundingBox; }
@@ -5818,16 +5531,12 @@ export class HTMLNSEPSImageRepElement extends HTMLNSImageRepElement {
 }
 
 export class HTMLNSCIImageRepElement extends HTMLNSImageRepElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCIImageRep.new();
 
   get CIImage(): CIImage { return this.nativeObject.CIImage; }
 }
 
 export class HTMLNSBitmapImageRepElement extends HTMLNSImageRepElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSBitmapImageRep.new();
 
   get bitmapData(): interop.Pointer { return this.nativeObject.bitmapData; }
@@ -5844,8 +5553,6 @@ export class HTMLNSBitmapImageRepElement extends HTMLNSImageRepElement {
 }
 
 export class HTMLNSMutableFontCollectionElement extends HTMLNSFontCollectionElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSMutableFontCollection.new();
 
@@ -5856,8 +5563,6 @@ export class HTMLNSMutableFontCollectionElement extends HTMLNSFontCollectionElem
 }
 
 export class HTMLNSCollectionViewElement extends HTMLNSViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionView.new();
   get delegate(): NSCollectionViewDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -5999,8 +5704,6 @@ export class HTMLNSCollectionViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSButtonCellElement extends HTMLNSActionCellElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSButtonCell.new();
 
@@ -6010,8 +5713,8 @@ export class HTMLNSButtonCellElement extends HTMLNSActionCellElement {
   set highlightsBy(value: interop.Enum<typeof NSCellStyleMask>) { this.nativeObject.highlightsBy = value; }
   get showsStateBy(): interop.Enum<typeof NSCellStyleMask> { return this.nativeObject.showsStateBy; }
   set showsStateBy(value: interop.Enum<typeof NSCellStyleMask>) { this.nativeObject.showsStateBy = value; }
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get attributedTitle(): NSAttributedString { return this.nativeObject.attributedTitle; }
   set attributedTitle(value: NSAttributedString) { this.nativeObject.attributedTitle = value; }
   get alternateTitle(): string { return this.nativeObject.alternateTitle; }
@@ -6046,8 +5749,6 @@ export class HTMLNSButtonCellElement extends HTMLNSActionCellElement {
 }
 
 export class HTMLNSBoxElement extends HTMLNSViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSBox.new();
 
   declare childSlot: 'contentView';
@@ -6059,8 +5760,8 @@ export class HTMLNSBoxElement extends HTMLNSViewElement {
   set boxType(value: interop.Enum<typeof NSBoxType>) { this.nativeObject.boxType = value; }
   get titlePosition(): interop.Enum<typeof NSTitlePosition> { return this.nativeObject.titlePosition; }
   set titlePosition(value: interop.Enum<typeof NSTitlePosition>) { this.nativeObject.titlePosition = value; }
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get titleFont(): NSFont { return this.nativeObject.titleFont; }
   set titleFont(value: NSFont) { this.nativeObject.titleFont = value; }
   get borderRect(): CGRect { return this.nativeObject.borderRect; }
@@ -6085,8 +5786,6 @@ export class HTMLNSBoxElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSScrollViewElement extends HTMLNSViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSScrollView.new();
 
@@ -6182,8 +5881,6 @@ export class HTMLNSScrollViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSATSTypesetterElement extends HTMLNSTypesetterElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSATSTypesetter.new();
 
   get usesFontLeading(): boolean { return this.nativeObject.usesFontLeading; }
@@ -6205,8 +5902,6 @@ export class HTMLNSATSTypesetterElement extends HTMLNSTypesetterElement {
 }
 
 export class HTMLNSTableCellViewElement extends HTMLNSViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTableCellView.new();
 
   get objectValue(): interop.Object { return this.nativeObject.objectValue; }
@@ -6223,8 +5918,6 @@ export class HTMLNSTableCellViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSVisualEffectViewElement extends HTMLNSViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSVisualEffectView.new();
 
   get material(): interop.Enum<typeof NSVisualEffectMaterial> { return this.nativeObject.material; }
@@ -6241,8 +5934,6 @@ export class HTMLNSVisualEffectViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSTableRowViewElement extends HTMLNSViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTableRowView.new();
 
   get selectionHighlightStyle(): interop.Enum<typeof NSTableViewSelectionHighlightStyle> { return this.nativeObject.selectionHighlightStyle; }
@@ -6290,8 +5981,6 @@ export class HTMLNSTableRowViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSCollectionViewGridLayoutElement extends HTMLNSCollectionViewLayoutElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionViewGridLayout.new();
 
   get margins(): NSEdgeInsets { return this.nativeObject.margins; }
@@ -6313,8 +6002,6 @@ export class HTMLNSCollectionViewGridLayoutElement extends HTMLNSCollectionViewL
 }
 
 export class HTMLNSCollectionLayoutSpacingElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionLayoutSpacing.new();
 
   get spacing(): number { return this.nativeObject.spacing; }
@@ -6323,15 +6010,11 @@ export class HTMLNSCollectionLayoutSpacingElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCachedImageRepElement extends HTMLNSImageRepElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCachedImageRep.new();
 
 }
 
 export class HTMLNSDockTileElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDockTile.new();
 
   declare childSlot: 'contentView';
@@ -6350,8 +6033,6 @@ export class HTMLNSDockTileElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSAlertElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSAlert.new();
   get delegate(): NSAlertDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -6386,8 +6067,6 @@ export class HTMLNSAlertElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextLineFragmentElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextLineFragment.new();
 
   get attributedString(): NSAttributedString { return this.nativeObject.attributedString; }
@@ -6397,8 +6076,6 @@ export class HTMLNSTextLineFragmentElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextSelectionElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextSelection.new();
 
   get textRanges(): NSArray { return this.nativeObject.textRanges; }
@@ -6416,15 +6093,11 @@ export class HTMLNSTextSelectionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSAlignmentFeedbackFilterElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSAlignmentFeedbackFilter.new();
 
 }
 
 export class HTMLNSParagraphStyleElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSParagraphStyle.new();
 
   get lineSpacing(): number { return this.nativeObject.lineSpacing; }
@@ -6452,8 +6125,6 @@ export class HTMLNSParagraphStyleElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSDictionaryControllerKeyValuePairElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDictionaryControllerKeyValuePair.new();
 
   get key(): string { return this.nativeObject.key; }
@@ -6466,8 +6137,6 @@ export class HTMLNSDictionaryControllerKeyValuePairElement extends HTMLNSObjectE
 }
 
 export class HTMLNSOpenGLViewElement extends HTMLNSViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSOpenGLView.new();
 
   get openGLContext(): NSOpenGLContext { return this.nativeObject.openGLContext; }
@@ -6481,15 +6150,11 @@ export class HTMLNSOpenGLViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSMovieElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSMovie.new();
 
 }
 
 export class HTMLNSDataAssetElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDataAsset.new();
 
   get name(): string { return this.nativeObject.name; }
@@ -6498,8 +6163,6 @@ export class HTMLNSDataAssetElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTableHeaderViewElement extends HTMLNSViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTableHeaderView.new();
 
   get tableView(): NSTableView { return this.nativeObject.tableView; }
@@ -6516,8 +6179,6 @@ export class HTMLNSTableHeaderViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSTextInsertionIndicatorElement extends HTMLNSViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextInsertionIndicator.new();
 
   get displayMode(): interop.Enum<typeof NSTextInsertionIndicatorDisplayMode> { return this.nativeObject.displayMode; }
@@ -6531,8 +6192,6 @@ export class HTMLNSTextInsertionIndicatorElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSSegmentedCellElement extends HTMLNSActionCellElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSegmentedCell.new();
 
   get segmentCount(): number { return this.nativeObject.segmentCount; }
@@ -6546,29 +6205,23 @@ export class HTMLNSSegmentedCellElement extends HTMLNSActionCellElement {
 }
 
 export class HTMLNSSliderAccessoryBehaviorElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSliderAccessoryBehavior.new();
 
 }
 
 export class HTMLNSInputServerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSInputServer.new();
 
 }
 
 export class HTMLNSFormCellElement extends HTMLNSActionCellElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSFormCell.new();
 
   get titleWidth(): number { return this.nativeObject.titleWidth; }
   set titleWidth(value: number) { this.nativeObject.titleWidth = value; }
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get titleFont(): NSFont { return this.nativeObject.titleFont; }
   set titleFont(value: NSFont) { this.nativeObject.titleFont = value; }
   get isOpaque(): boolean { return this.nativeObject.isOpaque; }
@@ -6587,8 +6240,6 @@ export class HTMLNSFormCellElement extends HTMLNSActionCellElement {
 }
 
 export class HTMLNSFontElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSFont.new();
 
   get fontName(): string { return this.nativeObject.fontName; }
@@ -6619,9 +6270,7 @@ export class HTMLNSFontElement extends HTMLNSObjectElement {
   get renderingMode(): interop.Enum<typeof NSFontRenderingMode> { return this.nativeObject.renderingMode; }
 }
 
-export class HTMLNSLayoutAnchorElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
+export class HTMLNSLayoutAnchorElement<AnchorType = interop.Object> extends HTMLNSObjectElement {
   readonly nativeObject = NSLayoutAnchor.new();
 
   get name(): string { return this.nativeObject.name; }
@@ -6631,8 +6280,6 @@ export class HTMLNSLayoutAnchorElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionLayoutDimensionElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionLayoutDimension.new();
 
   get isFractionalWidth(): boolean { return this.nativeObject.isFractionalWidth; }
@@ -6643,8 +6290,6 @@ export class HTMLNSCollectionLayoutDimensionElement extends HTMLNSObjectElement 
 }
 
 export class HTMLNSCollectionViewLayoutAttributesElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionViewLayoutAttributes.new();
 
   get frame(): CGRect { return this.nativeObject.frame; }
@@ -6664,16 +6309,12 @@ export class HTMLNSCollectionViewLayoutAttributesElement extends HTMLNSObjectEle
 }
 
 export class HTMLNSUserInterfaceCompressionOptionsElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSUserInterfaceCompressionOptions.new();
 
   get isEmpty(): boolean { return this.nativeObject.isEmpty; }
 }
 
 export class HTMLNSTextAttachmentCellElement extends HTMLNSCellElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSTextAttachmentCell.new();
 
@@ -6689,8 +6330,6 @@ export class HTMLNSTextAttachmentCellElement extends HTMLNSCellElement {
 }
 
 export class HTMLNSMenuItemElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSMenuItem.new();
 
   get menu(): NSMenu { return this.nativeObject.menu; }
@@ -6699,8 +6338,8 @@ export class HTMLNSMenuItemElement extends HTMLNSObjectElement {
   get submenu(): NSMenu { return this.nativeObject.submenu; }
   set submenu(value: NSMenu) { this.nativeObject.submenu = value; }
   get parentItem(): NSMenuItem { return this.nativeObject.parentItem; }
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get attributedTitle(): NSAttributedString { return this.nativeObject.attributedTitle; }
   set attributedTitle(value: NSAttributedString) { this.nativeObject.attributedTitle = value; }
   get isSeparatorItem(): boolean { return this.nativeObject.isSeparatorItem; }
@@ -7009,8 +6648,6 @@ export class HTMLNSMenuItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPrintOperationElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPrintOperation.new();
 
   get isCopyingOperation(): boolean { return this.nativeObject.isCopyingOperation; }
@@ -7038,8 +6675,6 @@ export class HTMLNSPrintOperationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSAccessibilityCustomRotorElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSAccessibilityCustomRotor.new();
 
   get type(): interop.Enum<typeof NSAccessibilityCustomRotorType> { return this.nativeObject.type; }
@@ -7053,8 +6688,6 @@ export class HTMLNSAccessibilityCustomRotorElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSClipViewElement extends HTMLNSViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSClipView.new();
 
   declare childSlot: 'documentView';
@@ -7081,8 +6714,6 @@ export class HTMLNSClipViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSPopoverElement extends HTMLNSResponderElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPopover.new();
   get delegate(): NSPopoverDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -7390,8 +7021,6 @@ export class HTMLNSPopoverElement extends HTMLNSResponderElement {
 }
 
 export class HTMLNSCustomTouchBarItemElement extends HTMLNSTouchBarItemElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSCustomTouchBarItem.new();
 
@@ -7404,8 +7033,6 @@ export class HTMLNSCustomTouchBarItemElement extends HTMLNSTouchBarItemElement {
 }
 
 export class HTMLNSGestureRecognizerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSGestureRecognizer.new();
   get delegate(): NSGestureRecognizerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -7460,8 +7087,6 @@ export class HTMLNSGestureRecognizerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSStatusBarElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSStatusBar.new();
 
   get isVertical(): boolean { return this.nativeObject.isVertical; }
@@ -7469,8 +7094,6 @@ export class HTMLNSStatusBarElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPDFInfoElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPDFInfo.new();
 
   get URL(): NSURL { return this.nativeObject.URL; }
@@ -7483,11 +7106,10 @@ export class HTMLNSPDFInfoElement extends HTMLNSObjectElement {
   set orientation(value: interop.Enum<typeof NSPaperOrientation>) { this.nativeObject.orientation = value; }
   get paperSize(): CGSize { return this.nativeObject.paperSize; }
   set paperSize(value: CGSize) { this.nativeObject.paperSize = value; }
+  get attributesNative(): NSMutableDictionary { return this.nativeObject.attributes; }
 }
 
 export class HTMLNSTextTableElement extends HTMLNSTextBlockElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextTable.new();
 
   get numberOfColumns(): number { return this.nativeObject.numberOfColumns; }
@@ -7501,8 +7123,6 @@ export class HTMLNSTextTableElement extends HTMLNSTextBlockElement {
 }
 
 export class HTMLNSCollectionViewFlowLayoutInvalidationContextElement extends HTMLNSCollectionViewLayoutInvalidationContextElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionViewFlowLayoutInvalidationContext.new();
 
   get invalidateFlowLayoutDelegateMetrics(): boolean { return this.nativeObject.invalidateFlowLayoutDelegateMetrics; }
@@ -7512,8 +7132,6 @@ export class HTMLNSCollectionViewFlowLayoutInvalidationContextElement extends HT
 }
 
 export class HTMLNSPrintPanelElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPrintPanel.new();
 
   get accessoryControllers(): NSArray { return this.nativeObject.accessoryControllers; }
@@ -7527,8 +7145,6 @@ export class HTMLNSPrintPanelElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSDocumentControllerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDocumentController.new();
 
   get documents(): NSArray { return this.nativeObject.documents; }
@@ -7551,8 +7167,6 @@ export class HTMLNSDocumentControllerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSStepperTouchBarItemElement extends HTMLNSTouchBarItemElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSStepperTouchBarItem.new();
 
@@ -7573,8 +7187,6 @@ export class HTMLNSStepperTouchBarItemElement extends HTMLNSTouchBarItemElement 
 }
 
 export class HTMLNSPrintInfoElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPrintInfo.new();
 
   get paperName(): string { return this.nativeObject.paperName; }
@@ -7613,8 +7225,6 @@ export class HTMLNSPrintInfoElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSTextFinderElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextFinder.new();
 
   get client(): NSTextFinderClient { return this.nativeObject.client; }
@@ -7631,8 +7241,6 @@ export class HTMLNSTextFinderElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionViewTransitionLayoutElement extends HTMLNSCollectionViewLayoutElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionViewTransitionLayout.new();
 
   get transitionProgress(): number { return this.nativeObject.transitionProgress; }
@@ -7642,8 +7250,6 @@ export class HTMLNSCollectionViewTransitionLayoutElement extends HTMLNSCollectio
 }
 
 export class HTMLNSToolbarItemGroupElement extends HTMLNSToolbarItemElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSToolbarItemGroup.new();
 
   get subitems(): NSArray { return this.nativeObject.subitems; }
@@ -7657,8 +7263,6 @@ export class HTMLNSToolbarItemGroupElement extends HTMLNSToolbarItemElement {
 }
 
 export class HTMLNSTableColumnElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTableColumn.new();
 
   get identifier(): string { return this.nativeObject.identifier; }
@@ -7671,8 +7275,8 @@ export class HTMLNSTableColumnElement extends HTMLNSObjectElement {
   set minWidth(value: number) { this.nativeObject.minWidth = value; }
   get maxWidth(): number { return this.nativeObject.maxWidth; }
   set maxWidth(value: number) { this.nativeObject.maxWidth = value; }
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get headerCell(): NSTableHeaderCell { return this.nativeObject.headerCell; }
   set headerCell(value: NSTableHeaderCell) { this.nativeObject.headerCell = value; }
   get isEditable(): boolean { return this.nativeObject.isEditable; }
@@ -7690,8 +7294,6 @@ export class HTMLNSTableColumnElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPICTImageRepElement extends HTMLNSImageRepElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPICTImageRep.new();
 
   get PICTRepresentation(): NSData { return this.nativeObject.PICTRepresentation; }
@@ -7699,8 +7301,6 @@ export class HTMLNSPICTImageRepElement extends HTMLNSImageRepElement {
 }
 
 export class HTMLNSWorkspaceOpenConfigurationElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSWorkspaceOpenConfiguration.new();
 
   get promptsUserIfNeeded(): boolean { return this.nativeObject.promptsUserIfNeeded; }
@@ -7732,8 +7332,6 @@ export class HTMLNSWorkspaceOpenConfigurationElement extends HTMLNSObjectElement
 }
 
 export class HTMLNSPredicateEditorRowTemplateElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPredicateEditorRowTemplate.new();
 
   get templateViews(): NSArray { return this.nativeObject.templateViews; }
@@ -7747,8 +7345,6 @@ export class HTMLNSPredicateEditorRowTemplateElement extends HTMLNSObjectElement
 }
 
 export class HTMLNSMediaLibraryBrowserControllerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSMediaLibraryBrowserController.new();
 
   get isVisible(): boolean { return this.nativeObject.isVisible; }
@@ -7760,12 +7356,10 @@ export class HTMLNSMediaLibraryBrowserControllerElement extends HTMLNSObjectElem
 }
 
 export class HTMLNSPathControlItemElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPathControlItem.new();
 
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get attributedTitle(): NSAttributedString { return this.nativeObject.attributedTitle; }
   set attributedTitle(value: NSAttributedString) { this.nativeObject.attributedTitle = value; }
   get image(): NSImage { return this.nativeObject.image; }
@@ -7774,8 +7368,6 @@ export class HTMLNSPathControlItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSSliderTouchBarItemElement extends HTMLNSTouchBarItemElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSSliderTouchBarItem.new();
 
@@ -7805,15 +7397,11 @@ export class HTMLNSSliderTouchBarItemElement extends HTMLNSTouchBarItemElement {
 }
 
 export class HTMLNSTableHeaderCellElement extends HTMLNSTextFieldCellElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTableHeaderCell.new();
 
 }
 
 export class HTMLNSMenuItemCellElement extends HTMLNSButtonCellElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSMenuItemCell.new();
 
@@ -7832,8 +7420,6 @@ export class HTMLNSMenuItemCellElement extends HTMLNSButtonCellElement {
 }
 
 export class HTMLNSPanGestureRecognizerElement extends HTMLNSGestureRecognizerElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPanGestureRecognizer.new();
 
   get buttonMask(): number { return this.nativeObject.buttonMask; }
@@ -7843,8 +7429,6 @@ export class HTMLNSPanGestureRecognizerElement extends HTMLNSGestureRecognizerEl
 }
 
 export class HTMLNSClickGestureRecognizerElement extends HTMLNSGestureRecognizerElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSClickGestureRecognizer.new();
 
   get buttonMask(): number { return this.nativeObject.buttonMask; }
@@ -7856,15 +7440,11 @@ export class HTMLNSClickGestureRecognizerElement extends HTMLNSGestureRecognizer
 }
 
 export class HTMLNSLayoutYAxisAnchorElement extends HTMLNSLayoutAnchorElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSLayoutYAxisAnchor.new();
 
 }
 
 export class HTMLNSMagnificationGestureRecognizerElement extends HTMLNSGestureRecognizerElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSMagnificationGestureRecognizer.new();
 
   get magnification(): number { return this.nativeObject.magnification; }
@@ -7872,8 +7452,6 @@ export class HTMLNSMagnificationGestureRecognizerElement extends HTMLNSGestureRe
 }
 
 export class HTMLNSImageCellElement extends HTMLNSCellElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSImageCell.new();
 
   get imageAlignment(): interop.Enum<typeof NSImageAlignment> { return this.nativeObject.imageAlignment; }
@@ -7885,8 +7463,6 @@ export class HTMLNSImageCellElement extends HTMLNSCellElement {
 }
 
 export class HTMLNSSearchToolbarItemElement extends HTMLNSToolbarItemElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSearchToolbarItem.new();
 
   get searchField(): NSSearchField { return this.nativeObject.searchField; }
@@ -7898,8 +7474,6 @@ export class HTMLNSSearchToolbarItemElement extends HTMLNSToolbarItemElement {
 }
 
 export class HTMLNSPickerTouchBarItemElement extends HTMLNSTouchBarItemElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSPickerTouchBarItem.new();
 
@@ -7928,8 +7502,6 @@ export class HTMLNSPickerTouchBarItemElement extends HTMLNSTouchBarItemElement {
 }
 
 export class HTMLNSArrayControllerElement extends HTMLNSObjectControllerElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSArrayController.new();
 
   get automaticallyRearrangesObjects(): boolean { return this.nativeObject.automaticallyRearrangesObjects; }
@@ -7959,8 +7531,6 @@ export class HTMLNSArrayControllerElement extends HTMLNSObjectControllerElement 
 }
 
 export class HTMLNSGridViewElement extends HTMLNSViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSGridView.new();
 
   protected nativeAppendChildImpl<T extends HTMLNativeObjectElement>(node: T): void {
@@ -8025,8 +7595,6 @@ export class HTMLNSGridViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSSplitViewElement extends HTMLNSViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSplitView.new();
   get delegate(): NSSplitViewDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -8111,15 +7679,11 @@ export class HTMLNSSplitViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSLayoutDimensionElement extends HTMLNSLayoutAnchorElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSLayoutDimension.new();
 
 }
 
 export class HTMLNSDatePickerCellElement extends HTMLNSActionCellElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDatePickerCell.new();
   get delegate(): NSDatePickerCellDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -8161,16 +7725,14 @@ export class HTMLNSDatePickerCellElement extends HTMLNSActionCellElement {
 }
 
 export class HTMLNSViewControllerElement extends HTMLNSResponderElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSViewController.new();
 
   get nibName(): string { return this.nativeObject.nibName; }
   get nibBundle(): NSBundle { return this.nativeObject.nibBundle; }
   get representedObject(): interop.Object { return this.nativeObject.representedObject; }
   set representedObject(value: interop.Object) { this.nativeObject.representedObject = value; }
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get view(): NSView { return this.nativeObject.view; }
   set view(value: NSView) { this.nativeObject.view = value; }
   get viewIfLoaded(): NSView { return this.nativeObject.viewIfLoaded; }
@@ -8201,8 +7763,6 @@ export class HTMLNSViewControllerElement extends HTMLNSResponderElement {
 }
 
 export class HTMLNSPressGestureRecognizerElement extends HTMLNSGestureRecognizerElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPressGestureRecognizer.new();
 
   get buttonMask(): number { return this.nativeObject.buttonMask; }
@@ -8216,8 +7776,6 @@ export class HTMLNSPressGestureRecognizerElement extends HTMLNSGestureRecognizer
 }
 
 export class HTMLNSPopUpButtonCellElement extends HTMLNSMenuItemCellElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPopUpButtonCell.new();
 
   get menu(): NSMenu { return this.nativeObject.menu; }
@@ -8250,8 +7808,6 @@ export class HTMLNSPopUpButtonCellElement extends HTMLNSMenuItemCellElement {
 }
 
 export class HTMLNSTextElement extends HTMLNSViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSText.new();
   get delegate(): NSTextDelegateImpl {
@@ -8316,9 +7872,7 @@ export class HTMLNSTextElement extends HTMLNSViewElement {
   }
 }
 
-export class HTMLNSDiffableDataSourceSnapshotElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
+export class HTMLNSDiffableDataSourceSnapshotElement<SectionIdentifierType = interop.Object, ItemIdentifierType = interop.Object> extends HTMLNSObjectElement {
   readonly nativeObject = NSDiffableDataSourceSnapshot.new();
 
   get numberOfItems(): number { return this.nativeObject.numberOfItems; }
@@ -8328,8 +7882,6 @@ export class HTMLNSDiffableDataSourceSnapshotElement extends HTMLNSObjectElement
 }
 
 export class HTMLNSTextViewportLayoutControllerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextViewportLayoutController.new();
   get delegate(): NSTextViewportLayoutControllerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -8357,8 +7909,6 @@ export class HTMLNSTextViewportLayoutControllerElement extends HTMLNSObjectEleme
 }
 
 export class HTMLNSTintConfigurationElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTintConfiguration.new();
 
   get baseTintColor(): NSColor { return this.nativeObject.baseTintColor; }
@@ -8367,8 +7917,6 @@ export class HTMLNSTintConfigurationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSUserDefaultsControllerElement extends HTMLNSControllerElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSUserDefaultsController.new();
 
   get defaults(): NSUserDefaults { return this.nativeObject.defaults; }
@@ -8381,8 +7929,6 @@ export class HTMLNSUserDefaultsControllerElement extends HTMLNSControllerElement
 }
 
 export class HTMLNSOpenGLContextElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSOpenGLContext.new();
 
   get pixelFormat(): NSOpenGLPixelFormat { return this.nativeObject.pixelFormat; }
@@ -8394,8 +7940,6 @@ export class HTMLNSOpenGLContextElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSProgressIndicatorElement extends HTMLNSViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSProgressIndicator.new();
 
@@ -8413,6 +7957,8 @@ export class HTMLNSProgressIndicatorElement extends HTMLNSViewElement {
   set observedProgress(value: NSProgress) { this.nativeObject.observedProgress = value; }
   get usesThreadedAnimation(): boolean { return this.nativeObject.usesThreadedAnimation; }
   set usesThreadedAnimation(value: boolean) { this.nativeObject.usesThreadedAnimation = value; }
+  get styleNative(): interop.Enum<typeof NSProgressIndicatorStyle> { return this.nativeObject.style; }
+  set styleNative(value: interop.Enum<typeof NSProgressIndicatorStyle>) { this.nativeObject.style = value; }
   get isDisplayedWhenStopped(): boolean { return this.nativeObject.isDisplayedWhenStopped; }
   set isDisplayedWhenStopped(value: boolean) { this.nativeObject.isDisplayedWhenStopped = value; }
   get isBezeled(): boolean { return this.nativeObject.isBezeled; }
@@ -8438,8 +7984,6 @@ export class HTMLNSProgressIndicatorElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSScrubberArrangedViewElement extends HTMLNSViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSScrubberArrangedView.new();
 
   get isSelected(): boolean { return this.nativeObject.isSelected; }
@@ -8449,8 +7993,6 @@ export class HTMLNSScrubberArrangedViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSLayoutConstraintElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSLayoutConstraint.new();
 
   get priority(): number { return this.nativeObject.priority; }
@@ -8474,8 +8016,6 @@ export class HTMLNSLayoutConstraintElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSSpeechSynthesizerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSpeechSynthesizer.new();
   get delegate(): NSSpeechSynthesizerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -8510,8 +8050,6 @@ export class HTMLNSSpeechSynthesizerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSMutableParagraphStyleElement extends HTMLNSParagraphStyleElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSMutableParagraphStyle.new();
 
@@ -8562,15 +8100,11 @@ export class HTMLNSMutableParagraphStyleElement extends HTMLNSParagraphStyleElem
 }
 
 export class HTMLNSStoryboardElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSStoryboard.new();
 
 }
 
 export class HTMLNSCollectionLayoutItemElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionLayoutItem.new();
 
   get contentInsets(): NSDirectionalEdgeInsets { return this.nativeObject.contentInsets; }
@@ -8582,8 +8116,6 @@ export class HTMLNSCollectionLayoutItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionLayoutSectionElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionLayoutSection.new();
 
   get contentInsets(): NSDirectionalEdgeInsets { return this.nativeObject.contentInsets; }
@@ -8603,8 +8135,6 @@ export class HTMLNSCollectionLayoutSectionElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSGroupTouchBarItemElement extends HTMLNSTouchBarItemElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSGroupTouchBarItem.new();
 
@@ -8624,8 +8154,6 @@ export class HTMLNSGroupTouchBarItemElement extends HTMLNSTouchBarItemElement {
 }
 
 export class HTMLNSMenuElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSMenu.new();
   get delegate(): NSMenuDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -8634,8 +8162,8 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
     return this.nativeObject.delegate as NSMenuDelegateImpl;
   }
 
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get supermenu(): NSMenu { return this.nativeObject.supermenu; }
   set supermenu(value: NSMenu) { this.nativeObject.supermenu = value; }
   get itemArray(): NSArray { return this.nativeObject.itemArray; }
@@ -8953,8 +8481,6 @@ export class HTMLNSMenuElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSScrubberProportionalLayoutElement extends HTMLNSScrubberLayoutElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSScrubberProportionalLayout.new();
 
   get numberOfVisibleItems(): number { return this.nativeObject.numberOfVisibleItems; }
@@ -8962,8 +8488,6 @@ export class HTMLNSScrubberProportionalLayoutElement extends HTMLNSScrubberLayou
 }
 
 export class HTMLNSTextContainerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextContainer.new();
 
   get layoutManager(): NSLayoutManager { return this.nativeObject.layoutManager; }
@@ -8992,8 +8516,6 @@ export class HTMLNSTextContainerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPanelElement extends HTMLNSWindowElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSPanel.new();
 
@@ -9006,8 +8528,6 @@ export class HTMLNSPanelElement extends HTMLNSWindowElement {
 }
 
 export class HTMLNSTitlebarAccessoryViewControllerElement extends HTMLNSViewControllerElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTitlebarAccessoryViewController.new();
 
   get layoutAttribute(): interop.Enum<typeof NSLayoutAttribute> { return this.nativeObject.layoutAttribute; }
@@ -9029,8 +8549,6 @@ export class HTMLNSTitlebarAccessoryViewControllerElement extends HTMLNSViewCont
 }
 
 export class HTMLNSRotationGestureRecognizerElement extends HTMLNSGestureRecognizerElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSRotationGestureRecognizer.new();
 
   get rotation(): number { return this.nativeObject.rotation; }
@@ -9040,8 +8558,6 @@ export class HTMLNSRotationGestureRecognizerElement extends HTMLNSGestureRecogni
 }
 
 export class HTMLNSDraggingItemElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDraggingItem.new();
 
   get item(): interop.Object { return this.nativeObject.item; }
@@ -9053,8 +8569,6 @@ export class HTMLNSDraggingItemElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionViewCompositionalLayoutElement extends HTMLNSCollectionViewLayoutElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionViewCompositionalLayout.new();
 
   get configuration(): NSCollectionViewCompositionalLayoutConfiguration { return this.nativeObject.configuration; }
@@ -9062,8 +8576,6 @@ export class HTMLNSCollectionViewCompositionalLayoutElement extends HTMLNSCollec
 }
 
 export class HTMLNSTrackingAreaElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTrackingArea.new();
 
   get rect(): CGRect { return this.nativeObject.rect; }
@@ -9073,8 +8585,6 @@ export class HTMLNSTrackingAreaElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionLayoutSupplementaryItemElement extends HTMLNSCollectionLayoutItemElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionLayoutSupplementaryItem.new();
 
   get zIndex(): number { return this.nativeObject.zIndex; }
@@ -9085,8 +8595,6 @@ export class HTMLNSCollectionLayoutSupplementaryItemElement extends HTMLNSCollec
 }
 
 export class HTMLNSCollectionViewItemElement extends HTMLNSViewControllerElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionViewItem.new();
 
   get collectionView(): NSCollectionView { return this.nativeObject.collectionView; }
@@ -9110,8 +8618,6 @@ export class HTMLNSCollectionViewItemElement extends HTMLNSViewControllerElement
 }
 
 export class HTMLNSDictionaryControllerElement extends HTMLNSArrayControllerElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSDictionaryController.new();
 
@@ -9130,8 +8636,6 @@ export class HTMLNSDictionaryControllerElement extends HTMLNSArrayControllerElem
 }
 
 export class HTMLNSSavePanelElement extends HTMLNSPanelElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSSavePanel.new();
   get delegate(): NSOpenSavePanelDelegateImpl {
@@ -9163,8 +8667,8 @@ export class HTMLNSSavePanelElement extends HTMLNSPanelElement {
   set treatsFilePackagesAsDirectories(value: boolean) { this.nativeObject.treatsFilePackagesAsDirectories = value; }
   get prompt(): string { return this.nativeObject.prompt; }
   set prompt(value: string) { this.nativeObject.prompt = value; }
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get nameFieldLabel(): string { return this.nativeObject.nameFieldLabel; }
   set nameFieldLabel(value: string) { this.nativeObject.nameFieldLabel = value; }
   get nameFieldStringValue(): string { return this.nativeObject.nameFieldStringValue; }
@@ -9201,8 +8705,6 @@ export class HTMLNSSavePanelElement extends HTMLNSPanelElement {
 }
 
 export class HTMLNSCollectionLayoutDecorationItemElement extends HTMLNSCollectionLayoutItemElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionLayoutDecorationItem.new();
 
   get zIndex(): number { return this.nativeObject.zIndex; }
@@ -9211,8 +8713,6 @@ export class HTMLNSCollectionLayoutDecorationItemElement extends HTMLNSCollectio
 }
 
 export class HTMLNSSplitViewControllerElement extends HTMLNSViewControllerElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSplitViewController.new();
 
   // view seems to show more life than splitView, but still not sure.
@@ -9261,8 +8761,6 @@ export class HTMLNSSplitViewControllerElement extends HTMLNSViewControllerElemen
 }
 
 export class HTMLNSFontPanelElement extends HTMLNSPanelElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSFontPanel.new();
 
@@ -9275,15 +8773,11 @@ export class HTMLNSFontPanelElement extends HTMLNSPanelElement {
 }
 
 export class HTMLNSScrubberItemViewElement extends HTMLNSScrubberArrangedViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSScrubberItemView.new();
 
 }
 
 export class HTMLNSCollectionLayoutBoundarySupplementaryItemElement extends HTMLNSCollectionLayoutSupplementaryItemElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionLayoutBoundarySupplementaryItem.new();
 
   get extendsBoundary(): boolean { return this.nativeObject.extendsBoundary; }
@@ -9295,8 +8789,6 @@ export class HTMLNSCollectionLayoutBoundarySupplementaryItemElement extends HTML
 }
 
 export class HTMLNSCollectionViewFlowLayoutElement extends HTMLNSCollectionViewLayoutElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionViewFlowLayout.new();
 
   get minimumLineSpacing(): number { return this.nativeObject.minimumLineSpacing; }
@@ -9322,8 +8814,6 @@ export class HTMLNSCollectionViewFlowLayoutElement extends HTMLNSCollectionViewL
 }
 
 export class HTMLNSPathComponentCellElement extends HTMLNSTextFieldCellElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPathComponentCell.new();
 
   get image(): NSImage { return this.nativeObject.image; }
@@ -9333,8 +8823,6 @@ export class HTMLNSPathComponentCellElement extends HTMLNSTextFieldCellElement {
 }
 
 export class HTMLNSScrubberElement extends HTMLNSViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSScrubber.new();
   get delegate(): NSScrubberDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -9393,8 +8881,6 @@ export class HTMLNSScrubberElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSControlElement extends HTMLNSViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSControl.new();
 
@@ -9451,8 +8937,6 @@ export class HTMLNSControlElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSStackViewElement extends HTMLNSViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSStackView.new();
   get delegate(): NSStackViewDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -9513,8 +8997,6 @@ export class HTMLNSStackViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSRulerViewElement extends HTMLNSViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSRulerView.new();
 
   get scrollView(): NSScrollView { return this.nativeObject.scrollView; }
@@ -9543,8 +9025,6 @@ export class HTMLNSRulerViewElement extends HTMLNSViewElement {
 }
 
 export class HTMLNSTextAlternativesElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextAlternatives.new();
 
   get primaryString(): string { return this.nativeObject.primaryString; }
@@ -9552,8 +9032,6 @@ export class HTMLNSTextAlternativesElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSSoundElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSound.new();
   get delegate(): NSSoundDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -9586,8 +9064,6 @@ export class HTMLNSSoundElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSGridRowElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   nativeObject = NSGridRow.new();
 
   protected get nativeChildNodesImpl(): NSMutableArray<NSGridCell> {
@@ -9689,8 +9165,6 @@ export class HTMLNSGridRowElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionLayoutAnchorElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSCollectionLayoutAnchor.new();
 
   get edges(): interop.Enum<typeof NSDirectionalRectEdge> { return this.nativeObject.edges; }
@@ -9700,8 +9174,6 @@ export class HTMLNSCollectionLayoutAnchorElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSColorElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSColor.new();
 
   get type(): interop.Enum<typeof NSColorType> { return this.nativeObject.type; }
@@ -9735,10 +9207,9 @@ export class HTMLNSColorElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSGraphicsContextElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSGraphicsContext.new();
 
+  get attributesNative(): NSDictionary { return this.nativeObject.attributes; }
   get isDrawingToScreen(): boolean { return this.nativeObject.isDrawingToScreen; }
   get CGContext(): interop.Pointer { return this.nativeObject.CGContext; }
   get isFlipped(): boolean { return this.nativeObject.isFlipped; }
@@ -9757,8 +9228,6 @@ export class HTMLNSGraphicsContextElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSCollectionLayoutGroupElement extends HTMLNSCollectionLayoutItemElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSCollectionLayoutGroup.new();
 
@@ -9770,8 +9239,6 @@ export class HTMLNSCollectionLayoutGroupElement extends HTMLNSCollectionLayoutIt
 }
 
 export class HTMLNSLayoutGuideElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSLayoutGuide.new();
 
   get frame(): CGRect { return this.nativeObject.frame; }
@@ -9793,8 +9260,6 @@ export class HTMLNSLayoutGuideElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSFilePromiseProviderElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSFilePromiseProvider.new();
   get delegate(): NSFilePromiseProviderDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -9826,8 +9291,6 @@ export class HTMLNSFilePromiseProviderElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSLevelIndicatorCellElement extends HTMLNSActionCellElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSLevelIndicatorCell.new();
 
   get levelIndicatorStyle(): interop.Enum<typeof NSLevelIndicatorStyle> { return this.nativeObject.levelIndicatorStyle; }
@@ -9849,8 +9312,6 @@ export class HTMLNSLevelIndicatorCellElement extends HTMLNSActionCellElement {
 }
 
 export class HTMLNSDatePickerElement extends HTMLNSControlElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDatePicker.new();
   get delegate(): NSDatePickerCellDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -9898,8 +9359,6 @@ export class HTMLNSDatePickerElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSScrubberImageItemViewElement extends HTMLNSScrubberItemViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSScrubberImageItemView.new();
 
   get imageView(): NSImageView { return this.nativeObject.imageView; }
@@ -9910,8 +9369,6 @@ export class HTMLNSScrubberImageItemViewElement extends HTMLNSScrubberItemViewEl
 }
 
 export class HTMLNSMatrixElement extends HTMLNSControlElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSMatrix.new();
   get delegate(): NSMatrixDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -9971,8 +9428,6 @@ export class HTMLNSMatrixElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSRuleEditorElement extends HTMLNSControlElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSRuleEditor.new();
   get delegate(): NSRuleEditorDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -10025,8 +9480,6 @@ export class HTMLNSRuleEditorElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSSegmentedControlElement extends HTMLNSControlElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSegmentedControl.new();
 
   get segmentCount(): number { return this.nativeObject.segmentCount; }
@@ -10049,8 +9502,6 @@ export class HTMLNSSegmentedControlElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSStepperElement extends HTMLNSControlElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSStepper.new();
 
   get minValue(): number { return this.nativeObject.minValue; }
@@ -10084,8 +9535,6 @@ export class HTMLNSStepperElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSBrowserElement extends HTMLNSControlElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSBrowser.new();
   get delegate(): NSBrowserDelegateImpl {
@@ -10259,8 +9708,6 @@ export class HTMLNSBrowserElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSTextFieldElement extends HTMLNSControlElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSTextField.new();
   get delegate(): NSTextFieldDelegateImpl {
@@ -10337,8 +9784,6 @@ export class HTMLNSTextFieldElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSLevelIndicatorElement extends HTMLNSControlElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSLevelIndicator.new();
 
   get levelIndicatorStyle(): interop.Enum<typeof NSLevelIndicatorStyle> { return this.nativeObject.levelIndicatorStyle; }
@@ -10376,15 +9821,11 @@ export class HTMLNSLevelIndicatorElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSFormElement extends HTMLNSMatrixElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSForm.new();
 
 }
 
 export class HTMLNSImageViewElement extends HTMLNSControlElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSImageView.new();
 
   get image(): NSImage { return this.nativeObject.image; }
@@ -10427,15 +9868,11 @@ export class HTMLNSImageViewElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSSecureTextFieldElement extends HTMLNSTextFieldElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSecureTextField.new();
 
 }
 
 export class HTMLNSTextViewElement extends HTMLNSTextElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSTextView.new();
   get delegate(): NSTextViewDelegateImpl {
@@ -10674,8 +10111,6 @@ export class HTMLNSTextViewElement extends HTMLNSTextElement {
 }
 
 export class HTMLNSColorWellElement extends HTMLNSControlElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSColorWell.new();
 
   get isActive(): boolean { return this.nativeObject.isActive; }
@@ -10696,15 +10131,11 @@ export class HTMLNSColorWellElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSLayoutXAxisAnchorElement extends HTMLNSLayoutAnchorElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSLayoutXAxisAnchor.new();
 
 }
 
 export class HTMLNSTabViewControllerElement extends HTMLNSViewControllerElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTabViewController.new();
 
   get tabStyle(): interop.Enum<typeof NSTabViewControllerTabStyle> { return this.nativeObject.tabStyle; }
@@ -10728,8 +10159,6 @@ export class HTMLNSTabViewControllerElement extends HTMLNSViewControllerElement 
 }
 
 export class HTMLNSSharingServicePickerTouchBarItemElement extends HTMLNSTouchBarItemElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSharingServicePickerTouchBarItem.new();
 
   get delegate(): NSSharingServicePickerTouchBarItemDelegate | null { return this.nativeObject.delegate; }
@@ -10743,8 +10172,6 @@ export class HTMLNSSharingServicePickerTouchBarItemElement extends HTMLNSTouchBa
 }
 
 export class HTMLNSTextContentStorageElement extends HTMLNSTextContentManagerElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSTextContentStorage.new();
   get delegate(): NSTextContentStorageDelegateImpl {
@@ -10771,8 +10198,6 @@ export class HTMLNSTextContentStorageElement extends HTMLNSTextContentManagerEle
 }
 
 export class HTMLNSSwitchElement extends HTMLNSControlElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSSwitch.new();
 
@@ -10799,8 +10224,6 @@ export class HTMLNSSwitchElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSOpenPanelElement extends HTMLNSSavePanelElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSOpenPanel.new();
 
   get URLs(): NSArray { return this.nativeObject.URLs; }
@@ -10821,8 +10244,6 @@ export class HTMLNSOpenPanelElement extends HTMLNSSavePanelElement {
 }
 
 export class HTMLNSTextParagraphElement extends HTMLNSTextElementElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSTextParagraph.new();
 
   get attributedString(): NSAttributedString { return this.nativeObject.attributedString; }
@@ -10831,8 +10252,6 @@ export class HTMLNSTextParagraphElement extends HTMLNSTextElementElement {
 }
 
 export class HTMLNSPDFImageRepElement extends HTMLNSImageRepElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPDFImageRep.new();
 
   get PDFRepresentation(): NSData { return this.nativeObject.PDFRepresentation; }
@@ -10843,8 +10262,6 @@ export class HTMLNSPDFImageRepElement extends HTMLNSImageRepElement {
 }
 
 export class HTMLNSPageControllerElement extends HTMLNSViewControllerElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPageController.new();
   get delegate(): NSPageControllerDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -10887,8 +10304,6 @@ export class HTMLNSPageControllerElement extends HTMLNSViewControllerElement {
 }
 
 export class HTMLNSComboBoxElement extends HTMLNSTextFieldElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSComboBox.new();
   get delegate(): NSComboBoxDelegateImpl {
@@ -10934,8 +10349,6 @@ export class HTMLNSComboBoxElement extends HTMLNSTextFieldElement {
 }
 
 export class HTMLNSSliderElement extends HTMLNSControlElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSlider.new();
 
   get sliderType(): interop.Enum<typeof NSSliderType> { return this.nativeObject.sliderType; }
@@ -10978,8 +10391,6 @@ export class HTMLNSSliderElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSSearchFieldElement extends HTMLNSTextFieldElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSSearchField.new();
   get delegate(): NSSearchFieldDelegateImpl {
@@ -11016,8 +10427,6 @@ export class HTMLNSSearchFieldElement extends HTMLNSTextFieldElement {
 }
 
 export class HTMLNSTokenFieldElement extends HTMLNSTextFieldElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSTokenField.new();
   get delegate(): NSTokenFieldDelegateImpl {
@@ -11067,8 +10476,6 @@ export class HTMLNSTokenFieldElement extends HTMLNSTextFieldElement {
 }
 
 export class HTMLNSTableViewElement extends HTMLNSControlElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSTableView.new();
   get delegate(): NSTableViewDelegateImpl {
@@ -11134,6 +10541,8 @@ export class HTMLNSTableViewElement extends HTMLNSControlElement {
   get numberOfSelectedRows(): number { return this.nativeObject.numberOfSelectedRows; }
   get allowsTypeSelect(): boolean { return this.nativeObject.allowsTypeSelect; }
   set allowsTypeSelect(value: boolean) { this.nativeObject.allowsTypeSelect = value; }
+  get styleNative(): interop.Enum<typeof NSTableViewStyle> { return this.nativeObject.style; }
+  set styleNative(value: interop.Enum<typeof NSTableViewStyle>) { this.nativeObject.style = value; }
   get effectiveStyle(): interop.Enum<typeof NSTableViewStyle> { return this.nativeObject.effectiveStyle; }
   get selectionHighlightStyle(): interop.Enum<typeof NSTableViewSelectionHighlightStyle> { return this.nativeObject.selectionHighlightStyle; }
   set selectionHighlightStyle(value: interop.Enum<typeof NSTableViewSelectionHighlightStyle>) { this.nativeObject.selectionHighlightStyle = value; }
@@ -11288,23 +10697,19 @@ export class HTMLNSTableViewElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSScrubberTextItemViewElement extends HTMLNSScrubberItemViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSScrubberTextItemView.new();
 
   get textField(): NSTextField { return this.nativeObject.textField; }
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
 }
 
 export class HTMLNSButtonElement extends HTMLNSControlElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSButton.new();
 
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get attributedTitle(): NSAttributedString { return this.nativeObject.attributedTitle; }
   set attributedTitle(value: NSAttributedString) { this.nativeObject.attributedTitle = value; }
   get alternateTitle(): string { return this.nativeObject.alternateTitle; }
@@ -11371,15 +10776,11 @@ export class HTMLNSButtonElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSScrubberSelectionViewElement extends HTMLNSScrubberArrangedViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSScrubberSelectionView.new();
 
 }
 
 export class HTMLNSSearchFieldCellElement extends HTMLNSTextFieldCellElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSearchFieldCell.new();
 
   get searchButtonCell(): NSButtonCell { return this.nativeObject.searchButtonCell; }
@@ -11401,8 +10802,6 @@ export class HTMLNSSearchFieldCellElement extends HTMLNSTextFieldCellElement {
 }
 
 export class HTMLNSRunningApplicationElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSRunningApplication.new();
 
   get isTerminated(): boolean { return this.nativeObject.isTerminated; }
@@ -11422,8 +10821,6 @@ export class HTMLNSRunningApplicationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSSpellCheckerElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSSpellChecker.new();
 
   get userReplacementsDictionary(): NSDictionary { return this.nativeObject.userReplacementsDictionary; }
@@ -11440,8 +10837,6 @@ export class HTMLNSSpellCheckerElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSPopUpButtonElement extends HTMLNSButtonElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSPopUpButton.new();
 
@@ -11464,8 +10859,6 @@ export class HTMLNSPopUpButtonElement extends HTMLNSButtonElement {
 }
 
 export class HTMLNSStatusBarButtonElement extends HTMLNSButtonElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSStatusBarButton.new();
 
   get appearsDisabled(): boolean { return this.nativeObject.appearsDisabled; }
@@ -11473,8 +10866,6 @@ export class HTMLNSStatusBarButtonElement extends HTMLNSButtonElement {
 }
 
 export class HTMLNSTextListElementElement extends HTMLNSTextParagraphElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSTextListElement.new();
 
@@ -11483,11 +10874,10 @@ export class HTMLNSTextListElementElement extends HTMLNSTextParagraphElement {
   get markerAttributes(): NSDictionary { return this.nativeObject.markerAttributes; }
   get attributedString(): NSAttributedString { return this.nativeObject.attributedString; }
   get childElements(): NSArray { return this.nativeObject.childElements; }
+  get parentElementNative(): NSTextListElement { return this.nativeObject.parentElement; }
 }
 
 export class HTMLNSPredicateEditorElement extends HTMLNSRuleEditorElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPredicateEditor.new();
 
   get rowTemplates(): NSArray { return this.nativeObject.rowTemplates; }
@@ -11495,8 +10885,6 @@ export class HTMLNSPredicateEditorElement extends HTMLNSRuleEditorElement {
 }
 
 export class HTMLNSColorPanelElement extends HTMLNSPanelElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSColorPanel.new();
 
   get accessoryView(): NSView { return this.nativeObject.accessoryView; }
@@ -11513,8 +10901,6 @@ export class HTMLNSColorPanelElement extends HTMLNSPanelElement {
 }
 
 export class HTMLNSPathControlElement extends HTMLNSControlElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSPathControl.new();
   get delegate(): NSPathControlDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -11566,8 +10952,6 @@ export class HTMLNSPathControlElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSAnimationElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSAnimation.new();
   get delegate(): NSAnimationDelegateImpl {
     if(!this.nativeObject.delegate){
@@ -11610,8 +10994,6 @@ export class HTMLNSAnimationElement extends HTMLNSObjectElement {
 }
 
 export class HTMLNSViewAnimationElement extends HTMLNSAnimationElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSViewAnimation.new();
 
   get viewAnimations(): NSArray { return this.nativeObject.viewAnimations; }
@@ -11619,8 +11001,6 @@ export class HTMLNSViewAnimationElement extends HTMLNSAnimationElement {
 }
 
 export class HTMLNSScrollerElement extends HTMLNSControlElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSScroller.new();
 
   get scrollerStyle(): interop.Enum<typeof NSScrollerStyle> { return this.nativeObject.scrollerStyle; }
@@ -11640,23 +11020,21 @@ export class HTMLNSScrollerElement extends HTMLNSControlElement {
 }
 
 export class HTMLNSComboButtonElement extends HTMLNSControlElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSComboButton.new();
 
-  get title(): string { return this.nativeObject.title; }
-  set title(value: string) { this.nativeObject.title = value; }
+  get titleNative(): string { return this.nativeObject.title; }
+  set titleNative(value: string) { this.nativeObject.title = value; }
   get image(): NSImage { return this.nativeObject.image; }
   set image(value: NSImage) { this.nativeObject.image = value; }
   get imageScaling(): interop.Enum<typeof NSImageScaling> { return this.nativeObject.imageScaling; }
   set imageScaling(value: interop.Enum<typeof NSImageScaling>) { this.nativeObject.imageScaling = value; }
   get menu(): NSMenu { return this.nativeObject.menu; }
   set menu(value: NSMenu) { this.nativeObject.menu = value; }
+  get styleNative(): interop.Enum<typeof NSComboButtonStyle> { return this.nativeObject.style; }
+  set styleNative(value: interop.Enum<typeof NSComboButtonStyle>) { this.nativeObject.style = value; }
 }
 
 export class HTMLNSOutlineViewElement extends HTMLNSTableViewElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   // @ts-ignore
   readonly nativeObject = NSOutlineView.new();
   get delegate(): NSOutlineViewDelegateImpl {
@@ -11839,8 +11217,6 @@ export class HTMLNSOutlineViewElement extends HTMLNSTableViewElement {
 }
 
 export class HTMLNSDraggingImageComponentElement extends HTMLNSObjectElement {
-  protected static readonly nativeAttributes = { ...super.nativeAttributes, ...this.getOwnNativeAttributes() };
-  protected static readonly observedAttributes = Object.keys(this.nativeAttributes);
   readonly nativeObject = NSDraggingImageComponent.new();
 
   get key(): string { return this.nativeObject.key; }
