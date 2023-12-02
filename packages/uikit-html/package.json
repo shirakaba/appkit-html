@@ -4,6 +4,7 @@
   "description": "Render UIKit with DOM and HTML",
   "module": "dist/index.js",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
     "classgen": "node ../../scripts/classgen.js --sdk ios -i ./node_modules/objc/types -o ./src",
@@ -12,10 +13,11 @@
   },
   "author": "Jamie Birch",
   "license": "MIT",
-  "dependencies": {
-    "objc": "file:../../lib/objc-1.0.0.tgz"
+  "peerDependencies": {
+    "objc": "*"
   },
   "devDependencies": {
+    "objc": "file:../../lib/objc-1.0.0.tgz",
     "typescript": "^5.3.2"
   }
 }
