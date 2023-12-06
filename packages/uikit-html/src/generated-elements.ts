@@ -464,11 +464,9 @@ declare global {
 export abstract class HTMLNativeObjectElement extends HTMLElement {
   /**
    * The suggested tagName to use when defining this Custom Element. Used by the
-   * defineCustomElement() convenience method.
+   * defineCustomElement() convenience method. To be implemented by subclasses.
    */
-  static get tagName(): string {
-    throw new Error("Not implemented; expected to be implemented on subclasses.");
-  }
+  static readonly tagName: string = "NOT-IMPLEMENTED";
 
   static defineCustomElement(): void {
     customElements.define(this.tagName, this as unknown as typeof HTMLElement);
